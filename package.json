@@ -34,14 +34,5 @@
     "bindings/node/*",
     "queries/*",
     "src/**"
-  ],
-  "tree-sitter": [
-    {
-      "scope": "source.crystal",
-      "file-types": [
-        "cr"
-      ],
-      "injection-regex": "crystal"
-    }
   ]
 }

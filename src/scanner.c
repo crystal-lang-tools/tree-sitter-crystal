@@ -102,7 +102,10 @@ typedef enum Token Token;
 /*
  * Helpful macros
  */
-#ifdef TREE_SITTER_INTERNAL_BUILD
+#ifdef __wasm
+#define DEBUG(...)
+#define ASSERT(expr)
+#elif TREE_SITTER_INTERNAL_BUILD
 #define DEBUG(...)                                                                          \
     if (getenv("TREE_SITTER_DEBUG") && strncmp(getenv("TREE_SITTER_DEBUG"), "1", 1) == 0) { \
         fprintf(stderr, __VA_ARGS__);                                                       \

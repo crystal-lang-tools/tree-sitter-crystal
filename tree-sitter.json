@@ -1,0 +1,30 @@
+{
+  "grammars": [
+    {
+      "name": "crystal",
+      "camelcase": "Crystal",
+      "scope": "source.crystal",
+      "path": ".",
+      "file-types": [
+        "cr"
+      ],
+      "injection-regex": "crystal"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.1",
+    "license": "ISC",
+    "description": "",
+    "links": {
+      "repository": "https://github.com/tree-sitter/tree-sitter-crystal"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}
