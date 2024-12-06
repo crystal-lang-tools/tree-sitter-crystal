@@ -1,12 +1,12 @@
 #!/bin/env crystal
 
-{% skip_file unless flag?(:linux) %}
+{% skip_file unless flag?(:linux) || flag?(:darwin) %}
 
 require "colorize"
 
 PASS                      = "pass".colorize.green
 FAIL                      = "fail".colorize.red
-EXPECTED_TO_FAIL_FILEPATH = "#{__FILE__}_expected_to_fail.txt"
+EXPECTED_TO_FAIL_FILEPATH = "#{__DIR__}/stdlib_coverage_expected_to_fail.txt"
 
 class Test
   getter file_path : String
@@ -54,6 +54,11 @@ rescue
   [] of String
 end
 failed = [] of String
+
+if stdlib_files.empty?
+  puts "No stdlib files found"
+  exit
+end
 
 stdlib_files.each do |stdlib_file|
   test = Test.new(stdlib_file, stdlib_file[(stdlib_path.size + 1)..])
