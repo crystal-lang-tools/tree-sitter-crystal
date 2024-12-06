@@ -74,7 +74,7 @@ puts <<-EOS
 
         Total files checked: #{stdlib_files.size.colorize.blue}
         Pass: #{pass} (#{pass_str.colorize.green})
-        
+
         EOS
 
 if failed != expected_fail
