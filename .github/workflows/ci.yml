@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download Tree-sitter
-        run: .github/workflows/install-tree-sitter.sh v0.22.5
+        run: .github/workflows/install-tree-sitter.sh v0.24.4
 
       - name: Run tests
         run: tree-sitter test
@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download Tree-sitter
-        run: .github/workflows/install-tree-sitter.sh v0.22.5
+        run: .github/workflows/install-tree-sitter.sh v0.24.4
 
       - name: Regenerate parser
         run: tree-sitter generate
