@@ -106,8 +106,7 @@ typedef enum Token Token;
  * Helpful macros
  */
 
-#define DEBUG(...) \
-    lexer->log(lexer, __VA_ARGS__);
+#define DEBUG(...) lexer->log(lexer, "[LOG] " __VA_ARGS__);
 
 /*
  * State types
@@ -292,7 +291,6 @@ static bool check_for_heredoc_start(State *state, TSLexer *lexer, const bool *va
 
         array_front(&state->heredocs)->started = true;
 
-        DEBUG(" ==> returning HEREDOC_BODY_START\n");
         lexer->result_symbol = HEREDOC_BODY_START;
         return true;
     }
@@ -320,7 +318,6 @@ static bool scan_whitespace(State *state, TSLexer *lexer, const bool *valid_symb
                     // HEREDOC_BODY_START is a zero-width token. Use skip instead
                     // of advance because we don't want to include the newline.
                     lex_skip(state, lexer);
-                    DEBUG(" ==> returning HEREDOC_BODY_START\n");
                     lexer->result_symbol = HEREDOC_BODY_START;
                     return true;
                 } else if (valid_symbols[LINE_BREAK] && !crossed_newline) {
@@ -349,13 +346,11 @@ static bool scan_whitespace(State *state, TSLexer *lexer, const bool *valid_symb
                         // or the start of a beginless range literal.
                         lex_advance(lexer);
                         if (lexer->lookahead == '.') {
-                            DEBUG(" ==> returning LINE_BREAK\n");
                             lexer->result_symbol = LINE_BREAK;
                         }
                     } else if (lexer->lookahead == '#') {
                         // Comments don't interrupt line continuations
                     } else {
-                        DEBUG(" ==> returning LINE_BREAK\n");
                         lexer->result_symbol = LINE_BREAK;
                     }
                 }
@@ -374,7 +369,7 @@ static bool scan_string_contents(State *state, TSLexer *lexer, const bool *valid
 
     for (;;) {
         if (lexer->eof(lexer)) {
-            DEBUG("reached EOF\n");
+            DEBUG("reached EOF");
             return found_content;
         }
 
@@ -595,7 +590,7 @@ static bool scan_heredoc_contents(State *state, TSLexer *lexer, const bool *vali
 
         for (;;) {
             if (lexer->eof(lexer)) {
-                DEBUG("reached EOF\n");
+                DEBUG("reached EOF");
                 return found_content;
             }
 
@@ -922,7 +917,7 @@ static LookaheadResult lookahead_start_of_type(State *state, TSLexer *lexer) {
     skip_space(state, lexer);
 
     if (lexer->eof(lexer)) {
-        DEBUG("reached EOF\n");
+        DEBUG("reached EOF");
         return LOOKAHEAD_UNKNOWN;
     }
 
@@ -1052,85 +1047,11 @@ static LookaheadResult lookahead_start_of_type(State *state, TSLexer *lexer) {
             return lookahead_start_of_named_tuple_entry(lexer, false);
     }
 
-    DEBUG("Not the start of a type\n");
+    DEBUG("Not the start of a type");
     return LOOKAHEAD_UNKNOWN;
 }
 
-bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
-    DEBUG("\n ==> starting external scan\n");
-    if (lexer->lookahead == '\n') {
-        DEBUG(" ==> char is '\\n'\n");
-    } else if (lexer->lookahead == '\0') {
-        DEBUG(" ==> char is '\\0'\n");
-    } else if (lexer->lookahead == '\r') {
-        DEBUG(" ==> char is '\\r'\n");
-    } else if (lexer->lookahead == '\t') {
-        DEBUG(" ==> char is '\\t'\n");
-    } else {
-        DEBUG(" ==> char is '%c'\n", lexer->lookahead);
-    }
-    DEBUG(" ==> valid symbols are:\n");
-
-#define LOG_SYMBOL(sym) \
-    if (valid_symbols[sym]) { DEBUG("\t" #sym "\n"); }
-
-    LOG_SYMBOL(LINE_BREAK);
-    LOG_SYMBOL(LINE_CONTINUATION);
-    LOG_SYMBOL(START_OF_BRACE_BLOCK);
-    LOG_SYMBOL(START_OF_HASH_OR_TUPLE);
-    LOG_SYMBOL(START_OF_NAMED_TUPLE);
-    LOG_SYMBOL(START_OF_TUPLE_TYPE);
-    LOG_SYMBOL(START_OF_NAMED_TUPLE_TYPE);
-    LOG_SYMBOL(START_OF_INDEX_OPERATOR);
-    LOG_SYMBOL(END_OF_WITH_EXPRESSSION);
-    LOG_SYMBOL(UNARY_PLUS);
-    LOG_SYMBOL(UNARY_MINUS);
-    LOG_SYMBOL(BINARY_PLUS);
-    LOG_SYMBOL(BINARY_MINUS);
-    LOG_SYMBOL(UNARY_WRAPPING_PLUS);
-    LOG_SYMBOL(UNARY_WRAPPING_MINUS);
-    LOG_SYMBOL(BINARY_WRAPPING_PLUS);
-    LOG_SYMBOL(BINARY_WRAPPING_MINUS);
-    LOG_SYMBOL(UNARY_STAR);
-    LOG_SYMBOL(BINARY_STAR);
-    LOG_SYMBOL(UNARY_DOUBLE_STAR);
-    LOG_SYMBOL(BINARY_DOUBLE_STAR);
-    LOG_SYMBOL(BLOCK_AMPERSAND);
-    LOG_SYMBOL(BINARY_AMPERSAND);
-    LOG_SYMBOL(BEGINLESS_RANGE_OPERATOR);
-    LOG_SYMBOL(REGEX_START);
-    LOG_SYMBOL(BINARY_SLASH);
-    LOG_SYMBOL(BINARY_DOUBLE_SLASH);
-    LOG_SYMBOL(REGULAR_IF_KEYWORD);
-    LOG_SYMBOL(MODIFIER_IF_KEYWORD);
-    LOG_SYMBOL(REGULAR_UNLESS_KEYWORD);
-    LOG_SYMBOL(MODIFIER_UNLESS_KEYWORD);
-    LOG_SYMBOL(REGULAR_RESCUE_KEYWORD);
-    LOG_SYMBOL(MODIFIER_RESCUE_KEYWORD);
-    LOG_SYMBOL(REGULAR_ENSURE_KEYWORD);
-    LOG_SYMBOL(MODIFIER_ENSURE_KEYWORD);
-    LOG_SYMBOL(MODULO_OPERATOR);
-    LOG_SYMBOL(STRING_LITERAL_START);
-    LOG_SYMBOL(DELIMITED_STRING_CONTENTS);
-    LOG_SYMBOL(STRING_LITERAL_END);
-    LOG_SYMBOL(CHAR_COMMENT);
-    LOG_SYMBOL(STRING_PERCENT_LITERAL_START);
-    LOG_SYMBOL(COMMAND_PERCENT_LITERAL_START);
-    LOG_SYMBOL(STRING_ARRAY_PERCENT_LITERAL_START);
-    LOG_SYMBOL(SYMBOL_ARRAY_PERCENT_LITERAL_START);
-    LOG_SYMBOL(REGEX_PERCENT_LITERAL_START);
-    LOG_SYMBOL(PERCENT_LITERAL_END);
-    LOG_SYMBOL(DELIMITED_ARRAY_ELEMENT_START);
-    LOG_SYMBOL(DELIMITED_ARRAY_ELEMENT_END);
-    LOG_SYMBOL(HEREDOC_START);
-    LOG_SYMBOL(HEREDOC_BODY_START);
-    LOG_SYMBOL(HEREDOC_CONTENT);
-    LOG_SYMBOL(HEREDOC_END);
-    LOG_SYMBOL(REGEX_MODIFIER);
-    LOG_SYMBOL(START_OF_PARENLESS_ARGS);
-    LOG_SYMBOL(END_OF_RANGE);
-    LOG_SYMBOL(ERROR_RECOVERY);
-
+static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
     State *state = (State *)payload;
     state->has_leading_whitespace = false;
 
@@ -1466,7 +1387,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
                             push_heredoc(state, heredoc);
 
                             lexer->result_symbol = HEREDOC_START;
-                            DEBUG(" ==> returning HEREDOC_START (size %d)\n", word_length);
+                            DEBUG("heredoc size = %d", word_length);
                             return true;
                         }
                     }
@@ -1492,13 +1413,10 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
 
                 if (valid_symbols[UNARY_PLUS] && unary_priority) {
                     lexer->result_symbol = UNARY_PLUS;
-                    DEBUG(" ==> returning UNARY_PLUS\n");
                 } else if (valid_symbols[BINARY_PLUS]) {
                     lexer->result_symbol = BINARY_PLUS;
-                    DEBUG(" ==> returning BINARY_PLUS\n");
                 } else {
                     lexer->result_symbol = UNARY_PLUS;
-                    DEBUG(" ==> returning UNARY_PLUS\n");
                 }
 
                 return true;
@@ -1517,13 +1435,10 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
 
                 if (valid_symbols[UNARY_MINUS] && unary_priority) {
                     lexer->result_symbol = UNARY_MINUS;
-                    DEBUG(" ==> returning UNARY_MINUS\n");
                 } else if (valid_symbols[BINARY_MINUS]) {
                     lexer->result_symbol = BINARY_MINUS;
-                    DEBUG(" ==> returning BINARY_MINUS\n");
                 } else {
                     lexer->result_symbol = UNARY_MINUS;
-                    DEBUG(" ==> returning UNARY_MINUS\n");
                 }
 
                 return true;
@@ -1905,7 +1820,6 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
                     lex_advance(lexer);
                     lexer->result_symbol = LINE_CONTINUATION;
                     state->previous_line_continued = true;
-                    DEBUG("returning line continuation symbol\n")
                     return true;
                 }
             }
@@ -1922,7 +1836,6 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
                     lex_advance(lexer);
                 }
 
-                DEBUG(" ==> returning BEGINLESS_RANGE_OPERATOR\n");
                 lexer->result_symbol = BEGINLESS_RANGE_OPERATOR;
                 return true;
             }
@@ -2093,8 +2006,93 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
             break;
     }
 
-    DEBUG(" ==> returning nothing at end\n");
     return false;
+}
+
+bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+    DEBUG("starting external scan");
+    if (lexer->lookahead == '\n') {
+        DEBUG("char is '\\n'");
+    } else if (lexer->lookahead == '\0') {
+        DEBUG("char is '\\0'");
+    } else if (lexer->lookahead == '\r') {
+        DEBUG("char is '\\r'");
+    } else if (lexer->lookahead == '\t') {
+        DEBUG("char is '\\t'");
+    } else {
+        DEBUG("char is '%c'", lexer->lookahead);
+    }
+    DEBUG("valid symbols are:");
+
+#define LOG_SYMBOL(sym) \
+    if (valid_symbols[sym]) { lexer->log(lexer, "      " #sym); }
+
+    LOG_SYMBOL(LINE_BREAK);
+    LOG_SYMBOL(LINE_CONTINUATION);
+    LOG_SYMBOL(START_OF_BRACE_BLOCK);
+    LOG_SYMBOL(START_OF_HASH_OR_TUPLE);
+    LOG_SYMBOL(START_OF_NAMED_TUPLE);
+    LOG_SYMBOL(START_OF_TUPLE_TYPE);
+    LOG_SYMBOL(START_OF_NAMED_TUPLE_TYPE);
+    LOG_SYMBOL(START_OF_INDEX_OPERATOR);
+    LOG_SYMBOL(END_OF_WITH_EXPRESSSION);
+    LOG_SYMBOL(UNARY_PLUS);
+    LOG_SYMBOL(UNARY_MINUS);
+    LOG_SYMBOL(BINARY_PLUS);
+    LOG_SYMBOL(BINARY_MINUS);
+    LOG_SYMBOL(UNARY_WRAPPING_PLUS);
+    LOG_SYMBOL(UNARY_WRAPPING_MINUS);
+    LOG_SYMBOL(BINARY_WRAPPING_PLUS);
+    LOG_SYMBOL(BINARY_WRAPPING_MINUS);
+    LOG_SYMBOL(UNARY_STAR);
+    LOG_SYMBOL(BINARY_STAR);
+    LOG_SYMBOL(UNARY_DOUBLE_STAR);
+    LOG_SYMBOL(BINARY_DOUBLE_STAR);
+    LOG_SYMBOL(BLOCK_AMPERSAND);
+    LOG_SYMBOL(BINARY_AMPERSAND);
+    LOG_SYMBOL(BEGINLESS_RANGE_OPERATOR);
+    LOG_SYMBOL(REGEX_START);
+    LOG_SYMBOL(BINARY_SLASH);
+    LOG_SYMBOL(BINARY_DOUBLE_SLASH);
+    LOG_SYMBOL(REGULAR_IF_KEYWORD);
+    LOG_SYMBOL(MODIFIER_IF_KEYWORD);
+    LOG_SYMBOL(REGULAR_UNLESS_KEYWORD);
+    LOG_SYMBOL(MODIFIER_UNLESS_KEYWORD);
+    LOG_SYMBOL(REGULAR_RESCUE_KEYWORD);
+    LOG_SYMBOL(MODIFIER_RESCUE_KEYWORD);
+    LOG_SYMBOL(REGULAR_ENSURE_KEYWORD);
+    LOG_SYMBOL(MODIFIER_ENSURE_KEYWORD);
+    LOG_SYMBOL(MODULO_OPERATOR);
+    LOG_SYMBOL(STRING_LITERAL_START);
+    LOG_SYMBOL(DELIMITED_STRING_CONTENTS);
+    LOG_SYMBOL(STRING_LITERAL_END);
+    LOG_SYMBOL(CHAR_COMMENT);
+    LOG_SYMBOL(STRING_PERCENT_LITERAL_START);
+    LOG_SYMBOL(COMMAND_PERCENT_LITERAL_START);
+    LOG_SYMBOL(STRING_ARRAY_PERCENT_LITERAL_START);
+    LOG_SYMBOL(SYMBOL_ARRAY_PERCENT_LITERAL_START);
+    LOG_SYMBOL(REGEX_PERCENT_LITERAL_START);
+    LOG_SYMBOL(PERCENT_LITERAL_END);
+    LOG_SYMBOL(DELIMITED_ARRAY_ELEMENT_START);
+    LOG_SYMBOL(DELIMITED_ARRAY_ELEMENT_END);
+    LOG_SYMBOL(HEREDOC_START);
+    LOG_SYMBOL(HEREDOC_BODY_START);
+    LOG_SYMBOL(HEREDOC_CONTENT);
+    LOG_SYMBOL(HEREDOC_END);
+    LOG_SYMBOL(REGEX_MODIFIER);
+    LOG_SYMBOL(START_OF_PARENLESS_ARGS);
+    LOG_SYMBOL(END_OF_RANGE);
+    LOG_SYMBOL(ERROR_RECOVERY);
+
+    bool result = inner_scan(payload, lexer, valid_symbols);
+
+    if (result) {
+        DEBUG("external scan got a result");
+    } else {
+        DEBUG("external scan returned nothing");
+    }
+
+    return result;
 }
 
 void *tree_sitter_crystal_external_scanner_create(void) {
