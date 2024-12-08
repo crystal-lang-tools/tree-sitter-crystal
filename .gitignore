@@ -3,4 +3,4 @@
 /src/*.o
 /target
 tree-sitter-crystal.wasm
-
+crystal.dylib

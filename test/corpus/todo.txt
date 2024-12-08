@@ -1,0 +1,486 @@
+============
+comment char
+============
+
+'#'
+
+---
+
+(source_file
+  (char
+    (comment)
+    (MISSING "'")))
+
+================
+include + extend
+================
+
+class MyClass
+  include MyModule
+  extend MyModule
+end
+
+---
+
+(source_file
+  (class_def
+    (constant)
+    (call
+      (identifier)
+      (argument_list
+        (constant)))
+    (call
+      (identifier)
+      (argument_list
+        (constant)))))
+
+================
+select statement
+================
+
+select thing
+when channel.receive
+  puts "hello"
+else
+  puts "world"
+end
+
+---
+
+(source_file
+  (ERROR
+    (call
+      (identifier)
+      (argument_list
+        (identifier)))
+    (call
+      (identifier)
+      (identifier))
+    (call
+      (identifier)
+      (argument_list
+        (string))))
+  (call
+    (identifier)
+    (argument_list
+      (string)))
+  (ERROR))
+
+=========
+macro def
+=========
+
+macro name
+end
+
+---
+
+(source_file
+  (call
+    (identifier)
+    (argument_list
+      (identifier)))
+  (ERROR))
+
+======
+macros
+======
+
+{% if true %}
+{% for i in [1, 2, 3] %}
+%var = 1 + {{ word }}
+foo = %var + 4
+{% end %}
+{% end %}
+
+---
+
+(ERROR
+  (MISSING identifier)
+  (operator)
+  (op_call
+    (op_call
+      (true)
+      (ERROR
+        (operator))
+      (operator)
+      (call
+        (identifier)
+        (argument_list
+          (call
+            (identifier)
+            (argument_list
+              (call
+                (identifier)
+                (argument_list
+                  (array
+                    (integer)
+                    (integer)
+                    (integer)))))))))
+    (ERROR
+      (operator))
+    (operator)
+    (assign
+      (identifier)
+      (op_call
+        (integer)
+        (operator)
+        (tuple
+          (tuple
+            (identifier))))))
+  (then
+    (op_call
+      (op_call
+        (identifier)
+        (ERROR)
+        (operator)
+        (identifier))
+      (operator)
+      (integer))
+    (tuple
+      (op_call
+        (op_call
+          (MISSING identifier)
+          (operator)
+          (identifier))
+        (operator)
+        (MISSING identifier)))
+    (tuple
+      (op_call
+        (op_call
+          (MISSING identifier)
+          (operator)
+          (identifier))
+        (operator)
+        (MISSING identifier)))))
+
+=================
+lib def + objects
+=================
+
+lib MyLib
+  fun name = Name : Void
+
+  fun cos(value : Float64) : Float64
+
+  union IntOrFloat
+    some_int : Int32
+    some_float : Float64
+  end
+
+  struct TimeZone
+    minutes_west : Int32
+    dst_time : Int32
+  end
+
+  enum SomeEnum
+    Zero
+    One
+    Two
+    Three
+  end
+
+  type MyInt = Int32
+end
+
+---
+
+(source_file
+  (ERROR
+    (call
+      (identifier)
+      (argument_list
+        (constant)))
+    (call
+      (identifier)
+      (argument_list
+        (assign
+          (identifier)
+          (constant))))
+    (ERROR)
+    (call
+      (identifier)
+      (argument_list
+        (call
+          (identifier)
+          (argument_list
+            (type_declaration
+              (identifier)
+              (constant))))))
+    (ERROR)
+    (call
+      (identifier)
+      (argument_list
+        (constant)))
+    (type_declaration
+      (identifier)
+      (constant))
+    (type_declaration
+      (identifier)
+      (constant)))
+  (struct_def
+    (constant)
+    (type_declaration
+      (identifier)
+      (constant))
+    (type_declaration
+      (identifier)
+      (constant)))
+  (enum_def
+    (constant)
+    (constant)
+    (constant)
+    (constant)
+    (constant))
+  (assign
+    (identifier)
+    (ERROR)
+    (constant))
+  (ERROR))
+
+==============
+pseudo methods
+==============
+
+class ClassName
+  def initialize
+    self.is_a?(Object)
+    self.nil?
+    typeof(self, other) # works
+    sizeof(self.class) # works
+    instance_sizeof(self.class) # works
+    pointerof(self)
+    offsetof(self.class, 1) # works
+    self.as(Object)
+    self.as?(Object)
+    responds_to?(:method)
+    self.!
+  end
+end
+
+---
+
+(source_file
+  (class_def
+    (constant)
+    (method_def
+      (identifier)
+      (call
+        (self)
+        (identifier)
+        (argument_list
+          (constant)))
+      (call
+        (self)
+        (identifier))
+      (typeof
+        (self)
+        (identifier))
+      (comment)
+      (sizeof
+        (class_type
+          (self)))
+      (comment)
+      (instance_sizeof
+        (class_type
+          (self)))
+      (comment)
+      (call
+        (identifier)
+        (argument_list
+          (self)))
+      (offsetof
+        (class_type
+          (self))
+        (integer))
+      (comment)
+      (call
+        (self)
+        (identifier)
+        (argument_list
+          (constant)))
+      (call
+        (self)
+        (identifier)
+        (argument_list
+          (constant)))
+      (call
+        (identifier)
+        (argument_list
+          (symbol)))
+      (call
+        (self)
+        (operator)))))
+
+=======================
+misc keywords / methods
+=======================
+
+super
+previous_def
+uninitialized Class
+
+---
+
+(source_file
+  (identifier)
+  (identifier)
+  (call
+    (identifier)
+    (argument_list
+      (constant))))
+
+====
+read instance var
+====
+
+object.@ivar
+
+---
+
+(source_file
+  (call
+    (identifier)
+    (MISSING identifier)
+    (argument_list
+      (instance_var))))
+
+
+===
+asm
+===
+
+asm(
+  # the assembly template string, following the
+  # syntax for LLVM's integrated assembler
+  "nop" :
+  # output operands
+  "=r"(foo), "=r"(bar) :
+  # input operands
+  "r"(1), "r"(baz) :
+  # names of clobbered registers
+  "eax", "memory" :
+  # optional flags, corresponding to the LLVM IR
+  # sideeffect / alignstack / inteldialect / unwind attributes
+  "volatile", "alignstack", "intel", "unwind"
+)
+
+---
+
+(source_file
+  (identifier)
+  (ERROR
+    (comment)
+    (comment)
+    (string))
+  (comment)
+  (chained_string
+    (string)
+    (ERROR
+      (identifier))
+    (string))
+  (ERROR
+    (identifier))
+  (comment)
+  (chained_string
+    (string)
+    (ERROR)
+    (string))
+  (ERROR
+    (identifier))
+  (comment)
+  (ERROR
+    (string))
+  (string)
+  (ERROR)
+  (comment)
+  (comment)
+  (ERROR
+    (string)
+    (string)
+    (string))
+  (string)
+  (ERROR))
+
+================
+methods as procs
+================
+
+def one
+  1
+end
+
+proc = ->one
+proc.call # => 1
+
+def plus_one(x)
+  x + 1
+end
+
+proc = ->plus_one(Int32)
+proc.call(41) # => 42
+
+str = "hello"
+proc = ->str.count(Char)
+proc.call('e') # => 1
+proc.call('l') # => 2
+
+---
+
+    (source_file
+      (method_def
+        (identifier)
+        (integer))
+      (assign
+        (identifier)
+        (ERROR)
+        (identifier))
+      (call
+        (identifier)
+        (identifier))
+      (comment)
+      (method_def
+        (identifier)
+        (param_list
+          (param
+            (identifier)))
+        (op_call
+          (identifier)
+          (operator)
+          (integer)))
+      (assign
+        (identifier)
+        (ERROR)
+        (call
+          (identifier)
+          (argument_list
+            (constant))))
+      (call
+        (identifier)
+        (identifier)
+        (argument_list
+          (integer)))
+      (comment)
+      (assign
+        (identifier)
+        (string))
+      (assign
+        (identifier)
+        (ERROR)
+        (call
+          (identifier)
+          (identifier)
+          (argument_list
+            (constant))))
+      (call
+        (identifier)
+        (identifier)
+        (argument_list
+          (char)))
+      (comment)
+      (call
+        (identifier)
+        (identifier)
+        (argument_list
+          (char)))
+      (comment))
