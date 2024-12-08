@@ -107,4 +107,10 @@ clean:
 test:
 	$(TS) test
 
-.PHONY: all install uninstall clean test
+tree-sitter-crystal.wasm: grammar.js src/scanner.c
+	$(TS) build --wasm
+
+playground: tree-sitter-crystal.wasm
+	$(TS) playground
+
+.PHONY: all install uninstall clean test playground

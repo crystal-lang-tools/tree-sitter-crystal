@@ -357,6 +357,8 @@ module.exports = grammar({
       $.modifier_unless,
       $.modifier_rescue,
       $.modifier_ensure,
+      $.include,
+      $.extend,
 
       $.return,
       $.next,
@@ -999,6 +1001,28 @@ module.exports = grammar({
         optional(visibility),
         'abstract',
         $._base_method_def,
+      )
+    },
+
+    include: $ => {
+      return seq(
+        'include',
+        choice(
+          $.self,
+          $.constant,
+          $.generic_type
+        )
+      )
+    },
+
+    extend: $ => {
+      return seq(
+        'extend',
+        choice(
+          $.self,
+          $.constant,
+          $.generic_type
+        )
       )
     },
 
