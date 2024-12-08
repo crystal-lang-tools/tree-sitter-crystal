@@ -10,7 +10,8 @@
     "prebuildify": "prebuildify --napi --strip"
   },
   "author": "",
-  "license": "ISC",
+  "repository": "https://github.com/tree-sitter-crystal/tree-sitter-crystal",
+  "license": "MIT",
   "dependencies": {
     "node-addon-api": "^7.1.0",
     "node-gyp-build": "^4.8.0"

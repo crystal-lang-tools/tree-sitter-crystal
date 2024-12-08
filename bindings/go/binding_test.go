@@ -3,8 +3,8 @@ package tree_sitter_crystal_test
 import (
 	"testing"
 
-	tree_sitter "github.com/smacker/go-tree-sitter"
-	"github.com/tree-sitter/tree-sitter-crystal"
+	tree_sitter_crystal "github.com/keidax/tree-sitter-crystal/bindings/go"
+	tree_sitter "github.com/tree-sitter/go-tree-sitter"
 )
 
 func TestCanLoadGrammar(t *testing.T) {
