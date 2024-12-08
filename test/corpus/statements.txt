@@ -869,3 +869,25 @@ end
       arguments: (argument_list
         (string)
         (string)))))
+
+================
+include + extend
+================
+
+class MyClass
+  include MyModule(Int32)
+  extend MyModule
+end
+
+---
+
+(source_file
+  (class_def
+    (constant)
+    (include
+      (generic_type
+        (constant)
+        (param_list
+          (constant))))
+    (extend
+      (constant))))
