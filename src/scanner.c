@@ -2,6 +2,7 @@
 #include "tree_sitter/array.h"
 #include "tree_sitter/parser.h"
 
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -104,26 +105,6 @@ typedef enum Token Token;
 /*
  * Helpful macros
  */
-#ifdef __wasm
-#define ASSERT(expr)
-#elif TREE_SITTER_INTERNAL_BUILD
-#define ASSERT(expr)                                                          \
-    if (expr) {                                                               \
-        ;                                                                     \
-    } else {                                                                  \
-        fprintf(stderr, "tree-sitter-crystal: src/scanner.c:%d: ", __LINE__); \
-        fprintf(stderr, "Assertion `%s` failed\n", #expr);                    \
-        abort();                                                              \
-    }
-#else
-#define ASSERT(expr)                                                          \
-    if (expr) {                                                               \
-        ;                                                                     \
-    } else {                                                                  \
-        fprintf(stderr, "tree-sitter-crystal: src/scanner.c:%d: ", __LINE__); \
-        fprintf(stderr, "Assertion `%s` failed\n", #expr);                    \
-    }
-#endif
 
 #define DEBUG(...) \
     lexer->log(lexer, __VA_ARGS__);
@@ -226,10 +207,10 @@ static size_t heredoc_current_buffer_size(State *state) {
 
 // Pop the active heredoc off the queue
 static void pop_heredoc(State *state) {
-    ASSERT(state->heredocs.size > 0);
+    assert(state->heredocs.size > 0);
 
     Heredoc *popped = array_front(&state->heredocs);
-    ASSERT(popped->started);
+    assert(popped->started);
 
     array_delete(&popped->identifier);
     array_erase(&state->heredocs, 0);
@@ -249,7 +230,7 @@ static bool has_room_for_heredoc(State *state, Heredoc heredoc) {
 // heredoc, the new heredoc must be nested, so it is added to the queue before
 // the active heredoc.
 static void push_heredoc(State *state, Heredoc heredoc) {
-    ASSERT(state->heredocs.size < MAX_HEREDOC_COUNT);
+    assert(state->heredocs.size < MAX_HEREDOC_COUNT);
 
     if (has_active_heredoc(state)) {
         // This must be a nested heredoc, so insert it before the currently-active heredoc
@@ -259,7 +240,7 @@ static void push_heredoc(State *state, Heredoc heredoc) {
                 break;
             }
         }
-        ASSERT(index < state->heredocs.size);
+        assert(index < state->heredocs.size);
 
         array_insert(&state->heredocs, index, heredoc);
     } else {
@@ -306,8 +287,8 @@ static bool check_for_heredoc_start(State *state, TSLexer *lexer, const bool *va
         && !lexer->eof(lexer)
         && lexer->get_column(lexer) == 0) {
 
-        ASSERT(state->heredocs.size > 0);
-        ASSERT(!array_front(&state->heredocs)->started);
+        assert(state->heredocs.size > 0);
+        assert(!array_front(&state->heredocs)->started);
 
         array_front(&state->heredocs)->started = true;
 
@@ -331,9 +312,9 @@ static bool scan_whitespace(State *state, TSLexer *lexer, const bool *valid_symb
 
             case '\n':
                 if (valid_symbols[HEREDOC_BODY_START] && has_unstarted_heredoc(state)) {
-                    ASSERT(state->heredocs.size > 0);
+                    assert(state->heredocs.size > 0);
                     Heredoc *heredoc = array_front(&state->heredocs);
-                    ASSERT(!heredoc->started);
+                    assert(!heredoc->started);
 
                     heredoc->started = true;
                     // HEREDOC_BODY_START is a zero-width token. Use skip instead
@@ -447,7 +428,7 @@ static bool scan_string_contents(State *state, TSLexer *lexer, const bool *valid
             case '\v':
             case '\f':
                 if (active_type == STRING_ARRAY || active_type == SYMBOL_ARRAY) {
-                    ASSERT(found_content || valid_symbols[DELIMITED_ARRAY_ELEMENT_END]);
+                    assert(found_content || valid_symbols[DELIMITED_ARRAY_ELEMENT_END]);
 
                     if (found_content) {
                         // We've already found string contents, return that.
@@ -520,8 +501,8 @@ static bool scan_heredoc_contents(State *state, TSLexer *lexer, const bool *vali
         return false;
     }
 
-    ASSERT(state->heredocs.size > 0);
-    ASSERT(has_active_heredoc(state));
+    assert(state->heredocs.size > 0);
+    assert(has_active_heredoc(state));
 
     bool found_content = false;
 
@@ -801,7 +782,7 @@ static void consume_string_literal(TSLexer *lexer) {
                 return;
             }
 
-            ASSERT(nesting_level > 0);
+            assert(nesting_level > 0);
             nesting_level--;
             continue;
         }
@@ -1218,8 +1199,8 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
         case '{':
 
             // We expect these symbols to always be valid or not valid together
-            ASSERT(valid_symbols[START_OF_HASH_OR_TUPLE] == valid_symbols[START_OF_NAMED_TUPLE]);
-            ASSERT(valid_symbols[START_OF_TUPLE_TYPE] == valid_symbols[START_OF_NAMED_TUPLE_TYPE]);
+            assert(valid_symbols[START_OF_HASH_OR_TUPLE] == valid_symbols[START_OF_NAMED_TUPLE]);
+            assert(valid_symbols[START_OF_TUPLE_TYPE] == valid_symbols[START_OF_NAMED_TUPLE_TYPE]);
 
 #define BRACE_BLOCK (valid_symbols[START_OF_BRACE_BLOCK])
 #define BRACE_EXPR (valid_symbols[START_OF_HASH_OR_TUPLE] || valid_symbols[START_OF_NAMED_TUPLE])
@@ -1231,7 +1212,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
                         return false;
                     } else {
                         // Shouldn't reach here
-                        ASSERT(!(
+                        assert(!(
                             valid_symbols[START_OF_BRACE_BLOCK]
                             && (valid_symbols[START_OF_HASH_OR_TUPLE] || valid_symbols[START_OF_NAMED_TUPLE])
                             && (valid_symbols[START_OF_TUPLE_TYPE] || valid_symbols[START_OF_NAMED_TUPLE_TYPE])));
@@ -1248,7 +1229,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
                     //
                     // This means, if we see a '{' and we're in a context where a block
                     // could be valid, it must be the start of a block.
-                    ASSERT(valid_symbols[START_OF_PARENLESS_ARGS]);
+                    assert(valid_symbols[START_OF_PARENLESS_ARGS]);
 
                     lex_advance(lexer);
                     lexer->result_symbol = START_OF_BRACE_BLOCK;
@@ -1269,7 +1250,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
 
                     switch (lookahead_start_of_type(state, lexer)) {
                         case LOOKAHEAD_TYPE:
-                            ASSERT(valid_symbols[START_OF_TUPLE_TYPE]);
+                            assert(valid_symbols[START_OF_TUPLE_TYPE]);
                             lexer->result_symbol = START_OF_TUPLE_TYPE;
                             return true;
 
@@ -1299,7 +1280,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
 
                     switch (lookahead_start_of_type(state, lexer)) {
                         case LOOKAHEAD_TYPE:
-                            ASSERT(valid_symbols[START_OF_TUPLE_TYPE]);
+                            assert(valid_symbols[START_OF_TUPLE_TYPE]);
                             lexer->result_symbol = START_OF_TUPLE_TYPE;
                             return true;
 
@@ -1307,12 +1288,12 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
                             // When the Crystal parser is trying to resolve whether a token is part
                             // of a type or not, anything that looks like the start of a named
                             // tuple is assumed _not_ to be a type.
-                            ASSERT(valid_symbols[START_OF_NAMED_TUPLE]);
+                            assert(valid_symbols[START_OF_NAMED_TUPLE]);
                             lexer->result_symbol = START_OF_NAMED_TUPLE;
                             return true;
 
                         default:
-                            ASSERT(valid_symbols[START_OF_HASH_OR_TUPLE]);
+                            assert(valid_symbols[START_OF_HASH_OR_TUPLE]);
                             lexer->result_symbol = START_OF_HASH_OR_TUPLE;
                             return true;
                     }
@@ -1325,12 +1306,12 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
 
                     switch (lookahead_start_of_named_tuple_entry(lexer, false)) {
                         case LOOKAHEAD_NAMED_TUPLE:
-                            ASSERT(valid_symbols[START_OF_NAMED_TUPLE]);
+                            assert(valid_symbols[START_OF_NAMED_TUPLE]);
                             lexer->result_symbol = START_OF_NAMED_TUPLE;
                             return true;
 
                         default:
-                            ASSERT(valid_symbols[START_OF_HASH_OR_TUPLE]);
+                            assert(valid_symbols[START_OF_HASH_OR_TUPLE]);
                             lexer->result_symbol = START_OF_HASH_OR_TUPLE;
                             return true;
                     }
@@ -1343,12 +1324,12 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
 
                     switch (lookahead_start_of_named_tuple_entry(lexer, false)) {
                         case LOOKAHEAD_NAMED_TUPLE:
-                            ASSERT(valid_symbols[START_OF_NAMED_TUPLE_TYPE]);
+                            assert(valid_symbols[START_OF_NAMED_TUPLE_TYPE]);
                             lexer->result_symbol = START_OF_NAMED_TUPLE_TYPE;
                             return true;
 
                         default:
-                            ASSERT(valid_symbols[START_OF_TUPLE_TYPE]);
+                            assert(valid_symbols[START_OF_TUPLE_TYPE]);
                             lexer->result_symbol = START_OF_TUPLE_TYPE;
                             return true;
                     }
@@ -1358,7 +1339,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
                     lexer->result_symbol = START_OF_BRACE_BLOCK;
                     return true;
                 } else {
-                    ASSERT(!"This should never be reached");
+                    assert(!"This should never be reached");
                 }
             }
 
@@ -1737,10 +1718,10 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
                     return true;
                 } else {
                     // Both are valid
-                    ASSERT(valid_symbols[REGEX_START] && valid_symbols[BINARY_SLASH]);
+                    assert(valid_symbols[REGEX_START] && valid_symbols[BINARY_SLASH]);
 
                     // This sort of ambiguity should only happen after an identifier without parentheses
-                    ASSERT(valid_symbols[START_OF_PARENLESS_ARGS]);
+                    assert(valid_symbols[START_OF_PARENLESS_ARGS]);
 
                     if (state->has_leading_whitespace
                         && !(lexer->lookahead == ' '
@@ -1973,7 +1954,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
                     return true;
                 } else {
                     // Both are valid
-                    ASSERT(valid_symbols[MODIFIER_ENSURE_KEYWORD] && valid_symbols[REGULAR_ENSURE_KEYWORD]);
+                    assert(valid_symbols[MODIFIER_ENSURE_KEYWORD] && valid_symbols[REGULAR_ENSURE_KEYWORD]);
 
                     // TODO: currently assuming that the modifier always takes
                     // precedence here. Is that correct?
@@ -2003,7 +1984,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
                     return true;
                 } else {
                     // Both are valid
-                    ASSERT(valid_symbols[MODIFIER_IF_KEYWORD] && valid_symbols[REGULAR_IF_KEYWORD]);
+                    assert(valid_symbols[MODIFIER_IF_KEYWORD] && valid_symbols[REGULAR_IF_KEYWORD]);
 
                     // This sort of ambiguity may happen after an identifier
                     // without parentheses, or after a keyword like `return`
@@ -2040,7 +2021,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
                     return true;
                 } else {
                     // Both are valid
-                    ASSERT(valid_symbols[MODIFIER_RESCUE_KEYWORD] && valid_symbols[REGULAR_RESCUE_KEYWORD]);
+                    assert(valid_symbols[MODIFIER_RESCUE_KEYWORD] && valid_symbols[REGULAR_RESCUE_KEYWORD]);
 
                     // TODO: currently assuming that the modifier always takes
                     // precedence here. Is that correct?
@@ -2076,7 +2057,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
                     return true;
                 } else {
                     // Both are valid
-                    ASSERT(valid_symbols[MODIFIER_UNLESS_KEYWORD] && valid_symbols[REGULAR_UNLESS_KEYWORD]);
+                    assert(valid_symbols[MODIFIER_UNLESS_KEYWORD] && valid_symbols[REGULAR_UNLESS_KEYWORD]);
 
                     // This sort of ambiguity may happen after an identifier
                     // without parentheses, or after a keyword like `return`
@@ -2182,7 +2163,7 @@ unsigned tree_sitter_crystal_external_scanner_serialize(void *payload, char *buf
         offset += heredoc->identifier.size;
     }
 
-    ASSERT(offset <= TREE_SITTER_SERIALIZATION_BUFFER_SIZE);
+    assert(offset <= TREE_SITTER_SERIALIZATION_BUFFER_SIZE);
 
     return offset;
 }
@@ -2243,5 +2224,5 @@ void tree_sitter_crystal_external_scanner_deserialize(void *payload, const char 
 
         array_push(&state->heredocs, heredoc);
     }
-    ASSERT(offset == length);
+    assert(offset == length);
 }
