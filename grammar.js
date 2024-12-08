@@ -1007,14 +1007,22 @@ module.exports = grammar({
     include: $ => {
       return seq(
         'include',
-        $._type
+        choice(
+          $.constant,
+          $.self,
+          $.generic_instance_type
+        )
       )
     },
 
     extend: $ => {
       return seq(
         'extend',
-        $._type
+        choice(
+          $.constant,
+          $.self,
+          $.generic_instance_type
+        )
       )
     },
 
