@@ -4465,21 +4465,8 @@
           "value": "include"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "self"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "constant"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "generic_type"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_type"
         }
       ]
     },
@@ -4491,21 +4478,8 @@
           "value": "extend"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "self"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "constant"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "generic_type"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_type"
         }
       ]
     },

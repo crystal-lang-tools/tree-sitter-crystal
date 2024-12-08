@@ -877,6 +877,7 @@ include + extend
 class MyClass
   include MyModule(Int32)
   extend MyModule
+  extend Enumerable({String, String})
 end
 
 ---
@@ -885,9 +886,16 @@ end
   (class_def
     (constant)
     (include
-      (generic_type
+      (generic_instance_type
         (constant)
         (param_list
           (constant))))
     (extend
-      (constant))))
+      (constant))
+    (extend
+      (generic_instance_type
+        (constant)
+        (param_list
+          (tuple_type
+            (constant)
+            (constant)))))))
