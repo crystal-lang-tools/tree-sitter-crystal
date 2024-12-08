@@ -1,35 +1,3 @@
-================
-select statement
-================
-
-select thing
-when channel.receive
-  puts "hello"
-else
-  puts "world"
-end
-
----
-
-(source_file
-  (ERROR
-    (call
-      (identifier)
-      (argument_list
-        (identifier)))
-    (call
-      (identifier)
-      (identifier))
-    (call
-      (identifier)
-      (argument_list
-        (string))))
-  (call
-    (identifier)
-    (argument_list
-      (string)))
-  (ERROR))
-
 =========
 macro def
 =========

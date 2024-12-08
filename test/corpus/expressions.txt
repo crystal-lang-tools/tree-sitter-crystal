@@ -3094,6 +3094,35 @@ end
           (proc_type
             return: (constant)))))))
 
+================
+select statement
+================
+
+select
+when channel.receive
+  puts "hello"
+else
+  puts "world"
+end
+
+---
+
+(source_file
+  (select
+    (when
+      (call
+        (identifier)
+        (identifier))
+      (call
+        (identifier)
+        (argument_list
+          (string))))
+    (else
+      (call
+        (identifier)
+        (argument_list
+          (string))))))
+
 ================================================================================
 sizeof, instance_sizeof, offsetof
 ================================================================================

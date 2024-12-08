@@ -475,6 +475,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "select"
+        },
+        {
+          "type": "SYMBOL",
           "name": "call"
         },
         {
@@ -10621,6 +10625,38 @@
             "type": "SYMBOL",
             "name": "_expression"
           }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "when"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "else"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "end"
+        }
+      ]
+    },
+    "select": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "select"
         },
         {
           "type": "REPEAT",
