@@ -204,6 +204,7 @@ chars
 '
 ''
 '	'
+'#'
 
 '\0'
 '\''
@@ -225,6 +226,7 @@ chars
 --------------------------------------------------------------------------------
 
 (source_file
+  (char)
   (char)
   (char)
   (char)
@@ -909,7 +911,8 @@ d)
 d |
 
 %w[1 2		3
-4567]
+456
+7]
 
 # This is possibly a bug with the Crystal parser
 %w<a <b c >
@@ -985,7 +988,8 @@ d)
 %i| a\b c\d |
 
 %i[1 2		3
-4567]
+456
+7]
 
 # This is possibly a bug with the Crystal parser
 %i<a <b c >

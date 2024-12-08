@@ -1886,6 +1886,10 @@
             {
               "type": "SYMBOL",
               "name": "char_escape_sequence"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_char_comment"
             }
           ]
         },
@@ -11217,6 +11221,10 @@
     {
       "type": "SYMBOL",
       "name": "_string_literal_end"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_char_comment"
     },
     {
       "type": "SYMBOL",
