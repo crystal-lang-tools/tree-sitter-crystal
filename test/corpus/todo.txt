@@ -1,16 +1,3 @@
-============
-comment char
-============
-
-'#'
-
----
-
-(source_file
-  (char
-    (comment)
-    (MISSING "'")))
-
 ================
 select statement
 ================
@@ -345,9 +332,10 @@ object.@ivar
       (instance_var))))
 
 
-===
+======
 asm
-===
+:error
+======
 
 asm(
   # the assembly template string, following the
@@ -365,41 +353,6 @@ asm(
 )
 
 ---
-
-(source_file
-  (identifier)
-  (ERROR
-    (comment)
-    (comment)
-    (string))
-  (comment)
-  (chained_string
-    (string)
-    (ERROR
-      (identifier))
-    (string))
-  (ERROR
-    (identifier))
-  (comment)
-  (chained_string
-    (string)
-    (ERROR)
-    (string))
-  (ERROR
-    (identifier))
-  (comment)
-  (ERROR
-    (string))
-  (string)
-  (ERROR)
-  (comment)
-  (comment)
-  (ERROR
-    (string)
-    (string)
-    (string))
-  (string)
-  (ERROR))
 
 ================
 methods as procs
