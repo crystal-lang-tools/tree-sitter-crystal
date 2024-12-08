@@ -433,6 +433,7 @@ module.exports = grammar({
       $.conditional,
       $.case,
       alias($.exhaustive_case, $.case),
+      $.select,
       // TODO
       // macro interpolation
       // macro if
@@ -2162,6 +2163,15 @@ module.exports = grammar({
         repeat($.when),
         optional($.else),
         'end',
+      )
+    },
+
+    select: $ => {
+      return seq(
+        'select',
+        repeat($.when),
+        optional($.else),
+        'end'
       )
     },
 
