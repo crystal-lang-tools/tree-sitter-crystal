@@ -12,29 +12,6 @@ comment char
     (MISSING "'")))
 
 ================
-include + extend
-================
-
-class MyClass
-  include MyModule
-  extend MyModule
-end
-
----
-
-(source_file
-  (class_def
-    (constant)
-    (call
-      (identifier)
-      (argument_list
-        (constant)))
-    (call
-      (identifier)
-      (argument_list
-        (constant)))))
-
-================
 select statement
 ================
 

@@ -106,5 +106,12 @@ clean:
 
 test:
 	$(TS) test
+	crystal run test/stdlib_coverage.cr
 
-.PHONY: all install uninstall clean test
+tree-sitter-crystal.wasm: grammar.js src/scanner.c
+	$(TS) build --wasm
+
+playground: tree-sitter-crystal.wasm
+	$(TS) playground
+
+.PHONY: all install uninstall clean test playground

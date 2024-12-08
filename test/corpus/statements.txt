@@ -869,3 +869,33 @@ end
       arguments: (argument_list
         (string)
         (string)))))
+
+================
+include + extend
+================
+
+class MyClass
+  include MyModule(Int32)
+  extend MyModule
+  extend Enumerable({String, String})
+end
+
+---
+
+(source_file
+  (class_def
+    (constant)
+    (include
+      (generic_instance_type
+        (constant)
+        (param_list
+          (constant))))
+    (extend
+      (constant))
+    (extend
+      (generic_instance_type
+        (constant)
+        (param_list
+          (tuple_type
+            (constant)
+            (constant)))))))

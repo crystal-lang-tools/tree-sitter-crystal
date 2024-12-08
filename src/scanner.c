@@ -103,14 +103,8 @@ typedef enum Token Token;
  * Helpful macros
  */
 #ifdef __wasm
-#define DEBUG(...)
 #define ASSERT(expr)
 #elif TREE_SITTER_INTERNAL_BUILD
-#define DEBUG(...)                                                                          \
-    if (getenv("TREE_SITTER_DEBUG") && strncmp(getenv("TREE_SITTER_DEBUG"), "1", 1) == 0) { \
-        fprintf(stderr, __VA_ARGS__);                                                       \
-    }
-
 #define ASSERT(expr)                                                          \
     if (expr) {                                                               \
         ;                                                                     \
@@ -120,7 +114,6 @@ typedef enum Token Token;
         abort();                                                              \
     }
 #else
-#define DEBUG(...)
 #define ASSERT(expr)                                                          \
     if (expr) {                                                               \
         ;                                                                     \
@@ -129,6 +122,9 @@ typedef enum Token Token;
         fprintf(stderr, "Assertion `%s` failed\n", #expr);                    \
     }
 #endif
+
+#define DEBUG(...) \
+    lexer->log(lexer, __VA_ARGS__);
 
 /*
  * State types
@@ -1079,7 +1075,11 @@ static LookaheadResult lookahead_start_of_type(State *state, TSLexer *lexer) {
 
 bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
     DEBUG("\n ==> starting external scan\n");
-    DEBUG(" ==> char is '%c'\n", lexer->lookahead);
+    if (lexer->lookahead == '\n') {
+        DEBUG(" ==> char is '\\n'\n");
+    } else {
+        DEBUG(" ==> char is '%c'\n", lexer->lookahead);
+    }
     DEBUG(" ==> valid symbols are:\n");
 
 #define LOG_SYMBOL(sym) \

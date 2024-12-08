@@ -194,6 +194,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "include"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "extend"
+        },
+        {
+          "type": "SYMBOL",
           "name": "return"
         },
         {
@@ -4446,6 +4454,32 @@
         {
           "type": "SYMBOL",
           "name": "_base_method_def"
+        }
+      ]
+    },
+    "include": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "include"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_type"
+        }
+      ]
+    },
+    "extend": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "extend"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_type"
         }
       ]
     },
