@@ -238,6 +238,28 @@ end
     (constant))
   (ERROR))
 
+================
+lib external var
+================
+
+lib C
+  $errno : Int32
+end
+
+---
+
+(source_file
+  (call
+    (identifier)
+    (argument_list
+      (constant)))
+  (ERROR
+    (UNEXPECTED 'e'))
+  (type_declaration
+    (identifier)
+    (constant))
+  (ERROR))
+
 ==============
 pseudo methods
 ==============
