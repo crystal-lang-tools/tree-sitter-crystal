@@ -2107,13 +2107,8 @@
                 "value": "v"
               },
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "PATTERN",
-                    "value": "[0-7]{1,3}"
-                  }
-                ]
+                "type": "PATTERN",
+                "value": "[0-7]{1,3}"
               },
               {
                 "type": "SEQ",
@@ -2805,13 +2800,8 @@
                 "value": "t"
               },
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "PATTERN",
-                    "value": "[0-7]{1,3}"
-                  }
-                ]
+                "type": "PATTERN",
+                "value": "[0-7]{1,3}"
               },
               {
                 "type": "SEQ",
@@ -2867,13 +2857,8 @@
                 ]
               },
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "PATTERN",
-                    "value": "c[\\x01-\\x7f]"
-                  }
-                ]
+                "type": "PATTERN",
+                "value": "c[\\x01-\\x7f]"
               }
             ]
           }

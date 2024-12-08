@@ -1077,6 +1077,12 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
     DEBUG("\n ==> starting external scan\n");
     if (lexer->lookahead == '\n') {
         DEBUG(" ==> char is '\\n'\n");
+    } else if (lexer->lookahead == '\0') {
+        DEBUG(" ==> char is '\\0'\n");
+    } else if (lexer->lookahead == '\r') {
+        DEBUG(" ==> char is '\\r'\n");
+    } else if (lexer->lookahead == '\t') {
+        DEBUG(" ==> char is '\\t'\n");
     } else {
         DEBUG(" ==> char is '%c'\n", lexer->lookahead);
     }

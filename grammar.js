@@ -596,7 +596,7 @@ module.exports = grammar({
     },
 
     string_escape_sequence: $ => {
-      const octal_escape = seq(/[0-7]{1,3}/)
+      const octal_escape = /[0-7]{1,3}/
       const hex_escape = seq('x', /[0-9a-fA-F]{2}/)
 
       const long_unicode_character = /[0-9a-fA-F]{1,6}/
@@ -730,13 +730,13 @@ module.exports = grammar({
 
     regex_escape_sequence: $ => {
       // These are PCRE escape sequences
-      const octal_escape = seq(/[0-7]{1,3}/)
+      const octal_escape = /[0-7]{1,3}/
       const long_octal_escape = seq('o{', repeat1(/[0-7]/), '}')
 
       const hex_escape = seq('x', /[0-9a-fA-F]{1,2}/)
       const long_hex_escape = seq('x{', repeat1(/[0-9a-fA-F]/), '}')
 
-      const ctrl_escape = seq(/c[\x01-\x7f]/) // eslint-disable-line no-control-regex
+      const ctrl_escape = /c[\x01-\x7f]/ // eslint-disable-line no-control-regex
 
       // TODO: handle rest of PCRE escape syntax:
       // https://www.pcre.org/original/doc/html/pcresyntax.html
