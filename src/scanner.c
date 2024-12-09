@@ -72,8 +72,6 @@ enum Token {
     DELIMITED_STRING_CONTENTS,
     STRING_LITERAL_END,
 
-    CHAR_COMMENT,
-
     STRING_PERCENT_LITERAL_START,
     COMMAND_PERCENT_LITERAL_START,
     STRING_ARRAY_PERCENT_LITERAL_START,
@@ -1110,12 +1108,6 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
         return true;
     }
 
-    if (valid_symbols[CHAR_COMMENT] && lexer->lookahead == '#') {
-        lex_advance(lexer);
-        lexer->result_symbol = CHAR_COMMENT;
-        return true;
-    }
-
     switch (lexer->lookahead) {
         case '{':
 
@@ -2094,7 +2086,6 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
     LOG_SYMBOL(STRING_LITERAL_START);
     LOG_SYMBOL(DELIMITED_STRING_CONTENTS);
     LOG_SYMBOL(STRING_LITERAL_END);
-    LOG_SYMBOL(CHAR_COMMENT);
     LOG_SYMBOL(STRING_PERCENT_LITERAL_START);
     LOG_SYMBOL(COMMAND_PERCENT_LITERAL_START);
     LOG_SYMBOL(STRING_ARRAY_PERCENT_LITERAL_START);

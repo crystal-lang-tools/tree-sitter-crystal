@@ -1883,17 +1883,17 @@
             {
               "type": "IMMEDIATE_TOKEN",
               "content": {
-                "type": "PATTERN",
-                "value": "[^\\\\]"
+                "type": "PREC",
+                "value": 1,
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[^\\\\]"
+                }
               }
             },
             {
               "type": "SYMBOL",
               "name": "char_escape_sequence"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_char_comment"
             }
           ]
         },
@@ -11336,10 +11336,6 @@
     {
       "type": "SYMBOL",
       "name": "_string_literal_end"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_char_comment"
     },
     {
       "type": "SYMBOL",

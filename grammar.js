@@ -102,8 +102,6 @@ module.exports = grammar({
     $._delimited_string_contents,
     $._string_literal_end,
 
-    $._char_comment,
-
     $._string_percent_literal_start,
     $._command_percent_literal_start,
     $._string_array_percent_literal_start,
@@ -562,9 +560,8 @@ module.exports = grammar({
     char: $ => seq(
       '\'',
       choice(
-        token.immediate(/[^\\]/),
+        token.immediate(prec(1, /[^\\]/)),
         $.char_escape_sequence,
-        $._char_comment
       ),
       token.immediate('\''),
     ),
