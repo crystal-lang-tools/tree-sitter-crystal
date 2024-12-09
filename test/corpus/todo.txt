@@ -119,27 +119,18 @@ end
 
 (source_file
   (ERROR
-    (call
+    (constant)
+    (fun_def
       (identifier)
-      (argument_list
-        (constant)))
-    (call
+      (constant)
+      (constant))
+    (fun_def
       (identifier)
-      (argument_list
-        (assign
+      (fun_param_list
+        (fun_param
           (identifier)
-          (constant))))
-    (ERROR)
-    (call
-      (identifier)
-      (argument_list
-        (call
-          (identifier)
-          (argument_list
-            (type_declaration
-              (identifier)
-              (constant))))))
-    (ERROR)
+          (constant)))
+      (constant))
     (call
       (identifier)
       (argument_list
@@ -170,27 +161,6 @@ end
     (constant))
   (ERROR))
 
-================
-lib external var
-================
-
-lib C
-  $errno : Int32
-end
-
----
-
-(source_file
-  (call
-    (identifier)
-    (argument_list
-      (constant)))
-  (ERROR
-    (UNEXPECTED 'e'))
-  (type_declaration
-    (identifier)
-    (constant))
-  (ERROR))
 
 ==============
 pseudo methods

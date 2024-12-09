@@ -899,3 +899,59 @@ end
           (tuple_type
             (constant)
             (constant)))))))
+
+================
+lib external var
+================
+
+lib C
+  $errno : Int32
+end
+
+---
+
+(source_file
+  (lib_def
+    (constant)
+    (global_var
+      (identifier)
+      (constant))))
+
+=========
+empty lib
+=========
+
+lib C
+end
+
+---
+
+(source_file
+  (lib_def
+    (constant)))
+
+=============
+top-level fun
+=============
+
+fun my_fun_name(param1 : Type, param2 : Type) : ReturnType
+  puts "hello"
+end
+
+---
+
+(source_file
+  (top_level_fun_def
+    name: (identifier)
+    params: (fun_param_list
+      (fun_param
+        (identifier)
+        type: (constant))
+      (fun_param
+        (identifier)
+        type: (constant)))
+    type: (constant)
+    body: (call
+      method: (identifier)
+      arguments: (argument_list
+        (string)))))
