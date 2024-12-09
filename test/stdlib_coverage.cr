@@ -16,12 +16,12 @@ class Test
   def initialize(@file_path, @label)
   end
 
-  def execute : Bool
-    process = Process.new("tree-sitter parse #{@file_path}", shell: true)
+  def execute : Process::Status
+    process = Process.new("tree-sitter parse #{@file_path}", shell: true, error: :inherit)
     start_time = Time.monotonic
     status = process.wait
     @elapsed = Time.monotonic - start_time
-    status.success?
+    status
   end
 end
 
@@ -62,7 +62,15 @@ end
 
 stdlib_files.each do |stdlib_file|
   test = Test.new(stdlib_file, stdlib_file[(stdlib_path.size + 1)..])
-  success = test.execute
+  test_status = test.execute
+
+  if !test_status.exit_reason.normal?
+    # the parser didn't exit normally. maybe a failed assertion, or a segfault
+    puts "test did not exit normally: #{test_status.exit_reason} (status code #{test_status.exit_status})"
+    abort("encountered a serious problem parsing #{stdlib_file}")
+  end
+
+  success = test_status.success?
 
   if success
     pass += 1
