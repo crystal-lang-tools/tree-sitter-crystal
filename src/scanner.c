@@ -1150,11 +1150,39 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                     //
                     // This means, if we see a '{' and we're in a context where a block
                     // could be valid, it must be the start of a block.
-                    assert(valid_symbols[START_OF_PARENLESS_ARGS]);
 
-                    lex_advance(lexer);
-                    lexer->result_symbol = START_OF_BRACE_BLOCK;
-                    return true;
+                    if (valid_symbols[START_OF_PARENLESS_ARGS]) {
+                        lex_advance(lexer);
+                        lexer->result_symbol = START_OF_BRACE_BLOCK;
+                        return true;
+                    }
+
+                    // Another edge case here is after a range operator:
+                    //   foo 1, 2, 3 .. { 4 }
+                    // Crystal always considers this as a hash or tuple, not a block
+                    if (valid_symbols[END_OF_RANGE]) {
+                        lex_advance(lexer);
+                        // We don't want to consume while looking ahead
+                        lexer->mark_end(lexer);
+                        skip_space_and_newline(state, lexer);
+
+                        switch (lookahead_start_of_named_tuple_entry(lexer, false)) {
+                            case LOOKAHEAD_NAMED_TUPLE:
+                                assert(valid_symbols[START_OF_NAMED_TUPLE]);
+                                lexer->result_symbol = START_OF_NAMED_TUPLE;
+                                return true;
+
+                            default:
+                                assert(valid_symbols[START_OF_HASH_OR_TUPLE]);
+                                lexer->result_symbol = START_OF_HASH_OR_TUPLE;
+                                return true;
+                        }
+                    }
+
+                    // Is there anywhere else '{' could represent either a block or a hash/tuple?
+                    assert(valid_symbols[END_OF_RANGE] || valid_symbols[START_OF_PARENLESS_ARGS]);
+                    return false;
+
                 } else if (BRACE_BLOCK && BRACE_TYPE) {
 
                     lex_advance(lexer);
