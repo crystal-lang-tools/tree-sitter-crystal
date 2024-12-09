@@ -844,6 +844,9 @@ else
 ensure
 5
 end
+
+begin :a; rescue; :b else :c ensure p! :d end
+begin :a; rescue; :b else :c; ensure p! :d end
 --------------------------------------------------------------------------------
 
 (source_file
@@ -860,7 +863,29 @@ end
     else: (else
       (integer))
     ensure: (ensure
-      (integer))))
+      (integer)))
+  (begin_block
+    (symbol)
+    rescue: (rescue_block
+      (symbol))
+    else: (else
+      (modifier_ensure
+        (symbol)
+        ensure: (call
+          method: (identifier)
+          arguments: (argument_list
+            (symbol))))))
+  (begin_block
+    (symbol)
+    rescue: (rescue_block
+      (symbol))
+    else: (else
+      (symbol))
+    ensure: (ensure
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (symbol))))))
 
 ================================================================================
 rescue modifiers
