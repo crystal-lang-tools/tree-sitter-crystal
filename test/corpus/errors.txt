@@ -41,6 +41,38 @@ regex with incorrect modifiers
     (identifier)))
 
 ================================================================================
+PCRE2 invalid regex
+================================================================================
+begin
+  # PCRE allowed any ASCII character after \c
+  # PCRE2 doesn't allow control characters after \c
+  # The next line contains raw delete (U+007F) and tab (U+0009) characters
+  /\c\c	/
+end
+
+begin
+  # PCRE2 doesn't allow \<alpha> when <alpha> lacks a special meaning
+  /\y/
+end
+--------------------------------------------------------------------------------
+
+(source_file
+  (begin_block
+    (comment)
+    (comment)
+    (comment)
+    (ERROR
+      (ignored_backslash)
+      (UNEXPECTED 127)
+      (ignored_backslash)
+      (operator)))
+  (begin_block
+    (comment)
+    (ERROR
+      (ignored_backslash)
+      (operator))))
+
+================================================================================
 unterminated percent literal string
 ================================================================================
 %(asdf

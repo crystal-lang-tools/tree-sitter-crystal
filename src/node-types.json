@@ -16776,11 +16776,19 @@
           "named": true
         },
         {
+          "type": "regex_character_class",
+          "named": true
+        },
+        {
           "type": "regex_escape_sequence",
           "named": true
         },
         {
           "type": "regex_modifier",
+          "named": true
+        },
+        {
+          "type": "regex_special_match",
           "named": true
         }
       ]
@@ -22993,11 +23001,19 @@
     "named": false
   },
   {
+    "type": "regex_character_class",
+    "named": true
+  },
+  {
     "type": "regex_escape_sequence",
     "named": true
   },
   {
     "type": "regex_modifier",
+    "named": true
+  },
+  {
+    "type": "regex_special_match",
     "named": true
   },
   {

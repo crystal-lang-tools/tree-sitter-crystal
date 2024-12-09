@@ -729,11 +729,20 @@ module.exports = grammar({
       repeat(choice(
         token.immediate(prec(1, /[^\\/]/)),
         $.regex_escape_sequence,
+        $.regex_character_class,
+        $.regex_special_match,
         $.interpolation,
       )),
       token.immediate('/'),
       optional($.regex_modifier),
     ),
+
+    // TODO: handle rest of PCRE2 escape syntax:
+    // https://www.pcre.org/current/doc/html/pcre2syntax.html
+    // - other special characters
+    // - full support for back-reference syntax
+    // - groups
+    // - ...
 
     regex_escape_sequence: $ => {
       // These are PCRE escape sequences
@@ -743,17 +752,49 @@ module.exports = grammar({
       const hex_escape = seq('x', /[0-9a-fA-F]{1,2}/)
       const long_hex_escape = seq('x{', repeat1(/[0-9a-fA-F]/), '}')
 
-      const ctrl_escape = /c[\x01-\x7f]/ // eslint-disable-line no-control-regex
+      const ctrl_escape = /c[\x20-\x7e]/
 
-      // TODO: handle rest of PCRE escape syntax:
-      // https://www.pcre.org/original/doc/html/pcresyntax.html
+      const unicode_escape = seq('N{U+', repeat1(/[0-9a-fA-F]/), '}')
 
-      return token.immediate(seq('\\', choice(
-        '/', '\\', 'a', 'e', 'f', 'n', 'r', 't',
-        octal_escape, long_octal_escape,
-        hex_escape, long_hex_escape,
-        ctrl_escape,
-      )))
+      return token.immediate(
+        seq(
+          '\\',
+          choice(
+            /[^a-zA-Z0-9]/, // non-alphanumeric characters can always be escaped
+            /[aefnrt]/,
+            octal_escape,
+            long_octal_escape,
+            hex_escape,
+            long_hex_escape,
+            ctrl_escape,
+            unicode_escape,
+          ),
+        ),
+      )
+    },
+
+    regex_character_class: $ => {
+      const property_class = seq('p{', /[a-zA-Z _-]+/, '}')
+      const not_property_class = seq('P{', /[a-zA-Z _-]+/, '}')
+      return token.immediate(
+        seq(
+          '\\',
+          choice(
+            /[dDhHNRsSvVwWX]/,
+            property_class,
+            not_property_class,
+          ),
+        ),
+      )
+    },
+
+    regex_special_match: $ => {
+      return token.immediate(
+        seq(
+          '\\',
+          /[AbBEgGkKQzZ]/,
+        ),
+      )
     },
 
     regex_percent_literal: $ => seq(

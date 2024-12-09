@@ -2737,6 +2737,14 @@
               },
               {
                 "type": "SYMBOL",
+                "name": "regex_character_class"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "regex_special_match"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "interpolation"
               }
             ]
@@ -2776,36 +2784,12 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "STRING",
-                "value": "/"
+                "type": "PATTERN",
+                "value": "[^a-zA-Z0-9]"
               },
               {
-                "type": "STRING",
-                "value": "\\"
-              },
-              {
-                "type": "STRING",
-                "value": "a"
-              },
-              {
-                "type": "STRING",
-                "value": "e"
-              },
-              {
-                "type": "STRING",
-                "value": "f"
-              },
-              {
-                "type": "STRING",
-                "value": "n"
-              },
-              {
-                "type": "STRING",
-                "value": "r"
-              },
-              {
-                "type": "STRING",
-                "value": "t"
+                "type": "PATTERN",
+                "value": "[aefnrt]"
               },
               {
                 "type": "PATTERN",
@@ -2866,9 +2850,100 @@
               },
               {
                 "type": "PATTERN",
-                "value": "c[\\x01-\\x7f]"
+                "value": "c[\\x20-\\x7e]"
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "N{U+"
+                  },
+                  {
+                    "type": "REPEAT1",
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "[0-9a-fA-F]"
+                    }
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "}"
+                  }
+                ]
               }
             ]
+          }
+        ]
+      }
+    },
+    "regex_character_class": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\\"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[dDhHNRsSvVwWX]"
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "p{"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "[a-zA-Z _-]+"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "}"
+                  }
+                ]
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "P{"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "[a-zA-Z _-]+"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "regex_special_match": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\\"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[AbBEgGkKQzZ]"
           }
         ]
       }
