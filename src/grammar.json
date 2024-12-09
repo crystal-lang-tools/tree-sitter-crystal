@@ -6398,6 +6398,10 @@
                       },
                       "named": true,
                       "value": "operator"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "instance_var"
                     }
                   ]
                 }

@@ -284,22 +284,6 @@ uninitialized Class
     (argument_list
       (constant))))
 
-====
-read instance var
-====
-
-object.@ivar
-
----
-
-(source_file
-  (call
-    (identifier)
-    (MISSING identifier)
-    (argument_list
-      (instance_var))))
-
-
 ======
 asm
 :error

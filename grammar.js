@@ -1493,6 +1493,7 @@ module.exports = grammar({
         $.identifier,
         alias($.identifier_method_call, $.identifier),
         alias($._operator_token, $.operator),
+        $.instance_var,
       ))
 
       // In the case of something like
