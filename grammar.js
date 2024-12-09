@@ -313,6 +313,16 @@ module.exports = grammar({
     [
       $.parenthesized_proc_type,
     ],
+    // TODO: check why these are in conflict
+    [
+      $._expression, $.fun_param
+    ],
+    [
+      $.multi_assign, $.fun_param
+    ],
+    [
+      $.fun_param, $.type_param_list
+    ]
   ],
 
   rules: {
@@ -335,6 +345,19 @@ module.exports = grammar({
       $._statement,
     ),
 
+    _lib_statements: $ => choice(
+      seq(
+        repeat1(
+          choice(
+            seq($._lib_statement, $._terminator),
+            prec(-1, ';'),
+          ),
+        ),
+        optional($._lib_statement),
+      ),
+      $._lib_statement,
+    ),
+
     _parenthesized_statement: $ => prec(1, seq(
       '(', $._statement, optional($._terminator), ')',
     )),
@@ -349,9 +372,11 @@ module.exports = grammar({
       $.class_def,
       $.struct_def,
       $.enum_def,
+      $.lib_def,
       $.alias,
       $.method_def,
       $.abstract_method_def,
+      $.top_level_fun_def,
       $.require,
       $.modifier_if,
       $.modifier_unless,
@@ -370,6 +395,17 @@ module.exports = grammar({
       // union
       // lib variables
       // lib type
+    ),
+
+    _lib_statement: $ => choice(
+      $.alias,
+      $.fun_def,
+      $.type_def,
+      // $.c_struct_or_union,
+      $.enum_def,
+      $.global_var,
+      $.const_assign,
+      $.annotation,
     ),
 
     // Wrap multiple expressions/statements into a single node, if necessary
@@ -997,6 +1033,96 @@ module.exports = grammar({
       optional($._statements),
       'end',
     ),
+
+    lib_def: $ => seq(
+      'lib',
+      field('name', $.constant, $.generic_type),
+      optional($._lib_statements),
+      'end'
+    ),
+
+    top_level_fun_def: $ => {
+      const params = seq(
+        '(', field('params', $.fun_param_list, $.type_param_list), ')'
+      )
+
+      const real_name = seq('=',
+        field('real_name', choice($.identifier, $.constant, $.string))
+      )
+
+      const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
+
+      return seq(
+        'fun',
+        field('name', $.identifier),
+        optional(real_name),
+        optional(params),
+        optional(return_type),
+        field('body', $._statements),
+        'end'
+      )
+    },
+
+    fun_def: $ => {
+      const params = seq(
+        '(',
+        field('params', optional(choice($.fun_param_list, $.type_param_list))),
+        ')'
+      )
+
+      const real_name = seq('=',
+        field('real_name', choice($.identifier, $.constant, $.string))
+      )
+      const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
+
+      return seq(
+        'fun',
+        field('name', choice($.identifier, $.constant)),
+        optional(real_name),
+        optional(params),
+        optional(return_type),
+      )
+    },
+
+    fun_param_list: $ => {
+      return choice(
+        seq(
+          $.fun_param,
+          repeat(seq(',', $.fun_param)),
+          optional(','),
+        ),
+      )
+    },
+
+    fun_param: $ => {
+      const type = field('type', seq(/[ \t]:\s/, $._bare_type))
+
+      return seq(
+        choice($.identifier, $.constant),
+        optional(type)
+      )
+    },
+
+    type_def: $ => seq(
+      'type',
+      $.constant,
+      '=',
+      $._bare_type
+    ),
+
+    c_struct_or_union: $ => seq(),
+
+    global_var: $ => {
+      const name = seq('$', $.identifier)
+      const real_name = field('real_name', choice($.identifier, $.constant))
+      const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
+
+      return seq(
+        name,
+        optional(seq('=', real_name)),
+        return_type,
+      )
+    },
 
     _operator_token: $ => choice(...operator_tokens),
 
