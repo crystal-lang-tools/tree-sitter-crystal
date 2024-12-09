@@ -729,6 +729,8 @@ module.exports = grammar({
       repeat(choice(
         token.immediate(prec(1, /[^\\/]/)),
         $.regex_escape_sequence,
+        $.regex_character_class,
+        $.regex_special_match,
         $.interpolation,
       )),
       token.immediate('/'),
@@ -754,7 +756,8 @@ module.exports = grammar({
         seq(
           '\\',
           choice(
-            /[/\\aefnrt]/,
+            /[^a-zA-Z0-9]/, // non-alphanumeric characters can always be escaped
+            /[aefnrt]/,
             octal_escape,
             long_octal_escape,
             hex_escape,
@@ -762,6 +765,30 @@ module.exports = grammar({
             ctrl_escape,
             unicode_escape,
           ),
+        ),
+      )
+    },
+
+    regex_character_class: $ => {
+      const property_class = seq('p{', /[a-zA-Z _-]+/, '}')
+      const not_property_class = seq('P{', /[a-zA-Z _-]+/, '}')
+      return token.immediate(
+        seq(
+          '\\',
+          choice(
+            /[dDhHNRsSvVwWX]/,
+            property_class,
+            not_property_class,
+          ),
+        ),
+      )
+    },
+
+    regex_special_match: $ => {
+      return token.immediate(
+        seq(
+          '\\',
+          /[AbBEgGkKQzZ]/,
         ),
       )
     },

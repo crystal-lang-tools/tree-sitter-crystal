@@ -43,16 +43,27 @@ regex with incorrect modifiers
 ================================================================================
 PCRE2 invalid regex
 ================================================================================
-/\c\c/
+begin
+  /\c\c/
+end
+
+begin
+  /\y/
+end
 --------------------------------------------------------------------------------
 
 (source_file
-  (ERROR
-    (ignored_backslash)
-    (UNEXPECTED 127)
-    (ignored_backslash)
-    (UNEXPECTED 7)
-    (operator)))
+  (begin_block
+    (ERROR
+      (ignored_backslash)
+      (UNEXPECTED 127)
+      (ignored_backslash)
+      (UNEXPECTED 7)
+      (operator)))
+  (begin_block
+    (ERROR
+      (ignored_backslash)
+      (operator))))
 
 ================================================================================
 unterminated percent literal string

@@ -2737,6 +2737,14 @@
               },
               {
                 "type": "SYMBOL",
+                "name": "regex_character_class"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "regex_special_match"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "interpolation"
               }
             ]
@@ -2777,7 +2785,11 @@
             "members": [
               {
                 "type": "PATTERN",
-                "value": "[/\\\\aefnrt]"
+                "value": "[^a-zA-Z0-9]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[aefnrt]"
               },
               {
                 "type": "PATTERN",
@@ -2861,6 +2873,77 @@
                 ]
               }
             ]
+          }
+        ]
+      }
+    },
+    "regex_character_class": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\\"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[dDhHNRsSvVwWX]"
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "p{"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "[a-zA-Z _-]+"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "}"
+                  }
+                ]
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "P{"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "[a-zA-Z _-]+"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "regex_special_match": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\\"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[AbBEgGkKQzZ]"
           }
         ]
       }

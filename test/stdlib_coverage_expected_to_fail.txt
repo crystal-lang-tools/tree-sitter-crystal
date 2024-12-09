@@ -25,10 +25,8 @@ compiler/crystal/codegen/link.cr
 compiler/crystal/codegen/llvm_builder_helper.cr
 compiler/crystal/codegen/llvm_typer.cr
 compiler/crystal/codegen/primitives.cr
-compiler/crystal/codegen/target.cr
 compiler/crystal/command.cr
 compiler/crystal/command/repl.cr
-compiler/crystal/command/spec.cr
 compiler/crystal/compiler.cr
 compiler/crystal/exception.cr
 compiler/crystal/ffi/ffi.cr
@@ -66,7 +64,6 @@ compiler/crystal/semantic/lib.cr
 compiler/crystal/semantic/literal_expander.cr
 compiler/crystal/semantic/main_visitor.cr
 compiler/crystal/semantic/restrictions.cr
-compiler/crystal/semantic/suggestions.cr
 compiler/crystal/semantic/top_level_visitor.cr
 compiler/crystal/semantic/type_declaration_processor.cr
 compiler/crystal/semantic/type_guess_visitor.cr
@@ -74,7 +71,6 @@ compiler/crystal/semantic/type_lookup.cr
 compiler/crystal/syntax/ast.cr
 compiler/crystal/syntax/to_s.cr
 compiler/crystal/syntax/token.cr
-compiler/crystal/tools/doc/generator.cr
 compiler/crystal/tools/doc/markd_doc_renderer.cr
 compiler/crystal/tools/doc/method.cr
 compiler/crystal/tools/doc/project_info.cr
@@ -82,7 +78,6 @@ compiler/crystal/tools/doc/type.cr
 compiler/crystal/tools/init.cr
 compiler/crystal/tools/playground.cr
 compiler/crystal/tools/playground/agent_instrumentor_transformer.cr
-compiler/crystal/tools/playground/server.cr
 compiler/crystal/tools/print_hierarchy.cr
 compiler/crystal/tools/typed_def_processor.cr
 compiler/crystal/tools/unreachable.cr
@@ -959,7 +954,6 @@ openssl/pkcs5.cr
 openssl/ssl/context.cr
 openssl/ssl/hostname_validation.cr
 openssl/ssl/socket.cr
-option_parser.cr
 path.cr
 pointer.cr
 prelude.cr
@@ -985,7 +979,6 @@ regex/lib_pcre2.cr
 regex/match_data.cr
 regex/pcre.cr
 regex/pcre2.cr
-semantic_version.cr
 set.cr
 signal.cr
 slice.cr

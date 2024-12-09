@@ -1133,6 +1133,16 @@ regexes
 
 /\N{U+32}\n{U+1F52e}/ =~ " 🔮"
 
+/\P{P}/ =~ "A"
+/\p{ND}{2}/ =~ "42"
+/\p{X-p_S }/ =~ "\n"
+
+/\Q[]()\E/ =~ "[]()"
+
+/\A\d\w\z/ =~ "5X"
+
+/\!\🔮\%\/ =~ "!🔮%\e"
+
 /a#{/b/m}c/i
 --------------------------------------------------------------------------------
 
@@ -1206,6 +1216,45 @@ regexes
       (regex_escape_sequence))
     operator: (operator)
     argument: (string))
+  (op_call
+    receiver: (regex
+      (regex_character_class))
+    operator: (operator)
+    argument: (string))
+  (op_call
+    receiver: (regex
+      (regex_character_class))
+    operator: (operator)
+    argument: (string))
+  (op_call
+    receiver: (regex
+      (regex_character_class))
+    operator: (operator)
+    argument: (string
+      (string_escape_sequence)))
+  (op_call
+    receiver: (regex
+      (regex_special_match)
+      (regex_special_match))
+    operator: (operator)
+    argument: (string))
+  (op_call
+    receiver: (regex
+      (regex_special_match)
+      (regex_character_class)
+      (regex_character_class)
+      (regex_special_match))
+    operator: (operator)
+    argument: (string))
+  (op_call
+    receiver: (regex
+      (regex_escape_sequence)
+      (regex_escape_sequence)
+      (regex_escape_sequence)
+      (regex_escape_sequence))
+    operator: (operator)
+    argument: (string
+      (string_escape_sequence)))
   (regex
     (interpolation
       (regex
