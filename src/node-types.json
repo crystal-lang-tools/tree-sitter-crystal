@@ -3240,6 +3240,10 @@
             "named": true
           },
           {
+            "type": "instance_var",
+            "named": true
+          },
+          {
             "type": "operator",
             "named": true
           }

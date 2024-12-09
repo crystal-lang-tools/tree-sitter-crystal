@@ -2,7 +2,6 @@ array.cr
 atomic.cr
 base64.cr
 benchmark.cr
-big/big_decimal.cr
 big/big_int.cr
 big/lib_gmp.cr
 big/number.cr
@@ -38,7 +37,6 @@ compiler/crystal/interpreter/disassembler.cr
 compiler/crystal/interpreter/escaping_exception.cr
 compiler/crystal/interpreter/instructions.cr
 compiler/crystal/interpreter/interpreter.cr
-compiler/crystal/interpreter/local_vars.cr
 compiler/crystal/interpreter/op_code.cr
 compiler/crystal/interpreter/primitives.cr
 compiler/crystal/interpreter/pry_reader.cr
@@ -976,10 +974,8 @@ regex.cr
 regex/engine.cr
 regex/lib_pcre.cr
 regex/lib_pcre2.cr
-regex/match_data.cr
 regex/pcre.cr
 regex/pcre2.cr
-set.cr
 signal.cr
 slice.cr
 socket/address.cr
@@ -997,7 +993,6 @@ static_array.cr
 string.cr
 string/builder.cr
 string/formatter.cr
-string/grapheme/grapheme.cr
 struct.cr
 syscall.cr
 syscall/aarch64-linux.cr

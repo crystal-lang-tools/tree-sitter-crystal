@@ -3308,3 +3308,16 @@ end
           var: (identifier)
           type: (constant)
           value: (string))))))
+
+=================
+read instance var
+=================
+
+object.@ivar
+
+---
+
+(source_file
+  (call
+    receiver: (identifier)
+    method: (instance_var)))
