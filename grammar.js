@@ -737,6 +737,13 @@ module.exports = grammar({
       optional($.regex_modifier),
     ),
 
+    // TODO: handle rest of PCRE2 escape syntax:
+    // https://www.pcre.org/current/doc/html/pcre2syntax.html
+    // - other special characters
+    // - full support for back-reference syntax
+    // - groups
+    // - ...
+
     regex_escape_sequence: $ => {
       // These are PCRE escape sequences
       const octal_escape = /[0-7]{1,3}/
@@ -748,9 +755,6 @@ module.exports = grammar({
       const ctrl_escape = /c[\x20-\x7e]/
 
       const unicode_escape = seq('N{U+', repeat1(/[0-9a-fA-F]/), '}')
-
-      // TODO: handle rest of PCRE2 escape syntax:
-      // https://www.pcre.org/current/doc/html/pcre2syntax.html
 
       return token.immediate(
         seq(
