@@ -2154,6 +2154,51 @@ a 1, {2, b { 4 }} { 3 }
       (integer))))
 
 ================================================================================
+curly brace after a range operator
+================================================================================
+puts 1, 2 .. { 3 }
+puts 4, {a: 5} ... { b: 6 }
+puts 1, 2.. { 3 => 4 }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (integer)
+      (range
+        begin: (integer)
+        operator: (operator)
+        end: (tuple
+          (integer)))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (integer)
+      (range
+        begin: (named_tuple
+          (named_expr
+            name: (identifier)
+            (integer)))
+        operator: (operator)
+        end: (named_tuple
+          (named_expr
+            name: (identifier)
+            (integer))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (integer)
+      (range
+        begin: (integer)
+        operator: (operator)
+        end: (hash
+          (hash_entry
+            (integer)
+            (integer)))))))
+
+================================================================================
 calls with & block forwarding
 ================================================================================
 foo(&block)
