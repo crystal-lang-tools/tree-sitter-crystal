@@ -9,3 +9,5 @@ chmod +x tree-sitter-linux-x64
 
 mkdir -p "$HOME/.local/bin"
 mv tree-sitter-linux-x64 "$HOME/.local/bin/tree-sitter"
+
+tree-sitter init-config
