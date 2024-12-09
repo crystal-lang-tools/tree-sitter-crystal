@@ -1131,6 +1131,8 @@ regexes
 /\x20/
 /\x{12345}/
 
+/\N{U+32}\n{U+1F52e}/ =~ " 🔮"
+
 /a#{/b/m}c/i
 --------------------------------------------------------------------------------
 
@@ -1198,6 +1200,12 @@ regexes
     (regex_escape_sequence))
   (regex
     (regex_escape_sequence))
+  (op_call
+    receiver: (regex
+      (regex_escape_sequence)
+      (regex_escape_sequence))
+    operator: (operator)
+    argument: (string))
   (regex
     (interpolation
       (regex

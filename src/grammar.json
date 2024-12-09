@@ -2776,36 +2776,8 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "STRING",
-                "value": "/"
-              },
-              {
-                "type": "STRING",
-                "value": "\\"
-              },
-              {
-                "type": "STRING",
-                "value": "a"
-              },
-              {
-                "type": "STRING",
-                "value": "e"
-              },
-              {
-                "type": "STRING",
-                "value": "f"
-              },
-              {
-                "type": "STRING",
-                "value": "n"
-              },
-              {
-                "type": "STRING",
-                "value": "r"
-              },
-              {
-                "type": "STRING",
-                "value": "t"
+                "type": "PATTERN",
+                "value": "[/\\\\aefnrt]"
               },
               {
                 "type": "PATTERN",
@@ -2867,6 +2839,26 @@
               {
                 "type": "PATTERN",
                 "value": "c[\\x20-\\x7e]"
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "N{U+"
+                  },
+                  {
+                    "type": "REPEAT1",
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "[0-9a-fA-F]"
+                    }
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "}"
+                  }
+                ]
               }
             ]
           }

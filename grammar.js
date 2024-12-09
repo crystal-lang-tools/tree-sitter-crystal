@@ -745,15 +745,25 @@ module.exports = grammar({
 
       const ctrl_escape = /c[\x20-\x7e]/
 
+      const unicode_escape = seq('N{U+', repeat1(/[0-9a-fA-F]/), '}')
+
       // TODO: handle rest of PCRE2 escape syntax:
       // https://www.pcre.org/current/doc/html/pcre2syntax.html
 
-      return token.immediate(seq('\\', choice(
-        '/', '\\', 'a', 'e', 'f', 'n', 'r', 't',
-        octal_escape, long_octal_escape,
-        hex_escape, long_hex_escape,
-        ctrl_escape,
-      )))
+      return token.immediate(
+        seq(
+          '\\',
+          choice(
+            /[/\\aefnrt]/,
+            octal_escape,
+            long_octal_escape,
+            hex_escape,
+            long_hex_escape,
+            ctrl_escape,
+            unicode_escape,
+          ),
+        ),
+      )
     },
 
     regex_percent_literal: $ => seq(
