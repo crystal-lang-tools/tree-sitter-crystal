@@ -69,7 +69,7 @@ stdlib_files.each do |stdlib_file|
   else
     failed << test.label
   end
-  elapsed_ms = "#{test.elapsed.total_milliseconds}ms".colorize.dark_gray
+  elapsed_ms = sprintf("%8.3fms", test.elapsed.total_milliseconds).colorize.dark_gray
   # Why 63? So we match 80 columns.
   printf("%-63s %s %s\n", test.label, success ? PASS : FAIL, elapsed_ms)
 end
