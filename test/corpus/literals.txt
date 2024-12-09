@@ -1117,11 +1117,10 @@ regexes
 /\r/
 /\t/ximixi
 
-/\cx/
-/\cX/
-/\c/
-/\c /
-/\c/
+/\c[/ =~ ""
+/\cH/ =~ "\b"
+/\c?/ =~ "\u{7f}"
+/\c@/ =~ "\u{0}"
 
 /\11/
 /\012/
@@ -1162,16 +1161,29 @@ regexes
   (regex
     (regex_escape_sequence)
     (regex_modifier))
-  (regex
-    (regex_escape_sequence))
-  (regex
-    (regex_escape_sequence))
-  (regex
-    (regex_escape_sequence))
-  (regex
-    (regex_escape_sequence))
-  (regex
-    (regex_escape_sequence))
+  (op_call
+    receiver: (regex
+      (regex_escape_sequence))
+    operator: (operator)
+    argument: (string))
+  (op_call
+    receiver: (regex
+      (regex_escape_sequence))
+    operator: (operator)
+    argument: (string
+      (string_escape_sequence)))
+  (op_call
+    receiver: (regex
+      (regex_escape_sequence))
+    operator: (operator)
+    argument: (string
+      (string_escape_sequence)))
+  (op_call
+    receiver: (regex
+      (regex_escape_sequence))
+    operator: (operator)
+    argument: (string
+      (string_escape_sequence)))
   (regex
     (regex_escape_sequence))
   (regex

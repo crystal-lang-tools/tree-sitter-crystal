@@ -2866,7 +2866,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "c[\\x01-\\x7f]"
+                "value": "c[\\x20-\\x7e]"
               }
             ]
           }

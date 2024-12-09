@@ -743,10 +743,10 @@ module.exports = grammar({
       const hex_escape = seq('x', /[0-9a-fA-F]{1,2}/)
       const long_hex_escape = seq('x{', repeat1(/[0-9a-fA-F]/), '}')
 
-      const ctrl_escape = /c[\x01-\x7f]/ // eslint-disable-line no-control-regex
+      const ctrl_escape = /c[\x20-\x7e]/
 
-      // TODO: handle rest of PCRE escape syntax:
-      // https://www.pcre.org/original/doc/html/pcresyntax.html
+      // TODO: handle rest of PCRE2 escape syntax:
+      // https://www.pcre.org/current/doc/html/pcre2syntax.html
 
       return token.immediate(seq('\\', choice(
         '/', '\\', 'a', 'e', 'f', 'n', 'r', 't',
