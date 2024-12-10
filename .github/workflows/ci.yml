@@ -43,3 +43,27 @@ jobs:
 
       - name: Check for changes
         run: git diff --stat --exit-code
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install eslint
+        run: npm install
+
+      - name: Run eslint on grammar.js
+        run: npx eslint grammar.js
+
+      - name: Run clang-format on C source files
+        uses: jidicula/clang-format-action@v4.14.0
+        with:
+          clang-format-version: 18
+          check-path: src
+          exclude-regex: '(parser\.c|tree_sitter/)'
