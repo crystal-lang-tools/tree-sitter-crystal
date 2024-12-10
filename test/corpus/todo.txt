@@ -296,14 +296,11 @@ end
 (source_file
   (lib_def
     (constant)
-    (fun_def
-      (identifier)
-      (fun_param_list
-        (fun_param
+      (fun_def
+        (identifier)
+        (ERROR
+          (constant)
+          (pointer_type
+            (constant))
           (constant))
-        (fun_param
-          (constant))
-        (ERROR)
-        (fun_param
-          (constant)))
-      (constant))))
+        (constant))))
