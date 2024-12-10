@@ -1085,3 +1085,34 @@ end
           (constant))
         (constant))
       type: (constant))))
+
+========================================
+fun def parenthesized expression in body
+========================================
+
+# equivalent to a_little_fun()
+fun a_little_fun;
+(a : Int32)
+end
+
+# equivalent to more_fun(a : Int32)
+fun more_fun
+(a : Int32)
+end
+
+---
+
+(source_file
+  (comment)
+  (top_level_fun_def
+    name: (identifier)
+    body: (type_declaration
+      var: (identifier)
+      type: (constant)))
+  (comment)
+  (top_level_fun_def
+    name: (identifier)
+    params: (fun_param_list
+      (fun_param
+        (identifier)
+        type: (constant)))))
