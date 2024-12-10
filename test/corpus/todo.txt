@@ -282,25 +282,3 @@ proc.call('l') # => 2
     (argument_list
       (char)))
   (comment))
-
-=================
-fun pointer param
-=================
-
-lib LibC
-  fun strerror(Int, Char*, SizeT) : Int
-end
-
----
-
-(source_file
-  (lib_def
-    (constant)
-      (fun_def
-        (identifier)
-        (ERROR
-          (constant)
-          (pointer_type
-            (constant))
-          (constant))
-        (constant))))
