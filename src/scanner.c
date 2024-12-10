@@ -1116,8 +1116,8 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
             assert(valid_symbols[START_OF_TUPLE_TYPE] == valid_symbols[START_OF_NAMED_TUPLE_TYPE]);
 
 #define BRACE_BLOCK (valid_symbols[START_OF_BRACE_BLOCK])
-#define BRACE_EXPR (valid_symbols[START_OF_HASH_OR_TUPLE] || valid_symbols[START_OF_NAMED_TUPLE])
-#define BRACE_TYPE (valid_symbols[START_OF_TUPLE_TYPE] || valid_symbols[START_OF_NAMED_TUPLE_TYPE])
+#define BRACE_EXPR  (valid_symbols[START_OF_HASH_OR_TUPLE] || valid_symbols[START_OF_NAMED_TUPLE])
+#define BRACE_TYPE  (valid_symbols[START_OF_TUPLE_TYPE] || valid_symbols[START_OF_NAMED_TUPLE_TYPE])
 
             if (BRACE_BLOCK || BRACE_EXPR || BRACE_TYPE) {
                 if (BRACE_BLOCK && BRACE_EXPR && BRACE_TYPE) {
