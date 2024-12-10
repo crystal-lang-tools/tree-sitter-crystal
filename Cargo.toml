@@ -1,26 +1,32 @@
 [package]
-name = "tree-sitter-crystal"
-description = "crystal grammar for the tree-sitter parsing library"
-version = "0.0.1"
-keywords = ["incremental", "parsing", "crystal"]
+authors = [
+  "Gabriel Holodak <gthepiper@gmail.com>",
+  "Devaune Whittle (devnote-dev)",
+  "Hugo Parente Lima (hugopl)",
+  "Margret Riegert (nobodywasishere) <margret@eowyn.net>",
+]
+autoexamples = false
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-javascript"
-edition = "2018"
+description = "Crystal grammar for tree-sitter"
+edition = "2021"
+keywords = ["incremental", "parsing", "tree-sitter", "crystal"]
 license = "MIT"
+name = "tree-sitter-crystal"
+readme = "README.md"
+repository = "https://github.com/crystal-lang-tools/tree-sitter-crystal"
+version = "0.0.1"
 
 build = "bindings/rust/build.rs"
-include = [
-  "bindings/rust/*",
-  "grammar.js",
-  "queries/*",
-  "src/*",
-]
+include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*", "tree-sitter.json"]
 
 [lib]
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter = "0.17"
+tree-sitter-language = "0.1"
 
 [build-dependencies]
-cc = "1.0"
+cc = "1.1.22"
+
+[dev-dependencies]
+tree-sitter = "0.24.4"

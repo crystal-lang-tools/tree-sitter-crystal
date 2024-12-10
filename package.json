@@ -1,19 +1,55 @@
 {
   "name": "tree-sitter-crystal",
   "version": "0.0.1",
-  "description": "",
+  "description": "Crystal grammar for tree-sitter",
+  "repository": "https://github.com/crystal-lang-tools/tree-sitter-crystal",
+  "license": "MIT",
+  "author": {
+    "name": "Gabriel Holodak",
+    "email": "gthepiper@gmail.com",
+    "url": "https://github.com/keidax/"
+  },
+  "contributors": [
+    {
+      "name": "Devaune Whittle",
+      "url": "https://github.com/devnote-dev/"
+    },
+    {
+      "name": "Hugo Parente Lima",
+      "url": "https://github.com/hugopl/"
+    },
+    {
+      "name": "Margret Riegert",
+      "email": "margret@eowyn.net",
+      "url": "https://github.com/nobodywasishere/"
+    }
+  ],
   "main": "bindings/node",
   "types": "bindings/node",
-  "scripts": {
-    "test": "tree-sitter test && crystal run test/stdlib_coverage.cr",
-    "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip"
-  },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "incremental",
+    "parsing",
+    "tree-sitter",
+    "crystal"
+  ],
+  "files": [
+    "grammar.js",
+    "tree-sitter.json",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**",
+    "*.wasm"
+  ],
   "dependencies": {
-    "node-addon-api": "^7.1.0",
-    "node-gyp-build": "^4.8.0"
+    "node-addon-api": "^8.2.1",
+    "node-gyp-build": "^4.8.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.18.0",
+    "prebuildify": "^6.0.1",
+    "tree-sitter-cli": "^0.24.4"
   },
   "peerDependencies": {
     "tree-sitter": "^0.22.1"
@@ -23,16 +59,11 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "eslint": "^8.18.0",
-    "prebuildify": "^6.0.0"
-  },
-  "files": [
-    "grammar.js",
-    "binding.gyp",
-    "prebuilds/**",
-    "bindings/node/*",
-    "queries/*",
-    "src/**"
-  ]
+  "scripts": {
+    "install": "node-gyp-build",
+    "lint": "eslint grammar.js",
+    "prestart": "tree-sitter build --wasm",
+    "start": "tree-sitter playground -q",
+    "test": "node --test bindings/node/*_test.js"
+  }
 }

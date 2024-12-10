@@ -1,29 +1,34 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
+requires = ["setuptools>=42", "wheel"]
 
 [project]
-name = "tree-sitter-crystal"
-description = "Crystal grammar for tree-sitter"
-version = "0.0.1"
-keywords = ["incremental", "parsing", "tree-sitter", "crystal"]
+authors = [
+  {name = "Gabriel Holodak", email = "gthepiper@gmail.com"},
+  {name = "Devaune Whittle (devnote-dev)"},
+  {name = "Hugo Parente Lima (hugopl)"},
+  {name = "Margret Riegert", email = "margret@eowyn.net"},
+]
 classifiers = [
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
   "Topic :: Software Development :: Compilers",
   "Topic :: Text Processing :: Linguistic",
-  "Typing :: Typed"
+  "Typing :: Typed",
 ]
-requires-python = ">=3.8"
+description = "Crystal grammar for tree-sitter"
+keywords = ["incremental", "parsing", "tree-sitter", "crystal"]
 license.text = "MIT"
+name = "tree-sitter-crystal"
 readme = "README.md"
+requires-python = ">=3.9"
+version = "0.0.1"
 
 [project.urls]
-Homepage = "https://github.com/tree-sitter/tree-sitter-crystal"
+Homepage = "https://github.com/crystal-lang-tools/tree-sitter-crystal"
 
 [project.optional-dependencies]
-core = ["tree-sitter~=0.21"]
+core = ["tree-sitter~=0.22"]
 
 [tool.cibuildwheel]
-build = "cp38-*"
+build = "cp39-*"
 build-frontend = "build"
