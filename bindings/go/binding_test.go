@@ -3,7 +3,7 @@ package tree_sitter_crystal_test
 import (
 	"testing"
 
-	tree_sitter_crystal "github.com/keidax/tree-sitter-crystal/bindings/go"
+	tree_sitter_crystal "github.com/crystal-lang-tools/tree-sitter-crystal/bindings/go"
 	tree_sitter "github.com/tree-sitter/go-tree-sitter"
 )
 

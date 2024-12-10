@@ -1,4 +1,4 @@
-module github.com/keidax/tree-sitter-crystal
+module github.com/crystal-lang-tools/tree-sitter-crystal
 
 go 1.22
 

@@ -1,15 +1,20 @@
 [package]
-name = "tree-sitter-crystal"
-description = "Crystal grammar for tree-sitter"
-version = "0.0.1"
-authors = ["Gabriel Holodak <gthepiper@gmail.com>"]
-license = "MIT"
-readme = "README.md"
-keywords = ["incremental", "parsing", "tree-sitter", "crystal"]
-categories = ["parsing", "text-editors"]
-repository = "https://github.com/keidax/tree-sitter-crystal"
-edition = "2021"
+authors = [
+  "Gabriel Holodak <gthepiper@gmail.com>",
+  "Devonte (devnote-dev)",
+  "Hugo Parente Lima (hugopl)",
+  "Margret Riegert (nobodywasishere) <margret@eowyn.net>",
+]
 autoexamples = false
+categories = ["parsing", "text-editors"]
+description = "Crystal grammar for tree-sitter"
+edition = "2021"
+keywords = ["incremental", "parsing", "tree-sitter", "crystal"]
+license = "MIT"
+name = "tree-sitter-crystal"
+readme = "README.md"
+repository = "https://github.com/crystal-lang-tools/tree-sitter-crystal"
+version = "0.0.1"
 
 build = "bindings/rust/build.rs"
 include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*", "tree-sitter.json"]

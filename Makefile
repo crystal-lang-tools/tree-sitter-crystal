@@ -3,7 +3,7 @@ $(error Windows is not supported)
 endif
 
 LANGUAGE_NAME := tree-sitter-crystal
-HOMEPAGE_URL := https://github.com/keidax/tree-sitter-crystal
+HOMEPAGE_URL := https://github.com/crystal-lang-tools/tree-sitter-crystal
 VERSION := 0.0.1
 
 # repository

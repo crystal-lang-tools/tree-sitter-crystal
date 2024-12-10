@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.13)
 project(tree-sitter-crystal
         VERSION "0.0.1"
         DESCRIPTION "Crystal grammar for tree-sitter"
-        HOMEPAGE_URL "https://github.com/keidax/tree-sitter-crystal"
+        HOMEPAGE_URL "https://github.com/crystal-lang-tools/tree-sitter-crystal"
         LANGUAGES C)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)

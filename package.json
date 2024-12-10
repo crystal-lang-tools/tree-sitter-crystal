@@ -8,6 +8,21 @@
     "name": "Gabriel Holodak",
     "email": "gthepiper@gmail.com"
   },
+  "contributors": [
+    {
+      "name": "Devonte",
+      "url": "https://github.com/devnote-dev/"
+    },
+    {
+      "name": "Hugo Parente Lima",
+      "url": "https://github.com/hugopl/"
+    },
+    {
+      "name": "Margret Riegert",
+      "email": "margret@eowyn.net",
+      "url": "https://github.com/nobodywasishere/"
+    }
+  ],
   "main": "bindings/node",
   "types": "bindings/node",
   "keywords": [
