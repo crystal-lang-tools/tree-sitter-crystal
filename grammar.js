@@ -312,16 +312,6 @@ module.exports = grammar({
     ],
     [
       $.parenthesized_proc_type,
-    ],
-    // TODO: check why these are in conflict
-    [
-      $._expression, $.fun_param
-    ],
-    [
-      $.multi_assign, $.fun_param
-    ],
-    [
-      $.fun_param, $.type_param_list
     ]
   ],
 
@@ -1043,23 +1033,23 @@ module.exports = grammar({
 
     top_level_fun_def: $ => {
       const params = seq(
-        '(', field('params', $.fun_param_list), ')'
+        '(', field('params', $.fun_param_list), ')',
       )
-
       const real_name = seq('=',
-        field('real_name', choice($.identifier, $.constant, $.string))
+        field('real_name', choice($.identifier, $.constant, $.string)),
       )
-
       const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
 
       return seq(
-        'fun',
-        field('name', $.identifier),
-        optional(real_name),
-        optional(params),
-        optional(return_type),
-        field('body', $._statements),
-        'end'
+        prec.right(seq(
+          'fun',
+          field('name', $.identifier),
+          optional(real_name),
+          optional(params),
+          optional(return_type),
+        )),
+        field('body', optional($._statements)),
+        'end',
       )
     },
 
@@ -1087,15 +1077,22 @@ module.exports = grammar({
     },
 
     fun_param_list: $ => {
-      return choice(
-        seq(
-          $.fun_param,
-          repeat(seq(',', $.fun_param)),
-          optional(choice(
-            seq(',', '...'),
-            ','
-          )),
-        )
+      return seq(
+        $.fun_param,
+        repeat(seq(',', $.fun_param)),
+        optional(seq(
+          ',', optional('...')
+        )),
+      )
+    },
+
+    fun_type_param_list: $ => {
+      return seq(
+        $.union_type,
+        repeat(seq(',', $.union_type)),
+        optional(seq(
+          ',', optional('...')
+        )),
       )
     },
 
@@ -1104,7 +1101,7 @@ module.exports = grammar({
 
       return seq(
         choice($.identifier, $.constant),
-        optional(type)
+        type,
       )
     },
 
@@ -1114,17 +1111,6 @@ module.exports = grammar({
       '=',
       $._bare_type
     ),
-
-    fun_type_param_list: $ => {
-      return seq(
-        $.union_type,
-        repeat(seq(',', $.union_type)),
-        optional(choice(
-          seq(',', '...'),
-          ','
-        )),
-      )
-    },
 
     c_struct_or_union_def: $ => {
       const struct_or_union = field("kind", choice('struct', 'union'))
