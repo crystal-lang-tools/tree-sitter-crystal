@@ -3280,6 +3280,136 @@
     }
   },
   {
+    "type": "c_struct_or_union_def",
+    "named": true,
+    "fields": {
+      "kind": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "struct",
+            "named": false
+          },
+          {
+            "type": "union",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constant",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "c_struct_or_union_fields",
+          "named": true
+        },
+        {
+          "type": "include",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "c_struct_or_union_fields",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "class_type",
+            "named": true
+          },
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "named_tuple_type",
+            "named": true
+          },
+          {
+            "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "proc_type",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          },
+          {
+            "type": "splat_type",
+            "named": true
+          },
+          {
+            "type": "static_array_type",
+            "named": true
+          },
+          {
+            "type": "tuple_type",
+            "named": true
+          },
+          {
+            "type": "typeof",
+            "named": true
+          },
+          {
+            "type": "underscore_type",
+            "named": true
+          },
+          {
+            "type": "union_type",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "call",
     "named": true,
     "fields": {
@@ -7754,7 +7884,7 @@
             "named": true
           },
           {
-            "type": "type_param_list",
+            "type": "fun_type_param_list",
             "named": true
           }
         ]
@@ -7949,6 +8079,21 @@
       "types": [
         {
           "type": "fun_param",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fun_type_param_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "union_type",
           "named": true
         }
       ]
@@ -10053,6 +10198,10 @@
         },
         {
           "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "c_struct_or_union_def",
           "named": true
         },
         {
@@ -21123,25 +21272,6 @@
     }
   },
   {
-    "type": "type_param_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "constant",
-          "named": true
-        },
-        {
-          "type": "splat",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "typeof",
     "named": true,
     "fields": {},
@@ -24116,6 +24246,10 @@
     "named": false
   },
   {
+    "type": "...",
+    "named": false
+  },
+  {
     "type": "/",
     "named": false
   },
@@ -24490,6 +24624,10 @@
   {
     "type": "underscore_type",
     "named": true
+  },
+  {
+    "type": "union",
+    "named": false
   },
   {
     "type": "unless",

@@ -955,3 +955,111 @@ end
       method: (identifier)
       arguments: (argument_list
         (string)))))
+
+=================
+lib def + objects
+=================
+
+lib MyLib
+  fun name = Name : Void
+
+  fun cos(value : Float64) : Float64
+
+  union IntOrFloat
+    some_int : Int32
+    some_float : Float64
+  end
+
+  struct TimeZone
+    minutes_west, dst_time : Int32
+    tz_name : String
+  end
+
+  enum SomeEnum
+    Zero
+    One
+    Two
+    Three
+  end
+
+  type MyInt = Int32
+end
+
+---
+
+(source_file
+  (lib_def
+    name: (constant)
+    (fun_def
+      name: (identifier)
+      real_name: (constant)
+      type: (constant))
+    (fun_def
+      name: (identifier)
+      params: (fun_param_list
+        (fun_param
+          (identifier)
+          type: (constant)))
+      type: (constant))
+    (c_struct_or_union_def
+      name: (constant)
+      (c_struct_or_union_fields
+        (identifier)
+        type: (constant))
+      (c_struct_or_union_fields
+        (identifier)
+        type: (constant)))
+    (c_struct_or_union_def
+      name: (constant)
+      (c_struct_or_union_fields
+        (identifier)
+        (identifier)
+        type: (constant))
+      (c_struct_or_union_fields
+        (identifier)
+        type: (constant)))
+    (enum_def
+      name: (constant)
+      (constant)
+      (constant)
+      (constant)
+      (constant))
+    (type_def
+      (constant)
+      (constant))))
+
+=============
+fun with dots
+=============
+
+lib LibC
+  fun fcntl(__fd : Int, __cmd : Int, ...) : Int
+  fun open(__path : Char*, __flags : Int, ...) : Int
+end
+
+---
+
+(source_file
+  (lib_def
+    name: (constant)
+    (fun_def
+      name: (identifier)
+      params: (fun_param_list
+        (fun_param
+          (identifier)
+          type: (constant))
+        (fun_param
+          (identifier)
+          type: (constant)))
+      type: (constant))
+    (fun_def
+      name: (identifier)
+      params: (fun_param_list
+        (fun_param
+          (identifier)
+          type: (pointer_type
+            (constant)))
+        (fun_param
+          (identifier)
+          type: (constant)))
+      type: (constant))))
