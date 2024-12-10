@@ -4570,7 +4570,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "union_type"
+          "name": "_type"
         },
         {
           "type": "REPEAT",
@@ -4583,7 +4583,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "union_type"
+                "name": "_type"
               }
             ]
           }

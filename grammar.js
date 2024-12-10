@@ -1056,10 +1056,12 @@ module.exports = grammar({
     fun_def: $ => {
       const params = seq(
         '(',
-        field('params', optional(choice(
-          $.fun_param_list, $.fun_type_param_list
-        ))),
-        ')'
+        field('params',
+          optional(choice(
+            $.fun_param_list, $.fun_type_param_list,
+          )),
+        ),
+        ')',
       )
 
       const real_name = seq('=',
@@ -1081,17 +1083,17 @@ module.exports = grammar({
         $.fun_param,
         repeat(seq(',', $.fun_param)),
         optional(seq(
-          ',', optional('...')
+          ',', optional('...'),
         )),
       )
     },
 
     fun_type_param_list: $ => {
       return seq(
-        $.union_type,
-        repeat(seq(',', $.union_type)),
+        $._type,
+        repeat(seq(',', $._type)),
         optional(seq(
-          ',', optional('...')
+          ',', optional('...'),
         )),
       )
     },
