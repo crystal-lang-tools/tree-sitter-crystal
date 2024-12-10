@@ -86,82 +86,6 @@ foo = %var + 4
         (operator)
         (MISSING identifier)))))
 
-=================
-lib def + objects
-=================
-
-lib MyLib
-  fun name = Name : Void
-
-  fun cos(value : Float64) : Float64
-
-  union IntOrFloat
-    some_int : Int32
-    some_float : Float64
-  end
-
-  struct TimeZone
-    minutes_west : Int32
-    dst_time : Int32
-  end
-
-  enum SomeEnum
-    Zero
-    One
-    Two
-    Three
-  end
-
-  type MyInt = Int32
-end
-
----
-
-(source_file
-  (ERROR
-    (constant)
-    (fun_def
-      (identifier)
-      (constant)
-      (constant))
-    (fun_def
-      (identifier)
-      (fun_param_list
-        (fun_param
-          (identifier)
-          (constant)))
-      (constant))
-    (call
-      (identifier)
-      (argument_list
-        (constant)))
-    (type_declaration
-      (identifier)
-      (constant))
-    (type_declaration
-      (identifier)
-      (constant)))
-  (struct_def
-    (constant)
-    (type_declaration
-      (identifier)
-      (constant))
-    (type_declaration
-      (identifier)
-      (constant)))
-  (enum_def
-    (constant)
-    (constant)
-    (constant)
-    (constant)
-    (constant))
-  (assign
-    (identifier)
-    (ERROR)
-    (constant))
-  (ERROR))
-
-
 ==============
 pseudo methods
 ==============
@@ -358,3 +282,28 @@ proc.call('l') # => 2
     (argument_list
       (char)))
   (comment))
+
+=================
+fun pointer param
+=================
+
+lib LibC
+  fun strerror(Int, Char*, SizeT) : Int
+end
+
+---
+
+(source_file
+  (lib_def
+    (constant)
+    (fun_def
+      (identifier)
+      (fun_param_list
+        (fun_param
+          (constant))
+        (fun_param
+          (constant))
+        (ERROR)
+        (fun_param
+          (constant)))
+      (constant))))

@@ -401,7 +401,7 @@ module.exports = grammar({
       $.alias,
       $.fun_def,
       $.type_def,
-      // $.c_struct_or_union,
+      $.c_struct_or_union_def,
       $.enum_def,
       $.global_var,
       $.const_assign,
@@ -1043,7 +1043,7 @@ module.exports = grammar({
 
     top_level_fun_def: $ => {
       const params = seq(
-        '(', field('params', $.fun_param_list, $.type_param_list), ')'
+        '(', field('params', $.fun_param_list), ')'
       )
 
       const real_name = seq('=',
@@ -1066,7 +1066,9 @@ module.exports = grammar({
     fun_def: $ => {
       const params = seq(
         '(',
-        field('params', optional(choice($.fun_param_list, $.type_param_list))),
+        field('params', optional(choice(
+          $.fun_param_list, $.fun_type_param_list
+        ))),
         ')'
       )
 
@@ -1089,8 +1091,11 @@ module.exports = grammar({
         seq(
           $.fun_param,
           repeat(seq(',', $.fun_param)),
-          optional(','),
-        ),
+          optional(choice(
+            seq(',', '...'),
+            ','
+          )),
+        )
       )
     },
 
@@ -1110,7 +1115,56 @@ module.exports = grammar({
       $._bare_type
     ),
 
-    c_struct_or_union: $ => seq(),
+    fun_type_param_list: $ => {
+      return seq(
+        $.union_type,
+        repeat(seq(',', $.union_type)),
+        optional(choice(
+          seq(',', '...'),
+          ','
+        )),
+      )
+    },
+
+    c_struct_or_union_def: $ => {
+      const struct_or_union = field("kind", choice('struct', 'union'))
+      const name = field("name", $.constant)
+
+      return seq(
+        struct_or_union,
+        name,
+        $._c_struct_or_union_expressions,
+        'end'
+      )
+    },
+
+    _c_struct_or_union_expressions: $ => choice(
+      seq(
+        repeat1(
+          choice(
+            seq($._c_struct_or_union_expression, $._terminator),
+            prec(-1, ';'),
+          ),
+        ),
+        optional($._c_struct_or_union_expression),
+      ),
+      $._c_struct_or_union_expression,
+    ),
+
+    _c_struct_or_union_expression: $ => choice(
+      $.include,
+      $.c_struct_or_union_fields
+    ),
+
+    c_struct_or_union_fields: $ => {
+      const names = seq($.identifier, repeat(seq(',', $.identifier)))
+
+      return seq(
+        names,
+        /[ \t]:\s/,
+        field('type', $._bare_type)
+      )
+    },
 
     global_var: $ => {
       const name = seq('$', $.identifier)
