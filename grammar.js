@@ -1055,8 +1055,8 @@ module.exports = grammar({
         choice(
           $.constant,
           $.self,
-          $.generic_instance_type
-        )
+          $.generic_instance_type,
+        ),
       )
     },
 
@@ -1066,8 +1066,8 @@ module.exports = grammar({
         choice(
           $.constant,
           $.self,
-          $.generic_instance_type
-        )
+          $.generic_instance_type,
+        ),
       )
     },
 
@@ -1794,7 +1794,10 @@ module.exports = grammar({
 
     splat: $ => prec('splat_operator', seq(alias($._unary_star, '*'), $._expression)),
 
-    double_splat: $ => prec('splat_operator', seq(alias($._unary_double_star, '**'), $._expression)),
+    double_splat: $ => prec('splat_operator', seq(
+      alias($._unary_double_star, '**'),
+      $._expression,
+    )),
 
     named_expr: $ => {
       const name = field('name', choice(
@@ -2210,7 +2213,7 @@ module.exports = grammar({
         'select',
         repeat($.when),
         optional($.else),
-        'end'
+        'end',
       )
     },
 

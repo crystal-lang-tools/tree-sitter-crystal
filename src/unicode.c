@@ -9,16 +9,16 @@
 // the terms of CC BY-SA 4.0. The function signature and variable names are changed.
 
 #define UTF8_SURROGATE_LOW_BITS 0x7FF
-#define UTF8_MAX_SURROGATE     0xDFFF
-#define UTF8_MAX_FOUR_BYTE   0x10FFFF
-#define UTF8_ONE_BYTE_BITS          7
-#define UTF8_TWO_BYTE_BITS         11
-#define UTF8_TWO_BYTE_PREFIX     0xC0
-#define UTF8_THREE_BYTE_BITS       16
-#define UTF8_THREE_BYTE_PREFIX   0xE0
-#define UTF8_FOUR_BYTE_PREFIX    0xF0
-#define UTF8_CONTINUATION_BYTE   0x80
-#define UTF8_CONTINUATION_MASK   0x3F
+#define UTF8_MAX_SURROGATE      0xDFFF
+#define UTF8_MAX_FOUR_BYTE      0x10FFFF
+#define UTF8_ONE_BYTE_BITS      7
+#define UTF8_TWO_BYTE_BITS      11
+#define UTF8_TWO_BYTE_PREFIX    0xC0
+#define UTF8_THREE_BYTE_BITS    16
+#define UTF8_THREE_BYTE_PREFIX  0xE0
+#define UTF8_FOUR_BYTE_PREFIX   0xF0
+#define UTF8_CONTINUATION_BYTE  0x80
+#define UTF8_CONTINUATION_MASK  0x3F
 
 /**
  * Ensure that buffer has space for AT LEAST 4 bytes before calling this function,
@@ -68,7 +68,6 @@ static size_t codepoint_to_utf8(int32_t codepoint, uint8_t *buffer) {
     }
 }
 
-
 // The following code is adapted from https://codereview.stackexchange.com/q/197548 and replies
 // under the terms of CC BY-SA 4.0. The function signatures and variable names are changed.
 
@@ -114,20 +113,20 @@ static size_t utf8_to_codepoints(int32_t *codepoints, uint8_t *text, size_t byte
                 break;
 
             case 2:
-                b0 = (text[i]     & ~UTF8_TWO_BYTE_MASK);
+                b0 = (text[i] & ~UTF8_TWO_BYTE_MASK);
                 b1 = (text[i + 1] & UTF8_CONTINUATION_MASK);
                 codepoints[n] = (b0 << 6) | b1;
                 break;
 
             case 3:
-                b0 = (text[i]     & ~UTF8_THREE_BYTE_MASK);
+                b0 = (text[i] & ~UTF8_THREE_BYTE_MASK);
                 b1 = (text[i + 1] & UTF8_CONTINUATION_MASK);
                 b2 = (text[i + 2] & UTF8_CONTINUATION_MASK);
                 codepoints[n] = (b0 << 12) | (b1 << 6) | b2;
                 break;
 
             case 4:
-                b0 = (text[i]     & ~UTF8_FOUR_BYTE_MASK);
+                b0 = (text[i] & ~UTF8_FOUR_BYTE_MASK);
                 b1 = (text[i + 1] & UTF8_CONTINUATION_MASK);
                 b2 = (text[i + 2] & UTF8_CONTINUATION_MASK);
                 b3 = (text[i + 3] & UTF8_CONTINUATION_MASK);
