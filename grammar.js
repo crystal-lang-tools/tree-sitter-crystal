@@ -315,7 +315,7 @@ module.exports = grammar({
     ],
     [
       $.parenthesized_proc_type,
-    ]
+    ],
   ],
 
   rules: {
@@ -1031,7 +1031,7 @@ module.exports = grammar({
       'lib',
       field('name', $.constant, $.generic_type),
       optional($._lib_statements),
-      'end'
+      'end',
     ),
 
     top_level_fun_def: $ => {
@@ -1066,7 +1066,7 @@ module.exports = grammar({
       )
 
       const real_name = seq('=',
-        field('real_name', choice($.identifier, $.constant, $.string))
+        field('real_name', choice($.identifier, $.constant, $.string)),
       )
       const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
 
@@ -1112,18 +1112,18 @@ module.exports = grammar({
       'type',
       $.constant,
       '=',
-      $._bare_type
+      $._bare_type,
     ),
 
     c_struct_or_union_def: $ => {
-      const struct_or_union = field("kind", choice('struct', 'union'))
-      const name = field("name", $.constant)
+      const struct_or_union = field('kind', choice('struct', 'union'))
+      const name = field('name', $.constant)
 
       return seq(
         struct_or_union,
         name,
         $._c_struct_or_union_expressions,
-        'end'
+        'end',
       )
     },
 
@@ -1142,7 +1142,7 @@ module.exports = grammar({
 
     _c_struct_or_union_expression: $ => choice(
       $.include,
-      $.c_struct_or_union_fields
+      $.c_struct_or_union_fields,
     ),
 
     c_struct_or_union_fields: $ => {
@@ -1151,7 +1151,7 @@ module.exports = grammar({
       return seq(
         names,
         /[ \t]:\s/,
-        field('type', $._bare_type)
+        field('type', $._bare_type),
       )
     },
 
