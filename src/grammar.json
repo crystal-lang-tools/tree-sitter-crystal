@@ -232,8 +232,13 @@
           "name": "abstract_method_def"
         },
         {
-          "type": "SYMBOL",
-          "name": "top_level_fun_def"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "top_level_fun_def"
+          },
+          "named": true,
+          "value": "fun_def"
         },
         {
           "type": "SYMBOL",
@@ -4308,12 +4313,25 @@
                         "value": "("
                       },
                       {
-                        "type": "FIELD",
-                        "name": "params",
-                        "content": {
-                          "type": "SYMBOL",
-                          "name": "fun_param_list"
-                        }
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "FIELD",
+                            "name": "params",
+                            "content": {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "SYMBOL",
+                                "name": "fun_param_list"
+                              },
+                              "named": true,
+                              "value": "param_list"
+                            }
+                          },
+                          {
+                            "type": "BLANK"
+                          }
+                        ]
                       },
                       {
                         "type": "STRING",
@@ -4449,29 +4467,34 @@
                   "value": "("
                 },
                 {
-                  "type": "FIELD",
-                  "name": "params",
-                  "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "fun_param_list"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "fun_type_param_list"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "BLANK"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "FIELD",
+                      "name": "params",
+                      "content": {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "fun_param_list"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "fun_type_param_list"
+                            }
+                          ]
+                        },
+                        "named": true,
+                        "value": "param_list"
                       }
-                    ]
-                  }
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
                 },
                 {
                   "type": "STRING",
@@ -11964,6 +11987,16 @@
       {
         "type": "SYMBOL",
         "name": "type_declaration"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "empty_parens"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "top_level_fun_def"
       }
     ]
   ],

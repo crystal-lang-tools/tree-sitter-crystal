@@ -941,9 +941,9 @@ end
 ---
 
 (source_file
-  (top_level_fun_def
+  (fun_def
     name: (identifier)
-    params: (fun_param_list
+    params: (param_list
       (fun_param
         (identifier)
         type: (constant))
@@ -996,7 +996,7 @@ end
       type: (constant))
     (fun_def
       name: (identifier)
-      params: (fun_param_list
+      params: (param_list
         (fun_param
           (identifier)
           type: (constant)))
@@ -1044,7 +1044,7 @@ end
     name: (constant)
     (fun_def
       name: (identifier)
-      params: (fun_param_list
+      params: (param_list
         (fun_param
           (identifier)
           type: (constant))
@@ -1054,7 +1054,7 @@ end
       type: (constant))
     (fun_def
       name: (identifier)
-      params: (fun_param_list
+      params: (param_list
         (fun_param
           (identifier)
           type: (pointer_type
@@ -1079,7 +1079,7 @@ end
     name: (constant)
     (fun_def
       name: (identifier)
-      params: (fun_type_param_list
+      params: (param_list
         (constant)
         (pointer_type
           (constant))
@@ -1104,15 +1104,15 @@ end
 
 (source_file
   (comment)
-  (top_level_fun_def
+  (fun_def
     name: (identifier)
     body: (type_declaration
       var: (identifier)
       type: (constant)))
   (comment)
-  (top_level_fun_def
+  (fun_def
     name: (identifier)
-    params: (fun_param_list
+    params: (param_list
       (fun_param
         (identifier)
         type: (constant)))))

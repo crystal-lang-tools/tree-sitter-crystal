@@ -282,3 +282,56 @@ proc.call('l') # => 2
     (argument_list
       (char)))
   (comment))
+
+==========================
+fun def params on newlines
+==========================
+
+fun
+extreme_fun
+(
+param1
+:
+Type
+,
+param2
+:
+Type
+)
+:
+ReturnType
+  puts "hello"
+end
+
+---
+
+(source_file
+  (fun_def
+    name: (identifier)
+    body: (expressions
+      (identifier)
+      (ERROR)
+      (constant)
+      (ERROR)
+      (identifier)
+      (ERROR)
+      (constant))
+    (ERROR)
+    body: (constant)
+    body: (call
+      method: (identifier)
+      arguments: (argument_list
+        (string)))))
+
+===============================
+fun empty params on single line
+===============================
+
+fun bar() end
+
+---
+
+(source_file
+  (fun_def
+    name: (identifier)
+    body: (nil)))

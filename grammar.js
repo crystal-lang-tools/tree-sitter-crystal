@@ -250,6 +250,9 @@ module.exports = grammar({
       $._expression,
       $.type_declaration,
     ],
+    [
+      $.empty_parens, $.top_level_fun_def,
+    ],
   ],
 
   conflicts: $ => [
@@ -366,7 +369,7 @@ module.exports = grammar({
       $.alias,
       $.method_def,
       $.abstract_method_def,
-      $.top_level_fun_def,
+      alias($.top_level_fun_def, $.fun_def),
       $.require,
       $.modifier_if,
       $.modifier_unless,
@@ -1033,7 +1036,7 @@ module.exports = grammar({
 
     top_level_fun_def: $ => {
       const params = seq(
-        '(', field('params', $.fun_param_list), ')',
+        '(', optional(field('params', alias($.fun_param_list, $.param_list))), ')',
       )
       const real_name = seq('=',
         field('real_name', choice($.identifier, $.constant, $.string)),
@@ -1056,11 +1059,9 @@ module.exports = grammar({
     fun_def: $ => {
       const params = seq(
         '(',
-        field('params',
-          optional(choice(
-            $.fun_param_list, $.fun_type_param_list,
-          )),
-        ),
+        optional(field('params',
+          alias(choice($.fun_param_list, $.fun_type_param_list), $.param_list),
+        )),
         ')',
       )
 
