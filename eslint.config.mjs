@@ -32,6 +32,7 @@ export default [
       'arrow-spacing': ['error'],
       'block-spacing': ['error'],
       'comma-dangle': ['error', 'always-multiline'],
+      'comma-style': ['error', 'last', { exceptions: { 'CallExpression': false } }],
       'comma-spacing': ['error'],
       'func-call-spacing': ['error'],
       'implicit-arrow-linebreak': ['error'],

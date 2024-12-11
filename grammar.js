@@ -1795,8 +1795,8 @@ module.exports = grammar({
     splat: $ => prec('splat_operator', seq(alias($._unary_star, '*'), $._expression)),
 
     double_splat: $ => prec('splat_operator', seq(
-      alias($._unary_double_star, '**')
-      , $._expression,
+      alias($._unary_double_star, '**'),
+      $._expression,
     )),
 
     named_expr: $ => {
