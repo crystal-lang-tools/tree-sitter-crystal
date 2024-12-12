@@ -473,6 +473,7 @@ module.exports = grammar({
 
       // Methods
       $.call,
+      alias($.global_call, $.call),
 
       alias($.additive_operator, $.op_call),
       alias($.unary_additive_operator, $.op_call),
@@ -1775,6 +1776,30 @@ module.exports = grammar({
 
         prec('ampersand_block_call', seq(receiver_call, argument_list_with_block)),
         prec('ampersand_block_call', seq(ambiguous_call, argument_list_with_block)),
+      )
+    },
+
+    global_call: $ => {
+      const ambiguous_call = field('method', $.identifier)
+
+      const argument_list = field('arguments', choice(
+        alias($.argument_list_with_parens, $.argument_list),
+        alias($.argument_list_no_parens, $.argument_list),
+      ))
+
+      const argument_list_with_block = field('arguments', choice(
+        alias($.argument_list_with_parens_and_block, $.argument_list),
+        alias($.argument_list_no_parens_with_block, $.argument_list),
+      ))
+
+      const brace_block = field('block', alias($.brace_block, $.block))
+      const do_end_block = field('block', alias($.do_end_block, $.block))
+
+      return choice(
+        prec('no_block_call', seq('::', ambiguous_call, argument_list)),
+        prec('brace_block_call', seq('::', ambiguous_call, optional(argument_list), brace_block)),
+        prec('do_end_block_call', seq('::', ambiguous_call, optional(argument_list), do_end_block)),
+        prec('ampersand_block_call', seq('::', ambiguous_call, argument_list_with_block)),
       )
     },
 

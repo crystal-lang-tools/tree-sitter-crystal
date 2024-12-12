@@ -3386,3 +3386,17 @@ object.@ivar
   (call
     receiver: (identifier)
     method: (instance_var)))
+
+======================
+global method calls
+======================
+
+::raise "Error message"
+
+---
+
+(source_file
+  (call
+    (identifier)
+    (argument_list
+      (string))))

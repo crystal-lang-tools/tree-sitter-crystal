@@ -46,8 +46,6 @@ compiler/crystal/loader/unix.cr
 compiler/crystal/macros.cr
 compiler/crystal/macros/macros.cr
 compiler/crystal/macros/methods.cr
-compiler/crystal/semantic/ast.cr
-compiler/crystal/semantic/bindings.cr
 compiler/crystal/semantic/call.cr
 compiler/crystal/semantic/call_error.cr
 compiler/crystal/semantic/cleanup_transformer.cr
@@ -174,7 +172,6 @@ crystal/system/win32/zone_names.cr
 crystal/system/windows.cr
 crystal/tracing.cr
 csv.cr
-csv/lexer.cr
 csv/lexer/io_based.cr
 deque.cr
 digest/digest.cr
@@ -237,7 +234,6 @@ iterator.cr
 json/any.cr
 json/builder.cr
 json/from_json.cr
-json/lexer.cr
 json/lexer/io_based.cr
 json/parser.cr
 json/pull_parser.cr
@@ -509,7 +505,6 @@ syscall/i386-linux.cr
 syscall/x86_64-linux.cr
 termios.cr
 time.cr
-time/format/parser.cr
 time/location.cr
 tuple.cr
 unicode/data.cr
@@ -520,7 +515,6 @@ uri/params/serializable.cr
 uri/uri_parser.cr
 uuid.cr
 va_list.cr
-wait_group.cr
 weak_ref.cr
 winerror.cr
 xml.cr
@@ -532,7 +526,6 @@ yaml/any.cr
 yaml/builder.cr
 yaml/from_yaml.cr
 yaml/lib_yaml.cr
-yaml/nodes/nodes.cr
 yaml/pull_parser.cr
 yaml/schema/core.cr
 yaml/serialization.cr
