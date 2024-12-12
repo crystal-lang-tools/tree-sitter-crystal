@@ -323,6 +323,111 @@ end
       arguments: (argument_list
         (string)))))
 
+=================================
+private and protected macro calls
+=================================
+
+class Foo
+  private getter foo
+  protected property bar : Baz
+end
+
+---
+
+(source_file
+  (class_def
+    (constant)
+    (ERROR)
+    (call
+      (identifier)
+      (argument_list
+        (identifier)))
+    (ERROR)
+    (call
+      (identifier)
+      (argument_list
+        (type_declaration
+          (identifier)
+          (constant))))))
+
+=======================
+assign special variable
+=======================
+
+$~ = $~
+
+---
+
+(source_file
+  (ERROR
+    (special_variable))
+  (special_variable))
+
+============================
+.as method with pointer type
+============================
+
+node.as(LibXML::Node*)
+
+---
+
+(source_file
+  (call
+    (identifier)
+    (identifier)
+    (argument_list
+      (op_call
+        (constant)
+        (operator)
+        (MISSING identifier)))))
+
+==============================
+instance var with pointer type
+==============================
+
+@ivar : UInt8*
+
+---
+
+(source_file
+  (op_call
+    (type_declaration
+      (instance_var)
+      (constant))
+    (operator)
+    (MISSING identifier)))
+
+=================================
+Array-like and hash-like literals
+:error
+=================================
+
+Set{1, 2, 3}
+MyType{"foo" => "bar"}
+
+---
+
+===================================
+chained calls in short block syntax
+:error
+===================================
+
+reject! &.field.option
+find(&.name.==(name))
+
+---
+
+
+=================
+static array type
+:error
+=================
+
+StaticArray(Int32, 8)
+StaticArray(Char*, 2)
+
+---
+
 ==========================
 symbols ending with equals
 ==========================
@@ -342,3 +447,17 @@ symbols ending with equals
     (symbol)
     (operator)
     (identifier)))
+
+=================================
+case expression with typed tuples
+:error
+=================================
+
+case {value, this_value}
+in {String, String}
+	puts "hello"
+in {Int32, false}
+	puts "world"
+end
+
+---
