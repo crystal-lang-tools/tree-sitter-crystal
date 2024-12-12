@@ -1362,7 +1362,17 @@ module.exports = grammar({
       )
     },
 
-    return: $ => seq('return', optional($._expression)),
+    return: $ => {
+      const expressions = choice(
+        $._expression,
+        seq(
+          $._expression,
+          repeat(seq(',', $._expression)),
+        ),
+      )
+
+      return seq('return', optional(expressions))
+    },
 
     next: $ => seq('next', optional($._expression)),
 

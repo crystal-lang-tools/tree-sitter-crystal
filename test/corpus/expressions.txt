@@ -3400,3 +3400,25 @@ global method calls
     (identifier)
     (argument_list
       (string))))
+
+=============================
+comma-separated return values
+=============================
+
+def hello(a, b)
+  return a, b
+end
+
+---
+
+(source_file
+  (method_def
+    (identifier)
+    (param_list
+      (param
+        (identifier))
+      (param
+        (identifier)))
+    (return
+      (identifier)
+      (identifier))))
