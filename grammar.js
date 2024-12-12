@@ -714,7 +714,7 @@ module.exports = grammar({
         seq(
           choice(ident_start, const_start),
           repeat(ident_part),
-          optional(/[?!]/),
+          optional(/[?!=]/),
         ),
       ),
     )),

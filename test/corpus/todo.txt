@@ -322,3 +322,23 @@ end
       method: (identifier)
       arguments: (argument_list
         (string)))))
+
+==========================
+symbols ending with equals
+==========================
+
+:hello=
+:world==world
+:world == world
+
+---
+
+(source_file
+  (symbol)
+  (symbol)
+  (ERROR
+    (identifier))
+  (op_call
+    (symbol)
+    (operator)
+    (identifier)))

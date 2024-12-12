@@ -25,7 +25,6 @@ compiler/crystal/codegen/primitives.cr
 compiler/crystal/command.cr
 compiler/crystal/command/repl.cr
 compiler/crystal/compiler.cr
-compiler/crystal/exception.cr
 compiler/crystal/ffi/ffi.cr
 compiler/crystal/ffi/lib_ffi.cr
 compiler/crystal/interpreter.cr
@@ -47,7 +46,6 @@ compiler/crystal/loader/unix.cr
 compiler/crystal/macros.cr
 compiler/crystal/macros/macros.cr
 compiler/crystal/macros/methods.cr
-compiler/crystal/semantic/abstract_def_checker.cr
 compiler/crystal/semantic/ast.cr
 compiler/crystal/semantic/bindings.cr
 compiler/crystal/semantic/call.cr
@@ -180,7 +178,6 @@ csv/lexer.cr
 csv/lexer/io_based.cr
 deque.cr
 digest/digest.cr
-dir/glob.cr
 docs_pseudo_methods.cr
 ecr/macros.cr
 empty.cr
@@ -217,7 +214,6 @@ gc.cr
 gc/boehm.cr
 gc/none.cr
 hash.cr
-html.cr
 http/client.cr
 http/common.cr
 http/headers.cr
@@ -235,7 +231,6 @@ io/console.cr
 io/encoding.cr
 io/encoding_stubs.cr
 io/evented.cr
-io/hexdump.cr
 io/memory.cr
 io/stapled.cr
 iterator.cr
@@ -414,7 +409,6 @@ lib_c/x86_64-windows-msvc/c/winnt.cr
 lib_c/x86_64-windows-msvc/c/ws2ipdef.cr
 lib_z/lib_z.cr
 llvm.cr
-llvm/abi/x86_64.cr
 llvm/basic_block_collection.cr
 llvm/builder.cr
 llvm/context.cr
