@@ -650,6 +650,31 @@ end
     ensure: (ensure)))
 
 ================================================================================
+abstract method definitions
+================================================================================
+
+class A
+  abstract def a; abstract def b
+  abstract def c
+  abstract def d : Type
+end
+
+---
+
+(source_file
+  (class_def
+    name: (constant)
+    (abstract_method_def
+      name: (identifier))
+    (abstract_method_def
+      name: (identifier))
+    (abstract_method_def
+      name: (identifier))
+    (abstract_method_def
+      name: (identifier)
+      type: (constant))))
+
+================================================================================
 annotations
 ================================================================================
 annotation Thing
