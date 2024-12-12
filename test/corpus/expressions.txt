@@ -3401,12 +3401,40 @@ global method calls
     (argument_list
       (string))))
 
-=============================
-comma-separated return values
-=============================
+===============================================
+comma-separated and parenthesized return values
+===============================================
 
 def hello(a, b)
   return a, b
+  return \
+1,
+2
+  return {a, b}, [c, d]
+  return 1, 2, 3,
+         4, 5, 6,
+         7, 8, 9
+
+  return 1 +
+  2 ,
+  3 +
+  4 ,
+  method
+  .call(
+  a ,
+  b
+  )
+
+  return()
+  return(a, b)
+
+  return(
+    1, 2, 3,
+    4, 5, 6,
+  )
+
+  return
+  1, 2
 end
 
 ---
@@ -3421,4 +3449,53 @@ end
         (identifier)))
     (return
       (identifier)
-      (identifier))))
+      (identifier))
+    (return
+      (integer)
+      (integer))
+    (return
+      (tuple
+        (identifier)
+        (identifier))
+      (array
+        (identifier)
+        (identifier)))
+    (return
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer))
+    (return
+      (op_call
+        (integer)
+        (operator)
+        (integer))
+      (op_call
+        (integer)
+        (operator)
+        (integer))
+      (call
+        (identifier)
+        (identifier)
+        (argument_list
+          (identifier)
+          (identifier))))
+    (return)
+    (return
+      (identifier)
+      (identifier))
+    (return
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer))
+    (return)
+    (integer)
+    (ERROR)))
