@@ -517,3 +517,26 @@ missing_quote
       (ERROR)
       (identifier)))
   (identifier))
+
+=================================================
+endless heredocs don't consume remaining document
+=================================================
+
+method.call <<-SQL, user_id
+
+puts "hello world"
+
+---
+
+(source_file
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (heredoc_start)
+      (identifier)))
+  (ERROR)
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (string))))

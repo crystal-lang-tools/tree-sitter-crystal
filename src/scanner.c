@@ -589,7 +589,7 @@ static bool scan_heredoc_contents(State *state, TSLexer *lexer, const bool *vali
         for (;;) {
             if (lexer->eof(lexer)) {
                 DEBUG("reached EOF");
-                return found_content;
+                return false;
             }
 
             switch (lexer->lookahead) {
