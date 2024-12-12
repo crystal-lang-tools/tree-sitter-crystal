@@ -9,11 +9,9 @@ bit_array.cr
 box.cr
 channel.cr
 channel/select.cr
-channel/select/select_action.cr
 char.cr
 class.cr
 colorize.cr
-comparable.cr
 compiler/crystal.cr
 compiler/crystal/codegen/cache_dir.cr
 compiler/crystal/codegen/codegen.cr
@@ -111,8 +109,6 @@ crystal/system/addrinfo.cr
 crystal/system/dir.cr
 crystal/system/env.cr
 crystal/system/event_loop.cr
-crystal/system/event_loop/file_descriptor.cr
-crystal/system/event_loop/socket.cr
 crystal/system/fiber.cr
 crystal/system/file.cr
 crystal/system/file_descriptor.cr
@@ -237,7 +233,6 @@ indexable/mutable.cr
 int.cr
 intrinsics.cr
 io.cr
-io/buffered.cr
 io/byte_format.cr
 io/console.cr
 io/encoding.cr
@@ -246,7 +241,6 @@ io/evented.cr
 io/hexdump.cr
 io/memory.cr
 io/stapled.cr
-iterable.cr
 iterator.cr
 json/any.cr
 json/builder.cr
@@ -423,7 +417,6 @@ lib_c/x86_64-windows-msvc/c/winnt.cr
 lib_c/x86_64-windows-msvc/c/ws2ipdef.cr
 lib_z/lib_z.cr
 llvm.cr
-llvm/abi.cr
 llvm/abi/x86_64.cr
 llvm/basic_block_collection.cr
 llvm/builder.cr
@@ -455,9 +448,7 @@ llvm/pass_builder_options.cr
 llvm/pass_manager_builder.cr
 llvm/pass_registry.cr
 llvm/type.cr
-log/backend.cr
 log/builder.cr
-log/dispatch.cr
 log/format.cr
 log/io_backend.cr
 log/main.cr
@@ -509,7 +500,6 @@ slice.cr
 socket/address.cr
 socket/addrinfo.cr
 socket/common.cr
-socket/server.cr
 spec.cr
 spec/context.cr
 spec/dsl.cr
@@ -553,7 +543,6 @@ yaml/builder.cr
 yaml/from_yaml.cr
 yaml/lib_yaml.cr
 yaml/nodes/nodes.cr
-yaml/parser.cr
 yaml/pull_parser.cr
 yaml/schema/core.cr
 yaml/serialization.cr

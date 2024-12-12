@@ -1231,7 +1231,6 @@ module.exports = grammar({
         optional(params),
         optional(return_type),
         optional(forall),
-        optional($._terminator),
       ))
     },
 
@@ -1241,6 +1240,7 @@ module.exports = grammar({
       return seq(
         optional(visibility),
         $._base_method_def,
+        optional($._terminator),
         optional($._statements),
         field('rescue', repeat($.rescue_block)),
         field('else', optional($.else)),
@@ -1252,11 +1252,12 @@ module.exports = grammar({
     abstract_method_def: $ => {
       const visibility = choice('private', 'protected')
 
-      return seq(
+      return prec.left(seq(
         optional(visibility),
         'abstract',
         $._base_method_def,
-      )
+        optional($._terminator),
+      ))
     },
 
     include: $ => {
