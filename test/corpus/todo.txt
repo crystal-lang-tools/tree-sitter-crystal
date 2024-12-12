@@ -86,112 +86,6 @@ foo = %var + 4
         (operator)
         (MISSING identifier)))))
 
-=================
-lib def + objects
-=================
-
-lib MyLib
-  fun name = Name : Void
-
-  fun cos(value : Float64) : Float64
-
-  union IntOrFloat
-    some_int : Int32
-    some_float : Float64
-  end
-
-  struct TimeZone
-    minutes_west : Int32
-    dst_time : Int32
-  end
-
-  enum SomeEnum
-    Zero
-    One
-    Two
-    Three
-  end
-
-  type MyInt = Int32
-end
-
----
-
-(source_file
-  (ERROR
-    (call
-      (identifier)
-      (argument_list
-        (constant)))
-    (call
-      (identifier)
-      (argument_list
-        (assign
-          (identifier)
-          (constant))))
-    (ERROR)
-    (call
-      (identifier)
-      (argument_list
-        (call
-          (identifier)
-          (argument_list
-            (type_declaration
-              (identifier)
-              (constant))))))
-    (ERROR)
-    (call
-      (identifier)
-      (argument_list
-        (constant)))
-    (type_declaration
-      (identifier)
-      (constant))
-    (type_declaration
-      (identifier)
-      (constant)))
-  (struct_def
-    (constant)
-    (type_declaration
-      (identifier)
-      (constant))
-    (type_declaration
-      (identifier)
-      (constant)))
-  (enum_def
-    (constant)
-    (constant)
-    (constant)
-    (constant)
-    (constant))
-  (assign
-    (identifier)
-    (ERROR)
-    (constant))
-  (ERROR))
-
-================
-lib external var
-================
-
-lib C
-  $errno : Int32
-end
-
----
-
-(source_file
-  (call
-    (identifier)
-    (argument_list
-      (constant)))
-  (ERROR
-    (UNEXPECTED 'e'))
-  (type_declaration
-    (identifier)
-    (constant))
-  (ERROR))
-
 ==============
 pseudo methods
 ==============
@@ -388,3 +282,43 @@ proc.call('l') # => 2
     (argument_list
       (char)))
   (comment))
+
+==========================
+fun def params on newlines
+==========================
+
+fun
+extreme_fun
+(
+param1
+:
+Type
+,
+param2
+:
+Type
+)
+:
+ReturnType
+  puts "hello"
+end
+
+---
+
+(source_file
+  (fun_def
+    name: (identifier)
+    body: (expressions
+      (identifier)
+      (ERROR)
+      (constant)
+      (ERROR)
+      (identifier)
+      (ERROR)
+      (constant))
+    (ERROR)
+    body: (constant)
+    body: (call
+      method: (identifier)
+      arguments: (argument_list
+        (string)))))

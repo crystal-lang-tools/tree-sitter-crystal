@@ -899,3 +899,232 @@ end
           (tuple_type
             (constant)
             (constant)))))))
+
+================
+lib external var
+================
+
+lib C
+  $errno : Int32
+end
+
+---
+
+(source_file
+  (lib_def
+    (constant)
+    (global_var
+      (identifier)
+      (constant))))
+
+=========
+empty lib
+=========
+
+lib C
+end
+
+---
+
+(source_file
+  (lib_def
+    (constant)))
+
+=============
+top-level fun
+=============
+
+fun my_fun_name(param1 : Type, param2 : Type) : ReturnType
+  puts "hello"
+end
+
+---
+
+(source_file
+  (fun_def
+    name: (identifier)
+    params: (param_list
+      (fun_param
+        (identifier)
+        type: (constant))
+      (fun_param
+        (identifier)
+        type: (constant)))
+    type: (constant)
+    body: (call
+      method: (identifier)
+      arguments: (argument_list
+        (string)))))
+
+=================
+lib def + objects
+=================
+
+lib MyLib
+  fun name = Name : Void
+
+  fun cos(value : Float64) : Float64
+
+  union IntOrFloat
+    some_int : Int32
+    some_float : Float64
+  end
+
+  struct TimeZone
+    minutes_west, dst_time : Int32
+    tz_name : String
+  end
+
+  enum SomeEnum
+    Zero
+    One
+    Two
+    Three
+  end
+
+  type MyInt = Int32
+end
+
+---
+
+(source_file
+  (lib_def
+    name: (constant)
+    (fun_def
+      name: (identifier)
+      real_name: (constant)
+      type: (constant))
+    (fun_def
+      name: (identifier)
+      params: (param_list
+        (fun_param
+          (identifier)
+          type: (constant)))
+      type: (constant))
+    (union_def
+      name: (constant)
+      (union_fields
+        (identifier)
+        type: (constant))
+      (union_fields
+        (identifier)
+        type: (constant)))
+    (c_struct_def
+      name: (constant)
+      (c_struct_fields
+        (identifier)
+        (identifier)
+        type: (constant))
+      (c_struct_fields
+        (identifier)
+        type: (constant)))
+    (enum_def
+      name: (constant)
+      (constant)
+      (constant)
+      (constant)
+      (constant))
+    (type_def
+      (constant)
+      (constant))))
+
+=============
+fun with dots
+=============
+
+lib LibC
+  fun fcntl(__fd : Int, __cmd : Int, ...) : Int
+  fun open(__path : Char*, __flags : Int, ...) : Int
+end
+
+---
+
+(source_file
+  (lib_def
+    name: (constant)
+    (fun_def
+      name: (identifier)
+      params: (param_list
+        (fun_param
+          (identifier)
+          type: (constant))
+        (fun_param
+          (identifier)
+          type: (constant)))
+      type: (constant))
+    (fun_def
+      name: (identifier)
+      params: (param_list
+        (fun_param
+          (identifier)
+          type: (pointer_type
+            (constant)))
+        (fun_param
+          (identifier)
+          type: (constant)))
+      type: (constant))))
+
+=================
+fun pointer param
+=================
+
+lib LibC
+  fun strerror(Int, Char*, SizeT) : Int
+end
+
+---
+
+(source_file
+  (lib_def
+    name: (constant)
+    (fun_def
+      name: (identifier)
+      params: (param_list
+        (constant)
+        (pointer_type
+          (constant))
+        (constant))
+      type: (constant))))
+
+========================================
+fun def parenthesized expression in body
+========================================
+
+# equivalent to a_little_fun()
+fun a_little_fun;
+(a : Int32)
+end
+
+# equivalent to more_fun(a : Int32)
+fun more_fun
+(a : Int32)
+end
+
+---
+
+(source_file
+  (comment)
+  (fun_def
+    name: (identifier)
+    body: (type_declaration
+      var: (identifier)
+      type: (constant)))
+  (comment)
+  (fun_def
+    name: (identifier)
+    params: (param_list
+      (fun_param
+        (identifier)
+        type: (constant)))))
+
+===============================
+fun empty params on single line
+===============================
+
+fun bar() end
+
+---
+
+(source_file
+  (fun_def
+    name: (identifier)))
