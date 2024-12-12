@@ -1466,6 +1466,7 @@ module.exports = grammar({
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),
     identifier_method_call: $ => token(seq(ident_start, repeat(ident_part), /[?!]/)),
+    identifier_assign: $ => token(seq(ident_start, repeat(ident_part), /[=]/)),
 
     instance_var: $ => token(seq('@', ident_start, repeat(ident_part))),
 
@@ -1802,6 +1803,7 @@ module.exports = grammar({
       const method = field('method', choice(
         $.identifier,
         alias($.identifier_method_call, $.identifier),
+        alias($.identifier_assign, $.identifier),
       ))
 
       return seq('::', method)

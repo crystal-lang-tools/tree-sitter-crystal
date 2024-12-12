@@ -461,3 +461,14 @@ in {Int32, false}
 end
 
 ---
+
+=====================
+global method with =
+:error
+=====================
+def global_assign=(s)
+end
+::global_assign=("a")
+---
+
+(source_file)
