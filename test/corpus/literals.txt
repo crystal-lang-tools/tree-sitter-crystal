@@ -1725,6 +1725,86 @@ end
               block: (block))))))))
 
 ================================================================================
+creating procs from methods
+================================================================================
+method          = ->qux=(String)
+global_method   = ->::qux!
+instance_method = ->foo.bar
+class_method    = ->Foo.baz?(Array*, ->)
+self_method     = ->self.<=>(self)
+operator        = -> foo . [] ( Int32 )
+instance_var    = ->@var.size
+class_var       = ->@@var.size
+
+extreme \
+=
+->
+hash \
+.
+[] \
+( \
+Int32 \
+)
+--------------------------------------------------------------------------------
+
+(source_file
+  (assign
+    lhs: (identifier)
+    rhs: (method_proc
+      method: (identifier)
+      params: (param_list
+        (constant))))
+  (assign
+    lhs: (identifier)
+    rhs: (method_proc
+      method: (identifier)))
+  (assign
+    lhs: (identifier)
+    rhs: (method_proc
+      receiver: (identifier)
+      method: (identifier)))
+  (assign
+    lhs: (identifier)
+    rhs: (method_proc
+      receiver: (constant)
+      method: (identifier)
+      params: (param_list
+        (pointer_type
+          (constant))
+        (proc_type))))
+  (assign
+    lhs: (identifier)
+    rhs: (method_proc
+      receiver: (self)
+      method: (operator)
+      params: (param_list
+        (self))))
+  (assign
+    lhs: (identifier)
+    rhs: (method_proc
+      receiver: (identifier)
+      method: (operator)
+      params: (param_list
+        (constant))))
+  (assign
+    lhs: (identifier)
+    rhs: (method_proc
+      receiver: (instance_var)
+      method: (identifier)))
+  (assign
+    lhs: (identifier)
+    rhs: (method_proc
+      receiver: (class_var)
+      method: (identifier)))
+  (assign
+    lhs: (identifier)
+    rhs: (method_proc
+      receiver: (identifier)
+      method: (operator)
+      params: (param_list
+        (constant)))))
+
+================================================================================
 command literals
 ================================================================================
 `tree-sitter generate`
