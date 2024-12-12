@@ -60,12 +60,10 @@ compiler/crystal/semantic/lib.cr
 compiler/crystal/semantic/literal_expander.cr
 compiler/crystal/semantic/main_visitor.cr
 compiler/crystal/semantic/restrictions.cr
-compiler/crystal/semantic/top_level_visitor.cr
 compiler/crystal/semantic/type_declaration_processor.cr
 compiler/crystal/semantic/type_guess_visitor.cr
 compiler/crystal/semantic/type_lookup.cr
 compiler/crystal/syntax/ast.cr
-compiler/crystal/syntax/to_s.cr
 compiler/crystal/syntax/token.cr
 compiler/crystal/tools/doc/markd_doc_renderer.cr
 compiler/crystal/tools/doc/method.cr
@@ -222,7 +220,6 @@ hash.cr
 html.cr
 http/client.cr
 http/common.cr
-http/formdata/builder.cr
 http/headers.cr
 http/server.cr
 http/server/handlers/compress_handler.cr
@@ -457,7 +454,6 @@ macros.cr
 math/libm.cr
 math/math.cr
 mime/media_type.cr
-mime/multipart/state.cr
 named_tuple.cr
 number.cr
 oauth2/client.cr

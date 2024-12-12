@@ -1022,6 +1022,7 @@ module.exports = grammar({
     ),
 
     enum_def: $ => seq(
+      optional('private'),
       'enum',
       field('name', alias($._constant_segment, $.constant)),
       optional(field('type', seq(/:\s/, $._bare_type))),
