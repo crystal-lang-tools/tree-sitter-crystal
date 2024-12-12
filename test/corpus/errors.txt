@@ -522,9 +522,21 @@ missing_quote
 endless heredocs don't consume remaining document
 =================================================
 
-method.call <<-SQL, user_id
+method.call <<-SQL1, user_id
 
 puts "hello world"
+
+method.call <<-SQL2, <<-HTML1
+
+HTML1
+
+puts :"hello world"
+
+method.call <<-SQL3, <<-HTML2
+
+SQL3
+
+puts %w[hello world]
 
 ---
 
@@ -539,4 +551,32 @@ puts "hello world"
   (call
     method: (identifier)
     arguments: (argument_list
-      (string))))
+      (string)))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (heredoc_start)
+      (ERROR
+        (heredoc_start))
+      (constant)))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (symbol)))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (heredoc_start)
+      (ERROR
+        (heredoc_start)
+        (heredoc_body
+          (heredoc_content)
+          (heredoc_end)))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (array
+            (string)
+            (string)))))))
