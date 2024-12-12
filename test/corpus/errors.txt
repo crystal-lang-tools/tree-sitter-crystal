@@ -517,3 +517,39 @@ missing_quote
       (ERROR)
       (identifier)))
   (identifier))
+
+================================================================================
+only certain things allowed inside enums
+================================================================================
+
+enum MyEnum
+  alias Hello = World
+
+  abstract def foo
+
+  include MyModule
+
+  if true
+    puts "hello"
+  end
+end
+
+---
+
+(source_file
+  (ERROR)
+  (alias
+    (constant)
+    (constant))
+  (abstract_method_def
+    (identifier))
+  (include
+    (constant))
+  (if
+    (true)
+    (then
+      (call
+        (identifier)
+        (argument_list
+          (string)))))
+  (ERROR))

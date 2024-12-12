@@ -353,6 +353,19 @@ module.exports = grammar({
       $._lib_statement,
     ),
 
+    _enum_statements: $ => choice(
+      seq(
+        repeat1(
+          choice(
+            seq($._enum_statement, $._terminator),
+            prec(-1, ';'),
+          ),
+        ),
+        optional($._enum_statement),
+      ),
+      $._enum_statement,
+    ),
+
     _parenthesized_statement: $ => prec(1, seq(
       '(', $._statement, optional($._terminator), ')',
     )),
@@ -383,13 +396,6 @@ module.exports = grammar({
       $.return,
       $.next,
       $.break,
-      // TODO:
-      // lib
-      // fun def
-      // macro def
-      // union
-      // lib variables
-      // lib type
     ),
 
     _lib_statement: $ => choice(
@@ -401,6 +407,14 @@ module.exports = grammar({
       $.enum_def,
       $.global_var,
       $.const_assign,
+      $.annotation,
+    ),
+
+    _enum_statement: $ => choice(
+      $.constant,
+      $.const_assign,
+      $.method_def,
+      $.class_var,
       $.annotation,
     ),
 
@@ -1068,8 +1082,7 @@ module.exports = grammar({
       'enum',
       field('name', alias($._constant_segment, $.constant)),
       optional(field('type', seq(/:\s/, $._bare_type))),
-      // Technically not all statements are valid here, but this works fine
-      optional($._statements),
+      optional($._enum_statements),
       'end',
     ),
 

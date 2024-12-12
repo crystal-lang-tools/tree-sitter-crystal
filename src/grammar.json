@@ -143,6 +143,61 @@
         }
       ]
     },
+    "_enum_statements": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "REPEAT1",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_enum_statement"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_terminator"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PREC",
+                    "value": -1,
+                    "content": {
+                      "type": "STRING",
+                      "value": ";"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_enum_statement"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_enum_statement"
+        }
+      ]
+    },
     "_parenthesized_statement": {
       "type": "PREC",
       "value": 1,
@@ -316,6 +371,31 @@
         {
           "type": "SYMBOL",
           "name": "const_assign"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "annotation"
+        }
+      ]
+    },
+    "_enum_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "constant"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "const_assign"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "method_def"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "class_var"
         },
         {
           "type": "SYMBOL",
@@ -4387,7 +4467,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_statements"
+              "name": "_enum_statements"
             },
             {
               "type": "BLANK"
