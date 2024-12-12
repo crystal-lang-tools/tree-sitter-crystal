@@ -1001,21 +1001,21 @@ end
           (identifier)
           type: (constant)))
       type: (constant))
-    (c_struct_or_union_def
+    (union_def
       name: (constant)
-      (c_struct_or_union_fields
+      (union_fields
         (identifier)
         type: (constant))
-      (c_struct_or_union_fields
+      (union_fields
         (identifier)
         type: (constant)))
-    (c_struct_or_union_def
+    (c_struct_def
       name: (constant)
-      (c_struct_or_union_fields
+      (c_struct_fields
         (identifier)
         (identifier)
         type: (constant))
-      (c_struct_or_union_fields
+      (c_struct_fields
         (identifier)
         type: (constant)))
     (enum_def
@@ -1116,3 +1116,15 @@ end
       (fun_param
         (identifier)
         type: (constant)))))
+
+===============================
+fun empty params on single line
+===============================
+
+fun bar() end
+
+---
+
+(source_file
+  (fun_def
+    name: (identifier)))

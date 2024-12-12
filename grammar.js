@@ -396,7 +396,8 @@ module.exports = grammar({
       $.alias,
       $.fun_def,
       $.type_def,
-      $.c_struct_or_union_def,
+      $.c_struct_def,
+      $.union_def,
       $.enum_def,
       $.global_var,
       $.const_assign,
@@ -1117,37 +1118,75 @@ module.exports = grammar({
       $._bare_type,
     ),
 
-    c_struct_or_union_def: $ => {
-      const struct_or_union = field('kind', choice('struct', 'union'))
+    c_struct_def: $ => {
       const name = field('name', $.constant)
 
       return seq(
-        struct_or_union,
+        'struct',
         name,
-        $._c_struct_or_union_expressions,
+        $._c_struct_expressions,
         'end',
       )
     },
 
-    _c_struct_or_union_expressions: $ => choice(
+    _c_struct_expressions: $ => choice(
       seq(
         repeat1(
           choice(
-            seq($._c_struct_or_union_expression, $._terminator),
+            seq($._c_struct_expression, $._terminator),
             prec(-1, ';'),
           ),
         ),
-        optional($._c_struct_or_union_expression),
+        optional($._c_struct_expression),
       ),
-      $._c_struct_or_union_expression,
+      $._c_struct_expression,
     ),
 
-    _c_struct_or_union_expression: $ => choice(
+    _c_struct_expression: $ => choice(
       $.include,
-      $.c_struct_or_union_fields,
+      $.c_struct_fields,
     ),
 
-    c_struct_or_union_fields: $ => {
+    c_struct_fields: $ => {
+      const names = seq($.identifier, repeat(seq(',', $.identifier)))
+
+      return seq(
+        names,
+        /[ \t]:\s/,
+        field('type', $._bare_type),
+      )
+    },
+
+    union_def: $ => {
+      const name = field('name', $.constant)
+
+      return seq(
+        'union',
+        name,
+        $._union_expressions,
+        'end',
+      )
+    },
+
+    _union_expressions: $ => choice(
+      seq(
+        repeat1(
+          choice(
+            seq($._union_expression, $._terminator),
+            prec(-1, ';'),
+          ),
+        ),
+        optional($._union_expression),
+      ),
+      $._union_expression,
+    ),
+
+    _union_expression: $ => choice(
+      $.include,
+      $.union_fields,
+    ),
+
+    union_fields: $ => {
       const names = seq($.identifier, repeat(seq(',', $.identifier)))
 
       return seq(

@@ -322,16 +322,3 @@ end
       method: (identifier)
       arguments: (argument_list
         (string)))))
-
-===============================
-fun empty params on single line
-===============================
-
-fun bar() end
-
----
-
-(source_file
-  (fun_def
-    name: (identifier)
-    body: (nil)))
