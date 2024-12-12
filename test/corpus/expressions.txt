@@ -3139,6 +3139,26 @@ end
           (proc_type
             return: (constant)))))))
 
+======================
+case without condition
+======================
+
+case
+when true
+  puts "world"
+end
+
+---
+
+(source_file
+  (case
+    (when
+      (true)
+      (call
+        (identifier)
+        (argument_list
+          (string))))))
+
 ================
 select statement
 ================

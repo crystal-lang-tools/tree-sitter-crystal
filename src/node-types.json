@@ -3761,7 +3761,7 @@
     "fields": {
       "cond": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "(",

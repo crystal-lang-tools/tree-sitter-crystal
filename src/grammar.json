@@ -11662,12 +11662,20 @@
           "value": "case"
         },
         {
-          "type": "FIELD",
-          "name": "cond",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_expression"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "cond",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "REPEAT",

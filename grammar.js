@@ -2413,7 +2413,7 @@ module.exports = grammar({
 
       return seq(
         'case',
-        cond,
+        optional(cond),
         repeat($.when),
         optional($.else),
         'end',
