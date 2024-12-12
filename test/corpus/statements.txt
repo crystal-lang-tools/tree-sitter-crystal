@@ -854,6 +854,27 @@ end
       name: (identifier)
       (string))))
 
+=============
+private enums
+=============
+
+module MyModule
+  private enum MyEnum
+    Member1
+    Member2
+  end
+end
+
+---
+
+(source_file
+  (module_def
+    (constant)
+    (enum_def
+      (constant)
+      (constant)
+      (constant))))
+
 ================================================================================
 line continuations
 ================================================================================

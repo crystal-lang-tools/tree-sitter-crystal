@@ -8,7 +8,6 @@ big/number.cr
 bit_array.cr
 box.cr
 channel.cr
-channel/select.cr
 char.cr
 class.cr
 colorize.cr
@@ -25,7 +24,6 @@ compiler/crystal/codegen/primitives.cr
 compiler/crystal/command.cr
 compiler/crystal/command/repl.cr
 compiler/crystal/compiler.cr
-compiler/crystal/exception.cr
 compiler/crystal/ffi/ffi.cr
 compiler/crystal/ffi/lib_ffi.cr
 compiler/crystal/interpreter.cr
@@ -47,10 +45,6 @@ compiler/crystal/loader/unix.cr
 compiler/crystal/macros.cr
 compiler/crystal/macros/macros.cr
 compiler/crystal/macros/methods.cr
-compiler/crystal/semantic/abstract_def_checker.cr
-compiler/crystal/semantic/ast.cr
-compiler/crystal/semantic/bindings.cr
-compiler/crystal/semantic/call.cr
 compiler/crystal/semantic/call_error.cr
 compiler/crystal/semantic/cleanup_transformer.cr
 compiler/crystal/semantic/cover.cr
@@ -60,16 +54,13 @@ compiler/crystal/semantic/lib.cr
 compiler/crystal/semantic/literal_expander.cr
 compiler/crystal/semantic/main_visitor.cr
 compiler/crystal/semantic/restrictions.cr
-compiler/crystal/semantic/top_level_visitor.cr
 compiler/crystal/semantic/type_declaration_processor.cr
 compiler/crystal/semantic/type_guess_visitor.cr
 compiler/crystal/semantic/type_lookup.cr
 compiler/crystal/syntax/ast.cr
-compiler/crystal/syntax/to_s.cr
 compiler/crystal/syntax/token.cr
 compiler/crystal/tools/doc/markd_doc_renderer.cr
 compiler/crystal/tools/doc/method.cr
-compiler/crystal/tools/doc/project_info.cr
 compiler/crystal/tools/doc/type.cr
 compiler/crystal/tools/init.cr
 compiler/crystal/tools/playground.cr
@@ -178,11 +169,9 @@ crystal/system/win32/zone_names.cr
 crystal/system/windows.cr
 crystal/tracing.cr
 csv.cr
-csv/lexer.cr
 csv/lexer/io_based.cr
 deque.cr
 digest/digest.cr
-dir/glob.cr
 docs_pseudo_methods.cr
 ecr/macros.cr
 empty.cr
@@ -209,9 +198,7 @@ fiber/context/x86_64-sysv.cr
 file.cr
 file/error.cr
 float.cr
-float/printer/cached_powers.cr
 float/printer/dragonbox.cr
-float/printer/grisu3.cr
 float/printer/hexfloat.cr
 float/printer/ryu_printf.cr
 float/printer/ryu_printf_table.cr
@@ -219,10 +206,8 @@ gc.cr
 gc/boehm.cr
 gc/none.cr
 hash.cr
-html.cr
 http/client.cr
 http/common.cr
-http/formdata/builder.cr
 http/headers.cr
 http/server.cr
 http/server/handlers/compress_handler.cr
@@ -238,14 +223,11 @@ io/console.cr
 io/encoding.cr
 io/encoding_stubs.cr
 io/evented.cr
-io/hexdump.cr
 io/memory.cr
-io/stapled.cr
 iterator.cr
 json/any.cr
 json/builder.cr
 json/from_json.cr
-json/lexer.cr
 json/lexer/io_based.cr
 json/parser.cr
 json/pull_parser.cr
@@ -417,7 +399,6 @@ lib_c/x86_64-windows-msvc/c/winnt.cr
 lib_c/x86_64-windows-msvc/c/ws2ipdef.cr
 lib_z/lib_z.cr
 llvm.cr
-llvm/abi/x86_64.cr
 llvm/basic_block_collection.cr
 llvm/builder.cr
 llvm/context.cr
@@ -456,8 +437,6 @@ log/metadata.cr
 macros.cr
 math/libm.cr
 math/math.cr
-mime/media_type.cr
-mime/multipart/state.cr
 named_tuple.cr
 number.cr
 oauth2/client.cr
@@ -519,7 +498,6 @@ syscall/i386-linux.cr
 syscall/x86_64-linux.cr
 termios.cr
 time.cr
-time/format/parser.cr
 time/location.cr
 tuple.cr
 unicode/data.cr
@@ -530,7 +508,6 @@ uri/params/serializable.cr
 uri/uri_parser.cr
 uuid.cr
 va_list.cr
-wait_group.cr
 weak_ref.cr
 winerror.cr
 xml.cr
@@ -542,7 +519,6 @@ yaml/any.cr
 yaml/builder.cr
 yaml/from_yaml.cr
 yaml/lib_yaml.cr
-yaml/nodes/nodes.cr
 yaml/pull_parser.cr
 yaml/schema/core.cr
 yaml/serialization.cr

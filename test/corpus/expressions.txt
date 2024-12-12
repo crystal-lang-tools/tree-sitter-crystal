@@ -3139,6 +3139,26 @@ end
           (proc_type
             return: (constant)))))))
 
+======================
+case without condition
+======================
+
+case
+when true
+  puts "world"
+end
+
+---
+
+(source_file
+  (case
+    (when
+      (true)
+      (call
+        (identifier)
+        (argument_list
+          (string))))))
+
 ================
 select statement
 ================
@@ -3366,3 +3386,116 @@ object.@ivar
   (call
     receiver: (identifier)
     method: (instance_var)))
+
+======================
+global method calls
+======================
+
+::raise "Error message"
+
+---
+
+(source_file
+  (call
+    (identifier)
+    (argument_list
+      (string))))
+
+===============================================
+comma-separated and parenthesized return values
+===============================================
+
+def hello(a, b)
+  return a, b
+  return \
+1,
+2
+  return {a, b}, [c, d]
+  return 1, 2, 3,
+         4, 5, 6,
+         7, 8, 9
+
+  return 1 +
+  2 ,
+  3 +
+  4 ,
+  method
+  .call(
+  a ,
+  b
+  )
+
+  return()
+  return(a, b)
+
+  return(
+    1, 2, 3,
+    4, 5, 6,
+  )
+
+  return
+  1, 2
+end
+
+---
+
+(source_file
+  (method_def
+    (identifier)
+    (param_list
+      (param
+        (identifier))
+      (param
+        (identifier)))
+    (return
+      (identifier)
+      (identifier))
+    (return
+      (integer)
+      (integer))
+    (return
+      (tuple
+        (identifier)
+        (identifier))
+      (array
+        (identifier)
+        (identifier)))
+    (return
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer))
+    (return
+      (op_call
+        (integer)
+        (operator)
+        (integer))
+      (op_call
+        (integer)
+        (operator)
+        (integer))
+      (call
+        (identifier)
+        (identifier)
+        (argument_list
+          (identifier)
+          (identifier))))
+    (return)
+    (return
+      (identifier)
+      (identifier))
+    (return
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer)
+      (integer))
+    (return)
+    (integer)
+    (ERROR)))

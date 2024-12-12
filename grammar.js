@@ -714,7 +714,7 @@ module.exports = grammar({
         seq(
           choice(ident_start, const_start),
           repeat(ident_part),
-          optional(/[?!]/),
+          optional(/[?!=]/),
         ),
       ),
     )),
@@ -1022,6 +1022,7 @@ module.exports = grammar({
     ),
 
     enum_def: $ => seq(
+      optional('private'),
       'enum',
       field('name', alias($._constant_segment, $.constant)),
       optional(field('type', seq(/:\s/, $._bare_type))),
@@ -1360,11 +1361,30 @@ module.exports = grammar({
       )
     },
 
-    return: $ => seq('return', optional($._expression)),
+    _control_expressions: $ => {
+      const expressions = seq(
+        $._expression,
+        repeat(seq(',', $._expression)),
+      )
 
-    next: $ => seq('next', optional($._expression)),
+      const parenthesized_expressions = seq(
+        token.immediate('('),
+        optional(expressions),
+        optional(','),
+        ')',
+      )
 
-    break: $ => seq('break', optional($._expression)),
+      return choice(
+        parenthesized_expressions,
+        expressions,
+      )
+    },
+
+    return: $ => seq('return', optional($._control_expressions)),
+
+    next: $ => seq('next', optional($._control_expressions)),
+
+    break: $ => seq('break', optional($._control_expressions)),
 
     yield: $ => {
       const with_expr = field('with', $._expression)
@@ -1746,6 +1766,7 @@ module.exports = grammar({
       const receiver_call = choice(
         $._dot_call,
         field('method', alias($.identifier_method_call, $.identifier)),
+        $._global_method,
       )
       const ambiguous_call = field('method', $.identifier)
 
@@ -1775,6 +1796,15 @@ module.exports = grammar({
         prec('ampersand_block_call', seq(receiver_call, argument_list_with_block)),
         prec('ampersand_block_call', seq(ambiguous_call, argument_list_with_block)),
       )
+    },
+
+    _global_method: $ => {
+      const method = field('method', choice(
+        $.identifier,
+        alias($.identifier_method_call, $.identifier),
+      ))
+
+      return seq('::', method)
     },
 
     implicit_object_method_identifier: $ => token(seq(
@@ -2412,7 +2442,7 @@ module.exports = grammar({
 
       return seq(
         'case',
-        cond,
+        optional(cond),
         repeat($.when),
         optional($.else),
         'end',
