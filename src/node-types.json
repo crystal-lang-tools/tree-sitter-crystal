@@ -370,6 +370,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -716,6 +720,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -1101,6 +1109,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -1438,6 +1450,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -1757,6 +1773,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -2088,6 +2108,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -2431,6 +2455,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -2731,6 +2759,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -3134,6 +3166,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -3602,6 +3638,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -3921,6 +3961,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -4298,6 +4342,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -4702,6 +4750,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -5008,6 +5060,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -5311,6 +5367,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -5636,6 +5696,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -5938,6 +6002,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -6344,6 +6412,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -6652,6 +6724,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -6976,6 +7052,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -7359,6 +7439,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -7655,6 +7739,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -8009,6 +8097,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -8822,6 +8914,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -9161,6 +9257,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -9573,6 +9673,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -9914,6 +10018,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -10286,6 +10394,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -10799,6 +10911,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -10939,6 +11055,62 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "method_proc",
+    "named": true,
+    "fields": {
+      "method": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "operator",
+            "named": true
+          }
+        ]
+      },
+      "params": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "param_list",
+            "named": true
+          }
+        ]
+      },
+      "receiver": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "class_var",
+            "named": true
+          },
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "instance_var",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -11107,6 +11279,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -11402,6 +11578,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -11716,6 +11896,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -12019,6 +12203,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -12334,6 +12522,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -12626,6 +12818,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -12940,6 +13136,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -13243,6 +13443,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -13558,6 +13762,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -13902,6 +14110,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -14214,6 +14426,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -14628,6 +14844,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -14996,6 +15216,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -15411,6 +15635,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -15720,6 +15948,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -16039,6 +16271,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -16341,6 +16577,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -16656,6 +16896,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -17480,6 +17724,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -17783,6 +18031,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {
@@ -18227,6 +18479,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -18523,6 +18779,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -18912,6 +19172,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -19212,6 +19476,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -19820,6 +20088,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -20138,6 +20410,10 @@
           "named": true
         },
         {
+          "type": "method_proc",
+          "named": true
+        },
+        {
           "type": "modifier_ensure",
           "named": true
         },
@@ -20438,6 +20714,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -20889,6 +21169,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -21271,6 +21555,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -21768,6 +22056,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -22100,6 +22392,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -22392,6 +22688,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -22710,6 +23010,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -23002,6 +23306,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -23316,6 +23624,10 @@
             "named": true
           },
           {
+            "type": "method_proc",
+            "named": true
+          },
+          {
             "type": "modifier_ensure",
             "named": true
           },
@@ -23608,6 +23920,10 @@
         },
         {
           "type": "method_def",
+          "named": true
+        },
+        {
+          "type": "method_proc",
           "named": true
         },
         {
@@ -23929,6 +24245,10 @@
           },
           {
             "type": "method_def",
+            "named": true
+          },
+          {
+            "type": "method_proc",
             "named": true
           },
           {

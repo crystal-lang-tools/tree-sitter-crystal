@@ -433,6 +433,7 @@ module.exports = grammar({
       $.tuple,
       $.named_tuple,
       $.proc,
+      $.method_proc,
       $.command,
       alias($.command_percent_literal, $.command),
       $.regex,
@@ -953,6 +954,47 @@ module.exports = grammar({
       optional(','),
     ),
 
+    method_proc: $ => {
+      const receiver = field('receiver', choice(
+        $.identifier,
+        $.instance_var,
+        $.class_var,
+        $.self,
+        $.constant,
+      ))
+
+      const method = field('method', choice(
+        $.identifier,
+        alias($.identifier_method_call, $.identifier),
+        alias($.identifier_assign, $.identifier),
+        alias($._operator_token, $.operator),
+      ))
+
+      const plain_method = choice(
+        $._global_method,
+        field('method', choice(
+          $.identifier,
+          alias($.identifier_method_call, $.identifier),
+          alias($.identifier_assign, $.identifier),
+        )),
+      )
+
+      const param_types = seq(
+        '(',
+        field('params', alias($.type_instance_param_list, $.param_list)),
+        ')',
+      )
+
+      return prec.right(seq(
+        '->',
+        choice(
+          seq(receiver, '.', method),
+          plain_method,
+        ),
+        optional(param_types),
+      ))
+    },
+
     annotation_def: $ => seq(
       'annotation',
       field('name', $.constant),
@@ -1466,6 +1508,7 @@ module.exports = grammar({
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),
     identifier_method_call: $ => token(seq(ident_start, repeat(ident_part), /[?!]/)),
+    identifier_assign: $ => token(seq(ident_start, repeat(ident_part), /[=]/)),
 
     instance_var: $ => token(seq('@', ident_start, repeat(ident_part))),
 
@@ -1802,6 +1845,7 @@ module.exports = grammar({
       const method = field('method', choice(
         $.identifier,
         alias($.identifier_method_call, $.identifier),
+        alias($.identifier_assign, $.identifier),
       ))
 
       return seq('::', method)

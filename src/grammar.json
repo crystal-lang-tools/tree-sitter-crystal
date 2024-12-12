@@ -468,6 +468,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "method_proc"
+        },
+        {
+          "type": "SYMBOL",
           "name": "command"
         },
         {
@@ -3724,6 +3728,176 @@
         }
       ]
     },
+    "method_proc": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "->"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "FIELD",
+                    "name": "receiver",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "identifier"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "instance_var"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "class_var"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "self"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "constant"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "."
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "method",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "identifier"
+                        },
+                        {
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "identifier_method_call"
+                          },
+                          "named": true,
+                          "value": "identifier"
+                        },
+                        {
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "identifier_assign"
+                          },
+                          "named": true,
+                          "value": "identifier"
+                        },
+                        {
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "_operator_token"
+                          },
+                          "named": true,
+                          "value": "operator"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_global_method"
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "method",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "identifier"
+                        },
+                        {
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "identifier_method_call"
+                          },
+                          "named": true,
+                          "value": "identifier"
+                        },
+                        {
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "identifier_assign"
+                          },
+                          "named": true,
+                          "value": "identifier"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "("
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "params",
+                    "content": {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "type_instance_param_list"
+                      },
+                      "named": true,
+                      "value": "param_list"
+                    }
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ")"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "annotation_def": {
       "type": "SEQ",
       "members": [
@@ -6496,6 +6670,31 @@
         ]
       }
     },
+    "identifier_assign": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[a-z_\\u{00a0}-\\u{10ffff}]",
+            "flags": "u"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "PATTERN",
+              "value": "[0-9A-Za-z_\\u{00a0}-\\u{10ffff}]",
+              "flags": "u"
+            }
+          },
+          {
+            "type": "PATTERN",
+            "value": "[=]"
+          }
+        ]
+      }
+    },
     "instance_var": {
       "type": "TOKEN",
       "content": {
@@ -8135,6 +8334,15 @@
                 "content": {
                   "type": "SYMBOL",
                   "name": "identifier_method_call"
+                },
+                "named": true,
+                "value": "identifier"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "identifier_assign"
                 },
                 "named": true,
                 "value": "identifier"
