@@ -250,8 +250,10 @@ module.exports = grammar({
       $._expression,
       $.type_declaration,
     ],
+    // Ensure `fun foo() end` parses `()` as empty params instead of a nil body.
     [
-      $.empty_parens, $.top_level_fun_def,
+      $.top_level_fun_def,
+      $.empty_parens,
     ],
   ],
 
