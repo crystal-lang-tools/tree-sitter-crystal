@@ -1093,6 +1093,7 @@ module.exports = grammar({
     ),
 
     lib_def: $ => seq(
+      optional(field('visibility', $.private)),
       'lib',
       field('name', $.constant, $.generic_type),
       optional($._lib_statements),

@@ -10360,6 +10360,16 @@
             "named": true
           }
         ]
+      },
+      "visibility": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "private",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
