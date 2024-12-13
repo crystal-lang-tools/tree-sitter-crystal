@@ -509,6 +509,8 @@ module.exports = grammar({
       $.and,
       $.or,
 
+      $.asm,
+
       // Keywords and special methods
       $.yield,
       $.typeof,
@@ -2549,5 +2551,45 @@ module.exports = grammar({
         'end',
       )
     },
+
+    asm: $ => seq(
+      token(seq('asm', /\s*/, '(')),
+      field('text', $.string),
+      optional(seq(':',
+        optional(field('outputs', $.asm_operands)),
+        optional(seq(':',
+          optional(field('inputs', $.asm_operands)),
+          optional(seq(':',
+            optional(field('clobbers', $.asm_clobbers)),
+            optional(seq(':',
+              optional(field('options', $.asm_options)),
+            )),
+          )),
+        )),
+      )),
+      ')',
+    ),
+
+    asm_operands: $ => seq(
+      $.asm_operand,
+      repeat(seq(',', $.asm_operand)),
+    ),
+
+    asm_operand: $ => seq(
+      field('constraint', $.string),
+      '(',
+      field('expression', $._expression),
+      ')',
+    ),
+
+    asm_clobbers: $ => seq(
+      $.string,
+      repeat(seq(',', $.string)),
+    ),
+
+    asm_options: $ => seq(
+      $.string,
+      repeat(seq(',', $.string)),
+    ),
   },
 })
