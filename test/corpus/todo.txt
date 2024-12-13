@@ -267,19 +267,6 @@ end
           (identifier)
           (constant))))))
 
-=======================
-assign special variable
-=======================
-
-$~ = $~
-
----
-
-(source_file
-  (ERROR
-    (special_variable))
-  (special_variable))
-
 ============================
 .as method with pointer type
 ============================

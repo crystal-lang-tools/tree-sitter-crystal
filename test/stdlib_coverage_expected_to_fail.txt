@@ -225,7 +225,6 @@ io/encoding_stubs.cr
 io/evented.cr
 io/memory.cr
 iterator.cr
-json/any.cr
 json/builder.cr
 json/from_json.cr
 json/lexer/io_based.cr
@@ -515,7 +514,6 @@ xml/builder.cr
 xml/error.cr
 xml/libxml2.cr
 xml/node.cr
-yaml/any.cr
 yaml/builder.cr
 yaml/from_yaml.cr
 yaml/lib_yaml.cr
