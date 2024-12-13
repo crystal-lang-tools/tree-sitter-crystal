@@ -3520,3 +3520,126 @@ end
     (assign
       lhs: (special_variable)
       rhs: (integer))))
+
+============================================================
+asm expressions
+============================================================
+
+asm(
+  # the assembly template string, following the
+  # syntax for LLVM's integrated assembler
+  "nop" :
+  # output operands
+  "=r"(foo), "=r"(bar) :
+  # input operands
+  "r"(1), "r"(baz) :
+  # names of clobbered registers
+  "eax", "memory" :
+  # optional flags, corresponding to the LLVM IR
+  # sideeffect / alignstack / inteldialect / unwind attributes
+  "volatile", "alignstack", "intel", "unwind"
+)
+
+
+asm("svc #0" : "={x0}"(ret)
+              : "{w8}"(::Syscall::Code::Name), "{x0}"(args[0].var.id)
+              : "memory"
+              : "volatile")
+
+asm("
+  // declare the presence of a conservative FPU to the ASM compiler
+  .fpu vfp
+
+  stmdb  sp!, {r0, r4-r11, lr}  // push 1st argument + callee-saved registers
+  vstmdb sp!, {d8-d15}          // push FPU registers
+  str    sp, [r0, #0]           // current_context.stack_top = sp
+  mov    r4, #1                 // current_context.resumable = 1
+  str    r4, [r0, #4]
+
+  mov    r4, #0                 // new_context.resumable = 0
+  str    r4, [r1, #4]
+  ldr    sp, [r1, #0]           // sp = new_context.stack_top
+  vldmia sp!, {d8-d15}          // pop FPU registers
+  ldmia  sp!, {r0, r4-r11, lr}  // pop 1st argument + callee-saved registers
+
+  // avoid a stack corruption that will confuse the unwinder
+  mov    r1, lr
+  mov    lr, #0
+  mov    pc, r1
+  ")
+
+------------------------------------------------------------
+
+(source_file
+  (asm
+    (comment)
+    (comment)
+    text: (string)
+    (comment)
+    outputs: (asm_operands
+      (asm_operand
+        constraint: (string)
+        expression: (identifier))
+      (asm_operand
+        constraint: (string)
+        expression: (identifier)))
+    (comment)
+    inputs: (asm_operands
+      (asm_operand
+        constraint: (string)
+        expression: (integer))
+      (asm_operand
+        constraint: (string)
+        expression: (identifier)))
+    (comment)
+    clobbers: (asm_clobbers
+      (string)
+      (string))
+    (comment)
+    (comment)
+    options: (asm_options
+      (string)
+      (string)
+      (string)
+          (string)))
+  (asm
+    text: (string)
+    outputs: (asm_operands
+      (asm_operand
+        constraint: (string)
+        expression: (identifier)))
+    inputs: (asm_operands
+      (asm_operand
+        constraint: (string)
+        expression: (constant))
+      (asm_operand
+        constraint: (string)
+        expression: (call
+          receiver: (call
+            receiver: (index_call
+              receiver: (identifier)
+              arguments: (argument_list
+                (integer)))
+            method: (identifier))
+          method: (identifier))))
+    clobbers: (asm_clobbers
+      (string))
+    options: (asm_options
+      (string)))
+  (asm
+    text: (string)))
+
+=======
+nop asm
+=======
+
+asm("nop" ::::)
+asm ("nop")
+
+---
+
+(source_file
+  (asm
+    text: (string))
+  (asm
+    text: (string)))

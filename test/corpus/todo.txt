@@ -178,28 +178,6 @@ uninitialized Class
     (argument_list
       (constant))))
 
-======
-asm
-:error
-======
-
-asm(
-  # the assembly template string, following the
-  # syntax for LLVM's integrated assembler
-  "nop" :
-  # output operands
-  "=r"(foo), "=r"(bar) :
-  # input operands
-  "r"(1), "r"(baz) :
-  # names of clobbered registers
-  "eax", "memory" :
-  # optional flags, corresponding to the LLVM IR
-  # sideeffect / alignstack / inteldialect / unwind attributes
-  "volatile", "alignstack", "intel", "unwind"
-)
-
----
-
 ==========================
 fun def params on newlines
 ==========================
