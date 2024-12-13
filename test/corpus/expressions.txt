@@ -3499,3 +3499,24 @@ end
     (return)
     (integer)
     (ERROR)))
+
+=======================
+assign special variable
+=======================
+
+def hello
+  $~ = $~
+  $? = 1
+end
+
+---
+
+(source_file
+  (method_def
+    name: (identifier)
+    (assign
+      lhs: (special_variable)
+      rhs: (special_variable))
+    (assign
+      lhs: (special_variable)
+      rhs: (integer))))

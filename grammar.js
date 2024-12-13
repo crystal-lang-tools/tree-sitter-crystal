@@ -465,6 +465,7 @@ module.exports = grammar({
       $.generic_instance_type,
       $.pseudo_constant,
       $.special_variable,
+      alias($.global_match_data_index, $.special_variable),
       $.identifier,
       $.instance_var,
       $.class_var,
@@ -1515,6 +1516,9 @@ module.exports = grammar({
     special_variable: $ => token(choice(
       '$?',
       '$~',
+    )),
+
+    global_match_data_index: $ => token(choice(
       /\$[0-9]+/,
       /\$[0-9]+\?/,
     )),
@@ -2173,6 +2177,7 @@ module.exports = grammar({
         $.class_var,
         $.assign_call,
         alias($.index_operator, $.index_call),
+        $.special_variable,
       ))
       const rhs = field('rhs', $._expression)
 

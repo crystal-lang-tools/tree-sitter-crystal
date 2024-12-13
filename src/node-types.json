@@ -1282,6 +1282,10 @@
           {
             "type": "instance_var",
             "named": true
+          },
+          {
+            "type": "special_variable",
+            "named": true
           }
         ]
       },

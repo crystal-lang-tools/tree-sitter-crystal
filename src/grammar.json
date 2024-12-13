@@ -618,6 +618,15 @@
           "name": "special_variable"
         },
         {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "global_match_data_index"
+          },
+          "named": true,
+          "value": "special_variable"
+        },
+        {
           "type": "SYMBOL",
           "name": "identifier"
         },
@@ -6692,7 +6701,15 @@
           {
             "type": "STRING",
             "value": "$~"
-          },
+          }
+        ]
+      }
+    },
+    "global_match_data_index": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
           {
             "type": "PATTERN",
             "value": "\\$[0-9]+"
@@ -10254,6 +10271,10 @@
                   },
                   "named": true,
                   "value": "index_call"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "special_variable"
                 }
               ]
             }
