@@ -199,13 +199,17 @@ module.exports = grammar({
 
     // Ensure `a b() { 1 }` parses as `a(b() { 1 })`
     [
+      'brace_block_call+visibility',
       'brace_block_call',
+      'no_block_call+visibility',
       'no_block_call',
     ],
 
     // Ensure `a b() do 1 end` parses as `a(b()) do 1 end`
     [
+      'no_block_call+visibility',
       'no_block_call',
+      'do_end_block_call+visibility',
       'do_end_block_call',
     ],
 
@@ -217,6 +221,7 @@ module.exports = grammar({
 
     // Ensure `a b! &c` parses as `a b!(&c)`
     [
+      'ampersand_block_call+visibility',
       'ampersand_block_call',
       'no_block_call',
     ],
@@ -317,11 +322,6 @@ module.exports = grammar({
     ],
     [
       $.parenthesized_proc_type,
-    ],
-
-    // Due to private / protected calls
-    [
-      $.call,
     ],
   ],
 
@@ -1836,9 +1836,7 @@ module.exports = grammar({
     // - arguments
     // - block arg
     call: $ => {
-      const visibility = optional(
-        field('visibility', choice($.private, $.protected)),
-      )
+      const visibility = field('visibility', choice($.private, $.protected))
 
       const receiver_call = choice(
         $._dot_call,
@@ -1861,27 +1859,49 @@ module.exports = grammar({
       const do_end_block = field('block', alias($.do_end_block, $.block))
 
       return choice(
-        prec('no_block_call', seq(visibility, receiver_call, optional(argument_list))),
-        prec('no_block_call', seq(visibility, ambiguous_call, argument_list)),
+        prec('no_block_call', seq(receiver_call, optional(argument_list))),
+        prec('no_block_call+visibility', seq(visibility, receiver_call, optional(argument_list))),
+
+        prec('no_block_call', seq(ambiguous_call, argument_list)),
+        prec('no_block_call+visibility', seq(visibility, ambiguous_call, argument_list)),
+
 
         prec('brace_block_call',
+          seq(receiver_call, optional(argument_list), brace_block),
+        ),
+        prec('brace_block_call+visibility',
           seq(visibility, receiver_call, optional(argument_list), brace_block),
         ),
         prec('brace_block_call',
+          seq(ambiguous_call, optional(argument_list), brace_block),
+        ),
+        prec('brace_block_call+visibility',
           seq(visibility, ambiguous_call, optional(argument_list), brace_block),
         ),
 
         prec('do_end_block_call',
+          seq(receiver_call, optional(argument_list), do_end_block),
+        ),
+        prec('do_end_block_call+visibility',
           seq(visibility, receiver_call, optional(argument_list), do_end_block),
         ),
         prec('do_end_block_call',
+          seq(ambiguous_call, optional(argument_list), do_end_block),
+        ),
+        prec('do_end_block_call+visibility',
           seq(visibility, ambiguous_call, optional(argument_list), do_end_block),
         ),
 
         prec('ampersand_block_call',
+          seq(receiver_call, argument_list_with_block),
+        ),
+        prec('ampersand_block_call+visibility',
           seq(visibility, receiver_call, argument_list_with_block),
         ),
         prec('ampersand_block_call',
+          seq(ambiguous_call, argument_list_with_block),
+        ),
+        prec('ampersand_block_call+visibility',
           seq(visibility, ambiguous_call, argument_list_with_block),
         ),
       )
