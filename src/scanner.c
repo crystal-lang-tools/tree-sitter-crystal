@@ -104,7 +104,9 @@ typedef enum Token Token;
  * Helpful macros
  */
 
-#define DEBUG(...) lexer->log(lexer, "[LOG] " __VA_ARGS__);
+// NOTE(margret): This is temporarily disabled as calling lexer->log
+// causes a seg fault with WASM builds. Enable locally when needed.
+#define DEBUG(...) // lexer->log(lexer, "[LOG] " __VA_ARGS__);
 
 /*
  * State types
@@ -2045,7 +2047,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
     DEBUG("valid symbols are:");
 
 #define LOG_SYMBOL(sym) \
-    if (valid_symbols[sym]) { lexer->log(lexer, "      " #sym); }
+    if (valid_symbols[sym]) { DEBUG("      " #sym); }
 
     LOG_SYMBOL(LINE_BREAK);
     LOG_SYMBOL(LINE_CONTINUATION);
