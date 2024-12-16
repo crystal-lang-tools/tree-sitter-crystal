@@ -218,33 +218,6 @@ end
       arguments: (argument_list
         (string)))))
 
-=================================
-private and protected macro calls
-=================================
-
-class Foo
-  private getter foo
-  protected property bar : Baz
-end
-
----
-
-(source_file
-  (class_def
-    (constant)
-    (ERROR)
-    (call
-      (identifier)
-      (argument_list
-        (identifier)))
-    (ERROR)
-    (call
-      (identifier)
-      (argument_list
-        (type_declaration
-          (identifier)
-          (constant))))))
-
 ============================
 .as method with pointer type
 ============================
@@ -354,3 +327,23 @@ end
 ---
 
 (source_file)
+
+=============================================================
+private or protected calls with keyword type declaration args
+=============================================================
+
+class Name
+  private getter private : Qux
+end
+
+---
+
+(source_file
+  (class_def
+    name: (constant)
+    (ERROR
+      (private)
+      (identifier)
+      (private)
+      (ERROR)
+      (constant))))
