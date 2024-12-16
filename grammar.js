@@ -255,6 +255,14 @@ module.exports = grammar({
       $.top_level_fun_def,
       $.empty_parens,
     ],
+
+    // Ensure `private macro(args).method` parses with `private` applied to the macro.
+    // Note: this precedence is only needed to satisfy tree-sitter. In real Crystal code, there's
+    // no ambiguity. A visibility keyword may only precede a single macro call, not a call chain.
+    [
+      'call_visibility',
+      $._expression,
+    ],
   ],
 
   conflicts: $ => [
@@ -489,6 +497,7 @@ module.exports = grammar({
 
       // Methods
       $.call,
+      alias($.call_with_visibility, $.call),
 
       alias($.additive_operator, $.op_call),
       alias($.unary_additive_operator, $.op_call),
@@ -1049,7 +1058,7 @@ module.exports = grammar({
     },
 
     module_def: $ => seq(
-      optional('private'),
+      optional(field('visibility', $.private)),
       'module',
       field('name', choice($.constant, $.generic_type)),
       seq(optional($._statements)),
@@ -1057,7 +1066,7 @@ module.exports = grammar({
     ),
 
     class_def: $ => seq(
-      optional('private'),
+      optional(field('visibility', $.private)),
       optional('abstract'),
       'class',
       field('name', choice($.constant, $.generic_type)),
@@ -1069,7 +1078,7 @@ module.exports = grammar({
     ),
 
     struct_def: $ => seq(
-      optional('private'),
+      optional(field('visibility', $.private)),
       optional('abstract'),
       'struct',
       field('name', choice($.constant, $.generic_type)),
@@ -1081,7 +1090,7 @@ module.exports = grammar({
     ),
 
     enum_def: $ => seq(
-      optional('private'),
+      optional(field('visibility', $.private)),
       'enum',
       field('name', alias($._constant_segment, $.constant)),
       optional(field('type', seq(/:\s/, $._bare_type))),
@@ -1090,6 +1099,7 @@ module.exports = grammar({
     ),
 
     lib_def: $ => seq(
+      optional(field('visibility', $.private)),
       'lib',
       field('name', $.constant, $.generic_type),
       optional($._lib_statements),
@@ -1294,10 +1304,12 @@ module.exports = grammar({
     },
 
     method_def: $ => {
-      const visibility = choice('private', 'protected')
+      const visibility = optional(
+        field('visibility', choice($.private, $.protected)),
+      )
 
       return seq(
-        optional(visibility),
+        visibility,
         $._base_method_def,
         optional($._terminator),
         optional($._statements),
@@ -1309,10 +1321,12 @@ module.exports = grammar({
     },
 
     abstract_method_def: $ => {
-      const visibility = choice('private', 'protected')
+      const visibility = optional(
+        field('visibility', choice($.private, $.protected)),
+      )
 
       return prec.left(seq(
-        optional(visibility),
+        visibility,
         'abstract',
         $._base_method_def,
         optional($._terminator),
@@ -1817,6 +1831,20 @@ module.exports = grammar({
       )
     },
 
+    private: $ => 'private',
+    protected: $ => 'protected',
+
+    // Represents a macro call prefixed with private/protected, e.g.
+    //   private getter foo : String
+    // This rule is separated from `call` so the `call_visibility` precedence can be
+    // applied in a targeted way.
+    call_with_visibility: $ => prec('call_visibility',
+      seq(
+        field('visibility', choice($.private, $.protected)),
+        alias($.call, 'call without visibility'),
+      ),
+    ),
+
     // how do we distingush a method call from a variable?
     // at least one of these is required:
     // - receiver
@@ -1849,14 +1877,26 @@ module.exports = grammar({
         prec('no_block_call', seq(receiver_call, optional(argument_list))),
         prec('no_block_call', seq(ambiguous_call, argument_list)),
 
-        prec('brace_block_call', seq(receiver_call, optional(argument_list), brace_block)),
-        prec('brace_block_call', seq(ambiguous_call, optional(argument_list), brace_block)),
+        prec('brace_block_call',
+          seq(receiver_call, optional(argument_list), brace_block),
+        ),
+        prec('brace_block_call',
+          seq(ambiguous_call, optional(argument_list), brace_block),
+        ),
 
-        prec('do_end_block_call', seq(receiver_call, optional(argument_list), do_end_block)),
-        prec('do_end_block_call', seq(ambiguous_call, optional(argument_list), do_end_block)),
+        prec('do_end_block_call',
+          seq(receiver_call, optional(argument_list), do_end_block),
+        ),
+        prec('do_end_block_call',
+          seq(ambiguous_call, optional(argument_list), do_end_block),
+        ),
 
-        prec('ampersand_block_call', seq(receiver_call, argument_list_with_block)),
-        prec('ampersand_block_call', seq(ambiguous_call, argument_list_with_block)),
+        prec('ampersand_block_call',
+          seq(receiver_call, argument_list_with_block),
+        ),
+        prec('ampersand_block_call',
+          seq(ambiguous_call, argument_list_with_block),
+        ),
       )
     },
 
@@ -2189,12 +2229,15 @@ module.exports = grammar({
     },
 
     const_assign: $ => {
+      const visibility = optional(
+        field('visibility', $.private),
+      )
+
       const lhs = field('lhs', $.constant)
       const rhs = field('rhs', $._statement)
 
       return prec.right('assignment_operator', seq(
-        optional('private'),
-        lhs, '=', rhs,
+        visibility, lhs, '=', rhs,
       ))
     },
 
@@ -2283,7 +2326,7 @@ module.exports = grammar({
     },
 
     alias: $ => seq(
-      optional('private'),
+      optional(field('visibility', $.private)),
       'alias',
       field('name', $.constant),
       '=',

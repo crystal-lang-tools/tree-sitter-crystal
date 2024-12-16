@@ -781,20 +781,27 @@ end
 
 (source_file
   (method_def
+    visibility: (private)
     name: (identifier))
   (module_def
+    visibility: (private)
     name: (constant)
     (class_def
+      visibility: (private)
       name: (constant)
       (struct_def
+        visibility: (private)
         name: (constant)
         (const_assign
+          visibility: (private)
           lhs: (constant)
           rhs: (integer)))
       (alias
+        visibility: (private)
         name: (constant)
         type: (constant))
       (method_def
+        visibility: (protected)
         name: (identifier)))))
 
 ================================================================================
@@ -869,9 +876,10 @@ end
 
 (source_file
   (module_def
-    (constant)
+    name: (constant)
     (enum_def
-      (constant)
+      visibility: (private)
+      name: (constant)
       (constant)
       (constant))))
 
@@ -1174,3 +1182,42 @@ fun bar() end
 (source_file
   (fun_def
     name: (identifier)))
+
+=================================
+private and protected macro calls
+=================================
+
+class Foo
+  private getter foo
+  protected property bar : Baz
+
+  def method
+    private some_macro().foo
+  end
+end
+
+---
+
+(source_file
+  (class_def
+    name: (constant)
+    (call
+      visibility: (private)
+      method: (identifier)
+      arguments: (argument_list
+        (identifier)))
+    (call
+      visibility: (protected)
+      method: (identifier)
+      arguments: (argument_list
+        (type_declaration
+          var: (identifier)
+          type: (constant))))
+    (method_def
+      name: (identifier)
+      (call
+        receiver: (call
+          visibility: (private)
+          method: (identifier)
+          arguments: (argument_list))
+        method: (identifier)))))
