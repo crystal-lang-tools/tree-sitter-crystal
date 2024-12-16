@@ -1190,6 +1190,10 @@ private and protected macro calls
 class Foo
   private getter foo
   protected property bar : Baz
+
+  def method
+    private some_macro().foo
+  end
 end
 
 ---
@@ -1208,4 +1212,12 @@ end
       arguments: (argument_list
         (type_declaration
           var: (identifier)
-          type: (constant))))))
+          type: (constant))))
+    (method_def
+      name: (identifier)
+      (call
+        receiver: (call
+          visibility: (private)
+          method: (identifier)
+          arguments: (argument_list))
+        method: (identifier)))))

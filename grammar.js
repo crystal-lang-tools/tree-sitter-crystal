@@ -255,6 +255,14 @@ module.exports = grammar({
       $.top_level_fun_def,
       $.empty_parens,
     ],
+
+    // Ensure `private macro(args).method` parses with `private` applied to the macro.
+    // Note: this precedence is only needed to satisfy tree-sitter. In real Crystal code, there's
+    // no ambiguity. A visibility keyword may only precede a single macro call, not a call chain.
+    [
+      'call_visibility',
+      $._expression,
+    ],
   ],
 
   conflicts: $ => [
@@ -317,11 +325,6 @@ module.exports = grammar({
     ],
     [
       $.parenthesized_proc_type,
-    ],
-
-    // Due to private / protected calls
-    [
-      $.call,
     ],
   ],
 
@@ -494,6 +497,7 @@ module.exports = grammar({
 
       // Methods
       $.call,
+      alias($.call_with_visibility, $.call),
 
       alias($.additive_operator, $.op_call),
       alias($.unary_additive_operator, $.op_call),
@@ -1830,6 +1834,17 @@ module.exports = grammar({
     private: $ => 'private',
     protected: $ => 'protected',
 
+    // Represents a macro call prefixed with private/protected, e.g.
+    //   private getter foo : String
+    // This rule is separated from `call` so the `call_visibility` precedence can be
+    // applied in a targeted way.
+    call_with_visibility: $ => prec('call_visibility',
+      seq(
+        field('visibility', choice($.private, $.protected)),
+        alias($.call, 'call without visibility'),
+      ),
+    ),
+
     // how do we distingush a method call from a variable?
     // at least one of these is required:
     // - receiver
@@ -1838,10 +1853,6 @@ module.exports = grammar({
     // - arguments
     // - block arg
     call: $ => {
-      const visibility = optional(
-        field('visibility', choice($.private, $.protected)),
-      )
-
       const receiver_call = choice(
         $._dot_call,
         field('method', alias($.identifier_method_call, $.identifier)),
@@ -1863,28 +1874,28 @@ module.exports = grammar({
       const do_end_block = field('block', alias($.do_end_block, $.block))
 
       return choice(
-        prec('no_block_call', seq(visibility, receiver_call, optional(argument_list))),
-        prec('no_block_call', seq(visibility, ambiguous_call, argument_list)),
+        prec('no_block_call', seq(receiver_call, optional(argument_list))),
+        prec('no_block_call', seq(ambiguous_call, argument_list)),
 
         prec('brace_block_call',
-          seq(visibility, receiver_call, optional(argument_list), brace_block),
+          seq(receiver_call, optional(argument_list), brace_block),
         ),
         prec('brace_block_call',
-          seq(visibility, ambiguous_call, optional(argument_list), brace_block),
+          seq(ambiguous_call, optional(argument_list), brace_block),
         ),
 
         prec('do_end_block_call',
-          seq(visibility, receiver_call, optional(argument_list), do_end_block),
+          seq(receiver_call, optional(argument_list), do_end_block),
         ),
         prec('do_end_block_call',
-          seq(visibility, ambiguous_call, optional(argument_list), do_end_block),
+          seq(ambiguous_call, optional(argument_list), do_end_block),
         ),
 
         prec('ampersand_block_call',
-          seq(visibility, receiver_call, argument_list_with_block),
+          seq(receiver_call, argument_list_with_block),
         ),
         prec('ampersand_block_call',
-          seq(visibility, ambiguous_call, argument_list_with_block),
+          seq(ambiguous_call, argument_list_with_block),
         ),
       )
     },
