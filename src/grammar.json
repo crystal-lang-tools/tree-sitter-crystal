@@ -8817,116 +8817,57 @@
         }
       ]
     },
-    "implicit_object_call": {
-      "type": "CHOICE",
+    "_implicit_object_call": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "implicit_object_call_chainable"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "implicit_object_call_unchainable"
+          }
+        ]
+      },
+      "named": true,
+      "value": "implicit_object_call"
+    },
+    "implicit_object_call_unchainable": {
+      "type": "SEQ",
       "members": [
         {
-          "type": "PREC_RIGHT",
-          "value": 0,
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "FIELD",
-                "name": "method",
-                "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "implicit_object_method_identifier"
-                      },
-                      "named": true,
-                      "value": "identifier"
-                    },
-                    {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "implicit_object_method_operator"
-                      },
-                      "named": true,
-                      "value": "operator"
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "FIELD",
-                    "name": "arguments",
-                    "content": {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "ALIAS",
-                          "content": {
-                            "type": "SYMBOL",
-                            "name": "argument_list_with_parens"
-                          },
-                          "named": true,
-                          "value": "argument_list"
-                        },
-                        {
-                          "type": "ALIAS",
-                          "content": {
-                            "type": "SYMBOL",
-                            "name": "argument_list_no_parens"
-                          },
-                          "named": true,
-                          "value": "argument_list"
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
               "type": "FIELD",
-              "name": "method",
+              "name": "receiver",
               "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "implicit_object_method_identifier"
-                    },
-                    "named": true,
-                    "value": "identifier"
-                  },
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "implicit_object_method_operator"
-                    },
-                    "named": true,
-                    "value": "operator"
-                  }
-                ]
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "implicit_object_call_chainable"
+                },
+                "named": true,
+                "value": "implicit_object_call"
               }
             },
             {
-              "type": "CHOICE",
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
               "members": [
                 {
                   "type": "FIELD",
-                  "name": "arguments",
+                  "name": "method",
                   "content": {
                     "type": "CHOICE",
                     "members": [
@@ -8934,169 +8875,72 @@
                         "type": "ALIAS",
                         "content": {
                           "type": "SYMBOL",
-                          "name": "argument_list_with_parens"
+                          "name": "implicit_object_method_identifier"
                         },
                         "named": true,
-                        "value": "argument_list"
+                        "value": "identifier"
                       },
                       {
                         "type": "ALIAS",
                         "content": {
                           "type": "SYMBOL",
-                          "name": "argument_list_no_parens"
+                          "name": "implicit_object_method_operator"
                         },
                         "named": true,
-                        "value": "argument_list"
+                        "value": "operator"
                       }
                     ]
                   }
                 },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "FIELD",
-              "name": "block",
-              "content": {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "brace_block"
-                },
-                "named": true,
-                "value": "block"
-              }
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "method",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "implicit_object_method_identifier"
-                    },
-                    "named": true,
-                    "value": "identifier"
-                  },
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "implicit_object_method_operator"
-                    },
-                    "named": true,
-                    "value": "operator"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "CHOICE",
-              "members": [
                 {
                   "type": "FIELD",
                   "name": "arguments",
                   "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "SYMBOL",
-                          "name": "argument_list_with_parens"
-                        },
-                        "named": true,
-                        "value": "argument_list"
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "SYMBOL",
-                          "name": "argument_list_no_parens"
-                        },
-                        "named": true,
-                        "value": "argument_list"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "FIELD",
-              "name": "block",
-              "content": {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "do_end_block"
-                },
-                "named": true,
-                "value": "block"
-              }
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "method",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
                     "type": "ALIAS",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "implicit_object_method_identifier"
-                    },
-                    "named": true,
-                    "value": "identifier"
-                  },
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "implicit_object_method_operator"
-                    },
-                    "named": true,
-                    "value": "operator"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "FIELD",
-              "name": "arguments",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "argument_list_with_parens_and_block"
+                      "name": "argument_list_no_parens"
                     },
                     "named": true,
                     "value": "argument_list"
-                  },
-                  {
+                  }
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "method",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "implicit_object_method_identifier"
+                        },
+                        "named": true,
+                        "value": "identifier"
+                      },
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "implicit_object_method_operator"
+                        },
+                        "named": true,
+                        "value": "operator"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "FIELD",
+                  "name": "arguments",
+                  "content": {
                     "type": "ALIAS",
                     "content": {
                       "type": "SYMBOL",
@@ -9105,28 +8949,321 @@
                     "named": true,
                     "value": "argument_list"
                   }
-                ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "implicit_object_call_chainable": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "receiver",
+              "content": {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "implicit_object_call_chainable"
+                },
+                "named": true,
+                "value": "implicit_object_call"
               }
+            },
+            {
+              "type": "BLANK"
             }
           ]
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "implicit_object_ivar"
-          },
-          "named": true,
-          "value": "instance_var"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "implicit_object_index_operator"
-          },
-          "named": true,
-          "value": "index_call"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PREC_RIGHT",
+              "value": 0,
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "FIELD",
+                    "name": "method",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "implicit_object_method_identifier"
+                          },
+                          "named": true,
+                          "value": "identifier"
+                        },
+                        {
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "implicit_object_method_operator"
+                          },
+                          "named": true,
+                          "value": "operator"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "FIELD",
+                        "name": "arguments",
+                        "content": {
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "argument_list_with_parens"
+                          },
+                          "named": true,
+                          "value": "argument_list"
+                        }
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "method",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "implicit_object_method_identifier"
+                        },
+                        "named": true,
+                        "value": "identifier"
+                      },
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "implicit_object_method_operator"
+                        },
+                        "named": true,
+                        "value": "operator"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "FIELD",
+                      "name": "arguments",
+                      "content": {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "ALIAS",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "argument_list_with_parens"
+                            },
+                            "named": true,
+                            "value": "argument_list"
+                          },
+                          {
+                            "type": "ALIAS",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "argument_list_no_parens"
+                            },
+                            "named": true,
+                            "value": "argument_list"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "FIELD",
+                  "name": "block",
+                  "content": {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "brace_block"
+                    },
+                    "named": true,
+                    "value": "block"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "method",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "implicit_object_method_identifier"
+                        },
+                        "named": true,
+                        "value": "identifier"
+                      },
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "implicit_object_method_operator"
+                        },
+                        "named": true,
+                        "value": "operator"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "FIELD",
+                      "name": "arguments",
+                      "content": {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "ALIAS",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "argument_list_with_parens"
+                            },
+                            "named": true,
+                            "value": "argument_list"
+                          },
+                          {
+                            "type": "ALIAS",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "argument_list_no_parens"
+                            },
+                            "named": true,
+                            "value": "argument_list"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "FIELD",
+                  "name": "block",
+                  "content": {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "do_end_block"
+                    },
+                    "named": true,
+                    "value": "block"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "method",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "implicit_object_method_identifier"
+                        },
+                        "named": true,
+                        "value": "identifier"
+                      },
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "implicit_object_method_operator"
+                        },
+                        "named": true,
+                        "value": "operator"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "FIELD",
+                  "name": "arguments",
+                  "content": {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "argument_list_with_parens_and_block"
+                    },
+                    "named": true,
+                    "value": "argument_list"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "implicit_object_ivar"
+              },
+              "named": true,
+              "value": "instance_var"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "implicit_object_index_operator"
+              },
+              "named": true,
+              "value": "index_call"
+            }
+          ]
         }
       ]
     },
@@ -9181,7 +9318,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "implicit_object_call"
+          "name": "_implicit_object_call"
         },
         {
           "type": "REPEAT",
@@ -9201,7 +9338,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "implicit_object_call"
+                    "name": "_implicit_object_call"
                   }
                 ]
               }
@@ -11445,7 +11582,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "implicit_object_call"
+                "name": "_implicit_object_call"
               }
             ]
           }
@@ -12126,7 +12263,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "implicit_object_call"
+                "name": "_implicit_object_call"
               },
               {
                 "type": "ALIAS",
@@ -12161,7 +12298,7 @@
                     },
                     {
                       "type": "SYMBOL",
-                      "name": "implicit_object_call"
+                      "name": "_implicit_object_call"
                     },
                     {
                       "type": "ALIAS",
@@ -12320,7 +12457,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "implicit_object_call"
+                "name": "_implicit_object_call"
               }
             ]
           }
@@ -12362,7 +12499,7 @@
                     },
                     {
                       "type": "SYMBOL",
-                      "name": "implicit_object_call"
+                      "name": "_implicit_object_call"
                     }
                   ]
                 }
@@ -12993,6 +13130,30 @@
       {
         "type": "SYMBOL",
         "name": "_expression"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "implicit_object_call_chainable"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "implicit_object_call_unchainable"
+      },
+      {
+        "type": "STRING",
+        "value": "block_ampersand"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "implicit_object_call_chainable"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "_implicit_object_call"
       }
     ]
   ],

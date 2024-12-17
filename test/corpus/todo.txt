@@ -262,17 +262,6 @@ MyType{"foo" => "bar"}
 
 ---
 
-===================================
-chained calls in short block syntax
-:error
-===================================
-
-reject! &.field.option
-find(&.name.==(name))
-
----
-
-
 =================
 static array type
 :error
