@@ -2410,9 +2410,7 @@ module.exports = grammar({
         'do',
         optional(params),
         optional($._statements),
-        field('rescue', repeat($.rescue_block)),
-        field('else', optional($.else)),
-        field('ensure', optional($.ensure)),
+        optional($._rescue_else_ensure),
         'end',
       )
     },
@@ -2442,9 +2440,7 @@ module.exports = grammar({
       'begin',
       optional($._terminator),
       optional($._statements),
-      field('rescue', repeat($.rescue_block)),
-      field('else', optional($.else)),
-      field('ensure', optional($.ensure)),
+      optional($._rescue_else_ensure),
       'end',
     ),
 
@@ -2478,6 +2474,29 @@ module.exports = grammar({
       alias($._modifier_ensure_keyword, 'ensure'),
       field('ensure', $._expression),
     ),
+
+    // A block modifier clause containing least one of `rescue`, `else`, or `ensure`.
+    // Split to its own rule as a performance improvement.
+    _rescue_else_ensure: $ => {
+      return choice(
+        seq(
+          field('rescue', repeat1($.rescue_block)),
+          field('else', optional($.else)),
+          field('ensure', optional($.ensure)),
+        ),
+        seq(
+          field('rescue', repeat($.rescue_block)),
+          field('else', $.else),
+          field('ensure', optional($.ensure)),
+        ),
+        seq(
+          field('rescue', repeat($.rescue_block)),
+          field('else', optional($.else)),
+          field('ensure', $.ensure),
+        ),
+      )
+    },
+
 
     while: $ => seq(
       'while',
