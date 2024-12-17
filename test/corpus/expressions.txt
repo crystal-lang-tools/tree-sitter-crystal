@@ -2499,6 +2499,9 @@ b (
 
 top 0, &.lvl1 1, &.lvl2 2, &.lvl3 3
 
+# demonstrating block precedence
+a &.b c { "in c" }.d.e
+a &.b 'b' { "in b" }.d.e
 --------------------------------------------------------------------------------
 
 (source_file
@@ -2575,7 +2578,37 @@ top 0, &.lvl1 1, &.lvl2 2, &.lvl3 3
                     (implicit_object_call
                       method: (identifier)
                       arguments: (argument_list
-                        (integer)))))))))))))
+                        (integer))))))))))))
+  (comment)
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          method: (identifier)
+          arguments: (argument_list
+            (call
+              receiver: (call
+                receiver: (call
+                  method: (identifier)
+                  block: (block
+                    (string)))
+                method: (identifier))
+              method: (identifier)))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          receiver: (implicit_object_call
+            receiver: (implicit_object_call
+              method: (identifier)
+              arguments: (argument_list
+                (char))
+              block: (block
+                (string)))
+            method: (identifier))
+          method: (identifier))))))
 
 ================================================================================
 ampersand disambiguation
@@ -3695,7 +3728,7 @@ asm("
       (string)
       (string)
       (string)
-          (string)))
+      (string)))
   (asm
     text: (string)
     outputs: (asm_operands
