@@ -10163,6 +10163,16 @@
             "named": true
           }
         ]
+      },
+      "receiver": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "implicit_object_call",
+            "named": true
+          }
+        ]
       }
     },
     "children": {

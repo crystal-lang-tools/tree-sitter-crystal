@@ -2484,6 +2484,133 @@ outer method(&.take_block) do "inner" end
       (string))))
 
 ================================================================================
+chained &. syntax
+================================================================================
+reject! &.field.option
+find(&.name.==(name))
+
+takes_a_block &.a.b { in_blk }.c do in_blk end . d(nil, &.nil?). [1].@foo
+
+takes_a_block &. a
+  .
+b (
+  arg
+)
+
+top 0, &.lvl1 1, &.lvl2 2, &.lvl3 3
+
+# demonstrating block precedence
+a &.b c { "in c" }.d.e
+a &.b 'b' { "in b" }.d.e
+--------------------------------------------------------------------------------
+
+(source_file
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          receiver: (implicit_object_call
+            method: (identifier))
+          method: (identifier)))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          receiver: (implicit_object_call
+            method: (identifier))
+          method: (operator)
+          arguments: (argument_list
+            (identifier))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          receiver: (implicit_object_call
+            receiver: (implicit_object_call
+              receiver: (implicit_object_call
+                receiver: (implicit_object_call
+                  receiver: (implicit_object_call
+                    method: (identifier))
+                  method: (identifier)
+                  block: (block
+                    (identifier)))
+                method: (identifier)
+                block: (block
+                  (identifier)))
+              method: (identifier)
+              arguments: (argument_list
+                (nil)
+                (block_argument
+                  (implicit_object_call
+                    method: (identifier)))))
+            (index_call
+              arguments: (argument_list
+                (integer))))
+          (instance_var)))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          receiver: (implicit_object_call
+            method: (identifier))
+          method: (identifier)
+          arguments: (argument_list
+            (identifier))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (integer)
+      (block_argument
+        (implicit_object_call
+          method: (identifier)
+          arguments: (argument_list
+            (integer)
+            (block_argument
+              (implicit_object_call
+                method: (identifier)
+                arguments: (argument_list
+                  (integer)
+                  (block_argument
+                    (implicit_object_call
+                      method: (identifier)
+                      arguments: (argument_list
+                        (integer))))))))))))
+  (comment)
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          method: (identifier)
+          arguments: (argument_list
+            (call
+              receiver: (call
+                receiver: (call
+                  method: (identifier)
+                  block: (block
+                    (string)))
+                method: (identifier))
+              method: (identifier)))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          receiver: (implicit_object_call
+            receiver: (implicit_object_call
+              method: (identifier)
+              arguments: (argument_list
+                (char))
+              block: (block
+                (string)))
+            method: (identifier))
+          method: (identifier))))))
+
+================================================================================
 ampersand disambiguation
 ================================================================================
 ## Operators ##
@@ -3601,7 +3728,7 @@ asm("
       (string)
       (string)
       (string)
-          (string)))
+      (string)))
   (asm
     text: (string)
     outputs: (asm_operands
