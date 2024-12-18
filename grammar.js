@@ -2654,19 +2654,32 @@ module.exports = grammar({
     asm: $ => seq(
       token(seq('asm', /\s*/, '(')),
       field('text', $.string),
-      optional(seq(':',
-        optional(field('outputs', $.asm_operands)),
-        optional(seq(':',
-          optional(field('inputs', $.asm_operands)),
-          optional(seq(':',
-            optional(field('clobbers', $.asm_clobbers)),
-            optional(seq(':',
-              optional(field('options', $.asm_options)),
-            )),
-          )),
-        )),
-      )),
+      optional($._asm_outputs),
       ')',
+    ),
+
+    // Each field is split to a separate rule to optimize tree-sitter parser size
+    _asm_outputs: $ => seq(
+      ':',
+      optional(field('outputs', $.asm_operands)),
+      optional($._asm_inputs),
+    ),
+
+    _asm_inputs: $ => seq(
+      ':',
+      optional(field('inputs', $.asm_operands)),
+      optional($._asm_clobbers),
+    ),
+
+    _asm_clobbers: $ => seq(
+      ':',
+      optional(field('clobbers', $.asm_clobbers)),
+      optional($._asm_options),
+    ),
+
+    _asm_options: $ => seq(
+      ':',
+      optional(field('options', $.asm_options)),
     ),
 
     asm_operands: $ => seq(
