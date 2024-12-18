@@ -523,6 +523,7 @@ module.exports = grammar({
       alias($.equality_operator, $.op_call),
       alias($.comparison_operator, $.op_call),
       alias($.index_operator, $.index_call),
+      $.index_call,
       $.assign,
       alias($.operator_assign, $.op_assign),
 
@@ -1792,25 +1793,7 @@ module.exports = grammar({
         $.instance_var,
       ))
 
-      // In the case of something like
-      //   a.[*{0}]
-      // we need to parse the arguments here, because they're embedded in the
-      // method "name".
-      const bracket_method = seq(
-        field('method', alias('[', $.operator)),
-        alias($.bracket_argument_list, $.argument_list),
-        ']',
-        optional(choice(
-          token.immediate('?'),
-          '=',
-        )),
-      )
-
-      return prec('dot_operator', seq(
-        receiver,
-        '.',
-        choice(method, bracket_method),
-      ))
+      return prec('dot_operator', seq(receiver, '.', method))
     },
 
     bracket_argument_list: $ => {
@@ -2046,6 +2029,16 @@ module.exports = grammar({
       ))
     },
 
+    index_call: $ => {
+      return seq(
+        field('receiver', $._expression),
+        '.',
+        field('method', alias('[', $.operator)),
+        alias($.bracket_argument_list, $.argument_list),
+        choice(']', ']?'),
+      )
+    },
+
     not: $ => prec('unary_operator', seq('!', $._expression)),
     and: $ => prec.left('logical_and_operator', seq($._expression, '&&', $._expression)),
     or: $ => prec.left('logical_or_operator', seq($._expression, '||', $._expression)),
@@ -2258,6 +2251,7 @@ module.exports = grammar({
         $.instance_var,
         $.class_var,
         $.assign_call,
+        $.index_call,
         alias($.index_operator, $.index_call),
         $.special_variable,
       ))
@@ -2308,6 +2302,7 @@ module.exports = grammar({
         $.instance_var,
         $.class_var,
         $.assign_call,
+        $.index_call,
         alias($.index_operator, $.index_call),
       ))
       const rhs = field('rhs', $._expression)
@@ -2322,6 +2317,7 @@ module.exports = grammar({
       $.instance_var,
       $.class_var,
       $.assign_call,
+      $.index_call,
       alias($.index_operator, $.index_call),
     )),
 
@@ -2331,6 +2327,7 @@ module.exports = grammar({
         $.instance_var,
         $.class_var,
         $.assign_call,
+        $.index_call,
         alias($.index_operator, $.index_call),
       )
       const lhs_splat = field('lhs', alias($.lhs_splat, $.splat))

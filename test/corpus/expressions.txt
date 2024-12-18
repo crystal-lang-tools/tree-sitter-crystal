@@ -2873,6 +2873,7 @@ false.|(true)
 nil.
 !()
 
+a.[](1, 2)
 a.[]=(1, 2)
 --------------------------------------------------------------------------------
 
@@ -2899,6 +2900,12 @@ a.[]=(1, 2)
     method: (operator)
     arguments: (argument_list
       (integer)
+      (integer)))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)
       (integer))))
 
 ================================================================================
@@ -2914,6 +2921,13 @@ ary[*{0}, **{count: 1}]
 
 a.[count: 1, values: [5]] =0
 b.["q": 1, q?: 3, %q(stuff): [5]] =0
+
+a.[2] %= 5
+c.[0].[0] += 5
+
+a.[0], *b.[0] = 1, 2, 3
+
+a.[0].setter, a.[1].setter = things
 --------------------------------------------------------------------------------
 
 (source_file
@@ -2955,35 +2969,84 @@ b.["q": 1, q?: 3, %q(stuff): [5]] =0
           (named_expr
             name: (identifier)
             (integer))))))
-  (call
-    receiver: (identifier)
-    method: (operator)
-    (argument_list
-      (named_expr
-        name: (identifier)
-        (integer))
-      (named_expr
-        name: (identifier)
-        (array
+  (assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      (argument_list
+        (named_expr
+          name: (identifier)
+          (integer))
+        (named_expr
+          name: (identifier)
+          (array
+            (integer)))))
+    rhs: (integer))
+  (assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      (argument_list
+        (named_expr
+          name: (string)
+          (integer))
+        (named_expr
+          name: (identifier)
+          (integer))
+        (named_expr
+          name: (string)
+          (array
+            (integer)))))
+    rhs: (integer))
+  (op_assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      (argument_list
+        (integer)))
+    rhs: (integer))
+  (op_assign
+    lhs: (index_call
+      receiver: (index_call
+        receiver: (identifier)
+        method: (operator)
+        (argument_list
+          (integer)))
+      method: (operator)
+      (argument_list
+        (integer)))
+    rhs: (integer))
+  (multi_assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      (argument_list
+        (integer)))
+    lhs: (splat
+      (index_call
+        receiver: (identifier)
+        method: (operator)
+        (argument_list
           (integer))))
-    arguments: (argument_list
-      (integer)))
-  (call
-    receiver: (identifier)
-    method: (operator)
-    (argument_list
-      (named_expr
-        name: (string)
-        (integer))
-      (named_expr
-        name: (identifier)
-        (integer))
-      (named_expr
-        name: (string)
-        (array
-          (integer))))
-    arguments: (argument_list
-      (integer))))
+    rhs: (integer)
+    rhs: (integer)
+    rhs: (integer))
+  (multi_assign
+    lhs: (assign_call
+      receiver: (index_call
+        receiver: (identifier)
+        method: (operator)
+        (argument_list
+          (integer)))
+      method: (identifier))
+    lhs: (assign_call
+      receiver: (index_call
+        receiver: (identifier)
+        method: (operator)
+        (argument_list
+          (integer)))
+      method: (identifier))
+    rhs: (identifier)))
 
 ================================================================================
 index assignment

@@ -793,6 +793,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "index_call"
+        },
+        {
+          "type": "SYMBOL",
           "name": "assign"
         },
         {
@@ -7664,99 +7668,39 @@
             "value": "."
           },
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "FIELD",
-                "name": "method",
-                "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "identifier"
-                    },
-                    {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "identifier_method_call"
-                      },
-                      "named": true,
-                      "value": "identifier"
-                    },
-                    {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "_operator_token"
-                      },
-                      "named": true,
-                      "value": "operator"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "instance_var"
-                    }
-                  ]
+            "type": "FIELD",
+            "name": "method",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier_method_call"
+                  },
+                  "named": true,
+                  "value": "identifier"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_operator_token"
+                  },
+                  "named": true,
+                  "value": "operator"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "instance_var"
                 }
-              },
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "FIELD",
-                    "name": "method",
-                    "content": {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "STRING",
-                        "value": "["
-                      },
-                      "named": true,
-                      "value": "operator"
-                    }
-                  },
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "bracket_argument_list"
-                    },
-                    "named": true,
-                    "value": "argument_list"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "]"
-                  },
-                  {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "IMMEDIATE_TOKEN",
-                            "content": {
-                              "type": "STRING",
-                              "value": "?"
-                            }
-                          },
-                          {
-                            "type": "STRING",
-                            "value": "="
-                          }
-                        ]
-                      },
-                      {
-                        "type": "BLANK"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+              ]
+            }
           }
         ]
       }
@@ -9335,6 +9279,58 @@
         ]
       }
     },
+    "index_call": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "receiver",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "FIELD",
+          "name": "method",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "STRING",
+              "value": "["
+            },
+            "named": true,
+            "value": "operator"
+          }
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "bracket_argument_list"
+          },
+          "named": true,
+          "value": "argument_list"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "]"
+            },
+            {
+              "type": "STRING",
+              "value": "]?"
+            }
+          ]
+        }
+      ]
+    },
     "not": {
       "type": "PREC",
       "value": "unary_operator",
@@ -10388,6 +10384,10 @@
                   "name": "assign_call"
                 },
                 {
+                  "type": "SYMBOL",
+                  "name": "index_call"
+                },
+                {
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
@@ -10490,6 +10490,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "assign_call"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "index_call"
                 },
                 {
                   "type": "ALIAS",
@@ -10614,6 +10618,10 @@
               "name": "assign_call"
             },
             {
+              "type": "SYMBOL",
+              "name": "index_call"
+            },
+            {
               "type": "ALIAS",
               "content": {
                 "type": "SYMBOL",
@@ -10696,6 +10704,10 @@
                                   "name": "assign_call"
                                 },
                                 {
+                                  "type": "SYMBOL",
+                                  "name": "index_call"
+                                },
+                                {
                                   "type": "ALIAS",
                                   "content": {
                                     "type": "SYMBOL",
@@ -10749,6 +10761,10 @@
                           {
                             "type": "SYMBOL",
                             "name": "assign_call"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "index_call"
                           },
                           {
                             "type": "ALIAS",
@@ -10881,6 +10897,10 @@
                                   "name": "assign_call"
                                 },
                                 {
+                                  "type": "SYMBOL",
+                                  "name": "index_call"
+                                },
+                                {
                                   "type": "ALIAS",
                                   "content": {
                                     "type": "SYMBOL",
@@ -10934,6 +10954,10 @@
                           {
                             "type": "SYMBOL",
                             "name": "assign_call"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "index_call"
                           },
                           {
                             "type": "ALIAS",
