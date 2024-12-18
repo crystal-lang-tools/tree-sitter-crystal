@@ -17,7 +17,7 @@
   "when"
 ] @keyword
 ["def" "fun"] @keyword.function
-["class" "enum" "module" "struct" "union"] @keyword.type
+["class" "enum" "module" "struct" "type" "union"] @keyword.type
 ["require"] @keyword.import
 ["return" "yield"] @keyword.return
 ["if" "else" "elsif" "unless"] @keyword.conditional
