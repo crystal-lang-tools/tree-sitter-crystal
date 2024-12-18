@@ -267,19 +267,6 @@ module.exports = grammar({
       'call_visibility',
       $._expression,
     ],
-
-    // Ensure `a &.b.c` is parsed as `a(&.b.c)` instead of `a(&.b).c`
-    [
-      $.implicit_object_call_chainable,
-      $.implicit_object_call_unchainable,
-      'block_ampersand',
-    ],
-
-    // Ensure implicit object calls chain before the wrapper rule is applied
-    [
-      $.implicit_object_call_chainable,
-      $._implicit_object_call,
-    ],
   ],
 
   conflicts: $ => [
@@ -342,6 +329,22 @@ module.exports = grammar({
     ],
     [
       $.parenthesized_proc_type,
+    ],
+
+    // When the parser is in a state such as:
+    //   case { 1, 2 }
+    //   when { <expression>, <expression> }
+    //                         ^
+    // we don't know if one of the expressions has an implicit object. So we
+    // will let the parser decide dynamically which tuple type to use.
+    // implicit_object_tuple is always aliased to tuple, so the resulting node
+    // will look the same either way.
+    //
+    // (It would be possible to track implicit objects in the external scanner, but that
+    // adds pointless complexity).
+    [
+      $.implicit_object_tuple,
+      $.tuple,
     ],
   ],
 
@@ -1788,7 +1791,7 @@ module.exports = grammar({
     static_array_type: $ => prec('atomic_type', seq($._type, '[', $._numeric_type, ']')),
 
     _dot_call: $ => {
-      const receiver = field('receiver', $._expression)
+      const receiver = field('receiver', choice($._expression, $.implicit_object))
 
       const method = field('method', choice(
         $.identifier,
@@ -1889,133 +1892,21 @@ module.exports = grammar({
       return seq('::', method)
     },
 
-    implicit_object_method_identifier: $ => token(seq(
-      '.',
-      repeat(/\s/),
-      ident_start,
-      repeat(ident_part),
-      optional(/[?!]/),
-    )),
-
-    implicit_object_method_operator: $ => token(seq(
-      '.',
-      repeat(/\s/),
-      choice(...operator_tokens),
-    )),
-
-    implicit_object_ivar: $ => token(seq(
-      '.',
-      repeat(/\s/),
-      '@',
-      ident_start,
-      repeat(ident_part),
-    )),
-
-    implicit_object_index_operator: $ => {
-      const args = field('arguments', alias($.bracket_argument_list, $.argument_list))
+    implicit_object_tuple: $ => {
+      const expression = seq(optional($._implicit_object_available), $._expression)
 
       return seq(
-        '.',
-        alias($._start_of_index_operator, '['),
-        args,
-        choice(']', ']?'),
+        alias($._start_of_hash_or_tuple, '{'),
+        expression,
+        repeat(seq(',', expression)),
+        optional(','),
+        '}',
       )
     },
-
-    // The primary rule for implicit objects
-    _implicit_object_call: $ => alias(
-      choice(
-        $.implicit_object_call_chainable,
-        $.implicit_object_call_unchainable,
-      ),
-      $.implicit_object_call,
-    ),
-
-    // An implicit object call that may not be chained
-    // E.g. `&.foo 5`
-    implicit_object_call_unchainable: $ => {
-      const chained_receiver = field('receiver',
-        alias($.implicit_object_call_chainable, $.implicit_object_call),
-      )
-
-      const method_name = field('method', choice(
-        alias($.implicit_object_method_identifier, $.identifier),
-        alias($.implicit_object_method_operator, $.operator),
-      ))
-
-      const argument_list = field('arguments',
-        alias($.argument_list_no_parens, $.argument_list),
-      )
-
-      const argument_list_with_block = field('arguments',
-        alias($.argument_list_no_parens_with_block, $.argument_list),
-      )
-
-      return seq(
-        optional(chained_receiver),
-        choice(
-          seq(method_name, argument_list),
-          seq(method_name, argument_list_with_block),
-        ),
-      )
-    },
-
-    // An implicit object call that could be immediately followed by another implicit object call
-    // E.g. `&.foo(5)`
-    implicit_object_call_chainable: $ => {
-      const chained_receiver = field('receiver',
-        alias($.implicit_object_call_chainable, $.implicit_object_call),
-      )
-
-      const method_name = field('method', choice(
-        alias($.implicit_object_method_identifier, $.identifier),
-        alias($.implicit_object_method_operator, $.operator),
-      ))
-
-      const argument_list = field('arguments', choice(
-        alias($.argument_list_with_parens, $.argument_list),
-        alias($.argument_list_no_parens, $.argument_list),
-      ))
-
-      const argument_list_with_block = field('arguments',
-        alias($.argument_list_with_parens_and_block, $.argument_list),
-      )
-
-      const brace_block = field('block', alias($.brace_block, $.block))
-
-      const do_end_block = field('block', alias($.do_end_block, $.block))
-
-      return seq(
-        optional(chained_receiver),
-        choice(
-          prec.right(seq(method_name, optional(
-            field('arguments', alias($.argument_list_with_parens, $.argument_list)),
-          ))),
-          seq(method_name, optional(argument_list), brace_block),
-          seq(method_name, optional(argument_list), do_end_block),
-          seq(method_name, argument_list_with_block),
-          alias($.implicit_object_ivar, $.instance_var),
-          alias($.implicit_object_index_operator, $.index_call),
-        ),
-      )
-    },
-
-    implicit_object_tuple: $ => seq(
-      alias($._start_of_hash_or_tuple, '{'),
-      optional(seq(
-        $._expression,
-        repeat(seq(',', $._expression)),
-        ',',
-      )),
-      $._implicit_object_call,
-      repeat(seq(',', choice($._expression, $._implicit_object_call))),
-      optional(','),
-      '}',
-    ),
 
     // A subset of method calls that can be the LHS of an assignment
     assign_call: $ => {
-      const receiver = field('receiver', $._expression)
+      const receiver = field('receiver', choice($._expression, $.implicit_object))
       const method_identifier = field('method', $.identifier)
 
       return prec('dot_operator', seq(receiver, '.', method_identifier))
@@ -2035,7 +1926,7 @@ module.exports = grammar({
     },
 
     index_call: $ => {
-      const receiver = field('receiver', $._expression)
+      const receiver = field('receiver', choice($._expression, $.implicit_object))
       const operator = field('method', alias('[', $.operator))
       const args = field('arguments', alias($.bracket_argument_list, $.argument_list))
 
@@ -2440,7 +2331,7 @@ module.exports = grammar({
         alias($._block_ampersand, '&'),
         choice(
           $._expression,
-          $._implicit_object_call,
+          $._implicit_object_available,
         ),
       ))
     },
@@ -2596,7 +2487,7 @@ module.exports = grammar({
     when: $ => {
       const cond = field('cond', choice(
         $._expression,
-        $._implicit_object_call,
+        $._implicit_object_available,
         alias($.implicit_object_tuple, $.tuple),
       ))
 
@@ -2637,7 +2528,8 @@ module.exports = grammar({
         $.true,
         $.false,
         $.nil,
-        $._implicit_object_call,
+        $._implicit_object_available,
+        $.call,
       ))
 
       return seq(

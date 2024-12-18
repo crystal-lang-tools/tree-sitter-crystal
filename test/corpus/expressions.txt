@@ -2360,6 +2360,8 @@ method(&.@ivar)
 method(&.take_block(&.foo))
 method(&.take_block(&.@foo))
 method(&.take_block { |f| f.foo })
+method(&.assign=(2))
+method(&.assign = 2)
 --------------------------------------------------------------------------------
 
 (source_file
@@ -2367,13 +2369,15 @@ method(&.take_block { |f| f.foo })
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier)))))
   (call
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier)))))
   (call
     receiver: (array
@@ -2383,7 +2387,8 @@ method(&.take_block { |f| f.foo })
     arguments: (argument_list
       (string)
       (block_argument
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier)
           arguments: (argument_list
             (constant))))))
@@ -2391,15 +2396,8 @@ method(&.take_block { |f| f.foo })
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
-          (index_call
-            arguments: (argument_list
-              (identifier)))))))
-  (call
-    method: (identifier)
-    arguments: (argument_list
-      (block_argument
-        (implicit_object_call
+        (index_call
+          receiver: (implicit_object)
           method: (operator)
           arguments: (argument_list
             (identifier))))))
@@ -2407,7 +2405,17 @@ method(&.take_block { |f| f.foo })
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
+          method: (operator)
+          arguments: (argument_list
+            (identifier))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (call
+          receiver: (implicit_object)
           method: (operator)
           arguments: (argument_list
             (integer))))))
@@ -2415,7 +2423,8 @@ method(&.take_block { |f| f.foo })
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (operator)
           arguments: (argument_list
             (integer))))))
@@ -2423,33 +2432,39 @@ method(&.take_block { |f| f.foo })
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
-          (instance_var)))))
+        (call
+          receiver: (implicit_object)
+          method: (instance_var)))))
   (call
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier)
           arguments: (argument_list
             (block_argument
-              (implicit_object_call
+              (call
+                receiver: (implicit_object)
                 method: (identifier))))))))
   (call
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier)
           arguments: (argument_list
             (block_argument
-              (implicit_object_call
-                (instance_var))))))))
+              (call
+                receiver: (implicit_object)
+                method: (instance_var))))))))
   (call
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier)
           block: (block
             params: (param_list
@@ -2457,7 +2472,25 @@ method(&.take_block { |f| f.foo })
                 name: (identifier)))
             (call
               receiver: (identifier)
-              method: (identifier))))))))
+              method: (identifier)))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (assign
+          lhs: (assign_call
+            receiver: (implicit_object)
+            method: (identifier))
+          rhs: (integer)))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (assign
+          lhs: (assign_call
+            receiver: (implicit_object)
+            method: (identifier))
+          rhs: (integer))))))
 
 ================================================================================
 precedence of block attachment with &. short block syntax
@@ -2466,6 +2499,9 @@ outer method &.take_block do "inner" end
 outer method &.take_block { "inner" }
 outer(method &.take_block do "inner" end)
 outer method(&.take_block) do "inner" end
+
+a b &.c 1, d do  end
+a b &.c 1, d {  }
 --------------------------------------------------------------------------------
 
 (source_file
@@ -2476,7 +2512,8 @@ outer method(&.take_block) do "inner" end
         method: (identifier)
         arguments: (argument_list
           (block_argument
-            (implicit_object_call
+            (call
+              receiver: (implicit_object)
               method: (identifier)
               block: (block
                 (string))))))))
@@ -2487,7 +2524,8 @@ outer method(&.take_block) do "inner" end
         method: (identifier)
         arguments: (argument_list
           (block_argument
-            (implicit_object_call
+            (call
+              receiver: (implicit_object)
               method: (identifier)
               block: (block
                 (string))))))))
@@ -2498,7 +2536,8 @@ outer method(&.take_block) do "inner" end
         method: (identifier)
         arguments: (argument_list
           (block_argument
-            (implicit_object_call
+            (call
+              receiver: (implicit_object)
               method: (identifier)
               block: (block
                 (string))))))))
@@ -2509,10 +2548,40 @@ outer method(&.take_block) do "inner" end
         method: (identifier)
         arguments: (argument_list
           (block_argument
-            (implicit_object_call
+            (call
+              receiver: (implicit_object)
               method: (identifier))))))
     block: (block
-      (string))))
+      (string)))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (block_argument
+            (call
+              receiver: (implicit_object)
+              method: (identifier)
+              arguments: (argument_list
+                (integer)
+                (identifier))
+              block: (block)))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (block_argument
+            (call
+              receiver: (implicit_object)
+              method: (identifier)
+              arguments: (argument_list
+                (integer)
+                (call
+                  method: (identifier)
+                  block: (block))))))))))
 
 ================================================================================
 chained &. syntax
@@ -2533,6 +2602,11 @@ top 0, &.lvl1 1, &.lvl2 2, &.lvl3 3
 # demonstrating block precedence
 a &.b c { "in c" }.d.e
 a &.b 'b' { "in b" }.d.e
+
+a.select(&.foo[1].[2][3])
+
+method(&.a[1])
+method(&.a [1])
 --------------------------------------------------------------------------------
 
 (source_file
@@ -2540,16 +2614,18 @@ a &.b 'b' { "in b" }.d.e
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
-          receiver: (implicit_object_call
+        (call
+          receiver: (call
+            receiver: (implicit_object)
             method: (identifier))
           method: (identifier)))))
   (call
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
-          receiver: (implicit_object_call
+        (call
+          receiver: (call
+            receiver: (implicit_object)
             method: (identifier))
           method: (operator)
           arguments: (argument_list
@@ -2558,12 +2634,13 @@ a &.b 'b' { "in b" }.d.e
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
-          receiver: (implicit_object_call
-            receiver: (implicit_object_call
-              receiver: (implicit_object_call
-                receiver: (implicit_object_call
-                  receiver: (implicit_object_call
+        (call
+          receiver: (index_call
+            receiver: (call
+              receiver: (call
+                receiver: (call
+                  receiver: (call
+                    receiver: (implicit_object)
                     method: (identifier))
                   method: (identifier)
                   block: (block
@@ -2575,18 +2652,20 @@ a &.b 'b' { "in b" }.d.e
               arguments: (argument_list
                 (nil)
                 (block_argument
-                  (implicit_object_call
+                  (call
+                    receiver: (implicit_object)
                     method: (identifier)))))
-            (index_call
-              arguments: (argument_list
-                (integer))))
-          (instance_var)))))
+            method: (operator)
+            arguments: (argument_list
+              (integer)))
+          method: (instance_var)))))
   (call
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
-          receiver: (implicit_object_call
+        (call
+          receiver: (call
+            receiver: (implicit_object)
             method: (identifier))
           method: (identifier)
           arguments: (argument_list
@@ -2596,17 +2675,20 @@ a &.b 'b' { "in b" }.d.e
     arguments: (argument_list
       (integer)
       (block_argument
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier)
           arguments: (argument_list
             (integer)
             (block_argument
-              (implicit_object_call
+              (call
+                receiver: (implicit_object)
                 method: (identifier)
                 arguments: (argument_list
                   (integer)
                   (block_argument
-                    (implicit_object_call
+                    (call
+                      receiver: (implicit_object)
                       method: (identifier)
                       arguments: (argument_list
                         (integer))))))))))))
@@ -2615,7 +2697,8 @@ a &.b 'b' { "in b" }.d.e
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier)
           arguments: (argument_list
             (call
@@ -2630,16 +2713,120 @@ a &.b 'b' { "in b" }.d.e
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (implicit_object_call
-          receiver: (implicit_object_call
-            receiver: (implicit_object_call
+        (call
+          receiver: (call
+            receiver: (call
+              receiver: (implicit_object)
               method: (identifier)
               arguments: (argument_list
                 (char))
               block: (block
                 (string)))
             method: (identifier))
-          method: (identifier))))))
+          method: (identifier)))))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (index_call
+          receiver: (index_call
+            receiver: (index_call
+              receiver: (call
+                receiver: (implicit_object)
+                method: (identifier))
+              method: (operator)
+              arguments: (argument_list
+                (integer)))
+            method: (operator)
+            arguments: (argument_list
+              (integer)))
+          method: (operator)
+          arguments: (argument_list
+            (integer))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (index_call
+          receiver: (call
+            receiver: (implicit_object)
+            method: (identifier))
+          method: (operator)
+          arguments: (argument_list
+            (integer))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (call
+          receiver: (implicit_object)
+          method: (identifier)
+          arguments: (argument_list
+            (array
+              (integer))))))))
+
+================================================================================
+&. syntax with assignment
+================================================================================
+foo.each(&.bar=(1))
+foo.each(&.bar = 1)
+a.tap(&.[0] = 5)
+a(&.b.c[0] = d = e = f)
+--------------------------------------------------------------------------------
+
+(source_file
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (assign
+          lhs: (assign_call
+            receiver: (implicit_object)
+            method: (identifier))
+          rhs: (integer)))))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (assign
+          lhs: (assign_call
+            receiver: (implicit_object)
+            method: (identifier))
+          rhs: (integer)))))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (assign
+          lhs: (index_call
+            receiver: (implicit_object)
+            method: (operator)
+            arguments: (argument_list
+              (integer)))
+          rhs: (integer)))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (assign
+          lhs: (index_call
+            receiver: (call
+              receiver: (call
+                receiver: (implicit_object)
+                method: (identifier))
+              method: (identifier))
+            method: (operator)
+            arguments: (argument_list
+              (integer)))
+          rhs: (assign
+            lhs: (identifier)
+            rhs: (assign
+              lhs: (identifier)
+              rhs: (identifier))))))))
 
 ================================================================================
 ampersand disambiguation
@@ -3192,7 +3379,8 @@ end
             (string)))
         (integer))
       (when
-        cond: (implicit_object_call
+        cond: (call
+          receiver: (implicit_object)
           method: (identifier)))
       (when
         cond: (false)
@@ -3209,7 +3397,8 @@ end
     cond: (identifier)
     (when
       cond: (identifier)
-      cond: (implicit_object_call
+      cond: (call
+        receiver: (implicit_object)
         method: (identifier)
         arguments: (argument_list
           (named_expr
@@ -3220,7 +3409,8 @@ end
             (char))))
       (identifier))
     (when
-      cond: (implicit_object_call
+      cond: (call
+        receiver: (implicit_object)
         method: (identifier)
         arguments: (argument_list
           (integer)
@@ -3240,23 +3430,28 @@ end
       (identifier))
     (when
       cond: (tuple
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier))
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier))
         (identifier))
       (true))
     (when
       cond: (tuple
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier))
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier))
         (integer))
       cond: (tuple
         (identifier)
         (identifier)
-        (implicit_object_call
+        (call
+          receiver: (implicit_object)
           method: (identifier)
           arguments: (argument_list
             (integer))
@@ -3267,13 +3462,15 @@ end
       (case
         cond: (identifier)
         (when
-          cond: (implicit_object_call
+          cond: (call
+            receiver: (implicit_object)
             method: (operator)
             arguments: (argument_list
               (integer)))
           cond: (false))
         (when
-          cond: (implicit_object_call
+          cond: (call
+            receiver: (implicit_object)
             method: (operator)
             arguments: (argument_list
               (integer)
@@ -3281,7 +3478,8 @@ end
                 name: (identifier)
                 (integer)))))
         (when
-          cond: (implicit_object_call
+          cond: (call
+            receiver: (implicit_object)
             method: (identifier)
             arguments: (argument_list
               (block_argument
@@ -3327,7 +3525,8 @@ end
       (case
         cond: (identifier)
         (in
-          cond: (implicit_object_call
+          cond: (call
+            receiver: (implicit_object)
             method: (identifier)))
         (in
           cond: (constant))))
@@ -3335,7 +3534,8 @@ end
       cond: (true)
       cond: (constant))
     (in
-      cond: (implicit_object_call
+      cond: (call
+        receiver: (implicit_object)
         method: (identifier))
       (integer))
     (in

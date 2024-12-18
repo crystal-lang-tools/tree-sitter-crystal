@@ -2227,6 +2227,10 @@
             "named": true
           },
           {
+            "type": "implicit_object",
+            "named": true
+          },
+          {
             "type": "include",
             "named": true
           },
@@ -3221,10 +3225,6 @@
           "named": true
         },
         {
-          "type": "implicit_object_call",
-          "named": true
-        },
-        {
           "type": "include",
           "named": true
         },
@@ -3817,6 +3817,10 @@
             "named": true
           },
           {
+            "type": "implicit_object",
+            "named": true
+          },
+          {
             "type": "include",
             "named": true
           },
@@ -4186,6 +4190,10 @@
           },
           {
             "type": "if",
+            "named": true
+          },
+          {
+            "type": "implicit_object",
             "named": true
           },
           {
@@ -9815,70 +9823,6 @@
     }
   },
   {
-    "type": "implicit_object_call",
-    "named": true,
-    "fields": {
-      "arguments": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "argument_list",
-            "named": true
-          }
-        ]
-      },
-      "block": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "block",
-            "named": true
-          }
-        ]
-      },
-      "method": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "operator",
-            "named": true
-          }
-        ]
-      },
-      "receiver": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "implicit_object_call",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "index_call",
-          "named": true
-        },
-        {
-          "type": "instance_var",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "in",
     "named": true,
     "fields": {
@@ -9886,6 +9830,10 @@
         "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "call",
+            "named": true
+          },
           {
             "type": "constant",
             "named": true
@@ -9896,10 +9844,6 @@
           },
           {
             "type": "generic_instance_type",
-            "named": true
-          },
-          {
-            "type": "implicit_object_call",
             "named": true
           },
           {
@@ -10255,7 +10199,7 @@
       },
       "method": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "operator",
@@ -10265,7 +10209,7 @@
       },
       "receiver": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "(",
@@ -10401,6 +10345,10 @@
           },
           {
             "type": "if",
+            "named": true
+          },
+          {
+            "type": "implicit_object",
             "named": true
           },
           {
@@ -20672,10 +20620,6 @@
           "named": true
         },
         {
-          "type": "implicit_object_call",
-          "named": true
-        },
-        {
           "type": "include",
           "named": true
         },
@@ -22989,10 +22933,6 @@
             "named": true
           },
           {
-            "type": "implicit_object_call",
-            "named": true
-          },
-          {
             "type": "include",
             "named": true
           },
@@ -24816,6 +24756,10 @@
   },
   {
     "type": "ignored_backslash",
+    "named": true
+  },
+  {
+    "type": "implicit_object",
     "named": true
   },
   {
