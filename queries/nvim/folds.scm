@@ -13,6 +13,7 @@
   (method_def)
   (module_def)
   (rescue_block)
+  (select)
   (struct_def)
   (union_def)
   (when)
