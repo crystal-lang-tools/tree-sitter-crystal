@@ -4004,16 +4004,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "argument_list",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -4372,16 +4362,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "argument_list",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -10265,10 +10245,20 @@
     "fields": {
       "arguments": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "argument_list",
+            "named": true
+          }
+        ]
+      },
+      "method": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "operator",
             "named": true
           }
         ]
@@ -10587,6 +10577,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "argument_list",
+          "named": true
+        }
+      ]
     }
   },
   {
