@@ -44,7 +44,6 @@ compiler/crystal/loader/unix.cr
 compiler/crystal/macros.cr
 compiler/crystal/macros/macros.cr
 compiler/crystal/macros/methods.cr
-compiler/crystal/semantic/filters.cr
 compiler/crystal/semantic/lib.cr
 compiler/crystal/semantic/literal_expander.cr
 compiler/crystal/semantic/restrictions.cr
@@ -122,7 +121,6 @@ crystal/system/unix/time.cr
 crystal/system/unix/urandom.cr
 crystal/system/user.cr
 crystal/system/wasi/dir.cr
-crystal/system/wasi/file_descriptor.cr
 crystal/system/win32/addrinfo.cr
 crystal/system/win32/addrinfo_win7.cr
 crystal/system/win32/cpucount.cr

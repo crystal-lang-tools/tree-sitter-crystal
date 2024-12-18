@@ -9840,10 +9840,14 @@
       },
       "method": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "instance_var",
             "named": true
           },
           {
@@ -9862,20 +9866,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "index_call",
-          "named": true
-        },
-        {
-          "type": "instance_var",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -10265,7 +10255,7 @@
       },
       "receiver": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "(",
