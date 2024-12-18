@@ -1446,24 +1446,10 @@ module.exports = grammar({
       )
     },
 
-    _control_expressions: $ => {
-      const expressions = seq(
-        $._expression,
-        repeat(seq(',', $._expression)),
-      )
-
-      const parenthesized_expressions = seq(
-        token.immediate('('),
-        optional(expressions),
-        optional(','),
-        ')',
-      )
-
-      return choice(
-        parenthesized_expressions,
-        expressions,
-      )
-    },
+    _control_expressions: $ => choice(
+      alias($.argument_list_with_parens, $.argument_list),
+      alias($.argument_list_no_parens, $.argument_list),
+    ),
 
     return: $ => seq('return', optional($._control_expressions)),
 
@@ -1474,17 +1460,10 @@ module.exports = grammar({
     yield: $ => {
       const with_expr = field('with', $._expression)
 
-      const argument_list = field('arguments', choice(
-        alias($.argument_list_with_parens, $.argument_list),
-        alias($.argument_list_with_parens_and_block, $.argument_list),
-        alias($.argument_list_no_parens, $.argument_list),
-        alias($.argument_list_no_parens_with_block, $.argument_list),
-      ))
-
       return seq(
         optional(seq('with', with_expr, $._end_of_with_expression)),
         'yield',
-        optional(argument_list),
+        optional($._control_expressions),
       )
     },
 

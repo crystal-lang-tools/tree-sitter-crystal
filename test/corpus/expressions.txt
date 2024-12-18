@@ -1593,7 +1593,8 @@ end
     cond: (constant)
     then: (then
       (return
-        (integer))))
+        (argument_list
+          (integer)))))
   (if
     cond: (identifier)
     else: (elsif
@@ -1742,7 +1743,8 @@ end
     name: (identifier)
     (modifier_if
       then: (return
-        (integer))
+        (argument_list
+          (integer)))
       cond: (call
         method: (identifier)))
     (modifier_if
@@ -1844,7 +1846,8 @@ end
     name: (identifier)
     (modifier_unless
       then: (return
-        (integer))
+        (argument_list
+          (integer)))
       cond: (call
         method: (identifier)))
     (modifier_unless
@@ -2823,10 +2826,6 @@ def bar
   with a yield! yield *something
 
   yield &+ yield
-
-  # Technically block arguments are allowed, but will be ignored
-  yield("foo", &->{"bar"})
-  yield 7, &->(a){a+1}
 end
 --------------------------------------------------------------------------------
 
@@ -2838,17 +2837,17 @@ end
     name: (identifier)
     (yield
       with: (yield)
-      arguments: (argument_list
+      (argument_list
         (yield)))
     (comment)
     (yield
       with: (yield
-        arguments: (argument_list
+        (argument_list
           (integer)))
-      arguments: (argument_list
+      (argument_list
         (symbol)
         (yield
-          arguments: (argument_list
+          (argument_list
             (string)))))
     (yield
       with: (call
@@ -2856,34 +2855,13 @@ end
         arguments: (argument_list
           (call
             method: (identifier))))
-      arguments: (argument_list
+      (argument_list
         (splat
           (identifier))))
     (op_call
       receiver: (yield)
       operator: (operator)
-      argument: (yield))
-    (comment)
-    (yield
-      arguments: (argument_list
-        (string)
-        (block_argument
-          (proc
-            block: (block
-              (string))))))
-    (yield
-      arguments: (argument_list
-        (integer)
-        (block_argument
-          (proc
-            params: (param_list
-              (param
-                name: (identifier)))
-            block: (block
-              (op_call
-                receiver: (identifier)
-                operator: (operator)
-                argument: (integer)))))))))
+      argument: (yield))))
 
 ================================================================================
 operator method calls
@@ -3575,54 +3553,62 @@ end
       (param
         (identifier)))
     (return
-      (identifier)
-      (identifier))
-    (return
-      (integer)
-      (integer))
-    (return
-      (tuple
-        (identifier)
-        (identifier))
-      (array
+      (argument_list
         (identifier)
         (identifier)))
     (return
-      (integer)
-      (integer)
-      (integer)
-      (integer)
-      (integer)
-      (integer)
-      (integer)
-      (integer)
-      (integer))
+      (argument_list
+        (integer)
+        (integer)))
     (return
-      (op_call
-        (integer)
-        (operator)
-        (integer))
-      (op_call
-        (integer)
-        (operator)
-        (integer))
-      (call
-        (identifier)
-        (identifier)
-        (argument_list
+      (argument_list
+        (tuple
+          (identifier)
+          (identifier))
+        (array
           (identifier)
           (identifier))))
-    (return)
     (return
-      (identifier)
-      (identifier))
+      (argument_list
+        (integer)
+        (integer)
+        (integer)
+        (integer)
+        (integer)
+        (integer)
+        (integer)
+        (integer)
+        (integer)))
     (return
-      (integer)
-      (integer)
-      (integer)
-      (integer)
-      (integer)
-      (integer))
+      (argument_list
+        (op_call
+          (integer)
+          (operator)
+          (integer))
+        (op_call
+          (integer)
+          (operator)
+          (integer))
+        (call
+          (identifier)
+          (identifier)
+          (argument_list
+            (identifier)
+            (identifier)))))
+    (return
+      (argument_list))
+    (return
+      (argument_list
+        (identifier)
+        (identifier)))
+    (return
+      (argument_list
+        (integer)
+        (integer)
+        (integer)
+        (integer)
+        (integer)
+        (integer)))
     (return)
     (integer)
     (ERROR)))
