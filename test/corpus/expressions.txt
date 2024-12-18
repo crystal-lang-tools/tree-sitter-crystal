@@ -2923,7 +2923,11 @@ a.[count: 1, values: [5]] =0
 b.["q": 1, q?: 3, %q(stuff): [5]] =0
 
 a.[2] %= 5
+c.[0].[0] += 5
+
 a.[0], *b.[0] = 1, 2, 3
+
+a.[0].setter, a.[1].setter = things
 --------------------------------------------------------------------------------
 
 (source_file
@@ -3001,6 +3005,17 @@ a.[0], *b.[0] = 1, 2, 3
       (argument_list
         (integer)))
     rhs: (integer))
+  (op_assign
+    lhs: (index_call
+      receiver: (index_call
+        receiver: (identifier)
+        method: (operator)
+        (argument_list
+          (integer)))
+      method: (operator)
+      (argument_list
+        (integer)))
+    rhs: (integer))
   (multi_assign
     lhs: (index_call
       receiver: (identifier)
@@ -3015,7 +3030,23 @@ a.[0], *b.[0] = 1, 2, 3
           (integer))))
     rhs: (integer)
     rhs: (integer)
-    rhs: (integer)))
+    rhs: (integer))
+  (multi_assign
+    lhs: (assign_call
+      receiver: (index_call
+        receiver: (identifier)
+        method: (operator)
+        (argument_list
+          (integer)))
+      method: (identifier))
+    lhs: (assign_call
+      receiver: (index_call
+        receiver: (identifier)
+        method: (operator)
+        (argument_list
+          (integer)))
+      method: (identifier))
+    rhs: (identifier)))
 
 ================================================================================
 index assignment
