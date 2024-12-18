@@ -2026,6 +2026,19 @@ module.exports = grammar({
       )
     },
 
+    // Assignment to a property of an implicit object
+    // `&.foo = a = b`
+    implicit_object_assign: $ => {
+      const chained_lhs = field('lhs',
+        alias($.implicit_call_chainable, $.implicit_object_call),
+      )
+      const rhs = field('rhs', $._expression)
+
+      return prec('assignment_operator',
+        seq(chained_lhs, '=', rhs),
+      )
+    },
+
     implicit_object_tuple: $ => seq(
       alias($._start_of_hash_or_tuple, '{'),
       optional(seq(
@@ -2462,6 +2475,7 @@ module.exports = grammar({
         choice(
           $._expression,
           $._implicit_object_call,
+          $.implicit_object_assign,
         ),
       ))
     },

@@ -2721,6 +2721,52 @@ method(&.a [1])
               (integer))))))))
 
 ================================================================================
+&. syntax with assignment
+================================================================================
+foo.each(&.bar=(1))
+foo.each(&.bar = 1)
+a(&.@b.c[0] = d = e = f)
+--------------------------------------------------------------------------------
+
+(source_file
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          method: (identifier)
+          arguments: (argument_list
+            (integer))))))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_assign
+          lhs: (implicit_object_call
+            method: (identifier))
+          rhs: (integer)))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_assign
+          lhs: (implicit_object_call
+            receiver: (implicit_object_call
+              receiver: (implicit_object_call
+                method: (instance_var))
+              method: (identifier))
+            method: (operator)
+            arguments: (argument_list
+              (integer)))
+          rhs: (assign
+            lhs: (identifier)
+            rhs: (assign
+              lhs: (identifier)
+              rhs: (identifier))))))))
+
+================================================================================
 ampersand disambiguation
 ================================================================================
 ## Operators ##

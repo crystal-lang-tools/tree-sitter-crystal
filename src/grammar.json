@@ -9055,6 +9055,40 @@
         }
       ]
     },
+    "implicit_object_assign": {
+      "type": "PREC",
+      "value": "assignment_operator",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "lhs",
+            "content": {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "implicit_call_chainable"
+              },
+              "named": true,
+              "value": "implicit_object_call"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "="
+          },
+          {
+            "type": "FIELD",
+            "name": "rhs",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          }
+        ]
+      }
+    },
     "implicit_object_tuple": {
       "type": "SEQ",
       "members": [
@@ -11420,6 +11454,10 @@
               {
                 "type": "SYMBOL",
                 "name": "_implicit_object_call"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "implicit_object_assign"
               }
             ]
           }
