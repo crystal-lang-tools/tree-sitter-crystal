@@ -89,9 +89,15 @@ enum Token {
 
     REGEX_MODIFIER,
 
+    // A zero-width token that must be followed by a method call `.` token.
+    // Only valid as certain points in the grammar, indicated by
+    // IMPLICIT_OBJECT_AVAILABLE.
+    IMPLICIT_OBJECT,
+
     // Never returned
     START_OF_PARENLESS_ARGS,
     END_OF_RANGE,
+    IMPLICIT_OBJECT_AVAILABLE,
 
     // Only used when error recovery mode is active
     ERROR_RECOVERY,
@@ -1848,20 +1854,51 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
             break;
 
         case '.':
-            if (valid_symbols[BEGINLESS_RANGE_OPERATOR] && !valid_symbols[START_OF_PARENLESS_ARGS]) {
-                lex_advance(lexer);
-                if (lexer->lookahead != '.') {
-                    return false;
-                }
-                lex_advance(lexer);
-                if (lexer->lookahead == '.') {
-                    lex_advance(lexer);
-                }
+            {
+                bool implicit_object_possible = valid_symbols[IMPLICIT_OBJECT] && valid_symbols[IMPLICIT_OBJECT_AVAILABLE] && !valid_symbols[ERROR_RECOVERY];
+                bool beginless_range_possible = valid_symbols[BEGINLESS_RANGE_OPERATOR] && !valid_symbols[START_OF_PARENLESS_ARGS];
 
-                lexer->result_symbol = BEGINLESS_RANGE_OPERATOR;
-                return true;
+                if (implicit_object_possible && beginless_range_possible) {
+                    lexer->mark_end(lexer);
+                    lex_advance(lexer);
+
+                    if (lexer->lookahead != '.') {
+                        // This looks like the beginning of a method call, not a range operator, so
+                        // it's the right place to inject an IMPLICIT_OBJECT token. IMPLICIT_OBJECT
+                        // is a zero-width token, we don't want to mark the end again.
+                        lexer->result_symbol = IMPLICIT_OBJECT;
+                        return true;
+                    }
+
+                    // This looks like a range operator.
+                    lex_advance(lexer);
+                    if (lexer->lookahead == '.') {
+                        lex_advance(lexer);
+                    }
+
+                    lexer->mark_end(lexer);
+                    lexer->result_symbol = BEGINLESS_RANGE_OPERATOR;
+                    return true;
+                } else if (implicit_object_possible) {
+                    // IMPLICIT_OBJECT is a zero-width token, we don't want to advance.
+                    lexer->result_symbol = IMPLICIT_OBJECT;
+                    return true;
+                } else if (beginless_range_possible) {
+                    lex_advance(lexer);
+                    if (lexer->lookahead != '.') {
+                        return false;
+                    }
+
+                    lex_advance(lexer);
+                    if (lexer->lookahead == '.') {
+                        lex_advance(lexer);
+                    }
+
+                    lexer->result_symbol = BEGINLESS_RANGE_OPERATOR;
+                    return true;
+                }
+                break;
             }
-            break;
         case 'e':
             if (valid_symbols[REGULAR_ENSURE_KEYWORD] || valid_symbols[MODIFIER_ENSURE_KEYWORD]) {
                 lex_advance(lexer);

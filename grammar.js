@@ -118,10 +118,14 @@ module.exports = grammar({
 
     $.regex_modifier,
 
+    // A zero-width token used as the receiver of an implicit call.
+    $.implicit_object,
+
     // These symbols are never actually returned. They signal the current scope
     // to the scanner.
     $._start_of_parenless_args,
     $._end_of_range,
+    $._implicit_object_available,
 
     // This symbol is not used in the grammar. It signals to the scanner when
     // error recovery mode is active.
