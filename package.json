@@ -51,7 +51,7 @@
     "eslint": "^9.16.0",
     "globals": "^15.13.0",
     "prebuildify": "^6.0.1",
-    "tree-sitter-cli": "^0.24.4"
+    "tree-sitter-cli": "^0.24.5"
   },
   "peerDependencies": {
     "tree-sitter": "^0.22.1"
