@@ -1575,6 +1575,7 @@ ary[0..2] //= val.bar **= 7
   (op_assign
     lhs: (index_call
       receiver: (identifier)
+      method: (operator)
       arguments: (argument_list
         (range
           begin: (integer)
@@ -1827,6 +1828,7 @@ end
       then: (assign
         lhs: (index_call
           receiver: (identifier)
+          method: (operator)
           arguments: (argument_list
             (integer)))
         rhs: (integer))
@@ -1930,6 +1932,7 @@ end
       then: (assign
         lhs: (index_call
           receiver: (identifier)
+          method: (operator)
           arguments: (argument_list
             (integer)))
         rhs: (integer))
@@ -2958,6 +2961,7 @@ a.[0].setter, a.[1].setter = things
 (source_file
   (index_call
     receiver: (identifier)
+    method: (operator)
     arguments: (argument_list
       (integer)))
   (index_call
@@ -2965,6 +2969,7 @@ a.[0].setter, a.[1].setter = things
       method: (identifier)
       block: (block
         (integer)))
+    method: (operator)
     arguments: (argument_list
       (integer)))
   (call
@@ -2973,6 +2978,7 @@ a.[0].setter, a.[1].setter = things
       (index_call
         receiver: (tuple
           (integer))
+        method: (operator)
         arguments: (argument_list
           (integer)))))
   (call
@@ -2985,6 +2991,7 @@ a.[0].setter, a.[1].setter = things
       (integer)))
   (index_call
     receiver: (identifier)
+    method: (operator)
     arguments: (argument_list
       (splat
         (tuple
@@ -2998,7 +3005,7 @@ a.[0].setter, a.[1].setter = things
     lhs: (index_call
       receiver: (identifier)
       method: (operator)
-      (argument_list
+      arguments: (argument_list
         (named_expr
           name: (identifier)
           (integer))
@@ -3011,7 +3018,7 @@ a.[0].setter, a.[1].setter = things
     lhs: (index_call
       receiver: (identifier)
       method: (operator)
-      (argument_list
+      arguments: (argument_list
         (named_expr
           name: (string)
           (integer))
@@ -3027,7 +3034,7 @@ a.[0].setter, a.[1].setter = things
     lhs: (index_call
       receiver: (identifier)
       method: (operator)
-      (argument_list
+      arguments: (argument_list
         (integer)))
     rhs: (integer))
   (op_assign
@@ -3035,23 +3042,23 @@ a.[0].setter, a.[1].setter = things
       receiver: (index_call
         receiver: (identifier)
         method: (operator)
-        (argument_list
+        arguments: (argument_list
           (integer)))
       method: (operator)
-      (argument_list
+      arguments: (argument_list
         (integer)))
     rhs: (integer))
   (multi_assign
     lhs: (index_call
       receiver: (identifier)
       method: (operator)
-      (argument_list
+      arguments: (argument_list
         (integer)))
     lhs: (splat
       (index_call
         receiver: (identifier)
         method: (operator)
-        (argument_list
+        arguments: (argument_list
           (integer))))
     rhs: (integer)
     rhs: (integer)
@@ -3061,14 +3068,14 @@ a.[0].setter, a.[1].setter = things
       receiver: (index_call
         receiver: (identifier)
         method: (operator)
-        (argument_list
+        arguments: (argument_list
           (integer)))
       method: (identifier))
     lhs: (assign_call
       receiver: (index_call
         receiver: (identifier)
         method: (operator)
-        (argument_list
+        arguments: (argument_list
           (integer)))
       method: (identifier))
     rhs: (identifier)))
@@ -3095,35 +3102,42 @@ a[1], *b[0] = a
   (assign
     lhs: (index_call
       receiver: (identifier)
+      method: (operator)
       arguments: (argument_list
         (integer)))
     rhs: (integer))
   (multi_assign
     lhs: (index_call
       receiver: (identifier)
+      method: (operator)
       arguments: (argument_list
         (integer)))
     lhs: (index_call
       receiver: (identifier)
+      method: (operator)
       arguments: (argument_list
         (integer)
         (integer)))
     rhs: (index_call
       receiver: (identifier)
+      method: (operator)
       arguments: (argument_list
         (integer)))
     rhs: (index_call
       receiver: (identifier)
+      method: (operator)
       arguments: (argument_list
         (integer))))
   (multi_assign
     lhs: (index_call
       receiver: (identifier)
+      method: (operator)
       arguments: (argument_list
         (integer)))
     lhs: (splat
       (index_call
         receiver: (identifier)
+        method: (operator)
         arguments: (argument_list
           (integer))))
     rhs: (identifier)))
@@ -3819,6 +3833,7 @@ asm("
           receiver: (call
             receiver: (index_call
               receiver: (identifier)
+              method: (operator)
               arguments: (argument_list
                 (integer)))
             method: (identifier))

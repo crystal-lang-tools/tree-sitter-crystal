@@ -2019,22 +2019,27 @@ module.exports = grammar({
 
     index_operator: $ => {
       const receiver = field('receiver', $._expression)
+      const operator = field('method', alias($._start_of_index_operator, $.operator))
       const args = field('arguments', alias($.bracket_argument_list, $.argument_list))
 
       return prec('index_operator', seq(
         receiver,
-        alias($._start_of_index_operator, '['),
+        operator,
         args,
         choice(']', ']?'),
       ))
     },
 
     index_call: $ => {
+      const receiver = field('receiver', $._expression)
+      const operator = field('method', alias('[', $.operator))
+      const args = field('arguments', alias($.bracket_argument_list, $.argument_list))
+
       return seq(
-        field('receiver', $._expression),
+        receiver,
         '.',
-        field('method', alias('[', $.operator)),
-        alias($.bracket_argument_list, $.argument_list),
+        operator,
+        args,
         choice(']', ']?'),
       )
     },

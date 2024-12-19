@@ -10245,7 +10245,7 @@
     "fields": {
       "arguments": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "argument_list",
@@ -10577,16 +10577,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "argument_list",
-          "named": true
-        }
-      ]
     }
   },
   {
