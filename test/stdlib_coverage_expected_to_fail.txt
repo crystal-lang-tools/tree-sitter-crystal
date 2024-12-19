@@ -35,9 +35,7 @@ compiler/crystal/interpreter/interpreter.cr
 compiler/crystal/interpreter/op_code.cr
 compiler/crystal/interpreter/primitives.cr
 compiler/crystal/interpreter/pry_reader.cr
-compiler/crystal/interpreter/repl.cr
 compiler/crystal/interpreter/repl_reader.cr
-compiler/crystal/interpreter/value.cr
 compiler/crystal/loader.cr
 compiler/crystal/loader/msvc.cr
 compiler/crystal/loader/unix.cr
@@ -45,7 +43,6 @@ compiler/crystal/macros.cr
 compiler/crystal/macros/macros.cr
 compiler/crystal/macros/methods.cr
 compiler/crystal/semantic/filters.cr
-compiler/crystal/semantic/lib.cr
 compiler/crystal/semantic/literal_expander.cr
 compiler/crystal/semantic/restrictions.cr
 compiler/crystal/semantic/type_lookup.cr
@@ -68,7 +65,6 @@ crystal/datum.cr
 crystal/digest/md5.cr
 crystal/digest/sha1.cr
 crystal/dwarf/line_numbers.cr
-crystal/hasher.cr
 crystal/iconv.cr
 crystal/lib_iconv.cr
 crystal/mach_o.cr
@@ -121,10 +117,8 @@ crystal/system/unix/sysctl_cpucount.cr
 crystal/system/unix/time.cr
 crystal/system/unix/urandom.cr
 crystal/system/user.cr
-crystal/system/wasi/dir.cr
 crystal/system/wasi/file_descriptor.cr
 crystal/system/win32/addrinfo.cr
-crystal/system/win32/addrinfo_win7.cr
 crystal/system/win32/cpucount.cr
 crystal/system/win32/crypto.cr
 crystal/system/win32/dir.cr
@@ -161,7 +155,6 @@ exception/call_stack.cr
 exception/call_stack/dwarf.cr
 exception/call_stack/elf.cr
 exception/call_stack/libunwind.cr
-exception/call_stack/mach_o.cr
 exception/call_stack/null.cr
 exception/call_stack/stackwalk.cr
 exception/lib_unwind.cr
@@ -379,7 +372,6 @@ llvm/context.cr
 llvm/di_builder.cr
 llvm/enums.cr
 llvm/function_pass_manager.cr
-llvm/jit_compiler.cr
 llvm/lib_llvm.cr
 llvm/lib_llvm/core.cr
 llvm/lib_llvm/debug_info.cr
@@ -398,7 +390,6 @@ llvm/orc/lljit.cr
 llvm/orc/lljit_builder.cr
 llvm/orc/thread_safe_context.cr
 llvm/orc/thread_safe_module.cr
-llvm/parameter_collection.cr
 llvm/pass_builder_options.cr
 llvm/pass_manager_builder.cr
 llvm/pass_registry.cr
@@ -438,7 +429,6 @@ random/secure.cr
 range.cr
 range/bsearch.cr
 reference.cr
-reference_storage.cr
 regex.cr
 regex/engine.cr
 regex/lib_pcre.cr
@@ -458,7 +448,6 @@ spec/helpers/string.cr
 spec/item.cr
 static_array.cr
 string.cr
-string/builder.cr
 string/formatter.cr
 struct.cr
 syscall.cr
@@ -482,11 +471,9 @@ xml.cr
 xml/builder.cr
 xml/error.cr
 xml/libxml2.cr
-xml/node.cr
 yaml/builder.cr
 yaml/from_yaml.cr
 yaml/lib_yaml.cr
-yaml/pull_parser.cr
 yaml/schema/core.cr
 yaml/serialization.cr
 yaml/to_yaml.cr

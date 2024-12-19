@@ -92,17 +92,17 @@ pseudo methods
 
 class ClassName
   def initialize
-    self.is_a?(Object)
+    self.is_a?(Object)          # works
     self.nil?
-    typeof(self, other) # works
-    sizeof(self.class) # works
+    typeof(self, other)         # works
+    sizeof(self.class)          # works
     instance_sizeof(self.class) # works
     pointerof(self)
-    offsetof(self.class, 1) # works
-    self.as(Object)
-    self.as?(Object)
+    offsetof(self.class, 1)     # works
+    self.as(Object)             # works
+    self.as?(Object)            # works
     responds_to?(:method)
-    self.!
+    self.!                      # works
   end
 end
 
@@ -110,17 +110,16 @@ end
 
 (source_file
   (class_def
-    (constant)
+    name: (constant)
     (method_def
-      (identifier)
+      name: (identifier)
+      (is_a
+        receiver: (self)
+        type: (constant))
+      (comment)
       (call
-        (self)
-        (identifier)
-        (argument_list
-          (constant)))
-      (call
-        (self)
-        (identifier))
+        receiver: (self)
+        method: (identifier))
       (typeof
         (self)
         (identifier))
@@ -134,31 +133,30 @@ end
           (self)))
       (comment)
       (call
-        (identifier)
-        (argument_list
+        method: (identifier)
+        arguments: (argument_list
           (self)))
       (offsetof
         (class_type
           (self))
         (integer))
       (comment)
+      (as
+        receiver: (self)
+        type: (constant))
+      (comment)
+      (as
+        receiver: (self)
+        type: (constant))
+      (comment)
       (call
-        (self)
-        (identifier)
-        (argument_list
-          (constant)))
-      (call
-        (self)
-        (identifier)
-        (argument_list
-          (constant)))
-      (call
-        (identifier)
-        (argument_list
+        method: (identifier)
+        arguments: (argument_list
           (symbol)))
       (call
-        (self)
-        (operator)))))
+        receiver: (self)
+        method: (operator))
+      (comment))))
 
 =======================
 misc keywords / methods
@@ -217,24 +215,6 @@ end
       method: (identifier)
       arguments: (argument_list
         (string)))))
-
-============================
-.as method with pointer type
-============================
-
-node.as(LibXML::Node*)
-
----
-
-(source_file
-  (call
-    (identifier)
-    (identifier)
-    (argument_list
-      (op_call
-        (constant)
-        (operator)
-        (MISSING identifier)))))
 
 ==============================
 instance var with pointer type

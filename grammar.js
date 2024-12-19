@@ -179,6 +179,15 @@ module.exports = grammar({
       $._splattable_type,
     ],
 
+    [
+      'atomic_type',
+      $.is_a,
+    ],
+    [
+      'atomic_type',
+      $.as,
+    ],
+
     // Ensure `*a = b` parses as `(*a) = b`, when encountered as a standalone statement
     [
       $.lhs_splat,
@@ -540,14 +549,13 @@ module.exports = grammar({
       $.sizeof,
       $.instance_sizeof,
       $.offsetof,
+      $.is_a,
+      $.as,
       // TODO
       // super
       // previous_def
-      // is_a?
       // nil?
       // responds_to?
-      // as
-      // as?
       // pointerof
       // uninitialized
     ),
@@ -1502,6 +1510,32 @@ module.exports = grammar({
       ),
       ')',
     ),
+
+    is_a: $ => {
+      const receiver = field('receiver', $._expression)
+
+      return seq(
+        receiver,
+        '.',
+        'is_a?',
+        // We don't need to include the parentheses here, because
+        // _parenthesized_type will handle them
+        field('type', $._type),
+      )
+    },
+
+    as: $ => {
+      const receiver = field('receiver', $._expression)
+
+      return seq(
+        receiver,
+        '.',
+        choice('as', 'as?'),
+        // We don't need to include the parentheses here, because
+        // _parenthesized_type will handle them
+        field('type', $._type),
+      )
+    },
 
     _constant_segment: $ => token(seq(const_start, repeat(ident_part))),
 
