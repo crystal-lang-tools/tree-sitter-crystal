@@ -13378,11 +13378,19 @@
     },
     {
       "type": "SYMBOL",
+      "name": "implicit_object"
+    },
+    {
+      "type": "SYMBOL",
       "name": "_start_of_parenless_args"
     },
     {
       "type": "SYMBOL",
       "name": "_end_of_range"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_implicit_object_available"
     },
     {
       "type": "SYMBOL",
