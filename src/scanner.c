@@ -54,6 +54,8 @@ enum Token {
     BINARY_SLASH,
     BINARY_DOUBLE_SLASH,
 
+    DO_KEYWORD,
+
     REGULAR_IF_KEYWORD,
     MODIFIER_IF_KEYWORD,
 
@@ -1899,6 +1901,21 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                 }
                 break;
             }
+        case 'd':
+            if (valid_symbols[DO_KEYWORD]) {
+                lex_advance(lexer);
+                if (lexer->lookahead != 'o') { return false; }
+
+                lex_advance(lexer);
+                if (next_char_is_identifier(lexer)) {
+                    // This is some other identifier, not 'do'
+                    return false;
+                }
+
+                lexer->result_symbol = DO_KEYWORD;
+                return true;
+            }
+            break;
         case 'e':
             if (valid_symbols[REGULAR_ENSURE_KEYWORD] || valid_symbols[MODIFIER_ENSURE_KEYWORD]) {
                 lex_advance(lexer);
@@ -2113,6 +2130,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
     LOG_SYMBOL(REGEX_START);
     LOG_SYMBOL(BINARY_SLASH);
     LOG_SYMBOL(BINARY_DOUBLE_SLASH);
+    LOG_SYMBOL(DO_KEYWORD);
     LOG_SYMBOL(REGULAR_IF_KEYWORD);
     LOG_SYMBOL(MODIFIER_IF_KEYWORD);
     LOG_SYMBOL(REGULAR_UNLESS_KEYWORD);

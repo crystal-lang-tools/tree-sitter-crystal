@@ -24695,10 +24695,6 @@
     "named": false
   },
   {
-    "type": "do",
-    "named": false
-  },
-  {
     "type": "else",
     "named": false
   },

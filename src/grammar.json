@@ -10612,8 +10612,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "do"
+          "type": "SYMBOL",
+          "name": "_do_keyword"
         },
         {
           "type": "CHOICE",
@@ -12556,6 +12556,10 @@
     {
       "type": "SYMBOL",
       "name": "_binary_double_slash"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_do_keyword"
     },
     {
       "type": "SYMBOL",

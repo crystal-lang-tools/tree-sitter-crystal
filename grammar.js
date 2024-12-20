@@ -84,6 +84,8 @@ module.exports = grammar({
     $._binary_slash,
     $._binary_double_slash,
 
+    $._do_keyword,
+
     $._regular_if_keyword,
     $._modifier_if_keyword,
 
@@ -2307,7 +2309,7 @@ module.exports = grammar({
       const params = seq('|', field('params', alias($.block_param_list, $.param_list)), '|')
 
       return seq(
-        'do',
+        $._do_keyword,
         optional(params),
         optional($._statements),
         optional($._rescue_else_ensure),
