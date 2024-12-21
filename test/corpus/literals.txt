@@ -533,7 +533,7 @@ puts 1, <<-C, 3
           1
   C
 
-a,b,c = <<-a, <<-b, <<-c, <<-'😀嚤&÷🔮'
+a,b,c,d = <<-a, <<-b, <<-c, <<-'😀嚤&÷🔮'
 aaaa\na\ aa
 a
 bbbbb#{1}bbb
@@ -559,6 +559,7 @@ c
     (heredoc_content)
     (heredoc_end))
   (assign
+    lhs: (identifier)
     lhs: (identifier)
     lhs: (identifier)
     lhs: (identifier)
@@ -1108,7 +1109,7 @@ regexes
 ================================================================================
 //
 /;/
-/
+/\
 /
 /#/
 /🔎/
@@ -1755,6 +1756,8 @@ end
 ================================================================================
 creating procs from methods
 ================================================================================
+foo = nil
+
 method          = ->qux=(String)
 global_method   = ->::qux!
 instance_method = ->foo.bar
@@ -1767,7 +1770,7 @@ class_var       = ->@@var.size
 extreme \
 =
 ->
-hash \
+foo \
 .
 [] \
 ( \
@@ -1776,6 +1779,9 @@ Int32 \
 --------------------------------------------------------------------------------
 
 (expressions
+  (assign
+    lhs: (identifier)
+    rhs: (nil))
   (assign
     lhs: (identifier)
     rhs: (method_proc
