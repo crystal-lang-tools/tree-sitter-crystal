@@ -668,28 +668,28 @@ a, b, c = d.val, e.val, f = {1, 2, 3}
 --------------------------------------------------------------------------------
 
 (expressions
-  (multi_assign
+  (assign
     lhs: (identifier)
     lhs: (identifier)
     rhs: (identifier)
     rhs: (identifier))
-  (multi_assign
+  (assign
     lhs: (splat
       (identifier))
     rhs: (tuple
       (integer)))
-  (multi_assign
+  (assign
     lhs: (splat
       (identifier))
     rhs: (integer)
     rhs: (integer)
     rhs: (integer))
-  (multi_assign
+  (assign
     lhs: (identifier)
     lhs: (identifier)
     lhs: (identifier)
     rhs: (identifier))
-  (multi_assign
+  (assign
     lhs: (identifier)
     lhs: (splat
       (instance_var))
@@ -697,7 +697,7 @@ a, b, c = d.val, e.val, f = {1, 2, 3}
     rhs: (integer)
     rhs: (integer)
     rhs: (integer))
-  (multi_assign
+  (assign
     lhs: (identifier)
     lhs: (identifier)
     rhs: (assign
@@ -706,7 +706,7 @@ a, b, c = d.val, e.val, f = {1, 2, 3}
     rhs: (assign
       lhs: (identifier)
       rhs: (integer)))
-  (multi_assign
+  (assign
     lhs: (assign_call
       receiver: (identifier)
       method: (identifier))
@@ -715,7 +715,7 @@ a, b, c = d.val, e.val, f = {1, 2, 3}
       method: (identifier))
     rhs: (symbol)
     rhs: (symbol))
-  (multi_assign
+  (assign
     lhs: (identifier)
     lhs: (identifier)
     lhs: (identifier)
@@ -3282,7 +3282,7 @@ a.[0].setter, a.[1].setter = things
       (argument_list
         (integer)))
     rhs: (integer))
-  (multi_assign
+  (assign
     lhs: (index_call
       receiver: (identifier)
       method: (operator)
@@ -3297,7 +3297,7 @@ a.[0].setter, a.[1].setter = things
     rhs: (integer)
     rhs: (integer)
     rhs: (integer))
-  (multi_assign
+  (assign
     lhs: (assign_call
       receiver: (index_call
         receiver: (identifier)
@@ -3339,7 +3339,7 @@ a[1], *b[0] = a
       arguments: (argument_list
         (integer)))
     rhs: (integer))
-  (multi_assign
+  (assign
     lhs: (index_call
       receiver: (identifier)
       arguments: (argument_list
@@ -3357,7 +3357,7 @@ a[1], *b[0] = a
       receiver: (identifier)
       arguments: (argument_list
         (integer))))
-  (multi_assign
+  (assign
     lhs: (index_call
       receiver: (identifier)
       arguments: (argument_list

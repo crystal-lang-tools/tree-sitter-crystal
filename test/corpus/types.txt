@@ -940,7 +940,7 @@ end
       (assign
         lhs: (identifier)
         rhs: (integer))
-      (multi_assign
+      (assign
         lhs: (identifier)
         lhs: (identifier)
         lhs: (identifier)

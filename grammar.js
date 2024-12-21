@@ -384,7 +384,7 @@ module.exports = grammar({
     _statement: $ => choice(
       $._expression,
       $.const_assign,
-      $.multi_assign,
+      alias($.multi_assign, $.assign),
       $.annotation,
       $.annotation_def,
       $.module_def,

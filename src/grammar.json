@@ -210,8 +210,13 @@
           "name": "const_assign"
         },
         {
-          "type": "SYMBOL",
-          "name": "multi_assign"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "multi_assign"
+          },
+          "named": true,
+          "value": "assign"
         },
         {
           "type": "SYMBOL",
