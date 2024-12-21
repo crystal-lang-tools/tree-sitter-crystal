@@ -1121,6 +1121,8 @@ baz/ 7
 
 begin 1 end / 2
 foo(// // 3)
+
+/a/ .. /b/ / /c/ .../d/
 --------------------------------------------------------------------------------
 
 (source_file
@@ -1195,7 +1197,17 @@ foo(// // 3)
       (op_call
         receiver: (regex)
         operator: (operator)
-        argument: (integer)))))
+        argument: (integer))))
+  (range
+    begin: (range
+      begin: (regex)
+      operator: (operator)
+      end: (op_call
+        receiver: (regex)
+        operator: (operator)
+        argument: (regex)))
+    operator: (operator)
+    end: (regex)))
 
 ================================================================================
 exponential operators

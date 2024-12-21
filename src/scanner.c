@@ -1657,34 +1657,54 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                     // Both are valid
                     assert(valid_symbols[REGEX_START] && valid_symbols[BINARY_SLASH]);
 
-                    // This sort of ambiguity should only happen after an identifier without parentheses
-                    assert(valid_symbols[START_OF_PARENLESS_ARGS]);
+                    // If we've reached this point, we need to distinguish between two cases:
+                    //   foo /
+                    //       ^
+                    // and
+                    //   .. /
+                    //      ^
+                    // START_OF_PARENLESS_ARGS signals the first case, and END_OF_RANGE signals the
+                    // second. If error recovery is active, we won't know for sure which we're in,
+                    // so just prefer the first branch.
 
-                    if (state->has_leading_whitespace
-                        && !(lexer->lookahead == ' '
-                            || lexer->lookahead == '\t'
-                            || lexer->lookahead == '\n'
-                            || lexer->lookahead == '\r')) {
-                        // If we're in the state
-                        //   foo   /a
-                        //         ^
-                        // then we assume this is the start of a regex.
+                    if (valid_symbols[START_OF_PARENLESS_ARGS]) {
+                        if (state->has_leading_whitespace
+                            && !(lexer->lookahead == ' '
+                                || lexer->lookahead == '\t'
+                                || lexer->lookahead == '\n'
+                                || lexer->lookahead == '\r')) {
+                            // If we're in the state
+                            //   foo   /a
+                            //         ^
+                            // then we assume this is the start of a regex.
+                            lexer->result_symbol = REGEX_START;
+                            return true;
+                        } else {
+                            // We must be in one of these states:
+                            //   foo/a
+                            //      ^
+                            // or
+                            //   foo/ a
+                            //      ^
+                            // or
+                            //   foo / a
+                            //       ^
+                            // In each of these cases, we give the slash operator
+                            // higher precedence over a regex.
+                            lexer->result_symbol = BINARY_SLASH;
+                            return true;
+                        }
+                    } else if (valid_symbols[END_OF_RANGE]) {
+                        // We must be in this state:
+                        // <range_start> .. /
+                        //                  ^
+                        // Assume this is the start of a regex.
                         lexer->result_symbol = REGEX_START;
                         return true;
                     } else {
-                        // We must be in one of these states:
-                        //   foo/a
-                        //      ^
-                        // or
-                        //   foo/ a
-                        //      ^
-                        // or
-                        //   foo / a
-                        //       ^
-                        // In each of these cases, we give the slash operator
-                        // higher precedence over a regex.
-                        lexer->result_symbol = BINARY_SLASH;
-                        return true;
+                        // This sort of ambiguity should only happen after an identifier without
+                        // parentheses, or after a range operator.
+                        assert(valid_symbols[START_OF_PARENLESS_ARGS] || valid_symbols[END_OF_RANGE]);
                     }
                 }
             }
