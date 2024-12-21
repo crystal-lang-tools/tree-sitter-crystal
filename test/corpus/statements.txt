@@ -59,15 +59,16 @@ a + # asdf
 
 (expressions
   (comment)
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
+    method: (operator)
     (comment)
-    argument: (integer))
+    arguments: (argument_list
+      (integer)))
   (integer)
   (comment)
-  (op_call
-    operator: (operator)
+  (call
+    method: (operator)
     (comment)
     receiver: (integer))
   (comment)
@@ -422,10 +423,11 @@ end
       (call
         method: (identifier)
         arguments: (argument_list
-          (op_call
+          (call
             receiver: (identifier)
-            operator: (operator)
-            argument: (identifier))))))
+            method: (operator)
+            arguments: (argument_list
+              (identifier)))))))
   (method_def
     name: (identifier)
     body: (expressions

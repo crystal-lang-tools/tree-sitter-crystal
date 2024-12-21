@@ -501,16 +501,16 @@ module.exports = grammar({
       $.call,
       alias($.call_with_visibility, $.call),
 
-      alias($.additive_operator, $.op_call),
-      alias($.unary_additive_operator, $.op_call),
-      alias($.multiplicative_operator, $.op_call),
-      alias($.exponential_operator, $.op_call),
-      alias($.shift_operator, $.op_call),
-      alias($.complement_operator, $.op_call),
-      alias($.binary_and_operator, $.op_call),
-      alias($.binary_or_operator, $.op_call),
-      alias($.equality_operator, $.op_call),
-      alias($.comparison_operator, $.op_call),
+      alias($.additive_operator, $.call),
+      alias($.unary_additive_operator, $.call),
+      alias($.multiplicative_operator, $.call),
+      alias($.exponential_operator, $.call),
+      alias($.shift_operator, $.call),
+      alias($.complement_operator, $.call),
+      alias($.binary_and_operator, $.call),
+      alias($.binary_or_operator, $.call),
+      alias($.equality_operator, $.call),
+      alias($.comparison_operator, $.call),
       alias($.index_operator, $.index_call),
       $.index_call,
       $.assign,
@@ -2039,8 +2039,8 @@ module.exports = grammar({
       )
 
       const receiver = field('receiver', $._expression)
-      const method = field('operator', alias(operator, $.operator))
-      const arg = field('argument', $._expression)
+      const method = field('method', alias(operator, $.operator))
+      const arg = field('arguments', alias($._expression, $.argument_list))
 
       return prec.left('additive_operator',
         seq(receiver, method, arg),
@@ -2056,7 +2056,7 @@ module.exports = grammar({
       )
 
       return prec('unary_operator', seq(
-        field('operator', alias(operator, $.operator)),
+        field('method', alias(operator, $.operator)),
         field('receiver', $._expression),
       ))
     },
@@ -2071,8 +2071,8 @@ module.exports = grammar({
       )
 
       const receiver = field('receiver', $._expression)
-      const method = field('operator', alias(operator, $.operator))
-      const arg = field('argument', $._expression)
+      const method = field('method', alias(operator, $.operator))
+      const arg = field('arguments', alias($._expression, $.argument_list))
 
       return prec.left('multiplicative_operator', seq(
         receiver, method, arg,
@@ -2083,8 +2083,8 @@ module.exports = grammar({
       const operator = choice($._binary_double_star, '&**')
 
       const receiver = field('receiver', $._expression)
-      const method = field('operator', alias(operator, $.operator))
-      const arg = field('argument', $._expression)
+      const method = field('method', alias(operator, $.operator))
+      const arg = field('arguments', alias($._expression, $.argument_list))
 
       return prec.right('exponential_operator', seq(
         receiver, method, arg,
@@ -2095,8 +2095,8 @@ module.exports = grammar({
       const operator = choice('<<', '>>')
 
       const receiver = field('receiver', $._expression)
-      const method = field('operator', alias(operator, $.operator))
-      const arg = field('argument', $._expression)
+      const method = field('method', alias(operator, $.operator))
+      const arg = field('arguments', alias($._expression, $.argument_list))
 
       return prec.left('shift_operator', seq(
         receiver, method, arg,
@@ -2107,7 +2107,7 @@ module.exports = grammar({
       const operator = '~'
 
       return prec('unary_operator', seq(
-        field('operator', alias(operator, $.operator)),
+        field('method', alias(operator, $.operator)),
         field('receiver', $._expression),
       ))
     },
@@ -2115,8 +2115,8 @@ module.exports = grammar({
     binary_and_operator: $ => {
       const operator = $.binary_ampersand
       const receiver = field('receiver', $._expression)
-      const method = field('operator', alias(operator, $.operator))
-      const arg = field('argument', $._expression)
+      const method = field('method', alias(operator, $.operator))
+      const arg = field('arguments', alias($._expression, $.argument_list))
 
       return prec.left('binary_and_operator', seq(
         receiver, method, arg,
@@ -2126,8 +2126,8 @@ module.exports = grammar({
     binary_or_operator: $ => {
       const operator = choice('|', '^')
       const receiver = field('receiver', $._expression)
-      const method = field('operator', alias(operator, $.operator))
-      const arg = field('argument', $._expression)
+      const method = field('method', alias(operator, $.operator))
+      const arg = field('arguments', alias($._expression, $.argument_list))
 
       return prec.left('binary_or_operator', seq(
         receiver, method, arg,
@@ -2137,8 +2137,8 @@ module.exports = grammar({
     equality_operator: $ => {
       const operator = choice('==', '!=', '=~', '!~', '===')
       const receiver = field('receiver', $._expression)
-      const method = field('operator', alias(operator, $.operator))
-      const arg = field('argument', $._expression)
+      const method = field('method', alias(operator, $.operator))
+      const arg = field('arguments', alias($._expression, $.argument_list))
 
       return prec.left('equality_operator', seq(
         receiver, method, arg,
@@ -2148,8 +2148,8 @@ module.exports = grammar({
     comparison_operator: $ => {
       const operator = choice('<', '<=', '>', '>=', '<=>')
       const receiver = field('receiver', $._expression)
-      const method = field('operator', alias(operator, $.operator))
-      const arg = field('argument', $._expression)
+      const method = field('method', alias(operator, $.operator))
+      const arg = field('arguments', alias($._expression, $.argument_list))
 
       return prec.left('comparison_operator', seq(
         receiver, method, arg,

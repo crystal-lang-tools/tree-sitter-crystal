@@ -346,10 +346,11 @@ def p2 : ->(A?1:2); end
     body: (expressions
       (tuple
         (expressions
-          (op_call
+          (call
             receiver: (constant)
-            operator: (operator)
-            argument: (constant))))))
+            method: (operator)
+            arguments: (argument_list
+              (constant)))))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -361,10 +362,11 @@ def p2 : ->(A?1:2); end
     type: (proc_type)
     body: (expressions
       (expressions
-        (op_call
+        (call
           receiver: (constant)
-          operator: (operator)
-          argument: (constant)))))
+          method: (operator)
+          arguments: (argument_list
+            (constant))))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -379,10 +381,11 @@ def p2 : ->(A?1:2); end
     type: (proc_type)
     body: (expressions
       (tuple
-        (op_call
+        (call
           receiver: (constant)
-          operator: (operator)
-          argument: (constant)))))
+          method: (operator)
+          arguments: (argument_list
+            (constant))))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -394,10 +397,11 @@ def p2 : ->(A?1:2); end
     type: (proc_type)
     body: (expressions
       (expressions
-        (op_call
+        (call
           receiver: (constant)
-          operator: (operator)
-          argument: (constant)))))
+          method: (operator)
+          arguments: (argument_list
+            (constant))))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -1043,10 +1047,11 @@ def p2 : ->{asdf: typeof(FOO)}; end
     type: (tuple_type
       (constant)
       (typeof
-        (op_call
+        (call
           receiver: (integer)
-          operator: (operator)
-          argument: (identifier)))))
+          method: (operator)
+          arguments: (argument_list
+            (identifier))))))
   (method_def
     name: (identifier)
     type: (proc_type)

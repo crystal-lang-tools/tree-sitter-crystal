@@ -405,10 +405,11 @@ string interpolation
     (interpolation
       (identifier))
     (interpolation
-      (op_call
+      (call
         receiver: (identifier)
-        operator: (operator)
-        argument: (identifier)))))
+        method: (operator)
+        arguments: (argument_list
+          (identifier))))))
 
 ================================================================================
 nested interpolation stress test
@@ -481,8 +482,8 @@ nested interpolation stress test
                                                 (interpolation
                                                   (string
                                                     (interpolation
-                                                      (op_call
-                                                        receiver: (op_call
+                                                      (call
+                                                        receiver: (call
                                                           receiver: (string
                                                             (interpolation
                                                               (tuple
@@ -492,36 +493,38 @@ nested interpolation stress test
                                                                 (string
                                                                   (interpolation
                                                                     (integer))))))
-                                                          operator: (operator)
-                                                          argument: (string
-                                                            (interpolation
-                                                              (hash
-                                                                (hash_entry
-                                                                  (hash
-                                                                    of_key: (constant)
-                                                                    of_value: (proc_type
-                                                                      (constant)
-                                                                      (constant)
-                                                                      return: (constant)))
-                                                                  (string
-                                                                    (interpolation
-                                                                      (integer))))))))
-                                                        operator: (operator)
-                                                        argument: (string
-                                                          (interpolation
-                                                            (tuple
-                                                              (hash
-                                                                of_key: (constant)
-                                                                of_value: (constant))
-                                                              (string
-                                                                (interpolation
-                                                                  (tuple
+                                                          method: (operator)
+                                                          arguments: (argument_list
+                                                            (string
+                                                              (interpolation
+                                                                (hash
+                                                                  (hash_entry
                                                                     (hash
                                                                       of_key: (constant)
-                                                                      of_value: (constant))
+                                                                      of_value: (proc_type
+                                                                        (constant)
+                                                                        (constant)
+                                                                        return: (constant)))
                                                                     (string
                                                                       (interpolation
-                                                                        (integer)))))))))))))))))))))))))))))))))))))
+                                                                        (integer)))))))))
+                                                        method: (operator)
+                                                        arguments: (argument_list
+                                                          (string
+                                                            (interpolation
+                                                              (tuple
+                                                                (hash
+                                                                  of_key: (constant)
+                                                                  of_value: (constant))
+                                                                (string
+                                                                  (interpolation
+                                                                    (tuple
+                                                                      (hash
+                                                                        of_key: (constant)
+                                                                        of_value: (constant))
+                                                                      (string
+                                                                        (interpolation
+                                                                          (integer))))))))))))))))))))))))))))))))))))))
 
 ================================================================================
 heredoc strings
@@ -650,10 +653,11 @@ A
   (heredoc_body
     (heredoc_content)
     (interpolation
-      (op_call
+      (call
         receiver: (heredoc_start)
-        operator: (operator)
-        argument: (heredoc_start))
+        method: (operator)
+        arguments: (argument_list
+          (heredoc_start)))
       (heredoc_body
         (heredoc_content)
         (heredoc_end))
@@ -828,16 +832,18 @@ p% ()
 
 (expressions
   (string)
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (nil))
+    method: (operator)
+    arguments: (argument_list
+      (nil)))
   (string)
   (string)
-  (op_call
+  (call
     receiver: (string)
-    operator: (operator)
-    argument: (string))
+    method: (operator)
+    arguments: (argument_list
+      (string)))
   (string)
   (string)
   (string)
@@ -1173,29 +1179,33 @@ regexes
   (regex
     (regex_escape_sequence)
     (regex_modifier))
-  (op_call
+  (call
     receiver: (regex
       (regex_escape_sequence))
-    operator: (operator)
-    argument: (string))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (string)))
+  (call
     receiver: (regex
       (regex_escape_sequence))
-    operator: (operator)
-    argument: (string
-      (string_escape_sequence)))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (string
+        (string_escape_sequence))))
+  (call
     receiver: (regex
       (regex_escape_sequence))
-    operator: (operator)
-    argument: (string
-      (string_escape_sequence)))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (string
+        (string_escape_sequence))))
+  (call
     receiver: (regex
       (regex_escape_sequence))
-    operator: (operator)
-    argument: (string
-      (string_escape_sequence)))
+    method: (operator)
+    arguments: (argument_list
+      (string
+        (string_escape_sequence))))
   (regex
     (regex_escape_sequence))
   (regex
@@ -1210,51 +1220,58 @@ regexes
     (regex_escape_sequence))
   (regex
     (regex_escape_sequence))
-  (op_call
+  (call
     receiver: (regex
       (regex_escape_sequence)
       (regex_escape_sequence))
-    operator: (operator)
-    argument: (string))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (string)))
+  (call
     receiver: (regex
       (regex_character_class))
-    operator: (operator)
-    argument: (string))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (string)))
+  (call
     receiver: (regex
       (regex_character_class))
-    operator: (operator)
-    argument: (string))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (string)))
+  (call
     receiver: (regex
       (regex_character_class))
-    operator: (operator)
-    argument: (string
-      (string_escape_sequence)))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (string
+        (string_escape_sequence))))
+  (call
     receiver: (regex
       (regex_special_match)
       (regex_special_match))
-    operator: (operator)
-    argument: (string))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (string)))
+  (call
     receiver: (regex
       (regex_special_match)
       (regex_character_class)
       (regex_character_class)
       (regex_special_match))
-    operator: (operator)
-    argument: (string))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (string)))
+  (call
     receiver: (regex
       (regex_escape_sequence)
       (regex_escape_sequence)
       (regex_escape_sequence)
       (regex_escape_sequence))
-    operator: (operator)
-    argument: (string
-      (string_escape_sequence)))
+    method: (operator)
+    arguments: (argument_list
+      (string
+        (string_escape_sequence))))
   (regex
     (interpolation
       (regex
@@ -1380,10 +1397,11 @@ hashes
       (integer)))
   (hash
     (hash_entry
-      (op_call
+      (call
         receiver: (integer)
-        operator: (operator)
-        argument: (integer))
+        method: (operator)
+        arguments: (argument_list
+          (integer)))
       (hash
         (hash_entry
           (char)
@@ -1486,15 +1504,16 @@ puts(..)
   (range
     begin: (identifier)
     operator: (operator)
-    end: (op_call
+    end: (call
       receiver: (integer)
-      operator: (operator)
-      argument: (integer)))
+      method: (operator)
+      arguments: (argument_list
+        (integer))))
   (range
     begin: (identifier)
     operator: (operator)
-    end: (op_call
-      operator: (operator)
+    end: (call
+      method: (operator)
       receiver: (identifier)))
   (call
     method: (identifier)
@@ -1676,10 +1695,11 @@ end
     type: (constant)
     block: (block
       body: (expressions
-        (op_call
-          receiver: (identifier)
-          operator: (operator)
-          argument: (identifier)))))
+      (call
+        receiver: (identifier)
+        method: (operator)
+        arguments: (argument_list
+          (identifier))))))
   (proc
     block: (block
       body: (expressions
