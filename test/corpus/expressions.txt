@@ -3602,8 +3602,8 @@ global method calls
 
 (expressions
   (call
-    (identifier)
-    (argument_list
+    method: (identifier)
+    arguments: (argument_list
       (string))))
 
 ===============================================
@@ -3646,12 +3646,12 @@ end
 
 (expressions
   (method_def
-    (identifier)
-    (param_list
+    name: (identifier)
+    params: (param_list
       (param
-        (identifier))
+        name: (identifier))
       (param
-        (identifier)))
+        name: (identifier)))
     (return
       (argument_list
         (identifier)
@@ -3682,17 +3682,17 @@ end
     (return
       (argument_list
         (op_call
-          (integer)
-          (operator)
-          (integer))
+          receiver: (integer)
+          operator: (operator)
+          argument: (integer))
         (op_call
-          (integer)
-          (operator)
-          (integer))
+          receiver: (integer)
+          operator: (operator)
+          argument: (integer))
         (call
-          (identifier)
-          (identifier)
-          (argument_list
+          receiver: (identifier)
+          method: (identifier)
+          arguments: (argument_list
             (identifier)
             (identifier)))))
     (return

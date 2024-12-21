@@ -482,43 +482,43 @@ nested interpolation stress test
                                                   (string
                                                     (interpolation
                                                       (op_call
-                                                        (op_call
-                                                          (string
+                                                        receiver: (op_call
+                                                          receiver: (string
                                                             (interpolation
                                                               (tuple
                                                                 (hash
-                                                                  (constant)
-                                                                  (constant))
+                                                                  of_key: (constant)
+                                                                  of_value: (constant))
                                                                 (string
                                                                   (interpolation
                                                                     (integer))))))
-                                                          (operator)
-                                                          (string
+                                                          operator: (operator)
+                                                          argument: (string
                                                             (interpolation
                                                               (hash
                                                                 (hash_entry
                                                                   (hash
-                                                                    (constant)
-                                                                    (proc_type
+                                                                    of_key: (constant)
+                                                                    of_value: (proc_type
                                                                       (constant)
                                                                       (constant)
-                                                                      (constant)))
+                                                                      return: (constant)))
                                                                   (string
                                                                     (interpolation
                                                                       (integer))))))))
-                                                        (operator)
-                                                        (string
+                                                        operator: (operator)
+                                                        argument: (string
                                                           (interpolation
                                                             (tuple
                                                               (hash
-                                                                (constant)
-                                                                (constant))
+                                                                of_key: (constant)
+                                                                of_value: (constant))
                                                               (string
                                                                 (interpolation
                                                                   (tuple
                                                                     (hash
-                                                                      (constant)
-                                                                      (constant))
+                                                                      of_key: (constant)
+                                                                      of_value: (constant))
                                                                     (string
                                                                       (interpolation
                                                                         (integer)))))))))))))))))))))))))))))))))))))
@@ -651,9 +651,9 @@ A
     (heredoc_content)
     (interpolation
       (op_call
-        (heredoc_start)
-        (operator)
-        (heredoc_start))
+        receiver: (heredoc_start)
+        operator: (operator)
+        argument: (heredoc_start))
       (heredoc_body
         (heredoc_content)
         (heredoc_end))
@@ -663,20 +663,20 @@ A
     (heredoc_content)
     (heredoc_end))
   (call
-    (identifier)
-    (argument_list
+    method: (identifier)
+    arguments: (argument_list
       (heredoc_start)))
   (heredoc_body
     (heredoc_content)
     (interpolation
       (call
-        (call
-          (array
+        receiver: (call
+          receiver: (array
             (heredoc_start)
             (heredoc_start))
-          (identifier))
-        (identifier)
-        (argument_list
+          method: (identifier))
+        method: (identifier)
+        arguments: (argument_list
           (string))))
     (heredoc_content)
     (heredoc_body
@@ -766,8 +766,8 @@ Heredoc 3
 (expressions
   (comment)
   (call
-    (identifier)
-    (argument_list
+    method: (identifier)
+    arguments: (argument_list
       (heredoc_start)
       (heredoc_start)
       (heredoc_start)))
@@ -829,15 +829,15 @@ p% ()
 (expressions
   (string)
   (op_call
-    (identifier)
-    (operator)
-    (nil))
+    receiver: (identifier)
+    operator: (operator)
+    argument: (nil))
   (string)
   (string)
   (op_call
-    (string)
-    (operator)
-    (string))
+    receiver: (string)
+    operator: (operator)
+    argument: (string))
   (string)
   (string)
   (string)
@@ -1823,8 +1823,8 @@ puts %x[echo \t[#{foo}]\]]
     (ignored_backslash)
     (ignored_backslash))
   (call
-    (identifier)
-    (argument_list
+    method: (identifier)
+    arguments: (argument_list
       (command
         (string_escape_sequence)
         (interpolation
