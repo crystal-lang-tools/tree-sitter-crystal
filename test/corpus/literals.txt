@@ -4,7 +4,7 @@ nil
 nil
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (nil))
 
 ================================================================================
@@ -14,7 +14,7 @@ true
 false
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (true)
   (false))
 
@@ -36,7 +36,7 @@ binary integers
 -0b___i128
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (integer)
   (integer)
   (integer)
@@ -69,7 +69,7 @@ octal integers
 -0o___i128
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (integer)
   (integer)
   (integer)
@@ -108,7 +108,7 @@ decimal integers
 +1_000_000_000_000i128
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (integer)
   (integer)
   (integer)
@@ -147,7 +147,7 @@ hex integers
 0xaabb_bbaa_abba_baabi128
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (integer)
   (integer)
   (integer)
@@ -178,7 +178,7 @@ floats
 1_e_
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (float)
   (float)
   (float)
@@ -225,7 +225,7 @@ chars
 '\u{10FFFF}'
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (char)
   (char)
   (char)
@@ -310,7 +310,7 @@ strings
 "\#"
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (string)
   (string)
   (string)
@@ -378,7 +378,7 @@ string interpolation
 "#{a} + #{b} = #{a + b}"
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (string)
   (string
     (ignored_backslash))
@@ -454,7 +454,7 @@ nested interpolation stress test
 
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (string
     (interpolation
       (string
@@ -545,7 +545,7 @@ c
   Quo ted!"
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -632,7 +632,7 @@ CCC
 A
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (comment)
   (comment)
   (heredoc_start)
@@ -763,7 +763,7 @@ Heredoc 3
 🛀🚍📏🙉🍽🏰📡🙅🕰🖍🚭⛔️🌎🤔🏷🖊🔁🍮🤕🏙🛩🛍🔦👪😅🎎🐸📎😊📦🚃🎇📣⛰👒🌹👶🎄__
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (comment)
   (call
     (identifier)
@@ -826,7 +826,7 @@ p% ()
 %q(#{1})
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (string)
   (op_call
     (identifier)
@@ -885,7 +885,7 @@ nested percent strings
 %(#{%|#{%<#{%(a)}>}|})
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (string
     (interpolation
       (string
@@ -919,7 +919,7 @@ d |
 %w<a <b c>>
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (array
     (string)
     (string)
@@ -996,7 +996,7 @@ d)
 %i<a <b c>>
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (array
     (symbol)
     (symbol)
@@ -1071,7 +1071,7 @@ symbols
 "
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (symbol)
   (symbol)
   (symbol)
@@ -1146,7 +1146,7 @@ regexes
 /a#{/b/m}c/i
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (regex)
   (regex)
   (regex)
@@ -1272,7 +1272,7 @@ regex percent literals
 %r{#{%r{f#{/o/}o}m}}
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (regex)
   (regex
     (interpolation
@@ -1308,7 +1308,7 @@ arrays
 [foo 1, 2, 3]
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (array
     of: (constant))
   (array
@@ -1354,7 +1354,7 @@ hashes
 }
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (hash
     of_key: (union_type
       (constant)
@@ -1418,7 +1418,7 @@ foo bar... 8
 puts(..)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (range
     begin: (identifier)
     operator: (operator)
@@ -1526,7 +1526,7 @@ tuples
 { {} of TypeA => TypeB}
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (tuple
     (integer)
     (string)
@@ -1555,7 +1555,7 @@ named_tuple = {a2: "a", "55": 'b', A: "asdf#{a}", 🥰: 7, "
 { self: self, true: true, nil: nil, _🎃: " " }
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (named_tuple
     (named_expr
       name: (identifier)
@@ -1646,7 +1646,7 @@ end
 -> : -> {->} { -> { {->{}} } }
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (proc
     block: (block))
   (proc
@@ -1747,7 +1747,7 @@ Int32 \
 )
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (assign
     lhs: (identifier)
     rhs: (method_proc
@@ -1814,7 +1814,7 @@ command literals
 puts %x[echo \t[#{foo}]\]]
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (command)
   (command
     (interpolation
@@ -1863,7 +1863,7 @@ not_chained = "str1"
   "str2"
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (multi_assign
     lhs: (identifier)
     lhs: (identifier)

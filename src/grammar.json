@@ -3,7 +3,7 @@
   "name": "crystal",
   "word": "identifier",
   "rules": {
-    "source_file": {
+    "expressions": {
       "type": "SEQ",
       "members": [
         {
@@ -403,7 +403,7 @@
         }
       ]
     },
-    "expressions": {
+    "parenthesized_expressions": {
       "type": "SEQ",
       "members": [
         {
@@ -590,8 +590,13 @@
           "name": "_parenthesized_statement"
         },
         {
-          "type": "SYMBOL",
-          "name": "expressions"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "parenthesized_expressions"
+          },
+          "named": true,
+          "value": "expressions"
         },
         {
           "type": "SYMBOL",

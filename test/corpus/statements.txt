@@ -6,7 +6,7 @@ blank file
 
 --------------------------------------------------------------------------------
 
-(source_file)
+(expressions)
 
 ================================================================================
 blank lines
@@ -36,7 +36,7 @@ end
 
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (true)
   (method_def
     name: (identifier)))
@@ -57,7 +57,7 @@ a + # asdf
 ##
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (comment)
   (op_call
     receiver: (identifier)
@@ -81,7 +81,7 @@ require "colorize"
 require "#{__DIR__}/relative_file"
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (require
     (string))
   (require
@@ -116,7 +116,7 @@ nil; (nil;nil)
 (nil; (nil;nil))
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (nil)
   (nil)
   (nil)
@@ -147,7 +147,7 @@ aliases
 alias Foo = Bar::Baz
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (constant)))
@@ -175,7 +175,7 @@ module ::Outer
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (module_def
     name: (constant))
   (module_def
@@ -226,7 +226,7 @@ class ::Outer
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (class_def
     name: (constant)
     superclass: (constant))
@@ -275,7 +275,7 @@ struct Y < X(Int32)
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (struct_def
     name: (generic_type
       (constant)
@@ -353,7 +353,7 @@ def blam
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     (return
@@ -429,7 +429,7 @@ def worst_syntax(b, &:
 ->);end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     params: (param_list
@@ -474,7 +474,7 @@ def bar(a, *b : Int32, c, **d : Bool); end
 def baz(*a, **b, &c); end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     params: (param_list
@@ -512,7 +512,7 @@ def foo(x : T.class, y : U) : Array(T | U).class forall T, U
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (abstract_method_def
     name: (identifier)
     params: (param_list
@@ -567,7 +567,7 @@ class Operators
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (class_def
     name: (constant)
     (method_def
@@ -602,7 +602,7 @@ class D
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (class_def
     name: (generic_type
       (constant)
@@ -637,7 +637,7 @@ ensure
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     rescue: (rescue_block
@@ -663,7 +663,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (class_def
     name: (constant)
     (abstract_method_def
@@ -697,7 +697,7 @@ loop do
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     block: (block
@@ -776,7 +776,7 @@ class Asdf
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (annotation_def
     name: (constant))
   (annotation_def
@@ -860,7 +860,7 @@ private module Foo
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     visibility: (private)
     name: (identifier))
@@ -910,7 +910,7 @@ enum Bar : UInt8
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (enum_def
     name: (constant)
     (constant)
@@ -955,7 +955,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (module_def
     name: (constant)
     (enum_def
@@ -984,7 +984,7 @@ puts\
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (multi_assign
     lhs: (identifier)
     lhs: (identifier)
@@ -1017,7 +1017,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (class_def
     (constant)
     (include
@@ -1045,7 +1045,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (lib_def
     (constant)
     (global_var
@@ -1061,7 +1061,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (lib_def
     (constant)))
 
@@ -1075,7 +1075,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (fun_def
     name: (identifier)
     params: (param_list
@@ -1122,7 +1122,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (lib_def
     name: (constant)
     (fun_def
@@ -1174,7 +1174,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (lib_def
     name: (constant)
     (fun_def
@@ -1209,7 +1209,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (lib_def
     name: (constant)
     (fun_def
@@ -1237,7 +1237,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (comment)
   (fun_def
     name: (identifier)
@@ -1260,7 +1260,7 @@ fun bar() end
 
 ---
 
-(source_file
+(expressions
   (fun_def
     name: (identifier)))
 
@@ -1279,7 +1279,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (class_def
     name: (constant)
     (call

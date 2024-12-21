@@ -7,7 +7,7 @@ f_0___
 あいうえお
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (identifier)
   (identifier)
   (identifier)
@@ -29,7 +29,7 @@ class Klass
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (class_def
     name: (constant)
     (assign
@@ -64,7 +64,7 @@ self_
 selfself
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (self)
   (identifier)
   (identifier))
@@ -81,7 +81,7 @@ def pseudo_constants(caller_line = __LINE__, end_of_caller = __END_LINE__)
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     params: (param_list
@@ -133,7 +133,7 @@ $12?
 $099
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (special_variable)
   (special_variable)
   (special_variable)
@@ -171,7 +171,7 @@ pp a # comment
   b  # one more comment
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     receiver: (constant)
     method: (identifier))
@@ -253,7 +253,7 @@ puts(
 puts (), ()
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -302,7 +302,7 @@ pp *a, 2, *{3}
 pp(*a+b, *c*d, *e = f)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (identifier)
     operator: (operator)
@@ -359,7 +359,7 @@ puts(**kwargs)
 pp **{a: 1, "b": 2.0, C: -3, }, **{c: nil}
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (identifier)
     operator: (operator)
@@ -412,7 +412,7 @@ bar 1, c: + 2,
   }
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -473,7 +473,7 @@ d=-0.zero?
 .to_s
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (assign
     lhs: (identifier)
     rhs: (float))
@@ -505,7 +505,7 @@ B =
 D::E=-0.zero?
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (const_assign
     lhs: (constant)
     rhs: (float))
@@ -532,7 +532,7 @@ true
 c.foo.bar = d.baz!.quz = 8
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (assign
     lhs: (assign_call
       receiver: (constant)
@@ -567,7 +567,7 @@ foo.bar = 0.8 if true if false
 baz = 7 unless qux?
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (modifier_if
     then: (assign
       lhs: (identifier)
@@ -607,7 +607,7 @@ d.val,e.val=:d,:e
 a, b, c = d.val, e.val, f = {1, 2, 3}
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (multi_assign
     lhs: (identifier)
     lhs: (identifier)
@@ -688,7 +688,7 @@ until a.nil?
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (while
     condition: (true))
   (while
@@ -719,7 +719,7 @@ begin begin end end
 
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (begin_block
     (integer))
   (begin_block
@@ -757,7 +757,7 @@ else
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (begin_block
     (integer)
     rescue: (rescue_block
@@ -807,7 +807,7 @@ puts begin 1
 2;3; ensure puts 2;end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (begin_block
     (integer)
     ensure: (ensure
@@ -849,7 +849,7 @@ begin :a; rescue; :b else :c ensure p! :d end
 begin :a; rescue; :b else :c; ensure p! :d end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (begin_block
     (modifier_rescue
       (integer)
@@ -896,7 +896,7 @@ puts (7 rescue ArgumentError)
 do_stuff rescue do_stuff rescue 7
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (modifier_rescue
     (call
       method: (identifier)
@@ -927,7 +927,7 @@ ensure
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -961,7 +961,7 @@ D &-
 puts "a" + "b".upcase
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (integer)
     operator: (operator)
@@ -1018,7 +1018,7 @@ d_ (- 2)
 - 8u8.to_i8
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (identifier)
     operator: (operator)
@@ -1125,7 +1125,7 @@ foo(// // 3)
 /a/ .. /b/ / /c/ .../d/
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (op_call
       receiver: (op_call
@@ -1220,7 +1220,7 @@ puts 2 **
 42.0 % 2 ** EXP
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (identifier)
     operator: (operator)
@@ -1253,7 +1253,7 @@ array << 1 << 2
 array << (13 >> 2)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (identifier)
     operator: (operator)
@@ -1292,7 +1292,7 @@ a ^ b | c
 pp [1, 2, 3] | [4, 5, 6] & [1, 4]
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (op_call
       operator: (operator)
@@ -1351,7 +1351,7 @@ a || b && c
 d && e || f && g
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (not
     (identifier))
   (or
@@ -1395,7 +1395,7 @@ e !~ /regex/
 (Symbol === :asdf)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (identifier)
     operator: (operator)
@@ -1434,7 +1434,7 @@ comparison operators
 p! 0 <=> 5
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (integer)
     operator: (operator)
@@ -1470,7 +1470,7 @@ a == b <= c
 a <= b == c
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (op_call
       receiver: (identifier)
@@ -1529,7 +1529,7 @@ a &&= b
 ary[0..2] //= val.bar **= 7
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_assign
     lhs: (identifier)
     rhs: (identifier))
@@ -1623,7 +1623,7 @@ else if DO
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (if
     cond: (true))
   (if
@@ -1692,7 +1692,7 @@ else
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (unless
     cond: (identifier))
   (unless
@@ -1722,7 +1722,7 @@ puts true ?
 ans = foo ? "foo" : bar ? "bar" : nil
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (conditional
     cond: (call
       method: (identifier))
@@ -1775,7 +1775,7 @@ def foo
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     (modifier_if
@@ -1878,7 +1878,7 @@ def foo
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     (modifier_unless
@@ -1968,7 +1968,7 @@ end
 a (b do 1 end) do 2 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     block: (block))
@@ -2024,7 +2024,7 @@ ensure
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     block: (block
@@ -2084,7 +2084,7 @@ a(b { 1 }) { 2 }
 a 1, {2, b { 4 }} { 3 }
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     block: (block))
@@ -2202,7 +2202,7 @@ puts 1, 2.. { 3 => 4 }
 
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2261,7 +2261,7 @@ bar &prc .. 7 # => bar(&(prc..7))
 foo &b = a
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2371,7 +2371,7 @@ method(&.take_block(&.@foo))
 method(&.take_block { |f| f.foo })
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2477,7 +2477,7 @@ outer(method &.take_block do "inner" end)
 outer method(&.take_block) do "inner" end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2544,7 +2544,7 @@ a &.b c { "in c" }.d.e
 a &.b 'b' { "in b" }.d.e
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2685,7 +2685,7 @@ func(&(-var))
 func &(-var)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (comment)
   (op_call
     receiver: (identifier)
@@ -2823,7 +2823,7 @@ foo{|_|}
 foo { |a, *b, (c, d,),| }
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     block: (block
@@ -2866,7 +2866,7 @@ def bar
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     (yield))
@@ -2914,7 +2914,7 @@ a.[](1, 2)
 a.[]=(1, 2)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     receiver: (integer)
     method: (operator))
@@ -2967,7 +2967,7 @@ a.[0], *b.[0] = 1, 2, 3
 a.[0].setter, a.[1].setter = things
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (index_call
     receiver: (identifier)
     arguments: (argument_list
@@ -3097,7 +3097,7 @@ a[0], a[2, 3] = a[2], a[0]
 a[1], *b[0] = a
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     receiver: (identifier)
     method: (operator)
@@ -3176,7 +3176,7 @@ else
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (assign
     lhs: (identifier)
     rhs: (case
@@ -3313,7 +3313,7 @@ in Proc(Int32, -> (Int32))
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (case
     cond: (nil)
     (in
@@ -3355,7 +3355,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (case
     (when
       (true)
@@ -3377,7 +3377,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (select
     (when
       (call
@@ -3405,7 +3405,7 @@ sizeof, instance_sizeof, offsetof
 ].sum
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     receiver: (array
       (sizeof
@@ -3466,7 +3466,7 @@ class K
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (type_declaration
     var: (identifier)
     type: (constant))
@@ -3587,7 +3587,7 @@ object.@ivar
 
 ---
 
-(source_file
+(expressions
   (call
     receiver: (identifier)
     method: (instance_var)))
@@ -3600,7 +3600,7 @@ global method calls
 
 ---
 
-(source_file
+(expressions
   (call
     (identifier)
     (argument_list
@@ -3644,7 +3644,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (method_def
     (identifier)
     (param_list
@@ -3724,7 +3724,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     (assign
@@ -3783,7 +3783,7 @@ asm("
 
 ------------------------------------------------------------
 
-(source_file
+(expressions
   (asm
     (comment)
     (comment)
@@ -3851,7 +3851,7 @@ asm ("nop")
 
 ---
 
-(source_file
+(expressions
   (asm
     text: (string))
   (asm

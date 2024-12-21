@@ -10,7 +10,7 @@ A1
 ::B_::C4
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (constant)
   (constant)
   (constant)
@@ -30,7 +30,7 @@ alias NestedUnion = (A)|( B::C|D )
 alias NestedUnion2 = A | ( B | (C | D ) | E) | ((F) | G | H)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (union_type
@@ -98,7 +98,7 @@ alias Foo = A | B -> C | D
 alias DoubleProc = -> ->
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (array
     of: (proc_type))
   (hash
@@ -216,7 +216,7 @@ proc types, continued
 alias P2 = -> Tuple(Int8) ->
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (proc_type
@@ -264,7 +264,7 @@ def p1 : ->(A?); end
 def p2 : ->(A?1:2); end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     type: (proc_type)
@@ -449,7 +449,7 @@ def p1 : ->{%{a{}a}: "b"}; end
 f = -> : -> { a: String; ->{} }
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     type: (proc_type
@@ -631,7 +631,7 @@ alias Foo2 = {Int32, Int32}
 -> : Int32, Int32 -> { ->, ->} do  end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (tuple_type
@@ -673,7 +673,7 @@ alias NamedTuple1 = NamedTuple(x: Int32, y: String)
 alias NamedTuple2 = NamedTuple("x": Int32, y?: String, Z: Char, %q(hi again): Int8)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (named_tuple_type
@@ -743,7 +743,7 @@ alias Foo4 = Gen(Int32,String)
 alias Foo5 = Gen(Int32,String|Char)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (class_def
     name: (generic_type
       (constant)
@@ -794,7 +794,7 @@ class Foo(*T)
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (class_def
     name: (generic_type
       (constant)
@@ -826,7 +826,7 @@ alias Bar = {Char, *Foo, String}
 c : *Char -> = ->(c : Char){}
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     type: (tuple_type
@@ -872,7 +872,7 @@ def foo(x : _, y : _, _ -> String)
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     params: (param_list
@@ -905,7 +905,7 @@ alias SPNP = String*?*
 alias Foo = {*{Char, String}*} # compiler blocks this type of splat
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (proc_type
@@ -946,7 +946,7 @@ a = [] of (String ?) ?
 b = ([] of (String?)?) ? 1 : 2
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (nilable_type
@@ -988,7 +988,7 @@ alias Foo = {Char, typeof(1 + w)}
 def p2 : ->{asdf: typeof(FOO)}; end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (tuple_type
@@ -1019,7 +1019,7 @@ alias F = UInt8[instance_sizeof(Foo(Bar))]
 alias G = LibC::Char[offsetof(String -> Int32, @a)]
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (static_array_type

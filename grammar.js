@@ -342,7 +342,7 @@ module.exports = grammar({
   ],
 
   rules: {
-    source_file: $ => seq(
+    expressions: $ => seq(
       optional($._statements),
     ),
 
@@ -440,7 +440,7 @@ module.exports = grammar({
     ),
 
     // Wrap multiple expressions/statements into a single node, if necessary
-    expressions: $ => seq(
+    parenthesized_expressions: $ => seq(
       '(', $._statements, ')',
     ),
 
@@ -477,7 +477,7 @@ module.exports = grammar({
       // Groupings
       alias($.empty_parens, $.nil),
       $._parenthesized_statement,
-      $.expressions,
+      alias($.parenthesized_expressions, $.expressions),
       $.begin_block,
 
       // Symbols
