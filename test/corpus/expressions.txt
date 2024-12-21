@@ -2369,6 +2369,7 @@ method(&.@ivar)
 method(&.take_block(&.foo))
 method(&.take_block(&.@foo))
 method(&.take_block { |f| f.foo })
+method(&.assign=(2))
 --------------------------------------------------------------------------------
 
 (source_file
@@ -2401,9 +2402,9 @@ method(&.take_block { |f| f.foo })
     arguments: (argument_list
       (block_argument
         (implicit_object_call
-          (index_call
-            arguments: (argument_list
-              (identifier)))))))
+          method: (operator)
+          arguments: (argument_list
+            (identifier))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2433,7 +2434,7 @@ method(&.take_block { |f| f.foo })
     arguments: (argument_list
       (block_argument
         (implicit_object_call
-          (instance_var)))))
+          method: (instance_var)))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2453,7 +2454,7 @@ method(&.take_block { |f| f.foo })
           arguments: (argument_list
             (block_argument
               (implicit_object_call
-                (instance_var))))))))
+                method: (instance_var))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2466,7 +2467,15 @@ method(&.take_block { |f| f.foo })
                 name: (identifier)))
             (call
               receiver: (identifier)
-              method: (identifier))))))))
+              method: (identifier)))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          method: (identifier)
+          arguments: (argument_list
+            (integer)))))))
 
 ================================================================================
 precedence of block attachment with &. short block syntax
@@ -2475,6 +2484,9 @@ outer method &.take_block do "inner" end
 outer method &.take_block { "inner" }
 outer(method &.take_block do "inner" end)
 outer method(&.take_block) do "inner" end
+
+a b &.c 1, d do  end
+a b &.c 1, d {  }
 --------------------------------------------------------------------------------
 
 (source_file
@@ -2521,7 +2533,34 @@ outer method(&.take_block) do "inner" end
             (implicit_object_call
               method: (identifier))))))
     block: (block
-      (string))))
+      (string)))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (block_argument
+            (implicit_object_call
+              method: (identifier)
+              arguments: (argument_list
+                (integer)
+                (identifier))
+              block: (block)))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (block_argument
+            (implicit_object_call
+              method: (identifier)
+              arguments: (argument_list
+                (integer)
+                (call
+                  method: (identifier)
+                  block: (block))))))))))
 
 ================================================================================
 chained &. syntax
@@ -2542,6 +2581,11 @@ top 0, &.lvl1 1, &.lvl2 2, &.lvl3 3
 # demonstrating block precedence
 a &.b c { "in c" }.d.e
 a &.b 'b' { "in b" }.d.e
+
+a.select(&.foo[1].[2][3])
+
+method(&.a[1])
+method(&.a [1])
 --------------------------------------------------------------------------------
 
 (source_file
@@ -2586,10 +2630,10 @@ a &.b 'b' { "in b" }.d.e
                 (block_argument
                   (implicit_object_call
                     method: (identifier)))))
-            (index_call
-              arguments: (argument_list
-                (integer))))
-          (instance_var)))))
+            method: (operator)
+            arguments: (argument_list
+              (integer)))
+          method: (instance_var)))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2648,7 +2692,91 @@ a &.b 'b' { "in b" }.d.e
               block: (block
                 (string)))
             method: (identifier))
-          method: (identifier))))))
+          method: (identifier)))))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          receiver: (implicit_object_call
+            receiver: (implicit_object_call
+              receiver: (implicit_object_call
+                method: (identifier))
+              method: (operator)
+              arguments: (argument_list
+                (integer)))
+            method: (operator)
+            arguments: (argument_list
+              (integer)))
+          method: (operator)
+          arguments: (argument_list
+            (integer))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          receiver: (implicit_object_call
+            method: (identifier))
+          method: (operator)
+          arguments: (argument_list
+            (integer))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          method: (identifier)
+          arguments: (argument_list
+            (array
+              (integer))))))))
+
+================================================================================
+&. syntax with assignment
+================================================================================
+foo.each(&.bar=(1))
+foo.each(&.bar = 1)
+a(&.@b.c[0] = d = e = f)
+--------------------------------------------------------------------------------
+
+(source_file
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          method: (identifier)
+          arguments: (argument_list
+            (integer))))))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_assign
+          lhs: (implicit_object_call
+            method: (identifier))
+          rhs: (integer)))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_assign
+          lhs: (implicit_object_call
+            receiver: (implicit_object_call
+              receiver: (implicit_object_call
+                method: (instance_var))
+              method: (identifier))
+            method: (operator)
+            arguments: (argument_list
+              (integer)))
+          rhs: (assign
+            lhs: (identifier)
+            rhs: (assign
+              lhs: (identifier)
+              rhs: (identifier))))))))
 
 ================================================================================
 ampersand disambiguation
