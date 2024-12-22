@@ -10,10 +10,11 @@ A1
 ::B_::C4
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (constant)
   (constant)
-  (constant)
+  (expressions
+    (constant))
   (constant)
   (constant)
   (constant))
@@ -30,7 +31,7 @@ alias NestedUnion = (A)|( B::C|D )
 alias NestedUnion2 = A | ( B | (C | D ) | E) | ((F) | G | H)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (union_type
@@ -98,7 +99,7 @@ alias Foo = A | B -> C | D
 alias DoubleProc = -> ->
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (array
     of: (proc_type))
   (hash
@@ -216,7 +217,7 @@ proc types, continued
 alias P2 = -> Tuple(Int8) ->
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (proc_type
@@ -264,19 +265,21 @@ def p1 : ->(A?); end
 def p2 : ->(A?1:2); end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     type: (proc_type)
-    (hash
-      (hash_entry
-        (integer)
-        (integer))))
+    body: (expressions
+      (hash
+        (hash_entry
+          (integer)
+          (integer)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (constant)))
+    body: (expressions
+      (tuple
+        (constant))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -285,9 +288,11 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (call
-      receiver: (constant)
-      method: (identifier)))
+    body: (expressions
+      (expressions
+        (call
+          receiver: (constant)
+          method: (identifier)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -296,10 +301,11 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (call
-        receiver: (constant)
-        method: (identifier))))
+    body: (expressions
+      (tuple
+        (call
+          receiver: (constant)
+          method: (identifier)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -314,8 +320,9 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (identifier)))
+    body: (expressions
+      (tuple
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -323,7 +330,9 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (identifier))
+    body: (expressions
+      (expressions
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -334,11 +343,13 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (op_call
-        receiver: (constant)
-        operator: (operator)
-        argument: (constant))))
+    body: (expressions
+      (tuple
+        (expressions
+          (op_call
+            receiver: (constant)
+            operator: (operator)
+            argument: (constant))))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -348,10 +359,12 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (op_call
-      receiver: (constant)
-      operator: (operator)
-      argument: (constant)))
+    body: (expressions
+      (expressions
+        (op_call
+          receiver: (constant)
+          operator: (operator)
+          argument: (constant)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -364,11 +377,12 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (op_call
-        receiver: (constant)
-        operator: (operator)
-        argument: (constant))))
+    body: (expressions
+      (tuple
+        (op_call
+          receiver: (constant)
+          operator: (operator)
+          argument: (constant)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -378,10 +392,12 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (op_call
-      receiver: (constant)
-      operator: (operator)
-      argument: (constant)))
+    body: (expressions
+      (expressions
+        (op_call
+          receiver: (constant)
+          operator: (operator)
+          argument: (constant)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -391,11 +407,12 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (conditional
-        cond: (constant)
-        then: (integer)
-        else: (integer))))
+    body: (expressions
+      (tuple
+        (conditional
+          cond: (constant)
+          then: (integer)
+          else: (integer)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -404,10 +421,12 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (conditional
-      cond: (constant)
-      then: (integer)
-      else: (integer))))
+    body: (expressions
+      (expressions
+        (conditional
+          cond: (constant)
+          then: (integer)
+          else: (integer))))))
 
 ================================================================================
 proc ambiguity resolution, continued
@@ -449,7 +468,7 @@ def p1 : ->{%{a{}a}: "b"}; end
 f = -> : -> { a: String; ->{} }
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     type: (proc_type
@@ -464,26 +483,30 @@ f = -> : -> { a: String; ->{} }
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (identifier)))
+    body: (expressions
+      (tuple
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (identifier)))
+    body: (expressions
+      (tuple
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (call
-        method: (identifier))))
+    body: (expressions
+      (tuple
+        (call
+          method: (identifier)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (identifier)
-        (self))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (identifier)
+          (self)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -496,16 +519,22 @@ f = -> : -> { a: String; ->{} }
   (method_def
     name: (identifier)
     type: (proc_type)
-    (identifier))
+    body: (expressions
+      (expressions
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (identifier))
+    body: (expressions
+      (expressions
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (call
-      method: (identifier)))
+    body: (expressions
+      (expressions
+        (call
+          method: (identifier)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -521,21 +550,24 @@ f = -> : -> { a: String; ->{} }
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (call
-        method: (identifier))))
+    body: (expressions
+      (tuple
+        (call
+          method: (identifier)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (identifier)))
+    body: (expressions
+      (tuple
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (identifier)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (identifier)
+          (string)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -549,12 +581,16 @@ f = -> : -> { a: String; ->{} }
   (method_def
     name: (identifier)
     type: (proc_type)
-    (call
-      method: (identifier)))
+    body: (expressions
+      (expressions
+        (call
+          method: (identifier)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (identifier))
+    body: (expressions
+      (expressions
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -563,62 +599,70 @@ f = -> : -> { a: String; ->{} }
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (identifier)
-        (symbol))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (identifier)
+          (symbol)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (string)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string)
+          (string)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (string)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string)
+          (string)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (string)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string)
+          (string)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (string)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string)
+          (string)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (string)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string)
+          (string)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (string)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string)
+          (string)))))
   (assign
     lhs: (identifier)
     rhs: (proc
       type: (proc_type)
       block: (block
-        (type_declaration
-          var: (identifier)
-          type: (constant))
-        (proc
-          block: (block))))))
+        body: (expressions
+          (type_declaration
+            var: (identifier)
+            type: (constant))
+          (proc
+            block: (block)))))))
 
 ================================================================================
 tuple types
@@ -631,7 +675,7 @@ alias Foo2 = {Int32, Int32}
 -> : Int32, Int32 -> { ->, ->} do  end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (tuple_type
@@ -649,11 +693,13 @@ alias Foo2 = {Int32, Int32}
         params: (param_list
           (constant))))
     block: (block
-      (tuple
-        (integer)
-        (proc
-          block: (block
-            (integer))))))
+      body: (expressions
+        (tuple
+          (integer)
+          (proc
+            block: (block
+              body: (expressions
+                (integer))))))))
   (proc
     type: (proc_type
       (constant)
@@ -673,7 +719,7 @@ alias NamedTuple1 = NamedTuple(x: Int32, y: String)
 alias NamedTuple2 = NamedTuple("x": Int32, y?: String, Z: Char, %q(hi again): Int8)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (named_tuple_type
@@ -743,7 +789,7 @@ alias Foo4 = Gen(Int32,String)
 alias Foo5 = Gen(Int32,String|Char)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (class_def
     name: (generic_type
       (constant)
@@ -794,24 +840,25 @@ class Foo(*T)
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (class_def
     name: (generic_type
       (constant)
       params: (param_list
         (splat
           (constant))))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (identifier)))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (splat_param
-          name: (instance_var)
-          type: (splat_type
-            (constant)))))))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (identifier)))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (splat_param
+            name: (instance_var)
+            type: (splat_type
+              (constant))))))))
 
 ================================================================================
 splat types
@@ -826,7 +873,7 @@ alias Bar = {Char, *Foo, String}
 c : *Char -> = ->(c : Char){}
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     type: (tuple_type
@@ -872,7 +919,7 @@ def foo(x : _, y : _, _ -> String)
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     params: (param_list
@@ -885,14 +932,15 @@ end
           (underscore_type)
           (underscore_type)
           return: (constant))))
-    (assign
-      lhs: (identifier)
-      rhs: (integer))
-    (multi_assign
-      lhs: (identifier)
-      lhs: (identifier)
-      lhs: (identifier)
-      rhs: (identifier))))
+    body: (expressions
+      (assign
+        lhs: (identifier)
+        rhs: (integer))
+      (multi_assign
+        lhs: (identifier)
+        lhs: (identifier)
+        lhs: (identifier)
+        rhs: (identifier)))))
 
 ================================================================================
 pointer type
@@ -905,7 +953,7 @@ alias SPNP = String*?*
 alias Foo = {*{Char, String}*} # compiler blocks this type of splat
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (proc_type
@@ -946,7 +994,7 @@ a = [] of (String ?) ?
 b = ([] of (String?)?) ? 1 : 2
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (nilable_type
@@ -973,10 +1021,11 @@ b = ([] of (String?)?) ? 1 : 2
   (assign
     lhs: (identifier)
     rhs: (conditional
-      cond: (array
-        of: (nilable_type
-          (nilable_type
-            (constant))))
+      cond: (expressions
+        (array
+          of: (nilable_type
+            (nilable_type
+              (constant)))))
       then: (integer)
       else: (integer))))
 
@@ -988,7 +1037,7 @@ alias Foo = {Char, typeof(1 + w)}
 def p2 : ->{asdf: typeof(FOO)}; end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (tuple_type
@@ -1001,11 +1050,12 @@ def p2 : ->{asdf: typeof(FOO)}; end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (identifier)
-        (typeof
-          (constant))))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (identifier)
+          (typeof
+            (constant)))))))
 
 ================================================================================
 static array types
@@ -1019,7 +1069,7 @@ alias F = UInt8[instance_sizeof(Foo(Bar))]
 alias G = LibC::Char[offsetof(String -> Int32, @a)]
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (static_array_type

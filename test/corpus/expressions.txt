@@ -7,7 +7,7 @@ f_0___
 あいうえお
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (identifier)
   (identifier)
   (identifier)
@@ -29,32 +29,34 @@ class Klass
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (class_def
     name: (constant)
-    (assign
-      lhs: (instance_var)
-      rhs: (integer))
-    (assign
-      lhs: (class_var)
-      rhs: (string))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (instance_var)))
-      (call
-        method: (identifier)
-        arguments: (argument_list
-          (op_call
-            receiver: (instance_var)
-            operator: (operator)
-            argument: (integer)))))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (class_var))))))
+    body: (expressions
+      (assign
+        lhs: (instance_var)
+        rhs: (integer))
+      (assign
+        lhs: (class_var)
+        rhs: (string))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (instance_var)))
+        body: (expressions
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (op_call
+                receiver: (instance_var)
+                operator: (operator)
+                argument: (integer))))))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (class_var)))))))
 
 ================================================================================
 self
@@ -64,7 +66,7 @@ self_
 selfself
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (self)
   (identifier)
   (identifier))
@@ -81,7 +83,7 @@ def pseudo_constants(caller_line = __LINE__, end_of_caller = __END_LINE__)
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     params: (param_list
@@ -91,36 +93,37 @@ end
       (param
         name: (identifier)
         default: (pseudo_constant)))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (string
-          (interpolation
-            (identifier)))))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (string
-          (interpolation
-            (pseudo_constant)))))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (string
-          (interpolation
-            (identifier)))))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (string
-          (interpolation
-            (pseudo_constant)))))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (string
-          (interpolation
-            (pseudo_constant)))))))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (string
+            (interpolation
+              (identifier)))))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (string
+            (interpolation
+              (pseudo_constant)))))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (string
+            (interpolation
+              (identifier)))))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (string
+            (interpolation
+              (pseudo_constant)))))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (string
+            (interpolation
+              (pseudo_constant))))))))
 
 ================================================================================
 special variables
@@ -133,13 +136,59 @@ $12?
 $099
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (special_variable)
   (special_variable)
   (special_variable)
   (special_variable)
   (special_variable)
   (special_variable))
+
+================================================================================
+parentheses and expressions
+================================================================================
+()
+(((((())))))
+
+((nil; 0) - (1)) + ((2)) + (
+
+(
+  3
+  +
+    (
+    4)))
+--------------------------------------------------------------------------------
+
+(expressions
+  (nil)
+  (expressions
+    (expressions
+      (expressions
+        (expressions
+          (expressions
+            (nil))))))
+  (op_call
+    receiver: (op_call
+      receiver: (expressions
+        (op_call
+          receiver: (expressions
+            (nil)
+            (integer))
+          operator: (operator)
+          argument: (expressions
+            (integer))))
+      operator: (operator)
+      argument: (expressions
+        (expressions
+          (integer))))
+    operator: (operator)
+    argument: (expressions
+      (expressions
+        (integer)
+        (op_call
+          operator: (operator)
+          receiver: (expressions
+            (integer)))))))
 
 ================================================================================
 method calls
@@ -171,7 +220,7 @@ pp a # comment
   b  # one more comment
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     receiver: (constant)
     method: (identifier))
@@ -253,7 +302,7 @@ puts(
 puts (), ()
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -302,7 +351,7 @@ pp *a, 2, *{3}
 pp(*a+b, *c*d, *e = f)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (identifier)
     operator: (operator)
@@ -359,7 +408,7 @@ puts(**kwargs)
 pp **{a: 1, "b": 2.0, C: -3, }, **{c: nil}
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (identifier)
     operator: (operator)
@@ -412,7 +461,7 @@ bar 1, c: + 2,
   }
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -473,7 +522,7 @@ d=-0.zero?
 .to_s
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (assign
     lhs: (identifier)
     rhs: (float))
@@ -488,9 +537,10 @@ d=-0.zero?
       receiver: (integer)
       method: (identifier)))
   (call
-    receiver: (assign
-      lhs: (identifier)
-      rhs: (float))
+    receiver: (expressions
+      (assign
+        lhs: (identifier)
+        rhs: (float)))
     method: (identifier)))
 
 ================================================================================
@@ -505,7 +555,7 @@ B =
 D::E=-0.zero?
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (const_assign
     lhs: (constant)
     rhs: (float))
@@ -532,7 +582,7 @@ true
 c.foo.bar = d.baz!.quz = 8
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (assign
     lhs: (assign_call
       receiver: (constant)
@@ -567,7 +617,7 @@ foo.bar = 0.8 if true if false
 baz = 7 unless qux?
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (modifier_if
     then: (assign
       lhs: (identifier)
@@ -607,7 +657,7 @@ d.val,e.val=:d,:e
 a, b, c = d.val, e.val, f = {1, 2, 3}
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (multi_assign
     lhs: (identifier)
     lhs: (identifier)
@@ -688,22 +738,25 @@ until a.nil?
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (while
     condition: (true))
   (while
     condition: (integer)
-    (next))
+    body: (expressions
+      (next)))
   (until
     condition: (call
       receiver: (identifier)
       method: (identifier))
-    (assign
-      lhs: (identifier)
-      rhs: (integer))
-    (until
-      condition: (identifier)
-      (break))))
+    body: (expressions
+      (assign
+        lhs: (identifier)
+        rhs: (integer))
+      (until
+        condition: (identifier)
+        body: (expressions
+          (break))))))
 
 ================================================================================
 basic begin blocks
@@ -719,15 +772,19 @@ begin begin end end
 
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (begin_block
-    (integer))
+    body: (expressions
+      (integer)))
   (begin_block
-    (integer))
+    body: (expressions
+      (integer)))
   (begin_block
-    (begin_block))
+    body: (expressions
+      (begin_block)))
   (begin_block
-    (begin_block)))
+    body: (expressions
+      (begin_block))))
 
 ================================================================================
 begin blocks with rescue
@@ -757,40 +814,50 @@ else
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (begin_block
-    (integer)
+    body: (expressions
+      (integer))
     rescue: (rescue_block
-      (integer)))
+      body: (expressions
+        (integer))))
   (begin_block
-    (integer)
+    body: (expressions
+      (integer))
     rescue: (rescue_block
-      (integer)))
+      body: (expressions
+        (integer))))
   (begin_block
-    (integer)
+    body: (expressions
+      (integer))
     rescue: (rescue_block
       variable: (identifier)
-      (integer)))
+      body: (expressions
+        (integer))))
   (begin_block
-    (integer)
+    body: (expressions
+      (integer))
     rescue: (rescue_block
       type: (constant)
-      (integer)
-      (modifier_rescue
+      body: (expressions
         (integer)
-        rescue: (type_declaration
-          var: (identifier)
-          type: (constant)))
-      (integer)))
+        (modifier_rescue
+          (integer)
+          rescue: (type_declaration
+            var: (identifier)
+            type: (constant)))
+        (integer))))
   (begin_block
-    (integer)
+    body: (expressions
+      (integer))
     rescue: (rescue_block
       variable: (identifier)
       type: (union_type
         (constant)
         (constant)))
     else: (else
-      (symbol))))
+      body: (expressions
+        (symbol)))))
 
 ================================================================================
 begin blocks with ensure
@@ -807,24 +874,27 @@ puts begin 1
 2;3; ensure puts 2;end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (begin_block
-    (integer)
+    body: (expressions
+      (integer))
     ensure: (ensure
       (integer)))
   (begin_block
-    (modifier_ensure
-      (identifier)
-      ensure: (identifier))
+    body: (expressions
+      (modifier_ensure
+        (identifier)
+        ensure: (identifier)))
     ensure: (ensure
       (identifier)))
   (call
     method: (identifier)
     arguments: (argument_list
       (begin_block
-        (integer)
-        (integer)
-        (integer)
+        body: (expressions
+          (integer)
+          (integer)
+          (integer))
         ensure: (ensure
           (call
             method: (identifier)
@@ -849,38 +919,47 @@ begin :a; rescue; :b else :c ensure p! :d end
 begin :a; rescue; :b else :c; ensure p! :d end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (begin_block
-    (modifier_rescue
-      (integer)
-      rescue: (type_declaration
-        var: (identifier)
-        type: (constant)))
-    (integer)
+    body: (expressions
+      (modifier_rescue
+        (integer)
+        rescue: (type_declaration
+          var: (identifier)
+          type: (constant)))
+      (integer))
     rescue: (rescue_block
       variable: (identifier)
-      (integer))
+      body: (expressions
+        (integer)))
     else: (else
-      (integer))
+      body: (expressions
+        (integer)))
     ensure: (ensure
       (integer)))
   (begin_block
-    (symbol)
-    rescue: (rescue_block
+    body: (expressions
       (symbol))
+    rescue: (rescue_block
+      body: (expressions
+        (symbol)))
     else: (else
-      (modifier_ensure
-        (symbol)
-        ensure: (call
-          method: (identifier)
-          arguments: (argument_list
-            (symbol))))))
+      body: (expressions
+        (modifier_ensure
+          (symbol)
+          ensure: (call
+            method: (identifier)
+            arguments: (argument_list
+              (symbol)))))))
   (begin_block
-    (symbol)
+    body: (expressions
+      (symbol))
     rescue: (rescue_block
-      (symbol))
+      body: (expressions
+        (symbol)))
     else: (else
-      (symbol))
+      body: (expressions
+        (symbol)))
     ensure: (ensure
       (call
         method: (identifier)
@@ -896,7 +975,7 @@ puts (7 rescue ArgumentError)
 do_stuff rescue do_stuff rescue 7
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (modifier_rescue
     (call
       method: (identifier)
@@ -906,9 +985,10 @@ do_stuff rescue do_stuff rescue 7
   (call
     method: (identifier)
     arguments: (argument_list
-      (modifier_rescue
-        (integer)
-        rescue: (constant))))
+      (expressions
+        (modifier_rescue
+          (integer)
+          rescue: (constant)))))
   (modifier_rescue
     (modifier_rescue
       (identifier)
@@ -927,20 +1007,23 @@ ensure
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
-      (modifier_ensure
-        (integer)
-        ensure: (call
-          method: (identifier)
-          arguments: (argument_list
-            (integer))))))
+      (expressions
+        (modifier_ensure
+          (integer)
+          ensure: (expressions
+            (call
+              method: (identifier)
+              arguments: (argument_list
+                (integer))))))))
   (method_def
     name: (identifier)
-    (identifier)
-    (identifier)
+    body: (expressions
+      (identifier)
+      (identifier))
     ensure: (ensure
       (identifier)
       (modifier_ensure
@@ -961,7 +1044,7 @@ D &-
 puts "a" + "b".upcase
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (integer)
     operator: (operator)
@@ -977,7 +1060,8 @@ puts "a" + "b".upcase
   (op_call
     receiver: (constant)
     operator: (operator)
-    argument: (constant))
+    argument: (expressions
+      (constant)))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -1018,7 +1102,7 @@ d_ (- 2)
 - 8u8.to_i8
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (identifier)
     operator: (operator)
@@ -1073,9 +1157,10 @@ d_ (- 2)
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
-        operator: (operator)
-        receiver: (integer))))
+      (expressions
+        (op_call
+          operator: (operator)
+          receiver: (integer)))))
   (op_call
     operator: (operator)
     receiver: (op_call
@@ -1125,7 +1210,7 @@ foo(// // 3)
 /a/ .. /b/ / /c/ .../d/
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (op_call
       receiver: (op_call
@@ -1175,7 +1260,8 @@ foo(// // 3)
     arguments: (argument_list
       (regex)))
   (op_call
-    receiver: (identifier)
+    receiver: (expressions
+      (identifier))
     operator: (operator)
     argument: (identifier))
   (op_call
@@ -1188,7 +1274,8 @@ foo(// // 3)
     argument: (integer))
   (op_call
     receiver: (begin_block
-      (integer))
+      body: (expressions
+        (integer)))
     operator: (operator)
     argument: (integer))
   (call
@@ -1220,7 +1307,7 @@ puts 2 **
 42.0 % 2 ** EXP
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (identifier)
     operator: (operator)
@@ -1253,7 +1340,7 @@ array << 1 << 2
 array << (13 >> 2)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (identifier)
     operator: (operator)
@@ -1275,10 +1362,11 @@ array << (13 >> 2)
   (op_call
     receiver: (identifier)
     operator: (operator)
-    argument: (op_call
-      receiver: (integer)
-      operator: (operator)
-      argument: (integer))))
+    argument: (expressions
+      (op_call
+        receiver: (integer)
+        operator: (operator)
+        argument: (integer)))))
 
 ================================================================================
 binary/bitwise operators
@@ -1292,7 +1380,7 @@ a ^ b | c
 pp [1, 2, 3] | [4, 5, 6] & [1, 4]
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (op_call
       operator: (operator)
@@ -1351,7 +1439,7 @@ a || b && c
 d && e || f && g
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (not
     (identifier))
   (or
@@ -1395,7 +1483,7 @@ e !~ /regex/
 (Symbol === :asdf)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (identifier)
     operator: (operator)
@@ -1412,10 +1500,11 @@ e !~ /regex/
     receiver: (identifier)
     operator: (operator)
     argument: (regex))
-  (op_call
-    receiver: (constant)
-    operator: (operator)
-    argument: (symbol)))
+  (expressions
+    (op_call
+      receiver: (constant)
+      operator: (operator)
+      argument: (symbol))))
 
 ================================================================================
 comparison operators
@@ -1434,7 +1523,7 @@ comparison operators
 p! 0 <=> 5
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (integer)
     operator: (operator)
@@ -1447,10 +1536,11 @@ p! 0 <=> 5
     receiver: (integer)
     operator: (operator)
     argument: (float))
-  (op_call
-    receiver: (integer)
-    operator: (operator)
-    argument: (integer))
+  (expressions
+    (op_call
+      receiver: (integer)
+      operator: (operator)
+      argument: (integer)))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -1470,7 +1560,7 @@ a == b <= c
 a <= b == c
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_call
     receiver: (op_call
       receiver: (identifier)
@@ -1529,7 +1619,7 @@ a &&= b
 ary[0..2] //= val.bar **= 7
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (op_assign
     lhs: (identifier)
     rhs: (identifier))
@@ -1623,7 +1713,7 @@ else if DO
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (if
     cond: (true))
   (if
@@ -1660,10 +1750,11 @@ end
           arguments: (argument_list
             (string))))
       else: (else
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (string))))))
+        body: (expressions
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (string)))))))
   (if
     cond: (identifier)
     then: (then
@@ -1672,13 +1763,14 @@ end
         arguments: (argument_list
           (string))))
     else: (else
-      (if
-        cond: (constant)
-        then: (then
-          (call
-            method: (identifier)
-            arguments: (argument_list
-              (string))))))))
+      body: (expressions
+        (if
+          cond: (constant)
+          then: (then
+            (call
+              method: (identifier)
+              arguments: (argument_list
+                (string)))))))))
 
 ================================================================================
 unless
@@ -1692,7 +1784,7 @@ else
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (unless
     cond: (identifier))
   (unless
@@ -1703,10 +1795,11 @@ end
         arguments: (argument_list
           (string))))
     else: (else
-      (call
-        method: (identifier)
-        arguments: (argument_list
-          (string))))))
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))
 
 ================================================================================
 ternary if
@@ -1722,7 +1815,7 @@ puts true ?
 ans = foo ? "foo" : bar ? "bar" : nil
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (conditional
     cond: (call
       method: (identifier))
@@ -1775,79 +1868,81 @@ def foo
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
-    (modifier_if
-      then: (return
-        (argument_list
-          (integer)))
-      cond: (call
-        method: (identifier)))
-    (modifier_if
-      then: (call
+    body: (expressions
+      (modifier_if
+        then: (return
+          (argument_list
+            (integer)))
+        cond: (call
+          method: (identifier)))
+      (modifier_if
+        then: (call
+          method: (identifier)
+          arguments: (argument_list
+            (char)))
+        cond: (identifier))
+      (modifier_if
+        then: (integer)
+        cond: (if
+          cond: (true)
+          then: (then
+            (string))
+          else: (else
+            body: (expressions
+              (string)))))
+      (call
         method: (identifier)
         arguments: (argument_list
-          (char)))
-      cond: (identifier))
-    (modifier_if
-      then: (integer)
-      cond: (if
-        cond: (true)
-        then: (then
-          (string))
-        else: (else
-          (string))))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (nil)))))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (true)))))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (false)))))
-    (modifier_if
-      then: (call
-        method: (identifier))
-      cond: (identifier))
-    (modifier_if
-      then: (string)
-      cond: (identifier))
-    (modifier_if
-      then: (identifier)
-      cond: (identifier))
-    (modifier_if
-      then: (return)
-      cond: (identifier))
-    (modifier_if
-      then: (integer)
-      cond: (identifier))
-    (modifier_if
-      then: (assign
-        lhs: (index_call
-          receiver: (identifier)
-          arguments: (argument_list
-            (integer)))
-        rhs: (integer))
-      cond: (integer))
-    (modifier_if
-      then: (modifier_rescue
-        (integer)
-        rescue: (integer))
-      cond: (integer))))
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (nil)))))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (true)))))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (false)))))
+      (modifier_if
+        then: (call
+          method: (identifier))
+        cond: (identifier))
+      (modifier_if
+        then: (string)
+        cond: (identifier))
+      (modifier_if
+        then: (identifier)
+        cond: (identifier))
+      (modifier_if
+        then: (return)
+        cond: (identifier))
+      (modifier_if
+        then: (integer)
+        cond: (identifier))
+      (modifier_if
+        then: (assign
+          lhs: (index_call
+            receiver: (identifier)
+            arguments: (argument_list
+              (integer)))
+          rhs: (integer))
+        cond: (integer))
+      (modifier_if
+        then: (modifier_rescue
+          (integer)
+          rescue: (integer))
+        cond: (integer)))))
 
 ================================================================================
 unless modifiers
@@ -1878,79 +1973,81 @@ def foo
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
-    (modifier_unless
-      then: (return
-        (argument_list
-          (integer)))
-      cond: (call
-        method: (identifier)))
-    (modifier_unless
-      then: (call
+    body: (expressions
+      (modifier_unless
+        then: (return
+          (argument_list
+            (integer)))
+        cond: (call
+          method: (identifier)))
+      (modifier_unless
+        then: (call
+          method: (identifier)
+          arguments: (argument_list
+            (char)))
+        cond: (identifier))
+      (modifier_unless
+        then: (integer)
+        cond: (unless
+          cond: (true)
+          then: (then
+            (string))
+          else: (else
+            body: (expressions
+              (string)))))
+      (call
         method: (identifier)
         arguments: (argument_list
-          (char)))
-      cond: (identifier))
-    (modifier_unless
-      then: (integer)
-      cond: (unless
-        cond: (true)
-        then: (then
-          (string))
-        else: (else
-          (string))))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (nil)))))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (true)))))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (false)))))
-    (modifier_unless
-      then: (call
-        method: (identifier))
-      cond: (identifier))
-    (modifier_unless
-      then: (string)
-      cond: (identifier))
-    (modifier_unless
-      then: (identifier)
-      cond: (identifier))
-    (modifier_unless
-      then: (return)
-      cond: (identifier))
-    (modifier_unless
-      then: (integer)
-      cond: (identifier))
-    (modifier_unless
-      then: (assign
-        lhs: (index_call
-          receiver: (identifier)
-          arguments: (argument_list
-            (integer)))
-        rhs: (integer))
-      cond: (integer))
-    (modifier_unless
-      then: (modifier_rescue
-        (integer)
-        rescue: (integer))
-      cond: (integer))))
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (nil)))))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (true)))))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (false)))))
+      (modifier_unless
+        then: (call
+          method: (identifier))
+        cond: (identifier))
+      (modifier_unless
+        then: (string)
+        cond: (identifier))
+      (modifier_unless
+        then: (identifier)
+        cond: (identifier))
+      (modifier_unless
+        then: (return)
+        cond: (identifier))
+      (modifier_unless
+        then: (integer)
+        cond: (identifier))
+      (modifier_unless
+        then: (assign
+          lhs: (index_call
+            receiver: (identifier)
+            arguments: (argument_list
+              (integer)))
+          rhs: (integer))
+        cond: (integer))
+      (modifier_unless
+        then: (modifier_rescue
+          (integer)
+          rescue: (integer))
+        cond: (integer)))))
 
 ================================================================================
 calls with do/end blocks
@@ -1968,7 +2065,7 @@ end
 a (b do 1 end) do 2 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     block: (block))
@@ -1992,23 +2089,27 @@ a (b do 1 end) do 2 end
         arguments: (argument_list
           (identifier))))
     block: (block
-      (call
-        method: (identifier)
-        block: (block))
-      (call
-        method: (identifier)
-        arguments: (argument_list
-          (identifier))
-        block: (block))))
+      body: (expressions
+        (call
+          method: (identifier)
+          block: (block))
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (identifier))
+          block: (block)))))
   (call
     method: (identifier)
     arguments: (argument_list
-      (call
-        method: (identifier)
-        block: (block
-          (integer))))
+      (expressions
+        (call
+          method: (identifier)
+          block: (block
+            body: (expressions
+              (integer))))))
     block: (block
-      (integer))))
+      body: (expressions
+        (integer)))))
 
 ================================================================================
 do/end blocks with rescue, else, and ensure
@@ -2024,7 +2125,7 @@ ensure
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     block: (block
@@ -2036,16 +2137,18 @@ end
       ensure: (ensure
         (identifier))))
   (call
-    receiver: (range
-      begin: (integer)
-      operator: (operator)
-      end: (integer))
+    receiver: (expressions
+      (range
+        begin: (integer)
+        operator: (operator)
+        end: (integer)))
     method: (identifier)
     block: (block
       params: (param_list
         (param
           name: (identifier)))
-      (symbol)
+      body: (expressions
+        (symbol))
       rescue: (rescue_block)
       else: (else)
       ensure: (ensure))))
@@ -2084,7 +2187,7 @@ a(b { 1 }) { 2 }
 a 1, {2, b { 4 }} { 3 }
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     block: (block))
@@ -2097,20 +2200,24 @@ a 1, {2, b { 4 }} { 3 }
     arguments: (argument_list
       (integer))
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
   (call
     method: (identifier)
     arguments: (argument_list
       (integer))
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
   (call
     method: (identifier)
     block: (block
-      (call
-        method: (identifier)
-        block: (block
-          (identifier)))))
+      body: (expressions
+        (call
+          method: (identifier)
+          block: (block
+            body: (expressions
+              (identifier)))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2120,7 +2227,8 @@ a 1, {2, b { 4 }} { 3 }
           (call
             method: (identifier)
             block: (block
-              (integer)))))))
+              body: (expressions
+                (integer))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2129,57 +2237,70 @@ a 1, {2, b { 4 }} { 3 }
         arguments: (argument_list
           (identifier))))
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
   (call
     method: (identifier)
     arguments: (argument_list
       (call
         method: (identifier)
         block: (block
-          (integer))))
+          body: (expressions
+            (integer)))))
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
   (call
     method: (identifier)
     block: (block
-      (call
-        method: (identifier)
-        block: (block
-          (integer)))))
+      body: (expressions
+        (call
+          method: (identifier)
+          block: (block
+            body: (expressions
+              (integer)))))))
   (call
     method: (identifier)
     block: (block
-      (call
-        method: (identifier)
-        block: (block
-          (integer)))))
-  (call
-    method: (identifier)
-    arguments: (argument_list
-      (call
-        method: (identifier)
-        block: (block
-          (integer))))
-    block: (block
-      (integer)))
+      body: (expressions
+        (call
+          method: (identifier)
+          block: (block
+            body: (expressions
+              (integer)))))))
   (call
     method: (identifier)
     arguments: (argument_list
       (call
         method: (identifier)
         block: (block
-          (integer))))
+          body: (expressions
+            (integer)))))
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
   (call
     method: (identifier)
     arguments: (argument_list
       (call
         method: (identifier)
         block: (block
-          (integer))))
+          body: (expressions
+            (integer)))))
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (call
+        method: (identifier)
+        block: (block
+          body: (expressions
+            (integer)))))
+    block: (block
+      body: (expressions
+        (integer))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2189,9 +2310,11 @@ a 1, {2, b { 4 }} { 3 }
         (call
           method: (identifier)
           block: (block
-            (integer)))))
+            body: (expressions
+              (integer))))))
     block: (block
-      (integer))))
+      body: (expressions
+        (integer)))))
 
 ================================================================================
 curly brace after a range operator
@@ -2202,7 +2325,7 @@ puts 1, 2.. { 3 => 4 }
 
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2261,7 +2384,7 @@ bar &prc .. 7 # => bar(&(prc..7))
 foo &b = a
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2289,8 +2412,9 @@ foo &b = a
     arguments: (argument_list
       (string)
       (block_argument
-        (proc
-          block: (block)))))
+        (expressions
+          (proc
+            block: (block))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2303,7 +2427,8 @@ foo &b = a
     arguments: (argument_list
       (string)
       (block_argument
-        (identifier))))
+        (expressions
+          (identifier)))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2325,10 +2450,11 @@ foo &b = a
               arguments: (argument_list
                 (string))))
           else: (else
-            (call
-              method: (identifier)
-              arguments: (argument_list
-                (string))))))))
+            body: (expressions
+              (call
+                method: (identifier)
+                arguments: (argument_list
+                  (string)))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2371,7 +2497,7 @@ method(&.take_block(&.@foo))
 method(&.take_block { |f| f.foo })
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2464,9 +2590,10 @@ method(&.take_block { |f| f.foo })
             params: (param_list
               (param
                 name: (identifier)))
-            (call
-              receiver: (identifier)
-              method: (identifier))))))))
+            body: (expressions
+              (call
+                receiver: (identifier)
+                method: (identifier)))))))))
 
 ================================================================================
 precedence of block attachment with &. short block syntax
@@ -2477,7 +2604,7 @@ outer(method &.take_block do "inner" end)
 outer method(&.take_block) do "inner" end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2488,7 +2615,8 @@ outer method(&.take_block) do "inner" end
             (implicit_object_call
               method: (identifier)
               block: (block
-                (string))))))))
+                body: (expressions
+                  (string)))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2499,7 +2627,8 @@ outer method(&.take_block) do "inner" end
             (implicit_object_call
               method: (identifier)
               block: (block
-                (string))))))))
+                body: (expressions
+                  (string)))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2510,7 +2639,8 @@ outer method(&.take_block) do "inner" end
             (implicit_object_call
               method: (identifier)
               block: (block
-                (string))))))))
+                body: (expressions
+                  (string)))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2521,7 +2651,8 @@ outer method(&.take_block) do "inner" end
             (implicit_object_call
               method: (identifier))))))
     block: (block
-      (string))))
+      body: (expressions
+        (string)))))
 
 ================================================================================
 chained &. syntax
@@ -2544,7 +2675,7 @@ a &.b c { "in c" }.d.e
 a &.b 'b' { "in b" }.d.e
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2576,10 +2707,12 @@ a &.b 'b' { "in b" }.d.e
                     method: (identifier))
                   method: (identifier)
                   block: (block
-                    (identifier)))
+                    body: (expressions
+                      (identifier))))
                 method: (identifier)
                 block: (block
-                  (identifier)))
+                  body: (expressions
+                    (identifier))))
               method: (identifier)
               arguments: (argument_list
                 (nil)
@@ -2599,7 +2732,8 @@ a &.b 'b' { "in b" }.d.e
             method: (identifier))
           method: (identifier)
           arguments: (argument_list
-            (identifier))))))
+            (expressions
+              (identifier)))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2632,7 +2766,8 @@ a &.b 'b' { "in b" }.d.e
                 receiver: (call
                   method: (identifier)
                   block: (block
-                    (string)))
+                    body: (expressions
+                      (string))))
                 method: (identifier))
               method: (identifier)))))))
   (call
@@ -2646,7 +2781,8 @@ a &.b 'b' { "in b" }.d.e
               arguments: (argument_list
                 (char))
               block: (block
-                (string)))
+                body: (expressions
+                  (string))))
             method: (identifier))
           method: (identifier))))))
 
@@ -2685,7 +2821,7 @@ func(&(-var))
 func &(-var)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (comment)
   (op_call
     receiver: (identifier)
@@ -2775,9 +2911,18 @@ func &(-var)
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (call
-          receiver: (identifier)
-          method: (operator)))))
+        (expressions
+          (call
+            receiver: (identifier)
+            method: (operator))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (expressions
+          (call
+            receiver: (identifier)
+            method: (operator))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2789,23 +2934,18 @@ func &(-var)
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (call
-          receiver: (identifier)
-          method: (operator)))))
+        (expressions
+          (op_call
+            operator: (operator)
+            receiver: (identifier))))))
   (call
     method: (identifier)
     arguments: (argument_list
       (block_argument
-        (op_call
-          operator: (operator)
-          receiver: (identifier)))))
-  (call
-    method: (identifier)
-    arguments: (argument_list
-      (block_argument
-        (op_call
-          operator: (operator)
-          receiver: (identifier))))))
+        (expressions
+          (op_call
+            operator: (operator)
+            receiver: (identifier)))))))
 
 ================================================================================
 block parameters
@@ -2823,20 +2963,21 @@ foo{|_|}
 foo { |a, *b, (c, d,),| }
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     block: (block
       params: (param_list
         (param
           name: (identifier)))))
-  (call
-    method: (identifier)
-    arguments: (argument_list)
-    block: (block
-      params: (param_list
-        (param
-          name: (identifier)))))
+  (expressions
+    (call
+      method: (identifier)
+      arguments: (argument_list)
+      block: (block
+        params: (param_list
+          (param
+            name: (identifier))))))
   (call
     method: (identifier)
     block: (block
@@ -2866,39 +3007,41 @@ def bar
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
-    (yield))
+    body: (expressions
+      (yield)))
   (method_def
     name: (identifier)
-    (yield
-      with: (yield)
-      (argument_list
-        (yield)))
-    (comment)
-    (yield
-      with: (yield
+    body: (expressions
+      (yield
+        with: (yield)
         (argument_list
-          (integer)))
-      (argument_list
-        (symbol)
-        (yield
+          (yield)))
+      (comment)
+      (yield
+        with: (yield
           (argument_list
-            (string)))))
-    (yield
-      with: (call
-        method: (identifier)
-        arguments: (argument_list
-          (call
-            method: (identifier))))
-      (argument_list
-        (splat
-          (identifier))))
-    (op_call
-      receiver: (yield)
-      operator: (operator)
-      argument: (yield))))
+            (integer)))
+        (argument_list
+          (symbol)
+          (yield
+            (argument_list
+              (string)))))
+      (yield
+        with: (call
+          method: (identifier)
+          arguments: (argument_list
+            (call
+              method: (identifier))))
+        (argument_list
+          (splat
+            (identifier))))
+      (op_call
+        receiver: (yield)
+        operator: (operator)
+        argument: (yield)))))
 
 ================================================================================
 operator method calls
@@ -2914,7 +3057,7 @@ a.[](1, 2)
 a.[]=(1, 2)
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     receiver: (integer)
     method: (operator))
@@ -2967,7 +3110,7 @@ a.[0], *b.[0] = 1, 2, 3
 a.[0].setter, a.[1].setter = things
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (index_call
     receiver: (identifier)
     arguments: (argument_list
@@ -2976,7 +3119,8 @@ a.[0].setter, a.[1].setter = things
     receiver: (call
       method: (identifier)
       block: (block
-        (integer)))
+        body: (expressions
+          (integer))))
     arguments: (argument_list
       (integer)))
   (call
@@ -3097,7 +3241,7 @@ a[0], a[2, 3] = a[2], a[0]
 a[1], *b[0] = a
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     receiver: (identifier)
     method: (operator)
@@ -3176,7 +3320,7 @@ else
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (assign
     lhs: (identifier)
     rhs: (case
@@ -3184,19 +3328,22 @@ end
       (when
         cond: (regex)
         cond: (regex)
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (string)))
-        (integer))
+        body: (expressions
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (string)))
+          (integer)))
       (when
         cond: (implicit_object_call
           method: (identifier)))
       (when
         cond: (false)
-        (string))
+        body: (expressions
+          (string)))
       (else
-        (integer))))
+        body: (expressions
+          (integer)))))
   (case
     cond: (integer)
     (when
@@ -3216,7 +3363,8 @@ end
           (named_expr
             name: (string)
             (char))))
-      (identifier))
+      body: (expressions
+        (identifier)))
     (when
       cond: (implicit_object_call
         method: (identifier)
@@ -3227,10 +3375,13 @@ end
           params: (param_list
             (param
               name: (identifier)))
-          (integer)))
-      (identifier))
+          body: (expressions
+            (integer))))
+      body: (expressions
+        (identifier)))
     (else
-      (identifier)))
+      body: (expressions
+        (identifier))))
   (case
     cond: (tuple
       (identifier)
@@ -3243,7 +3394,8 @@ end
         (implicit_object_call
           method: (identifier))
         (identifier))
-      (true))
+      body: (expressions
+        (true)))
     (when
       cond: (tuple
         (implicit_object_call
@@ -3259,40 +3411,44 @@ end
           arguments: (argument_list
             (integer))
           block: (block
-            (integer))))
-      (false))
+            body: (expressions
+              (integer)))))
+      body: (expressions
+        (false)))
     (else
-      (case
-        cond: (identifier)
-        (when
-          cond: (implicit_object_call
-            method: (operator)
-            arguments: (argument_list
-              (integer)))
-          cond: (false))
-        (when
-          cond: (implicit_object_call
-            method: (operator)
-            arguments: (argument_list
-              (integer)
-              (named_expr
-                name: (identifier)
-                (integer)))))
-        (when
-          cond: (implicit_object_call
-            method: (identifier)
-            arguments: (argument_list
-              (block_argument
-                (proc
-                  params: (param_list
-                    (param
-                      name: (identifier)
-                      type: (constant)))
-                  block: (block
-                    (op_call
-                      receiver: (identifier)
-                      operator: (operator)
-                      argument: (integer))))))))))))
+      body: (expressions
+        (case
+          cond: (identifier)
+          (when
+            cond: (implicit_object_call
+              method: (operator)
+              arguments: (argument_list
+                (integer)))
+            cond: (false))
+          (when
+            cond: (implicit_object_call
+              method: (operator)
+              arguments: (argument_list
+                (integer)
+                (named_expr
+                  name: (identifier)
+                  (integer)))))
+          (when
+            cond: (implicit_object_call
+              method: (identifier)
+              arguments: (argument_list
+                (block_argument
+                  (proc
+                    params: (param_list
+                      (param
+                        name: (identifier)
+                        type: (constant)))
+                    block: (block
+                      body: (expressions
+                        (op_call
+                          receiver: (identifier)
+                          operator: (operator)
+                          argument: (integer))))))))))))))
 
 ================================================================================
 exhaustive case expressions
@@ -3313,7 +3469,7 @@ in Proc(Int32, -> (Int32))
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (case
     cond: (nil)
     (in
@@ -3322,20 +3478,22 @@ end
     cond: (identifier)
     (in
       cond: (false)
-      (case
-        cond: (identifier)
-        (in
-          cond: (implicit_object_call
-            method: (identifier)))
-        (in
-          cond: (constant))))
+      body: (expressions
+        (case
+          cond: (identifier)
+          (in
+            cond: (implicit_object_call
+              method: (identifier)))
+          (in
+            cond: (constant)))))
     (in
       cond: (true)
       cond: (constant))
     (in
       cond: (implicit_object_call
         method: (identifier))
-      (integer))
+      body: (expressions
+        (integer)))
     (in
       cond: (generic_instance_type
         (constant)
@@ -3355,14 +3513,15 @@ end
 
 ---
 
-(source_file
+(expressions
   (case
     (when
-      (true)
-      (call
-        (identifier)
-        (argument_list
-          (string))))))
+      cond: (true)
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))
 
 ================
 select statement
@@ -3377,21 +3536,23 @@ end
 
 ---
 
-(source_file
+(expressions
   (select
     (when
-      (call
-        (identifier)
-        (identifier))
-      (call
-        (identifier)
-        (argument_list
-          (string))))
+      cond: (call
+        receiver: (identifier)
+        method: (identifier))
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))
     (else
-      (call
-        (identifier)
-        (argument_list
-          (string))))))
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))
 
 ================================================================================
 sizeof, instance_sizeof, offsetof
@@ -3405,7 +3566,7 @@ sizeof, instance_sizeof, offsetof
 ].sum
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     receiver: (array
       (sizeof
@@ -3466,7 +3627,7 @@ class K
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (type_declaration
     var: (identifier)
     type: (constant))
@@ -3511,9 +3672,10 @@ end
     value: (proc
       type: (proc_type)
       block: (block
-        (integer)
-        (proc
-          block: (block)))))
+        body: (expressions
+          (integer)
+          (proc
+            block: (block))))))
   (type_declaration
     var: (identifier)
     type: (proc_type
@@ -3521,9 +3683,10 @@ end
     value: (proc
       type: (proc_type)
       block: (block
-        (integer)
-        (proc
-          block: (block)))))
+        body: (expressions
+          (integer)
+          (proc
+            block: (block))))))
   (type_declaration
     var: (identifier)
     type: (constant)
@@ -3561,23 +3724,24 @@ end
       value: (integer)))
   (class_def
     name: (constant)
-    (type_declaration
-      var: (instance_var)
-      type: (constant))
-    (type_declaration
-      var: (class_var)
-      type: (constant)
-      value: (string))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (type_declaration
-          var: (identifier)
-          type: (constant))
-        (type_declaration
-          var: (identifier)
-          type: (constant)
-          value: (string))))))
+    body: (expressions
+      (type_declaration
+        var: (instance_var)
+        type: (constant))
+      (type_declaration
+        var: (class_var)
+        type: (constant)
+        value: (string))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (type_declaration
+            var: (identifier)
+            type: (constant))
+          (type_declaration
+            var: (identifier)
+            type: (constant)
+            value: (string)))))))
 
 =================
 read instance var
@@ -3587,7 +3751,7 @@ object.@ivar
 
 ---
 
-(source_file
+(expressions
   (call
     receiver: (identifier)
     method: (instance_var)))
@@ -3600,10 +3764,10 @@ global method calls
 
 ---
 
-(source_file
+(expressions
   (call
-    (identifier)
-    (argument_list
+    method: (identifier)
+    arguments: (argument_list
       (string))))
 
 ===============================================
@@ -3644,74 +3808,75 @@ end
 
 ---
 
-(source_file
+(expressions
   (method_def
-    (identifier)
-    (param_list
+    name: (identifier)
+    params: (param_list
       (param
-        (identifier))
+        name: (identifier))
       (param
-        (identifier)))
-    (return
-      (argument_list
-        (identifier)
-        (identifier)))
-    (return
-      (argument_list
-        (integer)
-        (integer)))
-    (return
-      (argument_list
-        (tuple
+        name: (identifier)))
+    body: (expressions
+      (return
+        (argument_list
           (identifier)
-          (identifier))
-        (array
-          (identifier)
-          (identifier))))
-    (return
-      (argument_list
-        (integer)
-        (integer)
-        (integer)
-        (integer)
-        (integer)
-        (integer)
-        (integer)
-        (integer)
-        (integer)))
-    (return
-      (argument_list
-        (op_call
+          (identifier)))
+      (return
+        (argument_list
           (integer)
-          (operator)
-          (integer))
-        (op_call
-          (integer)
-          (operator)
-          (integer))
-        (call
-          (identifier)
-          (identifier)
-          (argument_list
+          (integer)))
+      (return
+        (argument_list
+          (tuple
             (identifier)
-            (identifier)))))
-    (return
-      (argument_list))
-    (return
-      (argument_list
-        (identifier)
-        (identifier)))
-    (return
-      (argument_list
-        (integer)
-        (integer)
-        (integer)
-        (integer)
-        (integer)
-        (integer)))
-    (return)
-    (integer)
-    (ERROR)))
+            (identifier))
+          (array
+            (identifier)
+            (identifier))))
+      (return
+        (argument_list
+          (integer)
+          (integer)
+          (integer)
+          (integer)
+          (integer)
+          (integer)
+          (integer)
+          (integer)
+          (integer)))
+      (return
+        (argument_list
+          (op_call
+            receiver: (integer)
+            operator: (operator)
+            argument: (integer))
+          (op_call
+            receiver: (integer)
+            operator: (operator)
+            argument: (integer))
+          (call
+            receiver: (identifier)
+            method: (identifier)
+            arguments: (argument_list
+              (identifier)
+              (identifier)))))
+      (return
+        (argument_list))
+      (return
+        (argument_list
+          (identifier)
+          (identifier)))
+      (return
+        (argument_list
+          (integer)
+          (integer)
+          (integer)
+          (integer)
+          (integer)
+          (integer)))
+      (return)
+      (integer)
+      (ERROR))))
 
 =======================
 assign special variable
@@ -3724,15 +3889,16 @@ end
 
 ---
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
-    (assign
-      lhs: (special_variable)
-      rhs: (special_variable))
-    (assign
-      lhs: (special_variable)
-      rhs: (integer))))
+    body: (expressions
+      (assign
+        lhs: (special_variable)
+        rhs: (special_variable))
+      (assign
+        lhs: (special_variable)
+        rhs: (integer)))))
 
 ============================================================
 asm expressions
@@ -3783,7 +3949,7 @@ asm("
 
 ------------------------------------------------------------
 
-(source_file
+(expressions
   (asm
     (comment)
     (comment)
@@ -3851,7 +4017,7 @@ asm ("nop")
 
 ---
 
-(source_file
+(expressions
   (asm
     text: (string))
   (asm

@@ -6,7 +6,7 @@ blank file
 
 --------------------------------------------------------------------------------
 
-(source_file)
+(expressions)
 
 ================================================================================
 blank lines
@@ -36,7 +36,7 @@ end
 
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (true)
   (method_def
     name: (identifier)))
@@ -57,7 +57,7 @@ a + # asdf
 ##
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (comment)
   (op_call
     receiver: (identifier)
@@ -81,7 +81,7 @@ require "colorize"
 require "#{__DIR__}/relative_file"
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (require
     (string))
   (require
@@ -116,7 +116,7 @@ nil; (nil;nil)
 (nil; (nil;nil))
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (nil)
   (nil)
   (nil)
@@ -128,10 +128,14 @@ nil; (nil;nil)
   (expressions
     (nil)
     (nil))
+  (expressions
+    (expressions
+      (nil)))
   (nil)
-  (nil)
-  (nil)
-  (nil)
+  (expressions
+    (nil))
+  (expressions
+    (nil))
   (expressions
     (nil)
     (nil))
@@ -147,7 +151,7 @@ aliases
 alias Foo = Bar::Baz
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (alias
     name: (constant)
     type: (constant)))
@@ -175,29 +179,35 @@ module ::Outer
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (module_def
-    name: (constant))
+    name: (constant)
+    body: (expressions))
   (module_def
-    name: (constant))
+    name: (constant)
+    body: (expressions))
   (module_def
     name: (constant))
   (module_def
     name: (constant)
-    (const_assign
-      lhs: (constant)
-      rhs: (integer))
-    (const_assign
-      lhs: (constant)
-      rhs: (integer)))
-  (module_def
-    name: (constant))
+    body: (expressions
+      (const_assign
+        lhs: (constant)
+        rhs: (integer))
+      (const_assign
+        lhs: (constant)
+        rhs: (integer))))
   (module_def
     name: (constant)
-    (module_def
-      name: (constant)
-      (true)
-      (false))))
+    body: (expressions))
+  (module_def
+    name: (constant)
+    body: (expressions
+      (module_def
+        name: (constant)
+        body: (expressions
+          (true)
+          (false))))))
 
 ================================================================================
 classes
@@ -226,34 +236,41 @@ class ::Outer
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (class_def
     name: (constant)
-    superclass: (constant))
+    superclass: (constant)
+    body: (expressions))
   (class_def
     name: (constant)
-    superclass: (constant))
+    superclass: (constant)
+    body: (expressions))
   (class_def
     name: (constant))
   (class_def
     name: (constant)
-    (const_assign
-      lhs: (constant)
-      rhs: (integer))
-    (const_assign
-      lhs: (constant)
-      rhs: (integer)))
+    body: (expressions
+      (const_assign
+        lhs: (constant)
+        rhs: (integer))
+      (const_assign
+        lhs: (constant)
+        rhs: (integer))))
   (class_def
     name: (constant)
-    superclass: (constant))
+    superclass: (constant)
+    body: (expressions))
   (class_def
     name: (constant)
-    (module_def
-      name: (constant)
-      (class_def
+    body: (expressions
+      (module_def
         name: (constant)
-        (self)
-        (nil)))))
+        body: (expressions
+          (class_def
+            name: (constant)
+            body: (expressions
+              (self)
+              (nil))))))))
 
 ================================================================================
 structs
@@ -275,54 +292,57 @@ struct Y < X(Int32)
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (struct_def
     name: (generic_type
       (constant)
       params: (param_list
         (constant)))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (identifier)))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (instance_var)
-          type: (constant))))
-    (abstract_method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (identifier)
-          type: (constant)))
-      type: (constant)))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (identifier)))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (instance_var)
+            type: (constant))))
+      (abstract_method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (identifier)
+            type: (constant)))
+        type: (constant))))
   (struct_def
     name: (constant)
     superclass: (generic_instance_type
       (constant)
       params: (param_list
         (constant)))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (identifier)))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (instance_var))
-        (param
-          name: (instance_var)
-          type: (constant))))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (identifier)))
-      type: (constant)
-      (string))))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (identifier)))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (instance_var))
+          (param
+            name: (instance_var)
+            type: (constant))))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (identifier)))
+        type: (constant)
+        body: (expressions
+          (string))))))
 
 ================================================================================
 method definitions
@@ -353,12 +373,13 @@ def blam
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
-    (return
-      (argument_list
-        (integer))))
+    body: (expressions
+      (return
+        (argument_list
+          (integer)))))
   (method_def
     name: (identifier))
   (method_def
@@ -366,9 +387,10 @@ end
   (method_def
     name: (identifier)
     type: (constant)
-    (return
-      (argument_list
-        (true))))
+    body: (expressions
+      (return
+        (argument_list
+          (true)))))
   (method_def
     name: (identifier)
     params: (param_list
@@ -396,20 +418,23 @@ end
         extern_name: (identifier)
         name: (identifier)
         default: (integer)))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (op_call
-          receiver: (identifier)
-          operator: (operator)
-          argument: (identifier)))))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (op_call
+            receiver: (identifier)
+            operator: (operator)
+            argument: (identifier))))))
   (method_def
     name: (identifier)
-    (and
-      (or
-        (identifier)
-        (identifier))
-      (identifier))))
+    body: (expressions
+      (and
+        (expressions
+          (or
+            (identifier)
+            (identifier)))
+        (identifier)))))
 
 ================================================================================
 method definitions with block parameters
@@ -429,7 +454,7 @@ def worst_syntax(b, &:
 ->);end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     params: (param_list
@@ -474,7 +499,7 @@ def bar(a, *b : Int32, c, **d : Bool); end
 def baz(*a, **b, &c); end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     params: (param_list
@@ -512,7 +537,7 @@ def foo(x : T.class, y : U) : Array(T | U).class forall T, U
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (abstract_method_def
     name: (identifier)
     params: (param_list
@@ -544,12 +569,13 @@ end
     forall: (forall
       (constant)
       (constant))
-    (generic_instance_type
-      (constant)
-      params: (param_list
-        (union_type
-          (constant)
-          (constant))))))
+    body: (expressions
+      (generic_instance_type
+        (constant)
+        params: (param_list
+          (union_type
+            (constant)
+            (constant)))))))
 
 ================================================================================
 operator method definitions
@@ -567,24 +593,26 @@ class Operators
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (class_def
     name: (constant)
-    (method_def
-      name: (operator)
-      type: (self))
-    (method_def
-      class: (self)
-      name: (operator)
-      params: (param_list
-        (param
-          name: (identifier))))
-    (method_def
-      name: (operator)
-      params: (param_list
-        (param
-          name: (identifier)))
-      (false))))
+    body: (expressions
+      (method_def
+        name: (operator)
+        type: (self))
+      (method_def
+        class: (self)
+        name: (operator)
+        params: (param_list
+          (param
+            name: (identifier))))
+      (method_def
+        name: (operator)
+        params: (param_list
+          (param
+            name: (identifier)))
+        body: (expressions
+          (false))))))
 
 ================================================================================
 class method definitions
@@ -602,29 +630,33 @@ class D
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (class_def
     name: (generic_type
       (constant)
       params: (param_list
-        (constant))))
+        (constant)))
+    body: (expressions))
   (class_def
     name: (constant)
-    (method_def
-      class: (self)
-      name: (identifier)
-      (string))
-    (method_def
-      class: (constant)
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (identifier)))
-      (call
-        method: (identifier)
-        arguments: (argument_list
-          (constant)
-          (identifier))))))
+    body: (expressions
+      (method_def
+        class: (self)
+        name: (identifier)
+        body: (expressions
+          (string)))
+      (method_def
+        class: (constant)
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (identifier)))
+        body: (expressions
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (constant)
+              (identifier))))))))
 
 ================================================================================
 method definitions with rescue, else, and ensure
@@ -637,7 +669,7 @@ ensure
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     name: (identifier)
     rescue: (rescue_block
@@ -663,18 +695,19 @@ end
 
 ---
 
-(source_file
+(expressions
   (class_def
     name: (constant)
-    (abstract_method_def
-      name: (identifier))
-    (abstract_method_def
-      name: (identifier))
-    (abstract_method_def
-      name: (identifier))
-    (abstract_method_def
-      name: (identifier)
-      type: (constant))))
+    body: (expressions
+      (abstract_method_def
+        name: (identifier))
+      (abstract_method_def
+        name: (identifier))
+      (abstract_method_def
+        name: (identifier))
+      (abstract_method_def
+        name: (identifier)
+        type: (constant)))))
 
 ================================================================================
 next/break/return
@@ -697,25 +730,12 @@ loop do
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (call
     method: (identifier)
     block: (block
-      (if
-        cond: (identifier)
-        then: (then
-          (next
-            (argument_list
-              (integer)
-              (splat
-                (identifier))
-              (integer)
-              (double_splat
-                (identifier))
-              (named_expr
-                name: (identifier)
-                (symbol)))))
-        else: (elsif
+      body: (expressions
+        (if
           cond: (identifier)
           then: (then
             (next
@@ -729,31 +749,46 @@ end
                 (named_expr
                   name: (identifier)
                   (symbol)))))
-          else: (else
-            (break
-              (argument_list
-                (double_splat
-                  (identifier))
-                (named_expr
-                  name: (identifier)
-                  (symbol)))))))
-      (return
-        (argument_list))
-      (return
-        (argument_list
-          (splat
-            (identifier))
-          (splat
-            (identifier))))
-      (return
-        (argument_list
-          (splat
-            (identifier))
-          (double_splat
-            (identifier))
-          (named_expr
-            name: (identifier)
-            (nil)))))))
+          else: (elsif
+            cond: (identifier)
+            then: (then
+              (next
+                (argument_list
+                  (integer)
+                  (splat
+                    (identifier))
+                  (integer)
+                  (double_splat
+                    (identifier))
+                  (named_expr
+                    name: (identifier)
+                    (symbol)))))
+            else: (else
+              body: (expressions
+                (break
+                  (argument_list
+                    (double_splat
+                      (identifier))
+                    (named_expr
+                      name: (identifier)
+                      (symbol))))))))
+        (return
+          (argument_list))
+        (return
+          (argument_list
+            (splat
+              (identifier))
+            (splat
+              (identifier))))
+        (return
+          (argument_list
+            (splat
+              (identifier))
+            (double_splat
+              (identifier))
+            (named_expr
+              name: (identifier)
+              (nil))))))))
 
 ================================================================================
 annotations
@@ -776,7 +811,7 @@ class Asdf
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (annotation_def
     name: (constant))
   (annotation_def
@@ -809,37 +844,38 @@ end
         (integer))))
   (class_def
     name: (constant)
-    (annotation
-      (constant)
-      arguments: (argument_list
-        (string)))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (identifier))
-        (splat_param
-          (annotation
-            (constant)
-            arguments: (argument_list
-              (string)))
-          (annotation
-            (constant))
-          name: (identifier))
-        (double_splat_param
-          (annotation
-            (constant)
-            arguments: (argument_list
-              (integer)))
-          name: (identifier))
-        (block_param
-          (annotation
-            (constant)
-            arguments: (argument_list
-              (string)))
-          name: (identifier)
-          type: (proc_type
-            (constant)))))))
+    body: (expressions
+      (annotation
+        (constant)
+        arguments: (argument_list
+          (string)))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (identifier))
+          (splat_param
+            (annotation
+              (constant)
+              arguments: (argument_list
+                (string)))
+            (annotation
+              (constant))
+            name: (identifier))
+          (double_splat_param
+            (annotation
+              (constant)
+              arguments: (argument_list
+                (integer)))
+            name: (identifier))
+          (block_param
+            (annotation
+              (constant)
+              arguments: (argument_list
+                (string)))
+            name: (identifier)
+            type: (proc_type
+              (constant))))))))
 
 ================================================================================
 method and type visibility
@@ -860,30 +896,33 @@ private module Foo
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (method_def
     visibility: (private)
     name: (identifier))
   (module_def
     visibility: (private)
     name: (constant)
-    (class_def
-      visibility: (private)
-      name: (constant)
-      (struct_def
+    body: (expressions
+      (class_def
         visibility: (private)
         name: (constant)
-        (const_assign
-          visibility: (private)
-          lhs: (constant)
-          rhs: (integer)))
-      (alias
-        visibility: (private)
-        name: (constant)
-        type: (constant))
-      (method_def
-        visibility: (protected)
-        name: (identifier)))))
+        body: (expressions
+          (struct_def
+            visibility: (private)
+            name: (constant)
+            body: (expressions
+              (const_assign
+                visibility: (private)
+                lhs: (constant)
+                rhs: (integer))))
+          (alias
+            visibility: (private)
+            name: (constant)
+            type: (constant))
+          (method_def
+            visibility: (protected)
+            name: (identifier)))))))
 
 ================================================================================
 enum definitions
@@ -910,37 +949,42 @@ enum Bar : UInt8
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (enum_def
     name: (constant)
-    (constant)
-    (constant)
-    (const_assign
-      lhs: (constant)
-      rhs: (integer)))
+    body: (expressions
+      (constant)
+      (constant)
+      (const_assign
+        lhs: (constant)
+        rhs: (integer))))
   (alias
     name: (constant)
     type: (constant))
   (enum_def
     name: (constant)
     type: (constant)
-    (constant)
-    (constant)
-    (constant))
+    body: (expressions
+      (constant)
+      (constant)
+      (constant)))
   (enum_def
     name: (constant)
-    (constant))
+    body: (expressions
+      (constant)))
   (annotation
     (constant))
   (enum_def
     name: (constant)
     type: (constant)
-    (constant)
-    (constant)
-    (constant)
-    (method_def
-      name: (identifier)
-      (string))))
+    body: (expressions
+      (constant)
+      (constant)
+      (constant)
+      (method_def
+        name: (identifier)
+        body: (expressions
+          (string))))))
 
 =============
 private enums
@@ -955,14 +999,16 @@ end
 
 ---
 
-(source_file
+(expressions
   (module_def
     name: (constant)
-    (enum_def
-      visibility: (private)
-      name: (constant)
-      (constant)
-      (constant))))
+    body: (expressions
+      (enum_def
+        visibility: (private)
+        name: (constant)
+        body: (expressions
+          (constant)
+          (constant))))))
 
 ================================================================================
 line continuations
@@ -984,7 +1030,7 @@ puts\
 end
 --------------------------------------------------------------------------------
 
-(source_file
+(expressions
   (multi_assign
     lhs: (identifier)
     lhs: (identifier)
@@ -999,11 +1045,12 @@ end
     rhs: (string))
   (method_def
     name: (identifier)
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (string)
-        (string)))))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (string)
+          (string))))))
 
 ================
 include + extend
@@ -1017,23 +1064,24 @@ end
 
 ---
 
-(source_file
+(expressions
   (class_def
     (constant)
-    (include
-      (generic_instance_type
-        (constant)
-        (param_list
-          (constant))))
-    (extend
-      (constant))
-    (extend
-      (generic_instance_type
-        (constant)
-        (param_list
-          (tuple_type
-            (constant)
-            (constant)))))))
+    (expressions
+      (include
+        (generic_instance_type
+          (constant)
+          (param_list
+            (constant))))
+      (extend
+        (constant))
+      (extend
+        (generic_instance_type
+          (constant)
+          (param_list
+            (tuple_type
+              (constant)
+              (constant))))))))
 
 ================
 lib external var
@@ -1045,12 +1093,13 @@ end
 
 ---
 
-(source_file
+(expressions
   (lib_def
     (constant)
-    (global_var
-      (identifier)
-      (constant))))
+    (expressions
+      (global_var
+        (identifier)
+        (constant)))))
 
 =========
 empty lib
@@ -1061,7 +1110,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (lib_def
     (constant)))
 
@@ -1075,7 +1124,7 @@ end
 
 ---
 
-(source_file
+(expressions
   (fun_def
     name: (identifier)
     params: (param_list
@@ -1086,10 +1135,11 @@ end
         (identifier)
         type: (constant)))
     type: (constant)
-    body: (call
-      method: (identifier)
-      arguments: (argument_list
-        (string)))))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (string))))))
 
 =================
 lib def + objects
@@ -1122,46 +1172,48 @@ end
 
 ---
 
-(source_file
+(expressions
   (lib_def
     name: (constant)
-    (fun_def
-      name: (identifier)
-      real_name: (constant)
-      type: (constant))
-    (fun_def
-      name: (identifier)
-      params: (param_list
-        (fun_param
+    body: (expressions
+      (fun_def
+        name: (identifier)
+        real_name: (constant)
+        type: (constant))
+      (fun_def
+        name: (identifier)
+        params: (param_list
+          (fun_param
+            (identifier)
+            type: (constant)))
+        type: (constant))
+      (union_def
+        name: (constant)
+        (union_fields
+          (identifier)
+          type: (constant))
+        (union_fields
           (identifier)
           type: (constant)))
-      type: (constant))
-    (union_def
-      name: (constant)
-      (union_fields
-        (identifier)
-        type: (constant))
-      (union_fields
-        (identifier)
-        type: (constant)))
-    (c_struct_def
-      name: (constant)
-      (c_struct_fields
-        (identifier)
-        (identifier)
-        type: (constant))
-      (c_struct_fields
-        (identifier)
-        type: (constant)))
-    (enum_def
-      name: (constant)
-      (constant)
-      (constant)
-      (constant)
-      (constant))
-    (type_def
-      (constant)
-      (constant))))
+      (c_struct_def
+        name: (constant)
+        (c_struct_fields
+          (identifier)
+          (identifier)
+          type: (constant))
+        (c_struct_fields
+          (identifier)
+          type: (constant)))
+      (enum_def
+        name: (constant)
+        body: (expressions
+          (constant)
+          (constant)
+          (constant)
+          (constant)))
+      (type_def
+        (constant)
+        (constant)))))
 
 =============
 fun with dots
@@ -1174,30 +1226,31 @@ end
 
 ---
 
-(source_file
+(expressions
   (lib_def
     name: (constant)
-    (fun_def
-      name: (identifier)
-      params: (param_list
-        (fun_param
-          (identifier)
-          type: (constant))
-        (fun_param
-          (identifier)
-          type: (constant)))
-      type: (constant))
-    (fun_def
-      name: (identifier)
-      params: (param_list
-        (fun_param
-          (identifier)
-          type: (pointer_type
-            (constant)))
-        (fun_param
-          (identifier)
-          type: (constant)))
-      type: (constant))))
+    body: (expressions
+      (fun_def
+        name: (identifier)
+        params: (param_list
+          (fun_param
+            (identifier)
+            type: (constant))
+          (fun_param
+            (identifier)
+            type: (constant)))
+        type: (constant))
+      (fun_def
+        name: (identifier)
+        params: (param_list
+          (fun_param
+            (identifier)
+            type: (pointer_type
+              (constant)))
+          (fun_param
+            (identifier)
+            type: (constant)))
+        type: (constant)))))
 
 =================
 fun pointer param
@@ -1209,17 +1262,18 @@ end
 
 ---
 
-(source_file
+(expressions
   (lib_def
     name: (constant)
-    (fun_def
-      name: (identifier)
-      params: (param_list
-        (constant)
-        (pointer_type
+    body: (expressions
+      (fun_def
+        name: (identifier)
+        params: (param_list
+          (constant)
+          (pointer_type
+            (constant))
           (constant))
-        (constant))
-      type: (constant))))
+        type: (constant)))))
 
 ========================================
 fun def parenthesized expression in body
@@ -1237,13 +1291,15 @@ end
 
 ---
 
-(source_file
+(expressions
   (comment)
   (fun_def
     name: (identifier)
-    body: (type_declaration
-      var: (identifier)
-      type: (constant)))
+    body: (expressions
+      (expressions
+        (type_declaration
+          var: (identifier)
+          type: (constant)))))
   (comment)
   (fun_def
     name: (identifier)
@@ -1260,7 +1316,7 @@ fun bar() end
 
 ---
 
-(source_file
+(expressions
   (fun_def
     name: (identifier)))
 
@@ -1279,26 +1335,28 @@ end
 
 ---
 
-(source_file
+(expressions
   (class_def
     name: (constant)
-    (call
-      visibility: (private)
-      method: (identifier)
-      arguments: (argument_list
-        (identifier)))
-    (call
-      visibility: (protected)
-      method: (identifier)
-      arguments: (argument_list
-        (type_declaration
-          var: (identifier)
-          type: (constant))))
-    (method_def
-      name: (identifier)
+    body: (expressions
       (call
-        receiver: (call
-          visibility: (private)
-          method: (identifier)
-          arguments: (argument_list))
-        method: (identifier)))))
+        visibility: (private)
+        method: (identifier)
+        arguments: (argument_list
+          (identifier)))
+      (call
+        visibility: (protected)
+        method: (identifier)
+        arguments: (argument_list
+          (type_declaration
+            var: (identifier)
+            type: (constant))))
+      (method_def
+        name: (identifier)
+        body: (expressions
+          (call
+            receiver: (call
+              visibility: (private)
+              method: (identifier)
+              arguments: (argument_list))
+            method: (identifier)))))))

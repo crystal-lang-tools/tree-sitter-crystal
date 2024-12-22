@@ -221,12 +221,6 @@ module.exports = grammar({
       'no_block_call',
     ],
 
-    // Ensure `(1; 2)` is considered an `expressions` node, but `(1)` is just an integer
-    [
-      $._parenthesized_statement,
-      $._statements,
-    ],
-
     // Ensure `[] of A | B` parses as `[] of (A | B)`
     [
       $.union_type,
@@ -342,7 +336,7 @@ module.exports = grammar({
   ],
 
   rules: {
-    source_file: $ => seq(
+    expressions: $ => seq(
       optional($._statements),
     ),
 
@@ -386,10 +380,6 @@ module.exports = grammar({
       ),
       $._enum_statement,
     ),
-
-    _parenthesized_statement: $ => prec(1, seq(
-      '(', $._statement, optional($._terminator), ')',
-    )),
 
     _statement: $ => choice(
       $._expression,
@@ -440,7 +430,7 @@ module.exports = grammar({
     ),
 
     // Wrap multiple expressions/statements into a single node, if necessary
-    expressions: $ => seq(
+    parenthesized_expressions: $ => seq(
       '(', $._statements, ')',
     ),
 
@@ -476,8 +466,7 @@ module.exports = grammar({
 
       // Groupings
       alias($.empty_parens, $.nil),
-      $._parenthesized_statement,
-      $.expressions,
+      alias($.parenthesized_expressions, $.expressions),
       $.begin_block,
 
       // Symbols
@@ -1075,7 +1064,7 @@ module.exports = grammar({
       optional(field('visibility', $.private)),
       'module',
       field('name', choice($.constant, $.generic_type)),
-      seq(optional($._statements)),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
     ),
 
@@ -1087,7 +1076,7 @@ module.exports = grammar({
       optional(seq(
         '<', field('superclass', choice($.constant, $.generic_instance_type)),
       )),
-      seq(optional($._statements)),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
     ),
 
@@ -1099,7 +1088,7 @@ module.exports = grammar({
       optional(seq(
         '<', field('superclass', choice($.constant, $.generic_instance_type)),
       )),
-      seq(optional($._statements)),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
     ),
 
@@ -1108,7 +1097,7 @@ module.exports = grammar({
       'enum',
       field('name', alias($._constant_segment, $.constant)),
       optional(field('type', seq(/:\s/, $._bare_type))),
-      optional($._enum_statements),
+      field('body', seq(optional(alias($._enum_statements, $.expressions)))),
       'end',
     ),
 
@@ -1116,7 +1105,7 @@ module.exports = grammar({
       optional(field('visibility', $.private)),
       'lib',
       field('name', $.constant, $.generic_type),
-      optional($._lib_statements),
+      field('body', seq(optional(alias($._lib_statements, $.expressions)))),
       'end',
     ),
 
@@ -1137,7 +1126,7 @@ module.exports = grammar({
           optional(params),
           optional(return_type),
         )),
-        field('body', optional($._statements)),
+        field('body', seq(optional(alias($._statements, $.expressions)))),
         'end',
       )
     },
@@ -1326,10 +1315,8 @@ module.exports = grammar({
         visibility,
         $._base_method_def,
         optional($._terminator),
-        optional($._statements),
-        field('rescue', repeat($.rescue_block)),
-        field('else', optional($.else)),
-        field('ensure', optional($.ensure)),
+        field('body', seq(optional(alias($._statements, $.expressions)))),
+        optional($._rescue_else_ensure),
         'end',
       )
     },
@@ -2409,7 +2396,7 @@ module.exports = grammar({
       return seq(
         'do',
         optional(params),
-        optional($._statements),
+        field('body', seq(optional(alias($._statements, $.expressions)))),
         optional($._rescue_else_ensure),
         'end',
       )
@@ -2421,7 +2408,7 @@ module.exports = grammar({
       return seq(
         alias($._start_of_brace_block, '{'),
         optional(params),
-        optional($._statements),
+        field('body', seq(optional(alias($._statements, $.expressions)))),
         '}',
       )
     },
@@ -2439,7 +2426,7 @@ module.exports = grammar({
     begin_block: $ => seq(
       'begin',
       optional($._terminator),
-      optional($._statements),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
       optional($._rescue_else_ensure),
       'end',
     ),
@@ -2447,7 +2434,7 @@ module.exports = grammar({
     rescue_block: $ => {
       const rescue_variable = field('variable', $.identifier)
       const rescue_type = field('type', $._bare_type)
-      const rescue_body = optional($._statements)
+      const rescue_body = field('body', seq(optional(alias($._statements, $.expressions))))
 
       return seq(
         alias($._regular_rescue_keyword, 'rescue'),
@@ -2502,7 +2489,7 @@ module.exports = grammar({
       'while',
       field('condition', $._expression),
       $._terminator,
-      optional($._statements),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
     ),
 
@@ -2510,7 +2497,7 @@ module.exports = grammar({
       'until',
       field('condition', $._expression),
       $._terminator,
-      optional($._statements),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
     ),
 
@@ -2560,7 +2547,10 @@ module.exports = grammar({
       )
     },
 
-    else: $ => seq('else', optional($._statements)),
+    else: $ => seq(
+      'else',
+      field('body', seq(optional(alias($._statements, $.expressions)))),
+    ),
 
     conditional: $ => prec.right('ternary_operator', seq(
       field('cond', $._expression),
@@ -2596,7 +2586,7 @@ module.exports = grammar({
         cond,
         repeat(seq(',', cond)),
         choice('then', $._terminator),
-        optional($._statements),
+        field('body', seq(optional(alias($._statements, $.expressions)))),
       )
     },
 
@@ -2636,7 +2626,7 @@ module.exports = grammar({
         cond,
         repeat(seq(',', cond)),
         choice('then', $._terminator),
-        optional($._statements),
+        field('body', seq(optional(alias($._statements, $.expressions)))),
       )
     },
 
