@@ -2489,7 +2489,7 @@ module.exports = grammar({
       'while',
       field('condition', $._expression),
       $._terminator,
-      optional($._statements),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
     ),
 
@@ -2497,7 +2497,7 @@ module.exports = grammar({
       'until',
       field('condition', $._expression),
       $._terminator,
-      optional($._statements),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
     ),
 
@@ -2547,7 +2547,10 @@ module.exports = grammar({
       )
     },
 
-    else: $ => seq('else', optional($._statements)),
+    else: $ => seq(
+      'else',
+      field('body', seq(optional(alias($._statements, $.expressions)))),
+    ),
 
     conditional: $ => prec.right('ternary_operator', seq(
       field('cond', $._expression),
@@ -2583,7 +2586,7 @@ module.exports = grammar({
         cond,
         repeat(seq(',', cond)),
         choice('then', $._terminator),
-        optional($._statements),
+        field('body', seq(optional(alias($._statements, $.expressions)))),
       )
     },
 
@@ -2623,7 +2626,7 @@ module.exports = grammar({
         cond,
         repeat(seq(',', cond)),
         choice('then', $._terminator),
-        optional($._statements),
+        field('body', seq(optional(alias($._statements, $.expressions)))),
       )
     },
 

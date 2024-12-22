@@ -743,17 +743,20 @@ end
     condition: (true))
   (while
     condition: (integer)
-    (next))
+    body: (expressions
+      (next)))
   (until
     condition: (call
       receiver: (identifier)
       method: (identifier))
-    (assign
-      lhs: (identifier)
-      rhs: (integer))
-    (until
-      condition: (identifier)
-      (break))))
+    body: (expressions
+      (assign
+        lhs: (identifier)
+        rhs: (integer))
+      (until
+        condition: (identifier)
+        body: (expressions
+          (break))))))
 
 ================================================================================
 basic begin blocks
@@ -853,7 +856,8 @@ end
         (constant)
         (constant)))
     else: (else
-      (symbol))))
+      body: (expressions
+        (symbol)))))
 
 ================================================================================
 begin blocks with ensure
@@ -929,7 +933,8 @@ begin :a; rescue; :b else :c; ensure p! :d end
       body: (expressions
         (integer)))
     else: (else
-      (integer))
+      body: (expressions
+        (integer)))
     ensure: (ensure
       (integer)))
   (begin_block
@@ -939,12 +944,13 @@ begin :a; rescue; :b else :c; ensure p! :d end
       body: (expressions
         (symbol)))
     else: (else
-      (modifier_ensure
-        (symbol)
-        ensure: (call
-          method: (identifier)
-          arguments: (argument_list
-            (symbol))))))
+      body: (expressions
+        (modifier_ensure
+          (symbol)
+          ensure: (call
+            method: (identifier)
+            arguments: (argument_list
+              (symbol)))))))
   (begin_block
     body: (expressions
       (symbol))
@@ -952,7 +958,8 @@ begin :a; rescue; :b else :c; ensure p! :d end
       body: (expressions
         (symbol)))
     else: (else
-      (symbol))
+      body: (expressions
+        (symbol)))
     ensure: (ensure
       (call
         method: (identifier)
@@ -1743,10 +1750,11 @@ end
           arguments: (argument_list
             (string))))
       else: (else
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (string))))))
+        body: (expressions
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (string)))))))
   (if
     cond: (identifier)
     then: (then
@@ -1755,13 +1763,14 @@ end
         arguments: (argument_list
           (string))))
     else: (else
-      (if
-        cond: (constant)
-        then: (then
-          (call
-            method: (identifier)
-            arguments: (argument_list
-              (string))))))))
+      body: (expressions
+        (if
+          cond: (constant)
+          then: (then
+            (call
+              method: (identifier)
+              arguments: (argument_list
+                (string)))))))))
 
 ================================================================================
 unless
@@ -1786,10 +1795,11 @@ end
         arguments: (argument_list
           (string))))
     else: (else
-      (call
-        method: (identifier)
-        arguments: (argument_list
-          (string))))))
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))
 
 ================================================================================
 ternary if
@@ -1881,7 +1891,8 @@ end
           then: (then
             (string))
           else: (else
-            (string))))
+            body: (expressions
+              (string)))))
       (call
         method: (identifier)
         arguments: (argument_list
@@ -1985,7 +1996,8 @@ end
           then: (then
             (string))
           else: (else
-            (string))))
+            body: (expressions
+              (string)))))
       (call
         method: (identifier)
         arguments: (argument_list
@@ -2438,10 +2450,11 @@ foo &b = a
               arguments: (argument_list
                 (string))))
           else: (else
-            (call
-              method: (identifier)
-              arguments: (argument_list
-                (string))))))))
+            body: (expressions
+              (call
+                method: (identifier)
+                arguments: (argument_list
+                  (string)))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -3315,19 +3328,22 @@ end
       (when
         cond: (regex)
         cond: (regex)
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (string)))
-        (integer))
+        body: (expressions
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (string)))
+          (integer)))
       (when
         cond: (implicit_object_call
           method: (identifier)))
       (when
         cond: (false)
-        (string))
+        body: (expressions
+          (string)))
       (else
-        (integer))))
+        body: (expressions
+          (integer)))))
   (case
     cond: (integer)
     (when
@@ -3347,7 +3363,8 @@ end
           (named_expr
             name: (string)
             (char))))
-      (identifier))
+      body: (expressions
+        (identifier)))
     (when
       cond: (implicit_object_call
         method: (identifier)
@@ -3360,9 +3377,11 @@ end
               name: (identifier)))
           body: (expressions
             (integer))))
-      (identifier))
+      body: (expressions
+        (identifier)))
     (else
-      (identifier)))
+      body: (expressions
+        (identifier))))
   (case
     cond: (tuple
       (identifier)
@@ -3375,7 +3394,8 @@ end
         (implicit_object_call
           method: (identifier))
         (identifier))
-      (true))
+      body: (expressions
+        (true)))
     (when
       cond: (tuple
         (implicit_object_call
@@ -3393,40 +3413,42 @@ end
           block: (block
             body: (expressions
               (integer)))))
-      (false))
+      body: (expressions
+        (false)))
     (else
-      (case
-        cond: (identifier)
-        (when
-          cond: (implicit_object_call
-            method: (operator)
-            arguments: (argument_list
-              (integer)))
-          cond: (false))
-        (when
-          cond: (implicit_object_call
-            method: (operator)
-            arguments: (argument_list
-              (integer)
-              (named_expr
-                name: (identifier)
-                (integer)))))
-        (when
-          cond: (implicit_object_call
-            method: (identifier)
-            arguments: (argument_list
-              (block_argument
-                (proc
-                  params: (param_list
-                    (param
-                      name: (identifier)
-                      type: (constant)))
-                  block: (block
-                    body: (expressions
-                      (op_call
-                        receiver: (identifier)
-                        operator: (operator)
-                        argument: (integer)))))))))))))
+      body: (expressions
+        (case
+          cond: (identifier)
+          (when
+            cond: (implicit_object_call
+              method: (operator)
+              arguments: (argument_list
+                (integer)))
+            cond: (false))
+          (when
+            cond: (implicit_object_call
+              method: (operator)
+              arguments: (argument_list
+                (integer)
+                (named_expr
+                  name: (identifier)
+                  (integer)))))
+          (when
+            cond: (implicit_object_call
+              method: (identifier)
+              arguments: (argument_list
+                (block_argument
+                  (proc
+                    params: (param_list
+                      (param
+                        name: (identifier)
+                        type: (constant)))
+                    block: (block
+                      body: (expressions
+                        (op_call
+                          receiver: (identifier)
+                          operator: (operator)
+                          argument: (integer))))))))))))))
 
 ================================================================================
 exhaustive case expressions
@@ -3456,20 +3478,22 @@ end
     cond: (identifier)
     (in
       cond: (false)
-      (case
-        cond: (identifier)
-        (in
-          cond: (implicit_object_call
-            method: (identifier)))
-        (in
-          cond: (constant))))
+      body: (expressions
+        (case
+          cond: (identifier)
+          (in
+            cond: (implicit_object_call
+              method: (identifier)))
+          (in
+            cond: (constant)))))
     (in
       cond: (true)
       cond: (constant))
     (in
       cond: (implicit_object_call
         method: (identifier))
-      (integer))
+      body: (expressions
+        (integer)))
     (in
       cond: (generic_instance_type
         (constant)
@@ -3492,11 +3516,12 @@ end
 (expressions
   (case
     (when
-      (true)
-      (call
-        (identifier)
-        (argument_list
-          (string))))))
+      cond: (true)
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))
 
 ================
 select statement
@@ -3514,18 +3539,20 @@ end
 (expressions
   (select
     (when
-      (call
-        (identifier)
-        (identifier))
-      (call
-        (identifier)
-        (argument_list
-          (string))))
+      cond: (call
+        receiver: (identifier)
+        method: (identifier))
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))
     (else
-      (call
-        (identifier)
-        (argument_list
-          (string))))))
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))
 
 ================================================================================
 sizeof, instance_sizeof, offsetof

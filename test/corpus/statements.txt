@@ -764,13 +764,14 @@ end
                     name: (identifier)
                     (symbol)))))
             else: (else
-              (break
-                (argument_list
-                  (double_splat
-                    (identifier))
-                  (named_expr
-                    name: (identifier)
-                    (symbol)))))))
+              body: (expressions
+                (break
+                  (argument_list
+                    (double_splat
+                      (identifier))
+                    (named_expr
+                      name: (identifier)
+                      (symbol))))))))
         (return
           (argument_list))
         (return
