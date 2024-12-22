@@ -370,6 +370,10 @@
           "named": true
         },
         {
+          "type": "operator",
+          "named": true
+        },
+        {
           "type": "or",
           "named": true
         },
@@ -9974,7 +9978,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -10099,6 +10103,10 @@
         },
         {
           "type": "op_assign",
+          "named": true
+        },
+        {
+          "type": "operator",
           "named": true
         },
         {
@@ -10628,6 +10636,10 @@
         },
         {
           "type": "op_assign",
+          "named": true
+        },
+        {
+          "type": "operator",
           "named": true
         },
         {
@@ -15177,10 +15189,6 @@
     "named": false
   },
   {
-    "type": "&&",
-    "named": false
-  },
-  {
     "type": "&&=",
     "named": false
   },
@@ -15690,10 +15698,6 @@
   },
   {
     "type": "|=",
-    "named": false
-  },
-  {
-    "type": "||",
     "named": false
   },
   {

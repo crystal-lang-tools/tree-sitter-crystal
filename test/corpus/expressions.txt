@@ -1500,30 +1500,40 @@ d && e || f && g
 
 (expressions
   (not
+    (operator)
     (identifier))
   (or
     (call
       receiver: (identifier)
       method: (identifier))
+    (operator)
     (identifier))
   (and
     (identifier)
+    (operator)
     (identifier))
   (or
     (not
+      (operator)
       (true))
+    (operator)
     (false))
   (or
     (identifier)
+    (operator)
     (and
       (identifier)
+      (operator)
       (identifier)))
   (or
     (and
       (identifier)
+      (operator)
       (identifier))
+    (operator)
     (and
       (identifier)
+      (operator)
       (identifier))))
 
 ================================================================================

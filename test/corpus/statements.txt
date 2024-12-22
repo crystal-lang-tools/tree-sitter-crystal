@@ -435,7 +435,9 @@ end
         (expressions
           (or
             (identifier)
+            (operator)
             (identifier)))
+        (operator)
         (identifier)))))
 
 ================================================================================

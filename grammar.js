@@ -2026,9 +2026,20 @@ module.exports = grammar({
       )
     },
 
-    not: $ => prec('unary_operator', seq('!', $._expression)),
-    and: $ => prec.left('logical_and_operator', seq($._expression, '&&', $._expression)),
-    or: $ => prec.left('logical_or_operator', seq($._expression, '||', $._expression)),
+    not: $ => prec('unary_operator', seq(
+      alias('!', $.operator),
+      $._expression,
+    )),
+    and: $ => prec.left('logical_and_operator', seq(
+      $._expression,
+      alias('&&', $.operator),
+      $._expression,
+    )),
+    or: $ => prec.left('logical_or_operator', seq(
+      $._expression,
+      alias('||', $.operator),
+      $._expression,
+    )),
 
     additive_operator: $ => {
       const operator = choice(
