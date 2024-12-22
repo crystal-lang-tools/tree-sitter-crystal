@@ -114,52 +114,53 @@ end
     (expressions
       (method_def
         (identifier)
-        (call
-          (self)
-          (identifier)
-          (argument_list
-            (constant)))
-        (call
-          (self)
-          (identifier))
-        (typeof
-          (self)
-          (identifier))
-        (comment)
-        (sizeof
-          (class_type
-            (self)))
-        (comment)
-        (instance_sizeof
-          (class_type
-            (self)))
-        (comment)
-        (call
-          (identifier)
-          (argument_list
-            (self)))
-        (offsetof
-          (class_type
-            (self))
-          (integer))
-        (comment)
-        (call
-          (self)
-          (identifier)
-          (argument_list
-            (constant)))
-        (call
-          (self)
-          (identifier)
-          (argument_list
-            (constant)))
-        (call
-          (identifier)
-          (argument_list
-            (symbol)))
-        (call
-          (self)
-          (operator))))))
+        (expressions
+          (call
+            (self)
+            (identifier)
+            (argument_list
+              (constant)))
+          (call
+            (self)
+            (identifier))
+          (typeof
+            (self)
+            (identifier))
+          (comment)
+          (sizeof
+            (class_type
+              (self)))
+          (comment)
+          (instance_sizeof
+            (class_type
+              (self)))
+          (comment)
+          (call
+            (identifier)
+            (argument_list
+              (self)))
+          (offsetof
+            (class_type
+              (self))
+            (integer))
+          (comment)
+          (call
+            (self)
+            (identifier)
+            (argument_list
+              (constant)))
+          (call
+            (self)
+            (identifier)
+            (argument_list
+              (constant)))
+          (call
+            (identifier)
+            (argument_list
+              (symbol)))
+          (call
+            (self)
+            (operator)))))))
 
 =======================
 misc keywords / methods
@@ -181,6 +182,7 @@ uninitialized Class
 
 ==========================
 fun def params on newlines
+:error
 ==========================
 
 fun

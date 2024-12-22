@@ -4727,14 +4727,24 @@
           "type": "FIELD",
           "name": "body",
           "content": {
-            "type": "CHOICE",
+            "type": "SEQ",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_statements"
-              },
-              {
-                "type": "BLANK"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_statements"
+                    },
+                    "named": true,
+                    "value": "expressions"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               }
             ]
           }
@@ -5718,59 +5728,42 @@
           ]
         },
         {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_statements"
+                    },
+                    "named": true,
+                    "value": "expressions"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_statements"
+              "name": "_rescue_else_ensure"
             },
             {
               "type": "BLANK"
             }
           ]
-        },
-        {
-          "type": "FIELD",
-          "name": "rescue",
-          "content": {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "rescue_block"
-            }
-          }
-        },
-        {
-          "type": "FIELD",
-          "name": "else",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "else"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
-        },
-        {
-          "type": "FIELD",
-          "name": "ensure",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "ensure"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
         },
         {
           "type": "STRING",
@@ -11516,16 +11509,30 @@
           ]
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_statements"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_statements"
+                    },
+                    "named": true,
+                    "value": "expressions"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "type": "CHOICE",
@@ -11616,16 +11623,30 @@
           "name": "_terminator"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_statements"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_statements"
+                    },
+                    "named": true,
+                    "value": "expressions"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },

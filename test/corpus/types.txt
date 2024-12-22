@@ -269,15 +269,17 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (hash
-      (hash_entry
-        (integer)
-        (integer))))
+    body: (expressions
+      (hash
+        (hash_entry
+          (integer)
+          (integer)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (constant)))
+    body: (expressions
+      (tuple
+        (constant))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -286,10 +288,11 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (expressions
-      (call
-        receiver: (constant)
-        method: (identifier))))
+    body: (expressions
+      (expressions
+        (call
+          receiver: (constant)
+          method: (identifier)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -298,10 +301,11 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (call
-        receiver: (constant)
-        method: (identifier))))
+    body: (expressions
+      (tuple
+        (call
+          receiver: (constant)
+          method: (identifier)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -316,8 +320,9 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (identifier)))
+    body: (expressions
+      (tuple
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -325,8 +330,9 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (expressions
-      (identifier)))
+    body: (expressions
+      (expressions
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -337,12 +343,13 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (expressions
-        (op_call
-          receiver: (constant)
-          operator: (operator)
-          argument: (constant)))))
+    body: (expressions
+      (tuple
+        (expressions
+          (op_call
+            receiver: (constant)
+            operator: (operator)
+            argument: (constant))))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -352,11 +359,12 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (expressions
-      (op_call
-        receiver: (constant)
-        operator: (operator)
-        argument: (constant))))
+    body: (expressions
+      (expressions
+        (op_call
+          receiver: (constant)
+          operator: (operator)
+          argument: (constant)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -369,11 +377,12 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (op_call
-        receiver: (constant)
-        operator: (operator)
-        argument: (constant))))
+    body: (expressions
+      (tuple
+        (op_call
+          receiver: (constant)
+          operator: (operator)
+          argument: (constant)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -383,11 +392,12 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (expressions
-      (op_call
-        receiver: (constant)
-        operator: (operator)
-        argument: (constant))))
+    body: (expressions
+      (expressions
+        (op_call
+          receiver: (constant)
+          operator: (operator)
+          argument: (constant)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -397,11 +407,12 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (conditional
-        cond: (constant)
-        then: (integer)
-        else: (integer))))
+    body: (expressions
+      (tuple
+        (conditional
+          cond: (constant)
+          then: (integer)
+          else: (integer)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -410,11 +421,12 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (expressions
-      (conditional
-        cond: (constant)
-        then: (integer)
-        else: (integer)))))
+    body: (expressions
+      (expressions
+        (conditional
+          cond: (constant)
+          then: (integer)
+          else: (integer))))))
 
 ================================================================================
 proc ambiguity resolution, continued
@@ -471,26 +483,30 @@ f = -> : -> { a: String; ->{} }
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (identifier)))
+    body: (expressions
+      (tuple
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (identifier)))
+    body: (expressions
+      (tuple
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (call
-        method: (identifier))))
+    body: (expressions
+      (tuple
+        (call
+          method: (identifier)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (identifier)
-        (self))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (identifier)
+          (self)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -503,19 +519,22 @@ f = -> : -> { a: String; ->{} }
   (method_def
     name: (identifier)
     type: (proc_type)
-    (expressions
-      (identifier)))
+    body: (expressions
+      (expressions
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (expressions
-      (identifier)))
+    body: (expressions
+      (expressions
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (expressions
-      (call
-        method: (identifier))))
+    body: (expressions
+      (expressions
+        (call
+          method: (identifier)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -531,21 +550,24 @@ f = -> : -> { a: String; ->{} }
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (call
-        method: (identifier))))
+    body: (expressions
+      (tuple
+        (call
+          method: (identifier)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (tuple
-      (identifier)))
+    body: (expressions
+      (tuple
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (identifier)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (identifier)
+          (string)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -559,14 +581,16 @@ f = -> : -> { a: String; ->{} }
   (method_def
     name: (identifier)
     type: (proc_type)
-    (expressions
-      (call
-        method: (identifier))))
+    body: (expressions
+      (expressions
+        (call
+          method: (identifier)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (expressions
-      (identifier)))
+    body: (expressions
+      (expressions
+        (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -575,52 +599,59 @@ f = -> : -> { a: String; ->{} }
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (identifier)
-        (symbol))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (identifier)
+          (symbol)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (string)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string)
+          (string)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (string)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string)
+          (string)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (string)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string)
+          (string)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (string)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string)
+          (string)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (string)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string)
+          (string)))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (string)
-        (string))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string)
+          (string)))))
   (assign
     lhs: (identifier)
     rhs: (proc
@@ -898,14 +929,15 @@ end
           (underscore_type)
           (underscore_type)
           return: (constant))))
-    (assign
-      lhs: (identifier)
-      rhs: (integer))
-    (multi_assign
-      lhs: (identifier)
-      lhs: (identifier)
-      lhs: (identifier)
-      rhs: (identifier))))
+    body: (expressions
+      (assign
+        lhs: (identifier)
+        rhs: (integer))
+      (multi_assign
+        lhs: (identifier)
+        lhs: (identifier)
+        lhs: (identifier)
+        rhs: (identifier)))))
 
 ================================================================================
 pointer type
@@ -1015,11 +1047,12 @@ def p2 : ->{asdf: typeof(FOO)}; end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (named_tuple
-      (named_expr
-        name: (identifier)
-        (typeof
-          (constant))))))
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (identifier)
+          (typeof
+            (constant)))))))
 
 ================================================================================
 static array types

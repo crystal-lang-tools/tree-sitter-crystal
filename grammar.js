@@ -1126,7 +1126,7 @@ module.exports = grammar({
           optional(params),
           optional(return_type),
         )),
-        field('body', optional($._statements)),
+        field('body', seq(optional(alias($._statements, $.expressions)))),
         'end',
       )
     },
@@ -1315,10 +1315,8 @@ module.exports = grammar({
         visibility,
         $._base_method_def,
         optional($._terminator),
-        optional($._statements),
-        field('rescue', repeat($.rescue_block)),
-        field('else', optional($.else)),
-        field('ensure', optional($.ensure)),
+        field('body', seq(optional(alias($._statements, $.expressions)))),
+        optional($._rescue_else_ensure),
         'end',
       )
     },
@@ -2428,7 +2426,7 @@ module.exports = grammar({
     begin_block: $ => seq(
       'begin',
       optional($._terminator),
-      optional($._statements),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
       optional($._rescue_else_ensure),
       'end',
     ),
@@ -2436,7 +2434,7 @@ module.exports = grammar({
     rescue_block: $ => {
       const rescue_variable = field('variable', $.identifier)
       const rescue_type = field('type', $._bare_type)
-      const rescue_body = optional($._statements)
+      const rescue_body = field('body', seq(optional(alias($._statements, $.expressions))))
 
       return seq(
         alias($._regular_rescue_keyword, 'rescue'),

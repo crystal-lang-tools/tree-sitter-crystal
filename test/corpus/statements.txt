@@ -341,7 +341,8 @@ end
           (param
             name: (identifier)))
         type: (constant)
-        (string)))))
+        body: (expressions
+          (string))))))
 
 ================================================================================
 method definitions
@@ -375,9 +376,10 @@ end
 (expressions
   (method_def
     name: (identifier)
-    (return
-      (argument_list
-        (integer))))
+    body: (expressions
+      (return
+        (argument_list
+          (integer)))))
   (method_def
     name: (identifier))
   (method_def
@@ -385,9 +387,10 @@ end
   (method_def
     name: (identifier)
     type: (constant)
-    (return
-      (argument_list
-        (true))))
+    body: (expressions
+      (return
+        (argument_list
+          (true)))))
   (method_def
     name: (identifier)
     params: (param_list
@@ -415,21 +418,23 @@ end
         extern_name: (identifier)
         name: (identifier)
         default: (integer)))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (op_call
-          receiver: (identifier)
-          operator: (operator)
-          argument: (identifier)))))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (op_call
+            receiver: (identifier)
+            operator: (operator)
+            argument: (identifier))))))
   (method_def
     name: (identifier)
-    (and
-      (expressions
-        (or
-          (identifier)
-          (identifier)))
-      (identifier))))
+    body: (expressions
+      (and
+        (expressions
+          (or
+            (identifier)
+            (identifier)))
+        (identifier)))))
 
 ================================================================================
 method definitions with block parameters
@@ -564,12 +569,13 @@ end
     forall: (forall
       (constant)
       (constant))
-    (generic_instance_type
-      (constant)
-      params: (param_list
-        (union_type
-          (constant)
-          (constant))))))
+    body: (expressions
+      (generic_instance_type
+        (constant)
+        params: (param_list
+          (union_type
+            (constant)
+            (constant)))))))
 
 ================================================================================
 operator method definitions
@@ -605,7 +611,8 @@ end
         params: (param_list
           (param
             name: (identifier)))
-        (false)))))
+        body: (expressions
+          (false))))))
 
 ================================================================================
 class method definitions
@@ -636,18 +643,20 @@ end
       (method_def
         class: (self)
         name: (identifier)
-        (string))
+        body: (expressions
+          (string)))
       (method_def
         class: (constant)
         name: (identifier)
         params: (param_list
           (param
             name: (identifier)))
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (constant)
-            (identifier)))))))
+        body: (expressions
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (constant)
+              (identifier))))))))
 
 ================================================================================
 method definitions with rescue, else, and ensure
@@ -972,7 +981,8 @@ end
       (constant)
       (method_def
         name: (identifier)
-        (string)))))
+        body: (expressions
+          (string))))))
 
 =============
 private enums
@@ -1033,11 +1043,12 @@ end
     rhs: (string))
   (method_def
     name: (identifier)
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (string)
-        (string)))))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (string)
+          (string))))))
 
 ================
 include + extend
@@ -1122,10 +1133,11 @@ end
         (identifier)
         type: (constant)))
     type: (constant)
-    body: (call
-      method: (identifier)
-      arguments: (argument_list
-        (string)))))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (string))))))
 
 =================
 lib def + objects
@@ -1282,9 +1294,10 @@ end
   (fun_def
     name: (identifier)
     body: (expressions
-      (type_declaration
-        var: (identifier)
-        type: (constant))))
+      (expressions
+        (type_declaration
+          var: (identifier)
+          type: (constant)))))
   (comment)
   (fun_def
     name: (identifier)
@@ -1338,9 +1351,10 @@ end
             type: (constant))))
       (method_def
         name: (identifier)
-        (call
-          receiver: (call
-            visibility: (private)
-            method: (identifier)
-            arguments: (argument_list))
-          method: (identifier))))))
+        body: (expressions
+          (call
+            receiver: (call
+              visibility: (private)
+              method: (identifier)
+              arguments: (argument_list))
+            method: (identifier)))))))
