@@ -1461,8 +1461,9 @@ puts(..)
     operator: (operator))
   (range
     operator: (operator)
-    end: (range
-      operator: (operator)))
+    end: (expressions
+      (range
+        operator: (operator))))
   (range
     begin: (call
       method: (identifier))

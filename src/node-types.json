@@ -243,26 +243,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -282,10 +266,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -302,10 +282,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -318,23 +294,11 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -343,10 +307,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -370,10 +330,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -390,47 +346,11 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
           "named": true
         },
         {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
-          "named": true
-        },
-        {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -474,14 +394,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -499,10 +411,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -595,23 +503,7 @@
       "required": false,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -635,10 +527,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -655,10 +543,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -671,10 +555,6 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
@@ -683,15 +563,7 @@
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -700,10 +572,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -727,10 +595,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -747,39 +611,7 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
-          "named": true
-        },
-        {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
           "named": true
         },
         {
@@ -788,10 +620,6 @@
         },
         {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -835,14 +663,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -864,10 +684,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -993,23 +809,7 @@
       "required": false,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -1029,10 +829,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -1049,10 +845,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -1065,23 +857,11 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -1090,10 +870,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -1117,10 +893,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -1137,47 +909,11 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
           "named": true
         },
         {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
-          "named": true
-        },
-        {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -1221,14 +957,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -1246,10 +974,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -1377,39 +1101,11 @@
         ]
       },
       "expression": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -1429,10 +1125,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -1449,10 +1141,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -1465,23 +1153,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -1490,10 +1166,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -1517,10 +1189,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -1537,47 +1205,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -1621,14 +1253,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -1646,10 +1270,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -1757,39 +1377,11 @@
         ]
       },
       "rhs": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -1809,10 +1401,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -1829,10 +1417,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -1845,23 +1429,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -1870,10 +1442,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -1897,10 +1465,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -1917,47 +1481,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -2001,14 +1529,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -2026,10 +1546,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -2087,39 +1603,11 @@
         ]
       },
       "receiver": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -2139,10 +1627,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -2159,10 +1643,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -2175,23 +1655,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -2200,10 +1668,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -2227,10 +1691,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -2247,47 +1707,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -2331,14 +1755,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -2356,10 +1772,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -3094,26 +2506,10 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -3133,10 +2529,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -3153,10 +2545,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -3169,23 +2557,11 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -3194,10 +2570,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -3225,10 +2597,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -3245,47 +2613,11 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
           "named": true
         },
         {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
-          "named": true
-        },
-        {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -3329,14 +2661,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -3354,10 +2678,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -3677,39 +2997,11 @@
         ]
       },
       "receiver": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -3729,10 +3021,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -3749,10 +3037,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -3765,23 +3049,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -3790,10 +3062,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -3817,10 +3085,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -3837,47 +3101,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -3921,14 +3149,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -3946,10 +3166,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -4049,39 +3265,11 @@
         ]
       },
       "receiver": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -4101,10 +3289,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -4121,10 +3305,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -4137,23 +3317,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -4162,10 +3330,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -4189,10 +3353,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -4209,47 +3369,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -4293,14 +3417,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -4318,10 +3434,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -4369,39 +3481,11 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -4421,10 +3505,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -4441,10 +3521,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -4457,23 +3533,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -4482,10 +3546,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -4509,10 +3569,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -4529,47 +3585,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -4613,14 +3633,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -4638,10 +3650,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -5173,39 +4181,11 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -5225,10 +4205,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -5245,10 +4221,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -5261,23 +4233,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -5286,10 +4246,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -5313,10 +4269,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -5333,47 +4285,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -5417,14 +4333,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -5442,10 +4350,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -5487,39 +4391,11 @@
         ]
       },
       "else": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -5539,10 +4415,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -5559,10 +4431,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -5575,23 +4443,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -5600,10 +4456,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -5627,10 +4479,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -5647,47 +4495,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -5731,14 +4543,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -5756,10 +4560,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -5801,39 +4601,11 @@
         ]
       },
       "then": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -5853,10 +4625,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -5873,10 +4641,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -5889,23 +4653,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -5914,10 +4666,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -5941,10 +4689,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -5961,47 +4705,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -6045,14 +4753,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -6070,10 +4770,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -6131,21 +4827,9 @@
         ]
       },
       "rhs": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
           {
             "type": "abstract_method_def",
             "named": true
@@ -6467,26 +5151,10 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -6506,10 +5174,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -6526,10 +5190,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -6542,23 +5202,11 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -6567,10 +5215,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -6594,10 +5238,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -6614,47 +5254,11 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
           "named": true
         },
         {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
-          "named": true
-        },
-        {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -6698,14 +5302,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -6723,10 +5319,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -7184,39 +5776,11 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -7236,10 +5800,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -7256,10 +5816,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -7272,23 +5828,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -7297,10 +5841,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -7324,10 +5864,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -7344,47 +5880,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -7428,14 +5928,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -7453,10 +5945,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -8312,14 +6800,6 @@
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
             "type": ";",
             "named": false
           },
@@ -9139,26 +7619,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -9178,10 +7642,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -9198,10 +7658,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -9214,23 +7670,11 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -9239,10 +7683,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -9266,10 +7706,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -9286,47 +7722,11 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
           "named": true
         },
         {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
-          "named": true
-        },
-        {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -9370,14 +7770,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -9395,10 +7787,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -9476,39 +7864,11 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -9528,10 +7888,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -9548,10 +7904,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -9564,23 +7916,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -9589,10 +7929,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -9616,10 +7952,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -9636,47 +7968,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -9720,14 +8016,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -9745,10 +8033,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -10265,39 +8549,11 @@
         ]
       },
       "receiver": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -10317,10 +8573,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -10337,10 +8589,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -10353,23 +8601,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -10378,10 +8614,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -10405,10 +8637,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -10425,47 +8653,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -10509,14 +8701,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -10534,10 +8718,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -10668,26 +8848,10 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -10707,10 +8871,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -10727,10 +8887,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -10743,23 +8899,11 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -10768,10 +8912,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -10795,10 +8935,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -10815,47 +8951,11 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
           "named": true
         },
         {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
-          "named": true
-        },
-        {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -10899,14 +8999,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -10924,10 +9016,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -11572,39 +9660,11 @@
     "named": true,
     "fields": {
       "ensure": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -11624,10 +9684,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -11644,10 +9700,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -11660,23 +9712,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -11685,10 +9725,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -11712,10 +9748,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -11732,47 +9764,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -11816,14 +9812,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -11841,10 +9829,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -11888,7 +9872,7 @@
     },
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "abstract_method_def",
@@ -12194,39 +10178,11 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -12246,10 +10202,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -12266,10 +10218,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -12282,23 +10230,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -12307,10 +10243,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -12334,10 +10266,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -12354,47 +10282,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -12438,14 +10330,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -12463,10 +10347,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -12508,21 +10388,9 @@
         ]
       },
       "then": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
           {
             "type": "abstract_method_def",
             "named": true
@@ -12828,39 +10696,11 @@
     "named": true,
     "fields": {
       "rescue": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -12880,10 +10720,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -12900,10 +10736,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -12916,23 +10748,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -12941,10 +10761,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -12968,10 +10784,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -12988,47 +10800,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -13072,14 +10848,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -13097,10 +10865,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -13144,7 +10908,7 @@
     },
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "abstract_method_def",
@@ -13450,39 +11214,11 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -13502,10 +11238,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -13522,10 +11254,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -13538,23 +11266,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -13563,10 +11279,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -13590,10 +11302,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -13610,47 +11318,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -13694,14 +11366,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -13719,10 +11383,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -13764,21 +11424,9 @@
         ]
       },
       "then": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
           {
             "type": "abstract_method_def",
             "named": true
@@ -14450,35 +12098,7 @@
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -14498,10 +12118,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -14518,10 +12134,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -14534,23 +12146,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -14559,10 +12159,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -14586,10 +12182,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -14606,47 +12198,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -14690,14 +12246,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -14715,10 +12263,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -14782,26 +12326,10 @@
     },
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -14821,10 +12349,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -14841,10 +12365,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -14857,23 +12377,11 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -14882,10 +12390,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -14909,10 +12413,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -14929,47 +12429,11 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
           "named": true
         },
         {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
-          "named": true
-        },
-        {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -15013,14 +12477,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -15038,10 +12494,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -15288,26 +12740,10 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -15327,10 +12763,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -15347,10 +12779,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -15363,23 +12791,11 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -15388,10 +12804,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -15415,10 +12827,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -15435,47 +12843,11 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
           "named": true
         },
         {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
-          "named": true
-        },
-        {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -15519,14 +12891,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -15544,10 +12908,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -15695,39 +13055,11 @@
         ]
       },
       "rhs": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -15747,10 +13079,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -15767,10 +13095,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -15783,23 +13107,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -15808,10 +13120,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -15835,10 +13143,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -15855,47 +13159,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -15939,14 +13207,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -15964,10 +13224,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -16015,39 +13271,11 @@
     "named": true,
     "fields": {
       "argument": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -16067,10 +13295,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -16087,10 +13311,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -16103,23 +13323,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -16128,10 +13336,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -16155,10 +13359,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -16175,47 +13375,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -16259,14 +13423,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -16284,10 +13440,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -16339,39 +13491,11 @@
         ]
       },
       "receiver": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -16391,10 +13515,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -16411,10 +13531,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -16427,23 +13543,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -16452,10 +13556,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -16479,10 +13579,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -16499,47 +13595,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -16583,14 +13643,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -16608,10 +13660,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -16665,26 +13713,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -16704,10 +13736,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -16724,10 +13752,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -16740,23 +13764,11 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -16765,10 +13777,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -16792,10 +13800,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -16812,47 +13816,11 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
           "named": true
         },
         {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
-          "named": true
-        },
-        {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -16896,14 +13864,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -16921,10 +13881,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -16975,39 +13931,11 @@
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
             "type": "=",
             "named": false
           },
           {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -17027,10 +13955,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -17047,10 +13971,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -17063,23 +13983,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -17088,10 +13996,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -17115,10 +14019,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -17135,47 +14035,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -17219,14 +14083,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -17244,10 +14100,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -17804,39 +14656,11 @@
     "named": true,
     "fields": {
       "begin": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -17856,10 +14680,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -17876,10 +14696,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -17892,23 +14708,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -17917,10 +14721,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -17944,10 +14744,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -17964,47 +14760,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -18048,14 +14808,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -18073,10 +14825,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -18118,39 +14866,11 @@
         ]
       },
       "end": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -18170,10 +14890,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -18190,10 +14906,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -18206,23 +14918,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -18231,10 +14931,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -18258,10 +14954,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -18278,47 +14970,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -18362,14 +15018,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -18387,10 +15035,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -18988,26 +15632,10 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -19031,10 +15659,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -19051,10 +15675,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -19067,23 +15687,11 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -19092,10 +15700,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -19119,10 +15723,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -19139,47 +15739,11 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
           "named": true
         },
         {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
-          "named": true
-        },
-        {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -19223,14 +15787,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -19248,10 +15804,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -20248,26 +16800,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -20287,10 +16823,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -20307,10 +16839,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -20323,23 +16851,11 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -20348,10 +16864,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -20379,10 +16891,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -20399,47 +16907,11 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
           "named": true
         },
         {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
-          "named": true
-        },
-        {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -20483,14 +16955,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -20508,10 +16972,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -20695,39 +17155,11 @@
         ]
       },
       "value": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -20747,10 +17179,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -20767,10 +17195,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -20783,23 +17207,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -20808,10 +17220,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -20835,10 +17243,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -20855,47 +17259,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -20939,14 +17307,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -20964,10 +17324,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -21101,26 +17457,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "abstract_method_def",
-          "named": true
-        },
-        {
-          "type": "alias",
-          "named": true
-        },
-        {
           "type": "and",
-          "named": true
-        },
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotation_def",
           "named": true
         },
         {
@@ -21140,10 +17480,6 @@
           "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
           "type": "call",
           "named": true
         },
@@ -21160,10 +17496,6 @@
           "named": true
         },
         {
-          "type": "class_def",
-          "named": true
-        },
-        {
           "type": "class_var",
           "named": true
         },
@@ -21176,23 +17508,11 @@
           "named": true
         },
         {
-          "type": "const_assign",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
         {
-          "type": "enum_def",
-          "named": true
-        },
-        {
           "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "extend",
           "named": true
         },
         {
@@ -21201,10 +17521,6 @@
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "fun_def",
           "named": true
         },
         {
@@ -21228,10 +17544,6 @@
           "named": true
         },
         {
-          "type": "include",
-          "named": true
-        },
-        {
           "type": "index_call",
           "named": true
         },
@@ -21248,47 +17560,11 @@
           "named": true
         },
         {
-          "type": "lib_def",
-          "named": true
-        },
-        {
-          "type": "method_def",
-          "named": true
-        },
-        {
           "type": "method_proc",
           "named": true
         },
         {
-          "type": "modifier_ensure",
-          "named": true
-        },
-        {
-          "type": "modifier_if",
-          "named": true
-        },
-        {
-          "type": "modifier_rescue",
-          "named": true
-        },
-        {
-          "type": "modifier_unless",
-          "named": true
-        },
-        {
-          "type": "module_def",
-          "named": true
-        },
-        {
-          "type": "multi_assign",
-          "named": true
-        },
-        {
           "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "next",
           "named": true
         },
         {
@@ -21332,14 +17608,6 @@
           "named": true
         },
         {
-          "type": "require",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
           "type": "select",
           "named": true
         },
@@ -21357,10 +17625,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_def",
           "named": true
         },
         {
@@ -21590,39 +17854,11 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -21642,10 +17878,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -21662,10 +17894,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -21678,23 +17906,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -21703,10 +17919,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -21730,10 +17942,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -21750,47 +17958,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -21834,14 +18006,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -21859,10 +18023,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -21930,39 +18090,11 @@
     "named": true,
     "fields": {
       "condition": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -21982,10 +18114,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -22002,10 +18130,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -22018,23 +18142,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -22043,10 +18155,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -22070,10 +18178,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -22090,47 +18194,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -22174,14 +18242,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -22199,10 +18259,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -22556,35 +18612,7 @@
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -22604,10 +18632,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -22624,10 +18648,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -22640,23 +18660,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -22665,10 +18673,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -22696,10 +18700,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -22716,47 +18716,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -22800,14 +18764,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -22825,10 +18781,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -23178,39 +19130,11 @@
     "named": true,
     "fields": {
       "condition": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -23230,10 +19154,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -23250,10 +19170,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -23266,23 +19182,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -23291,10 +19195,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -23318,10 +19218,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -23338,47 +19234,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -23422,14 +19282,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -23447,10 +19299,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {
@@ -23800,39 +19648,11 @@
     "named": true,
     "fields": {
       "with": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "abstract_method_def",
-            "named": true
-          },
-          {
-            "type": "alias",
-            "named": true
-          },
-          {
             "type": "and",
-            "named": true
-          },
-          {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "annotation_def",
             "named": true
           },
           {
@@ -23852,10 +19672,6 @@
             "named": true
           },
           {
-            "type": "break",
-            "named": true
-          },
-          {
             "type": "call",
             "named": true
           },
@@ -23872,10 +19688,6 @@
             "named": true
           },
           {
-            "type": "class_def",
-            "named": true
-          },
-          {
             "type": "class_var",
             "named": true
           },
@@ -23888,23 +19700,11 @@
             "named": true
           },
           {
-            "type": "const_assign",
-            "named": true
-          },
-          {
             "type": "constant",
             "named": true
           },
           {
-            "type": "enum_def",
-            "named": true
-          },
-          {
             "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "extend",
             "named": true
           },
           {
@@ -23913,10 +19713,6 @@
           },
           {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "fun_def",
             "named": true
           },
           {
@@ -23940,10 +19736,6 @@
             "named": true
           },
           {
-            "type": "include",
-            "named": true
-          },
-          {
             "type": "index_call",
             "named": true
           },
@@ -23960,47 +19752,11 @@
             "named": true
           },
           {
-            "type": "lib_def",
-            "named": true
-          },
-          {
-            "type": "method_def",
-            "named": true
-          },
-          {
             "type": "method_proc",
             "named": true
           },
           {
-            "type": "modifier_ensure",
-            "named": true
-          },
-          {
-            "type": "modifier_if",
-            "named": true
-          },
-          {
-            "type": "modifier_rescue",
-            "named": true
-          },
-          {
-            "type": "modifier_unless",
-            "named": true
-          },
-          {
-            "type": "module_def",
-            "named": true
-          },
-          {
-            "type": "multi_assign",
-            "named": true
-          },
-          {
             "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "next",
             "named": true
           },
           {
@@ -24044,14 +19800,6 @@
             "named": true
           },
           {
-            "type": "require",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
             "type": "select",
             "named": true
           },
@@ -24069,10 +19817,6 @@
           },
           {
             "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_def",
             "named": true
           },
           {

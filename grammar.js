@@ -221,12 +221,6 @@ module.exports = grammar({
       'no_block_call',
     ],
 
-    // Ensure `(1; 2)` is considered an `expressions` node, but `(1)` is just an integer
-    [
-      $._parenthesized_statement,
-      $._statements,
-    ],
-
     // Ensure `[] of A | B` parses as `[] of (A | B)`
     [
       $.union_type,
@@ -387,10 +381,6 @@ module.exports = grammar({
       $._enum_statement,
     ),
 
-    _parenthesized_statement: $ => prec(1, seq(
-      '(', $._statement, optional($._terminator), ')',
-    )),
-
     _statement: $ => choice(
       $._expression,
       $.const_assign,
@@ -476,7 +466,6 @@ module.exports = grammar({
 
       // Groupings
       alias($.empty_parens, $.nil),
-      $._parenthesized_statement,
       alias($.parenthesized_expressions, $.expressions),
       $.begin_block,
 

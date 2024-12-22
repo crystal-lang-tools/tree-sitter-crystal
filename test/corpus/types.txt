@@ -13,7 +13,8 @@ A1
 (expressions
   (constant)
   (constant)
-  (constant)
+  (expressions
+    (constant))
   (constant)
   (constant)
   (constant))
@@ -285,9 +286,10 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (call
-      receiver: (constant)
-      method: (identifier)))
+    (expressions
+      (call
+        receiver: (constant)
+        method: (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -323,7 +325,8 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (identifier))
+    (expressions
+      (identifier)))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -335,10 +338,11 @@ def p2 : ->(A?1:2); end
     name: (identifier)
     type: (proc_type)
     (tuple
-      (op_call
-        receiver: (constant)
-        operator: (operator)
-        argument: (constant))))
+      (expressions
+        (op_call
+          receiver: (constant)
+          operator: (operator)
+          argument: (constant)))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -348,10 +352,11 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (op_call
-      receiver: (constant)
-      operator: (operator)
-      argument: (constant)))
+    (expressions
+      (op_call
+        receiver: (constant)
+        operator: (operator)
+        argument: (constant))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -378,10 +383,11 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (op_call
-      receiver: (constant)
-      operator: (operator)
-      argument: (constant)))
+    (expressions
+      (op_call
+        receiver: (constant)
+        operator: (operator)
+        argument: (constant))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -404,10 +410,11 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type)
-    (conditional
-      cond: (constant)
-      then: (integer)
-      else: (integer))))
+    (expressions
+      (conditional
+        cond: (constant)
+        then: (integer)
+        else: (integer)))))
 
 ================================================================================
 proc ambiguity resolution, continued
@@ -496,16 +503,19 @@ f = -> : -> { a: String; ->{} }
   (method_def
     name: (identifier)
     type: (proc_type)
-    (identifier))
+    (expressions
+      (identifier)))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (identifier))
+    (expressions
+      (identifier)))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (call
-      method: (identifier)))
+    (expressions
+      (call
+        method: (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -549,12 +559,14 @@ f = -> : -> { a: String; ->{} }
   (method_def
     name: (identifier)
     type: (proc_type)
-    (call
-      method: (identifier)))
+    (expressions
+      (call
+        method: (identifier))))
   (method_def
     name: (identifier)
     type: (proc_type)
-    (identifier))
+    (expressions
+      (identifier)))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -973,10 +985,11 @@ b = ([] of (String?)?) ? 1 : 2
   (assign
     lhs: (identifier)
     rhs: (conditional
-      cond: (array
-        of: (nilable_type
-          (nilable_type
-            (constant))))
+      cond: (expressions
+        (array
+          of: (nilable_type
+            (nilable_type
+              (constant)))))
       then: (integer)
       else: (integer))))
 

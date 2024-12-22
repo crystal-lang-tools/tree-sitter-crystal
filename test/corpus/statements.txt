@@ -128,10 +128,14 @@ nil; (nil;nil)
   (expressions
     (nil)
     (nil))
+  (expressions
+    (expressions
+      (nil)))
   (nil)
-  (nil)
-  (nil)
-  (nil)
+  (expressions
+    (nil))
+  (expressions
+    (nil))
   (expressions
     (nil)
     (nil))
@@ -406,9 +410,10 @@ end
   (method_def
     name: (identifier)
     (and
-      (or
-        (identifier)
-        (identifier))
+      (expressions
+        (or
+          (identifier)
+          (identifier)))
       (identifier))))
 
 ================================================================================
@@ -1241,9 +1246,10 @@ end
   (comment)
   (fun_def
     name: (identifier)
-    body: (type_declaration
-      var: (identifier)
-      type: (constant)))
+    body: (expressions
+      (type_declaration
+        var: (identifier)
+        type: (constant))))
   (comment)
   (fun_def
     name: (identifier)
