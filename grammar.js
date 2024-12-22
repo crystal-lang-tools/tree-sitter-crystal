@@ -2487,7 +2487,7 @@ module.exports = grammar({
 
     while: $ => seq(
       'while',
-      field('condition', $._expression),
+      field('cond', $._expression),
       $._terminator,
       field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
@@ -2495,7 +2495,7 @@ module.exports = grammar({
 
     until: $ => seq(
       'until',
-      field('condition', $._expression),
+      field('cond', $._expression),
       $._terminator,
       field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',

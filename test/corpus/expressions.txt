@@ -750,13 +750,13 @@ end
 
 (expressions
   (while
-    condition: (true))
+    cond: (true))
   (while
-    condition: (integer)
+    cond: (integer)
     body: (expressions
       (next)))
   (until
-    condition: (call
+    cond: (call
       receiver: (identifier)
       method: (identifier))
     body: (expressions
@@ -764,7 +764,7 @@ end
         lhs: (identifier)
         rhs: (integer))
       (until
-        condition: (identifier)
+        cond: (identifier)
         body: (expressions
           (break))))))
 

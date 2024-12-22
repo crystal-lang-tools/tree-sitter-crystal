@@ -11943,7 +11943,7 @@
         },
         {
           "type": "FIELD",
-          "name": "condition",
+          "name": "cond",
           "content": {
             "type": "SYMBOL",
             "name": "_expression"
@@ -11994,7 +11994,7 @@
         },
         {
           "type": "FIELD",
-          "name": "condition",
+          "name": "cond",
           "content": {
             "type": "SYMBOL",
             "name": "_expression"

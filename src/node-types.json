@@ -14262,7 +14262,7 @@
           }
         ]
       },
-      "condition": {
+      "cond": {
         "multiple": false,
         "required": true,
         "types": [
@@ -14710,7 +14710,7 @@
           }
         ]
       },
-      "condition": {
+      "cond": {
         "multiple": false,
         "required": true,
         "types": [
