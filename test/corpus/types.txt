@@ -813,17 +813,18 @@ end
       params: (param_list
         (splat
           (constant))))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (identifier)))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (splat_param
-          name: (instance_var)
-          type: (splat_type
-            (constant)))))))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (identifier)))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (splat_param
+            name: (instance_var)
+            type: (splat_type
+              (constant))))))))
 
 ================================================================================
 splat types

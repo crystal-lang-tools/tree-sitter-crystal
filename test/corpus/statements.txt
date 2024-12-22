@@ -181,27 +181,33 @@ end
 
 (expressions
   (module_def
-    name: (constant))
+    name: (constant)
+    body: (expressions))
   (module_def
-    name: (constant))
+    name: (constant)
+    body: (expressions))
   (module_def
     name: (constant))
   (module_def
     name: (constant)
-    (const_assign
-      lhs: (constant)
-      rhs: (integer))
-    (const_assign
-      lhs: (constant)
-      rhs: (integer)))
-  (module_def
-    name: (constant))
+    body: (expressions
+      (const_assign
+        lhs: (constant)
+        rhs: (integer))
+      (const_assign
+        lhs: (constant)
+        rhs: (integer))))
   (module_def
     name: (constant)
-    (module_def
-      name: (constant)
-      (true)
-      (false))))
+    body: (expressions))
+  (module_def
+    name: (constant)
+    body: (expressions
+      (module_def
+        name: (constant)
+        body: (expressions
+          (true)
+          (false))))))
 
 ================================================================================
 classes
@@ -233,31 +239,38 @@ end
 (expressions
   (class_def
     name: (constant)
-    superclass: (constant))
+    superclass: (constant)
+    body: (expressions))
   (class_def
     name: (constant)
-    superclass: (constant))
+    superclass: (constant)
+    body: (expressions))
   (class_def
     name: (constant))
   (class_def
     name: (constant)
-    (const_assign
-      lhs: (constant)
-      rhs: (integer))
-    (const_assign
-      lhs: (constant)
-      rhs: (integer)))
+    body: (expressions
+      (const_assign
+        lhs: (constant)
+        rhs: (integer))
+      (const_assign
+        lhs: (constant)
+        rhs: (integer))))
   (class_def
     name: (constant)
-    superclass: (constant))
+    superclass: (constant)
+    body: (expressions))
   (class_def
     name: (constant)
-    (module_def
-      name: (constant)
-      (class_def
+    body: (expressions
+      (module_def
         name: (constant)
-        (self)
-        (nil)))))
+        body: (expressions
+          (class_def
+            name: (constant)
+            body: (expressions
+              (self)
+              (nil))))))))
 
 ================================================================================
 structs
@@ -285,48 +298,50 @@ end
       (constant)
       params: (param_list
         (constant)))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (identifier)))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (instance_var)
-          type: (constant))))
-    (abstract_method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (identifier)
-          type: (constant)))
-      type: (constant)))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (identifier)))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (instance_var)
+            type: (constant))))
+      (abstract_method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (identifier)
+            type: (constant)))
+        type: (constant))))
   (struct_def
     name: (constant)
     superclass: (generic_instance_type
       (constant)
       params: (param_list
         (constant)))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (identifier)))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (instance_var))
-        (param
-          name: (instance_var)
-          type: (constant))))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (identifier)))
-      type: (constant)
-      (string))))
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (identifier)))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (instance_var))
+          (param
+            name: (instance_var)
+            type: (constant))))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (identifier)))
+        type: (constant)
+        (string)))))
 
 ================================================================================
 method definitions
@@ -575,21 +590,22 @@ end
 (expressions
   (class_def
     name: (constant)
-    (method_def
-      name: (operator)
-      type: (self))
-    (method_def
-      class: (self)
-      name: (operator)
-      params: (param_list
-        (param
-          name: (identifier))))
-    (method_def
-      name: (operator)
-      params: (param_list
-        (param
-          name: (identifier)))
-      (false))))
+    body: (expressions
+      (method_def
+        name: (operator)
+        type: (self))
+      (method_def
+        class: (self)
+        name: (operator)
+        params: (param_list
+          (param
+            name: (identifier))))
+      (method_def
+        name: (operator)
+        params: (param_list
+          (param
+            name: (identifier)))
+        (false)))))
 
 ================================================================================
 class method definitions
@@ -612,24 +628,26 @@ end
     name: (generic_type
       (constant)
       params: (param_list
-        (constant))))
+        (constant)))
+    body: (expressions))
   (class_def
     name: (constant)
-    (method_def
-      class: (self)
-      name: (identifier)
-      (string))
-    (method_def
-      class: (constant)
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (identifier)))
-      (call
-        method: (identifier)
-        arguments: (argument_list
-          (constant)
-          (identifier))))))
+    body: (expressions
+      (method_def
+        class: (self)
+        name: (identifier)
+        (string))
+      (method_def
+        class: (constant)
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (identifier)))
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (constant)
+            (identifier)))))))
 
 ================================================================================
 method definitions with rescue, else, and ensure
@@ -671,15 +689,16 @@ end
 (expressions
   (class_def
     name: (constant)
-    (abstract_method_def
-      name: (identifier))
-    (abstract_method_def
-      name: (identifier))
-    (abstract_method_def
-      name: (identifier))
-    (abstract_method_def
-      name: (identifier)
-      type: (constant))))
+    body: (expressions
+      (abstract_method_def
+        name: (identifier))
+      (abstract_method_def
+        name: (identifier))
+      (abstract_method_def
+        name: (identifier))
+      (abstract_method_def
+        name: (identifier)
+        type: (constant)))))
 
 ================================================================================
 next/break/return
@@ -814,37 +833,38 @@ end
         (integer))))
   (class_def
     name: (constant)
-    (annotation
-      (constant)
-      arguments: (argument_list
-        (string)))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (identifier))
-        (splat_param
-          (annotation
-            (constant)
-            arguments: (argument_list
-              (string)))
-          (annotation
-            (constant))
-          name: (identifier))
-        (double_splat_param
-          (annotation
-            (constant)
-            arguments: (argument_list
-              (integer)))
-          name: (identifier))
-        (block_param
-          (annotation
-            (constant)
-            arguments: (argument_list
-              (string)))
-          name: (identifier)
-          type: (proc_type
-            (constant)))))))
+    body: (expressions
+      (annotation
+        (constant)
+        arguments: (argument_list
+          (string)))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (identifier))
+          (splat_param
+            (annotation
+              (constant)
+              arguments: (argument_list
+                (string)))
+            (annotation
+              (constant))
+            name: (identifier))
+          (double_splat_param
+            (annotation
+              (constant)
+              arguments: (argument_list
+                (integer)))
+            name: (identifier))
+          (block_param
+            (annotation
+              (constant)
+              arguments: (argument_list
+                (string)))
+            name: (identifier)
+            type: (proc_type
+              (constant))))))))
 
 ================================================================================
 method and type visibility
@@ -872,23 +892,26 @@ end
   (module_def
     visibility: (private)
     name: (constant)
-    (class_def
-      visibility: (private)
-      name: (constant)
-      (struct_def
+    body: (expressions
+      (class_def
         visibility: (private)
         name: (constant)
-        (const_assign
-          visibility: (private)
-          lhs: (constant)
-          rhs: (integer)))
-      (alias
-        visibility: (private)
-        name: (constant)
-        type: (constant))
-      (method_def
-        visibility: (protected)
-        name: (identifier)))))
+        body: (expressions
+          (struct_def
+            visibility: (private)
+            name: (constant)
+            body: (expressions
+              (const_assign
+                visibility: (private)
+                lhs: (constant)
+                rhs: (integer))))
+          (alias
+            visibility: (private)
+            name: (constant)
+            type: (constant))
+          (method_def
+            visibility: (protected)
+            name: (identifier)))))))
 
 ================================================================================
 enum definitions
@@ -918,34 +941,38 @@ end
 (expressions
   (enum_def
     name: (constant)
-    (constant)
-    (constant)
-    (const_assign
-      lhs: (constant)
-      rhs: (integer)))
+    body: (expressions
+      (constant)
+      (constant)
+      (const_assign
+        lhs: (constant)
+        rhs: (integer))))
   (alias
     name: (constant)
     type: (constant))
   (enum_def
     name: (constant)
     type: (constant)
-    (constant)
-    (constant)
-    (constant))
+    body: (expressions
+      (constant)
+      (constant)
+      (constant)))
   (enum_def
     name: (constant)
-    (constant))
+    body: (expressions
+      (constant)))
   (annotation
     (constant))
   (enum_def
     name: (constant)
     type: (constant)
-    (constant)
-    (constant)
-    (constant)
-    (method_def
-      name: (identifier)
-      (string))))
+    body: (expressions
+      (constant)
+      (constant)
+      (constant)
+      (method_def
+        name: (identifier)
+        (string)))))
 
 =============
 private enums
@@ -963,11 +990,13 @@ end
 (expressions
   (module_def
     name: (constant)
-    (enum_def
-      visibility: (private)
-      name: (constant)
-      (constant)
-      (constant))))
+    body: (expressions
+      (enum_def
+        visibility: (private)
+        name: (constant)
+        body: (expressions
+          (constant)
+          (constant))))))
 
 ================================================================================
 line continuations
@@ -1025,20 +1054,21 @@ end
 (expressions
   (class_def
     (constant)
-    (include
-      (generic_instance_type
-        (constant)
-        (param_list
-          (constant))))
-    (extend
-      (constant))
-    (extend
-      (generic_instance_type
-        (constant)
-        (param_list
-          (tuple_type
-            (constant)
-            (constant)))))))
+    (expressions
+      (include
+        (generic_instance_type
+          (constant)
+          (param_list
+            (constant))))
+      (extend
+        (constant))
+      (extend
+        (generic_instance_type
+          (constant)
+          (param_list
+            (tuple_type
+              (constant)
+              (constant))))))))
 
 ================
 lib external var
@@ -1053,9 +1083,10 @@ end
 (expressions
   (lib_def
     (constant)
-    (global_var
-      (identifier)
-      (constant))))
+    (expressions
+      (global_var
+        (identifier)
+        (constant)))))
 
 =========
 empty lib
@@ -1130,43 +1161,45 @@ end
 (expressions
   (lib_def
     name: (constant)
-    (fun_def
-      name: (identifier)
-      real_name: (constant)
-      type: (constant))
-    (fun_def
-      name: (identifier)
-      params: (param_list
-        (fun_param
+    body: (expressions
+      (fun_def
+        name: (identifier)
+        real_name: (constant)
+        type: (constant))
+      (fun_def
+        name: (identifier)
+        params: (param_list
+          (fun_param
+            (identifier)
+            type: (constant)))
+        type: (constant))
+      (union_def
+        name: (constant)
+        (union_fields
+          (identifier)
+          type: (constant))
+        (union_fields
           (identifier)
           type: (constant)))
-      type: (constant))
-    (union_def
-      name: (constant)
-      (union_fields
-        (identifier)
-        type: (constant))
-      (union_fields
-        (identifier)
-        type: (constant)))
-    (c_struct_def
-      name: (constant)
-      (c_struct_fields
-        (identifier)
-        (identifier)
-        type: (constant))
-      (c_struct_fields
-        (identifier)
-        type: (constant)))
-    (enum_def
-      name: (constant)
-      (constant)
-      (constant)
-      (constant)
-      (constant))
-    (type_def
-      (constant)
-      (constant))))
+      (c_struct_def
+        name: (constant)
+        (c_struct_fields
+          (identifier)
+          (identifier)
+          type: (constant))
+        (c_struct_fields
+          (identifier)
+          type: (constant)))
+      (enum_def
+        name: (constant)
+        body: (expressions
+          (constant)
+          (constant)
+          (constant)
+          (constant)))
+      (type_def
+        (constant)
+        (constant)))))
 
 =============
 fun with dots
@@ -1182,27 +1215,28 @@ end
 (expressions
   (lib_def
     name: (constant)
-    (fun_def
-      name: (identifier)
-      params: (param_list
-        (fun_param
-          (identifier)
-          type: (constant))
-        (fun_param
-          (identifier)
-          type: (constant)))
-      type: (constant))
-    (fun_def
-      name: (identifier)
-      params: (param_list
-        (fun_param
-          (identifier)
-          type: (pointer_type
-            (constant)))
-        (fun_param
-          (identifier)
-          type: (constant)))
-      type: (constant))))
+    body: (expressions
+      (fun_def
+        name: (identifier)
+        params: (param_list
+          (fun_param
+            (identifier)
+            type: (constant))
+          (fun_param
+            (identifier)
+            type: (constant)))
+        type: (constant))
+      (fun_def
+        name: (identifier)
+        params: (param_list
+          (fun_param
+            (identifier)
+            type: (pointer_type
+              (constant)))
+          (fun_param
+            (identifier)
+            type: (constant)))
+        type: (constant)))))
 
 =================
 fun pointer param
@@ -1217,14 +1251,15 @@ end
 (expressions
   (lib_def
     name: (constant)
-    (fun_def
-      name: (identifier)
-      params: (param_list
-        (constant)
-        (pointer_type
+    body: (expressions
+      (fun_def
+        name: (identifier)
+        params: (param_list
+          (constant)
+          (pointer_type
+            (constant))
           (constant))
-        (constant))
-      type: (constant))))
+        type: (constant)))))
 
 ========================================
 fun def parenthesized expression in body
@@ -1288,23 +1323,24 @@ end
 (expressions
   (class_def
     name: (constant)
-    (call
-      visibility: (private)
-      method: (identifier)
-      arguments: (argument_list
-        (identifier)))
-    (call
-      visibility: (protected)
-      method: (identifier)
-      arguments: (argument_list
-        (type_declaration
-          var: (identifier)
-          type: (constant))))
-    (method_def
-      name: (identifier)
+    body: (expressions
       (call
-        receiver: (call
-          visibility: (private)
-          method: (identifier)
-          arguments: (argument_list))
-        method: (identifier)))))
+        visibility: (private)
+        method: (identifier)
+        arguments: (argument_list
+          (identifier)))
+      (call
+        visibility: (protected)
+        method: (identifier)
+        arguments: (argument_list
+          (type_declaration
+            var: (identifier)
+            type: (constant))))
+      (method_def
+        name: (identifier)
+        (call
+          receiver: (call
+            visibility: (private)
+            method: (identifier)
+            arguments: (argument_list))
+          method: (identifier))))))

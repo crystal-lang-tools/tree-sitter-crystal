@@ -1064,7 +1064,7 @@ module.exports = grammar({
       optional(field('visibility', $.private)),
       'module',
       field('name', choice($.constant, $.generic_type)),
-      seq(optional($._statements)),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
     ),
 
@@ -1076,7 +1076,7 @@ module.exports = grammar({
       optional(seq(
         '<', field('superclass', choice($.constant, $.generic_instance_type)),
       )),
-      seq(optional($._statements)),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
     ),
 
@@ -1088,7 +1088,7 @@ module.exports = grammar({
       optional(seq(
         '<', field('superclass', choice($.constant, $.generic_instance_type)),
       )),
-      seq(optional($._statements)),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
     ),
 
@@ -1097,7 +1097,7 @@ module.exports = grammar({
       'enum',
       field('name', alias($._constant_segment, $.constant)),
       optional(field('type', seq(/:\s/, $._bare_type))),
-      optional($._enum_statements),
+      field('body', seq(optional(alias($._enum_statements, $.expressions)))),
       'end',
     ),
 
@@ -1105,7 +1105,7 @@ module.exports = grammar({
       optional(field('visibility', $.private)),
       'lib',
       field('name', $.constant, $.generic_type),
-      optional($._lib_statements),
+      field('body', seq(optional(alias($._lib_statements, $.expressions)))),
       'end',
     ),
 

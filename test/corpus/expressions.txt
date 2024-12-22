@@ -32,29 +32,30 @@ end
 (expressions
   (class_def
     name: (constant)
-    (assign
-      lhs: (instance_var)
-      rhs: (integer))
-    (assign
-      lhs: (class_var)
-      rhs: (string))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (instance_var)))
-      (call
-        method: (identifier)
-        arguments: (argument_list
-          (op_call
-            receiver: (instance_var)
-            operator: (operator)
-            argument: (integer)))))
-    (method_def
-      name: (identifier)
-      params: (param_list
-        (param
-          name: (class_var))))))
+    body: (expressions
+      (assign
+        lhs: (instance_var)
+        rhs: (integer))
+      (assign
+        lhs: (class_var)
+        rhs: (string))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (instance_var)))
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (op_call
+              receiver: (instance_var)
+              operator: (operator)
+              argument: (integer)))))
+      (method_def
+        name: (identifier)
+        params: (param_list
+          (param
+            name: (class_var)))))))
 
 ================================================================================
 self
@@ -3627,23 +3628,24 @@ end
       value: (integer)))
   (class_def
     name: (constant)
-    (type_declaration
-      var: (instance_var)
-      type: (constant))
-    (type_declaration
-      var: (class_var)
-      type: (constant)
-      value: (string))
-    (call
-      method: (identifier)
-      arguments: (argument_list
-        (type_declaration
-          var: (identifier)
-          type: (constant))
-        (type_declaration
-          var: (identifier)
-          type: (constant)
-          value: (string))))))
+    body: (expressions
+      (type_declaration
+        var: (instance_var)
+        type: (constant))
+      (type_declaration
+        var: (class_var)
+        type: (constant)
+        value: (string))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (type_declaration
+            var: (identifier)
+            type: (constant))
+          (type_declaration
+            var: (identifier)
+            type: (constant)
+            value: (string)))))))
 
 =================
 read instance var
