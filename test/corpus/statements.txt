@@ -734,21 +734,8 @@ end
   (call
     method: (identifier)
     block: (block
-      (if
-        cond: (identifier)
-        then: (then
-          (next
-            (argument_list
-              (integer)
-              (splat
-                (identifier))
-              (integer)
-              (double_splat
-                (identifier))
-              (named_expr
-                name: (identifier)
-                (symbol)))))
-        else: (elsif
+      body: (expressions
+        (if
           cond: (identifier)
           then: (then
             (next
@@ -762,31 +749,45 @@ end
                 (named_expr
                   name: (identifier)
                   (symbol)))))
-          else: (else
-            (break
-              (argument_list
-                (double_splat
-                  (identifier))
-                (named_expr
-                  name: (identifier)
-                  (symbol)))))))
-      (return
-        (argument_list))
-      (return
-        (argument_list
-          (splat
-            (identifier))
-          (splat
-            (identifier))))
-      (return
-        (argument_list
-          (splat
-            (identifier))
-          (double_splat
-            (identifier))
-          (named_expr
-            name: (identifier)
-            (nil)))))))
+          else: (elsif
+            cond: (identifier)
+            then: (then
+              (next
+                (argument_list
+                  (integer)
+                  (splat
+                    (identifier))
+                  (integer)
+                  (double_splat
+                    (identifier))
+                  (named_expr
+                    name: (identifier)
+                    (symbol)))))
+            else: (else
+              (break
+                (argument_list
+                  (double_splat
+                    (identifier))
+                  (named_expr
+                    name: (identifier)
+                    (symbol)))))))
+        (return
+          (argument_list))
+        (return
+          (argument_list
+            (splat
+              (identifier))
+            (splat
+              (identifier))))
+        (return
+          (argument_list
+            (splat
+              (identifier))
+            (double_splat
+              (identifier))
+            (named_expr
+              name: (identifier)
+              (nil))))))))
 
 ================================================================================
 annotations

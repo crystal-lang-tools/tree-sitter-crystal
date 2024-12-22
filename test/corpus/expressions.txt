@@ -2077,14 +2077,15 @@ a (b do 1 end) do 2 end
         arguments: (argument_list
           (identifier))))
     block: (block
-      (call
-        method: (identifier)
-        block: (block))
-      (call
-        method: (identifier)
-        arguments: (argument_list
-          (identifier))
-        block: (block))))
+      body: (expressions
+        (call
+          method: (identifier)
+          block: (block))
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (identifier))
+          block: (block)))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2092,9 +2093,11 @@ a (b do 1 end) do 2 end
         (call
           method: (identifier)
           block: (block
-            (integer)))))
+            body: (expressions
+              (integer))))))
     block: (block
-      (integer))))
+      body: (expressions
+        (integer)))))
 
 ================================================================================
 do/end blocks with rescue, else, and ensure
@@ -2132,7 +2135,8 @@ end
       params: (param_list
         (param
           name: (identifier)))
-      (symbol)
+      body: (expressions
+        (symbol))
       rescue: (rescue_block)
       else: (else)
       ensure: (ensure))))
@@ -2184,20 +2188,24 @@ a 1, {2, b { 4 }} { 3 }
     arguments: (argument_list
       (integer))
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
   (call
     method: (identifier)
     arguments: (argument_list
       (integer))
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
   (call
     method: (identifier)
     block: (block
-      (call
-        method: (identifier)
-        block: (block
-          (identifier)))))
+      body: (expressions
+        (call
+          method: (identifier)
+          block: (block
+            body: (expressions
+              (identifier)))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2207,7 +2215,8 @@ a 1, {2, b { 4 }} { 3 }
           (call
             method: (identifier)
             block: (block
-              (integer)))))))
+              body: (expressions
+                (integer))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2216,57 +2225,70 @@ a 1, {2, b { 4 }} { 3 }
         arguments: (argument_list
           (identifier))))
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
   (call
     method: (identifier)
     arguments: (argument_list
       (call
         method: (identifier)
         block: (block
-          (integer))))
+          body: (expressions
+            (integer)))))
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
   (call
     method: (identifier)
     block: (block
-      (call
-        method: (identifier)
-        block: (block
-          (integer)))))
+      body: (expressions
+        (call
+          method: (identifier)
+          block: (block
+            body: (expressions
+              (integer)))))))
   (call
     method: (identifier)
     block: (block
-      (call
-        method: (identifier)
-        block: (block
-          (integer)))))
-  (call
-    method: (identifier)
-    arguments: (argument_list
-      (call
-        method: (identifier)
-        block: (block
-          (integer))))
-    block: (block
-      (integer)))
+      body: (expressions
+        (call
+          method: (identifier)
+          block: (block
+            body: (expressions
+              (integer)))))))
   (call
     method: (identifier)
     arguments: (argument_list
       (call
         method: (identifier)
         block: (block
-          (integer))))
+          body: (expressions
+            (integer)))))
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
   (call
     method: (identifier)
     arguments: (argument_list
       (call
         method: (identifier)
         block: (block
-          (integer))))
+          body: (expressions
+            (integer)))))
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (call
+        method: (identifier)
+        block: (block
+          body: (expressions
+            (integer)))))
+    block: (block
+      body: (expressions
+        (integer))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2276,9 +2298,11 @@ a 1, {2, b { 4 }} { 3 }
         (call
           method: (identifier)
           block: (block
-            (integer)))))
+            body: (expressions
+              (integer))))))
     block: (block
-      (integer))))
+      body: (expressions
+        (integer)))))
 
 ================================================================================
 curly brace after a range operator
@@ -2553,9 +2577,10 @@ method(&.take_block { |f| f.foo })
             params: (param_list
               (param
                 name: (identifier)))
-            (call
-              receiver: (identifier)
-              method: (identifier))))))))
+            body: (expressions
+              (call
+                receiver: (identifier)
+                method: (identifier)))))))))
 
 ================================================================================
 precedence of block attachment with &. short block syntax
@@ -2577,7 +2602,8 @@ outer method(&.take_block) do "inner" end
             (implicit_object_call
               method: (identifier)
               block: (block
-                (string))))))))
+                body: (expressions
+                  (string)))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2588,7 +2614,8 @@ outer method(&.take_block) do "inner" end
             (implicit_object_call
               method: (identifier)
               block: (block
-                (string))))))))
+                body: (expressions
+                  (string)))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2599,7 +2626,8 @@ outer method(&.take_block) do "inner" end
             (implicit_object_call
               method: (identifier)
               block: (block
-                (string))))))))
+                body: (expressions
+                  (string)))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2610,7 +2638,8 @@ outer method(&.take_block) do "inner" end
             (implicit_object_call
               method: (identifier))))))
     block: (block
-      (string))))
+      body: (expressions
+        (string)))))
 
 ================================================================================
 chained &. syntax
@@ -2665,10 +2694,12 @@ a &.b 'b' { "in b" }.d.e
                     method: (identifier))
                   method: (identifier)
                   block: (block
-                    (identifier)))
+                    body: (expressions
+                      (identifier))))
                 method: (identifier)
                 block: (block
-                  (identifier)))
+                  body: (expressions
+                    (identifier))))
               method: (identifier)
               arguments: (argument_list
                 (nil)
@@ -2722,7 +2753,8 @@ a &.b 'b' { "in b" }.d.e
                 receiver: (call
                   method: (identifier)
                   block: (block
-                    (string)))
+                    body: (expressions
+                      (string))))
                 method: (identifier))
               method: (identifier)))))))
   (call
@@ -2736,7 +2768,8 @@ a &.b 'b' { "in b" }.d.e
               arguments: (argument_list
                 (char))
               block: (block
-                (string)))
+                body: (expressions
+                  (string))))
             method: (identifier))
           method: (identifier))))))
 
@@ -3073,7 +3106,8 @@ a.[0].setter, a.[1].setter = things
     receiver: (call
       method: (identifier)
       block: (block
-        (integer)))
+        body: (expressions
+          (integer))))
     arguments: (argument_list
       (integer)))
   (call
@@ -3324,7 +3358,8 @@ end
           params: (param_list
             (param
               name: (identifier)))
-          (integer)))
+          body: (expressions
+            (integer))))
       (identifier))
     (else
       (identifier)))
@@ -3356,7 +3391,8 @@ end
           arguments: (argument_list
             (integer))
           block: (block
-            (integer))))
+            body: (expressions
+              (integer)))))
       (false))
     (else
       (case
@@ -3386,10 +3422,11 @@ end
                       name: (identifier)
                       type: (constant)))
                   block: (block
-                    (op_call
-                      receiver: (identifier)
-                      operator: (operator)
-                      argument: (integer))))))))))))
+                    body: (expressions
+                      (op_call
+                        receiver: (identifier)
+                        operator: (operator)
+                        argument: (integer)))))))))))))
 
 ================================================================================
 exhaustive case expressions
@@ -3608,9 +3645,10 @@ end
     value: (proc
       type: (proc_type)
       block: (block
-        (integer)
-        (proc
-          block: (block)))))
+        body: (expressions
+          (integer)
+          (proc
+            block: (block))))))
   (type_declaration
     var: (identifier)
     type: (proc_type
@@ -3618,9 +3656,10 @@ end
     value: (proc
       type: (proc_type)
       block: (block
-        (integer)
-        (proc
-          block: (block)))))
+        body: (expressions
+          (integer)
+          (proc
+            block: (block))))))
   (type_declaration
     var: (identifier)
     type: (constant)

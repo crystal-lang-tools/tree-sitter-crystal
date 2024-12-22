@@ -2396,7 +2396,7 @@ module.exports = grammar({
       return seq(
         'do',
         optional(params),
-        optional($._statements),
+        field('body', seq(optional(alias($._statements, $.expressions)))),
         optional($._rescue_else_ensure),
         'end',
       )
@@ -2408,7 +2408,7 @@ module.exports = grammar({
       return seq(
         alias($._start_of_brace_block, '{'),
         optional(params),
-        optional($._statements),
+        field('body', seq(optional(alias($._statements, $.expressions)))),
         '}',
       )
     },

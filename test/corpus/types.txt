@@ -657,11 +657,12 @@ f = -> : -> { a: String; ->{} }
     rhs: (proc
       type: (proc_type)
       block: (block
-        (type_declaration
-          var: (identifier)
-          type: (constant))
-        (proc
-          block: (block))))))
+        body: (expressions
+          (type_declaration
+            var: (identifier)
+            type: (constant))
+          (proc
+            block: (block)))))))
 
 ================================================================================
 tuple types
@@ -692,11 +693,13 @@ alias Foo2 = {Int32, Int32}
         params: (param_list
           (constant))))
     block: (block
-      (tuple
-        (integer)
-        (proc
-          block: (block
-            (integer))))))
+      body: (expressions
+        (tuple
+          (integer)
+          (proc
+            block: (block
+              body: (expressions
+                (integer))))))))
   (proc
     type: (proc_type
       (constant)

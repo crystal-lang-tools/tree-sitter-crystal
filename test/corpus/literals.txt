@@ -1653,7 +1653,8 @@ end
   (proc
     type: (constant)
     block: (block
-      (integer)))
+      body: (expressions
+        (integer))))
   (proc
     params: (param_list
       (param
@@ -1662,7 +1663,8 @@ end
       (constant)
       (proc_type))
     block: (block
-      (string)))
+      body: (expressions
+        (string))))
   (proc
     params: (param_list
       (param
@@ -1673,14 +1675,16 @@ end
         type: (constant)))
     type: (constant)
     block: (block
-      (op_call
-        receiver: (identifier)
-        operator: (operator)
-        argument: (identifier))))
+      body: (expressions
+        (op_call
+          receiver: (identifier)
+          operator: (operator)
+          argument: (identifier)))))
   (proc
     block: (block
-      (proc
-        block: (block))))
+      body: (expressions
+        (proc
+          block: (block)))))
   (proc
     type: (generic_instance_type
       (constant)
@@ -1705,25 +1709,28 @@ end
       (constant)
       (constant))
     block: (block
-      (proc
-        params: (param_list
-          (param
-            name: (identifier)
-            type: (constant))
-          (param
-            name: (identifier)
-            type: (constant)))
-        block: (block))))
+      body: (expressions
+        (proc
+          params: (param_list
+            (param
+              name: (identifier)
+              type: (constant))
+            (param
+              name: (identifier)
+              type: (constant)))
+          block: (block)))))
   (proc
     type: (proc_type
       return: (tuple_type
         (proc_type)))
     block: (block
-      (proc
-        block: (block
-          (tuple
-            (proc
-              block: (block))))))))
+      body: (expressions
+        (proc
+          block: (block
+            body: (expressions
+              (tuple
+                (proc
+                  block: (block))))))))))
 
 ================================================================================
 creating procs from methods
