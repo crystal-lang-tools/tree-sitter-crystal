@@ -467,7 +467,7 @@ module.exports = grammar({
       // Groupings
       alias($.empty_parens, $.nil),
       alias($.parenthesized_expressions, $.expressions),
-      $.begin_block,
+      $.begin,
 
       // Symbols
       $.self,
@@ -2423,7 +2423,7 @@ module.exports = grammar({
       ))
     },
 
-    begin_block: $ => seq(
+    begin: $ => seq(
       'begin',
       optional($._terminator),
       field('body', seq(optional(alias($._statements, $.expressions)))),
@@ -2431,7 +2431,7 @@ module.exports = grammar({
       'end',
     ),
 
-    rescue_block: $ => {
+    rescue: $ => {
       const rescue_variable = field('variable', $.identifier)
       const rescue_type = field('type', $._bare_type)
       const rescue_body = field('body', seq(optional(alias($._statements, $.expressions))))
@@ -2467,17 +2467,17 @@ module.exports = grammar({
     _rescue_else_ensure: $ => {
       return choice(
         seq(
-          field('rescue', repeat1($.rescue_block)),
+          field('rescue', repeat1($.rescue)),
           field('else', optional($.else)),
           field('ensure', optional($.ensure)),
         ),
         seq(
-          field('rescue', repeat($.rescue_block)),
+          field('rescue', repeat($.rescue)),
           field('else', $.else),
           field('ensure', optional($.ensure)),
         ),
         seq(
-          field('rescue', repeat($.rescue_block)),
+          field('rescue', repeat($.rescue)),
           field('else', optional($.else)),
           field('ensure', $.ensure),
         ),

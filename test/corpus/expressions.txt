@@ -783,18 +783,18 @@ begin begin end end
 --------------------------------------------------------------------------------
 
 (expressions
-  (begin_block
+  (begin
     body: (expressions
       (integer)))
-  (begin_block
+  (begin
     body: (expressions
       (integer)))
-  (begin_block
+  (begin
     body: (expressions
-      (begin_block)))
-  (begin_block
+      (begin)))
+  (begin
     body: (expressions
-      (begin_block))))
+      (begin))))
 
 ================================================================================
 begin blocks with rescue
@@ -825,29 +825,29 @@ end
 --------------------------------------------------------------------------------
 
 (expressions
-  (begin_block
+  (begin
     body: (expressions
       (integer))
-    rescue: (rescue_block
+    rescue: (rescue
       body: (expressions
         (integer))))
-  (begin_block
+  (begin
     body: (expressions
       (integer))
-    rescue: (rescue_block
+    rescue: (rescue
       body: (expressions
         (integer))))
-  (begin_block
+  (begin
     body: (expressions
       (integer))
-    rescue: (rescue_block
+    rescue: (rescue
       variable: (identifier)
       body: (expressions
         (integer))))
-  (begin_block
+  (begin
     body: (expressions
       (integer))
-    rescue: (rescue_block
+    rescue: (rescue
       type: (constant)
       body: (expressions
         (integer)
@@ -857,10 +857,10 @@ end
             var: (identifier)
             type: (constant)))
         (integer))))
-  (begin_block
+  (begin
     body: (expressions
       (integer))
-    rescue: (rescue_block
+    rescue: (rescue
       variable: (identifier)
       type: (union_type
         (constant)
@@ -885,12 +885,12 @@ puts begin 1
 --------------------------------------------------------------------------------
 
 (expressions
-  (begin_block
+  (begin
     body: (expressions
       (integer))
     ensure: (ensure
       (integer)))
-  (begin_block
+  (begin
     body: (expressions
       (modifier_ensure
         (identifier)
@@ -900,7 +900,7 @@ puts begin 1
   (call
     method: (identifier)
     arguments: (argument_list
-      (begin_block
+      (begin
         body: (expressions
           (integer)
           (integer)
@@ -930,7 +930,7 @@ begin :a; rescue; :b else :c; ensure p! :d end
 --------------------------------------------------------------------------------
 
 (expressions
-  (begin_block
+  (begin
     body: (expressions
       (modifier_rescue
         (integer)
@@ -938,7 +938,7 @@ begin :a; rescue; :b else :c; ensure p! :d end
           var: (identifier)
           type: (constant)))
       (integer))
-    rescue: (rescue_block
+    rescue: (rescue
       variable: (identifier)
       body: (expressions
         (integer)))
@@ -947,10 +947,10 @@ begin :a; rescue; :b else :c; ensure p! :d end
         (integer)))
     ensure: (ensure
       (integer)))
-  (begin_block
+  (begin
     body: (expressions
       (symbol))
-    rescue: (rescue_block
+    rescue: (rescue
       body: (expressions
         (symbol)))
     else: (else
@@ -961,10 +961,10 @@ begin :a; rescue; :b else :c; ensure p! :d end
             method: (identifier)
             arguments: (argument_list
               (symbol)))))))
-  (begin_block
+  (begin
     body: (expressions
       (symbol))
-    rescue: (rescue_block
+    rescue: (rescue
       body: (expressions
         (symbol)))
     else: (else
@@ -1309,7 +1309,7 @@ foo(// // 3)
     arguments: (argument_list
       (integer)))
   (call
-    receiver: (begin_block
+    receiver: (begin
       body: (expressions
         (integer)))
     method: (operator)
@@ -2207,7 +2207,7 @@ end
   (call
     method: (identifier)
     block: (block
-      rescue: (rescue_block
+      rescue: (rescue
         variable: (identifier))))
   (call
     method: (identifier)
@@ -2227,7 +2227,7 @@ end
           name: (identifier)))
       body: (expressions
         (symbol))
-      rescue: (rescue_block)
+      rescue: (rescue)
       else: (else)
       ensure: (ensure))))
 

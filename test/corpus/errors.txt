@@ -57,7 +57,7 @@ end
 --------------------------------------------------------------------------------
 
 (expressions
-  (begin_block
+  (begin
     (comment)
     (comment)
     (comment)
@@ -66,7 +66,7 @@ end
       (UNEXPECTED 127)
       (ignored_backslash)
       (operator)))
-  (begin_block
+  (begin
     (comment)
     (ERROR
       (ignored_backslash)

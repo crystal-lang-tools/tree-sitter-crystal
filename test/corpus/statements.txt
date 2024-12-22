@@ -674,12 +674,12 @@ end
 (expressions
   (method_def
     name: (identifier)
-    rescue: (rescue_block
+    rescue: (rescue
       variable: (identifier)
       type: (union_type
         (constant)
         (constant)))
-    rescue: (rescue_block
+    rescue: (rescue
       variable: (identifier)
       type: (constant))
     else: (else)
