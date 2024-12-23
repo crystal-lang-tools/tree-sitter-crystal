@@ -22,8 +22,7 @@ class CorpusFile
   def tests
     corpus_tests = [] of CorpusTest
 
-    file_content = File.read(@file_path)
-    lines = file_content.lines
+    lines = File.read_lines @file_path
 
     sections = lines.slice_after(&.starts_with?("===")).skip(1)
 
@@ -106,8 +105,8 @@ class CorpusTest
   end
 
   def inspect(io)
-    io << "<CorpusTest \"#{@name}\": "
-    io << "#{@test_body.lines.size} lines>"
+    io << "<CorpusTest \"" << @name << "\": "
+    io << @test_body.lines.size << " lines>"
   end
 
   @crystal_tree : String?
