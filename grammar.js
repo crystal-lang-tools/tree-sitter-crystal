@@ -1615,7 +1615,7 @@ module.exports = grammar({
       alias($.no_args_proc_type, $.proc_type),
       alias($.parenthesized_proc_type, $.proc_type),
       $.class_type,
-      $.underscore_type,
+      $.underscore,
       $.nilable_type,
       $.pointer_type,
       $.self,
@@ -1762,7 +1762,7 @@ module.exports = grammar({
       optional(','),
     ),
 
-    underscore_type: $ => '_',
+    underscore: $ => '_',
 
     nilable_type: $ => prec('atomic_type', seq($._type, '?')),
 
@@ -1990,8 +1990,8 @@ module.exports = grammar({
         repeat(seq(',', $._expression)),
         ',',
       )),
-      $._implicit_object_call,
-      repeat(seq(',', choice($._expression, $._implicit_object_call))),
+      choice($._implicit_object_call, $.underscore),
+      repeat(seq(',', choice($._expression, $._implicit_object_call, $.underscore))),
       optional(','),
       '}',
     ),
@@ -2245,6 +2245,7 @@ module.exports = grammar({
 
     assign: $ => {
       const lhs = field('lhs', choice(
+        $.underscore,
         $.identifier,
         $.instance_var,
         $.class_var,
@@ -2311,6 +2312,7 @@ module.exports = grammar({
     },
 
     lhs_splat: $ => seq('*', choice(
+      $.underscore,
       $.identifier,
       $.instance_var,
       $.class_var,
@@ -2321,6 +2323,7 @@ module.exports = grammar({
 
     multi_assign: $ => {
       const lhs_basic = choice(
+        $.underscore,
         $.identifier,
         $.instance_var,
         $.class_var,

@@ -316,7 +316,7 @@ def p2 : ->(A?1:2); end
     name: (identifier)
     type: (proc_type
       return: (tuple_type
-        (underscore_type))))
+        (underscore))))
   (method_def
     name: (identifier)
     type: (proc_type)
@@ -326,7 +326,7 @@ def p2 : ->(A?1:2); end
   (method_def
     name: (identifier)
     type: (proc_type
-      return: (underscore_type)))
+      return: (underscore)))
   (method_def
     name: (identifier)
     type: (proc_type)
@@ -929,20 +929,20 @@ end
     params: (param_list
       (param
         name: (identifier)
-        type: (underscore_type))
+        type: (underscore))
       (param
         name: (identifier)
         type: (proc_type
-          (underscore_type)
-          (underscore_type)
+          (underscore)
+          (underscore)
           return: (constant))))
     body: (expressions
       (assign
-        lhs: (identifier)
+        lhs: (underscore)
         rhs: (integer))
       (assign
         lhs: (identifier)
-        lhs: (identifier)
+        lhs: (underscore)
         lhs: (identifier)
         rhs: (identifier)))))
 

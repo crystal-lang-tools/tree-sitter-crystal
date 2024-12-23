@@ -689,14 +689,14 @@ a, b, c = d.val, e.val, f = {1, 2, 3}
     rhs: (integer))
   (assign
     lhs: (identifier)
-    lhs: (identifier)
+    lhs: (underscore)
     lhs: (identifier)
     rhs: (identifier))
   (assign
     lhs: (identifier)
     lhs: (splat
       (instance_var))
-    lhs: (identifier)
+    lhs: (underscore)
     rhs: (integer)
     rhs: (integer)
     rhs: (integer))
@@ -3493,7 +3493,7 @@ end
           method: (identifier))
         (implicit_object_call
           method: (identifier))
-        (identifier))
+        (underscore))
       body: (expressions
         (true)))
     (when
@@ -3504,7 +3504,7 @@ end
           method: (identifier))
         (integer))
       cond: (tuple
-        (identifier)
+        (underscore)
         (identifier)
         (implicit_object_call
           method: (identifier)

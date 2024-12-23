@@ -116,7 +116,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -216,7 +216,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -790,7 +790,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -1364,6 +1364,10 @@
           },
           {
             "type": "splat",
+            "named": true
+          },
+          {
+            "type": "underscore",
             "named": true
           }
         ]
@@ -2198,7 +2202,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -2329,7 +2333,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -3235,7 +3239,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -4511,7 +4515,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -5168,7 +5172,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -5665,7 +5669,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -5741,7 +5745,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -5897,7 +5901,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -5983,7 +5987,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -6053,7 +6057,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -6984,7 +6988,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -7403,7 +7407,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -9876,7 +9880,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -9963,7 +9967,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -10253,7 +10257,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -11024,7 +11028,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -11130,7 +11134,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -11197,7 +11201,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -11292,7 +11296,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -11368,7 +11372,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -11431,7 +11435,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -11999,7 +12003,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -12111,7 +12115,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -12318,6 +12322,10 @@
           "named": true
         },
         {
+          "type": "underscore",
+          "named": true
+        },
+        {
           "type": "unless",
           "named": true
         },
@@ -12419,7 +12427,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -12497,7 +12505,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -12580,7 +12588,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -13182,6 +13190,10 @@
           "named": true
         },
         {
+          "type": "underscore",
+          "named": true
+        },
+        {
           "type": "unless",
           "named": true
         },
@@ -13257,7 +13269,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -13332,7 +13344,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -13624,7 +13636,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -13940,7 +13952,7 @@
             "named": true
           },
           {
-            "type": "underscore_type",
+            "type": "underscore",
             "named": true
           },
           {
@@ -14018,7 +14030,7 @@
           "named": true
         },
         {
-          "type": "underscore_type",
+          "type": "underscore",
           "named": true
         },
         {
@@ -15657,7 +15669,7 @@
     "named": false
   },
   {
-    "type": "underscore_type",
+    "type": "underscore",
     "named": true
   },
   {

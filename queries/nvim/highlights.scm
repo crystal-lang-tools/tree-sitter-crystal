@@ -89,5 +89,7 @@
   (instance_var)
 ] @variable.member
 
+(underscore) @variable.parameter.builtin
+
 ; function calls
 (call method: (identifier) @function.call)
