@@ -501,12 +501,11 @@ static bool scan_heredoc_contents(State *state, TSLexer *lexer, const bool *vali
 
     bool found_content = false;
 
-    Heredoc *active_heredoc;
+    Heredoc *active_heredoc = array_front(&state->heredocs);
     bool heredoc_pending_start;
 
-    if (array_front(&state->heredocs)->started) {
+    if (active_heredoc->started) {
         heredoc_pending_start = false;
-        active_heredoc = array_front(&state->heredocs);
     } else {
         // The first heredoc in the queue isn't started, which means it's a
         // pending nested heredoc that will begin on the next line.
