@@ -10,7 +10,6 @@
   "extend"
   "in"
   "include"
-  "lib"
   "next"
   "select"
   "then"
@@ -25,6 +24,7 @@
 [
   "class"
   "enum"
+  "lib"
   "module"
   "struct"
   "type"
