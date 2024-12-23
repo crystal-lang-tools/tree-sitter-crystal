@@ -57,7 +57,7 @@ end
 --------------------------------------------------------------------------------
 
 (expressions
-  (begin_block
+  (begin
     (comment)
     (comment)
     (comment)
@@ -66,7 +66,7 @@ end
       (UNEXPECTED 127)
       (ignored_backslash)
       (operator)))
-  (begin_block
+  (begin
     (comment)
     (ERROR
       (ignored_backslash)
@@ -290,12 +290,12 @@ puts(** foo)
 (expressions
   (ERROR
     (constant))
-  (op_call
-    (operator)
-    (assign
-      (identifier)
+  (call
+    method: (operator)
+    receiver: (assign
+      lhs: (identifier)
       (ERROR)
-      (regex
+      rhs: (regex
         (MISSING "/")))))
 
 ================================================================================
@@ -357,9 +357,9 @@ q
     (heredoc_start)
     (heredoc_start)
     (ERROR)
-    (op_call
-      (operator)
-      (identifier)))
+    (call
+      method: (operator)
+      receiver: (identifier)))
   (heredoc_body
     (heredoc_content)
     (heredoc_end))
@@ -429,19 +429,20 @@ b = <<-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 (expressions
   (comment)
   (assign
-    (identifier)
-    (heredoc_start))
+    lhs: (identifier)
+    rhs: (heredoc_start))
   (heredoc_body
     (heredoc_content)
     (heredoc_end))
   (comment)
-  (op_call
-    (identifier)
+  (call
+    receiver: (identifier)
     (ERROR)
-    (operator)
-    (op_call
-      (operator)
-      (identifier)))
+    method: (operator)
+    arguments: (argument_list
+      (call
+        method: (operator)
+        receiver: (identifier))))
   (identifier)
   (identifier))
 
@@ -467,10 +468,10 @@ p <<-🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥�
 
 (expressions
   (comment)
-  (op_call
-    (call
-      (identifier)
-      (argument_list
+  (call
+    receiver: (call
+      method: (identifier)
+      arguments: (argument_list
         (heredoc_start)
         (heredoc_start)
         (heredoc_start)
@@ -478,10 +479,11 @@ p <<-🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥�
         (heredoc_start)
         (heredoc_start)))
     (ERROR)
-    (operator)
-    (op_call
-      (operator)
-      (identifier)))
+    method: (operator)
+    arguments: (argument_list
+      (call
+        method: (operator)
+        receiver: (identifier))))
   (heredoc_body
     (heredoc_content)
     (heredoc_end))
@@ -509,13 +511,14 @@ missing_quote
 --------------------------------------------------------------------------------
 
 (expressions
-  (op_call
-    (MISSING identifier)
-    (operator)
-    (op_call
-      (operator)
-      (ERROR)
-      (identifier)))
+  (call
+    receiver: (MISSING identifier)
+    method: (operator)
+    arguments: (argument_list
+      (call
+        method: (operator)
+        (ERROR)
+        receiver: (identifier))))
   (identifier))
 
 ================================================================================

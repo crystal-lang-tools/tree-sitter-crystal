@@ -59,15 +59,16 @@ a + # asdf
 
 (expressions
   (comment)
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
+    method: (operator)
     (comment)
-    argument: (integer))
+    arguments: (argument_list
+      (integer)))
   (integer)
   (comment)
-  (op_call
-    operator: (operator)
+  (call
+    method: (operator)
     (comment)
     receiver: (integer))
   (comment)
@@ -422,10 +423,11 @@ end
       (call
         method: (identifier)
         arguments: (argument_list
-          (op_call
+          (call
             receiver: (identifier)
-            operator: (operator)
-            argument: (identifier))))))
+            method: (operator)
+            arguments: (argument_list
+              (identifier)))))))
   (method_def
     name: (identifier)
     body: (expressions
@@ -433,7 +435,9 @@ end
         (expressions
           (or
             (identifier)
+            (operator)
             (identifier)))
+        (operator)
         (identifier)))))
 
 ================================================================================
@@ -672,12 +676,12 @@ end
 (expressions
   (method_def
     name: (identifier)
-    rescue: (rescue_block
+    rescue: (rescue
       variable: (identifier)
       type: (union_type
         (constant)
         (constant)))
-    rescue: (rescue_block
+    rescue: (rescue
       variable: (identifier)
       type: (constant))
     else: (else)
@@ -1031,7 +1035,7 @@ end
 --------------------------------------------------------------------------------
 
 (expressions
-  (multi_assign
+  (assign
     lhs: (identifier)
     lhs: (identifier)
     lhs: (identifier)

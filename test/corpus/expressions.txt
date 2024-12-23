@@ -48,10 +48,11 @@ end
           (call
             method: (identifier)
             arguments: (argument_list
-              (op_call
+              (call
                 receiver: (instance_var)
-                operator: (operator)
-                argument: (integer))))))
+                method: (operator)
+                arguments: (argument_list
+                  (integer)))))))
       (method_def
         name: (identifier)
         params: (param_list
@@ -167,28 +168,31 @@ parentheses and expressions
         (expressions
           (expressions
             (nil))))))
-  (op_call
-    receiver: (op_call
+  (call
+    receiver: (call
       receiver: (expressions
-        (op_call
+        (call
           receiver: (expressions
             (nil)
             (integer))
-          operator: (operator)
-          argument: (expressions
-            (integer))))
-      operator: (operator)
-      argument: (expressions
+          method: (operator)
+          arguments: (argument_list
+            (expressions
+              (integer)))))
+      method: (operator)
+      arguments: (argument_list
         (expressions
-          (integer))))
-    operator: (operator)
-    argument: (expressions
+          (expressions
+            (integer)))))
+    method: (operator)
+    arguments: (argument_list
       (expressions
-        (integer)
-        (op_call
-          operator: (operator)
-          receiver: (expressions
-            (integer)))))))
+        (expressions
+          (integer)
+          (call
+            method: (operator)
+            receiver: (expressions
+              (integer))))))))
 
 ================================================================================
 method calls
@@ -352,19 +356,21 @@ pp(*a+b, *c*d, *e = f)
 --------------------------------------------------------------------------------
 
 (expressions
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
   (call
     method: (identifier)
     arguments: (argument_list
       (splat
         (identifier))))
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -383,15 +389,17 @@ pp(*a+b, *c*d, *e = f)
     method: (identifier)
     arguments: (argument_list
       (splat
-        (op_call
+        (call
           receiver: (identifier)
-          operator: (operator)
-          argument: (identifier)))
+          method: (operator)
+          arguments: (argument_list
+            (identifier))))
       (splat
-        (op_call
+        (call
           receiver: (identifier)
-          operator: (operator)
-          argument: (identifier)))
+          method: (operator)
+          arguments: (argument_list
+            (identifier))))
       (splat
         (assign
           lhs: (identifier)
@@ -409,19 +417,21 @@ pp **{a: 1, "b": 2.0, C: -3, }, **{c: nil}
 --------------------------------------------------------------------------------
 
 (expressions
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
   (call
     method: (identifier)
     arguments: (argument_list
       (double_splat
         (identifier))))
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -499,8 +509,8 @@ bar 1, c: + 2,
       (integer)
       (named_expr
         name: (identifier)
-        (op_call
-          operator: (operator)
+        (call
+          method: (operator)
           receiver: (integer)))
       (named_expr
         name: (identifier)
@@ -658,28 +668,28 @@ a, b, c = d.val, e.val, f = {1, 2, 3}
 --------------------------------------------------------------------------------
 
 (expressions
-  (multi_assign
+  (assign
     lhs: (identifier)
     lhs: (identifier)
     rhs: (identifier)
     rhs: (identifier))
-  (multi_assign
+  (assign
     lhs: (splat
       (identifier))
     rhs: (tuple
       (integer)))
-  (multi_assign
+  (assign
     lhs: (splat
       (identifier))
     rhs: (integer)
     rhs: (integer)
     rhs: (integer))
-  (multi_assign
+  (assign
     lhs: (identifier)
     lhs: (identifier)
     lhs: (identifier)
     rhs: (identifier))
-  (multi_assign
+  (assign
     lhs: (identifier)
     lhs: (splat
       (instance_var))
@@ -687,7 +697,7 @@ a, b, c = d.val, e.val, f = {1, 2, 3}
     rhs: (integer)
     rhs: (integer)
     rhs: (integer))
-  (multi_assign
+  (assign
     lhs: (identifier)
     lhs: (identifier)
     rhs: (assign
@@ -696,7 +706,7 @@ a, b, c = d.val, e.val, f = {1, 2, 3}
     rhs: (assign
       lhs: (identifier)
       rhs: (integer)))
-  (multi_assign
+  (assign
     lhs: (assign_call
       receiver: (identifier)
       method: (identifier))
@@ -705,7 +715,7 @@ a, b, c = d.val, e.val, f = {1, 2, 3}
       method: (identifier))
     rhs: (symbol)
     rhs: (symbol))
-  (multi_assign
+  (assign
     lhs: (identifier)
     lhs: (identifier)
     lhs: (identifier)
@@ -740,13 +750,13 @@ end
 
 (expressions
   (while
-    condition: (true))
+    cond: (true))
   (while
-    condition: (integer)
+    cond: (integer)
     body: (expressions
       (next)))
   (until
-    condition: (call
+    cond: (call
       receiver: (identifier)
       method: (identifier))
     body: (expressions
@@ -754,7 +764,7 @@ end
         lhs: (identifier)
         rhs: (integer))
       (until
-        condition: (identifier)
+        cond: (identifier)
         body: (expressions
           (break))))))
 
@@ -773,18 +783,18 @@ begin begin end end
 --------------------------------------------------------------------------------
 
 (expressions
-  (begin_block
+  (begin
     body: (expressions
       (integer)))
-  (begin_block
+  (begin
     body: (expressions
       (integer)))
-  (begin_block
+  (begin
     body: (expressions
-      (begin_block)))
-  (begin_block
+      (begin)))
+  (begin
     body: (expressions
-      (begin_block))))
+      (begin))))
 
 ================================================================================
 begin blocks with rescue
@@ -815,29 +825,29 @@ end
 --------------------------------------------------------------------------------
 
 (expressions
-  (begin_block
+  (begin
     body: (expressions
       (integer))
-    rescue: (rescue_block
+    rescue: (rescue
       body: (expressions
         (integer))))
-  (begin_block
+  (begin
     body: (expressions
       (integer))
-    rescue: (rescue_block
+    rescue: (rescue
       body: (expressions
         (integer))))
-  (begin_block
+  (begin
     body: (expressions
       (integer))
-    rescue: (rescue_block
+    rescue: (rescue
       variable: (identifier)
       body: (expressions
         (integer))))
-  (begin_block
+  (begin
     body: (expressions
       (integer))
-    rescue: (rescue_block
+    rescue: (rescue
       type: (constant)
       body: (expressions
         (integer)
@@ -847,10 +857,10 @@ end
             var: (identifier)
             type: (constant)))
         (integer))))
-  (begin_block
+  (begin
     body: (expressions
       (integer))
-    rescue: (rescue_block
+    rescue: (rescue
       variable: (identifier)
       type: (union_type
         (constant)
@@ -875,12 +885,12 @@ puts begin 1
 --------------------------------------------------------------------------------
 
 (expressions
-  (begin_block
+  (begin
     body: (expressions
       (integer))
     ensure: (ensure
       (integer)))
-  (begin_block
+  (begin
     body: (expressions
       (modifier_ensure
         (identifier)
@@ -890,7 +900,7 @@ puts begin 1
   (call
     method: (identifier)
     arguments: (argument_list
-      (begin_block
+      (begin
         body: (expressions
           (integer)
           (integer)
@@ -920,7 +930,7 @@ begin :a; rescue; :b else :c; ensure p! :d end
 --------------------------------------------------------------------------------
 
 (expressions
-  (begin_block
+  (begin
     body: (expressions
       (modifier_rescue
         (integer)
@@ -928,7 +938,7 @@ begin :a; rescue; :b else :c; ensure p! :d end
           var: (identifier)
           type: (constant)))
       (integer))
-    rescue: (rescue_block
+    rescue: (rescue
       variable: (identifier)
       body: (expressions
         (integer)))
@@ -937,10 +947,10 @@ begin :a; rescue; :b else :c; ensure p! :d end
         (integer)))
     ensure: (ensure
       (integer)))
-  (begin_block
+  (begin
     body: (expressions
       (symbol))
-    rescue: (rescue_block
+    rescue: (rescue
       body: (expressions
         (symbol)))
     else: (else
@@ -951,10 +961,10 @@ begin :a; rescue; :b else :c; ensure p! :d end
             method: (identifier)
             arguments: (argument_list
               (symbol)))))))
-  (begin_block
+  (begin
     body: (expressions
       (symbol))
-    rescue: (rescue_block
+    rescue: (rescue
       body: (expressions
         (symbol)))
     else: (else
@@ -1045,32 +1055,37 @@ puts "a" + "b".upcase
 --------------------------------------------------------------------------------
 
 (expressions
-  (op_call
+  (call
     receiver: (integer)
-    operator: (operator)
-    argument: (float))
-  (op_call
-    receiver: (op_call
+    method: (operator)
+    arguments: (argument_list
+      (float)))
+  (call
+    receiver: (call
       receiver: (identifier)
-      operator: (operator)
-      argument: (call
-        method: (identifier)))
-    operator: (operator)
-    argument: (constant))
-  (op_call
-    receiver: (constant)
-    operator: (operator)
-    argument: (expressions
+      method: (operator)
+      arguments: (argument_list
+        (call
+          method: (identifier))))
+    method: (operator)
+    arguments: (argument_list
       (constant)))
+  (call
+    receiver: (constant)
+    method: (operator)
+    arguments: (argument_list
+      (expressions
+        (constant))))
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
+      (call
         receiver: (string)
-        operator: (operator)
-        argument: (call
-          receiver: (string)
-          method: (identifier))))))
+        method: (operator)
+        arguments: (argument_list
+          (call
+            receiver: (string)
+            method: (identifier)))))))
 
 ================================================================================
 unary additive operators
@@ -1103,86 +1118,94 @@ d_ (- 2)
 --------------------------------------------------------------------------------
 
 (expressions
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (integer))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
   (call
     method: (identifier)
     arguments: (argument_list
       (integer)))
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (integer))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
-        operator: (operator)
+      (call
+        method: (operator)
         receiver: (integer))))
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (integer))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
-        operator: (operator)
+      (call
+        method: (operator)
         receiver: (integer))))
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (integer))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
-        operator: (operator)
+      (call
+        method: (operator)
         receiver: (integer))))
-  (op_call
+  (call
     receiver: (call
       method: (identifier))
-    operator: (operator)
-    argument: (integer))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
   (call
     method: (identifier)
     arguments: (argument_list
       (integer)))
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (integer))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
   (call
     method: (identifier)
     arguments: (argument_list
       (expressions
-        (op_call
-          operator: (operator)
+        (call
+          method: (operator)
           receiver: (integer)))))
-  (op_call
-    operator: (operator)
-    receiver: (op_call
-      operator: (operator)
+  (call
+    method: (operator)
+    receiver: (call
+      method: (operator)
       receiver: (integer)))
-  (op_call
-    operator: (operator)
-    receiver: (op_call
-      operator: (operator)
+  (call
+    method: (operator)
+    receiver: (call
+      method: (operator)
       receiver: (float)))
-  (op_call
+  (call
     receiver: (integer)
-    operator: (operator)
-    argument: (integer))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
     receiver: (integer)
-    operator: (operator)
-    argument: (op_call
-      operator: (operator)
-      receiver: (integer)))
-  (op_call
-    operator: (operator)
+    method: (operator)
+    arguments: (argument_list
+      (call
+        method: (operator)
+        receiver: (integer))))
+  (call
+    method: (operator)
     receiver: (call
       receiver: (integer)
       method: (identifier))))
@@ -1211,88 +1234,104 @@ foo(// // 3)
 --------------------------------------------------------------------------------
 
 (expressions
-  (op_call
-    receiver: (op_call
-      receiver: (op_call
-        receiver: (op_call
-          receiver: (op_call
+  (call
+    receiver: (call
+      receiver: (call
+        receiver: (call
+          receiver: (call
             receiver: (integer)
-            operator: (operator)
-            argument: (integer))
-          operator: (operator)
-          argument: (float))
-        operator: (operator)
-        argument: (float))
-      operator: (operator)
-      argument: (integer))
-    operator: (operator)
-    argument: (identifier))
+            method: (operator)
+            arguments: (argument_list
+              (integer)))
+          method: (operator)
+          arguments: (argument_list
+            (float)))
+        method: (operator)
+        arguments: (argument_list
+          (float)))
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
   (call
     method: (identifier)
     arguments: (argument_list
       (range
-        begin: (op_call
+        begin: (call
           receiver: (integer)
-          operator: (operator)
-          argument: (integer))
+          method: (operator)
+          arguments: (argument_list
+            (integer)))
         operator: (operator)
-        end: (op_call
+        end: (call
           receiver: (integer)
-          operator: (operator)
-          argument: (float)))))
+          method: (operator)
+          arguments: (argument_list
+            (float))))))
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
+      (call
         receiver: (integer)
-        operator: (operator)
-        argument: (op_call
-          receiver: (float)
-          operator: (operator)
-          argument: (integer)))))
-  (op_call
+        method: (operator)
+        arguments: (argument_list
+          (call
+            receiver: (float)
+            method: (operator)
+            arguments: (argument_list
+              (integer)))))))
+  (call
     receiver: (call
       method: (identifier))
-    operator: (operator)
-    argument: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
   (call
     method: (identifier)
     arguments: (argument_list
       (regex)))
-  (op_call
+  (call
     receiver: (expressions
       (identifier))
-    operator: (operator)
-    argument: (identifier))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (identifier))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (integer))
-  (op_call
-    receiver: (begin_block
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    receiver: (begin
       body: (expressions
         (integer)))
-    operator: (operator)
-    argument: (integer))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
+      (call
         receiver: (regex)
-        operator: (operator)
-        argument: (integer))))
+        method: (operator)
+        arguments: (argument_list
+          (integer)))))
   (range
     begin: (range
       begin: (regex)
       operator: (operator)
-      end: (op_call
+      end: (call
         receiver: (regex)
-        operator: (operator)
-        argument: (regex)))
+        method: (operator)
+        arguments: (argument_list
+          (regex))))
     operator: (operator)
     end: (regex)))
 
@@ -1308,27 +1347,32 @@ puts 2 **
 --------------------------------------------------------------------------------
 
 (expressions
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (op_call
-      receiver: (constant)
-      operator: (operator)
-      argument: (integer)))
+    method: (operator)
+    arguments: (argument_list
+      (call
+        receiver: (constant)
+        method: (operator)
+        arguments: (argument_list
+          (integer)))))
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
+      (call
         receiver: (integer)
-        operator: (operator)
-        argument: (integer))))
-  (op_call
+        method: (operator)
+        arguments: (argument_list
+          (integer)))))
+  (call
     receiver: (float)
-    operator: (operator)
-    argument: (op_call
-      receiver: (integer)
-      operator: (operator)
-      argument: (constant))))
+    method: (operator)
+    arguments: (argument_list
+      (call
+        receiver: (integer)
+        method: (operator)
+        arguments: (argument_list
+          (constant))))))
 
 ================================================================================
 shift operators
@@ -1341,32 +1385,39 @@ array << (13 >> 2)
 --------------------------------------------------------------------------------
 
 (expressions
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (string))
-  (op_call
-    receiver: (op_call
+    method: (operator)
+    arguments: (argument_list
+      (string)))
+  (call
+    receiver: (call
       receiver: (identifier)
-      operator: (operator)
-      argument: (identifier))
-    operator: (operator)
-    argument: (constant))
-  (op_call
-    receiver: (op_call
+      method: (operator)
+      arguments: (argument_list
+        (identifier)))
+    method: (operator)
+    arguments: (argument_list
+      (constant)))
+  (call
+    receiver: (call
       receiver: (identifier)
-      operator: (operator)
-      argument: (integer))
-    operator: (operator)
-    argument: (integer))
-  (op_call
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (expressions
-      (op_call
-        receiver: (integer)
-        operator: (operator)
-        argument: (integer)))))
+    method: (operator)
+    arguments: (argument_list
+      (expressions
+        (call
+          receiver: (integer)
+          method: (operator)
+          arguments: (argument_list
+            (integer)))))))
 
 ================================================================================
 binary/bitwise operators
@@ -1381,47 +1432,55 @@ pp [1, 2, 3] | [4, 5, 6] & [1, 4]
 --------------------------------------------------------------------------------
 
 (expressions
-  (op_call
-    receiver: (op_call
-      operator: (operator)
+  (call
+    receiver: (call
+      method: (operator)
       receiver: (integer))
-    operator: (operator)
-    argument: (integer))
-  (op_call
-    receiver: (op_call
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    receiver: (call
       receiver: (identifier)
-      operator: (operator)
-      argument: (identifier))
-    operator: (operator)
-    argument: (identifier))
-  (op_call
-    receiver: (op_call
+      method: (operator)
+      arguments: (argument_list
+        (identifier)))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (call
+    receiver: (call
       receiver: (integer)
-      operator: (operator)
-      argument: (identifier))
-    operator: (operator)
-    argument: (op_call
-      receiver: (integer)
-      operator: (operator)
-      argument: (constant)))
+      method: (operator)
+      arguments: (argument_list
+        (identifier)))
+    method: (operator)
+    arguments: (argument_list
+      (call
+        receiver: (integer)
+        method: (operator)
+        arguments: (argument_list
+          (constant)))))
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
+      (call
         receiver: (array
           (integer)
           (integer)
           (integer))
-        operator: (operator)
-        argument: (op_call
-          receiver: (array
-            (integer)
-            (integer)
-            (integer))
-          operator: (operator)
-          argument: (array
-            (integer)
-            (integer)))))))
+        method: (operator)
+        arguments: (argument_list
+          (call
+            receiver: (array
+              (integer)
+              (integer)
+              (integer))
+            method: (operator)
+            arguments: (argument_list
+              (array
+                (integer)
+                (integer)))))))))
 
 ================================================================================
 logical operators
@@ -1441,30 +1500,40 @@ d && e || f && g
 
 (expressions
   (not
+    (operator)
     (identifier))
   (or
     (call
       receiver: (identifier)
       method: (identifier))
+    (operator)
     (identifier))
   (and
     (identifier)
+    (operator)
     (identifier))
   (or
     (not
+      (operator)
       (true))
+    (operator)
     (false))
   (or
     (identifier)
+    (operator)
     (and
       (identifier)
+      (operator)
       (identifier)))
   (or
     (and
       (identifier)
+      (operator)
       (identifier))
+    (operator)
     (and
       (identifier)
+      (operator)
       (identifier))))
 
 ================================================================================
@@ -1484,27 +1553,32 @@ e !~ /regex/
 --------------------------------------------------------------------------------
 
 (expressions
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (identifier))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (regex))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (regex)))
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (identifier))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (regex))
+    method: (operator)
+    arguments: (argument_list
+      (regex)))
   (expressions
-    (op_call
+    (call
       receiver: (constant)
-      operator: (operator)
-      argument: (symbol))))
+      method: (operator)
+      arguments: (argument_list
+        (symbol)))))
 
 ================================================================================
 comparison operators
@@ -1524,30 +1598,35 @@ p! 0 <=> 5
 --------------------------------------------------------------------------------
 
 (expressions
-  (op_call
+  (call
     receiver: (integer)
-    operator: (operator)
-    argument: (integer))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
     receiver: (string)
-    operator: (operator)
-    argument: (string))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (string)))
+  (call
     receiver: (integer)
-    operator: (operator)
-    argument: (float))
+    method: (operator)
+    arguments: (argument_list
+      (float)))
   (expressions
-    (op_call
+    (call
       receiver: (integer)
-      operator: (operator)
-      argument: (integer)))
+      method: (operator)
+      arguments: (argument_list
+        (integer))))
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
+      (call
         receiver: (integer)
-        operator: (operator)
-        argument: (integer)))))
+        method: (operator)
+        arguments: (argument_list
+          (integer))))))
 
 ================================================================================
 chained equality and comparison operators
@@ -1561,37 +1640,46 @@ a <= b == c
 --------------------------------------------------------------------------------
 
 (expressions
-  (op_call
-    receiver: (op_call
+  (call
+    receiver: (call
       receiver: (identifier)
-      operator: (operator)
-      argument: (identifier))
-    operator: (operator)
-    argument: (identifier))
-  (op_call
-    receiver: (op_call
-      receiver: (op_call
+      method: (operator)
+      arguments: (argument_list
+        (identifier)))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (call
+    receiver: (call
+      receiver: (call
         receiver: (identifier)
-        operator: (operator)
-        argument: (identifier))
-      operator: (operator)
-      argument: (identifier))
-    operator: (operator)
-    argument: (identifier))
-  (op_call
-    receiver: (op_call
+        method: (operator)
+        arguments: (argument_list
+          (identifier)))
+      method: (operator)
+      arguments: (argument_list
+        (identifier)))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (call
+    receiver: (call
       receiver: (identifier)
-      operator: (operator)
-      argument: (identifier))
-    operator: (operator)
-    argument: (identifier))
-  (op_call
+      method: (operator)
+      arguments: (argument_list
+        (identifier)))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (op_call
-      receiver: (identifier)
-      operator: (operator)
-      argument: (identifier))))
+    method: (operator)
+    arguments: (argument_list
+      (call
+        receiver: (identifier)
+        method: (operator)
+        arguments: (argument_list
+          (identifier))))))
 
 ================================================================================
 combined assignment operators
@@ -2129,7 +2217,7 @@ end
   (call
     method: (identifier)
     block: (block
-      rescue: (rescue_block
+      rescue: (rescue
         variable: (identifier))))
   (call
     method: (identifier)
@@ -2149,7 +2237,7 @@ end
           name: (identifier)))
       body: (expressions
         (symbol))
-      rescue: (rescue_block)
+      rescue: (rescue)
       else: (else)
       ensure: (ensure))))
 
@@ -2823,64 +2911,70 @@ func &(-var)
 
 (expressions
   (comment)
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
   (comment)
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
-        operator: (operator)
+      (call
+        method: (operator)
         receiver: (identifier))))
   (comment)
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
-        operator: (operator)
+      (call
+        method: (operator)
         receiver: (identifier))))
   (comment)
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
   (comment)
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
-        operator: (operator)
+      (call
+        method: (operator)
         receiver: (identifier))))
   (comment)
   (call
     method: (identifier)
     arguments: (argument_list
-      (op_call
-        operator: (operator)
+      (call
+        method: (operator)
         receiver: (identifier))))
   (comment)
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
   (comment)
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (proc
-      block: (block)))
-  (op_call
+    method: (operator)
+    arguments: (argument_list
+      (proc
+        block: (block))))
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
   (comment)
-  (op_call
+  (call
     receiver: (identifier)
-    operator: (operator)
-    argument: (proc
-      block: (block)))
+    method: (operator)
+    arguments: (argument_list
+      (proc
+        block: (block))))
   (call
     receiver: (identifier)
     method: (operator))
@@ -2935,16 +3029,16 @@ func &(-var)
     arguments: (argument_list
       (block_argument
         (expressions
-          (op_call
-            operator: (operator)
+          (call
+            method: (operator)
             receiver: (identifier))))))
   (call
     method: (identifier)
     arguments: (argument_list
       (block_argument
         (expressions
-          (op_call
-            operator: (operator)
+          (call
+            method: (operator)
             receiver: (identifier)))))))
 
 ================================================================================
@@ -3038,10 +3132,11 @@ end
         (argument_list
           (splat
             (identifier))))
-      (op_call
+      (call
         receiver: (yield)
-        operator: (operator)
-        argument: (yield)))))
+        method: (operator)
+        arguments: (argument_list
+          (yield))))))
 
 ================================================================================
 operator method calls
@@ -3197,7 +3292,7 @@ a.[0].setter, a.[1].setter = things
       (argument_list
         (integer)))
     rhs: (integer))
-  (multi_assign
+  (assign
     lhs: (index_call
       receiver: (identifier)
       method: (operator)
@@ -3212,7 +3307,7 @@ a.[0].setter, a.[1].setter = things
     rhs: (integer)
     rhs: (integer)
     rhs: (integer))
-  (multi_assign
+  (assign
     lhs: (assign_call
       receiver: (index_call
         receiver: (identifier)
@@ -3254,7 +3349,7 @@ a[1], *b[0] = a
       arguments: (argument_list
         (integer)))
     rhs: (integer))
-  (multi_assign
+  (assign
     lhs: (index_call
       receiver: (identifier)
       arguments: (argument_list
@@ -3272,7 +3367,7 @@ a[1], *b[0] = a
       receiver: (identifier)
       arguments: (argument_list
         (integer))))
-  (multi_assign
+  (assign
     lhs: (index_call
       receiver: (identifier)
       arguments: (argument_list
@@ -3445,10 +3540,11 @@ end
                         type: (constant)))
                     block: (block
                       body: (expressions
-                        (op_call
+                        (call
                           receiver: (identifier)
-                          operator: (operator)
-                          argument: (integer))))))))))))))
+                          method: (operator)
+                          arguments: (argument_list
+                            (integer)))))))))))))))
 
 ================================================================================
 exhaustive case expressions
@@ -3846,14 +3942,16 @@ end
           (integer)))
       (return
         (argument_list
-          (op_call
+          (call
             receiver: (integer)
-            operator: (operator)
-            argument: (integer))
-          (op_call
+            method: (operator)
+            arguments: (argument_list
+              (integer)))
+          (call
             receiver: (integer)
-            operator: (operator)
-            argument: (integer))
+            method: (operator)
+            arguments: (argument_list
+              (integer)))
           (call
             receiver: (identifier)
             method: (identifier)

@@ -1,5 +1,6 @@
 =========
 macro def
+:error
 =========
 
 macro name
@@ -16,6 +17,7 @@ end
 
 ======
 macros
+:error
 ======
 
 {% if true %}
@@ -30,8 +32,8 @@ foo = %var + 4
 (ERROR
   (MISSING identifier)
   (operator)
-  (op_call
-    (op_call
+  (call
+    (call
       (true)
       (ERROR
         (operator))
@@ -54,15 +56,15 @@ foo = %var + 4
     (operator)
     (assign
       (identifier)
-      (op_call
+      (call
         (integer)
         (operator)
         (tuple
           (tuple
             (identifier))))))
   (then
-    (op_call
-      (op_call
+    (call
+      (call
         (identifier)
         (ERROR)
         (operator)
@@ -70,16 +72,16 @@ foo = %var + 4
       (operator)
       (integer))
     (tuple
-      (op_call
-        (op_call
+      (call
+        (call
           (MISSING identifier)
           (operator)
           (identifier))
         (operator)
         (MISSING identifier)))
     (tuple
-      (op_call
-        (op_call
+      (call
+        (call
           (MISSING identifier)
           (operator)
           (identifier))
@@ -223,6 +225,7 @@ end
 
 ============================
 .as method with pointer type
+:error
 ============================
 
 node.as(LibXML::Node*)
@@ -241,6 +244,7 @@ node.as(LibXML::Node*)
 
 ==============================
 instance var with pointer type
+:error
 ==============================
 
 @ivar : UInt8*
@@ -248,7 +252,7 @@ instance var with pointer type
 ---
 
 (expressions
-  (op_call
+  (call
     (type_declaration
       (instance_var)
       (constant))
@@ -281,6 +285,7 @@ StaticArray(Char*, 2)
 
 ==========================
 symbols ending with equals
+:error
 ==========================
 
 :hello=
@@ -294,7 +299,7 @@ symbols ending with equals
   (symbol)
   (ERROR
     (identifier))
-  (op_call
+  (call
     (symbol)
     (operator)
     (identifier)))

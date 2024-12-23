@@ -210,8 +210,13 @@
           "name": "const_assign"
         },
         {
-          "type": "SYMBOL",
-          "name": "multi_assign"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "multi_assign"
+          },
+          "named": true,
+          "value": "assign"
         },
         {
           "type": "SYMBOL",
@@ -563,7 +568,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "begin_block"
+          "name": "begin"
         },
         {
           "type": "SYMBOL",
@@ -667,7 +672,7 @@
             "name": "additive_operator"
           },
           "named": true,
-          "value": "op_call"
+          "value": "call"
         },
         {
           "type": "ALIAS",
@@ -676,7 +681,7 @@
             "name": "unary_additive_operator"
           },
           "named": true,
-          "value": "op_call"
+          "value": "call"
         },
         {
           "type": "ALIAS",
@@ -685,7 +690,7 @@
             "name": "multiplicative_operator"
           },
           "named": true,
-          "value": "op_call"
+          "value": "call"
         },
         {
           "type": "ALIAS",
@@ -694,7 +699,7 @@
             "name": "exponential_operator"
           },
           "named": true,
-          "value": "op_call"
+          "value": "call"
         },
         {
           "type": "ALIAS",
@@ -703,7 +708,7 @@
             "name": "shift_operator"
           },
           "named": true,
-          "value": "op_call"
+          "value": "call"
         },
         {
           "type": "ALIAS",
@@ -712,7 +717,7 @@
             "name": "complement_operator"
           },
           "named": true,
-          "value": "op_call"
+          "value": "call"
         },
         {
           "type": "ALIAS",
@@ -721,7 +726,7 @@
             "name": "binary_and_operator"
           },
           "named": true,
-          "value": "op_call"
+          "value": "call"
         },
         {
           "type": "ALIAS",
@@ -730,7 +735,7 @@
             "name": "binary_or_operator"
           },
           "named": true,
-          "value": "op_call"
+          "value": "call"
         },
         {
           "type": "ALIAS",
@@ -739,7 +744,7 @@
             "name": "equality_operator"
           },
           "named": true,
-          "value": "op_call"
+          "value": "call"
         },
         {
           "type": "ALIAS",
@@ -748,7 +753,7 @@
             "name": "comparison_operator"
           },
           "named": true,
-          "value": "op_call"
+          "value": "call"
         },
         {
           "type": "ALIAS",
@@ -9354,8 +9359,13 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "!"
+            "type": "ALIAS",
+            "content": {
+              "type": "STRING",
+              "value": "!"
+            },
+            "named": true,
+            "value": "operator"
           },
           {
             "type": "SYMBOL",
@@ -9375,8 +9385,13 @@
             "name": "_expression"
           },
           {
-            "type": "STRING",
-            "value": "&&"
+            "type": "ALIAS",
+            "content": {
+              "type": "STRING",
+              "value": "&&"
+            },
+            "named": true,
+            "value": "operator"
           },
           {
             "type": "SYMBOL",
@@ -9396,8 +9411,13 @@
             "name": "_expression"
           },
           {
-            "type": "STRING",
-            "value": "||"
+            "type": "ALIAS",
+            "content": {
+              "type": "STRING",
+              "value": "||"
+            },
+            "named": true,
+            "value": "operator"
           },
           {
             "type": "SYMBOL",
@@ -9422,7 +9442,7 @@
           },
           {
             "type": "FIELD",
-            "name": "operator",
+            "name": "method",
             "content": {
               "type": "ALIAS",
               "content": {
@@ -9452,10 +9472,15 @@
           },
           {
             "type": "FIELD",
-            "name": "argument",
+            "name": "arguments",
             "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              "named": true,
+              "value": "argument_list"
             }
           }
         ]
@@ -9469,7 +9494,7 @@
         "members": [
           {
             "type": "FIELD",
-            "name": "operator",
+            "name": "method",
             "content": {
               "type": "ALIAS",
               "content": {
@@ -9524,7 +9549,7 @@
           },
           {
             "type": "FIELD",
-            "name": "operator",
+            "name": "method",
             "content": {
               "type": "ALIAS",
               "content": {
@@ -9558,10 +9583,15 @@
           },
           {
             "type": "FIELD",
-            "name": "argument",
+            "name": "arguments",
             "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              "named": true,
+              "value": "argument_list"
             }
           }
         ]
@@ -9583,7 +9613,7 @@
           },
           {
             "type": "FIELD",
-            "name": "operator",
+            "name": "method",
             "content": {
               "type": "ALIAS",
               "content": {
@@ -9605,10 +9635,15 @@
           },
           {
             "type": "FIELD",
-            "name": "argument",
+            "name": "arguments",
             "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              "named": true,
+              "value": "argument_list"
             }
           }
         ]
@@ -9630,7 +9665,7 @@
           },
           {
             "type": "FIELD",
-            "name": "operator",
+            "name": "method",
             "content": {
               "type": "ALIAS",
               "content": {
@@ -9652,10 +9687,15 @@
           },
           {
             "type": "FIELD",
-            "name": "argument",
+            "name": "arguments",
             "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              "named": true,
+              "value": "argument_list"
             }
           }
         ]
@@ -9669,7 +9709,7 @@
         "members": [
           {
             "type": "FIELD",
-            "name": "operator",
+            "name": "method",
             "content": {
               "type": "ALIAS",
               "content": {
@@ -9707,7 +9747,7 @@
           },
           {
             "type": "FIELD",
-            "name": "operator",
+            "name": "method",
             "content": {
               "type": "ALIAS",
               "content": {
@@ -9720,10 +9760,15 @@
           },
           {
             "type": "FIELD",
-            "name": "argument",
+            "name": "arguments",
             "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              "named": true,
+              "value": "argument_list"
             }
           }
         ]
@@ -9745,7 +9790,7 @@
           },
           {
             "type": "FIELD",
-            "name": "operator",
+            "name": "method",
             "content": {
               "type": "ALIAS",
               "content": {
@@ -9767,10 +9812,15 @@
           },
           {
             "type": "FIELD",
-            "name": "argument",
+            "name": "arguments",
             "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              "named": true,
+              "value": "argument_list"
             }
           }
         ]
@@ -9792,7 +9842,7 @@
           },
           {
             "type": "FIELD",
-            "name": "operator",
+            "name": "method",
             "content": {
               "type": "ALIAS",
               "content": {
@@ -9826,10 +9876,15 @@
           },
           {
             "type": "FIELD",
-            "name": "argument",
+            "name": "arguments",
             "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              "named": true,
+              "value": "argument_list"
             }
           }
         ]
@@ -9851,7 +9906,7 @@
           },
           {
             "type": "FIELD",
-            "name": "operator",
+            "name": "method",
             "content": {
               "type": "ALIAS",
               "content": {
@@ -9885,10 +9940,15 @@
           },
           {
             "type": "FIELD",
-            "name": "argument",
+            "name": "arguments",
             "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              "named": true,
+              "value": "argument_list"
             }
           }
         ]
@@ -11517,7 +11577,7 @@
         ]
       }
     },
-    "begin_block": {
+    "begin": {
       "type": "SEQ",
       "members": [
         {
@@ -11580,7 +11640,7 @@
         }
       ]
     },
-    "rescue_block": {
+    "rescue": {
       "type": "SEQ",
       "members": [
         {
@@ -11769,7 +11829,7 @@
                 "type": "REPEAT1",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "rescue_block"
+                  "name": "rescue"
                 }
               }
             },
@@ -11817,7 +11877,7 @@
                 "type": "REPEAT",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "rescue_block"
+                  "name": "rescue"
                 }
               }
             },
@@ -11857,7 +11917,7 @@
                 "type": "REPEAT",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "rescue_block"
+                  "name": "rescue"
                 }
               }
             },
@@ -11898,7 +11958,7 @@
         },
         {
           "type": "FIELD",
-          "name": "condition",
+          "name": "cond",
           "content": {
             "type": "SYMBOL",
             "name": "_expression"
@@ -11949,7 +12009,7 @@
         },
         {
           "type": "FIELD",
-          "name": "condition",
+          "name": "cond",
           "content": {
             "type": "SYMBOL",
             "name": "_expression"
