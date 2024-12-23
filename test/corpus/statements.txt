@@ -347,9 +347,11 @@ end
 
 ================================================================================
 method definitions
+:language(crystal)
 ================================================================================
 def foo
-  return 3
+  a = 1 + 2
+  return a
 end
 
 def bar; end
@@ -366,6 +368,7 @@ def buzz(
   outerx x = 2,
   outery y = 3,
 )
+  puts x, y
   puts x + y
 end
 
@@ -378,9 +381,16 @@ end
   (method_def
     name: (identifier)
     body: (expressions
+      (assign
+        lhs: (identifier)
+        rhs: (call
+          receiver: (integer)
+          method: (operator)
+          arguments: (argument_list
+            (integer))))
       (return
         (argument_list
-          (integer)))))
+          (identifier)))))
   (method_def
     name: (identifier))
   (method_def
@@ -420,6 +430,11 @@ end
         name: (identifier)
         default: (integer)))
     body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (identifier)
+          (identifier)))
       (call
         method: (identifier)
         arguments: (argument_list
