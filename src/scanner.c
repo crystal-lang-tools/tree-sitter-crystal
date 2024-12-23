@@ -501,12 +501,11 @@ static bool scan_heredoc_contents(State *state, TSLexer *lexer, const bool *vali
 
     bool found_content = false;
 
-    Heredoc *active_heredoc;
+    Heredoc *active_heredoc = array_front(&state->heredocs);
     bool heredoc_pending_start;
 
-    if (array_front(&state->heredocs)->started) {
+    if (active_heredoc->started) {
         heredoc_pending_start = false;
-        active_heredoc = array_front(&state->heredocs);
     } else {
         // The first heredoc in the queue isn't started, which means it's a
         // pending nested heredoc that will begin on the next line.
@@ -1335,7 +1334,7 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                             max_word_size = MAX_HEREDOC_WORD_SIZE;
                         }
 
-                        uint8_t word[max_word_size + 4];
+                        uint8_t word[HEREDOC_BUFFER_SIZE + 4];
                         size_t word_length = 0;
 
                         // First character must be valid in an identifier, even for a quoted heredoc
