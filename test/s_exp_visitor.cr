@@ -7,6 +7,7 @@ class SExpVisitor < Crystal::Visitor
   @io = IO::Memory.new
   @indent = 0
   @fields = [] of String?
+  @pending_alias : String? = nil
 
   def initialize
   end
@@ -22,12 +23,12 @@ class SExpVisitor < Crystal::Visitor
 
   def print_node(name : String)
     print_indent
-    @io << active_field << "(" << name << ")"
+    @io << active_field << "(" << with_alias(name) << ")"
   end
 
   def enter_node(name : String)
     print_indent
-    @io << active_field << "(" << name
+    @io << active_field << "(" << with_alias(name)
     @indent += 1
     @fields << nil
   end
@@ -43,6 +44,19 @@ class SExpVisitor < Crystal::Visitor
     yield
   ensure
     exit_node
+  end
+
+  # Force the next node to be printed with the given `alias_name`
+  def alias_next_node!(alias_name : String)
+    @pending_alias = alias_name
+  end
+
+  def with_alias(name : String)
+    if @pending_alias
+      name = @pending_alias
+      @pending_alias = nil
+    end
+    name
   end
 
   def visit(node : Expressions)
