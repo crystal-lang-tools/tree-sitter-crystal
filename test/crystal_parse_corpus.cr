@@ -24,14 +24,14 @@ class CorpusFile
 
     lines = File.read_lines @file_path
 
-    sections = lines.slice_after(&.starts_with?("===")).skip(1)
+    sections = lines.slice_before(&.starts_with?("==="))
 
     sections.each_slice(2) do |(header, test_lines)|
-      title = header[0].strip
-      tags = header[1..-2]
+      title = header[1].strip
+      tags = header[2..-1]
 
-      test_body, expected_output = test_lines.join("\n").split(/-{3,}\n/)
-      expected_output = expected_output.lines[0..-2].join("\n").strip
+      test_body, expected_output = test_lines[1..-1].join("\n").split(/-{3,}\n/)
+      expected_output = expected_output.lines.join("\n").strip
 
       corpus_tests << CorpusTest.new(title, tags, test_body, expected_output)
     end
