@@ -1526,3 +1526,34 @@ end
               method: (identifier)
               arguments: (argument_list))
             method: (identifier)))))))
+
+
+=========
+macro def
+=========
+
+macro name(arg)
+  {{ arg }}
+end
+
+macro name; {{ puts "hello" }} end
+
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier)))
+    body: (expressions
+      (macro_expression
+        (identifier))))
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_expression
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))

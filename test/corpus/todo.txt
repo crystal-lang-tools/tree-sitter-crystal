@@ -1,20 +1,3 @@
-=========
-macro def
-:error
-=========
-
-macro name
-end
-
----
-
-(expressions
-  (call
-    (identifier)
-    (argument_list
-      (identifier)))
-  (ERROR))
-
 ======
 macros
 :error
