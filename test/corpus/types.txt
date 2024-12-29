@@ -716,11 +716,9 @@ alias Foo2 = {Int32, Int32}
 ================================================================================
 named tuple types
 ================================================================================
-alias NamedTuple1 = {x: Int32, y: String}
-alias NamedTuple2 = {"x": Int32, y?: String, Z: Char, %<.>: String, %q(hi): Int8}
+alias NamedTuple1 = {x: Int32, y: String, Z: Char, w?: String}
 
-alias NamedTuple1 = NamedTuple(x: Int32, y: String)
-alias NamedTuple2 = NamedTuple("x": Int32, y?: String, Z: Char, %q(hi again): Int8)
+alias NamedTuple1 = NamedTuple(x: Int32, y: String, Z: Char, w?: String)
 --------------------------------------------------------------------------------
 
 (expressions
@@ -732,7 +730,45 @@ alias NamedTuple2 = NamedTuple("x": Int32, y?: String, Z: Char, %q(hi again): In
         (constant))
       (named_type
         name: (identifier)
+        (constant))
+      (named_type
+        name: (identifier)
+        (constant))
+      (named_type
+        name: (identifier)
         (constant))))
+  (alias
+    name: (constant)
+    type: (generic_instance_type
+      (constant)
+      params: (param_list
+        (named_type
+          name: (identifier)
+          (constant))
+        (named_type
+          name: (identifier)
+          (constant))
+        (named_type
+          name: (identifier)
+          (constant))
+        (named_type
+          name: (identifier)
+          (constant))))))
+
+================================================================================
+named tuple types with string keys
+================================================================================
+# Not tagged with :language(crystal) because the Crystal parser doesn't represent
+# these keys as strings
+
+alias NamedTupleWithStrings = {"x": Int32, %<.>: String, %q(hi): Int8}
+
+alias NamedTupleWithStrings = NamedTuple("x": Int32, %q(hi again): Int8)
+--------------------------------------------------------------------------------
+
+(expressions
+  (comment)
+  (comment)
   (alias
     name: (constant)
     type: (named_tuple_type
@@ -740,12 +776,6 @@ alias NamedTuple2 = NamedTuple("x": Int32, y?: String, Z: Char, %q(hi again): In
         name: (string)
         (constant))
       (named_type
-        name: (identifier)
-        (constant))
-      (named_type
-        name: (identifier)
-        (constant))
-      (named_type
         name: (string)
         (constant))
       (named_type
@@ -757,24 +787,7 @@ alias NamedTuple2 = NamedTuple("x": Int32, y?: String, Z: Char, %q(hi again): In
       (constant)
       params: (param_list
         (named_type
-          name: (identifier)
-          (constant))
-        (named_type
-          name: (identifier)
-          (constant)))))
-  (alias
-    name: (constant)
-    type: (generic_instance_type
-      (constant)
-      params: (param_list
-        (named_type
           name: (string)
-          (constant))
-        (named_type
-          name: (identifier)
-          (constant))
-        (named_type
-          name: (identifier)
           (constant))
         (named_type
           name: (string)
@@ -839,7 +852,8 @@ generic classes, etc.
 class Foo(*T)
   getter content
 
-  def initialize(*@content : *T)
+  def initialize(*content : *T)
+    @content = content
   end
 end
 --------------------------------------------------------------------------------
@@ -860,9 +874,13 @@ end
         name: (identifier)
         params: (param_list
           (splat_param
-            name: (instance_var)
+            name: (identifier)
             type: (splat_type
-              (constant))))))))
+              (constant))))
+        body: (expressions
+          (assign
+            lhs: (instance_var)
+            rhs: (identifier)))))))
 
 ================================================================================
 splat types
