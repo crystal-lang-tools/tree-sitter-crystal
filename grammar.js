@@ -395,6 +395,7 @@ module.exports = grammar({
       $.alias,
       $.method_def,
       $.abstract_method_def,
+      $.macro_def,
       alias($.top_level_fun_def, $.fun_def),
       $.require,
       $.modifier_if,
@@ -410,6 +411,7 @@ module.exports = grammar({
     ),
 
     _lib_statement: $ => choice(
+      $.macro_expression,
       $.alias,
       $.fun_def,
       $.type_def,
@@ -422,9 +424,11 @@ module.exports = grammar({
     ),
 
     _enum_statement: $ => choice(
+      $.macro_expression,
       $.constant,
       $.const_assign,
       $.method_def,
+      $.macro_def,
       $.class_var,
       $.annotation,
     ),
@@ -435,6 +439,8 @@ module.exports = grammar({
     ),
 
     _expression: $ => choice(
+      $.macro_expression,
+
       // Literals
       $.nil,
       $.true,
@@ -1215,6 +1221,7 @@ module.exports = grammar({
     ),
 
     _c_struct_expression: $ => choice(
+      $.macro_expression,
       $.include,
       $.c_struct_fields,
     ),
@@ -1334,6 +1341,34 @@ module.exports = grammar({
       ))
     },
 
+    macro_def: $ => {
+      const visibility = optional(
+        field('visibility', choice($.private, $.protected)),
+      )
+      const name = field('name', choice(
+        $.identifier,
+        alias($.identifier_method_call, $.identifier),
+        alias($._operator_token, $.operator),
+      ))
+      const params = seq(
+        '(',
+        field('params', optional(alias($.typeless_param_list, $.param_list))),
+        ')',
+      )
+
+      return seq(
+        visibility,
+        prec.right(seq(
+          'macro',
+          name,
+          optional(params),
+        )),
+        $._terminator,
+        field('body', seq(optional(alias($._statements, $.expressions)))),
+        'end',
+      )
+    },
+
     include: $ => {
       return seq(
         'include',
@@ -1431,6 +1466,70 @@ module.exports = grammar({
         '&',
         optional(name),
         optional(type),
+      )
+    },
+
+    typeless_param_list: $ => {
+      // Splat and double splat params have restrictions on where they can appear in the parameter
+      // list: https://crystal-lang.org/reference/1.4/syntax_and_semantics/default_values_named_arguments_splats_tuples_and_overloading.html
+      // However, it's much simpler for the grammar to treat them interchangably. (Otherwise the
+      // repeats and comma placement would be ugly.) We'll leave the rest up to the compiler.
+      const param = choice(
+        alias($.typeless_param, $.param),
+        alias($.typeless_splat_param, $.splat_param),
+        alias($.typeless_double_splat_param, $.double_splat_param),
+      )
+
+      return choice(
+        seq(
+          param,
+          repeat(seq(',', param)),
+          optional(seq(',', optional($.block_param))),
+        ),
+        $.block_param,
+      )
+    },
+
+    typeless_param: $ => {
+      const extern_name = field('extern_name', $.identifier)
+      const name = field('name', choice($.identifier, $.instance_var, $.class_var))
+      const default_value = field('default', seq('=', $._expression))
+
+      return seq(
+        repeat($.annotation),
+        optional(extern_name),
+        name,
+        optional(default_value),
+      )
+    },
+
+    typeless_splat_param: $ => {
+      const name = field('name', choice($.identifier, $.instance_var, $.class_var))
+
+      return seq(
+        repeat($.annotation),
+        '*',
+        optional(name),
+      )
+    },
+
+    typeless_double_splat_param: $ => {
+      const name = field('name', choice($.identifier, $.instance_var, $.class_var))
+
+      return seq(
+        repeat($.annotation),
+        '**',
+        name,
+      )
+    },
+
+    typeless_block_param: $ => {
+      const name = field('name', choice($.identifier, $.instance_var, $.class_var))
+
+      return seq(
+        repeat($.annotation),
+        '&',
+        optional(name),
       )
     },
 
@@ -1795,6 +1894,8 @@ module.exports = grammar({
 
     private: $ => 'private',
     protected: $ => 'protected',
+
+    macro_expression: $ => seq('{{', choice($.splat, $.double_splat, $._expression), '}}'),
 
     // Represents a macro call prefixed with private/protected, e.g.
     //   private getter foo : String

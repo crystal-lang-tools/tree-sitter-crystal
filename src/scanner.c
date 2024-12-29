@@ -1211,6 +1211,12 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                 } else if (BRACE_EXPR && BRACE_TYPE) {
 
                     lex_advance(lexer);
+
+                    // Start of a macro expression
+                    if (lexer->lookahead == '{') {
+                        return false;
+                    }
+
                     // We don't want to consume while looking ahead
                     lexer->mark_end(lexer);
 
@@ -1242,6 +1248,12 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
 
                 } else if (BRACE_EXPR) {
                     lex_advance(lexer);
+
+                    // Start of a macro expression
+                    if (lexer->lookahead == '{') {
+                        return false;
+                    }
+
                     // We don't want to consume while looking ahead
                     lexer->mark_end(lexer);
                     skip_space_and_newline(state, lexer);

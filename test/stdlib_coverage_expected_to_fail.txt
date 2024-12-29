@@ -46,13 +46,12 @@ compiler/crystal/macros/macros.cr
 compiler/crystal/macros/methods.cr
 compiler/crystal/semantic/filters.cr
 compiler/crystal/semantic/lib.cr
-compiler/crystal/semantic/literal_expander.cr
 compiler/crystal/semantic/restrictions.cr
 compiler/crystal/semantic/type_lookup.cr
 compiler/crystal/syntax/ast.cr
+compiler/crystal/syntax/lexer.cr
 compiler/crystal/syntax/token.cr
 compiler/crystal/tools/doc/markd_doc_renderer.cr
-compiler/crystal/tools/init.cr
 compiler/crystal/tools/playground.cr
 compiler/crystal/util.cr
 complex.cr
@@ -67,14 +66,12 @@ crystal/compiler_rt/pow.cr
 crystal/datum.cr
 crystal/digest/md5.cr
 crystal/digest/sha1.cr
-crystal/dwarf/line_numbers.cr
 crystal/hasher.cr
 crystal/iconv.cr
 crystal/lib_iconv.cr
 crystal/mach_o.cr
 crystal/main.cr
 crystal/once.cr
-crystal/pointer_linked_list.cr
 crystal/scheduler.cr
 crystal/spin_lock.cr
 crystal/syntax_highlighter.cr
@@ -178,7 +175,6 @@ file.cr
 file/error.cr
 float.cr
 float/printer/dragonbox.cr
-float/printer/hexfloat.cr
 float/printer/ryu_printf.cr
 float/printer/ryu_printf_table.cr
 gc.cr
@@ -198,7 +194,6 @@ int.cr
 intrinsics.cr
 io.cr
 io/byte_format.cr
-io/console.cr
 io/encoding.cr
 io/encoding_stubs.cr
 io/evented.cr
