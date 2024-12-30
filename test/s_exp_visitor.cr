@@ -81,11 +81,37 @@ class SExpVisitor < Crystal::Visitor
     @fields.pop
   end
 
+  def body_field(body : ASTNode?)
+    field "body" do
+      case body
+      when Nop, nil
+        break
+      when Expressions
+        # keep it
+      else
+        body = Expressions.new([body])
+      end
+
+      body.accept self
+    end
+  end
+
   def active_field : String
     if @fields.empty? || @fields.last.nil?
       ""
     else
       "#{@fields.last}: "
+    end
+  end
+
+  macro visit_basic(klass)
+    def visit(node : {{ klass.id }})
+      enter_node({{ klass.stringify.underscore }})
+      true
+    end
+
+    def end_visit(node : {{ klass.id }})
+      exit_node
     end
   end
 
@@ -108,20 +134,10 @@ class SExpVisitor < Crystal::Visitor
     false
   end
 
-  def visit(node : Self)
-    print_node("self")
-    false
-  end
-
-  def visit(node : InstanceVar)
-    print_node("instance_var")
-    false
-  end
-
-  def visit(node : ClassVar)
-    print_node("class_var")
-    false
-  end
+  visit_basic(Self)
+  visit_basic(ClassVar)
+  visit_basic(InstanceVar)
+  visit_basic(Underscore)
 
   ##########
   # Literals
@@ -287,7 +303,9 @@ class SExpVisitor < Crystal::Visitor
   #####################
 
   def visit(node : Def)
-    in_node("method_def") do
+    def_type = node.abstract? ? "abstract_method_def" : "method_def"
+
+    in_node(def_type) do
       field "visibility" do
         case node.visibility
         in .public?
@@ -311,7 +329,14 @@ class SExpVisitor < Crystal::Visitor
       field "params" do
         if node.args.size > 0
           in_node("param_list") do
-            node.args.each &.accept self
+            splat_index = node.splat_index || -1
+
+            node.args.each_with_index do |arg, i|
+              if i == splat_index
+                alias_next_node!("splat_param")
+              end
+              arg.accept self
+            end
           end
         end
       end
@@ -324,20 +349,7 @@ class SExpVisitor < Crystal::Visitor
         # TODO
       end
 
-      field "body" do
-        body = node.body
-
-        case body
-        when Nop
-          break
-        when Expressions
-          # keep it
-        else
-          body = Expressions.new([body])
-        end
-
-        body.accept self
-      end
+      body_field(node.body)
     end
 
     false
@@ -426,11 +438,18 @@ class SExpVisitor < Crystal::Visitor
         end
       end
     end
+
     false
   end
 
   def visit(node : ClassDef)
-    in_node("class_def") do
+    node_type = if node.struct?
+                  "struct_def"
+                else
+                  "class_def"
+                end
+
+    in_node(node_type) do
       field "visibility" do
         case node.visibility
         in .public?
@@ -439,7 +458,77 @@ class SExpVisitor < Crystal::Visitor
         end
       end
 
-      # TODO
+      field "name" do
+        if (type_vars = node.type_vars)
+          in_node("generic_type") do
+            node.name.accept self
+
+            field "params" do
+              in_node("param_list") do
+                splat_index = node.splat_index || -1
+
+                type_vars.each_with_index do |type_var, i|
+                  if i == splat_index
+                    in_node("splat") { print_node("constant") }
+                  else
+                    print_node("constant")
+                  end
+                end
+              end
+            end
+          end
+        else
+          node.name.accept self
+        end
+      end
+
+      field "superclass" { node.superclass.try(&.accept self) }
+
+      body_field(node.body)
+    end
+
+    false
+  end
+
+  def visit(node : ModuleDef)
+    in_node("module_def") do
+      field "name" do
+        node.name.accept self
+      end
+
+      body_field(node.body)
+    end
+
+    false
+  end
+
+  def visit(node : LibDef)
+    in_node("lib_def") do
+      field "name" do
+        node.name.accept self
+      end
+
+      body_field(node.body)
+    end
+
+    false
+  end
+
+  def visit(node : EnumDef)
+    in_node("enum_def") do
+      field "name" do
+        node.name.accept self
+      end
+
+      if (base_type = node.base_type)
+        field "type" do
+          base_type.accept self
+        end
+      end
+
+      field "body" do
+        node.members.each &.accept self
+      end
     end
 
     false
@@ -455,11 +544,45 @@ class SExpVisitor < Crystal::Visitor
     exit_node
   end
 
+  def visit(node : FunDef)
+    in_node("fun_def") do
+      field "name" do
+        print_node("identifier")
+      end
+
+      field "real_name" do
+        next if node.real_name == node.name
+        print_node("identifier")
+      end
+
+      # TODO varargs
+
+      field "params" do
+        if node.args.size > 0
+          in_node("param_list") do
+            node.args.each_with_index do |arg, i|
+              alias_next_node!("fun_param")
+              arg.accept self
+            end
+          end
+        end
+      end
+
+      field "type" do
+        node.return_type.try &.accept self
+      end
+
+      body_field(node.body)
+    end
+
+    false
+  end
+
   ##############
   # Control flow
   ##############
 
-  def visit(node : If)
+  def visit(node : If | Unless)
     in_node("conditional") do
       field "cond" do
         node.cond.accept self
@@ -484,6 +607,68 @@ class SExpVisitor < Crystal::Visitor
           exp.accept self
         end
       end
+    end
+
+    false
+  end
+
+  def visit(node : While)
+    in_node("while") do
+      field "cond" do
+        node.cond.accept self
+      end
+
+      body_field(node.body)
+    end
+
+    false
+  end
+
+  def visit(node : Until)
+    in_node("until") do
+      field "cond" do
+        node.cond.accept self
+      end
+
+      body_field(node.body)
+    end
+
+    false
+  end
+
+  def visit(node : Case)
+    in_node("case") do
+      if (cond = node.cond)
+        field "cond" do
+          cond.accept self
+        end
+      end
+
+      node.whens.each do |when_|
+        field "when" do
+          when_.accept self
+        end
+      end
+
+      if (else_ = node.else)
+        field "else" do
+          else_.accept self
+        end
+      end
+    end
+
+    false
+  end
+
+  def visit(node : When)
+    in_node(node.exhaustive? ? "in" : "when") do
+      node.conds.each do |cond|
+        field "cond" do
+          cond.accept self
+        end
+      end
+
+      body_field(node.body)
     end
 
     false
@@ -526,12 +711,20 @@ class SExpVisitor < Crystal::Visitor
   end
 
   def visit(node : Union)
-    enter_node("union_type")
-    true
-  end
+    # The type `Foo?` is expanded to `Union(Foo, ::Nil)`
+    if node.types.size == 2 && node.types.last.to_s == "::Nil"
+      in_node("nilable_type") do
+        node.types.first.accept self
+      end
 
-  def end_visit(node : Union)
-    exit_node
+      return false
+    end
+
+    in_node("union_type") do
+      node.types.each &.accept(self)
+    end
+
+    false
   end
 
   def visit(node : Generic)
@@ -544,12 +737,13 @@ class SExpVisitor < Crystal::Visitor
       return false
     end
 
-    if node.name.to_s == "::NamedTupleType"
+    if node.name.to_s == "::NamedTuple"
       in_node("named_tuple_type") do
         node.named_args.try &.each do |arg|
           in_node("named_type") do
             field "name" { print_node("identifier") }
-            field "constant" { arg.value.accept self }
+
+            arg.value.accept self
           end
         end
       end
@@ -565,18 +759,88 @@ class SExpVisitor < Crystal::Visitor
       return false
     end
 
+    if node.suffix.bracket?
+      in_node("static_array_type") do
+        node.type_vars.each(&.accept self)
+      end
+
+      return false
+    end
+
     in_node("generic_instance_type") do
       node.name.accept self
 
       field "params" do
+        break unless node.type_vars.size > 0 || node.named_args
+
         in_node("param_list") do
           node.type_vars.each(&.accept self)
-          # TODO: named args
+
+          node.named_args.try &.each do |arg|
+            in_node("named_type") do
+              field "name" { print_node("identifier") }
+
+              arg.value.accept self
+            end
+          end
         end
       end
     end
 
     false
+  end
+
+  def visit(node : Splat)
+    in_node("splat_type") do
+      node.exp.accept self
+    end
+
+    false
+  end
+
+  def visit(node : TypeOf)
+    enter_node("typeof")
+    true
+  end
+
+  def end_visit(node : TypeOf)
+    exit_node()
+  end
+
+  def visit(node : SizeOf)
+    enter_node("sizeof")
+    true
+  end
+
+  def end_visit(node : SizeOf)
+    exit_node()
+  end
+
+  def visit(node : InstanceSizeOf)
+    enter_node("instance_sizeof")
+    true
+  end
+
+  def end_visit(node : InstanceSizeOf)
+    exit_node()
+  end
+
+  def visit(node : OffsetOf)
+    enter_node("offsetof")
+    true
+  end
+
+  def end_visit(node : OffsetOf)
+    exit_node()
+  end
+
+  def visit(node : Metaclass)
+    enter_node("class_type")
+    true
+  end
+
+  def end_visit(node : Metaclass)
+    exit_node()
   end
 
   ##############
@@ -746,7 +1010,7 @@ class SExpVisitor < Crystal::Visitor
     false
   end
 
-  def visit(node : Assign)
+  def visit(node : Assign | OpAssign)
     in_node("assign") do
       field "lhs" do
         node.target.accept(self)
@@ -784,6 +1048,96 @@ class SExpVisitor < Crystal::Visitor
 
       field "value" do
         node.value.try &.accept self
+      end
+    end
+
+    false
+  end
+
+  def visit(node : IsA)
+    in_node("call") do
+      field "receiver" do
+        node.obj.accept(self)
+      end
+
+      field "method" do
+        print_node("identifier")
+      end
+
+      field "arguments" do
+        in_node("argument_list") do
+          node.const.accept self
+        end
+      end
+    end
+
+    false
+  end
+
+  def visit(node : AnnotationDef)
+    in_node("annotation_def") do
+      field "name" do
+        node.name.accept self
+      end
+    end
+
+    false
+  end
+
+  def visit(node : Cast | NilableCast)
+    in_node("call") do
+      field "receiver" do
+        node.obj.accept(self)
+      end
+
+      field "method" do
+        print_node("identifier")
+      end
+
+      field "arguments" do
+        in_node("argument_list") do
+          node.to.accept self
+        end
+      end
+    end
+
+    false
+  end
+
+  def visit(node : RespondsTo)
+    in_node("call") do
+      field "receiver" do
+        node.obj.accept(self)
+      end
+
+      field "method" do
+        print_node("identifier")
+      end
+
+      field "arguments" do
+        in_node("argument_list") do
+          print_node("symbol")
+        end
+      end
+    end
+
+    false
+  end
+
+  visit_basic(Include)
+  visit_basic(Yield)
+  visit_basic(Require)
+  visit_basic(Not)
+
+  def visit(node : Annotation)
+    in_node("annotation") do
+      node.path.accept self
+
+      field "arguments" do
+        node.args.each &.accept(self)
+        if (named_args = node.named_args)
+          named_args.each &.accept(self)
+        end
       end
     end
 
