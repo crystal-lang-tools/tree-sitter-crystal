@@ -1225,9 +1225,13 @@
         ]
       },
       "expression": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -1471,6 +1475,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -1557,6 +1565,10 @@
         "required": true,
         "types": [
           {
+            "type": "%}",
+            "named": false
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -1799,6 +1811,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -1819,9 +1835,13 @@
         ]
       },
       "receiver": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -2065,6 +2085,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -2749,9 +2773,13 @@
         ]
       },
       "receiver": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -2995,6 +3023,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
@@ -3057,9 +3089,13 @@
         ]
       },
       "receiver": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -3303,6 +3339,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -3313,9 +3353,13 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -3559,6 +3603,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -3761,9 +3809,13 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -4007,13 +4059,21 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
       "else": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -4257,13 +4317,21 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
       "then": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -4507,6 +4575,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -4527,9 +4599,13 @@
         ]
       },
       "rhs": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "abstract_method_def",
             "named": true
@@ -4865,6 +4941,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
@@ -5265,9 +5345,13 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -5511,6 +5595,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
@@ -7217,9 +7305,13 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -7463,6 +7555,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
@@ -7650,9 +7746,13 @@
         ]
       },
       "receiver": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -7896,6 +7996,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -8343,9 +8447,13 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -8589,6 +8697,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -9214,9 +9326,13 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -9468,6 +9584,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
@@ -9492,9 +9612,13 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -9738,6 +9862,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -9748,9 +9876,13 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -9994,6 +10126,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -10502,9 +10638,13 @@
     "named": true,
     "fields": {
       "ensure": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -10748,6 +10888,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -11100,9 +11244,13 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -11346,13 +11494,21 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
       "then": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "abstract_method_def",
             "named": true
@@ -11688,6 +11844,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -11698,9 +11858,13 @@
     "named": true,
     "fields": {
       "rescue": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -11944,6 +12108,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -12296,9 +12464,13 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -12542,13 +12714,21 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
       "then": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "abstract_method_def",
             "named": true
@@ -12884,6 +13064,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -13767,9 +13951,13 @@
         ]
       },
       "rhs": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -14013,6 +14201,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -14291,6 +14483,10 @@
         "required": false,
         "types": [
           {
+            "type": "%}",
+            "named": false
+          },
+          {
             "type": "=",
             "named": false
           },
@@ -14537,6 +14733,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
@@ -15056,9 +15256,13 @@
     "named": true,
     "fields": {
       "begin": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -15302,13 +15506,21 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
       "end": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -15552,6 +15764,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
@@ -17179,9 +17395,13 @@
         ]
       },
       "value": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -17425,6 +17645,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
@@ -17962,9 +18186,13 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -18208,6 +18436,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       },
@@ -18248,9 +18480,13 @@
         ]
       },
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -18494,6 +18730,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -18517,6 +18757,10 @@
         "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -18764,6 +19008,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -18784,9 +19032,13 @@
         ]
       },
       "cond": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -19030,6 +19282,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -19040,9 +19296,13 @@
     "named": true,
     "fields": {
       "with": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
           {
             "type": "and",
             "named": true
@@ -19286,6 +19546,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
           }
         ]
       }
@@ -19331,6 +19595,10 @@
   },
   {
     "type": "%=",
+    "named": false
+  },
+  {
+    "type": "%}",
     "named": false
   },
   {
@@ -19854,6 +20122,14 @@
     "named": false
   },
   {
+    "type": "{%",
+    "named": false
+  },
+  {
+    "type": "{{",
+    "named": false
+  },
+  {
     "type": "|",
     "named": false
   },
@@ -19867,6 +20143,10 @@
   },
   {
     "type": "}",
+    "named": false
+  },
+  {
+    "type": "}}",
     "named": false
   },
   {

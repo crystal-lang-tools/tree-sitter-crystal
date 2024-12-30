@@ -1863,18 +1863,18 @@ module.exports = grammar({
     protected: $ => 'protected',
 
     macro_expression: $ => seq(
-      $._macro_expression_start,
+      alias($._macro_expression_start, '{{'),
       choice($.splat, $.double_splat, $._expression),
-      $._macro_expression_end,
+      alias($._macro_expression_end, '}}'),
     ),
 
     _macro_statements: $ => seq(
-      $._macro_control_start,
+      alias($._macro_control_start, '{%'),
       choice(
         $._macro_statement,
         alias($._statements, $.macro_expressions),
       ),
-      $._macro_control_end,
+      alias($._macro_control_end, '%}'),
     ),
 
     _macro_statement: $ => seq(choice(
