@@ -1,0 +1,69 @@
+===========
+macro begin
+===========
+
+{% begin %}
+puts "hello"
+{% end %}
+
+---
+
+(expressions
+  (macro_begin)
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (string)))
+  (macro_end))
+
+==============
+macro verbatim
+==============
+
+{% verbatim do %}
+{% end %}
+
+---
+
+(expressions
+  (macro_verbatim)
+  (macro_end))
+
+========
+macro if
+========
+
+{% if true %}
+  require "lib_c"
+{% end %}
+
+---
+
+(expressions
+  (macro_if
+    cond: (true))
+  (require
+    (string))
+  (macro_end))
+
+=================
+macro expressions
+=================
+
+{%
+  if true
+    puts "hello world"
+  end
+%}
+
+---
+
+(expressions
+  (macro_expressions
+    (if
+      cond: (true)
+      then: (then
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))

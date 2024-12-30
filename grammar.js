@@ -118,6 +118,11 @@ module.exports = grammar({
 
     $.regex_modifier,
 
+    $._macro_control_start,
+    $._macro_control_end,
+    $._macro_expression_start,
+    $._macro_expression_end,
+
     // These symbols are never actually returned. They signal the current scope
     // to the scanner.
     $._start_of_parenless_args,
@@ -412,6 +417,7 @@ module.exports = grammar({
 
     _lib_statement: $ => choice(
       $.macro_expression,
+      $._macro_statements,
       $.alias,
       $.fun_def,
       $.type_def,
@@ -425,6 +431,7 @@ module.exports = grammar({
 
     _enum_statement: $ => choice(
       $.macro_expression,
+      $._macro_statements,
       $.constant,
       $.const_assign,
       $.method_def,
@@ -440,6 +447,7 @@ module.exports = grammar({
 
     _expression: $ => choice(
       $.macro_expression,
+      $._macro_statements,
 
       // Literals
       $.nil,
@@ -1230,6 +1238,7 @@ module.exports = grammar({
 
     _c_struct_expression: $ => choice(
       $.macro_expression,
+      $._macro_statements,
       $.include,
       $.c_struct_fields,
     ),
@@ -1840,7 +1849,79 @@ module.exports = grammar({
     private: $ => 'private',
     protected: $ => 'protected',
 
-    macro_expression: $ => seq('{{', choice($.splat, $.double_splat, $._expression), '}}'),
+    macro_expression: $ => seq(
+      $._macro_expression_start,
+      choice($.splat, $.double_splat, $._expression),
+      $._macro_expression_end,
+    ),
+
+    _macro_statements: $ => seq(
+      $._macro_control_start,
+      choice(
+        $._macro_statement,
+        alias($._statements, $.macro_expressions),
+      ),
+      $._macro_control_end,
+    ),
+
+    _macro_statement: $ => seq(choice(
+      $.macro_for,
+      $.macro_if,
+      $.macro_unless,
+      $.macro_begin,
+      $.macro_verbatim,
+      $.macro_elsif,
+      $.macro_else,
+      $.macro_end,
+    )),
+
+    macro_for: $ => {
+      const var_name = field('var', choice($.underscore, $.identifier))
+
+      return seq(
+        'for',
+        var_name,
+        repeat(seq(',', var_name)),
+        'in',
+        choice($._expression, $.splat, $.double_splat),
+      )
+    },
+
+
+    macro_if: $ => {
+      const cond = field('cond', $._expression)
+
+      return seq(
+        alias($._regular_if_keyword, 'if'),
+        cond,
+      )
+    },
+
+    macro_unless: $ => {
+      const cond = field('cond', $._expression)
+
+      return seq(
+        alias($._regular_unless_keyword, 'unless'),
+        cond,
+      )
+    },
+
+    macro_elsif: $ => {
+      const cond = field('cond', $._expression)
+
+      return seq(
+        'elsif',
+        cond,
+      )
+    },
+
+    macro_else: $ => 'else',
+
+    macro_end: $ => 'end',
+
+    macro_begin: $ => 'begin',
+
+    macro_verbatim: $ => seq('verbatim', 'do'),
 
     // Represents a macro call prefixed with private/protected, e.g.
     //   private getter foo : String

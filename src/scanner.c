@@ -89,6 +89,11 @@ enum Token {
 
     REGEX_MODIFIER,
 
+    MACRO_CONTROL_START,
+    MACRO_CONTROL_END,
+    MACRO_EXPRESSION_START,
+    MACRO_EXPRESSION_END,
+
     // Never returned
     START_OF_PARENLESS_ARGS,
     END_OF_RANGE,
@@ -106,7 +111,7 @@ typedef enum Token Token;
 
 // NOTE(margret): This is temporarily disabled as calling lexer->log
 // causes a seg fault with WASM builds. Enable locally when needed.
-#define DEBUG(...) // lexer->log(lexer, "[LOG] " __VA_ARGS__);
+#define DEBUG(...) lexer->log(lexer, "[LOG] " __VA_ARGS__);
 
 /*
  * State types
@@ -157,6 +162,9 @@ struct State {
     Array(PercentLiteral) literals;
 
     Array(Heredoc) heredocs;
+
+    bool inside_macro_expression;
+    bool inside_macro_control;
 };
 typedef struct State State;
 
@@ -1114,8 +1122,16 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
             lex_advance(lexer);
 
             // Start of a macro expression
-            if (lexer->lookahead == '{') {
-                return false;
+            if (valid_symbols[MACRO_EXPRESSION_START] && lexer->lookahead == '{') {
+                lex_advance(lexer);
+                lexer->result_symbol = MACRO_EXPRESSION_START;
+                state->inside_macro_expression = true;
+                return true;
+            } else if (valid_symbols[MACRO_CONTROL_START] && lexer->lookahead == '%') {
+                lex_advance(lexer);
+                lexer->result_symbol = MACRO_CONTROL_START;
+                state->inside_macro_control = true;
+                return true;
             }
 
             // We expect these symbols to always be valid or not valid together
@@ -1708,12 +1724,21 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
             break;
 
         case '%':
+            lex_advance(lexer);
+
+            // valid_symbols[MACRO_CONTROL_END] &&
+            if (lexer->lookahead == '}' && state->inside_macro_control) {
+                lex_advance(lexer);
+                lexer->result_symbol = MACRO_CONTROL_END;
+                state->inside_macro_control = false;
+                return true;
+            }
+
             if (valid_symbols[STRING_PERCENT_LITERAL_START]
                 || valid_symbols[COMMAND_PERCENT_LITERAL_START]
                 || valid_symbols[STRING_ARRAY_PERCENT_LITERAL_START]
                 || valid_symbols[SYMBOL_ARRAY_PERCENT_LITERAL_START]
                 || valid_symbols[REGEX_PERCENT_LITERAL_START]) {
-                lex_advance(lexer);
 
                 if (lexer->lookahead == '=') {
                     return false;
@@ -2043,6 +2068,17 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                 return true;
             }
             break;
+
+        case '}':
+            lex_advance(lexer);
+            // valid_symbols[MACRO_EXPRESSION_END] &&
+            if (lexer->lookahead == '}' && state->inside_macro_expression) {
+                lex_advance(lexer);
+                lexer->result_symbol = MACRO_EXPRESSION_END;
+                state->inside_macro_expression = false;
+                return true;
+            }
+            break;
     }
 
     return false;
@@ -2140,6 +2176,8 @@ void *tree_sitter_crystal_external_scanner_create(void) {
 
     state->has_leading_whitespace = false;
     state->previous_line_continued = false;
+    state->inside_macro_expression = false;
+    state->inside_macro_control = false;
 
     array_init(&state->literals);
     array_init(&state->heredocs);

@@ -322,6 +322,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_macro_statements"
+        },
+        {
+          "type": "SYMBOL",
           "name": "alias"
         },
         {
@@ -364,6 +368,10 @@
         {
           "type": "SYMBOL",
           "name": "macro_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_macro_statements"
         },
         {
           "type": "SYMBOL",
@@ -414,6 +422,10 @@
         {
           "type": "SYMBOL",
           "name": "macro_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_macro_statements"
         },
         {
           "type": "SYMBOL",
@@ -5196,6 +5208,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_macro_statements"
+        },
+        {
+          "type": "SYMBOL",
           "name": "include"
         },
         {
@@ -8010,8 +8026,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "{{"
+          "type": "SYMBOL",
+          "name": "_macro_expression_start"
         },
         {
           "type": "CHOICE",
@@ -8031,8 +8047,243 @@
           ]
         },
         {
+          "type": "SYMBOL",
+          "name": "_macro_expression_end"
+        }
+      ]
+    },
+    "_macro_statements": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_macro_control_start"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_macro_statement"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_statements"
+              },
+              "named": true,
+              "value": "macro_expressions"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_macro_control_end"
+        }
+      ]
+    },
+    "_macro_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "macro_for"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "macro_if"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "macro_unless"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "macro_begin"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "macro_verbatim"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "macro_elsif"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "macro_else"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "macro_end"
+            }
+          ]
+        }
+      ]
+    },
+    "macro_for": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "STRING",
-          "value": "}}"
+          "value": "for"
+        },
+        {
+          "type": "FIELD",
+          "name": "var",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "underscore"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "FIELD",
+                "name": "var",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "underscore"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "identifier"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "in"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "splat"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "double_splat"
+            }
+          ]
+        }
+      ]
+    },
+    "macro_if": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_regular_if_keyword"
+          },
+          "named": false,
+          "value": "if"
+        },
+        {
+          "type": "FIELD",
+          "name": "cond",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        }
+      ]
+    },
+    "macro_unless": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_regular_unless_keyword"
+          },
+          "named": false,
+          "value": "unless"
+        },
+        {
+          "type": "FIELD",
+          "name": "cond",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        }
+      ]
+    },
+    "macro_elsif": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "elsif"
+        },
+        {
+          "type": "FIELD",
+          "name": "cond",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        }
+      ]
+    },
+    "macro_else": {
+      "type": "STRING",
+      "value": "else"
+    },
+    "macro_end": {
+      "type": "STRING",
+      "value": "end"
+    },
+    "macro_begin": {
+      "type": "STRING",
+      "value": "begin"
+    },
+    "macro_verbatim": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "verbatim"
+        },
+        {
+          "type": "STRING",
+          "value": "do"
         }
       ]
     },
@@ -13827,6 +14078,22 @@
     {
       "type": "SYMBOL",
       "name": "regex_modifier"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_macro_control_start"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_macro_control_end"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_macro_expression_start"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_macro_expression_end"
     },
     {
       "type": "SYMBOL",
