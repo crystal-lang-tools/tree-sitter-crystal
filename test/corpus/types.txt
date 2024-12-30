@@ -463,11 +463,11 @@ def p1 : -> { A::B, }; end
 def p2 : -> { A: :B, }; end
 
 def p1 : ->{"a": "b"}; end
-def p1 : ->{%(a()): "b"}; end
-def p1 : ->{%q|a|: "b"}; end
-def p1 : ->{%Q<<>a>: "b"}; end
-def p1 : ->{%[[a]]: "b"}; end
-def p1 : ->{%{a{}a}: "b"}; end
+def p1 : ->{ %(a()): "b"}; end
+def p1 : ->{ %q|a|: "b"}; end
+def p1 : ->{ %Q<<>a>: "b"}; end
+def p1 : ->{ %[[a]]: "b"}; end
+def p1 : ->{ %{a{}a}: "b"}; end
 
 f = -> : -> { a: String; ->{} }
 --------------------------------------------------------------------------------

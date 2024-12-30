@@ -118,6 +118,11 @@ module.exports = grammar({
 
     $.regex_modifier,
 
+    $._macro_control_start,
+    $._macro_control_end,
+    $._macro_expression_start,
+    $._macro_expression_end,
+
     // These symbols are never actually returned. They signal the current scope
     // to the scanner.
     $._start_of_parenless_args,
@@ -395,6 +400,7 @@ module.exports = grammar({
       $.alias,
       $.method_def,
       $.abstract_method_def,
+      $.macro_def,
       alias($.top_level_fun_def, $.fun_def),
       $.require,
       $.modifier_if,
@@ -410,6 +416,8 @@ module.exports = grammar({
     ),
 
     _lib_statement: $ => choice(
+      $.macro_expression,
+      $._macro_statements,
       $.alias,
       $.fun_def,
       $.type_def,
@@ -422,9 +430,12 @@ module.exports = grammar({
     ),
 
     _enum_statement: $ => choice(
+      $.macro_expression,
+      $._macro_statements,
       $.constant,
       $.const_assign,
       $.method_def,
+      $.macro_def,
       $.class_var,
       $.annotation,
     ),
@@ -435,6 +446,9 @@ module.exports = grammar({
     ),
 
     _expression: $ => choice(
+      $.macro_expression,
+      $._macro_statements,
+
       // Literals
       $.nil,
       $.true,
@@ -479,6 +493,7 @@ module.exports = grammar({
       $.identifier,
       $.instance_var,
       $.class_var,
+      $.macro_var,
       $.type_declaration,
 
       // Control structures
@@ -1223,6 +1238,8 @@ module.exports = grammar({
     ),
 
     _c_struct_expression: $ => choice(
+      $.macro_expression,
+      $._macro_statements,
       $.include,
       $.c_struct_fields,
     ),
@@ -1341,6 +1358,34 @@ module.exports = grammar({
         $._base_method_def,
         optional($._terminator),
       ))
+    },
+
+    macro_def: $ => {
+      const visibility = optional(
+        field('visibility', choice($.private, $.protected)),
+      )
+      const name = field('name', choice(
+        $.identifier,
+        alias($.identifier_method_call, $.identifier),
+        alias($._operator_token, $.operator),
+      ))
+      const params = seq(
+        '(',
+        field('params', optional($.param_list)),
+        ')',
+      )
+
+      return seq(
+        visibility,
+        prec.right(seq(
+          'macro',
+          name,
+          optional(params),
+        )),
+        $._terminator,
+        field('body', seq(optional(alias($._statements, $.expressions)))),
+        'end',
+      )
     },
 
     include: $ => {
@@ -1533,8 +1578,19 @@ module.exports = grammar({
     identifier_assign: $ => token(seq(ident_start, repeat(ident_part), /[=]/)),
 
     instance_var: $ => token(seq('@', ident_start, repeat(ident_part))),
-
     class_var: $ => token(seq('@@', ident_start, repeat(ident_part))),
+
+    macro_var: $ => {
+      const name = token(seq('%', ident_part, repeat(ident_part)))
+      const exp = seq(
+        token.immediate('{'),
+        $._expression, repeat(seq(',', $._expression)),
+        optional(','),
+        '}',
+      )
+
+      return seq(name, optional(exp))
+    },
 
     self: $ => 'self',
 
@@ -1804,6 +1860,80 @@ module.exports = grammar({
 
     private: $ => 'private',
     protected: $ => 'protected',
+
+    macro_expression: $ => seq(
+      $._macro_expression_start,
+      choice($.splat, $.double_splat, $._expression),
+      $._macro_expression_end,
+    ),
+
+    _macro_statements: $ => seq(
+      $._macro_control_start,
+      choice(
+        $._macro_statement,
+        alias($._statements, $.macro_expressions),
+      ),
+      $._macro_control_end,
+    ),
+
+    _macro_statement: $ => seq(choice(
+      $.macro_for,
+      $.macro_if,
+      $.macro_unless,
+      $.macro_begin,
+      $.macro_verbatim,
+      $.macro_elsif,
+      $.macro_else,
+      $.macro_end,
+    )),
+
+    macro_for: $ => {
+      const var_name = field('var', choice($.underscore, $.identifier))
+
+      return seq(
+        'for',
+        var_name,
+        repeat(seq(',', var_name)),
+        'in',
+        field('cond', choice($._expression, $.splat, $.double_splat)),
+      )
+    },
+
+
+    macro_if: $ => {
+      const cond = field('cond', $._expression)
+
+      return seq(
+        alias($._regular_if_keyword, 'if'),
+        cond,
+      )
+    },
+
+    macro_unless: $ => {
+      const cond = field('cond', $._expression)
+
+      return seq(
+        alias($._regular_unless_keyword, 'unless'),
+        cond,
+      )
+    },
+
+    macro_elsif: $ => {
+      const cond = field('cond', $._expression)
+
+      return seq(
+        'elsif',
+        cond,
+      )
+    },
+
+    macro_else: $ => 'else',
+
+    macro_end: $ => 'end',
+
+    macro_begin: $ => 'begin',
+
+    macro_verbatim: $ => seq('verbatim', 'do'),
 
     // Represents a macro call prefixed with private/protected, e.g.
     //   private getter foo : String
@@ -2258,6 +2388,7 @@ module.exports = grammar({
         $.identifier,
         $.instance_var,
         $.class_var,
+        $.macro_var,
         $.assign_call,
         $.index_call,
         alias($.index_operator, $.index_call),
@@ -2309,6 +2440,7 @@ module.exports = grammar({
         $.identifier,
         $.instance_var,
         $.class_var,
+        $.macro_var,
         $.assign_call,
         $.index_call,
         alias($.index_operator, $.index_call),
@@ -2325,6 +2457,7 @@ module.exports = grammar({
       $.identifier,
       $.instance_var,
       $.class_var,
+      $.macro_var,
       $.assign_call,
       $.index_call,
       alias($.index_operator, $.index_call),
@@ -2336,6 +2469,7 @@ module.exports = grammar({
         $.identifier,
         $.instance_var,
         $.class_var,
+        $.macro_var,
         $.assign_call,
         $.index_call,
         alias($.index_operator, $.index_call),
@@ -2356,7 +2490,7 @@ module.exports = grammar({
     },
 
     type_declaration: $ => {
-      const variable = field('var', choice($.identifier, $.instance_var, $.class_var))
+      const variable = field('var', choice($.identifier, $.instance_var, $.class_var, $.macro_var))
       const type = field('type', $._bare_type)
       const value = field('value', $._expression)
 

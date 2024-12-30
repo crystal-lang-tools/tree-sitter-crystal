@@ -1,0 +1,256 @@
+===========
+macro begin
+===========
+
+{% begin %}
+puts "hello"
+{% end %}
+
+---
+
+(expressions
+  (macro_begin)
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (string)))
+  (macro_end))
+
+==============
+macro verbatim
+==============
+
+{% verbatim do %}
+{% end %}
+
+---
+
+(expressions
+  (macro_verbatim)
+  (macro_end))
+
+========
+macro if
+========
+
+{% if true %}
+  require "lib_c"
+{% end %}
+
+---
+
+(expressions
+  (macro_if
+    cond: (true))
+  (require
+    (string))
+  (macro_end))
+
+=========
+macro for
+=========
+
+{% for a, b in list %}
+  puts "Hello, #{{{ a }}}"
+{% end %}
+
+---
+
+(expressions
+  (macro_for
+    var: (identifier)
+    var: (identifier)
+    cond: (identifier))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (string
+        (interpolation
+          (macro_expression
+            (identifier))))))
+  (macro_end))
+
+================
+macro expression
+================
+
+{{ puts "hello" }}
+{{ a = 1 }}
+{ hello: world }
+
+---
+
+(expressions
+  (macro_expression
+    (call
+      (identifier)
+      (argument_list
+        (string))))
+  (macro_expression
+    (assign
+      (identifier)
+      (integer)))
+  (named_tuple
+    (named_expr
+      (identifier)
+      (identifier))))
+
+=================
+macro expressions
+=================
+
+{%
+  if true
+    puts "hello world"
+  end
+%}
+
+---
+
+(expressions
+  (macro_expressions
+    (if
+      cond: (true)
+      then: (then
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))
+
+=========
+macro def
+=========
+
+macro name(arg)
+  {{ arg }}
+end
+
+macro name; {{ puts "hello" }} end
+
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier)))
+    body: (expressions
+      (macro_expression
+        (identifier))))
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_expression
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))
+
+============================
+nested macros and macro vars
+============================
+
+{% if true %}
+  {% for i in [1, 2, 3] %}
+    %var = 1 + {{ word }}
+    foo = %var + 4
+  {% end %}
+{% end %}
+
+---
+
+(expressions
+  (macro_if
+    cond: (true))
+  (macro_for
+    var: (identifier)
+    cond: (array
+      (integer)
+      (integer)
+      (integer)))
+  (assign
+    lhs: (macro_var)
+    rhs: (call
+      receiver: (integer)
+      method: (operator)
+      arguments: (argument_list
+        (macro_expression
+          (identifier)))))
+  (assign
+    lhs: (identifier)
+    rhs: (call
+      receiver: (macro_var)
+      method: (operator)
+      arguments: (argument_list
+        (integer))))
+  (macro_end)
+  (macro_end))
+
+===============
+macro vars cont
+===============
+
+var1 = 40
+%var1 = 10
+var2 = 4321 % var1
+var3 = 4321 %var1
+var4 = 4321 %%var1
+var5 = 4321 % %var1
+
+---
+
+(expressions
+  (assign
+    lhs: (identifier)
+    rhs: (integer))
+  (assign
+    lhs: (macro_var)
+    rhs: (integer))
+  (assign
+    lhs: (identifier)
+    rhs: (call
+      receiver: (integer)
+      method: (operator)
+      arguments: (argument_list
+        (identifier))))
+  (assign
+    lhs: (identifier)
+    rhs: (call
+      receiver: (integer)
+      method: (operator)
+      arguments: (argument_list
+        (identifier))))
+  (assign
+    lhs: (identifier)
+    rhs: (call
+      receiver: (integer)
+      method: (operator)
+      arguments: (argument_list
+        (identifier))))
+  (assign
+    lhs: (identifier)
+    rhs: (call
+      receiver: (integer)
+      method: (operator)
+      arguments: (argument_list
+        (macro_var)))))
+
+=====================
+macro var expressions
+=====================
+
+%var{name} = 1
+%hello{"world"} = "goodnight"
+
+---
+
+(expressions
+  (assign
+    lhs: (macro_var
+      (identifier))
+    rhs: (integer))
+  (assign
+    lhs: (macro_var
+      (string))
+    rhs: (string)))
