@@ -1198,10 +1198,11 @@ module.exports = grammar({
     },
 
     fun_param: $ => {
+      const name = field('name', choice($.identifier, $.constant))
       const type = field('type', seq(/[ \t]:\s/, $._bare_type))
 
       return seq(
-        choice($.identifier, $.constant),
+        name,
         type,
       )
     },

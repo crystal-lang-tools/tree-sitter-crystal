@@ -6532,6 +6532,20 @@
     "type": "fun_param",
     "named": true,
     "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
       "type": {
         "multiple": true,
         "required": true,
@@ -6602,20 +6616,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "constant",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
     }
   },
   {
