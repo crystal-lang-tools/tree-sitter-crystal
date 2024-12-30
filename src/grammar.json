@@ -6892,7 +6892,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "underscore_type"
+          "name": "underscore"
         },
         {
           "type": "SYMBOL",
@@ -7607,7 +7607,7 @@
         }
       ]
     },
-    "underscore_type": {
+    "underscore": {
       "type": "STRING",
       "value": "_"
     },
@@ -9173,8 +9173,17 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_implicit_object_call"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_implicit_object_call"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "underscore"
+            }
+          ]
         },
         {
           "type": "REPEAT",
@@ -9195,6 +9204,10 @@
                   {
                     "type": "SYMBOL",
                     "name": "_implicit_object_call"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "underscore"
                   }
                 ]
               }
@@ -10445,6 +10458,10 @@
               "members": [
                 {
                   "type": "SYMBOL",
+                  "name": "underscore"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "identifier"
                 },
                 {
@@ -10679,6 +10696,10 @@
           "members": [
             {
               "type": "SYMBOL",
+              "name": "underscore"
+            },
+            {
+              "type": "SYMBOL",
               "name": "identifier"
             },
             {
@@ -10765,6 +10786,10 @@
                               "members": [
                                 {
                                   "type": "SYMBOL",
+                                  "name": "underscore"
+                                },
+                                {
+                                  "type": "SYMBOL",
                                   "name": "identifier"
                                 },
                                 {
@@ -10822,6 +10847,10 @@
                       {
                         "type": "CHOICE",
                         "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "underscore"
+                          },
                           {
                             "type": "SYMBOL",
                             "name": "identifier"
@@ -10958,6 +10987,10 @@
                               "members": [
                                 {
                                   "type": "SYMBOL",
+                                  "name": "underscore"
+                                },
+                                {
+                                  "type": "SYMBOL",
                                   "name": "identifier"
                                 },
                                 {
@@ -11015,6 +11048,10 @@
                       {
                         "type": "CHOICE",
                         "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "underscore"
+                          },
                           {
                             "type": "SYMBOL",
                             "name": "identifier"
