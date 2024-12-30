@@ -493,6 +493,7 @@ module.exports = grammar({
       $.identifier,
       $.instance_var,
       $.class_var,
+      $.macro_var,
       $.type_declaration,
 
       // Control structures
@@ -1577,8 +1578,19 @@ module.exports = grammar({
     identifier_assign: $ => token(seq(ident_start, repeat(ident_part), /[=]/)),
 
     instance_var: $ => token(seq('@', ident_start, repeat(ident_part))),
-
     class_var: $ => token(seq('@@', ident_start, repeat(ident_part))),
+
+    macro_var: $ => {
+      const name = token(seq('%', ident_part, repeat(ident_part)))
+      const exp = seq(
+        token.immediate('{'),
+        $._expression, repeat(seq(',', $._expression)),
+        optional(','),
+        '}',
+      )
+
+      return seq(name, optional(exp))
+    },
 
     self: $ => 'self',
 
@@ -1883,7 +1895,7 @@ module.exports = grammar({
         var_name,
         repeat(seq(',', var_name)),
         'in',
-        choice($._expression, $.splat, $.double_splat),
+        field('cond', choice($._expression, $.splat, $.double_splat)),
       )
     },
 
@@ -2376,6 +2388,7 @@ module.exports = grammar({
         $.identifier,
         $.instance_var,
         $.class_var,
+        $.macro_var,
         $.assign_call,
         $.index_call,
         alias($.index_operator, $.index_call),
@@ -2427,6 +2440,7 @@ module.exports = grammar({
         $.identifier,
         $.instance_var,
         $.class_var,
+        $.macro_var,
         $.assign_call,
         $.index_call,
         alias($.index_operator, $.index_call),
@@ -2443,6 +2457,7 @@ module.exports = grammar({
       $.identifier,
       $.instance_var,
       $.class_var,
+      $.macro_var,
       $.assign_call,
       $.index_call,
       alias($.index_operator, $.index_call),
@@ -2454,6 +2469,7 @@ module.exports = grammar({
         $.identifier,
         $.instance_var,
         $.class_var,
+        $.macro_var,
         $.assign_call,
         $.index_call,
         alias($.index_operator, $.index_call),
@@ -2474,7 +2490,7 @@ module.exports = grammar({
     },
 
     type_declaration: $ => {
-      const variable = field('var', choice($.identifier, $.instance_var, $.class_var))
+      const variable = field('var', choice($.identifier, $.instance_var, $.class_var, $.macro_var))
       const type = field('type', $._bare_type)
       const value = field('value', $._expression)
 

@@ -15,6 +15,8 @@
   "select"
   "then"
   "when"
+  "verbatim"
+  "for"
 ] @keyword
 ["def" "fun"] @keyword.function
 ["class" "enum" "module" "struct" "type" "union"] @keyword.type

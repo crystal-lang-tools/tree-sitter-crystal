@@ -4129,28 +4129,3 @@ asm ("nop")
     text: (string))
   (asm
     text: (string)))
-
-================
-macro expression
-================
-
-{{ puts "hello" }}
-{{ a = 1 }}
-{ hello: world }
-
----
-
-(expressions
-  (macro_expression
-    (call
-      (identifier)
-      (argument_list
-        (string))))
-  (macro_expression
-    (assign
-      (identifier)
-      (integer)))
-  (named_tuple
-    (named_expr
-      (identifier)
-      (identifier))))

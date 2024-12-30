@@ -645,6 +645,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "macro_var"
+        },
+        {
+          "type": "SYMBOL",
           "name": "type_declaration"
         },
         {
@@ -7028,6 +7032,92 @@
         ]
       }
     },
+    "macro_var": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "%"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[0-9A-Za-z_\\u{00a0}-\\u{10ffff}]",
+                "flags": "u"
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[0-9A-Za-z_\\u{00a0}-\\u{10ffff}]",
+                  "flags": "u"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": "{"
+                  }
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": ","
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_expression"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ","
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "STRING",
+                  "value": "}"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
     "self": {
       "type": "STRING",
       "value": "self"
@@ -8183,21 +8273,25 @@
           "value": "in"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_expression"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "splat"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "double_splat"
-            }
-          ]
+          "type": "FIELD",
+          "name": "cond",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "splat"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "double_splat"
+              }
+            ]
+          }
         }
       ]
     },
@@ -10956,6 +11050,10 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "macro_var"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "assign_call"
                 },
                 {
@@ -11061,6 +11159,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "class_var"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "macro_var"
                 },
                 {
                   "type": "SYMBOL",
@@ -11194,6 +11296,10 @@
             },
             {
               "type": "SYMBOL",
+              "name": "macro_var"
+            },
+            {
+              "type": "SYMBOL",
               "name": "assign_call"
             },
             {
@@ -11284,6 +11390,10 @@
                                 },
                                 {
                                   "type": "SYMBOL",
+                                  "name": "macro_var"
+                                },
+                                {
+                                  "type": "SYMBOL",
                                   "name": "assign_call"
                                 },
                                 {
@@ -11344,6 +11454,10 @@
                           {
                             "type": "SYMBOL",
                             "name": "class_var"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "macro_var"
                           },
                           {
                             "type": "SYMBOL",
@@ -11485,6 +11599,10 @@
                                 },
                                 {
                                   "type": "SYMBOL",
+                                  "name": "macro_var"
+                                },
+                                {
+                                  "type": "SYMBOL",
                                   "name": "assign_call"
                                 },
                                 {
@@ -11545,6 +11663,10 @@
                           {
                             "type": "SYMBOL",
                             "name": "class_var"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "macro_var"
                           },
                           {
                             "type": "SYMBOL",
@@ -11643,6 +11765,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "class_var"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "macro_var"
                 }
               ]
             }

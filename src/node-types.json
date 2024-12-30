@@ -382,6 +382,10 @@
           "named": true
         },
         {
+          "type": "macro_var",
+          "named": true
+        },
+        {
           "type": "macro_verbatim",
           "named": true
         },
@@ -684,6 +688,10 @@
         },
         {
           "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
           "named": true
         },
         {
@@ -1021,6 +1029,10 @@
           "named": true
         },
         {
+          "type": "macro_var",
+          "named": true
+        },
+        {
           "type": "macro_verbatim",
           "named": true
         },
@@ -1353,6 +1365,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -1519,6 +1535,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "special_variable",
             "named": true
           },
@@ -1670,6 +1690,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -1932,6 +1956,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -2290,6 +2318,10 @@
         },
         {
           "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
           "named": true
         },
         {
@@ -2857,6 +2889,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -3161,6 +3197,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -3410,6 +3450,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -3857,6 +3901,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -4103,6 +4151,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -4346,6 +4398,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -4663,6 +4719,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -4967,6 +5027,10 @@
         },
         {
           "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
           "named": true
         },
         {
@@ -5341,6 +5405,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -5666,6 +5734,10 @@
         },
         {
           "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
           "named": true
         },
         {
@@ -6124,6 +6196,10 @@
         },
         {
           "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
           "named": true
         },
         {
@@ -6995,6 +7071,10 @@
           "named": true
         },
         {
+          "type": "macro_var",
+          "named": true
+        },
+        {
           "type": "macro_verbatim",
           "named": true
         },
@@ -7274,6 +7354,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -7706,6 +7790,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -8037,6 +8125,10 @@
         },
         {
           "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
           "named": true
         },
         {
@@ -8391,6 +8483,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -8649,6 +8745,10 @@
         },
         {
           "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
           "named": true
         },
         {
@@ -8959,6 +9059,10 @@
           "named": true
         },
         {
+          "type": "macro_var",
+          "named": true
+        },
+        {
           "type": "macro_verbatim",
           "named": true
         },
@@ -9109,6 +9213,264 @@
     "type": "macro_for",
     "named": true,
     "fields": {
+      "cond": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "and",
+            "named": true
+          },
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "asm",
+            "named": true
+          },
+          {
+            "type": "assign",
+            "named": true
+          },
+          {
+            "type": "begin",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "case",
+            "named": true
+          },
+          {
+            "type": "chained_string",
+            "named": true
+          },
+          {
+            "type": "char",
+            "named": true
+          },
+          {
+            "type": "class_var",
+            "named": true
+          },
+          {
+            "type": "command",
+            "named": true
+          },
+          {
+            "type": "conditional",
+            "named": true
+          },
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "double_splat",
+            "named": true
+          },
+          {
+            "type": "expressions",
+            "named": true
+          },
+          {
+            "type": "false",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "hash",
+            "named": true
+          },
+          {
+            "type": "heredoc_start",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "instance_var",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "macro_begin",
+            "named": true
+          },
+          {
+            "type": "macro_else",
+            "named": true
+          },
+          {
+            "type": "macro_elsif",
+            "named": true
+          },
+          {
+            "type": "macro_end",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
+            "type": "macro_expressions",
+            "named": true
+          },
+          {
+            "type": "macro_for",
+            "named": true
+          },
+          {
+            "type": "macro_if",
+            "named": true
+          },
+          {
+            "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
+            "named": true
+          },
+          {
+            "type": "macro_verbatim",
+            "named": true
+          },
+          {
+            "type": "method_proc",
+            "named": true
+          },
+          {
+            "type": "named_tuple",
+            "named": true
+          },
+          {
+            "type": "nil",
+            "named": true
+          },
+          {
+            "type": "not",
+            "named": true
+          },
+          {
+            "type": "offsetof",
+            "named": true
+          },
+          {
+            "type": "op_assign",
+            "named": true
+          },
+          {
+            "type": "or",
+            "named": true
+          },
+          {
+            "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_constant",
+            "named": true
+          },
+          {
+            "type": "range",
+            "named": true
+          },
+          {
+            "type": "regex",
+            "named": true
+          },
+          {
+            "type": "select",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
+            "named": true
+          },
+          {
+            "type": "special_variable",
+            "named": true
+          },
+          {
+            "type": "splat",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "symbol",
+            "named": true
+          },
+          {
+            "type": "true",
+            "named": true
+          },
+          {
+            "type": "tuple",
+            "named": true
+          },
+          {
+            "type": "type_declaration",
+            "named": true
+          },
+          {
+            "type": "typeof",
+            "named": true
+          },
+          {
+            "type": "unless",
+            "named": true
+          },
+          {
+            "type": "until",
+            "named": true
+          },
+          {
+            "type": "while",
+            "named": true
+          },
+          {
+            "type": "yield",
+            "named": true
+          }
+        ]
+      },
       "var": {
         "multiple": true,
         "required": true,
@@ -9123,260 +9485,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "and",
-          "named": true
-        },
-        {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "asm",
-          "named": true
-        },
-        {
-          "type": "assign",
-          "named": true
-        },
-        {
-          "type": "begin",
-          "named": true
-        },
-        {
-          "type": "call",
-          "named": true
-        },
-        {
-          "type": "case",
-          "named": true
-        },
-        {
-          "type": "chained_string",
-          "named": true
-        },
-        {
-          "type": "char",
-          "named": true
-        },
-        {
-          "type": "class_var",
-          "named": true
-        },
-        {
-          "type": "command",
-          "named": true
-        },
-        {
-          "type": "conditional",
-          "named": true
-        },
-        {
-          "type": "constant",
-          "named": true
-        },
-        {
-          "type": "double_splat",
-          "named": true
-        },
-        {
-          "type": "expressions",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "float",
-          "named": true
-        },
-        {
-          "type": "generic_instance_type",
-          "named": true
-        },
-        {
-          "type": "hash",
-          "named": true
-        },
-        {
-          "type": "heredoc_start",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if",
-          "named": true
-        },
-        {
-          "type": "index_call",
-          "named": true
-        },
-        {
-          "type": "instance_sizeof",
-          "named": true
-        },
-        {
-          "type": "instance_var",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
-          "type": "macro_expression",
-          "named": true
-        },
-        {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
-          "named": true
-        },
-        {
-          "type": "method_proc",
-          "named": true
-        },
-        {
-          "type": "named_tuple",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
-          "type": "not",
-          "named": true
-        },
-        {
-          "type": "offsetof",
-          "named": true
-        },
-        {
-          "type": "op_assign",
-          "named": true
-        },
-        {
-          "type": "or",
-          "named": true
-        },
-        {
-          "type": "proc",
-          "named": true
-        },
-        {
-          "type": "pseudo_constant",
-          "named": true
-        },
-        {
-          "type": "range",
-          "named": true
-        },
-        {
-          "type": "regex",
-          "named": true
-        },
-        {
-          "type": "select",
-          "named": true
-        },
-        {
-          "type": "self",
-          "named": true
-        },
-        {
-          "type": "sizeof",
-          "named": true
-        },
-        {
-          "type": "special_variable",
-          "named": true
-        },
-        {
-          "type": "splat",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "symbol",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "tuple",
-          "named": true
-        },
-        {
-          "type": "type_declaration",
-          "named": true
-        },
-        {
-          "type": "typeof",
-          "named": true
-        },
-        {
-          "type": "unless",
-          "named": true
-        },
-        {
-          "type": "until",
-          "named": true
-        },
-        {
-          "type": "while",
-          "named": true
-        },
-        {
-          "type": "yield",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -9521,6 +9629,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -9776,6 +9888,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -9881,6 +9997,261 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "macro_var",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "and",
+          "named": true
+        },
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "asm",
+          "named": true
+        },
+        {
+          "type": "assign",
+          "named": true
+        },
+        {
+          "type": "begin",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "case",
+          "named": true
+        },
+        {
+          "type": "chained_string",
+          "named": true
+        },
+        {
+          "type": "char",
+          "named": true
+        },
+        {
+          "type": "class_var",
+          "named": true
+        },
+        {
+          "type": "command",
+          "named": true
+        },
+        {
+          "type": "conditional",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "expressions",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "hash",
+          "named": true
+        },
+        {
+          "type": "heredoc_start",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "instance_var",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "macro_begin",
+          "named": true
+        },
+        {
+          "type": "macro_else",
+          "named": true
+        },
+        {
+          "type": "macro_elsif",
+          "named": true
+        },
+        {
+          "type": "macro_end",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
+          "named": true
+        },
+        {
+          "type": "macro_expressions",
+          "named": true
+        },
+        {
+          "type": "macro_for",
+          "named": true
+        },
+        {
+          "type": "macro_if",
+          "named": true
+        },
+        {
+          "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
+          "named": true
+        },
+        {
+          "type": "macro_verbatim",
+          "named": true
+        },
+        {
+          "type": "method_proc",
+          "named": true
+        },
+        {
+          "type": "named_tuple",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not",
+          "named": true
+        },
+        {
+          "type": "offsetof",
+          "named": true
+        },
+        {
+          "type": "op_assign",
+          "named": true
+        },
+        {
+          "type": "or",
+          "named": true
+        },
+        {
+          "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "range",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "select",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
+          "named": true
+        },
+        {
+          "type": "special_variable",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        },
+        {
+          "type": "tuple",
+          "named": true
+        },
+        {
+          "type": "type_declaration",
+          "named": true
+        },
+        {
+          "type": "typeof",
+          "named": true
+        },
+        {
+          "type": "unless",
+          "named": true
+        },
+        {
+          "type": "until",
+          "named": true
+        },
+        {
+          "type": "while",
+          "named": true
+        },
+        {
+          "type": "yield",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -10271,6 +10642,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -10570,6 +10945,10 @@
           "named": true
         },
         {
+          "type": "macro_var",
+          "named": true
+        },
+        {
           "type": "macro_verbatim",
           "named": true
         },
@@ -10858,6 +11237,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -11156,6 +11539,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -11451,6 +11838,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -11750,6 +12141,10 @@
           "named": true
         },
         {
+          "type": "macro_var",
+          "named": true
+        },
+        {
           "type": "macro_verbatim",
           "named": true
         },
@@ -12038,6 +12433,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -12336,6 +12735,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -12683,6 +13086,10 @@
         },
         {
           "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
           "named": true
         },
         {
@@ -13136,6 +13543,10 @@
           "named": true
         },
         {
+          "type": "macro_var",
+          "named": true
+        },
+        {
           "type": "macro_verbatim",
           "named": true
         },
@@ -13348,6 +13759,10 @@
           {
             "type": "instance_var",
             "named": true
+          },
+          {
+            "type": "macro_var",
+            "named": true
           }
         ]
       },
@@ -13489,6 +13904,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -13749,6 +14168,10 @@
           "named": true
         },
         {
+          "type": "macro_var",
+          "named": true
+        },
+        {
           "type": "macro_verbatim",
           "named": true
         },
@@ -14005,6 +14428,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -14769,6 +15196,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -15012,6 +15443,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {
@@ -15525,6 +15960,10 @@
         },
         {
           "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
           "named": true
         },
         {
@@ -16185,6 +16624,10 @@
           "named": true
         },
         {
+          "type": "macro_var",
+          "named": true
+        },
+        {
           "type": "macro_verbatim",
           "named": true
         },
@@ -16477,6 +16920,10 @@
         },
         {
           "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
           "named": true
         },
         {
@@ -16872,6 +17319,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -16991,6 +17442,10 @@
           },
           {
             "type": "instance_var",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           }
         ]
@@ -17206,6 +17661,10 @@
         },
         {
           "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
           "named": true
         },
         {
@@ -17643,6 +18102,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -17925,6 +18388,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -18191,6 +18658,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -18453,6 +18924,10 @@
             "named": true
           },
           {
+            "type": "macro_var",
+            "named": true
+          },
+          {
             "type": "macro_verbatim",
             "named": true
           },
@@ -18702,6 +19177,10 @@
           },
           {
             "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
             "named": true
           },
           {

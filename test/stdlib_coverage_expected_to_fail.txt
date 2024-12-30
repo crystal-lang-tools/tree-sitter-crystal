@@ -25,7 +25,6 @@ compiler/crystal/macros.cr
 compiler/crystal/macros/macros.cr
 compiler/crystal/macros/methods.cr
 compiler/crystal/program.cr
-compiler/crystal/semantic/ast.cr
 compiler/crystal/semantic/exception.cr
 compiler/crystal/semantic/filters.cr
 compiler/crystal/semantic/lib.cr
