@@ -1230,6 +1230,83 @@ end
         arguments: (argument_list
           (string))))))
 
+================================================================================
+top level fun def with special characters
+================================================================================
+fun main!(args : Array(String))
+end
+
+fun main?(args : Array(String))
+end
+
+fun fake_main! = NOT_MAIN()
+end
+
+# `fun main=` doesn't work
+--------------------------------------------------------------------------------
+
+(expressions
+  (fun_def
+    name: (identifier)
+    params: (param_list
+      (fun_param
+        (identifier)
+        type: (generic_instance_type
+          (constant)
+          params: (param_list
+            (constant))))))
+  (fun_def
+    name: (identifier)
+    params: (param_list
+      (fun_param
+        (identifier)
+        type: (generic_instance_type
+          (constant)
+          params: (param_list
+            (constant))))))
+  (fun_def
+    name: (identifier)
+    real_name: (constant)
+    body: (expressions
+      (nil)))
+  (comment))
+
+================================================================================
+lib fun def with special characters
+================================================================================
+lib C
+  fun main!(args : Int32*)
+
+  fun main?(args : Int32)
+
+  fun main2! = NOT_MAIN()
+
+  # `fun main=` doesn't work
+end
+--------------------------------------------------------------------------------
+
+(expressions
+  (lib_def
+    name: (constant)
+    body: (expressions
+      (fun_def
+        name: (identifier)
+        params: (param_list
+          (fun_param
+            (identifier)
+            type: (pointer_type
+              (constant)))))
+      (fun_def
+        name: (identifier)
+        params: (param_list
+          (fun_param
+            (identifier)
+            type: (constant))))
+      (fun_def
+        name: (identifier)
+        real_name: (constant))
+      (comment))))
+
 =================
 lib def + objects
 =================

@@ -1110,18 +1110,22 @@ module.exports = grammar({
     ),
 
     top_level_fun_def: $ => {
-      const params = seq(
-        '(', optional(field('params', alias($.fun_param_list, $.param_list))), ')',
-      )
+      const name = field('name', choice(
+        $.identifier,
+        alias($.identifier_method_call, $.identifier),
+      ))
       const real_name = seq('=',
         field('real_name', choice($.identifier, $.constant, $.string)),
+      )
+      const params = seq(
+        '(', optional(field('params', alias($.fun_param_list, $.param_list))), ')',
       )
       const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
 
       return seq(
         prec.right(seq(
           'fun',
-          field('name', $.identifier),
+          name,
           optional(real_name),
           optional(params),
           optional(return_type),
@@ -1132,6 +1136,14 @@ module.exports = grammar({
     },
 
     fun_def: $ => {
+      const name = field('name', choice(
+        $.identifier,
+        alias($.identifier_method_call, $.identifier),
+        $.constant,
+      ))
+      const real_name = seq('=',
+        field('real_name', choice($.identifier, $.constant, $.string)),
+      )
       const params = seq(
         '(',
         optional(field('params',
@@ -1139,15 +1151,11 @@ module.exports = grammar({
         )),
         ')',
       )
-
-      const real_name = seq('=',
-        field('real_name', choice($.identifier, $.constant, $.string)),
-      )
       const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
 
       return seq(
         'fun',
-        field('name', choice($.identifier, $.constant)),
+        name,
         optional(real_name),
         optional(params),
         optional(return_type),
