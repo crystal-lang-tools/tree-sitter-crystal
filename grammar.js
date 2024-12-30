@@ -1290,6 +1290,7 @@ module.exports = grammar({
       const name = field('name', choice(
         $.identifier,
         alias($.identifier_method_call, $.identifier),
+        alias($.identifier_assign, $.identifier),
         alias($._operator_token, $.operator),
       ))
       const params = seq('(', field('params', optional($.param_list)), ')')

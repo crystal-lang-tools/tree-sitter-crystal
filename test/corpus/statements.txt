@@ -456,6 +456,76 @@ end
         (identifier)))))
 
 ================================================================================
+method definitions with special characters
+================================================================================
+def foo! ; end
+
+def foo2!(*args : _)
+end
+
+def bar? ; end
+
+def bar2? (foo)
+  foo
+end
+
+abstract def fizz_buzz?(n) : Array(String)
+
+def baz= ; end
+
+def _baz2=(more_baz : Baz) ; end
+
+def global_assign=(s)
+end
+::global_assign=("a")
+--------------------------------------------------------------------------------
+
+(expressions
+  (method_def
+    name: (identifier))
+  (method_def
+    name: (identifier)
+    params: (param_list
+      (splat_param
+        name: (identifier)
+        type: (underscore))))
+  (method_def
+    name: (identifier))
+  (method_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier)))
+    body: (expressions
+      (identifier)))
+  (abstract_method_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier)))
+    type: (generic_instance_type
+      (constant)
+      params: (param_list
+        (constant))))
+  (method_def
+    name: (identifier))
+  (method_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier)
+        type: (constant))))
+  (method_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (string))))
+
+================================================================================
 method definitions with block parameters
 ================================================================================
 def foo(&);end
