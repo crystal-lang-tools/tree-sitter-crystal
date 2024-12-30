@@ -1361,7 +1361,7 @@ module.exports = grammar({
       ))
       const params = seq(
         '(',
-        field('params', optional(alias($.typeless_param_list, $.param_list))),
+        field('params', optional($.param_list)),
         ')',
       )
 
@@ -1475,70 +1475,6 @@ module.exports = grammar({
         '&',
         optional(name),
         optional(type),
-      )
-    },
-
-    typeless_param_list: $ => {
-      // Splat and double splat params have restrictions on where they can appear in the parameter
-      // list: https://crystal-lang.org/reference/1.4/syntax_and_semantics/default_values_named_arguments_splats_tuples_and_overloading.html
-      // However, it's much simpler for the grammar to treat them interchangably. (Otherwise the
-      // repeats and comma placement would be ugly.) We'll leave the rest up to the compiler.
-      const param = choice(
-        alias($.typeless_param, $.param),
-        alias($.typeless_splat_param, $.splat_param),
-        alias($.typeless_double_splat_param, $.double_splat_param),
-      )
-
-      return choice(
-        seq(
-          param,
-          repeat(seq(',', param)),
-          optional(seq(',', optional($.block_param))),
-        ),
-        $.block_param,
-      )
-    },
-
-    typeless_param: $ => {
-      const extern_name = field('extern_name', $.identifier)
-      const name = field('name', choice($.identifier, $.instance_var, $.class_var))
-      const default_value = field('default', seq('=', $._expression))
-
-      return seq(
-        repeat($.annotation),
-        optional(extern_name),
-        name,
-        optional(default_value),
-      )
-    },
-
-    typeless_splat_param: $ => {
-      const name = field('name', choice($.identifier, $.instance_var, $.class_var))
-
-      return seq(
-        repeat($.annotation),
-        '*',
-        optional(name),
-      )
-    },
-
-    typeless_double_splat_param: $ => {
-      const name = field('name', choice($.identifier, $.instance_var, $.class_var))
-
-      return seq(
-        repeat($.annotation),
-        '**',
-        name,
-      )
-    },
-
-    typeless_block_param: $ => {
-      const name = field('name', choice($.identifier, $.instance_var, $.class_var))
-
-      return seq(
-        repeat($.annotation),
-        '&',
-        optional(name),
       )
     },
 

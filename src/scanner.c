@@ -1111,6 +1111,12 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
 
     switch (lexer->lookahead) {
         case '{':
+            lex_advance(lexer);
+
+            // Start of a macro expression
+            if (lexer->lookahead == '{') {
+                return false;
+            }
 
             // We expect these symbols to always be valid or not valid together
             assert(valid_symbols[START_OF_HASH_OR_TUPLE] == valid_symbols[START_OF_NAMED_TUPLE]);
@@ -1145,7 +1151,6 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                     // could be valid, it must be the start of a block.
 
                     if (valid_symbols[START_OF_PARENLESS_ARGS]) {
-                        lex_advance(lexer);
                         lexer->result_symbol = START_OF_BRACE_BLOCK;
                         return true;
                     }
@@ -1177,8 +1182,6 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                     return false;
 
                 } else if (BRACE_BLOCK && BRACE_TYPE) {
-
-                    lex_advance(lexer);
                     // We don't want to consume while looking ahead
                     lexer->mark_end(lexer);
 
@@ -1209,14 +1212,6 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                     }
 
                 } else if (BRACE_EXPR && BRACE_TYPE) {
-
-                    lex_advance(lexer);
-
-                    // Start of a macro expression
-                    if (lexer->lookahead == '{') {
-                        return false;
-                    }
-
                     // We don't want to consume while looking ahead
                     lexer->mark_end(lexer);
 
@@ -1247,13 +1242,6 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                     }
 
                 } else if (BRACE_EXPR) {
-                    lex_advance(lexer);
-
-                    // Start of a macro expression
-                    if (lexer->lookahead == '{') {
-                        return false;
-                    }
-
                     // We don't want to consume while looking ahead
                     lexer->mark_end(lexer);
                     skip_space_and_newline(state, lexer);
@@ -1271,7 +1259,6 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                     }
 
                 } else if (BRACE_TYPE) {
-                    lex_advance(lexer);
                     // We don't want to consume while looking ahead
                     lexer->mark_end(lexer);
                     skip_space_and_newline(state, lexer);
@@ -1289,7 +1276,6 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                     }
 
                 } else if (BRACE_BLOCK) {
-                    lex_advance(lexer);
                     lexer->result_symbol = START_OF_BRACE_BLOCK;
                     return true;
                 } else {
