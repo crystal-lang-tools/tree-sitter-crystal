@@ -1218,10 +1218,10 @@ end
     name: (identifier)
     params: (param_list
       (fun_param
-        (identifier)
+        name: (identifier)
         type: (constant))
       (fun_param
-        (identifier)
+        name: (identifier)
         type: (constant)))
     type: (constant)
     body: (expressions
@@ -1250,7 +1250,7 @@ end
     name: (identifier)
     params: (param_list
       (fun_param
-        (identifier)
+        name: (identifier)
         type: (generic_instance_type
           (constant)
           params: (param_list
@@ -1259,7 +1259,7 @@ end
     name: (identifier)
     params: (param_list
       (fun_param
-        (identifier)
+        name: (identifier)
         type: (generic_instance_type
           (constant)
           params: (param_list
@@ -1293,14 +1293,14 @@ end
         name: (identifier)
         params: (param_list
           (fun_param
-            (identifier)
+            name: (identifier)
             type: (pointer_type
               (constant)))))
       (fun_def
         name: (identifier)
         params: (param_list
           (fun_param
-            (identifier)
+            name: (identifier)
             type: (constant))))
       (fun_def
         name: (identifier)
@@ -1350,7 +1350,7 @@ end
         name: (identifier)
         params: (param_list
           (fun_param
-            (identifier)
+            name: (identifier)
             type: (constant)))
         type: (constant))
       (union_def
@@ -1400,21 +1400,21 @@ end
         name: (identifier)
         params: (param_list
           (fun_param
-            (identifier)
+            name: (identifier)
             type: (constant))
           (fun_param
-            (identifier)
+            name: (identifier)
             type: (constant)))
         type: (constant))
       (fun_def
         name: (identifier)
         params: (param_list
           (fun_param
-            (identifier)
+            name: (identifier)
             type: (pointer_type
               (constant)))
           (fun_param
-            (identifier)
+            name: (identifier)
             type: (constant)))
         type: (constant)))))
 
@@ -1471,7 +1471,7 @@ end
     name: (identifier)
     params: (param_list
       (fun_param
-        (identifier)
+        name: (identifier)
         type: (constant)))))
 
 ===============================
