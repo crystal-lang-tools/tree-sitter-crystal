@@ -620,7 +620,7 @@ end
         name: (operator)
         type: (self))
       (method_def
-        class: (self)
+        receiver: (self)
         name: (operator)
         params: (param_list
           (param
@@ -660,12 +660,12 @@ end
     name: (constant)
     body: (expressions
       (method_def
-        class: (self)
+        receiver: (self)
         name: (identifier)
         body: (expressions
           (string)))
       (method_def
-        class: (constant)
+        receiver: (constant)
         name: (identifier)
         params: (param_list
           (param

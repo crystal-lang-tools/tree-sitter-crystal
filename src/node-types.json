@@ -3,24 +3,6 @@
     "type": "abstract_method_def",
     "named": true,
     "fields": {
-      "class": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": ".",
-            "named": false
-          },
-          {
-            "type": "constant",
-            "named": true
-          },
-          {
-            "type": "self",
-            "named": true
-          }
-        ]
-      },
       "forall": {
         "multiple": false,
         "required": false,
@@ -51,6 +33,24 @@
         "types": [
           {
             "type": "param_list",
+            "named": true
+          }
+        ]
+      },
+      "receiver": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "self",
             "named": true
           }
         ]
@@ -7641,24 +7641,6 @@
           }
         ]
       },
-      "class": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": ".",
-            "named": false
-          },
-          {
-            "type": "constant",
-            "named": true
-          },
-          {
-            "type": "self",
-            "named": true
-          }
-        ]
-      },
       "else": {
         "multiple": false,
         "required": false,
@@ -7709,6 +7691,24 @@
         "types": [
           {
             "type": "param_list",
+            "named": true
+          }
+        ]
+      },
+      "receiver": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "self",
             "named": true
           }
         ]

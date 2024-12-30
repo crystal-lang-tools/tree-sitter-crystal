@@ -33,6 +33,9 @@ jobs:
       - name: Run compiler verification tests
         run: crystal run test/crystal_parse_corpus.cr
 
+      - name: Run compiler verification tests against stdlib
+        run: crystal run test/crystal_parse_stdlib.cr
+
   generate:
     runs-on: ubuntu-latest
     steps:

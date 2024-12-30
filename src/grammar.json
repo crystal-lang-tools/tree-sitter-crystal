@@ -5571,7 +5571,7 @@
             "members": [
               {
                 "type": "FIELD",
-                "name": "class",
+                "name": "receiver",
                 "content": {
                   "type": "SEQ",
                   "members": [

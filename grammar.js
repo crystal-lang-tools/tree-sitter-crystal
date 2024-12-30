@@ -1290,7 +1290,7 @@ module.exports = grammar({
     _operator_token: $ => choice(...operator_tokens),
 
     _base_method_def: $ => {
-      const klass = field('class', seq(
+      const klass = field('receiver', seq(
         choice($.constant, $.self),
         '.',
       ))
