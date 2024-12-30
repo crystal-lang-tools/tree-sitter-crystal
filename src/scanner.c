@@ -156,15 +156,15 @@ struct State {
     bool has_leading_whitespace;
     bool previous_line_continued;
 
+    bool inside_macro_expression;
+    bool inside_macro_control;
+
     // It's possible to have nested delimited literals, like
     //   %(#{%(foo)})
     // We can handle up to MAX_LITERAL_COUNT levels of nesting.
     Array(PercentLiteral) literals;
 
     Array(Heredoc) heredocs;
-
-    bool inside_macro_expression;
-    bool inside_macro_control;
 };
 typedef struct State State;
 
@@ -2208,6 +2208,8 @@ unsigned tree_sitter_crystal_external_scanner_serialize(void *payload, char *buf
 
     buffer[offset++] = (char)state->has_leading_whitespace;
     buffer[offset++] = (char)state->previous_line_continued;
+    buffer[offset++] = (char)state->inside_macro_expression;
+    buffer[offset++] = (char)state->inside_macro_control;
 
     // It's safe to cast the literal count into a char since it will always be
     // less than MAX_LITERAL_COUNT.
@@ -2271,12 +2273,16 @@ void tree_sitter_crystal_external_scanner_deserialize(void *payload, const char 
         // case we just finish resetting the state.
         state->has_leading_whitespace = false;
         state->previous_line_continued = false;
+        state->inside_macro_expression = false;
+        state->inside_macro_control = false;
         return;
     }
 
     size_t offset = 0;
     state->has_leading_whitespace = (bool)buffer[offset++];
     state->previous_line_continued = (bool)buffer[offset++];
+    state->inside_macro_expression = (bool)buffer[offset++];
+    state->inside_macro_control = (bool)buffer[offset++];
 
     // The literals array can be deserialized in one chunk.
     uint8_t literals_size = (uint8_t)buffer[offset++];
