@@ -111,7 +111,7 @@ typedef enum Token Token;
 
 // NOTE(margret): This is temporarily disabled as calling lexer->log
 // causes a seg fault with WASM builds. Enable locally when needed.
-#define DEBUG(...) lexer->log(lexer, "[LOG] " __VA_ARGS__);
+#define DEBUG(...) // lexer->log(lexer, "[LOG] " __VA_ARGS__);
 
 /*
  * State types
