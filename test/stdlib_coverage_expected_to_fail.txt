@@ -2,11 +2,7 @@ big/big_int.cr
 char.cr
 colorize.cr
 compiler/crystal/codegen/crystal_llvm_builder.cr
-compiler/crystal/interpreter/compiler.cr
-compiler/crystal/interpreter/disassembler.cr
-compiler/crystal/interpreter/instructions.cr
 compiler/crystal/interpreter/interpreter.cr
-compiler/crystal/interpreter/op_code.cr
 compiler/crystal/interpreter/pry_reader.cr
 compiler/crystal/interpreter/repl_reader.cr
 compiler/crystal/macros/methods.cr
@@ -38,7 +34,6 @@ int.cr
 io/memory.cr
 json/from_json.cr
 json/serialization.cr
-llvm/builder.cr
 llvm/lib_llvm.cr
 macros.cr
 named_tuple.cr
@@ -48,8 +43,6 @@ primitives.cr
 proc.cr
 random.cr
 range.cr
-range/bsearch.cr
-reference.cr
 slice.cr
 spec/helpers/iterate.cr
 struct.cr

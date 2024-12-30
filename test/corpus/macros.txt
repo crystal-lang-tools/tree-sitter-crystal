@@ -9,31 +9,31 @@ puts "hello"
 ---
 
 (expressions
-  (macro_begin)
-  (call
-    method: (identifier)
-    arguments: (argument_list
-      (string)))
-  (macro_end))
+  (macro_begin
+    (macro_literal_content)
+    (macro_literal_content)))
 
 ==============
 macro verbatim
 ==============
 
 {% verbatim do %}
+  {% begin %} {{ foo }} {% end %}
 {% end %}
 
 ---
 
 (expressions
-  (macro_verbatim)
-  (macro_end))
+  (macro_verbatim
+    (macro_begin
+      (macro_expression
+        (identifier)))))
 
 ========
 macro if
 ========
 
-{% if true %}
+{% if flag?(:unix) %}
   require "lib_c"
 {% end %}
 
@@ -41,10 +41,12 @@ macro if
 
 (expressions
   (macro_if
-    cond: (true))
-  (require
-    (string))
-  (macro_end))
+    cond: (call
+      method: (identifier)
+      arguments: (argument_list
+        (symbol)))
+    (macro_literal_content)
+    (macro_literal_content)))
 
 =========
 macro for
@@ -60,15 +62,10 @@ macro for
   (macro_for
     var: (identifier)
     var: (identifier)
-    cond: (identifier))
-  (call
-    method: (identifier)
-    arguments: (argument_list
-      (string
-        (interpolation
-          (macro_expression
-            (identifier))))))
-  (macro_end))
+    cond: (identifier)
+    (macro_literal_content)
+    (macro_literal_content)
+    (comment)))
 
 ================
 macro expression
@@ -109,14 +106,15 @@ macro expressions
 ---
 
 (expressions
-  (macro_expressions
-    (if
-      cond: (true)
-      then: (then
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (string)))))))
+  (macro_statement
+    (expressions
+      (if
+        cond: (true)
+        then: (then
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (string))))))))
 
 =========
 macro def
@@ -163,32 +161,24 @@ nested macros and macro vars
 
 (expressions
   (macro_if
-    cond: (true))
-  (macro_for
-    var: (identifier)
-    cond: (array
-      (integer)
-      (integer)
-      (integer)))
-  (assign
-    lhs: (macro_var
-      name: (identifier))
-    rhs: (call
-      receiver: (integer)
-      method: (operator)
-      arguments: (argument_list
-        (macro_expression
-          (identifier)))))
-  (assign
-    lhs: (identifier)
-    rhs: (call
-      receiver: (macro_var
-        name: (identifier))
-      method: (operator)
-      arguments: (argument_list
-        (integer))))
-  (macro_end)
-  (macro_end))
+    cond: (true)
+    (macro_for
+      var: (identifier)
+      cond: (array
+        (integer)
+        (integer)
+        (integer))
+      (macro_literal_content)
+      (macro_literal_content)
+      (macro_literal_content)
+      (macro_literal_content)
+      (macro_expression
+        (identifier))
+      (macro_literal_content)
+      (macro_literal_content)
+      (macro_literal_content)
+      (macro_literal_content)
+      (macro_literal_content))))
 
 ===============
 macro vars cont
@@ -262,6 +252,121 @@ macro var expressions
       (string))
     rhs: (string)))
 
+=============================
+macro def with nesting syntax
+=============================
+macro nested
+  module A
+    class B
+      abstract	class C
+        struct D
+          abstract   struct E
+            annotation F
+            end
+
+            macro G
+              begin
+                case H
+                when I
+                  foo J do |_|
+                    if K
+                      select
+                      when L
+                      when M
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+
+          def N
+            unless O
+              while P
+              end
+            end
+
+            until Q
+            end
+          end
+
+          abstract	 def R
+
+          fun S
+          end
+        end
+      end
+
+      lib T
+        union U
+        end
+
+        enum V
+          {{ foo }}
+        end
+      end
+    end
+  end
+end
+
+--------
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_def_literal_content
+        (macro_def_literal_content)
+        (macro_def_literal_content
+          (macro_def_literal_content)
+          (macro_def_literal_content
+            (macro_def_literal_content)
+            (macro_def_literal_content
+              (macro_def_literal_content)
+              (macro_def_literal_content
+                (macro_def_literal_content)
+                (macro_def_literal_content
+                  (macro_def_literal_content))
+                (macro_def_literal_content
+                  (macro_def_literal_content)
+                  (macro_def_literal_content
+                    (macro_def_literal_content
+                      (macro_def_literal_content)
+                      (macro_def_literal_content)
+                      (macro_def_literal_content)
+                      (macro_def_literal_content)
+                      (macro_def_literal_content)
+                      (macro_def_literal_content
+                        (macro_def_literal_content)
+                        (macro_def_literal_content
+                          (macro_def_literal_content)
+                          (macro_def_literal_content
+                            (macro_def_literal_content)
+                            (macro_def_literal_content)
+                            (macro_def_literal_content)
+                            (macro_def_literal_content))))))))
+              (macro_def_literal_content
+                (macro_def_literal_content)
+                (macro_def_literal_content
+                  (macro_def_literal_content)
+                  (macro_def_literal_content
+                    (macro_def_literal_content)))
+                (macro_def_literal_content
+                  (macro_def_literal_content)))
+              (macro_def_literal_content)
+              (macro_def_literal_content)
+              (macro_def_literal_content
+                (macro_def_literal_content))))
+          (macro_def_literal_content
+            (macro_def_literal_content)
+            (macro_def_literal_content
+              (macro_def_literal_content))
+            (macro_def_literal_content
+              (macro_def_literal_content)
+              (macro_expression
+                (identifier)))))))))
+
 ===============
 inline macro if
 ===============
@@ -276,11 +381,8 @@ GC.init
     cond: (call
       method: (identifier)
       arguments: (argument_list
-        (symbol))))
-  (call
-    receiver: (constant)
-    method: (identifier))
-  (macro_end)
+        (symbol)))
+    (macro_literal_content))
   (call
     receiver: (constant)
     method: (identifier)))

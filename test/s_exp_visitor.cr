@@ -490,6 +490,8 @@ class SExpVisitor < Crystal::Visitor
         end
       end
 
+      # here
+
       field "params" do
         if node.args.size > 0 || node.double_splat
           in_node("param_list") do
@@ -1591,7 +1593,6 @@ class SExpVisitor < Crystal::Visitor
   visit_basic(Extend)
   visit_basic(Yield)
   visit_basic(Out)
-  visit_basic(MacroExpression)
 
   def visit(node : Not)
     in_node("call") do
@@ -1759,6 +1760,76 @@ class SExpVisitor < Crystal::Visitor
 
     false
   end
+
+  ########
+  # Macros
+  ########
+
+  def visit(node : Macro)
+    in_node("macro_def") do
+      field "visibility" do
+        case node.visibility
+        in .public?
+        in .protected? then print_node("protected")
+        in .private?   then print_node("private")
+        end
+      end
+
+      field "name" do
+        if operator? node.name
+          print_node("operator")
+        else
+          print_node("identifier")
+        end
+      end
+
+      field "params" do
+        if node.args.size > 0
+          in_node("param_list") do
+            splat_index = node.splat_index || -1
+            # TODO double splat
+            # TODO block arg
+
+            node.args.each_with_index do |arg, i|
+              if i == splat_index
+                alias_next_node!("splat_param")
+              end
+              arg.accept self
+            end
+          end
+        end
+      end
+
+      body_field(node.body)
+    end
+
+    false
+  end
+
+  visit_basic(MacroLiteral)
+
+  # def visit(node : MacroLiteral)
+  # end
+
+  def visit(node : MacroExpression)
+    macro_type = if node.output?
+                   "macro_expression"
+                 else
+                   "macro_control"
+                 end
+
+    in_node(macro_type) do
+      node.exp.accept self
+    end
+    false
+  end
+
+  visit_basic(MacroIf)
+
+  # def visit(node : MacroIf)
+  # in_node("macro_if") do
+  # end
+  # end
 
   ##########
   # Fallback

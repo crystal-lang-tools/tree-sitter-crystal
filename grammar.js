@@ -121,10 +121,8 @@ module.exports = grammar({
 
     $.regex_modifier,
 
-    $._macro_control_start,
-    $._macro_control_end,
-    $._macro_expression_start,
-    $._macro_expression_end,
+    $.macro_content,
+    $.macro_content_nesting,
 
     // These symbols are never actually returned. They signal the current scope
     // to the scanner.
@@ -141,7 +139,7 @@ module.exports = grammar({
     $._line_continuation,
     $.comment,
     $.heredoc_body,
-    $._macro_statements,
+    // $._macro_node,
   ],
 
   word: $ => $.identifier,
@@ -344,6 +342,54 @@ module.exports = grammar({
       optional($._statements),
     ),
 
+    macro_def_literal_content: $ => {
+      const nesting_constructs = [
+        /abstract\s+class/,
+        /abstract\s+struct/,
+        'annotation',
+        'begin',
+        'case',
+        'class',
+        'def',
+        'do',
+        'enum',
+        'fun',
+        'if',
+        'lib',
+        'macro',
+        'module',
+        'select',
+        'struct',
+        'union',
+        'unless',
+        'until',
+        'while',
+      ]
+
+      // if/unless/while/until only match at "beginning_of_line"
+      // "beginning_of_line" = true after `= ` sequence
+      // "beginning_of_line" isn't affected by characters in ';', '(', '[', '{'
+
+      // const abstract_def = 'abstract def'
+
+      const text = /[^\s]+/
+
+      return choice(
+        $.string,
+        seq(choice(...nesting_constructs), repeat($._macro_def_content), 'end'),
+        // abstract_def,
+        $.macro_content_nesting,
+        // alias($._macro_content_nesting, $.macro_content),
+        // text,
+      )
+    },
+
+    // macro_literal_content: $ => {
+    //   const text = /[^\s]+/
+    //   return text
+
+    // },
+
     _terminator: $ => choice($._line_break, ';'),
 
     _statements: $ => choice(
@@ -415,7 +461,7 @@ module.exports = grammar({
     ),
 
     _lib_statement: $ => choice(
-      $.macro_expression,
+      $._macro_node,
       $.alias,
       $.fun_def,
       $.type_def,
@@ -428,7 +474,7 @@ module.exports = grammar({
     ),
 
     _enum_statement: $ => choice(
-      $.macro_expression,
+      $._macro_node,
       $.constant,
       $.const_assign,
       $.method_def,
@@ -444,7 +490,9 @@ module.exports = grammar({
     ),
 
     _expression: $ => choice(
+      // $._macro_node,
       $.macro_expression,
+      $.macro_statement,
 
       // Literals
       $.nil,
@@ -1223,7 +1271,7 @@ module.exports = grammar({
     ),
 
     _c_struct_expression: $ => choice(
-      $.macro_expression,
+      $._macro_node,
       $.include,
       $.c_struct_fields,
     ),
@@ -1376,7 +1424,10 @@ module.exports = grammar({
       return seq(
         $._macro_signature,
         $._terminator,
-        field('body', optional(alias($._statements, $.expressions))),
+        field('body', optional(alias(
+          repeat($._macro_def_content),
+          $.expressions,
+        ))),
         'end',
       )
     },
@@ -1909,82 +1960,163 @@ module.exports = grammar({
       )
     },
 
-    private: $ => 'private',
-    protected: $ => 'protected',
-
-    macro_expression: $ => seq(
-      alias($._macro_expression_start, '{{'),
-      choice($.splat, $.double_splat, $._expression),
-      alias($._macro_expression_end, '}}'),
-    ),
-
-    _macro_statements: $ => seq(
-      alias($._macro_control_start, '{%'),
-      choice(
-        $._macro_statement,
-        alias($._statements, $.macro_expressions),
-      ),
-      alias($._macro_control_end, '%}'),
-    ),
-
-    _macro_statement: $ => seq(choice(
-      $.macro_for,
+    _macro_node: $ => choice(
+      $.macro_expression,
+      $.macro_statement,
+      $.macro_begin,
       $.macro_if,
       $.macro_unless,
-      $.macro_begin,
+      $.macro_for,
       $.macro_verbatim,
-      $.macro_elsif,
-      $.macro_else,
-      $.macro_end,
-    )),
+    ),
 
-    macro_for: $ => {
+    macro_expression: $ => seq(
+      '{{',
+      choice($.splat, $.double_splat, $._expression),
+      '}}',
+    ),
+
+    macro_statement: $ => seq(
+      '{%',
+      alias($._statements, $.expressions),
+      '%}',
+    ),
+
+    _macro_begin_keyword: $ => seq(
+      '{%',
+      'begin',
+      '%}',
+    ),
+
+    _macro_end_keyword: $ => seq(
+
+      /\{%\s*end\s*%}/,
+      // token(prec(10, '{%')),
+      // '{%',
+      // 'end',
+      // '%}',
+    ),
+
+    _macro_else_keyword: $ => seq(
+      /\{%\s*else\s*%}/,
+    ),
+
+    _macro_verbatim_keyword: $ => seq(
+      '{%',
+      'verbatim',
+      'do',
+      '%}',
+    ),
+
+    _macro_if_cond: $ => {
+      const cond = field('cond', $._expression)
+
+      return seq(
+        '{%',
+        alias($._regular_if_keyword, 'if'),
+        cond,
+        '%}',
+      )
+    },
+
+    _macro_elsif_cond: $ => {
+      const cond = field('cond', $._expression)
+
+      return seq(
+        /\{%\s*elsif/,
+        // '{%',
+        // 'elsif',
+        cond,
+        '%}',
+      )
+    },
+
+    _macro_unless_cond: $ => {
+      const cond = field('cond', $._expression)
+
+      return seq(
+        '{%',
+        alias($._regular_unless_keyword, 'unless'),
+        cond,
+        '%}',
+      )
+    },
+
+    _macro_for_expr: $ => {
       const var_name = field('var', choice($.underscore, $.identifier))
 
       return seq(
+        '{%',
         'for',
         var_name,
         repeat(seq(',', var_name)),
         'in',
         field('cond', choice($._expression, $.splat, $.double_splat)),
+        '%}',
       )
     },
 
+    // $.macro_verbatim,
 
-    macro_if: $ => {
-      const cond = field('cond', $._expression)
+    macro_begin: $ => seq(
+      $._macro_begin_keyword,
+      field('body', alias(repeat($._macro_content), $.expressions)),
+      $._macro_end_keyword,
+    ),
 
-      return seq(
-        alias($._regular_if_keyword, 'if'),
-        cond,
-      )
-    },
+    macro_if: $ => seq(
+      $._macro_if_cond,
+      repeat($._macro_content),
+      repeat($.macro_elsif),
+      optional($.macro_else),
+      $._macro_end_keyword,
+    ),
 
-    macro_unless: $ => {
-      const cond = field('cond', $._expression)
+    macro_elsif: $ => seq(
+      $._macro_elsif_cond,
+      repeat($._macro_content),
+      // optional(choice($.macro_elsif, $.macro_else)),
+    ),
 
-      return seq(
-        alias($._regular_unless_keyword, 'unless'),
-        cond,
-      )
-    },
+    macro_else: $ => seq(
+      $._macro_else_keyword,
+      repeat($._macro_content),
+    ),
 
-    macro_elsif: $ => {
-      const cond = field('cond', $._expression)
+    macro_unless: $ => seq(
+      $._macro_unless_cond,
+      repeat($._macro_content),
+      optional($.macro_else),
+      $._macro_end_keyword,
+    ),
 
-      return seq(
-        'elsif',
-        cond,
-      )
-    },
+    macro_for: $ => seq(
+      $._macro_for_expr,
+      repeat($._macro_content),
+      $._macro_end_keyword,
+    ),
 
-    macro_else: $ => 'else',
+    macro_verbatim: $ => seq(
+      $._macro_verbatim_keyword,
+      repeat($._macro_content),
+      $._macro_end_keyword,
+    ),
 
-    macro_end: $ => 'end',
+    _macro_def_content: $ => choice(
+      $._macro_node,
+      $.macro_def_literal_content,
+      $._terminator,
+    ),
 
-    macro_begin: $ => 'begin',
+    _macro_content: $ => choice(
+      $._macro_node,
+      $.macro_content,
+      $._terminator,
+    ),
 
-    macro_verbatim: $ => seq('verbatim', 'do'),
+
+    private: $ => 'private',
+    protected: $ => 'protected',
 
     array_like: $ => seq(
       field('name', choice($.constant, $.generic_instance_type)),

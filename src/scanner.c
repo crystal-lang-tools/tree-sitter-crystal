@@ -92,10 +92,8 @@ enum Token {
 
     REGEX_MODIFIER,
 
-    MACRO_CONTROL_START,
-    MACRO_CONTROL_END,
-    MACRO_EXPRESSION_START,
-    MACRO_EXPRESSION_END,
+    MACRO_CONTENT,
+    MACRO_CONTENT_NESTING,
 
     // Never returned
     START_OF_PARENLESS_ARGS,
@@ -148,6 +146,18 @@ struct Heredoc {
 };
 typedef struct Heredoc Heredoc;
 
+struct MacroState {
+    uint8_t macro_level;
+    uint8_t nest;
+
+    // todo: comment
+    // todo: heredocs
+    // todo: delimiter_state
+    // todo: delimiter state stack
+    // todo: macro curly count
+};
+typedef struct MacroState MacroState;
+
 #define MAX_LITERAL_COUNT 16
 #define MAX_HEREDOC_COUNT 16
 // The maximum number of bytes that can be stored in the state, across all heredocs
@@ -159,8 +169,7 @@ struct State {
     bool has_leading_whitespace;
     bool previous_line_continued;
 
-    bool inside_macro_expression;
-    bool inside_macro_control;
+    MacroState macro_state;
 
     // It's possible to have nested delimited literals, like
     //   %(#{%(foo)})
@@ -286,6 +295,16 @@ static bool next_char_is_identifier(TSLexer *lexer) {
         || lookahead == '?'
         || lookahead == '!'
         || lookahead >= 0xa0;
+}
+
+static bool is_ident_part(int32_t codepoint) {
+    // identifier token characters are in the range [0-9A-Za-z_\u{00a0}-\u{10ffff}]
+    // (except for the first and last character)
+    return ('0' <= codepoint && codepoint <= '9')
+        || ('A' <= codepoint && codepoint <= 'Z')
+        || ('a' <= codepoint && codepoint <= 'z')
+        || (codepoint == '_')
+        || (0x00a0 <= codepoint && codepoint <= 0x10ffffff);
 }
 
 // Usually scan_whitespace will handle starting heredocs, but it won't be called if a heredoc is
@@ -652,6 +671,326 @@ static bool scan_heredoc_contents(State *state, TSLexer *lexer, const bool *vali
     }
 }
 
+static bool match_macro_keyword(TSLexer *lexer, const char keyword[]) {
+    size_t keyword_size = strlen(keyword);
+
+    for (size_t i = 0; i < keyword_size; i++) {
+        if (lexer->lookahead != (int32_t)keyword[i]) {
+            return false;
+        }
+        lex_advance(lexer);
+    }
+
+    if (lexer->lookahead == ':') {
+        // tuple keyword?
+        // TODO confirm this
+        return false;
+    }
+    if (next_char_is_identifier(lexer)) {
+        // consume the rest of the identifier, so e.g. `beginbegin` doesn't get split in the middle
+        // and then match on the next loop
+        while (is_ident_part(lexer->lookahead)) {
+            lex_advance(lexer);
+        }
+        if (next_char_is_identifier(lexer)) {
+            lex_advance(lexer);
+        }
+        return false;
+    }
+
+    return true;
+}
+
+enum MacroScanResult {
+    MS_STOP,
+    MS_STOP_NO_CONTENT,
+    MS_CONTINUE,
+};
+typedef enum MacroScanResult MacroScanResult;
+
+static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const bool *valid_symbols) {
+    bool found_content = false;
+    bool nesting = false;
+    lexer->result_symbol = MACRO_CONTENT;
+
+    if (valid_symbols[MACRO_CONTENT_NESTING]) {
+        assert(!valid_symbols[MACRO_CONTENT] || valid_symbols[ERROR_RECOVERY]);
+        nesting = true;
+        lexer->result_symbol = MACRO_CONTENT_NESTING;
+    }
+
+#define RETURN_NESTING_CONTENT         \
+    if (nesting) {                     \
+        if (found_content) {           \
+            return MS_STOP;            \
+        } else {                       \
+            return MS_STOP_NO_CONTENT; \
+        }                              \
+    }
+
+#define RETURN_CONTENT             \
+    if (found_content) {           \
+        return MS_STOP;            \
+    } else {                       \
+        return MS_STOP_NO_CONTENT; \
+    }
+
+    // TODO do we need to be tracking whitespace?
+
+    for (;;) {
+        if (lexer->eof(lexer)) {
+            DEBUG("reached EOF");
+            RETURN_CONTENT;
+        }
+
+        // keywords that decrease nesting:
+        // end
+
+        // keywords that don't change nesting:
+        // abstract def
+
+        // keywords that increase nesting:
+        // abstract class
+        // abstract struct
+        // annotation
+        // begin
+        // case
+        // class
+        // do
+        // def
+        // enum
+        // fun
+        // lib
+        // macro
+        // module
+        // select
+        // struct
+        // union
+
+        // keywords that increase nesting only at the beginning of line
+        // if
+        // unless
+        // until
+        // while
+
+        switch (lexer->lookahead) {
+            case '{':
+                lexer->mark_end(lexer);
+                lex_advance(lexer);
+
+                if (lexer->lookahead == '{' || lexer->lookahead == '%') {
+                    RETURN_CONTENT;
+                }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case '}':
+                lexer->mark_end(lexer);
+                lex_advance(lexer);
+
+                if (lexer->lookahead == '}') {
+                    RETURN_CONTENT;
+                }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case '%':
+                lexer->mark_end(lexer);
+                lex_advance(lexer);
+
+                if (lexer->lookahead == '}') {
+                    RETURN_CONTENT;
+                }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case 'a':
+                lexer->mark_end(lexer);
+                lex_advance(lexer);
+
+                if (lexer->lookahead == 'b') {
+                    if (match_macro_keyword(lexer, "bstract")) {
+                        if (iswspace(lexer->lookahead)) {
+                            while (iswspace(lexer->lookahead)) {
+                                lex_advance(lexer);
+                            }
+
+                            switch (lexer->lookahead) {
+                                case 'c':
+                                    if (match_macro_keyword(lexer, "class")) { RETURN_NESTING_CONTENT; }
+                                    break;
+                                case 's':
+                                    if (match_macro_keyword(lexer, "struct")) { RETURN_NESTING_CONTENT; }
+                                    break;
+                                case 'd':
+                                    // fully consume "abstract def"
+                                    match_macro_keyword(lexer, "def");
+                            }
+                        }
+                    }
+                } else if (lexer->lookahead == 'n') {
+                    if (match_macro_keyword(lexer, "nnotation")) { RETURN_NESTING_CONTENT; }
+                }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case 'b':
+                lexer->mark_end(lexer);
+
+                if (match_macro_keyword(lexer, "begin")) { RETURN_NESTING_CONTENT; }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case 'c':
+                lexer->mark_end(lexer);
+                lex_advance(lexer);
+
+                if (lexer->lookahead == 'l') {
+                    if (match_macro_keyword(lexer, "lass")) { RETURN_NESTING_CONTENT; }
+                } else if (lexer->lookahead == 'a') {
+                    if (match_macro_keyword(lexer, "ase")) { RETURN_NESTING_CONTENT; }
+                }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case 'd':
+                lexer->mark_end(lexer);
+                lex_advance(lexer);
+
+                if (lexer->lookahead == 'e') {
+                    if (match_macro_keyword(lexer, "ef")) { RETURN_NESTING_CONTENT; }
+                } else if (lexer->lookahead == 'o') {
+                    if (match_macro_keyword(lexer, "o")) { RETURN_NESTING_CONTENT; }
+                }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case 'e':
+                lexer->mark_end(lexer);
+                lex_advance(lexer);
+
+                if (lexer->lookahead == 'n') {
+                    lex_advance(lexer);
+
+                    if (lexer->lookahead == 'd') {
+                        if (match_macro_keyword(lexer, "d")) { RETURN_NESTING_CONTENT; }
+                    } else if (lexer->lookahead == 'u') {
+                        if (match_macro_keyword(lexer, "um")) { RETURN_NESTING_CONTENT; }
+                    }
+                }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case 'f':
+                lexer->mark_end(lexer);
+
+                if (match_macro_keyword(lexer, "fun")) { RETURN_NESTING_CONTENT; }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case 'i':
+                lexer->mark_end(lexer);
+
+                // TODO check beginning_of_line
+                if (match_macro_keyword(lexer, "if")) { RETURN_NESTING_CONTENT; }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case 'l':
+                lexer->mark_end(lexer);
+
+                if (match_macro_keyword(lexer, "lib")) { RETURN_NESTING_CONTENT; }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case 'm':
+                lexer->mark_end(lexer);
+                lex_advance(lexer);
+
+                if (lexer->lookahead == 'a') {
+                    if (match_macro_keyword(lexer, "acro")) { RETURN_NESTING_CONTENT; }
+                } else if (lexer->lookahead == 'o') {
+                    if (match_macro_keyword(lexer, "odule")) { RETURN_NESTING_CONTENT; }
+                }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case 's':
+                lexer->mark_end(lexer);
+                lex_advance(lexer);
+
+                if (lexer->lookahead == 'e') {
+                    if (match_macro_keyword(lexer, "elect")) { RETURN_NESTING_CONTENT; }
+                } else if (lexer->lookahead == 't') {
+                    if (match_macro_keyword(lexer, "truct")) { RETURN_NESTING_CONTENT; }
+                }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+            case 'u':
+                lexer->mark_end(lexer);
+                lex_advance(lexer);
+
+                if (lexer->lookahead == 'n') {
+                    lex_advance(lexer);
+
+                    if (lexer->lookahead == 'i') {
+                        if (match_macro_keyword(lexer, "ion")) { RETURN_NESTING_CONTENT; }
+                    } else if (lexer->lookahead == 'l') {
+                        // TODO check beginning_of_line
+                        if (match_macro_keyword(lexer, "less")) { RETURN_NESTING_CONTENT; }
+                    } else if (lexer->lookahead == 't') {
+                        // TODO check beginning_of_line
+                        if (match_macro_keyword(lexer, "til")) { RETURN_NESTING_CONTENT; }
+                    }
+                }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case 'w':
+                lexer->mark_end(lexer);
+
+                // TODO check beginning_of_line
+                if (match_macro_keyword(lexer, "while")) { RETURN_NESTING_CONTENT; }
+
+                found_content = true;
+                lexer->mark_end(lexer);
+                continue;
+        }
+
+        lex_advance(lexer);
+        lexer->mark_end(lexer);
+        found_content = true;
+    }
+}
+
 static bool scan_regex_modifier(State *state, TSLexer *lexer) {
     if (!state->has_leading_whitespace) {
         bool found_modifier = false;
@@ -693,16 +1032,6 @@ static void advance_space_and_newline(TSLexer *lexer) {
         || lexer->lookahead == '\n') {
         lex_advance(lexer);
     }
-}
-
-static bool is_ident_part(int32_t codepoint) {
-    // identifier token characters are in the range [0-9A-Za-z_\u{00a0}-\u{10ffff}]
-    // (except for the first and last character)
-    return ('0' <= codepoint && codepoint <= '9')
-        || ('A' <= codepoint && codepoint <= 'Z')
-        || ('a' <= codepoint && codepoint <= 'z')
-        || (codepoint == '_')
-        || (0x00a0 <= codepoint && codepoint <= 0x10ffffff);
 }
 
 static void consume_const(TSLexer *lexer) {
@@ -1087,6 +1416,17 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
         return true;
     }
 
+    if ((valid_symbols[MACRO_CONTENT] || valid_symbols[MACRO_CONTENT_NESTING]) && !valid_symbols[ERROR_RECOVERY]) {
+        switch (scan_macro_contents(state, lexer, valid_symbols)) {
+            case MS_STOP:
+                return true;
+            case MS_STOP_NO_CONTENT:
+                return false;
+            case MS_CONTINUE:
+                break;
+        }
+    }
+
     lexer->result_symbol = NONE;
 
     if (!scan_whitespace(state, lexer, valid_symbols)) {
@@ -1129,16 +1469,8 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
             lex_advance(lexer);
 
             // Start of a macro expression
-            if (valid_symbols[MACRO_EXPRESSION_START] && lexer->lookahead == '{') {
-                lex_advance(lexer);
-                lexer->result_symbol = MACRO_EXPRESSION_START;
-                state->inside_macro_expression = true;
-                return true;
-            } else if (valid_symbols[MACRO_CONTROL_START] && lexer->lookahead == '%' && !(HAS_ACTIVE_LITERAL(state) || has_active_heredoc(state))) {
-                lex_advance(lexer);
-                lexer->result_symbol = MACRO_CONTROL_START;
-                state->inside_macro_control = true;
-                return true;
+            if (lexer->lookahead == '{' || lexer->lookahead == '%') {
+                return false;
             }
 
             // We expect these symbols to always be valid or not valid together
@@ -1744,12 +2076,9 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
         case '%':
             lex_advance(lexer);
 
-            // valid_symbols[MACRO_CONTROL_END] &&
-            if (lexer->lookahead == '}' && state->inside_macro_control) {
-                lex_advance(lexer);
-                lexer->result_symbol = MACRO_CONTROL_END;
-                state->inside_macro_control = false;
-                return true;
+            // End of a macro expression
+            if (lexer->lookahead == '}') {
+                return false;
             }
 
             if (valid_symbols[STRING_PERCENT_LITERAL_START]
@@ -2132,12 +2461,10 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
 
         case '}':
             lex_advance(lexer);
-            // valid_symbols[MACRO_EXPRESSION_END] &&
-            if (lexer->lookahead == '}' && state->inside_macro_expression) {
-                lex_advance(lexer);
-                lexer->result_symbol = MACRO_EXPRESSION_END;
-                state->inside_macro_expression = false;
-                return true;
+
+            // End of a macro expression
+            if (lexer->lookahead == '}') {
+                return false;
             }
             break;
     }
@@ -2216,6 +2543,8 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
     LOG_SYMBOL(HEREDOC_CONTENT);
     LOG_SYMBOL(HEREDOC_END);
     LOG_SYMBOL(REGEX_MODIFIER);
+    LOG_SYMBOL(MACRO_CONTENT);
+    LOG_SYMBOL(MACRO_CONTENT_NESTING);
     LOG_SYMBOL(START_OF_PARENLESS_ARGS);
     LOG_SYMBOL(END_OF_RANGE);
     LOG_SYMBOL(ERROR_RECOVERY);
@@ -2238,8 +2567,9 @@ void *tree_sitter_crystal_external_scanner_create(void) {
 
     state->has_leading_whitespace = false;
     state->previous_line_continued = false;
-    state->inside_macro_expression = false;
-    state->inside_macro_control = false;
+
+    state->macro_state.macro_level = 0;
+    state->macro_state.nest = 0;
 
     array_init(&state->literals);
     array_init(&state->heredocs);
@@ -2270,8 +2600,9 @@ unsigned tree_sitter_crystal_external_scanner_serialize(void *payload, char *buf
 
     buffer[offset++] = (char)state->has_leading_whitespace;
     buffer[offset++] = (char)state->previous_line_continued;
-    buffer[offset++] = (char)state->inside_macro_expression;
-    buffer[offset++] = (char)state->inside_macro_control;
+
+    buffer[offset++] = (char)state->macro_state.macro_level;
+    buffer[offset++] = (char)state->macro_state.nest;
 
     // It's safe to cast the literal count into a char since it will always be
     // less than MAX_LITERAL_COUNT.
@@ -2309,6 +2640,7 @@ unsigned tree_sitter_crystal_external_scanner_serialize(void *payload, char *buf
 #if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)
 static_assert(
     2                                                    // boolean variables
+            + sizeof(MacroState)                         // macro state
             + 1                                          // literals count
             + sizeof(PercentLiteral) * MAX_LITERAL_COUNT // each literal
             + 1                                          // heredocs count
@@ -2335,16 +2667,18 @@ void tree_sitter_crystal_external_scanner_deserialize(void *payload, const char 
         // case we just finish resetting the state.
         state->has_leading_whitespace = false;
         state->previous_line_continued = false;
-        state->inside_macro_expression = false;
-        state->inside_macro_control = false;
+
+        state->macro_state.macro_level = 0;
+        state->macro_state.nest = 0;
         return;
     }
 
     size_t offset = 0;
     state->has_leading_whitespace = (bool)buffer[offset++];
     state->previous_line_continued = (bool)buffer[offset++];
-    state->inside_macro_expression = (bool)buffer[offset++];
-    state->inside_macro_control = (bool)buffer[offset++];
+
+    state->macro_state.macro_level = (uint8_t)buffer[offset++];
+    state->macro_state.nest = (uint8_t)buffer[offset++];
 
     // The literals array can be deserialized in one chunk.
     uint8_t literals_size = (uint8_t)buffer[offset++];

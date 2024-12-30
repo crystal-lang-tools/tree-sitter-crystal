@@ -98,6 +98,57 @@ end
 
 (expressions)
 
+================================================
+macro nesting when identifiers end with keywords
+:error
+================================================
+macro asdf()
+  if a_begin
+  end
+end
+---
+(expressions)
+
+=======================================
+macro nesting with keywords in comments
+:error
+=======================================
+macro foo
+  a
+  # begin
+end
+----
+(expressions)
+
+===============================
+pseudo-methods with macro nodes
+:error
+===============================
+a.is_a?({{type}})
+---
+(expressions)
+
+==================================
+interpolation with macro variables
+:error
+==================================
+macro foo
+  "#{%full_name}"
+end
+---
+(expressions)
+
+============================================
+macro variables in escaped macro expressions
+:error
+============================================
+{% for n in [8, 16, 32, 64, 128] %}
+  \{% if Int{{n}} == LibGMP::SI %}
+  \{% end %}
+{% end %}
+---
+(expressions)
+
 ===================================
 comments inside nested named tuples
 ===================================
