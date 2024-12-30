@@ -1346,7 +1346,7 @@ module.exports = grammar({
       ))
     },
 
-    macro_def: $ => {
+    _macro_signature: $ => {
       const visibility = optional(
         field('visibility', choice($.private, $.protected)),
       )
@@ -1369,8 +1369,14 @@ module.exports = grammar({
           name,
           optional(params),
         )),
+      )
+    },
+
+    macro_def: $ => {
+      return seq(
+        $._macro_signature,
         $._terminator,
-        field('body', seq(optional(alias($._statements, $.expressions)))),
+        field('body', optional(alias($._statements, $.expressions))),
         'end',
       )
     },
