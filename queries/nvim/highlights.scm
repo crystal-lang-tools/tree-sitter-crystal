@@ -13,14 +13,14 @@
   "next"
   "select"
   "then"
-  "when"
   "verbatim"
-  "for"
+  "when"
 ] @keyword
 
 [
   "def"
   "fun"
+  "macro"
 ] @keyword.function
 
 [
@@ -48,8 +48,9 @@
 ] @keyword.conditional
 
 [
-  "while"
+  "for"
   "until"
+  "while"
 ] @keyword.repeat
 
 "rescue" @keyword.exception
@@ -67,7 +68,8 @@
 
 (symbol) @string.special.symbol
 
-(regex) @string.regexp
+(regex
+  "/" @punctuation.special) @string.regexp
 
 (heredoc_content) @string
 
@@ -89,13 +91,9 @@
 
 (nil) @constant.builtin
 
-(interpolation
-  "#{" @punctuation.special
-  "}" @punctuation.special)
-
 (comment) @comment
 
-; Operators
+; Operators and punctuation
 [
   "="
   "=>"
@@ -115,7 +113,18 @@
   "]"
   "{"
   "}"
+  "{{"
+  "}}"
 ] @punctuation.bracket
+
+[
+  "{%"
+  "%}"
+] @tag.delimiter
+
+(interpolation
+  "#{" @punctuation.special
+  "}" @punctuation.special)
 
 ; Types
 [
@@ -133,8 +142,17 @@
     (constant)
   ] @function.method)
 
+(macro_def
+  name: [
+    (identifier)
+    (constant)
+  ] @function.method)
+
 (param
   name: (identifier) @variable.parameter)
+
+(macro_var
+  name: (identifier) @variable)
 
 [
   (class_var)
