@@ -4,6 +4,8 @@
 
 require "colorize"
 
+require "./util"
+
 PASS                      = "pass".colorize.green
 FAIL                      = "fail".colorize.red
 EXPECTED_TO_FAIL_FILEPATH = "#{__DIR__}/stdlib_coverage_expected_to_fail.txt"
@@ -23,26 +25,6 @@ class Test
     @elapsed = Time.monotonic - start_time
     status
   end
-end
-
-def info(key, value)
-  puts "#{key}: #{value.colorize.blue}"
-end
-
-def find_stdlib_files
-  # Find stdlib path and version
-  stdlib_path = Crystal::PATH.split(":").find do |path|
-    File.exists?(Path[path, "array.cr"])
-  end
-  abort("Stdlib path not found.") if stdlib_path.nil?
-
-  stdlib_version = File.read(Path[stdlib_path, "VERSION"]).strip
-
-  info("stdlib version", stdlib_version)
-  info("stdlib path", stdlib_path)
-
-  # Grab all stdlib files
-  {stdlib_path, Dir["#{stdlib_path}/**/*.cr"].sort!}
 end
 
 stdlib_path, stdlib_files = find_stdlib_files
