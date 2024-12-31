@@ -529,8 +529,8 @@ module.exports = grammar({
       alias($.comparison_operator, $.call),
       alias($.index_operator, $.index_call),
       $.index_call,
-      $.array_like_type_literal,
-      $.hash_like_type_literal,
+      $.array_like,
+      $.hash_like,
       $.assign,
       alias($.operator_assign, $.op_assign),
 
@@ -1942,14 +1942,14 @@ module.exports = grammar({
 
     macro_verbatim: $ => seq('verbatim', 'do'),
 
-    array_like_type_literal: $ => seq(
-      field('receiver', choice($.constant, $.generic_instance_type)),
-      field('arguments', $.tuple),
+    array_like: $ => seq(
+      field('name', choice($.constant, $.generic_instance_type)),
+      field('values', $.tuple),
     ),
 
-    hash_like_type_literal: $ => seq(
-      field('receiver', choice($.constant, $.generic_instance_type)),
-      field('arguments', $.hash),
+    hash_like: $ => seq(
+      field('name', choice($.constant, $.generic_instance_type)),
+      field('values', $.hash),
     ),
 
     // Represents a macro call prefixed with private/protected, e.g.

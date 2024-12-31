@@ -286,7 +286,7 @@ strings
 "_"
 "# not a comment"
 "🔮"
-" 	
+"
 "
 
 "\
@@ -778,7 +778,7 @@ Heredoc 2
 Heredoc 2
 🐨🛡🚝💵a1;🈹☀️🖥🙉🎰🌕🌀🌷🔥🎽😮🤒🚈🏈🕋🍬↙️🐺📈🍓⚓️📚🔯😚🔂✔️🚅📆➿👚💖🚔🐮🎫😊📓🎮⚗🚦👙👹♥️🏢❤️📅👛🏳❗️🏯🏵🍁🐱🎭🤔🎚🍖🍖
 Heredoc 2
-🐨🛡🚝💵a1;🈹☀️🖥🙉🎰🌕🌀🌷🔥🎽😮🤒🚈🏈🕋🍬↙️🐺📈🍓⚓️📚🔯😚🔂✔️🚅📆➿👚💖🚔🐮🎫😊📓🎮⚗🚦👙👹♥️🏢❤️📅👛🏳❗️🏯🏵🍁🐱🎭🤔🎚🍖 
+🐨🛡🚝💵a1;🈹☀️🖥🙉🎰🌕🌀🌷🔥🎽😮🤒🚈🏈🕋🍬↙️🐺📈🍓⚓️📚🔯😚🔂✔️🚅📆➿👚💖🚔🐮🎫😊📓🎮⚗🚦👙👹♥️🏢❤️📅👛🏳❗️🏯🏵🍁🐱🎭🤔🎚🍖
 Heredoc 2
 🐨🛡🚝💵a1;🈹☀️🖥🙉🎰🌕🌀🌷🔥🎽😮🤒🚈🏈🕋🍬↙️🐺📈🍓⚓️📚🔯😚🔂✔️🚅📆➿👚💖🚔🐮🎫😊📓🎮⚗🚦👙👹♥️🏢❤️📅👛🏳❗️🏯🏵🍁🐱🎭🤔🎚🍖
 Heredoc 3
@@ -2005,42 +2005,42 @@ MyHash(String, String | Int32){"foo" => "bar"}
       (integer)
       (integer)
       (integer)))
-  (array_like_type_literal
-    receiver: (constant)
-    arguments: (tuple
+  (array_like
+    name: (constant)
+    values: (tuple
       (integer)
       (integer)
       (integer)))
-  (hash_like_type_literal
-    receiver: (constant)
-    arguments: (hash
+  (hash_like
+    name: (constant)
+    values: (hash
       (hash_entry
         (string)
         (string))))
-  (array_like_type_literal
-    receiver: (constant)
-    arguments: (tuple
+  (array_like
+    name: (constant)
+    values: (tuple
       (integer)
       (integer)
       (integer)))
-  (array_like_type_literal
-    receiver: (generic_instance_type
+  (array_like
+    name: (generic_instance_type
       (constant)
       params: (param_list
         (constant)))
-    arguments: (tuple
+    values: (tuple
       (integer)
       (integer)
       (integer)))
-  (hash_like_type_literal
-    receiver: (generic_instance_type
+  (hash_like
+    name: (generic_instance_type
       (constant)
       params: (param_list
         (constant)
         (union_type
           (constant)
           (constant))))
-    arguments: (hash
+    values: (hash
       (hash_entry
         (string)
         (string)))))

@@ -806,11 +806,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "array_like_type_literal"
+          "name": "array_like"
         },
         {
           "type": "SYMBOL",
-          "name": "hash_like_type_literal"
+          "name": "hash_like"
         },
         {
           "type": "SYMBOL",
@@ -8427,12 +8427,12 @@
         }
       ]
     },
-    "array_like_type_literal": {
+    "array_like": {
       "type": "SEQ",
       "members": [
         {
           "type": "FIELD",
-          "name": "receiver",
+          "name": "name",
           "content": {
             "type": "CHOICE",
             "members": [
@@ -8449,7 +8449,7 @@
         },
         {
           "type": "FIELD",
-          "name": "arguments",
+          "name": "values",
           "content": {
             "type": "SYMBOL",
             "name": "tuple"
@@ -8457,12 +8457,12 @@
         }
       ]
     },
-    "hash_like_type_literal": {
+    "hash_like": {
       "type": "SEQ",
       "members": [
         {
           "type": "FIELD",
-          "name": "receiver",
+          "name": "name",
           "content": {
             "type": "CHOICE",
             "members": [
@@ -8479,7 +8479,7 @@
         },
         {
           "type": "FIELD",
-          "name": "arguments",
+          "name": "values",
           "content": {
             "type": "SYMBOL",
             "name": "hash"
