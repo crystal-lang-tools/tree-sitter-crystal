@@ -39,6 +39,10 @@ const operator_tokens = [
   '&**',
 ]
 
+function reserved(wordset, rule) {
+  return rule
+}
+
 module.exports = grammar({
   name: 'crystal',
 
@@ -340,44 +344,48 @@ module.exports = grammar({
     ],
   ],
 
-  reserved: $ => [
-    'abstract',
-    'alias',
-    'annotation',
-    'asm',
-    'begin',
-    'break',
-    'case',
-    'class',
-    'def',
-    'end',
-    'enum',
-    'extend',
-    'false',
-    'fun',
-    'include',
-    'instance_sizeof',
-    'lib',
-    'macro',
-    'module',
-    'next',
-    'nil',
-    'offsetof',
-    'private',
-    'protected',
-    'require',
-    'return',
-    'select',
-    'sizeof',
-    'struct',
-    'true',
-    'typeof',
-    'until',
-    'while',
-    'with',
-    'yield',
+  reserved: {
+    global: $ => [
+      'abstract',
+      'alias',
+      'annotation',
+      'asm',
+      'begin',
+      'break',
+      'case',
+      'class',
+      'def',
+      'end',
+      'enum',
+      'extend',
+      'false',
+      'fun',
+      'include',
+      'instance_sizeof',
+      'lib',
+      'macro',
+      'module',
+      'next',
+      'nil',
+      'offsetof',
+      'private',
+      'protected',
+      'require',
+      'return',
+      'select',
+      'sizeof',
+      'struct',
+      'true',
+      'typeof',
+      'until',
+      'while',
+      'with',
+      'yield',
+    ],
 
-  ],
+    method_name: $ => [],
+    type_declaration: $ => [],
+  },
 
   rules: {
     expressions: $ => seq(
@@ -1912,12 +1920,12 @@ module.exports = grammar({
     _dot_call: $ => {
       const receiver = field('receiver', $._expression)
 
-      const method = field('method', choice(
+      const method = field('method', reserved('method_name', choice(
         $.identifier,
         alias($.identifier_method_call, $.identifier),
         alias($._operator_token, $.operator),
         $.instance_var,
-      ))
+      )))
 
       return prec('dot_operator', seq(receiver, '.', method))
     },
@@ -2564,7 +2572,9 @@ module.exports = grammar({
     },
 
     type_declaration: $ => {
-      const variable = field('var', choice($.identifier, $.instance_var, $.class_var, $.macro_var))
+      const variable = field('var', reserved('method_name', choice(
+        $.identifier, $.instance_var, $.class_var, $.macro_var,
+      )))
       const type = field('type', $._bare_type)
       const value = field('value', $._expression)
 
