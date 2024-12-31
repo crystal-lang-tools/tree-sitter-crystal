@@ -1949,10 +1949,7 @@ module.exports = grammar({
 
     hash_like_type_literal: $ => seq(
       field('receiver', choice($.constant, $.generic_instance_type)),
-      // NOTE(margret): Only allowing named_tuple here to
-      // not have the scanner give an assert; they're not
-      // allowed by the stdlib parser
-      field('arguments', choice($.hash, $.named_tuple)),
+      field('arguments', $.hash),
     ),
 
     // Represents a macro call prefixed with private/protected, e.g.

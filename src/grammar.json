@@ -8481,17 +8481,8 @@
           "type": "FIELD",
           "name": "arguments",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "hash"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "named_tuple"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "hash"
           }
         }
       ]

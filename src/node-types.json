@@ -7462,10 +7462,6 @@
           {
             "type": "hash",
             "named": true
-          },
-          {
-            "type": "named_tuple",
-            "named": true
           }
         ]
       },
