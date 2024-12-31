@@ -254,6 +254,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -315,6 +319,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -555,6 +563,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -624,6 +636,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -901,6 +917,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -962,6 +982,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -1140,6 +1164,36 @@
     }
   },
   {
+    "type": "array_like",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "generic_instance_type",
+            "named": true
+          }
+        ]
+      },
+      "values": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tuple",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "asm",
     "named": true,
     "fields": {
@@ -1241,6 +1295,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -1302,6 +1360,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -1577,6 +1639,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -1638,6 +1704,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -1851,6 +1921,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -1912,6 +1986,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -2213,6 +2291,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -2274,6 +2356,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -2789,6 +2875,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -2850,6 +2940,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -3105,6 +3199,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -3166,6 +3264,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -3369,6 +3471,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -3430,6 +3536,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -3825,6 +3935,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -3886,6 +4000,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -4083,6 +4201,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -4144,6 +4266,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -4341,6 +4467,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -4402,6 +4532,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -4631,6 +4765,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -4716,6 +4854,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -4982,6 +5124,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -5043,6 +5189,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -5361,6 +5511,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -5422,6 +5576,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -5661,6 +5819,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -5746,6 +5908,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -6115,6 +6281,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -6208,6 +6378,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -7031,6 +7205,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -7092,6 +7270,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -7270,6 +7452,36 @@
     }
   },
   {
+    "type": "hash_like",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "generic_instance_type",
+            "named": true
+          }
+        ]
+      },
+      "values": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "hash",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "heredoc_body",
     "named": true,
     "fields": {},
@@ -7318,6 +7530,10 @@
           },
           {
             "type": "array",
+            "named": true
+          },
+          {
+            "type": "array_like",
             "named": true
           },
           {
@@ -7382,6 +7598,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -7762,6 +7982,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -7823,6 +8047,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -8104,6 +8332,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -8165,6 +8397,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -8463,6 +8699,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -8524,6 +8764,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -8728,6 +8972,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -8793,6 +9041,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -9007,6 +9259,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -9092,6 +9348,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -9342,6 +9602,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -9407,6 +9671,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -9628,6 +9896,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -9689,6 +9961,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -9892,6 +10168,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -9953,6 +10233,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -10163,6 +10447,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -10224,6 +10512,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -10665,6 +10957,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -10726,6 +11022,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -10936,6 +11236,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -11021,6 +11325,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -11271,6 +11579,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -11332,6 +11644,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -11545,6 +11861,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -11630,6 +11950,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -11885,6 +12209,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -11946,6 +12274,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -12156,6 +12488,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -12241,6 +12577,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -12491,6 +12831,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -12552,6 +12896,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -12765,6 +13113,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -12850,6 +13202,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -13156,6 +13512,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -13217,6 +13577,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -13610,6 +13974,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -13671,6 +14039,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -13978,6 +14350,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -14039,6 +14415,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -14243,6 +14623,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -14304,6 +14688,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -14510,6 +14898,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -14571,6 +14963,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -15283,6 +15679,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -15344,6 +15744,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -15541,6 +15945,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -15602,6 +16010,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -16058,6 +16470,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -16123,6 +16539,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -16687,6 +17107,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -16772,6 +17196,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -17018,6 +17446,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -17079,6 +17511,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -17422,6 +17858,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -17483,6 +17923,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -17771,6 +18215,10 @@
           "named": true
         },
         {
+          "type": "array_like",
+          "named": true
+        },
+        {
           "type": "asm",
           "named": true
         },
@@ -17832,6 +18280,10 @@
         },
         {
           "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
           "named": true
         },
         {
@@ -18213,6 +18665,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -18274,6 +18730,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -18507,6 +18967,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -18568,6 +19032,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -18781,6 +19249,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -18842,6 +19314,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -19059,6 +19535,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -19120,6 +19600,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {
@@ -19323,6 +19807,10 @@
             "named": true
           },
           {
+            "type": "array_like",
+            "named": true
+          },
+          {
             "type": "asm",
             "named": true
           },
@@ -19384,6 +19872,10 @@
           },
           {
             "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
             "named": true
           },
           {

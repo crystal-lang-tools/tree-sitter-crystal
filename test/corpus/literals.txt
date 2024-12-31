@@ -779,6 +779,7 @@ Heredoc 2
 🐨🛡🚝💵a1;🈹☀️🖥🙉🎰🌕🌀🌷🔥🎽😮🤒🚈🏈🕋🍬↙️🐺📈🍓⚓️📚🔯😚🔂✔️🚅📆➿👚💖🚔🐮🎫😊📓🎮⚗🚦👙👹♥️🏢❤️📅👛🏳❗️🏯🏵🍁🐱🎭🤔🎚🍖🍖
 Heredoc 2
 🐨🛡🚝💵a1;🈹☀️🖥🙉🎰🌕🌀🌷🔥🎽😮🤒🚈🏈🕋🍬↙️🐺📈🍓⚓️📚🔯😚🔂✔️🚅📆➿👚💖🚔🐮🎫😊📓🎮⚗🚦👙👹♥️🏢❤️📅👛🏳❗️🏯🏵🍁🐱🎭🤔🎚🍖 
+#{interpolation doesn't work in a quoted heredoc}
 Heredoc 2
 🐨🛡🚝💵a1;🈹☀️🖥🙉🎰🌕🌀🌷🔥🎽😮🤒🚈🏈🕋🍬↙️🐺📈🍓⚓️📚🔯😚🔂✔️🚅📆➿👚💖🚔🐮🎫😊📓🎮⚗🚦👙👹♥️🏢❤️📅👛🏳❗️🏯🏵🍁🐱🎭🤔🎚🍖
 Heredoc 3
@@ -1984,3 +1985,63 @@ not_chained = "str1"
     lhs: (identifier)
     rhs: (string))
   (string))
+
+=================================
+Array-like and hash-like literals
+=================================
+
+Array[1, 2, 3]
+Set{1, 2, 3}
+MyType      {"foo" => "bar"}
+IO::Memory{1, 2, 3}
+Set(Int32)  {1, 2, 3}
+MyHash(String, String | Int32){"foo" => "bar"}
+
+---
+
+(expressions
+  (index_call
+    receiver: (constant)
+    arguments: (argument_list
+      (integer)
+      (integer)
+      (integer)))
+  (array_like
+    name: (constant)
+    values: (tuple
+      (integer)
+      (integer)
+      (integer)))
+  (hash_like
+    name: (constant)
+    values: (hash
+      (hash_entry
+        (string)
+        (string))))
+  (array_like
+    name: (constant)
+    values: (tuple
+      (integer)
+      (integer)
+      (integer)))
+  (array_like
+    name: (generic_instance_type
+      (constant)
+      params: (param_list
+        (constant)))
+    values: (tuple
+      (integer)
+      (integer)
+      (integer)))
+  (hash_like
+    name: (generic_instance_type
+      (constant)
+      params: (param_list
+        (constant)
+        (union_type
+          (constant)
+          (constant))))
+    values: (hash
+      (hash_entry
+        (string)
+        (string)))))
