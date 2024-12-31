@@ -1124,8 +1124,25 @@ class SExpVisitor < Crystal::Visitor
     false
   end
 
+  def visit(node : Yield)
+    in_node("yield") do
+      field "with" do
+        next unless (scope = node.scope)
+
+        scope.accept(self)
+      end
+
+      unless node.exps.empty?
+        in_node("argument_list") do
+          node.exps.each &.accept(self)
+        end
+      end
+    end
+
+    false
+  end
+
   visit_basic(Include)
-  visit_basic(Yield)
   visit_basic(Require)
   visit_basic(Not)
 
