@@ -340,6 +340,45 @@ module.exports = grammar({
     ],
   ],
 
+  reserved: $ => [
+    'abstract',
+    'alias',
+    'annotation',
+    'asm',
+    'begin',
+    'break',
+    'case',
+    'class',
+    'def',
+    'end',
+    'enum',
+    'extend',
+    'false',
+    'fun',
+    'include',
+    'instance_sizeof',
+    'lib',
+    'macro',
+    'module',
+    'next',
+    'nil',
+    'offsetof',
+    'private',
+    'protected',
+    'require',
+    'return',
+    'select',
+    'sizeof',
+    'struct',
+    'true',
+    'typeof',
+    'until',
+    'while',
+    'with',
+    'yield',
+
+  ],
+
   rules: {
     expressions: $ => seq(
       optional($._statements),
@@ -543,6 +582,8 @@ module.exports = grammar({
       $.typeof,
       $.sizeof,
       $.instance_sizeof,
+      $.alignof,
+      $.instance_alignof,
       $.offsetof,
       // TODO
       // super
@@ -1043,7 +1084,7 @@ module.exports = grammar({
       'annotation',
       field('name', $.constant),
       repeat($._terminator),
-      'end',
+      $._end,
     ),
 
     annotation: $ => {
@@ -1080,7 +1121,7 @@ module.exports = grammar({
       'module',
       field('name', choice($.constant, $.generic_type)),
       field('body', seq(optional(alias($._statements, $.expressions)))),
-      'end',
+      $._end,
     ),
 
     class_def: $ => seq(
@@ -1092,7 +1133,7 @@ module.exports = grammar({
         '<', field('superclass', choice($.constant, $.generic_instance_type)),
       )),
       field('body', seq(optional(alias($._statements, $.expressions)))),
-      'end',
+      $._end,
     ),
 
     struct_def: $ => seq(
@@ -1104,7 +1145,7 @@ module.exports = grammar({
         '<', field('superclass', choice($.constant, $.generic_instance_type)),
       )),
       field('body', seq(optional(alias($._statements, $.expressions)))),
-      'end',
+      $._end,
     ),
 
     enum_def: $ => seq(
@@ -1113,7 +1154,7 @@ module.exports = grammar({
       field('name', alias($._constant_segment, $.constant)),
       optional(field('type', seq(/:\s/, $._bare_type))),
       field('body', seq(optional(alias($._enum_statements, $.expressions)))),
-      'end',
+      $._end,
     ),
 
     lib_def: $ => seq(
@@ -1121,7 +1162,7 @@ module.exports = grammar({
       'lib',
       field('name', $.constant, $.generic_type),
       field('body', seq(optional(alias($._lib_statements, $.expressions)))),
-      'end',
+      $._end,
     ),
 
     top_level_fun_def: $ => {
@@ -1146,7 +1187,7 @@ module.exports = grammar({
           optional(return_type),
         )),
         field('body', seq(optional(alias($._statements, $.expressions)))),
-        'end',
+        $._end,
       )
     },
 
@@ -1221,7 +1262,7 @@ module.exports = grammar({
         'struct',
         name,
         $._c_struct_expressions,
-        'end',
+        $._end,
       )
     },
 
@@ -1262,7 +1303,7 @@ module.exports = grammar({
         'union',
         name,
         $._union_expressions,
-        'end',
+        $._end,
       )
     },
 
@@ -1344,7 +1385,7 @@ module.exports = grammar({
         optional($._terminator),
         field('body', seq(optional(alias($._statements, $.expressions)))),
         optional($._rescue_else_ensure),
-        'end',
+        $._end,
       )
     },
 
@@ -1385,7 +1426,7 @@ module.exports = grammar({
         )),
         $._terminator,
         field('body', seq(optional(alias($._statements, $.expressions)))),
-        'end',
+        $._end,
       )
     },
 
@@ -1494,17 +1535,30 @@ module.exports = grammar({
       alias($.argument_list_no_parens, $.argument_list),
     ),
 
-    return: $ => seq('return', optional($._control_expressions)),
+    return: $ => seq(
+      'return',
+      optional($._control_expressions),
+    ),
 
-    next: $ => seq('next', optional($._control_expressions)),
+    next: $ => seq(
+      'next',
+      optional($._control_expressions),
+    ),
 
-    break: $ => seq('break', optional($._control_expressions)),
+    break: $ => seq(
+      'break',
+      optional($._control_expressions),
+    ),
 
     yield: $ => {
       const with_expr = field('with', $._expression)
 
       return seq(
-        optional(seq('with', with_expr, $._end_of_with_expression)),
+        optional(seq(
+          'with',
+          with_expr,
+          $._end_of_with_expression,
+        )),
         'yield',
         optional($._control_expressions),
       )
@@ -1528,6 +1582,20 @@ module.exports = grammar({
 
     instance_sizeof: $ => seq(
       'instance_sizeof',
+      '(',
+      $._bare_type,
+      ')',
+    ),
+
+    alignof: $ => seq(
+      'alignof',
+      '(',
+      $._bare_type,
+      ')',
+    ),
+
+    instance_alignof: $ => seq(
+      'instance_alignof',
       '(',
       $._bare_type,
       ')',
@@ -1699,6 +1767,8 @@ module.exports = grammar({
       $.constant,
       $.sizeof,
       $.instance_sizeof,
+      $.alignof,
+      $.instance_alignof,
       $.offsetof,
     ),
 
@@ -2559,7 +2629,7 @@ module.exports = grammar({
         optional(params),
         field('body', seq(optional(alias($._statements, $.expressions)))),
         optional($._rescue_else_ensure),
-        'end',
+        $._end,
       )
     },
 
@@ -2589,8 +2659,10 @@ module.exports = grammar({
       optional($._terminator),
       field('body', seq(optional(alias($._statements, $.expressions)))),
       optional($._rescue_else_ensure),
-      'end',
+      $._end,
     ),
+
+    _end: $ => 'end',
 
     rescue: $ => {
       const rescue_variable = field('variable', $.identifier)
@@ -2651,7 +2723,7 @@ module.exports = grammar({
       field('cond', $._expression),
       $._terminator,
       field('body', seq(optional(alias($._statements, $.expressions)))),
-      'end',
+      $._end,
     ),
 
     until: $ => seq(
@@ -2659,7 +2731,7 @@ module.exports = grammar({
       field('cond', $._expression),
       $._terminator,
       field('body', seq(optional(alias($._statements, $.expressions)))),
-      'end',
+      $._end,
     ),
 
     if: $ => {
@@ -2673,7 +2745,7 @@ module.exports = grammar({
         $._terminator,
         optional(then),
         optional(else_),
-        'end',
+        $._end,
       )
     },
 
@@ -2688,7 +2760,7 @@ module.exports = grammar({
         $._terminator,
         optional(then),
         optional(else_),
-        'end',
+        $._end,
       )
     },
 
@@ -2759,7 +2831,7 @@ module.exports = grammar({
         optional(cond),
         repeat($.when),
         optional($.else),
-        'end',
+        $._end,
       )
     },
 
@@ -2768,7 +2840,7 @@ module.exports = grammar({
         'select',
         repeat($.when),
         optional($.else),
-        'end',
+        $._end,
       )
     },
 
@@ -2798,12 +2870,12 @@ module.exports = grammar({
         'case',
         cond,
         repeat1($.in),
-        'end',
+        $._end,
       )
     },
 
     asm: $ => seq(
-      token(seq('asm', /\s*/, '(')),
+      seq('asm', /\s*/, '('),
       field('text', $.string),
       optional($._asm_outputs),
       ')',

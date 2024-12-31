@@ -283,6 +283,21 @@ static bool next_char_is_identifier(TSLexer *lexer) {
         || lookahead >= 0xa0;
 }
 
+static bool next_is_colon_space(TSLexer *lexer) {
+    lexer->mark_end(lexer);
+
+    while (iswspace(lexer->lookahead)) {
+        lex_advance(lexer);
+    }
+
+    if (lexer->lookahead != ':') {
+        return false;
+    }
+
+    lex_advance(lexer);
+    return iswspace(lexer->lookahead);
+}
+
 // Usually scan_whitespace will handle starting heredocs, but it won't be called if a heredoc is
 // already active. This function is called before heredoc contents or whitespace is scanned, so it
 // can handle the start of a nested heredoc.
@@ -1921,6 +1936,8 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                 if (next_char_is_identifier(lexer)) {
                     // This is some other identifier, not 'ensure'
                     return false;
+                } else if (next_is_colon_space(lexer)) {
+                    return false;
                 }
 
                 if (valid_symbols[MODIFIER_ENSURE_KEYWORD] && !valid_symbols[REGULAR_ENSURE_KEYWORD]) {
@@ -1987,6 +2004,8 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                 lex_advance(lexer);
                 if (next_char_is_identifier(lexer)) {
                     // This is some other identifier, not 'rescue'
+                    return false;
+                } else if (next_is_colon_space(lexer)) {
                     return false;
                 }
 
@@ -2061,6 +2080,8 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                 lex_advance(lexer);
                 if (next_char_is_identifier(lexer)) {
                     // This is some other identifier, not 'yield'
+                    return false;
+                } else if (next_is_colon_space(lexer)) {
                     return false;
                 }
 

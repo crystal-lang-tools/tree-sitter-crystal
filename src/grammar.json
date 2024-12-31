@@ -851,6 +851,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "alignof"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "instance_alignof"
+        },
+        {
+          "type": "SYMBOL",
           "name": "offsetof"
         }
       ]
@@ -4036,8 +4044,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -4238,8 +4246,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -4356,8 +4364,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -4474,8 +4482,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -4567,8 +4575,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -4630,8 +4638,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -4805,8 +4813,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -5147,8 +5155,8 @@
           "name": "_c_struct_expressions"
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -5290,8 +5298,8 @@
           "name": "_union_expressions"
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -5851,8 +5859,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -6050,8 +6058,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -6763,6 +6771,48 @@
         }
       ]
     },
+    "alignof": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "alignof"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_bare_type"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "instance_alignof": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "instance_alignof"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_bare_type"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
     "offsetof": {
       "type": "SEQ",
       "members": [
@@ -7254,6 +7304,14 @@
         {
           "type": "SYMBOL",
           "name": "instance_sizeof"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "alignof"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "instance_alignof"
         },
         {
           "type": "SYMBOL",
@@ -12141,8 +12199,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -12313,10 +12371,14 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
+    },
+    "_end": {
+      "type": "STRING",
+      "value": "end"
     },
     "rescue": {
       "type": "SEQ",
@@ -12673,8 +12735,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -12724,8 +12786,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -12795,8 +12857,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -12857,8 +12919,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -13237,8 +13299,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -13269,8 +13331,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -13423,8 +13485,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -13432,24 +13494,21 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "asm"
-              },
-              {
-                "type": "PATTERN",
-                "value": "\\s*"
-              },
-              {
-                "type": "STRING",
-                "value": "("
-              }
-            ]
-          }
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "asm"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\s*"
+            },
+            {
+              "type": "STRING",
+              "value": "("
+            }
+          ]
         },
         {
           "type": "FIELD",
