@@ -2170,7 +2170,7 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                     return true;
                 } else if (lexer->lookahead == 'n' && (valid_symbols[REGULAR_ENSURE_KEYWORD] || valid_symbols[MODIFIER_ENSURE_KEYWORD] || valid_symbols[ENUM_KEYWORD] || valid_symbols[END_KEYWORD])) {
                     lex_advance(lexer);
-                    if (lexer->lookahead == 'd' && valid_symbols[END_KEYWORD]) {
+                    if (lexer->lookahead == 'd') {
                         lex_advance(lexer);
                         if (next_char_is_identifier(lexer)) {
                             return false;
