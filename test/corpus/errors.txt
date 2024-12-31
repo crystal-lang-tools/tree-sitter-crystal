@@ -555,4 +555,4 @@ end
         (identifier)
         (argument_list
           (string)))))
-  (ERROR))
+  (identifier))

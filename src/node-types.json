@@ -6469,6 +6469,11 @@
     }
   },
   {
+    "type": "false",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "float",
     "named": true,
     "fields": {}
@@ -15024,6 +15029,11 @@
     }
   },
   {
+    "type": "private",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "proc",
     "named": true,
     "fields": {
@@ -15256,6 +15266,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "protected",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "pseudo_constant",
@@ -17000,6 +17015,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "true",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "tuple",
@@ -19877,6 +19897,10 @@
     "named": false
   },
   {
+    "type": "asm",
+    "named": false
+  },
+  {
     "type": "begin",
     "named": false
   },
@@ -19938,7 +19962,7 @@
   },
   {
     "type": "false",
-    "named": true
+    "named": false
   },
   {
     "type": "for",
@@ -20009,6 +20033,10 @@
     "named": false
   },
   {
+    "type": "nil",
+    "named": false
+  },
+  {
     "type": "of",
     "named": false
   },
@@ -20018,11 +20046,11 @@
   },
   {
     "type": "private",
-    "named": true
+    "named": false
   },
   {
     "type": "protected",
-    "named": true
+    "named": false
   },
   {
     "type": "regex_character_class",
@@ -20082,7 +20110,7 @@
   },
   {
     "type": "true",
-    "named": true
+    "named": false
   },
   {
     "type": "type",

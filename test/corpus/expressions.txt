@@ -4129,3 +4129,188 @@ asm ("nop")
     text: (string))
   (asm
     text: (string)))
+
+=============================================================
+private or protected calls with keyword type declaration args
+=============================================================
+
+class Name
+  getter rescue : Qux
+  property if : Int32
+end
+
+---
+
+(expressions
+  (class_def
+    name: (constant)
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (type_declaration
+            var: (identifier)
+            type: (constant))))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (type_declaration
+            var: (identifier)
+            type: (constant)))))))
+
+========================
+keyword type declaration
+========================
+
+abstract : Int32
+alias : Int32
+annotation : Int32
+asm : Int32
+begin : Int32
+break : Int32
+case : Int32
+class : Int32
+def : Int32
+enum : Int32
+extend : Int32
+false : Int32
+fun : Int32
+include : Int32
+lib : Int32
+macro : Int32
+module : Int32
+next : Int32
+nil : Int32
+private : Int32
+protected : Int32
+require : Int32
+return : Int32
+select : Int32
+struct : Int32
+true : Int32
+until : Int32
+while : Int32
+with : Int32
+yield : Int32
+pointerof : Int32
+sizeof : Int32
+instance_sizeof : Int32
+alignof : Int32
+instance_alignof : Int32
+offsetof : Int32
+typeof : Int32
+
+---
+
+(expressions
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (type_declaration
+    var: (identifier)
+    type: (constant)))

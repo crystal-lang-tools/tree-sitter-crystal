@@ -230,26 +230,6 @@ end
 
 
 
-=============================================================
-private or protected calls with keyword type declaration args
-=============================================================
-
-class Name
-  private getter private : Qux
-end
-
----
-
-(expressions
-  (class_def
-    name: (constant)
-    (ERROR
-      (private)
-      (identifier)
-      (private)
-      (ERROR)
-      (constant))))
-
 ================================================================================
 implicit object assignment call
 :error
