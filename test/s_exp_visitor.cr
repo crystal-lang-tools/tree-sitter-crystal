@@ -467,7 +467,7 @@ class SExpVisitor < Crystal::Visitor
               in_node("param_list") do
                 splat_index = node.splat_index || -1
 
-                type_vars.each_with_index do |type_var, i|
+                type_vars.each_with_index do |_type_var, i|
                   if i == splat_index
                     in_node("splat") { print_node("constant") }
                   else
