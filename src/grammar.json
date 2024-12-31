@@ -7959,7 +7959,12 @@
             "name": "_type"
           },
           {
-            "type": "STRING",
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_pointer_star"
+            },
+            "named": false,
             "value": "*"
           }
         ]
@@ -14097,6 +14102,10 @@
     {
       "type": "SYMBOL",
       "name": "binary_wrapping_minus"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_pointer_star"
     },
     {
       "type": "SYMBOL",

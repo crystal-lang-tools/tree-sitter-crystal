@@ -70,6 +70,7 @@ module.exports = grammar({
     $.binary_wrapping_plus,
     $.binary_wrapping_minus,
 
+    $._pointer_star,
     $._unary_star,
     $._binary_star,
     $._unary_double_star,
@@ -1835,7 +1836,7 @@ module.exports = grammar({
 
     nilable_type: $ => prec('atomic_type', seq($._type, '?')),
 
-    pointer_type: $ => prec('atomic_type', seq($._type, '*')),
+    pointer_type: $ => prec('atomic_type', seq($._type, alias($._pointer_star, '*'))),
 
     static_array_type: $ => prec('atomic_type', seq($._type, '[', $._numeric_type, ']')),
 
