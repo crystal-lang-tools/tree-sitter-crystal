@@ -7040,28 +7040,37 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
+          "type": "FIELD",
+          "name": "name",
           "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "%"
-              },
-              {
-                "type": "PATTERN",
-                "value": "[0-9A-Za-z_\\u{00a0}-\\u{10ffff}]",
-                "flags": "u"
-              },
-              {
-                "type": "REPEAT",
-                "content": {
-                  "type": "PATTERN",
-                  "value": "[0-9A-Za-z_\\u{00a0}-\\u{10ffff}]",
-                  "flags": "u"
-                }
+            "type": "ALIAS",
+            "content": {
+              "type": "TOKEN",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "%"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "[0-9A-Za-z_\\u{00a0}-\\u{10ffff}]",
+                    "flags": "u"
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "[0-9A-Za-z_\\u{00a0}-\\u{10ffff}]",
+                      "flags": "u"
+                    }
+                  }
+                ]
               }
-            ]
+            },
+            "named": true,
+            "value": "identifier"
           }
         },
         {

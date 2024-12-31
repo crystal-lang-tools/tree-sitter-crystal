@@ -1590,7 +1590,10 @@ module.exports = grammar({
         '}',
       )
 
-      return seq(name, optional(exp))
+      return seq(
+        field('name', alias(name, $.identifier)),
+        optional(exp),
+      )
     },
 
     self: $ => 'self',
