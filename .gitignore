@@ -38,3 +38,7 @@ dist/
 *.tar.gz
 *.tgz
 *.zip
+
+# Crystal binaries
+/test/crystal_parse_corpus
+/test/stdlib_coverage
