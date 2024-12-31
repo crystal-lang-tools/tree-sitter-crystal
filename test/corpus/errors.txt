@@ -289,14 +289,14 @@ puts(** foo)
 
 (expressions
   (ERROR
-    (constant))
-  (call
-    method: (operator)
-    receiver: (assign
-      lhs: (identifier)
-      (ERROR)
-      rhs: (regex
-        (MISSING "/")))))
+    (constant)
+    (identifier)
+    (operator)
+    (operator)
+    (identifier)
+    (identifier)
+    (operator)
+    (identifier)))
 
 ================================================================================
 too many heredocs

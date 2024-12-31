@@ -543,6 +543,8 @@ module.exports = grammar({
       $.typeof,
       $.sizeof,
       $.instance_sizeof,
+      $.alignof,
+      $.instance_alignof,
       $.offsetof,
       // TODO
       // super
@@ -1533,6 +1535,20 @@ module.exports = grammar({
       ')',
     ),
 
+    alignof: $ => seq(
+      'alignof',
+      '(',
+      $._bare_type,
+      ')',
+    ),
+
+    instance_alignof: $ => seq(
+      'instance_alignof',
+      '(',
+      $._bare_type,
+      ')',
+    ),
+
     offsetof: $ => seq(
       'offsetof',
       '(',
@@ -1690,15 +1706,25 @@ module.exports = grammar({
       $.self,
       $.typeof,
       $.static_array_type,
+      $.integer,
+      $.float,
+      $.sizeof,
+      $.instance_sizeof,
+      $.alignof,
+      $.instance_alignof,
+      $.offsetof,
     ),
 
     // _numeric_type represents an expression in the type grammar that resolves
     // to a number. Mostly used for StaticArrays, e.g. UInt8[sizeof(String)].
     _numeric_type: $ => choice(
       $.integer,
+      $.float,
       $.constant,
       $.sizeof,
       $.instance_sizeof,
+      $.alignof,
+      $.instance_alignof,
       $.offsetof,
     ),
 

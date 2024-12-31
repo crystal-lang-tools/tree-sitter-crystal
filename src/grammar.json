@@ -851,6 +851,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "alignof"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "instance_alignof"
+        },
+        {
+          "type": "SYMBOL",
           "name": "offsetof"
         }
       ]
@@ -6763,6 +6771,48 @@
         }
       ]
     },
+    "alignof": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "alignof"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_bare_type"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "instance_alignof": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "instance_alignof"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_bare_type"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
     "offsetof": {
       "type": "SEQ",
       "members": [
@@ -7233,6 +7283,34 @@
         {
           "type": "SYMBOL",
           "name": "static_array_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "integer"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "float"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "sizeof"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "instance_sizeof"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "alignof"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "instance_alignof"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "offsetof"
         }
       ]
     },
@@ -7245,6 +7323,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "float"
+        },
+        {
+          "type": "SYMBOL",
           "name": "constant"
         },
         {
@@ -7254,6 +7336,14 @@
         {
           "type": "SYMBOL",
           "name": "instance_sizeof"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "alignof"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "instance_alignof"
         },
         {
           "type": "SYMBOL",

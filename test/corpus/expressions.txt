@@ -4129,3 +4129,42 @@ asm ("nop")
     text: (string))
   (asm
     text: (string)))
+
+=================
+static array type
+:language(crystal)
+=================
+
+StaticArray(Int32, 8)
+StaticArray(Char*, 2.3)
+
+---
+
+(expressions
+  (generic_instance_type
+    (constant)
+    params: (param_list
+      (constant)
+      (integer)))
+  (generic_instance_type
+    (constant)
+    params: (param_list
+      (pointer_type
+        (constant))
+      (float))))
+
+==============================
+instance var with pointer type
+:error
+==============================
+
+@ivar : UInt8*
+
+---
+
+(expressions
+  (call
+    (type_declaration
+      (instance_var)
+      (pointer_type
+        (constant)))))

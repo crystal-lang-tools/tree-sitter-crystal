@@ -68,6 +68,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -76,7 +80,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -85,6 +105,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -97,6 +121,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -168,6 +196,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -176,7 +208,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -185,6 +233,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -197,6 +249,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -238,6 +294,101 @@
     }
   },
   {
+    "type": "alignof",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
+        {
+          "type": "class_type",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "named_tuple_type",
+          "named": true
+        },
+        {
+          "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "proc_type",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
+          "named": true
+        },
+        {
+          "type": "splat_type",
+          "named": true
+        },
+        {
+          "type": "static_array_type",
+          "named": true
+        },
+        {
+          "type": "tuple_type",
+          "named": true
+        },
+        {
+          "type": "typeof",
+          "named": true
+        },
+        {
+          "type": "underscore",
+          "named": true
+        },
+        {
+          "type": "union_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "and",
     "named": true,
     "fields": {},
@@ -245,6 +396,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -331,6 +486,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -547,6 +706,10 @@
       "required": false,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -640,6 +803,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -826,6 +993,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -834,7 +1005,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -850,6 +1037,10 @@
             "named": false
           },
           {
+            "type": "offsetof",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
@@ -859,6 +1050,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -892,6 +1087,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -978,6 +1177,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -1233,6 +1436,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -1318,6 +1525,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -1569,6 +1780,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -1654,6 +1869,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -1843,6 +2062,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -1928,6 +2151,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -2205,6 +2432,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -2294,6 +2525,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -2490,6 +2725,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -2498,7 +2737,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -2507,6 +2762,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -2519,6 +2778,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -2661,6 +2924,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -2669,7 +2936,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -2678,6 +2961,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -2690,6 +2977,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -2781,6 +3072,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -2866,6 +3161,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -3097,6 +3396,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -3182,6 +3485,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -3361,6 +3668,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -3446,6 +3757,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -3723,6 +4038,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -3731,7 +4050,23 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -3740,6 +4075,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -3752,6 +4091,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -3815,6 +4158,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -3902,6 +4249,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -4075,6 +4426,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -4160,6 +4515,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -4333,6 +4692,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -4418,6 +4781,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -4615,6 +4982,10 @@
             "named": true
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -4736,6 +5107,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -4974,6 +5349,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -5059,6 +5438,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -5255,6 +5638,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -5263,7 +5650,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -5272,6 +5675,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -5284,6 +5691,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -5351,6 +5762,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -5438,6 +5853,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -5645,6 +6064,10 @@
           "named": true
         },
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -5766,6 +6189,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -6012,6 +6439,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -6020,7 +6451,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -6029,6 +6476,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -6041,6 +6492,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -6096,6 +6551,10 @@
         },
         {
           "type": "alias",
+          "named": true
+        },
+        {
+          "type": "alignof",
           "named": true
         },
         {
@@ -6228,6 +6687,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -6557,6 +7020,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -6565,7 +7032,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -6574,6 +7057,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -6586,6 +7073,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -6647,6 +7138,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -6655,7 +7150,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -6664,6 +7175,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -6676,6 +7191,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -6789,6 +7308,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -6797,7 +7320,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -6806,6 +7345,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -6818,6 +7361,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -6875,6 +7422,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -6883,7 +7434,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -6892,6 +7459,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -6904,6 +7475,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -6945,6 +7520,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -6953,7 +7532,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -6962,6 +7557,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -6974,6 +7573,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -7022,6 +7625,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -7108,6 +7715,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -7313,6 +7924,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -7398,6 +8013,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -7754,6 +8373,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -7839,6 +8462,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -8016,13 +8643,17 @@
     }
   },
   {
-    "type": "instance_sizeof",
+    "type": "instance_alignof",
     "named": true,
     "fields": {},
     "children": {
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "class_type",
           "named": true
@@ -8032,7 +8663,23 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -8041,6 +8688,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -8053,6 +8704,105 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
+          "named": true
+        },
+        {
+          "type": "splat_type",
+          "named": true
+        },
+        {
+          "type": "static_array_type",
+          "named": true
+        },
+        {
+          "type": "tuple_type",
+          "named": true
+        },
+        {
+          "type": "typeof",
+          "named": true
+        },
+        {
+          "type": "underscore",
+          "named": true
+        },
+        {
+          "type": "union_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "instance_sizeof",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
+        {
+          "type": "class_type",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "named_tuple_type",
+          "named": true
+        },
+        {
+          "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "proc_type",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -8095,6 +8845,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -8181,6 +8935,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -8455,6 +9213,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -8540,6 +9302,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -8720,6 +9486,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -8809,6 +9579,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -8991,6 +9765,10 @@
           "named": true
         },
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -9112,6 +9890,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -9334,6 +10116,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -9423,6 +10209,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -9620,6 +10410,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -9705,6 +10499,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -9884,6 +10682,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -9969,6 +10771,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -10155,6 +10961,10 @@
       "required": false,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -10240,6 +11050,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -10515,6 +11329,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -10523,7 +11341,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -10532,6 +11366,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -10544,6 +11382,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -10657,6 +11499,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -10742,6 +11588,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -10920,6 +11770,10 @@
           "named": true
         },
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -11041,6 +11895,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -11263,6 +12121,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -11348,6 +12210,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -11529,6 +12395,10 @@
             "named": true
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -11650,6 +12520,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -11877,6 +12751,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -11962,6 +12840,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -12140,6 +13022,10 @@
           "named": true
         },
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -12261,6 +13147,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -12483,6 +13373,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -12568,6 +13462,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -12749,6 +13647,10 @@
             "named": true
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -12870,6 +13772,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -13148,6 +14054,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -13233,6 +14143,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -13448,6 +14362,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -13456,7 +14374,23 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -13465,6 +14399,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -13477,6 +14415,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -13535,6 +14477,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -13543,7 +14489,23 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -13552,6 +14514,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -13564,6 +14530,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -13601,6 +14571,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -13687,6 +14661,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -13861,6 +14839,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -13869,7 +14851,19 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
           "named": true
         },
         {
@@ -13889,6 +14883,10 @@
           "named": true
         },
         {
+          "type": "offsetof",
+          "named": true
+        },
+        {
           "type": "pointer_type",
           "named": true
         },
@@ -13898,6 +14896,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -13968,6 +14970,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -14055,6 +15061,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -14235,6 +15245,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -14320,6 +15334,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -14502,6 +15520,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -14587,6 +15609,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -14792,6 +15818,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -14800,7 +15830,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -14809,6 +15855,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -14821,6 +15871,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -14870,6 +15924,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "block_param",
           "named": true
         },
@@ -14886,11 +15944,27 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "fun_param",
           "named": true
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -14903,6 +15977,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -14919,6 +15997,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -14965,6 +16047,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -14973,7 +16059,23 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -14982,6 +16084,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -14994,6 +16100,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -15060,6 +16170,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -15068,7 +16182,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -15077,6 +16207,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -15089,6 +16223,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -15136,6 +16274,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -15144,7 +16286,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -15153,6 +16311,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -15165,6 +16327,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -15199,6 +16365,10 @@
       "required": false,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -15207,7 +16377,23 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -15216,6 +16402,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -15228,6 +16418,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -15273,6 +16467,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -15360,6 +16558,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -15533,6 +16735,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -15618,6 +16824,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -15871,6 +17081,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -15879,7 +17093,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -15888,6 +17118,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -15900,6 +17134,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -15983,6 +17221,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -15991,7 +17233,23 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -16000,6 +17258,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -16012,6 +17274,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -16049,6 +17315,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -16139,6 +17409,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -16339,6 +17613,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -16347,7 +17625,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -16356,6 +17650,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -16368,6 +17666,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -16417,6 +17719,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -16425,7 +17731,23 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -16434,6 +17756,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -16446,6 +17772,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -16484,6 +17814,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -16492,7 +17826,15 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -16671,6 +18013,10 @@
           "named": true
         },
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -16792,6 +18138,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -17010,6 +18360,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -17099,6 +18453,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -17273,6 +18631,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -17281,7 +18643,23 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -17290,6 +18668,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -17302,6 +18684,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -17348,6 +18734,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -17356,7 +18746,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -17365,6 +18771,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -17377,6 +18787,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -17412,6 +18826,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -17499,6 +18917,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -17696,6 +19118,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -17704,7 +19130,23 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -17713,6 +19155,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -17725,6 +19171,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -17762,6 +19212,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -17848,6 +19302,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -18056,6 +19514,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "class_type",
             "named": true
           },
@@ -18064,7 +19526,23 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "integer",
             "named": true
           },
           {
@@ -18073,6 +19551,10 @@
           },
           {
             "type": "nilable_type",
+            "named": true
+          },
+          {
+            "type": "offsetof",
             "named": true
           },
           {
@@ -18085,6 +19567,10 @@
           },
           {
             "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
             "named": true
           },
           {
@@ -18134,6 +19620,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -18142,7 +19632,23 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -18151,6 +19657,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -18163,6 +19673,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -18203,6 +19717,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -18290,6 +19808,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -18499,6 +20021,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -18584,6 +20110,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -18773,6 +20303,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -18862,6 +20396,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -19051,6 +20589,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -19136,6 +20678,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -19315,6 +20861,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -19400,6 +20950,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -19873,6 +21427,10 @@
     "named": false
   },
   {
+    "type": "alignof",
+    "named": false
+  },
+  {
     "type": "annotation",
     "named": false
   },
@@ -19982,6 +21540,10 @@
   },
   {
     "type": "include",
+    "named": false
+  },
+  {
+    "type": "instance_alignof",
     "named": false
   },
   {

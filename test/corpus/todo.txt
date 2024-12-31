@@ -152,23 +152,6 @@ node.as(LibXML::Node*)
         (operator)
         (MISSING identifier)))))
 
-==============================
-instance var with pointer type
-:error
-==============================
-
-@ivar : UInt8*
-
----
-
-(expressions
-  (call
-    (type_declaration
-      (instance_var)
-      (constant))
-    (operator)
-    (MISSING identifier)))
-
 =================================
 Array-like and hash-like literals
 :error
@@ -176,18 +159,6 @@ Array-like and hash-like literals
 
 Set{1, 2, 3}
 MyType{"foo" => "bar"}
-
----
-
-
-
-=================
-static array type
-:error
-=================
-
-StaticArray(Int32, 8)
-StaticArray(Char*, 2)
 
 ---
 
@@ -258,3 +229,28 @@ inner.try &.color=(color)
 --------------------------------------------------------------------------------
 
 (expressions)
+
+================
+fun void pointer
+================
+
+lib MyLib
+  type VoidProc = Void* -> Void*, Void*
+end
+
+---
+
+(expressions
+  (lib_def
+    (constant)
+    (expressions
+      (type_def
+        (constant)
+        (proc_type
+          (pointer_type
+            (constant))
+          (ERROR
+            (pointer_type
+              (constant)))
+          (pointer_type
+            (constant)))))))
