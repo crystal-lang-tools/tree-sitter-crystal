@@ -16,6 +16,10 @@
             "named": true
           },
           {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
             "type": "self",
             "named": true
           }
@@ -37,6 +41,10 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -77,6 +85,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -177,6 +189,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -533,6 +549,10 @@
           {
             "type": "constant",
             "named": true
+          },
+          {
+            "type": "macro_expression",
+            "named": true
           }
         ]
       }
@@ -835,6 +855,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -2474,6 +2498,10 @@
           {
             "type": "instance_var",
             "named": true
+          },
+          {
+            "type": "macro_expression",
+            "named": true
           }
         ]
       },
@@ -2499,6 +2527,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -2670,6 +2702,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -3685,6 +3721,10 @@
           {
             "type": "generic_type",
             "named": true
+          },
+          {
+            "type": "macro_expression",
+            "named": true
           }
         ]
       },
@@ -3698,6 +3738,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           }
         ]
@@ -3732,6 +3776,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
           "named": true
         },
         {
@@ -5239,6 +5287,10 @@
           {
             "type": "instance_var",
             "named": true
+          },
+          {
+            "type": "macro_expression",
+            "named": true
           }
         ]
       },
@@ -5264,6 +5316,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -6024,6 +6080,10 @@
             "named": true
           },
           {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
             "type": "named_tuple_type",
             "named": true
           },
@@ -6462,6 +6522,10 @@
           "named": true
         },
         {
+          "type": "macro_expression",
+          "named": true
+        },
+        {
           "type": "self",
           "named": true
         }
@@ -6513,6 +6577,10 @@
           {
             "type": "identifier",
             "named": true
+          },
+          {
+            "type": "macro_expression",
+            "named": true
           }
         ]
       },
@@ -6536,6 +6604,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -6566,6 +6638,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -6631,6 +6707,10 @@
           {
             "type": "identifier",
             "named": true
+          },
+          {
+            "type": "macro_expression",
+            "named": true
           }
         ]
       },
@@ -6656,6 +6736,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -6801,6 +6885,10 @@
             "named": true
           },
           {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
             "type": "named_tuple_type",
             "named": true
           },
@@ -6887,6 +6975,10 @@
             "named": true
           },
           {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
             "type": "named_tuple_type",
             "named": true
           },
@@ -6954,6 +7046,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -7687,6 +7783,10 @@
             "named": true
           },
           {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
             "type": "nil",
             "named": true
           },
@@ -7712,6 +7812,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
           "named": true
         },
         {
@@ -8033,6 +8137,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
           "named": true
         },
         {
@@ -8403,6 +8511,10 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -10433,6 +10545,10 @@
             "named": true
           },
           {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
             "type": "self",
             "named": true
           }
@@ -10474,6 +10590,10 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -10524,6 +10644,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -10634,6 +10758,10 @@
           },
           {
             "type": "instance_var",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -13109,6 +13237,10 @@
           {
             "type": "generic_type",
             "named": true
+          },
+          {
+            "type": "macro_expression",
+            "named": true
           }
         ]
       },
@@ -13134,6 +13266,10 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -13437,6 +13573,10 @@
             "named": true
           },
           {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           }
@@ -13457,6 +13597,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
           "named": true
         },
         {
@@ -13544,6 +13688,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
           "named": true
         },
         {
@@ -13878,6 +14026,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
           "named": true
         },
         {
@@ -14776,6 +14928,10 @@
           {
             "type": "instance_var",
             "named": true
+          },
+          {
+            "type": "macro_expression",
+            "named": true
           }
         ]
       },
@@ -14801,6 +14957,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -14894,6 +15054,10 @@
           "named": true
         },
         {
+          "type": "macro_expression",
+          "named": true
+        },
+        {
           "type": "named_tuple_type",
           "named": true
         },
@@ -14974,6 +15138,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
           "named": true
         },
         {
@@ -15072,6 +15240,10 @@
             "named": true
           },
           {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
             "type": "named_tuple_type",
             "named": true
           },
@@ -15148,6 +15320,10 @@
             "named": true
           },
           {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
             "type": "named_tuple_type",
             "named": true
           },
@@ -15208,6 +15384,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
           "named": true
         },
         {
@@ -15883,6 +16063,10 @@
             "named": true
           },
           {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
             "type": "named_tuple_type",
             "named": true
           },
@@ -15992,6 +16176,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
           "named": true
         },
         {
@@ -16323,6 +16511,10 @@
           {
             "type": "instance_var",
             "named": true
+          },
+          {
+            "type": "macro_expression",
+            "named": true
           }
         ]
       },
@@ -16348,6 +16540,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -16429,6 +16625,10 @@
           "named": true
         },
         {
+          "type": "macro_expression",
+          "named": true
+        },
+        {
           "type": "named_tuple_type",
           "named": true
         },
@@ -16501,6 +16701,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
           "named": true
         },
         {
@@ -16606,6 +16810,10 @@
           {
             "type": "generic_type",
             "named": true
+          },
+          {
+            "type": "macro_expression",
+            "named": true
           }
         ]
       },
@@ -16619,6 +16827,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           }
         ]
@@ -17285,6 +17497,10 @@
           "named": true
         },
         {
+          "type": "macro_expression",
+          "named": true
+        },
+        {
           "type": "named_tuple_type",
           "named": true
         },
@@ -17357,6 +17573,10 @@
           },
           {
             "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
             "named": true
           },
           {
@@ -17705,6 +17925,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
           "named": true
         },
         {
@@ -18068,6 +18292,10 @@
             "named": true
           },
           {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
             "type": "named_tuple_type",
             "named": true
           },
@@ -18143,6 +18371,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
           "named": true
         },
         {

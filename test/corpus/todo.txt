@@ -258,3 +258,22 @@ inner.try &.color=(color)
 --------------------------------------------------------------------------------
 
 (expressions)
+
+==================
+type ending with ?
+==================
+
+{% unless U <= Int32? %}
+{% end %}
+
+---
+
+(expressions
+  (macro_unless
+    (call
+      (constant)
+      (operator)
+      (argument_list
+        (constant))))
+  (ERROR)
+  (macro_end))

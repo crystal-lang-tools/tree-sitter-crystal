@@ -356,10 +356,13 @@ q
     (heredoc_start)
     (heredoc_start)
     (heredoc_start)
-    (ERROR)
     (call
+      receiver: (MISSING identifier)
       method: (operator)
-      receiver: (identifier)))
+      arguments: (argument_list
+        (call
+          method: (operator)
+          receiver: (identifier)))))
   (heredoc_body
     (heredoc_content)
     (heredoc_end))

@@ -1005,6 +1005,7 @@ module.exports = grammar({
         $.class_var,
         $.self,
         $.constant,
+        $.macro_expression,
       ))
 
       const method = field('method', choice(
@@ -1041,7 +1042,7 @@ module.exports = grammar({
 
     annotation_def: $ => seq(
       'annotation',
-      field('name', $.constant),
+      field('name', choice($.constant, $.macro_expression)),
       repeat($._terminator),
       'end',
     ),
@@ -1078,7 +1079,7 @@ module.exports = grammar({
     module_def: $ => seq(
       optional(field('visibility', $.private)),
       'module',
-      field('name', choice($.constant, $.generic_type)),
+      field('name', choice($.constant, $.generic_type, $.macro_expression)),
       field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
     ),
@@ -1087,9 +1088,9 @@ module.exports = grammar({
       optional(field('visibility', $.private)),
       optional('abstract'),
       'class',
-      field('name', choice($.constant, $.generic_type)),
+      field('name', choice($.constant, $.generic_type, $.macro_expression)),
       optional(seq(
-        '<', field('superclass', choice($.constant, $.generic_instance_type)),
+        '<', field('superclass', choice($.constant, $.generic_instance_type, $.macro_expression)),
       )),
       field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
@@ -1099,9 +1100,9 @@ module.exports = grammar({
       optional(field('visibility', $.private)),
       optional('abstract'),
       'struct',
-      field('name', choice($.constant, $.generic_type)),
+      field('name', choice($.constant, $.generic_type, $.macro_expression)),
       optional(seq(
-        '<', field('superclass', choice($.constant, $.generic_instance_type)),
+        '<', field('superclass', choice($.constant, $.generic_instance_type, $.macro_expression)),
       )),
       field('body', seq(optional(alias($._statements, $.expressions)))),
       'end',
@@ -1110,7 +1111,7 @@ module.exports = grammar({
     enum_def: $ => seq(
       optional(field('visibility', $.private)),
       'enum',
-      field('name', alias($._constant_segment, $.constant)),
+      field('name', alias($._constant_segment, $.constant, $.macro_expression)),
       optional(field('type', seq(/:\s/, $._bare_type))),
       field('body', seq(optional(alias($._enum_statements, $.expressions)))),
       'end',
@@ -1119,7 +1120,7 @@ module.exports = grammar({
     lib_def: $ => seq(
       optional(field('visibility', $.private)),
       'lib',
-      field('name', $.constant, $.generic_type),
+      field('name', $.constant, $.generic_type, $.macro_expression),
       field('body', seq(optional(alias($._lib_statements, $.expressions)))),
       'end',
     ),
@@ -1128,9 +1129,10 @@ module.exports = grammar({
       const name = field('name', choice(
         $.identifier,
         alias($.identifier_method_call, $.identifier),
+        $.macro_expression,
       ))
       const real_name = seq('=',
-        field('real_name', choice($.identifier, $.constant, $.string)),
+        field('real_name', choice($.identifier, $.constant, $.string, $.macro_expression)),
       )
       const params = seq(
         '(', optional(field('params', alias($.fun_param_list, $.param_list))), ')',
@@ -1155,9 +1157,10 @@ module.exports = grammar({
         $.identifier,
         alias($.identifier_method_call, $.identifier),
         $.constant,
+        $.macro_expression,
       ))
       const real_name = seq('=',
-        field('real_name', choice($.identifier, $.constant, $.string)),
+        field('real_name', choice($.identifier, $.constant, $.string, $.macro_expression)),
       )
       const params = seq(
         '(',
@@ -1198,7 +1201,7 @@ module.exports = grammar({
     },
 
     fun_param: $ => {
-      const name = field('name', choice($.identifier, $.constant))
+      const name = field('name', choice($.identifier, $.constant, $.macro_expression))
       const type = field('type', seq(/[ \t]:\s/, $._bare_type))
 
       return seq(
@@ -1310,7 +1313,7 @@ module.exports = grammar({
 
     _base_method_def: $ => {
       const klass = field('class', seq(
-        choice($.constant, $.self),
+        choice($.constant, $.self, $.macro_expression),
         '.',
       ))
       const name = field('name', choice(
@@ -1318,6 +1321,7 @@ module.exports = grammar({
         alias($.identifier_method_call, $.identifier),
         alias($.identifier_assign, $.identifier),
         alias($._operator_token, $.operator),
+        $.macro_expression,
       ))
       const params = seq('(', field('params', optional($.param_list)), ')')
       const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
@@ -1369,6 +1373,7 @@ module.exports = grammar({
         $.identifier,
         alias($.identifier_method_call, $.identifier),
         alias($._operator_token, $.operator),
+        $.macro_expression,
       ))
       const params = seq(
         '(',
@@ -1396,6 +1401,7 @@ module.exports = grammar({
           $.constant,
           $.self,
           $.generic_instance_type,
+          $.macro_expression,
         ),
       )
     },
@@ -1407,12 +1413,13 @@ module.exports = grammar({
           $.constant,
           $.self,
           $.generic_instance_type,
+          $.macro_expression,
         ),
       )
     },
 
     forall: $ => {
-      const constant = alias($._constant_segment, $.constant)
+      const constant = alias($._constant_segment, $.constant, $.macro_expression)
 
       return seq(
         'forall',
@@ -1440,7 +1447,9 @@ module.exports = grammar({
 
     param: $ => {
       const extern_name = field('extern_name', $.identifier)
-      const name = field('name', choice($.identifier, $.instance_var, $.class_var))
+      const name = field('name', choice(
+        $.identifier, $.instance_var, $.class_var, $.macro_expression,
+      ))
       const type = field('type', seq(/[ \t]:\s/, $._bare_type))
       const default_value = field('default', seq('=', $._expression))
 
@@ -1454,7 +1463,9 @@ module.exports = grammar({
     },
 
     splat_param: $ => {
-      const name = field('name', choice($.identifier, $.instance_var, $.class_var))
+      const name = field('name', choice(
+        $.identifier, $.instance_var, $.class_var, $.macro_expression,
+      ))
       const type = field('type', seq(/[ \t]:\s/, $._bare_type))
 
       return seq(
@@ -1466,7 +1477,9 @@ module.exports = grammar({
     },
 
     double_splat_param: $ => {
-      const name = field('name', choice($.identifier, $.instance_var, $.class_var))
+      const name = field('name', choice(
+        $.identifier, $.instance_var, $.class_var, $.macro_expression,
+      ))
       const type = field('type', seq(/[ \t]:\s/, $._bare_type))
 
       return seq(
@@ -1478,7 +1491,9 @@ module.exports = grammar({
     },
 
     block_param: $ => {
-      const name = field('name', choice($.identifier, $.instance_var, $.class_var))
+      const name = field('name', choice(
+        $.identifier, $.instance_var, $.class_var, $.macro_expression,
+      ))
       const type = field('type', seq(/:\s/, $._bare_type))
 
       return seq(
@@ -1690,6 +1705,7 @@ module.exports = grammar({
       $.self,
       $.typeof,
       $.static_array_type,
+      $.macro_expression,
     ),
 
     // _numeric_type represents an expression in the type grammar that resolves
@@ -1765,6 +1781,7 @@ module.exports = grammar({
         alias($.identifier_method_call, $.identifier),
         $.string,
         alias($.string_percent_literal, $.string),
+        $.macro_expression,
       ))
 
       return seq(
@@ -2324,6 +2341,7 @@ module.exports = grammar({
         alias($.identifier_method_call, $.identifier),
         $.string,
         alias($.string_percent_literal, $.string),
+        $.macro_expression,
       ))
 
       return seq(
@@ -2780,6 +2798,7 @@ module.exports = grammar({
         $.false,
         $.nil,
         $._implicit_object_call,
+        $.macro_expression,
       ))
 
       return seq(

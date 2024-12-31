@@ -43,7 +43,6 @@ crystal/compiler_rt.cr
 crystal/compiler_rt/fixint.cr
 crystal/compiler_rt/float.cr
 crystal/compiler_rt/mul.cr
-crystal/compiler_rt/pow.cr
 crystal/datum.cr
 crystal/digest/md5.cr
 crystal/digest/sha1.cr
@@ -130,7 +129,6 @@ io/encoding.cr
 io/memory.cr
 iterator.cr
 json/from_json.cr
-json/pull_parser.cr
 json/serialization.cr
 lib_c/aarch64-android/c/dirent.cr
 lib_c/aarch64-android/c/pthread.cr
@@ -302,7 +300,6 @@ process/executable_path.cr
 raise.cr
 random.cr
 random/isaac.cr
-random/secure.cr
 range.cr
 range/bsearch.cr
 reference.cr
@@ -313,7 +310,6 @@ slice.cr
 socket.cr
 socket/address.cr
 socket/addrinfo.cr
-spec/expectations.cr
 spec/helpers/iterate.cr
 spec/helpers/string.cr
 spec/item.cr

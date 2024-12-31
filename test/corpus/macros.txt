@@ -260,3 +260,35 @@ macro var expressions
       name: (identifier)
       (string))
     rhs: (string)))
+
+========================
+def with macro expr name
+========================
+
+macro getter(name)
+  def {{ name.to_s.underscore }}
+    puts "hello"
+  end
+end
+
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier)))
+    body: (expressions
+      (method_def
+        name: (macro_expression
+          (call
+            receiver: (call
+              receiver: (identifier)
+              method: (identifier))
+            method: (identifier)))
+        body: (expressions
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (string))))))))
