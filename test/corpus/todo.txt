@@ -152,23 +152,6 @@ node.as(LibXML::Node*)
         (operator)
         (MISSING identifier)))))
 
-==============================
-instance var with pointer type
-:error
-==============================
-
-@ivar : UInt8*
-
----
-
-(expressions
-  (call
-    (type_declaration
-      (instance_var)
-      (constant))
-    (operator)
-    (MISSING identifier)))
-
 =================================
 Array-like and hash-like literals
 :error

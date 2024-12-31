@@ -53,7 +53,6 @@ crystal/main.cr
 crystal/once.cr
 crystal/scheduler.cr
 crystal/system/print_error.cr
-crystal/system/thread.cr
 crystal/system/unix/addrinfo.cr
 crystal/system/unix/arc4random.cr
 crystal/system/unix/dir.cr
@@ -64,7 +63,6 @@ crystal/system/unix/file_descriptor.cr
 crystal/system/unix/process.cr
 crystal/system/unix/pthread.cr
 crystal/system/unix/socket.cr
-crystal/system/unix/syscall.cr
 crystal/system/unix/time.cr
 crystal/system/wasi/dir.cr
 crystal/system/wasi/file_descriptor.cr
@@ -99,11 +97,9 @@ ecr/macros.cr
 enum.cr
 enumerable.cr
 errno.cr
-exception/call_stack.cr
 exception/call_stack/elf.cr
 exception/call_stack/libunwind.cr
 exception/call_stack/mach_o.cr
-exception/call_stack/null.cr
 exception/call_stack/stackwalk.cr
 exception/lib_unwind.cr
 fiber.cr
@@ -308,7 +304,6 @@ range/bsearch.cr
 reference.cr
 reference_storage.cr
 regex/pcre.cr
-regex/pcre2.cr
 slice.cr
 socket.cr
 socket/address.cr
@@ -329,7 +324,6 @@ time.cr
 tuple.cr
 unicode/unicode.cr
 uri/params/serializable.cr
-uri/uri_parser.cr
 uuid.cr
 va_list.cr
 weak_ref.cr

@@ -982,6 +982,9 @@ alias ProcP = -> C *
 alias SP = String*
 alias SPP = String**
 alias SPNP = String*?*
+alias SPPPPPP = String** * ** *
+
+int_ptr : UInt8* = Pointer(UInt8).null
 
 alias Foo = {*{Char, String}*} # compiler blocks this type of splat
 --------------------------------------------------------------------------------
@@ -1007,6 +1010,25 @@ alias Foo = {*{Char, String}*} # compiler blocks this type of splat
       (nilable_type
         (pointer_type
           (constant)))))
+  (alias
+    name: (constant)
+    type: (pointer_type
+      (pointer_type
+        (pointer_type
+          (pointer_type
+            (pointer_type
+              (pointer_type
+                (constant))))))))
+  (type_declaration
+    var: (identifier)
+    type: (pointer_type
+      (constant))
+    value: (call
+      receiver: (generic_instance_type
+        (constant)
+        params: (param_list
+          (constant)))
+      method: (identifier)))
   (alias
     name: (constant)
     type: (tuple_type

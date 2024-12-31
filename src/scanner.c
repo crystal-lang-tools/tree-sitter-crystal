@@ -39,6 +39,7 @@ enum Token {
     BINARY_WRAPPING_PLUS,
     BINARY_WRAPPING_MINUS,
 
+    POINTER_STAR,
     UNARY_STAR,
     BINARY_STAR,
 
@@ -1481,8 +1482,13 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
             break;
 
         case '*':
-            if (valid_symbols[UNARY_STAR] || valid_symbols[BINARY_STAR] || valid_symbols[UNARY_DOUBLE_STAR] || valid_symbols[BINARY_DOUBLE_STAR]) {
+            if (valid_symbols[POINTER_STAR] || valid_symbols[UNARY_STAR] || valid_symbols[BINARY_STAR] || valid_symbols[UNARY_DOUBLE_STAR] || valid_symbols[BINARY_DOUBLE_STAR]) {
                 lex_advance(lexer);
+
+                if (valid_symbols[POINTER_STAR] && !valid_symbols[ERROR_RECOVERY]) {
+                    lexer->result_symbol = POINTER_STAR;
+                    return true;
+                }
 
                 if (lexer->lookahead == '=') {
                     return false;
