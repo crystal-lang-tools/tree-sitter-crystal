@@ -90,7 +90,8 @@ clean:
 
 test:
 	$(TS) test
-	crystal run test/stdlib_coverage.cr
+	GC_DONT_GC=1 crystal run test/stdlib_coverage.cr
+	GC_DONT_GC=1 crystal run test/crystal_parse_corpus.cr
 
 tree-sitter-crystal.wasm: grammar.js src/scanner.c
 	$(TS) build --wasm

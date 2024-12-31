@@ -152,18 +152,6 @@ node.as(LibXML::Node*)
         (operator)
         (MISSING identifier)))))
 
-=================================
-Array-like and hash-like literals
-:error
-=================================
-
-Set{1, 2, 3}
-MyType{"foo" => "bar"}
-
----
-
-
-
 =================
 static array type
 :error

@@ -22,14 +22,12 @@ compiler/crystal/interpreter/repl_reader.cr
 compiler/crystal/interpreter/value.cr
 compiler/crystal/loader/msvc.cr
 compiler/crystal/macros.cr
-compiler/crystal/macros/macros.cr
 compiler/crystal/macros/methods.cr
 compiler/crystal/program.cr
 compiler/crystal/semantic/exception.cr
 compiler/crystal/semantic/filters.cr
 compiler/crystal/semantic/lib.cr
 compiler/crystal/semantic/restrictions.cr
-compiler/crystal/semantic/type_lookup.cr
 compiler/crystal/syntax/ast.cr
 compiler/crystal/syntax/lexer.cr
 compiler/crystal/syntax/token.cr
@@ -115,7 +113,6 @@ hash.cr
 http/client.cr
 http/headers.cr
 http/server.cr
-http/server/handlers/static_file_handler.cr
 http/web_socket/protocol.cr
 indexable.cr
 indexable/mutable.cr
@@ -285,7 +282,6 @@ macros.cr
 math/libm.cr
 named_tuple.cr
 number.cr
-oauth2/client.cr
 object.cr
 openssl/bio.cr
 openssl/ssl/context.cr
@@ -311,7 +307,6 @@ socket/addrinfo.cr
 spec/expectations.cr
 spec/helpers/iterate.cr
 spec/helpers/string.cr
-spec/item.cr
 static_array.cr
 string.cr
 string/builder.cr

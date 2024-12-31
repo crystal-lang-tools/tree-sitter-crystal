@@ -806,6 +806,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "array_like_type_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hash_like_type_literal"
+        },
+        {
+          "type": "SYMBOL",
           "name": "assign"
         },
         {
@@ -8416,6 +8424,75 @@
         {
           "type": "STRING",
           "value": "do"
+        }
+      ]
+    },
+    "array_like_type_literal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "receiver",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "constant"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "generic_instance_type"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "arguments",
+          "content": {
+            "type": "SYMBOL",
+            "name": "tuple"
+          }
+        }
+      ]
+    },
+    "hash_like_type_literal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "receiver",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "constant"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "generic_instance_type"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "arguments",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "hash"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "named_tuple"
+              }
+            ]
+          }
         }
       ]
     },

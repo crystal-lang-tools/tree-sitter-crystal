@@ -529,6 +529,8 @@ module.exports = grammar({
       alias($.comparison_operator, $.call),
       alias($.index_operator, $.index_call),
       $.index_call,
+      $.array_like_type_literal,
+      $.hash_like_type_literal,
       $.assign,
       alias($.operator_assign, $.op_assign),
 
@@ -1939,6 +1941,19 @@ module.exports = grammar({
     macro_begin: $ => 'begin',
 
     macro_verbatim: $ => seq('verbatim', 'do'),
+
+    array_like_type_literal: $ => seq(
+      field('receiver', choice($.constant, $.generic_instance_type)),
+      field('arguments', $.tuple),
+    ),
+
+    hash_like_type_literal: $ => seq(
+      field('receiver', choice($.constant, $.generic_instance_type)),
+      // NOTE(margret): Only allowing named_tuple here to
+      // not have the scanner give an assert; they're not
+      // allowed by the stdlib parser
+      field('arguments', choice($.hash, $.named_tuple)),
+    ),
 
     // Represents a macro call prefixed with private/protected, e.g.
     //   private getter foo : String

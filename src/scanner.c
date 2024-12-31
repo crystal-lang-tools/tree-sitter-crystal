@@ -1195,7 +1195,8 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                     }
 
                     // Is there anywhere else '{' could represent either a block or a hash/tuple?
-                    assert(valid_symbols[END_OF_RANGE] || valid_symbols[START_OF_PARENLESS_ARGS]);
+                    // TODO(margret): Disabling temporarily as this is asserting for hash-like literals
+                    // assert(valid_symbols[END_OF_RANGE] || valid_symbols[START_OF_PARENLESS_ARGS]);
                     return false;
 
                 } else if (BRACE_BLOCK && BRACE_TYPE) {
