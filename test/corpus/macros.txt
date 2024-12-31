@@ -170,7 +170,8 @@ nested macros and macro vars
       (integer)
       (integer)))
   (assign
-    lhs: (macro_var)
+    lhs: (macro_var
+      name: (identifier))
     rhs: (call
       receiver: (integer)
       method: (operator)
@@ -180,7 +181,8 @@ nested macros and macro vars
   (assign
     lhs: (identifier)
     rhs: (call
-      receiver: (macro_var)
+      receiver: (macro_var
+        name: (identifier))
       method: (operator)
       arguments: (argument_list
         (integer))))
@@ -205,7 +207,8 @@ var5 = 4321 % %var1
     lhs: (identifier)
     rhs: (integer))
   (assign
-    lhs: (macro_var)
+    lhs: (macro_var
+      name: (identifier))
     rhs: (integer))
   (assign
     lhs: (identifier)
@@ -234,7 +237,8 @@ var5 = 4321 % %var1
       receiver: (integer)
       method: (operator)
       arguments: (argument_list
-        (macro_var)))))
+        (macro_var
+          name: (identifier))))))
 
 =====================
 macro var expressions
@@ -248,9 +252,11 @@ macro var expressions
 (expressions
   (assign
     lhs: (macro_var
+      name: (identifier)
       (identifier))
     rhs: (integer))
   (assign
     lhs: (macro_var
+      name: (identifier)
       (string))
     rhs: (string)))
