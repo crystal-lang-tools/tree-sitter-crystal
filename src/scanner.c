@@ -2081,8 +2081,6 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                 if (next_char_is_identifier(lexer)) {
                     // This is some other identifier, not 'yield'
                     return false;
-                } else if (next_is_colon_space(lexer)) {
-                    return false;
                 }
 
                 lexer->result_symbol = END_OF_WITH_EXPRESSSION;
