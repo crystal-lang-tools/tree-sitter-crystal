@@ -4314,3 +4314,21 @@ typeof : Int32
   (type_declaration
     var: (identifier)
     type: (constant)))
+
+===========================
+with yield type declaration
+===========================
+
+with hello yield
+with yield : String? yield
+
+---
+
+(expressions
+  (yield
+    (identifier))
+  (yield
+    (type_declaration
+      (identifier)
+      (nilable_type
+        (constant)))))

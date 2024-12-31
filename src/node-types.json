@@ -238,6 +238,73 @@
     }
   },
   {
+    "type": "alignof",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "class_type",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "named_tuple_type",
+          "named": true
+        },
+        {
+          "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "proc_type",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "splat_type",
+          "named": true
+        },
+        {
+          "type": "static_array_type",
+          "named": true
+        },
+        {
+          "type": "tuple_type",
+          "named": true
+        },
+        {
+          "type": "typeof",
+          "named": true
+        },
+        {
+          "type": "underscore",
+          "named": true
+        },
+        {
+          "type": "union_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "and",
     "named": true,
     "fields": {},
@@ -245,6 +312,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -331,6 +402,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -547,6 +622,10 @@
       "required": false,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -640,6 +719,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -893,6 +976,10 @@
       "required": false,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -978,6 +1065,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -1233,6 +1324,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -1318,6 +1413,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -1569,6 +1668,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -1654,6 +1757,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -1843,6 +1950,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -1928,6 +2039,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -2205,6 +2320,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -2294,6 +2413,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -2781,6 +2904,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -2866,6 +2993,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -3097,6 +3228,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -3182,6 +3317,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -3361,6 +3500,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -3446,6 +3589,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -3817,6 +3964,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -3902,6 +4053,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -4075,6 +4230,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -4160,6 +4319,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -4333,6 +4496,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -4418,6 +4585,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -4615,6 +4786,10 @@
             "named": true
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -4736,6 +4911,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -4974,6 +5153,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -5059,6 +5242,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -5353,6 +5540,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -5438,6 +5629,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -5645,6 +5840,10 @@
           "named": true
         },
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -5766,6 +5965,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -6099,6 +6302,10 @@
           "named": true
         },
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -6228,6 +6435,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -6467,11 +6678,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "false",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "float",
@@ -7028,6 +7234,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -7113,6 +7323,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -7318,6 +7532,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -7403,6 +7621,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -7759,6 +7981,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -7844,6 +8070,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -8021,6 +8251,73 @@
     }
   },
   {
+    "type": "instance_alignof",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "class_type",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "named_tuple_type",
+          "named": true
+        },
+        {
+          "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "proc_type",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "splat_type",
+          "named": true
+        },
+        {
+          "type": "static_array_type",
+          "named": true
+        },
+        {
+          "type": "tuple_type",
+          "named": true
+        },
+        {
+          "type": "typeof",
+          "named": true
+        },
+        {
+          "type": "underscore",
+          "named": true
+        },
+        {
+          "type": "union_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "instance_sizeof",
     "named": true,
     "fields": {},
@@ -8100,6 +8397,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -8186,6 +8487,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -8460,6 +8765,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -8545,6 +8854,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -8725,6 +9038,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -8814,6 +9131,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -8996,6 +9317,10 @@
           "named": true
         },
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -9117,6 +9442,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -9339,6 +9668,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -9428,6 +9761,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -9625,6 +9962,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -9710,6 +10051,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -9889,6 +10234,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -9974,6 +10323,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -10160,6 +10513,10 @@
       "required": false,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -10245,6 +10602,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -10662,6 +11023,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -10747,6 +11112,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -10925,6 +11294,10 @@
           "named": true
         },
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -11046,6 +11419,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -11268,6 +11645,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -11353,6 +11734,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -11534,6 +11919,10 @@
             "named": true
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -11655,6 +12044,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -11882,6 +12275,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -11967,6 +12364,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -12145,6 +12546,10 @@
           "named": true
         },
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -12266,6 +12671,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -12488,6 +12897,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -12573,6 +12986,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -12754,6 +13171,10 @@
             "named": true
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -12875,6 +13296,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -13153,6 +13578,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -13238,6 +13667,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -13607,6 +14040,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -13692,6 +14129,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -13975,6 +14416,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -14060,6 +14505,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -14240,6 +14689,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -14325,6 +14778,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -14507,6 +14964,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -14592,6 +15053,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -15029,11 +15494,6 @@
     }
   },
   {
-    "type": "private",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "proc",
     "named": true,
     "fields": {
@@ -15268,11 +15728,6 @@
     }
   },
   {
-    "type": "protected",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "pseudo_constant",
     "named": true,
     "fields": {}
@@ -15288,6 +15743,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -15375,6 +15834,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -15548,6 +16011,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -15633,6 +16100,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -16065,6 +16536,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -16154,6 +16629,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -16499,6 +16978,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -16508,6 +16991,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -16686,6 +17173,10 @@
           "named": true
         },
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -16807,6 +17298,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -17017,11 +17512,6 @@
     }
   },
   {
-    "type": "true",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "tuple",
     "named": true,
     "fields": {},
@@ -17029,6 +17519,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -17119,6 +17613,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -17434,6 +17932,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -17519,6 +18021,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -17783,6 +18289,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -17868,6 +18378,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -18225,6 +18739,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -18310,6 +18828,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -18519,6 +19041,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -18604,6 +19130,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -18793,6 +19323,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -18882,6 +19416,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -19071,6 +19609,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -19156,6 +19698,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -19335,6 +19881,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -19420,6 +19970,10 @@
           },
           {
             "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
             "named": true
           },
           {
@@ -19893,6 +20447,10 @@
     "named": false
   },
   {
+    "type": "alignof",
+    "named": false
+  },
+  {
     "type": "annotation",
     "named": false
   },
@@ -19962,7 +20520,7 @@
   },
   {
     "type": "false",
-    "named": false
+    "named": true
   },
   {
     "type": "for",
@@ -20009,6 +20567,10 @@
     "named": false
   },
   {
+    "type": "instance_alignof",
+    "named": false
+  },
+  {
     "type": "instance_sizeof",
     "named": false
   },
@@ -20033,10 +20595,6 @@
     "named": false
   },
   {
-    "type": "nil",
-    "named": false
-  },
-  {
     "type": "of",
     "named": false
   },
@@ -20046,11 +20604,11 @@
   },
   {
     "type": "private",
-    "named": false
+    "named": true
   },
   {
     "type": "protected",
-    "named": false
+    "named": true
   },
   {
     "type": "regex_character_class",
@@ -20110,7 +20668,7 @@
   },
   {
     "type": "true",
-    "named": false
+    "named": true
   },
   {
     "type": "type",

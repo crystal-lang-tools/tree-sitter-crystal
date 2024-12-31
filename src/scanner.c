@@ -66,47 +66,6 @@ enum Token {
     REGULAR_ENSURE_KEYWORD,
     MODIFIER_ENSURE_KEYWORD,
 
-    ABSTRACT_KEYWORD,
-    ALIAS_KEYWORD,
-    ANNOTATION_KEYWORD,
-    ASM_KEYWORD,
-    BEGIN_KEYWORD,
-    BREAK_KEYWORD,
-    CASE_KEYWORD,
-    CLASS_KEYWORD,
-    DEF_KEYWORD,
-    END_KEYWORD,
-    ENUM_KEYWORD,
-    EXTEND_KEYWORD,
-    FALSE_KEYWORD,
-    FUN_KEYWORD,
-    INCLUDE_KEYWORD,
-    INSTANCE_SIZEOF_KEYWORD,
-    LIB_KEYWORD,
-    MACRO_KEYWORD,
-    MODULE_KEYWORD,
-    NEXT_KEYWORD,
-    NIL_KEYWORD,
-    OFFSETOF_KEYWORD,
-    PRIVATE_KEYWORD,
-    PROTECTED_KEYWORD,
-    REQUIRE_KEYWORD,
-    RETURN_KEYWORD,
-    SELECT_KEYWORD,
-    SIZEOF_KEYWORD,
-    STRUCT_KEYWORD,
-    TRUE_KEYWORD,
-    TYPEOF_KEYWORD,
-    UNTIL_KEYWORD,
-    WHILE_KEYWORD,
-    WITH_KEYWORD,
-    YIELD_KEYWORD,
-
-    //  TODO:
-    //  _pointerof_keyword
-    //  _alignof_keyword
-    //  _instance_alignof_keyword
-
     MODULO_OPERATOR,
 
     STRING_LITERAL_START,
@@ -1960,853 +1919,152 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                 return true;
             }
             break;
-
-        case 'a':
-            if (valid_symbols[ABSTRACT_KEYWORD] || valid_symbols[ALIAS_KEYWORD] || valid_symbols[ANNOTATION_KEYWORD] || valid_symbols[ASM_KEYWORD]) {
+        case 'e':
+            if (valid_symbols[REGULAR_ENSURE_KEYWORD] || valid_symbols[MODIFIER_ENSURE_KEYWORD]) {
                 lex_advance(lexer);
-                if (lexer->lookahead == 'b' && valid_symbols[ABSTRACT_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 's') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 't') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'r') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'a') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'c') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 't') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = ABSTRACT_KEYWORD;
-                    return true;
-
-                } else if (lexer->lookahead == 'l' && valid_symbols[ALIAS_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'i') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'a') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 's') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = ALIAS_KEYWORD;
-                    return true;
-                } else if (lexer->lookahead == 'n' && valid_symbols[ANNOTATION_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'n') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'o') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 't') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'a') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 't') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'i') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'o') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'n') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = ANNOTATION_KEYWORD;
-                    return true;
-                } else if (lexer->lookahead == 's' && valid_symbols[ASM_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'm') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = ASM_KEYWORD;
-                    return true;
-                }
-            }
-            break;
-        case 'b':
-            if (valid_symbols[BREAK_KEYWORD] || valid_symbols[BEGIN_KEYWORD]) {
+                if (lexer->lookahead != 'n') { return false; }
                 lex_advance(lexer);
-                if (lexer->lookahead == 'r' && valid_symbols[BREAK_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'a') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'k') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = BREAK_KEYWORD;
-                    return true;
-
-                } else if (lexer->lookahead == 'e' && valid_symbols[BEGIN_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'g') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'i') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'n') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = BEGIN_KEYWORD;
-                    return true;
-                }
-            }
-            break;
-        case 'c':
-            if (valid_symbols[CLASS_KEYWORD] || valid_symbols[CASE_KEYWORD]) {
+                if (lexer->lookahead != 's') { return false; }
                 lex_advance(lexer);
-                if (lexer->lookahead == 'l' && valid_symbols[CLASS_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'a') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 's') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 's') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = CLASS_KEYWORD;
-                    return true;
-
-                } else if (lexer->lookahead == 'a' && valid_symbols[CASE_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 's') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = CASE_KEYWORD;
-                    return true;
-                }
-            }
-            break;
-        case 'd':
-            if (valid_symbols[DEF_KEYWORD]) {
+                if (lexer->lookahead != 'u') { return false; }
+                lex_advance(lexer);
+                if (lexer->lookahead != 'r') { return false; }
                 lex_advance(lexer);
                 if (lexer->lookahead != 'e') { return false; }
-                lex_advance(lexer);
-                if (lexer->lookahead != 'f') { return false; }
 
                 lex_advance(lexer);
                 if (next_char_is_identifier(lexer)) {
+                    // This is some other identifier, not 'ensure'
                     return false;
                 } else if (next_is_colon_space(lexer)) {
                     return false;
                 }
 
-                lexer->result_symbol = DEF_KEYWORD;
-                return true;
-            }
-            break;
-        case 'e':
-            if (valid_symbols[REGULAR_ENSURE_KEYWORD] || valid_symbols[MODIFIER_ENSURE_KEYWORD] || valid_symbols[ENUM_KEYWORD] || valid_symbols[END_KEYWORD] || valid_symbols[EXTEND_KEYWORD]) {
-                lex_advance(lexer);
-                if (lexer->lookahead == 'x' && valid_symbols[EXTEND_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 't') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'n') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'd') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = EXTEND_KEYWORD;
+                if (valid_symbols[MODIFIER_ENSURE_KEYWORD] && !valid_symbols[REGULAR_ENSURE_KEYWORD]) {
+                    lexer->result_symbol = MODIFIER_ENSURE_KEYWORD;
                     return true;
-                } else if (lexer->lookahead == 'n' && (valid_symbols[REGULAR_ENSURE_KEYWORD] || valid_symbols[MODIFIER_ENSURE_KEYWORD] || valid_symbols[ENUM_KEYWORD] || valid_symbols[END_KEYWORD])) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead == 'd') {
-                        lex_advance(lexer);
-                        if (next_char_is_identifier(lexer)) {
-                            return false;
-                        } else if (next_is_colon_space(lexer)) {
-                            return false;
-                        }
-
-                        lexer->result_symbol = END_KEYWORD;
-                        return true;
-                    } else if (lexer->lookahead == 'u' && valid_symbols[ENUM_KEYWORD]) {
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'm') { return false; }
-
-                        lex_advance(lexer);
-                        if (next_char_is_identifier(lexer)) {
-                            return false;
-                        } else if (next_is_colon_space(lexer)) {
-                            return false;
-                        }
-
-                        lexer->result_symbol = ENUM_KEYWORD;
-                        return true;
-                    } else if (lexer->lookahead == 's' && (valid_symbols[REGULAR_ENSURE_KEYWORD] || valid_symbols[MODIFIER_ENSURE_KEYWORD])) {
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'u') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'r') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'e') { return false; }
-
-                        lex_advance(lexer);
-                        if (next_char_is_identifier(lexer)) {
-                            // This is some other identifier, not 'ensure'
-                            return false;
-                        } else if (next_is_colon_space(lexer)) {
-                            return false;
-                        }
-
-                        if (valid_symbols[MODIFIER_ENSURE_KEYWORD] && !valid_symbols[REGULAR_ENSURE_KEYWORD]) {
-                            lexer->result_symbol = MODIFIER_ENSURE_KEYWORD;
-                            return true;
-                        } else if (valid_symbols[REGULAR_ENSURE_KEYWORD] && !valid_symbols[MODIFIER_ENSURE_KEYWORD]) {
-                            lexer->result_symbol = REGULAR_ENSURE_KEYWORD;
-                            return true;
-                        } else {
-                            // Both are valid
-                            assert(valid_symbols[MODIFIER_ENSURE_KEYWORD] && valid_symbols[REGULAR_ENSURE_KEYWORD]);
-
-                            // TODO: currently assuming that the modifier always takes
-                            // precedence here. Is that correct?
-                            lexer->result_symbol = MODIFIER_ENSURE_KEYWORD;
-                            return true;
-                        }
-                    }
-                }
-            }
-            break;
-        case 'f':
-            if (valid_symbols[FALSE_KEYWORD] || valid_symbols[FUN_KEYWORD]) {
-                lex_advance(lexer);
-                if (lexer->lookahead == 'a' && valid_symbols[FALSE_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'l') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 's') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = FALSE_KEYWORD;
+                } else if (valid_symbols[REGULAR_ENSURE_KEYWORD] && !valid_symbols[MODIFIER_ENSURE_KEYWORD]) {
+                    lexer->result_symbol = REGULAR_ENSURE_KEYWORD;
                     return true;
+                } else {
+                    // Both are valid
+                    assert(valid_symbols[MODIFIER_ENSURE_KEYWORD] && valid_symbols[REGULAR_ENSURE_KEYWORD]);
 
-                } else if (lexer->lookahead == 'u' && valid_symbols[FUN_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'n') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = FUN_KEYWORD;
+                    // TODO: currently assuming that the modifier always takes
+                    // precedence here. Is that correct?
+                    lexer->result_symbol = MODIFIER_ENSURE_KEYWORD;
                     return true;
                 }
             }
             break;
         case 'i':
-            if (valid_symbols[REGULAR_IF_KEYWORD] || valid_symbols[MODIFIER_IF_KEYWORD] || valid_symbols[INCLUDE_KEYWORD] || valid_symbols[INSTANCE_SIZEOF_KEYWORD]) {
+            if (valid_symbols[REGULAR_IF_KEYWORD] || valid_symbols[MODIFIER_IF_KEYWORD]) {
                 lex_advance(lexer);
-                if (lexer->lookahead == 'n' && (valid_symbols[INCLUDE_KEYWORD] || valid_symbols[INSTANCE_SIZEOF_KEYWORD])) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead == 'c' && valid_symbols[INCLUDE_KEYWORD]) {
-                        if (lexer->lookahead != 'c') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'l') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'u') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'd') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'e') { return false; }
-
-                        lex_advance(lexer);
-                        if (next_char_is_identifier(lexer)) {
-                            return false;
-                        } else if (next_is_colon_space(lexer)) {
-                            return false;
-                        }
-
-                        lexer->result_symbol = INCLUDE_KEYWORD;
-                        return true;
-                    } else if (lexer->lookahead == 's' && valid_symbols[INSTANCE_SIZEOF_KEYWORD]) {
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 't') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'a') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'n') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'c') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'e') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != '_') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 's') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'i') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'z') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'e') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'o') { return false; }
-                        lex_advance(lexer);
-                        if (lexer->lookahead != 'f') { return false; }
-
-                        lex_advance(lexer);
-                        if (next_char_is_identifier(lexer)) {
-                            return false;
-                        } else if (next_is_colon_space(lexer)) {
-                            return false;
-                        }
-
-                        lexer->result_symbol = INSTANCE_SIZEOF_KEYWORD;
-                        return true;
-                    }
-                } else if (lexer->lookahead == 'f' && (valid_symbols[REGULAR_IF_KEYWORD] || valid_symbols[MODIFIER_IF_KEYWORD])) {
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        // This is some other identifier, not 'if'
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    if (valid_symbols[MODIFIER_IF_KEYWORD] && !valid_symbols[REGULAR_IF_KEYWORD]) {
-                        lexer->result_symbol = MODIFIER_IF_KEYWORD;
-                        return true;
-                    } else if (valid_symbols[REGULAR_IF_KEYWORD] && !valid_symbols[MODIFIER_IF_KEYWORD]) {
-                        lexer->result_symbol = REGULAR_IF_KEYWORD;
-                        return true;
-                    } else {
-                        // Both are valid
-                        assert(valid_symbols[MODIFIER_IF_KEYWORD] && valid_symbols[REGULAR_IF_KEYWORD]);
-
-                        // This sort of ambiguity may happen after an identifier
-                        // without parentheses, or after a keyword like `return`
-                        // that takes an optional expression.
-                        lexer->result_symbol = MODIFIER_IF_KEYWORD;
-                        return true;
-                    }
+                if (lexer->lookahead != 'f') {
+                    return false;
                 }
-            }
-            break;
-        case 'l':
-            if (valid_symbols[LIB_KEYWORD]) {
-                lex_advance(lexer);
-                if (lexer->lookahead != 'i') { return false; }
-                lex_advance(lexer);
-                if (lexer->lookahead != 'b') { return false; }
 
                 lex_advance(lexer);
                 if (next_char_is_identifier(lexer)) {
-                    return false;
-                } else if (next_is_colon_space(lexer)) {
-                    return false;
-                }
-
-                lexer->result_symbol = LIB_KEYWORD;
-                return true;
-            }
-            break;
-        case 'm':
-            if (valid_symbols[MACRO_KEYWORD] || valid_symbols[MODULE_KEYWORD]) {
-                lex_advance(lexer);
-                if (lexer->lookahead == 'a' && valid_symbols[MACRO_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'c') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'r') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'o') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = MACRO_KEYWORD;
-                    return true;
-
-                } else if (lexer->lookahead == 'o' && valid_symbols[MODULE_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'd') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'u') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'l') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = MODULE_KEYWORD;
-                    return true;
-                }
-            }
-            break;
-        case 'n':
-            if (valid_symbols[NEXT_KEYWORD] || valid_symbols[NIL_KEYWORD]) {
-                lex_advance(lexer);
-                if (lexer->lookahead == 'e' && valid_symbols[NEXT_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'x') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 't') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = NEXT_KEYWORD;
-                    return true;
-
-                } else if (lexer->lookahead == 'i' && valid_symbols[NIL_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'l') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = NIL_KEYWORD;
-                    return true;
-                }
-            }
-            break;
-        case 'o':
-            if (valid_symbols[OFFSETOF_KEYWORD]) {
-                lex_advance(lexer);
-                if (lexer->lookahead != 'f') { return false; }
-                lex_advance(lexer);
-                if (lexer->lookahead != 'f') { return false; }
-                lex_advance(lexer);
-                if (lexer->lookahead != 's') { return false; }
-                lex_advance(lexer);
-                if (lexer->lookahead != 'e') { return false; }
-                lex_advance(lexer);
-                if (lexer->lookahead != 't') { return false; }
-                lex_advance(lexer);
-                if (lexer->lookahead != 'o') { return false; }
-                lex_advance(lexer);
-                if (lexer->lookahead != 'f') { return false; }
-
-                lex_advance(lexer);
-                if (next_char_is_identifier(lexer)) {
-                    return false;
-                } else if (next_is_colon_space(lexer)) {
+                    // This is some other identifier, not 'if'
                     return false;
                 }
 
-                lexer->result_symbol = OFFSETOF_KEYWORD;
-                return true;
-            }
-            break;
-        case 'p':
-            if (valid_symbols[PRIVATE_KEYWORD] || valid_symbols[PROTECTED_KEYWORD]) {
-                lex_advance(lexer);
-                if (lexer->lookahead != 'r') { return false; }
-                lex_advance(lexer);
-
-                if (lexer->lookahead == 'i' && valid_symbols[PRIVATE_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'v') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'a') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 't') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = PRIVATE_KEYWORD;
+                if (valid_symbols[MODIFIER_IF_KEYWORD] && !valid_symbols[REGULAR_IF_KEYWORD]) {
+                    lexer->result_symbol = MODIFIER_IF_KEYWORD;
                     return true;
+                } else if (valid_symbols[REGULAR_IF_KEYWORD] && !valid_symbols[MODIFIER_IF_KEYWORD]) {
+                    lexer->result_symbol = REGULAR_IF_KEYWORD;
+                    return true;
+                } else {
+                    // Both are valid
+                    assert(valid_symbols[MODIFIER_IF_KEYWORD] && valid_symbols[REGULAR_IF_KEYWORD]);
 
-                } else if (lexer->lookahead == 'o' && valid_symbols[PROTECTED_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 't') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'c') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 't') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'd') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = PROTECTED_KEYWORD;
+                    // This sort of ambiguity may happen after an identifier
+                    // without parentheses, or after a keyword like `return`
+                    // that takes an optional expression.
+                    lexer->result_symbol = MODIFIER_IF_KEYWORD;
                     return true;
                 }
             }
             break;
         case 'r':
-            if (valid_symbols[REGULAR_RESCUE_KEYWORD] || valid_symbols[MODIFIER_RESCUE_KEYWORD] || valid_symbols[REQUIRE_KEYWORD] || valid_symbols[RETURN_KEYWORD]) {
+            if (valid_symbols[REGULAR_RESCUE_KEYWORD] || valid_symbols[MODIFIER_RESCUE_KEYWORD]) {
                 lex_advance(lexer);
                 if (lexer->lookahead != 'e') { return false; }
                 lex_advance(lexer);
-
-                if (lexer->lookahead == 'q' && valid_symbols[REQUIRE_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'u') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'i') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'r') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = REQUIRE_KEYWORD;
-                    return true;
-                } else if (lexer->lookahead == 't' && valid_symbols[RETURN_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'u') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'r') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'n') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = RETURN_KEYWORD;
-                    return true;
-                } else if (lexer->lookahead == 's' && (valid_symbols[REGULAR_RESCUE_KEYWORD] || valid_symbols[MODIFIER_RESCUE_KEYWORD])) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'c') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'u') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        // This is some other identifier, not 'rescue'
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    if (valid_symbols[MODIFIER_RESCUE_KEYWORD] && !valid_symbols[REGULAR_RESCUE_KEYWORD]) {
-                        lexer->result_symbol = MODIFIER_RESCUE_KEYWORD;
-                        return true;
-                    } else if (valid_symbols[REGULAR_RESCUE_KEYWORD] && !valid_symbols[MODIFIER_RESCUE_KEYWORD]) {
-                        lexer->result_symbol = REGULAR_RESCUE_KEYWORD;
-                        return true;
-                    } else {
-                        // Both are valid
-                        assert(valid_symbols[MODIFIER_RESCUE_KEYWORD] && valid_symbols[REGULAR_RESCUE_KEYWORD]);
-
-                        // TODO: currently assuming that the modifier always takes
-                        // precedence here. Is that correct?
-                        lexer->result_symbol = MODIFIER_RESCUE_KEYWORD;
-                        return true;
-                    }
-                }
-            }
-            break;
-        case 's':
-            if (valid_symbols[SELECT_KEYWORD] || valid_symbols[SIZEOF_KEYWORD] || valid_symbols[STRUCT_KEYWORD]) {
+                if (lexer->lookahead != 's') { return false; }
                 lex_advance(lexer);
-                if (lexer->lookahead == 'e' && valid_symbols[SELECT_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'l') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'c') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 't') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = SELECT_KEYWORD;
-                    return true;
-
-                } else if (lexer->lookahead == 'i' && valid_symbols[SIZEOF_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'z') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'o') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'f') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = SIZEOF_KEYWORD;
-                    return true;
-                } else if (lexer->lookahead == 't' && valid_symbols[STRUCT_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'r') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'u') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'c') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 't') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = STRUCT_KEYWORD;
-                    return true;
-                }
-            }
-            break;
-        case 't':
-            if (valid_symbols[TRUE_KEYWORD] || valid_symbols[TYPEOF_KEYWORD]) {
+                if (lexer->lookahead != 'c') { return false; }
                 lex_advance(lexer);
-                if (lexer->lookahead == 'r' && valid_symbols[TRUE_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'u') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
+                if (lexer->lookahead != 'u') { return false; }
+                lex_advance(lexer);
+                if (lexer->lookahead != 'e') { return false; }
 
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
+                lex_advance(lexer);
+                if (next_char_is_identifier(lexer)) {
+                    // This is some other identifier, not 'rescue'
+                    return false;
+                } else if (next_is_colon_space(lexer)) {
+                    return false;
+                }
 
-                    lexer->result_symbol = TRUE_KEYWORD;
+                if (valid_symbols[MODIFIER_RESCUE_KEYWORD] && !valid_symbols[REGULAR_RESCUE_KEYWORD]) {
+                    lexer->result_symbol = MODIFIER_RESCUE_KEYWORD;
                     return true;
+                } else if (valid_symbols[REGULAR_RESCUE_KEYWORD] && !valid_symbols[MODIFIER_RESCUE_KEYWORD]) {
+                    lexer->result_symbol = REGULAR_RESCUE_KEYWORD;
+                    return true;
+                } else {
+                    // Both are valid
+                    assert(valid_symbols[MODIFIER_RESCUE_KEYWORD] && valid_symbols[REGULAR_RESCUE_KEYWORD]);
 
-                } else if (lexer->lookahead == 'y' && valid_symbols[TYPEOF_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'p') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'o') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'f') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = TYPEOF_KEYWORD;
+                    // TODO: currently assuming that the modifier always takes
+                    // precedence here. Is that correct?
+                    lexer->result_symbol = MODIFIER_RESCUE_KEYWORD;
                     return true;
                 }
             }
             break;
         case 'u':
-            if (valid_symbols[REGULAR_UNLESS_KEYWORD] || valid_symbols[MODIFIER_UNLESS_KEYWORD] || valid_symbols[UNTIL_KEYWORD]) {
+            if (valid_symbols[REGULAR_UNLESS_KEYWORD] || valid_symbols[MODIFIER_UNLESS_KEYWORD]) {
                 lex_advance(lexer);
                 if (lexer->lookahead != 'n') { return false; }
                 lex_advance(lexer);
-
-                if (lexer->lookahead == 't' && valid_symbols[UNTIL_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'i') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'l') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = UNTIL_KEYWORD;
-                    return true;
-                } else if (lexer->lookahead == 'l' && (valid_symbols[REGULAR_UNLESS_KEYWORD] || valid_symbols[MODIFIER_UNLESS_KEYWORD])) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 's') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 's') { return false; }
-
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        // This is some other identifier, not 'unless'
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    if (valid_symbols[MODIFIER_UNLESS_KEYWORD] && !valid_symbols[REGULAR_UNLESS_KEYWORD]) {
-                        lexer->result_symbol = MODIFIER_UNLESS_KEYWORD;
-                        return true;
-                    } else if (valid_symbols[REGULAR_UNLESS_KEYWORD] && !valid_symbols[MODIFIER_UNLESS_KEYWORD]) {
-                        lexer->result_symbol = REGULAR_UNLESS_KEYWORD;
-                        return true;
-                    } else {
-                        // Both are valid
-                        assert(valid_symbols[MODIFIER_UNLESS_KEYWORD] && valid_symbols[REGULAR_UNLESS_KEYWORD]);
-
-                        // This sort of ambiguity may happen after an identifier
-                        // without parentheses, or after a keyword like `return`
-                        // that takes an optional expression.
-                        lexer->result_symbol = MODIFIER_UNLESS_KEYWORD;
-                        return true;
-                    }
-                }
-            }
-            break;
-        case 'w':
-            if (valid_symbols[WHILE_KEYWORD] || valid_symbols[WITH_KEYWORD]) {
+                if (lexer->lookahead != 'l') { return false; }
                 lex_advance(lexer);
-                if (lexer->lookahead == 'h' && valid_symbols[WHILE_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'i') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'l') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'e') { return false; }
+                if (lexer->lookahead != 'e') { return false; }
+                lex_advance(lexer);
+                if (lexer->lookahead != 's') { return false; }
+                lex_advance(lexer);
+                if (lexer->lookahead != 's') { return false; }
 
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
+                lex_advance(lexer);
+                if (next_char_is_identifier(lexer)) {
+                    // This is some other identifier, not 'unless'
+                    return false;
+                }
 
-                    lexer->result_symbol = WHILE_KEYWORD;
+                if (valid_symbols[MODIFIER_UNLESS_KEYWORD] && !valid_symbols[REGULAR_UNLESS_KEYWORD]) {
+                    lexer->result_symbol = MODIFIER_UNLESS_KEYWORD;
                     return true;
-                } else if (lexer->lookahead == 'i' && valid_symbols[WITH_KEYWORD]) {
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 't') { return false; }
-                    lex_advance(lexer);
-                    if (lexer->lookahead != 'h') { return false; }
+                } else if (valid_symbols[REGULAR_UNLESS_KEYWORD] && !valid_symbols[MODIFIER_UNLESS_KEYWORD]) {
+                    lexer->result_symbol = REGULAR_UNLESS_KEYWORD;
+                    return true;
+                } else {
+                    // Both are valid
+                    assert(valid_symbols[MODIFIER_UNLESS_KEYWORD] && valid_symbols[REGULAR_UNLESS_KEYWORD]);
 
-                    lex_advance(lexer);
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = WITH_KEYWORD;
+                    // This sort of ambiguity may happen after an identifier
+                    // without parentheses, or after a keyword like `return`
+                    // that takes an optional expression.
+                    lexer->result_symbol = MODIFIER_UNLESS_KEYWORD;
                     return true;
                 }
             }
             break;
         case 'y':
-            if (valid_symbols[END_OF_WITH_EXPRESSSION] || valid_symbols[YIELD_KEYWORD]) {
+            if (valid_symbols[END_OF_WITH_EXPRESSSION]) {
                 // We don't want to consume the yield keyword
                 lexer->mark_end(lexer);
 
@@ -2818,26 +2076,17 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                 if (lexer->lookahead != 'l') { return false; }
                 lex_advance(lexer);
                 if (lexer->lookahead != 'd') { return false; }
+
                 lex_advance(lexer);
-
-                if (valid_symbols[END_OF_WITH_EXPRESSSION]) {
-                    if (next_char_is_identifier(lexer)) {
-                        // This is some other identifier, not 'yield'
-                        return false;
-                    }
-
-                    lexer->result_symbol = END_OF_WITH_EXPRESSSION;
-                    return true;
-                } else if (valid_symbols[YIELD_KEYWORD]) {
-                    if (next_char_is_identifier(lexer)) {
-                        return false;
-                    } else if (next_is_colon_space(lexer)) {
-                        return false;
-                    }
-
-                    lexer->result_symbol = YIELD_KEYWORD;
-                    return true;
+                if (next_char_is_identifier(lexer)) {
+                    // This is some other identifier, not 'yield'
+                    return false;
+                } else if (next_is_colon_space(lexer)) {
+                    return false;
                 }
+
+                lexer->result_symbol = END_OF_WITH_EXPRESSSION;
+                return true;
             }
             break;
 
