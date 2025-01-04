@@ -7253,7 +7253,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "constant"
+          "name": "float"
         },
         {
           "type": "SYMBOL",
@@ -7764,6 +7764,10 @@
               "name": "constant"
             },
             {
+              "type": "SYMBOL",
+              "name": "_numeric_type"
+            },
+            {
               "type": "ALIAS",
               "content": {
                 "type": "SYMBOL",
@@ -7789,6 +7793,10 @@
                   {
                     "type": "SYMBOL",
                     "name": "constant"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_numeric_type"
                   },
                   {
                     "type": "ALIAS",
@@ -7866,18 +7874,23 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_bare_type"
-            },
-            {
               "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "_splattable_type"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_bare_type"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_numeric_type"
+                    }
+                  ]
                 },
                 {
-                  "type": "REPEAT1",
+                  "type": "REPEAT",
                   "content": {
                     "type": "SEQ",
                     "members": [
@@ -7886,8 +7899,17 @@
                         "value": ","
                       },
                       {
-                        "type": "SYMBOL",
-                        "name": "_splattable_type"
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "_bare_type"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "_numeric_type"
+                          }
+                        ]
                       }
                     ]
                   }
@@ -7993,8 +8015,17 @@
             "value": "["
           },
           {
-            "type": "SYMBOL",
-            "name": "_numeric_type"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "constant"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_numeric_type"
+              }
+            ]
           },
           {
             "type": "STRING",
@@ -13818,11 +13849,6 @@
       "_bare_type",
       "proc_type",
       "parenthesized_proc_type"
-    ],
-    [
-      "_bare_type",
-      "proc_type",
-      "type_instance_param_list"
     ],
     [
       "proc_type"

@@ -152,18 +152,6 @@ node.as(LibXML::Node*)
         (operator)
         (MISSING identifier)))))
 
-=================
-static array type
-:error
-=================
-
-StaticArray(Int32, 8)
-StaticArray(Char*, 2)
-
----
-
-
-
 ==========================
 symbols ending with equals
 :error

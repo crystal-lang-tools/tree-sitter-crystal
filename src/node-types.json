@@ -15282,11 +15282,23 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "fun_param",
           "named": true
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -15299,6 +15311,10 @@
         },
         {
           "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "offsetof",
           "named": true
         },
         {
@@ -15315,6 +15331,10 @@
         },
         {
           "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
           "named": true
         },
         {
@@ -16909,6 +16929,10 @@
         },
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "float",
           "named": true
         },
         {

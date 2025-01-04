@@ -303,17 +303,6 @@ module.exports = grammar({
       $._bare_type, $.proc_type, $.parenthesized_proc_type,
     ],
 
-    // When the parser is in this state:
-    //   alias A = Foo(Bar,
-    //                     ^
-    // we need to consider each of these interpretations as legitimate:
-    //   alias A = Foo(Bar,)
-    //   alias A = Foo(Bar, Baz -> Qux)
-    //   alias A = Foo(Bar, Baz)
-    [
-      $._bare_type, $.proc_type, $.type_instance_param_list,
-    ],
-
     // Determining when to end a proc type is very complex. For instance, when
     // the parser is in this state:
     //   def foo : Int32 -> (
@@ -1699,7 +1688,7 @@ module.exports = grammar({
     // to a number. Mostly used for StaticArrays, e.g. UInt8[sizeof(String)].
     _numeric_type: $ => choice(
       $.integer,
-      $.constant,
+      $.float,
       $.sizeof,
       $.instance_sizeof,
       $.offsetof,
@@ -1802,6 +1791,7 @@ module.exports = grammar({
     type_param_list: $ => {
       const type_param = choice(
         $.constant,
+        $._numeric_type,
         alias($.type_param_splat, $.splat),
       )
 
@@ -1821,10 +1811,9 @@ module.exports = grammar({
 
     type_instance_param_list: $ => seq(
       choice(
-        $._bare_type,
         seq(
-          $._splattable_type,
-          repeat1(seq(',', $._splattable_type)),
+          choice($._bare_type, $._numeric_type),
+          repeat(seq(',', choice($._bare_type, $._numeric_type))),
         ),
         seq(
           $.named_type,
@@ -1840,7 +1829,9 @@ module.exports = grammar({
 
     pointer_type: $ => prec('atomic_type', seq($._type, alias($._pointer_star, '*'))),
 
-    static_array_type: $ => prec('atomic_type', seq($._type, '[', $._numeric_type, ']')),
+    static_array_type: $ => prec('atomic_type', seq(
+      $._type, '[', choice($.constant, $._numeric_type), ']',
+    )),
 
     _dot_call: $ => {
       const receiver = field('receiver', $._expression)

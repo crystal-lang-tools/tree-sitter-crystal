@@ -1126,6 +1126,11 @@ alias D = UInt8[CONST]
 alias E = UInt8[sizeof(Int64)]
 alias F = UInt8[instance_sizeof(Foo(Bar))]
 alias G = LibC::Char[offsetof(String -> Int32, @a)]
+alias H = StaticArray(Int32, 8)
+alias I = StaticArray(Char*, 2.0)
+alias J = Foo(Bar,)
+alias K = Foo(Bar, Baz -> Qux)
+alias L = Foo(Bar, Baz)
 --------------------------------------------------------------------------------
 
 (expressions
@@ -1174,4 +1179,41 @@ alias G = LibC::Char[offsetof(String -> Int32, @a)]
         (proc_type
           (constant)
           return: (constant))
-        (instance_var)))))
+        (instance_var))))
+  (alias
+    name: (constant)
+    type: (generic_instance_type
+      (constant)
+      params: (param_list
+        (constant)
+        (integer))))
+  (alias
+    name: (constant)
+    type: (generic_instance_type
+      (constant)
+      params: (param_list
+        (pointer_type
+          (constant))
+        (float))))
+  (alias
+    name: (constant)
+    type: (generic_instance_type
+      (constant)
+      params: (param_list
+        (constant))))
+  (alias
+    name: (constant)
+    type: (generic_instance_type
+      (constant)
+      params: (param_list
+        (proc_type
+          (constant)
+          (constant)
+          return: (constant)))))
+  (alias
+    name: (constant)
+    type: (generic_instance_type
+      (constant)
+      params: (param_list
+        (constant)
+        (constant)))))
