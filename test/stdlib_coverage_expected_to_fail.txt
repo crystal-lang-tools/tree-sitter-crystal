@@ -61,9 +61,7 @@ crystal/system/win32/addrinfo.cr
 crystal/system/win32/addrinfo_win7.cr
 crystal/system/win32/crypto.cr
 crystal/system/win32/event_loop_iocp.cr
-crystal/system/win32/fiber.cr
 crystal/system/win32/file.cr
-crystal/system/win32/file_descriptor.cr
 crystal/system/win32/iocp.cr
 crystal/system/win32/process.cr
 crystal/system/win32/socket.cr

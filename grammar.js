@@ -498,12 +498,6 @@ module.exports = grammar({
       $.case,
       alias($.exhaustive_case, $.case),
       $.select,
-      // TODO
-      // macro interpolation
-      // macro if
-      // macro for
-      // macro verbatim
-      // macro fresh variables
 
       // Methods
       $.call,
@@ -524,6 +518,7 @@ module.exports = grammar({
       $.array_like,
       $.hash_like,
       $.assign,
+      alias($.uninitialized_assign, $.assign),
       alias($.operator_assign, $.op_assign),
 
       // Logical operators
@@ -966,8 +961,6 @@ module.exports = grammar({
         alias($.brace_block, $.block),
       ))
 
-      // TODO: include syntax for capturing methods as procs
-
       return seq(
         '->',
         optional(params),
@@ -1046,7 +1039,7 @@ module.exports = grammar({
 
     // Same as argument_list_with_parens, except without `token.immediate`
     annotation_argument_list: $ => {
-      const args = choice($._expression, $.splat, $.double_splat, $.named_expr)
+      const args = choice($._expression, $.splat, $.double_splat, $.named_expr, $.out)
 
       return seq(
         '(',
@@ -1840,7 +1833,7 @@ module.exports = grammar({
     },
 
     bracket_argument_list: $ => {
-      const args = choice($._expression, $.splat, $.double_splat, $.named_expr)
+      const args = choice($._expression, $.splat, $.double_splat, $.named_expr, $.out)
 
       return seq(
         args,
@@ -2326,12 +2319,12 @@ module.exports = grammar({
       return seq(
         name,
         token.immediate(':'),
-        $._expression,
+        choice($._expression, $.out),
       )
     },
 
     argument_list_no_parens: $ => {
-      const args = choice($._expression, $.splat, $.double_splat, $.named_expr)
+      const args = choice($._expression, $.splat, $.double_splat, $.named_expr, $.out)
 
       return prec.right(seq(
         optional($._start_of_parenless_args),
@@ -2341,7 +2334,7 @@ module.exports = grammar({
     },
 
     argument_list_no_parens_with_block: $ => {
-      const args = choice($._expression, $.splat, $.double_splat, $.named_expr)
+      const args = choice($._expression, $.splat, $.double_splat, $.named_expr, $.out)
 
       return prec.right(seq(
         optional($._start_of_parenless_args),
@@ -2355,7 +2348,7 @@ module.exports = grammar({
     },
 
     argument_list_with_parens: $ => {
-      const args = choice($._expression, $.splat, $.double_splat, $.named_expr)
+      const args = choice($._expression, $.splat, $.double_splat, $.named_expr, $.out)
 
       return prec.right(seq(
         token.immediate('('),
@@ -2369,7 +2362,7 @@ module.exports = grammar({
     },
 
     argument_list_with_parens_and_block: $ => {
-      const args = choice($._expression, $.splat, $.double_splat, $.named_expr)
+      const args = choice($._expression, $.splat, $.double_splat, $.named_expr, $.out)
 
       return prec.right(seq(
         token.immediate('('),
@@ -2382,6 +2375,15 @@ module.exports = grammar({
         ')',
       ))
     },
+
+    out: $ => seq(
+      'out',
+      choice(
+        $.identifier,
+        $.instance_var,
+        $.underscore,
+      ),
+    ),
 
     assign: $ => {
       const lhs = field('lhs', choice(
@@ -2499,6 +2501,16 @@ module.exports = grammar({
         seq(multi_lhs, '=', multi_rhs),
       )
     },
+
+    uninitialized_assign: $ => {
+      return seq(
+        field('lhs', choice($.identifier, $.instance_var, $.class_var, $.global_var)),
+        '=',
+        field('rhs', $.uninitialized_var),
+      )
+    },
+
+    uninitialized_var: $ => seq('uninitialized', $._bare_type),
 
     type_declaration: $ => {
       const variable = field('var', choice($.identifier, $.instance_var, $.class_var, $.macro_var))

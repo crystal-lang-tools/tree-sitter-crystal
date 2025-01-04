@@ -4186,3 +4186,115 @@ asm ("nop")
     text: (string))
   (asm
     text: (string)))
+
+=============
+uninitialized
+=============
+
+uninitialized Int32
+a = uninitialized Int32
+@b =
+uninitialized
+Int32*
+
+---
+
+(expressions
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (constant)))
+  (assign
+    lhs: (identifier)
+    rhs: (uninitialized_var
+      (constant)))
+  (assign
+    lhs: (instance_var)
+    rhs: (uninitialized_var
+      (pointer_type
+        (constant)))))
+
+===========
+out keyword
+===========
+
+@[MyAnnotationIs(out @of_this_world)]
+method.call(out _)
+method[out hello].to_s
+method.call(out @method, &method)
+
+method(foo: out _)
+method bar: out @ivar
+
+method out @ivar2 do
+  puts "hello"
+end
+method(out @ivar2) do
+  puts "hello"
+end
+
+---
+
+(expressions
+  (annotation
+    (constant)
+    arguments: (argument_list
+      (out
+        (instance_var))))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (out
+        (underscore))))
+  (call
+    receiver: (index_call
+      receiver: (identifier)
+      arguments: (argument_list
+        (out
+          (identifier))))
+    method: (identifier))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (out
+        (instance_var))
+      (block_argument
+        (identifier))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (named_expr
+        name: (identifier)
+        (out
+          (underscore)))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (named_expr
+        name: (identifier)
+        (out
+          (instance_var)))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (out
+        (instance_var)))
+    block: (block
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string))))))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (out
+        (instance_var)))
+    block: (block
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))
