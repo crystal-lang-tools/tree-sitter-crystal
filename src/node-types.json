@@ -1631,7 +1631,23 @@
             "named": false
           },
           {
+            "type": "abstract_method_def",
+            "named": true
+          },
+          {
+            "type": "alias",
+            "named": true
+          },
+          {
             "type": "and",
+            "named": true
+          },
+          {
+            "type": "annotation",
+            "named": true
+          },
+          {
+            "type": "annotation_def",
             "named": true
           },
           {
@@ -1655,6 +1671,10 @@
             "named": true
           },
           {
+            "type": "break",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -1671,6 +1691,10 @@
             "named": true
           },
           {
+            "type": "class_def",
+            "named": true
+          },
+          {
             "type": "class_var",
             "named": true
           },
@@ -1683,11 +1707,23 @@
             "named": true
           },
           {
+            "type": "const_assign",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
           {
+            "type": "enum_def",
+            "named": true
+          },
+          {
             "type": "expressions",
+            "named": true
+          },
+          {
+            "type": "extend",
             "named": true
           },
           {
@@ -1696,6 +1732,10 @@
           },
           {
             "type": "float",
+            "named": true
+          },
+          {
+            "type": "fun_def",
             "named": true
           },
           {
@@ -1723,6 +1763,10 @@
             "named": true
           },
           {
+            "type": "include",
+            "named": true
+          },
+          {
             "type": "index_call",
             "named": true
           },
@@ -1739,7 +1783,15 @@
             "named": true
           },
           {
+            "type": "lib_def",
+            "named": true
+          },
+          {
             "type": "macro_begin",
+            "named": true
+          },
+          {
+            "type": "macro_def",
             "named": true
           },
           {
@@ -1783,11 +1835,39 @@
             "named": true
           },
           {
+            "type": "method_def",
+            "named": true
+          },
+          {
             "type": "method_proc",
             "named": true
           },
           {
+            "type": "modifier_ensure",
+            "named": true
+          },
+          {
+            "type": "modifier_if",
+            "named": true
+          },
+          {
+            "type": "modifier_rescue",
+            "named": true
+          },
+          {
+            "type": "modifier_unless",
+            "named": true
+          },
+          {
+            "type": "module_def",
+            "named": true
+          },
+          {
             "type": "named_tuple",
+            "named": true
+          },
+          {
+            "type": "next",
             "named": true
           },
           {
@@ -1827,6 +1907,14 @@
             "named": true
           },
           {
+            "type": "require",
+            "named": true
+          },
+          {
+            "type": "return",
+            "named": true
+          },
+          {
             "type": "select",
             "named": true
           },
@@ -1844,6 +1932,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "struct_def",
             "named": true
           },
           {

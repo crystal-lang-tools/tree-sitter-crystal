@@ -1020,6 +1020,8 @@ enum Nums
   One
   Two
   Three = 3
+
+  @@my_cvar = 4
 end
 
 alias Bar = Int8
@@ -1046,6 +1048,9 @@ end
       (constant)
       (const_assign
         lhs: (constant)
+        rhs: (integer))
+      (assign
+        lhs: (class_var)
         rhs: (integer))))
   (alias
     name: (constant)
