@@ -1486,6 +1486,43 @@ fun bar() end
   (fun_def
     name: (identifier)))
 
+
+===================================
+mix of named and unnamed fun params
+===================================
+
+lib MyLib
+  fun my_fun(arg1 : Int32*, arg2 : Int32*, arg3 : Void* -> Void*, Void*) : Int32
+end
+
+---
+
+(expressions
+  (lib_def
+    name: (constant)
+    body: (expressions
+      (fun_def
+        name: (identifier)
+        params: (param_list
+          (fun_param
+            name: (identifier)
+            type: (pointer_type
+              (constant)))
+          (fun_param
+            name: (identifier)
+            type: (pointer_type
+              (constant)))
+          (fun_param
+            name: (identifier)
+            type: (proc_type
+              (pointer_type
+                (constant))
+              return: (pointer_type
+                (constant))))
+          (pointer_type
+            (constant)))
+        type: (constant)))))
+
 =================================
 private and protected macro calls
 =================================

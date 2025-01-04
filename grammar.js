@@ -1154,7 +1154,7 @@ module.exports = grammar({
       const params = seq(
         '(',
         optional(field('params',
-          alias(choice($.fun_param_list, $.fun_type_param_list), $.param_list),
+          alias($.fun_type_param_list, $.param_list),
         )),
         ')',
       )
@@ -1181,8 +1181,8 @@ module.exports = grammar({
 
     fun_type_param_list: $ => {
       return seq(
-        $._type,
-        repeat(seq(',', $._type)),
+        choice($.fun_param, $._type),
+        repeat(seq(',', choice($.fun_param, $._type))),
         optional(seq(
           ',', optional('...'),
         )),

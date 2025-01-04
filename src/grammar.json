@@ -4908,17 +4908,8 @@
                       "content": {
                         "type": "ALIAS",
                         "content": {
-                          "type": "CHOICE",
-                          "members": [
-                            {
-                              "type": "SYMBOL",
-                              "name": "fun_param_list"
-                            },
-                            {
-                              "type": "SYMBOL",
-                              "name": "fun_type_param_list"
-                            }
-                          ]
+                          "type": "SYMBOL",
+                          "name": "fun_type_param_list"
                         },
                         "named": true,
                         "value": "param_list"
@@ -5025,8 +5016,17 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_type"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "fun_param"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_type"
+            }
+          ]
         },
         {
           "type": "REPEAT",
@@ -5038,8 +5038,17 @@
                 "value": ","
               },
               {
-                "type": "SYMBOL",
-                "name": "_type"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "fun_param"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_type"
+                  }
+                ]
               }
             ]
           }
