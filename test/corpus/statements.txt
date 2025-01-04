@@ -1729,3 +1729,41 @@ end
     (when
       (implicit_object_call
         (operator)))))
+
+
+============================================
+exhaustive case expression with typed tuples
+============================================
+
+case {value, this_value}
+in {String, String}
+	puts "hello"
+in {Int32, false}
+	puts "world"
+end
+
+---
+
+(expressions
+  (case
+    (tuple
+      (identifier)
+      (identifier))
+    (in
+      (tuple
+        (constant)
+        (constant))
+      (expressions
+        (call
+          (identifier)
+          (argument_list
+            (string)))))
+    (in
+      (tuple
+        (constant)
+        (false))
+      (expressions
+        (call
+          (identifier)
+          (argument_list
+            (string)))))))

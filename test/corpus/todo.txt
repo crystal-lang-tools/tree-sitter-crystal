@@ -152,22 +152,6 @@ node.as(LibXML::Node*)
         (operator)
         (MISSING identifier)))))
 
-=================================
-case expression with typed tuples
-:error
-=================================
-
-case {value, this_value}
-in {String, String}
-	puts "hello"
-in {Int32, false}
-	puts "world"
-end
-
----
-
-
-
 =============================================================
 private or protected calls with keyword type declaration args
 =============================================================

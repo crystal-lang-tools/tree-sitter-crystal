@@ -15,7 +15,6 @@ compiler/crystal/interpreter/escaping_exception.cr
 compiler/crystal/interpreter/instructions.cr
 compiler/crystal/interpreter/interpreter.cr
 compiler/crystal/interpreter/op_code.cr
-compiler/crystal/interpreter/primitives.cr
 compiler/crystal/interpreter/pry_reader.cr
 compiler/crystal/interpreter/repl.cr
 compiler/crystal/interpreter/repl_reader.cr
@@ -32,7 +31,6 @@ compiler/crystal/syntax/lexer.cr
 compiler/crystal/syntax/token.cr
 compiler/crystal/tools/doc/markd_doc_renderer.cr
 compiler/crystal/types.cr
-complex.cr
 compress/zip/compression_method.cr
 concurrent.cr
 crystal/compiler_rt.cr
@@ -94,7 +92,6 @@ gc.cr
 gc/boehm.cr
 hash.cr
 http/client.cr
-http/headers.cr
 http/server.cr
 indexable.cr
 indexable/mutable.cr
