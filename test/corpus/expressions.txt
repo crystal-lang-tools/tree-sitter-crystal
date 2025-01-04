@@ -4377,3 +4377,30 @@ end
           (call
             (self)
             (operator)))))))
+
+=============
+uninitialized
+=============
+
+uninitialized Int32
+a = uninitialized Int32
+@b =
+uninitialized
+Int32*
+
+---
+
+(expressions
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (constant)))
+  (assign
+    lhs: (identifier)
+    rhs: (uninitialized_var
+      (constant)))
+  (assign
+    lhs: (instance_var)
+    rhs: (uninitialized_var
+      (pointer_type
+        (constant)))))

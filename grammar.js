@@ -501,12 +501,6 @@ module.exports = grammar({
       $.case,
       alias($.exhaustive_case, $.case),
       $.select,
-      // TODO
-      // macro interpolation
-      // macro if
-      // macro for
-      // macro verbatim
-      // macro fresh variables
 
       // Methods
       $.call,
@@ -527,6 +521,7 @@ module.exports = grammar({
       $.array_like,
       $.hash_like,
       $.assign,
+      alias($.uninitialized_assign, $.assign),
       alias($.operator_assign, $.op_assign),
       $.pseudo_call,
 
@@ -546,10 +541,6 @@ module.exports = grammar({
       $.alignof,
       $.instance_alignof,
       $.offsetof,
-      // TODO
-      // super
-      // previous_def
-      // uninitialized
     ),
 
     comment: $ => /#.*/,
@@ -977,8 +968,6 @@ module.exports = grammar({
         alias($.do_end_block, $.block),
         alias($.brace_block, $.block),
       ))
-
-      // TODO: include syntax for capturing methods as procs
 
       return seq(
         '->',
@@ -2563,6 +2552,17 @@ module.exports = grammar({
         seq(multi_lhs, '=', multi_rhs),
       )
     },
+
+    uninitialized_assign: $ => {
+      return seq(
+        field('lhs', choice($.identifier, $.instance_var, $.class_var, $.global_var)),
+        '=',
+        'uninitialized',
+        field('rhs', $.uninitialized_var),
+      )
+    },
+
+    uninitialized_var: $ => $._bare_type,
 
     type_declaration: $ => {
       const variable = field('var', choice($.identifier, $.instance_var, $.class_var, $.macro_var))

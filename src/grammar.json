@@ -820,6 +820,15 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
+            "name": "uninitialized_assign"
+          },
+          "named": true,
+          "value": "assign"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
             "name": "operator_assign"
           },
           "named": true,
@@ -12255,6 +12264,56 @@
           ]
         }
       ]
+    },
+    "uninitialized_assign": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "lhs",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "instance_var"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "class_var"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "global_var"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "STRING",
+          "value": "uninitialized"
+        },
+        {
+          "type": "FIELD",
+          "name": "rhs",
+          "content": {
+            "type": "SYMBOL",
+            "name": "uninitialized_var"
+          }
+        }
+      ]
+    },
+    "uninitialized_var": {
+      "type": "SYMBOL",
+      "name": "_bare_type"
     },
     "type_declaration": {
       "type": "PREC",

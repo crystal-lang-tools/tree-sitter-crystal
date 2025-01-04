@@ -1,21 +1,3 @@
-=======================
-misc keywords / methods
-=======================
-
-super
-previous_def
-uninitialized Class
-
----
-
-(expressions
-  (identifier)
-  (identifier)
-  (call
-    (identifier)
-    (argument_list
-      (constant))))
-
 ==========================
 fun def params on newlines
 :error
