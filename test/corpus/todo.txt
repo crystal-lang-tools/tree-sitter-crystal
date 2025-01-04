@@ -113,3 +113,29 @@ GC.init
   (call
     (constant)
     (identifier)))
+
+========================
+double? splat param type
+:error
+========================
+
+class MyClass
+  def self.new(**options : **T)
+  end
+end
+
+---
+
+(expressions
+  (class_def
+    (constant)
+    (expressions
+      (method_def
+        (self)
+        (identifier)
+        (param_list
+          (double_splat_param
+            (identifier)
+            (ERROR)
+            (splat_type
+              (constant))))))))
