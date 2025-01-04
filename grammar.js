@@ -276,6 +276,12 @@ module.exports = grammar({
       $.implicit_object_call_chainable,
       $._implicit_object_call,
     ],
+
+    // Ensure parens marking pseudo method args bind to them
+    [
+      $.pseudo_call_argument_list,
+      $._parenthesized_type,
+    ],
   ],
 
   conflicts: $ => [
@@ -522,6 +528,7 @@ module.exports = grammar({
       $.hash_like,
       $.assign,
       alias($.operator_assign, $.op_assign),
+      $.pseudo_call,
 
       // Logical operators
       $.not,
@@ -533,18 +540,15 @@ module.exports = grammar({
       // Keywords and special methods
       $.yield,
       $.typeof,
+      $.pointerof,
       $.sizeof,
       $.instance_sizeof,
+      $.alignof,
+      $.instance_alignof,
       $.offsetof,
       // TODO
       // super
       // previous_def
-      // is_a?
-      // nil?
-      // responds_to?
-      // as
-      // as?
-      // pointerof
       // uninitialized
     ),
 
@@ -1511,6 +1515,13 @@ module.exports = grammar({
       ')',
     ),
 
+    pointerof: $ => seq(
+      'pointerof',
+      '(',
+      $._expression, // TODO: self isn't allowed here
+      ')',
+    ),
+
     sizeof: $ => seq(
       'sizeof',
       '(',
@@ -1520,6 +1531,20 @@ module.exports = grammar({
 
     instance_sizeof: $ => seq(
       'instance_sizeof',
+      '(',
+      $._bare_type,
+      ')',
+    ),
+
+    alignof: $ => seq(
+      'alignof',
+      '(',
+      $._bare_type,
+      ')',
+    ),
+
+    instance_alignof: $ => seq(
+      'instance_alignof',
       '(',
       $._bare_type,
       ')',
@@ -1681,6 +1706,7 @@ module.exports = grammar({
       $.pointer_type,
       $.self,
       $.typeof,
+      $.pointerof,
       $.static_array_type,
     ),
 
@@ -1691,6 +1717,8 @@ module.exports = grammar({
       $.float,
       $.sizeof,
       $.instance_sizeof,
+      $.alignof,
+      $.instance_alignof,
       $.offsetof,
     ),
 
@@ -2313,6 +2341,44 @@ module.exports = grammar({
       return prec.left('comparison_operator', seq(
         receiver, method, arg,
       ))
+    },
+
+    pseudo_call: $ => {
+      const receiver = seq(field('receiver', $._expression), '.')
+
+      return choice(
+        seq(
+          optional(receiver),
+          field('method', alias(choice('as', 'as?', 'is_a?'), $.identifier)),
+          field('arguments', alias($.pseudo_call_argument_list, $.argument_list)),
+        ),
+        seq(
+          optional(receiver),
+          field('method', alias('nil?', $.identifier)),
+          optional(seq('(', ')')),
+        ),
+        seq(
+          optional(receiver),
+          field('method', alias('responds_to?', $.identifier)),
+          field('arguments', alias($.pseudo_responds_to_argument_list, $.argument_list)),
+        ),
+      )
+    },
+
+    pseudo_call_argument_list: $ => choice(
+      seq('(', $._bare_type, ')'),
+      $._bare_type,
+    ),
+
+    pseudo_responds_to_argument_list: $ => {
+      const symbol = alias(
+        choice($.quoted_symbol, $.unquoted_symbol, $.operator_symbol), $.symbol,
+      )
+
+      return choice(
+        seq('(', symbol, ')'),
+        symbol,
+      )
     },
 
     splat: $ => prec('splat_operator', seq(alias($._unary_star, '*'), $._expression)),
