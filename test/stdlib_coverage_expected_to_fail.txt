@@ -62,13 +62,10 @@ iterator.cr
 json/from_json.cr
 json/pull_parser.cr
 json/serialization.cr
-lib_c/aarch64-android/c/pthread.cr
 llvm/builder.cr
 llvm/enums.cr
 llvm/lib_llvm.cr
-llvm/lib_llvm/core.cr
 llvm/lib_llvm/initialization.cr
-llvm/lib_llvm_ext.cr
 llvm/pass_registry.cr
 log/log.cr
 log/main.cr
