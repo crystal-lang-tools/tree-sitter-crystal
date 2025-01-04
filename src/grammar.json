@@ -4143,6 +4143,10 @@
                     {
                       "type": "SYMBOL",
                       "name": "named_expr"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "out"
                     }
                   ]
                 },
@@ -4173,6 +4177,10 @@
                           {
                             "type": "SYMBOL",
                             "name": "named_expr"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "out"
                           }
                         ]
                       }
@@ -8224,6 +8232,10 @@
             {
               "type": "SYMBOL",
               "name": "named_expr"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "out"
             }
           ]
         },
@@ -8254,6 +8266,10 @@
                   {
                     "type": "SYMBOL",
                     "name": "named_expr"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "out"
                   }
                 ]
               }
@@ -11162,6 +11178,10 @@
                 },
                 "named": true,
                 "value": "string"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "out"
               }
             ]
           }
@@ -11215,6 +11235,10 @@
               {
                 "type": "SYMBOL",
                 "name": "named_expr"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "out"
               }
             ]
           },
@@ -11248,6 +11272,10 @@
                       {
                         "type": "SYMBOL",
                         "name": "named_expr"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "out"
                       }
                     ]
                   }
@@ -11300,6 +11328,10 @@
                       {
                         "type": "SYMBOL",
                         "name": "named_expr"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "out"
                       }
                     ]
                   },
@@ -11333,6 +11365,10 @@
                               {
                                 "type": "SYMBOL",
                                 "name": "named_expr"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "out"
                               }
                             ]
                           }
@@ -11395,6 +11431,10 @@
                       {
                         "type": "SYMBOL",
                         "name": "named_expr"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "out"
                       }
                     ]
                   },
@@ -11425,6 +11465,10 @@
                             {
                               "type": "SYMBOL",
                               "name": "named_expr"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "out"
                             }
                           ]
                         }
@@ -11494,6 +11538,10 @@
                       {
                         "type": "SYMBOL",
                         "name": "named_expr"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "out"
                       }
                     ]
                   },
@@ -11524,6 +11572,10 @@
                             {
                               "type": "SYMBOL",
                               "name": "named_expr"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "out"
                             }
                           ]
                         }
@@ -11551,6 +11603,32 @@
           }
         ]
       }
+    },
+    "out": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "out"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "instance_var"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "underscore"
+            }
+          ]
+        }
+      ]
     },
     "assign": {
       "type": "PREC",

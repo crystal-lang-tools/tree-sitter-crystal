@@ -35,13 +35,7 @@ crystal/main.cr
 crystal/scheduler.cr
 crystal/system/print_error.cr
 crystal/system/unix/file_descriptor.cr
-crystal/system/unix/pthread.cr
 crystal/system/wasi/file_descriptor.cr
-crystal/system/win32/fiber.cr
-crystal/system/win32/file.cr
-crystal/system/win32/file_descriptor.cr
-crystal/system/win32/socket.cr
-crystal/system/windows.cr
 crystal/tracing.cr
 ecr/macros.cr
 enum.cr

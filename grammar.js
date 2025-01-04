@@ -1047,7 +1047,7 @@ module.exports = grammar({
 
     // Same as argument_list_with_parens, except without `token.immediate`
     annotation_argument_list: $ => {
-      const args = choice($._expression, $.splat, $.double_splat, $.named_expr)
+      const args = choice($._expression, $.splat, $.double_splat, $.named_expr, $.out)
 
       return seq(
         '(',
@@ -1865,7 +1865,7 @@ module.exports = grammar({
     },
 
     bracket_argument_list: $ => {
-      const args = choice($._expression, $.splat, $.double_splat, $.named_expr)
+      const args = choice($._expression, $.splat, $.double_splat, $.named_expr, $.out)
 
       return seq(
         args,
@@ -2384,6 +2384,7 @@ module.exports = grammar({
         alias($.identifier_method_call, $.identifier),
         $.string,
         alias($.string_percent_literal, $.string),
+        $.out,
       ))
 
       return seq(
@@ -2394,7 +2395,7 @@ module.exports = grammar({
     },
 
     argument_list_no_parens: $ => {
-      const args = choice($._expression, $.splat, $.double_splat, $.named_expr)
+      const args = choice($._expression, $.splat, $.double_splat, $.named_expr, $.out)
 
       return prec.right(seq(
         optional($._start_of_parenless_args),
@@ -2404,7 +2405,7 @@ module.exports = grammar({
     },
 
     argument_list_no_parens_with_block: $ => {
-      const args = choice($._expression, $.splat, $.double_splat, $.named_expr)
+      const args = choice($._expression, $.splat, $.double_splat, $.named_expr, $.out)
 
       return prec.right(seq(
         optional($._start_of_parenless_args),
@@ -2418,7 +2419,7 @@ module.exports = grammar({
     },
 
     argument_list_with_parens: $ => {
-      const args = choice($._expression, $.splat, $.double_splat, $.named_expr)
+      const args = choice($._expression, $.splat, $.double_splat, $.named_expr, $.out)
 
       return prec.right(seq(
         token.immediate('('),
@@ -2432,7 +2433,7 @@ module.exports = grammar({
     },
 
     argument_list_with_parens_and_block: $ => {
-      const args = choice($._expression, $.splat, $.double_splat, $.named_expr)
+      const args = choice($._expression, $.splat, $.double_splat, $.named_expr, $.out)
 
       return prec.right(seq(
         token.immediate('('),
@@ -2445,6 +2446,15 @@ module.exports = grammar({
         ')',
       ))
     },
+
+    out: $ => seq(
+      'out',
+      choice(
+        $.identifier,
+        $.instance_var,
+        $.underscore,
+      ),
+    ),
 
     assign: $ => {
       const lhs = field('lhs', choice(

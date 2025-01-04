@@ -4404,3 +4404,26 @@ Int32*
     rhs: (uninitialized_var
       (pointer_type
         (constant)))))
+
+===========
+out keyword
+:language(crystal)
+===========
+
+@[MyAnnotationIs(out @of_this_world)]
+method.call(out _)
+
+---
+
+(expressions
+  (annotation
+    (constant)
+    arguments: (argument_list
+      (out
+        (instance_var))))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (out
+        (underscore)))))

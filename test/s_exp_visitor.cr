@@ -1128,15 +1128,25 @@ class SExpVisitor < Crystal::Visitor
   visit_basic(Yield)
   visit_basic(Require)
   visit_basic(Not)
+  visit_basic(Out)
 
   def visit(node : Annotation)
     in_node("annotation") do
       node.path.accept self
 
       field "arguments" do
-        node.args.each &.accept(self)
-        if (named_args = node.named_args)
-          named_args.each &.accept(self)
+        if node.args.size == 1
+          in_node("argument_list") do
+            node.args.each &.accept(self)
+            if (named_args = node.named_args)
+              named_args.each &.accept(self)
+            end
+          end
+        else
+          node.args.each &.accept(self)
+          if (named_args = node.named_args)
+            named_args.each &.accept(self)
+          end
         end
       end
     end

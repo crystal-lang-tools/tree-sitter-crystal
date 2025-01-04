@@ -862,6 +862,10 @@
           "named": true
         },
         {
+          "type": "out",
+          "named": true
+        },
+        {
           "type": "pointer_type",
           "named": true
         },
@@ -14599,6 +14603,10 @@
             "named": true
           },
           {
+            "type": "out",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           }
@@ -16050,6 +16058,29 @@
         },
         {
           "type": "yield",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "out",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "instance_var",
+          "named": true
+        },
+        {
+          "type": "underscore",
           "named": true
         }
       ]
@@ -22666,6 +22697,10 @@
   },
   {
     "type": "offsetof",
+    "named": false
+  },
+  {
+    "type": "out",
     "named": false
   },
   {
