@@ -92,6 +92,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -192,6 +196,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -238,6 +246,77 @@
     }
   },
   {
+    "type": "alignof",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "class_type",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "named_tuple_type",
+          "named": true
+        },
+        {
+          "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "pointerof",
+          "named": true
+        },
+        {
+          "type": "proc_type",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "splat_type",
+          "named": true
+        },
+        {
+          "type": "static_array_type",
+          "named": true
+        },
+        {
+          "type": "tuple_type",
+          "named": true
+        },
+        {
+          "type": "typeof",
+          "named": true
+        },
+        {
+          "type": "underscore",
+          "named": true
+        },
+        {
+          "type": "union_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "and",
     "named": true,
     "fields": {},
@@ -245,6 +324,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -342,6 +425,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -430,7 +517,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -555,6 +650,10 @@
       "required": false,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -596,6 +695,10 @@
         },
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "class_type",
           "named": true
         },
         {
@@ -656,6 +759,10 @@
         },
         {
           "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -727,7 +834,15 @@
           "named": true
         },
         {
+          "type": "named_tuple_type",
+          "named": true
+        },
+        {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_type",
           "named": true
         },
         {
@@ -751,7 +866,23 @@
           "named": true
         },
         {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "proc_type",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -787,6 +918,14 @@
           "named": true
         },
         {
+          "type": "splat_type",
+          "named": true
+        },
+        {
+          "type": "static_array_type",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -803,11 +942,23 @@
           "named": true
         },
         {
+          "type": "tuple_type",
+          "named": true
+        },
+        {
           "type": "type_declaration",
           "named": true
         },
         {
           "type": "typeof",
+          "named": true
+        },
+        {
+          "type": "underscore",
+          "named": true
+        },
+        {
+          "type": "union_type",
           "named": true
         },
         {
@@ -874,6 +1025,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -912,6 +1067,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -1009,6 +1168,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -1093,7 +1256,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -1291,6 +1462,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -1387,6 +1562,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -1471,7 +1650,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -1647,6 +1834,10 @@
             "named": true
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -1779,6 +1970,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -1899,7 +2094,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -2017,6 +2220,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -2113,6 +2320,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -2197,7 +2408,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -2387,6 +2606,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -2487,6 +2710,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -2571,7 +2798,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -2701,6 +2936,10 @@
           },
           {
             "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "pointerof",
             "named": true
           },
           {
@@ -2875,6 +3114,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -2975,6 +3218,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -3071,6 +3318,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -3155,7 +3406,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -3303,6 +3562,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -3399,6 +3662,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -3483,7 +3750,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -3575,6 +3850,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -3671,6 +3950,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -3755,7 +4038,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -3969,6 +4260,10 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc_type",
           "named": true
         },
@@ -4037,6 +4332,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -4135,6 +4434,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -4219,7 +4522,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -4305,6 +4616,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -4401,6 +4716,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -4485,7 +4804,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -4571,6 +4898,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -4667,6 +4998,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -4751,7 +5086,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -4858,6 +5201,10 @@
           },
           {
             "type": "alias",
+            "named": true
+          },
+          {
+            "type": "alignof",
             "named": true
           },
           {
@@ -4993,6 +5340,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -5113,7 +5464,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -5228,6 +5587,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -5324,6 +5687,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -5408,7 +5775,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -5541,6 +5916,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -5613,6 +5992,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -5711,6 +6094,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -5795,7 +6182,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -5912,6 +6307,10 @@
         },
         {
           "type": "alias",
+          "named": true
+        },
+        {
+          "type": "alignof",
           "named": true
         },
         {
@@ -6047,6 +6446,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -6167,7 +6570,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -6314,6 +6725,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -6374,6 +6789,10 @@
         },
         {
           "type": "alias",
+          "named": true
+        },
+        {
+          "type": "alignof",
           "named": true
         },
         {
@@ -6517,6 +6936,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -6637,7 +7060,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -6867,6 +7298,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -6954,6 +7389,10 @@
           },
           {
             "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "pointerof",
             "named": true
           },
           {
@@ -7099,6 +7538,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -7185,6 +7628,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -7255,6 +7702,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -7308,6 +7759,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -7405,6 +7860,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -7489,7 +7948,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -7637,6 +8104,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -7733,6 +8204,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -7817,7 +8292,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -8007,6 +8490,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -8107,6 +8594,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -8191,7 +8682,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -8326,6 +8825,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -8422,6 +8925,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -8506,7 +9013,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -8596,6 +9111,77 @@
     }
   },
   {
+    "type": "instance_alignof",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "class_type",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "named_tuple_type",
+          "named": true
+        },
+        {
+          "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "pointerof",
+          "named": true
+        },
+        {
+          "type": "proc_type",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "splat_type",
+          "named": true
+        },
+        {
+          "type": "static_array_type",
+          "named": true
+        },
+        {
+          "type": "tuple_type",
+          "named": true
+        },
+        {
+          "type": "typeof",
+          "named": true
+        },
+        {
+          "type": "underscore",
+          "named": true
+        },
+        {
+          "type": "union_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "instance_sizeof",
     "named": true,
     "fields": {},
@@ -8625,6 +9211,10 @@
         },
         {
           "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "pointerof",
           "named": true
         },
         {
@@ -8675,6 +9265,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -8772,6 +9366,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -8856,7 +9454,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -9043,6 +9649,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -9139,6 +9749,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -9223,7 +9837,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -9315,6 +9937,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -9416,6 +10042,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -9500,7 +10130,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -9592,6 +10230,10 @@
         },
         {
           "type": "alias",
+          "named": true
+        },
+        {
+          "type": "alignof",
           "named": true
         },
         {
@@ -9727,6 +10369,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -9847,7 +10493,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -9944,6 +10598,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -10046,6 +10704,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -10130,7 +10792,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -10240,6 +10910,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -10336,6 +11010,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -10420,7 +11098,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -10512,6 +11198,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -10608,6 +11298,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -10692,7 +11386,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -10791,6 +11493,10 @@
       "required": false,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -10887,6 +11593,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -10971,7 +11681,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -11183,6 +11901,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -11301,6 +12023,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -11397,6 +12123,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -11481,7 +12211,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -11569,6 +12307,10 @@
         },
         {
           "type": "alias",
+          "named": true
+        },
+        {
+          "type": "alignof",
           "named": true
         },
         {
@@ -11704,6 +12446,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -11824,7 +12570,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -11923,6 +12677,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -12019,6 +12777,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -12103,7 +12865,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -12194,6 +12964,10 @@
           },
           {
             "type": "alias",
+            "named": true
+          },
+          {
+            "type": "alignof",
             "named": true
           },
           {
@@ -12329,6 +13103,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -12449,7 +13227,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -12553,6 +13339,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -12649,6 +13439,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -12733,7 +13527,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -12821,6 +13623,10 @@
         },
         {
           "type": "alias",
+          "named": true
+        },
+        {
+          "type": "alignof",
           "named": true
         },
         {
@@ -12956,6 +13762,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -13076,7 +13886,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -13175,6 +13993,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -13271,6 +14093,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -13355,7 +14181,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -13446,6 +14280,10 @@
           },
           {
             "type": "alias",
+            "named": true
+          },
+          {
+            "type": "alignof",
             "named": true
           },
           {
@@ -13581,6 +14419,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -13701,7 +14543,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -13856,6 +14706,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -13952,6 +14806,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -14040,7 +14898,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -14192,6 +15058,10 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc_type",
           "named": true
         },
@@ -14279,6 +15149,10 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc_type",
           "named": true
         },
@@ -14321,6 +15195,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -14418,6 +15296,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -14506,7 +15388,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -14621,6 +15511,10 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc_type",
           "named": true
         },
@@ -14696,6 +15590,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -14794,6 +15692,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -14878,7 +15780,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -14970,6 +15880,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -15067,6 +15981,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -15155,7 +16073,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -15269,6 +16195,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -15365,6 +16295,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -15449,7 +16383,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -15591,6 +16533,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -15645,6 +16591,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "block_param",
           "named": true
         },
@@ -15670,6 +16620,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -15702,6 +16656,10 @@
         },
         {
           "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "pointerof",
           "named": true
         },
         {
@@ -15784,6 +16742,10 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc_type",
           "named": true
         },
@@ -15813,6 +16775,285 @@
         },
         {
           "type": "union_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pointerof",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
+        {
+          "type": "and",
+          "named": true
+        },
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_like",
+          "named": true
+        },
+        {
+          "type": "asm",
+          "named": true
+        },
+        {
+          "type": "assign",
+          "named": true
+        },
+        {
+          "type": "begin",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "case",
+          "named": true
+        },
+        {
+          "type": "chained_string",
+          "named": true
+        },
+        {
+          "type": "char",
+          "named": true
+        },
+        {
+          "type": "class_var",
+          "named": true
+        },
+        {
+          "type": "command",
+          "named": true
+        },
+        {
+          "type": "conditional",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "expressions",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "hash",
+          "named": true
+        },
+        {
+          "type": "hash_like",
+          "named": true
+        },
+        {
+          "type": "heredoc_start",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "index_call",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
+          "type": "instance_sizeof",
+          "named": true
+        },
+        {
+          "type": "instance_var",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "macro_begin",
+          "named": true
+        },
+        {
+          "type": "macro_else",
+          "named": true
+        },
+        {
+          "type": "macro_elsif",
+          "named": true
+        },
+        {
+          "type": "macro_end",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
+          "named": true
+        },
+        {
+          "type": "macro_expressions",
+          "named": true
+        },
+        {
+          "type": "macro_for",
+          "named": true
+        },
+        {
+          "type": "macro_if",
+          "named": true
+        },
+        {
+          "type": "macro_unless",
+          "named": true
+        },
+        {
+          "type": "macro_var",
+          "named": true
+        },
+        {
+          "type": "macro_verbatim",
+          "named": true
+        },
+        {
+          "type": "method_proc",
+          "named": true
+        },
+        {
+          "type": "named_tuple",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not",
+          "named": true
+        },
+        {
+          "type": "offsetof",
+          "named": true
+        },
+        {
+          "type": "op_assign",
+          "named": true
+        },
+        {
+          "type": "or",
+          "named": true
+        },
+        {
+          "type": "pointerof",
+          "named": true
+        },
+        {
+          "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
+          "named": true
+        },
+        {
+          "type": "pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "range",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "select",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "sizeof",
+          "named": true
+        },
+        {
+          "type": "special_variable",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        },
+        {
+          "type": "tuple",
+          "named": true
+        },
+        {
+          "type": "type_declaration",
+          "named": true
+        },
+        {
+          "type": "typeof",
+          "named": true
+        },
+        {
+          "type": "unless",
+          "named": true
+        },
+        {
+          "type": "until",
+          "named": true
+        },
+        {
+          "type": "while",
+          "named": true
+        },
+        {
+          "type": "yield",
           "named": true
         }
       ]
@@ -15876,6 +17117,10 @@
           },
           {
             "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "pointerof",
             "named": true
           },
           {
@@ -15955,6 +17200,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -16018,6 +17267,10 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc_type",
           "named": true
         },
@@ -16053,21 +17306,40 @@
     }
   },
   {
-    "type": "pseudo_constant",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "range",
+    "type": "pseudo_call",
     "named": true,
     "fields": {
-      "begin": {
+      "arguments": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "argument_list",
+            "named": true
+          }
+        ]
+      },
+      "method": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "receiver": {
         "multiple": true,
         "required": false,
         "types": [
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -16166,6 +17438,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -16250,7 +17526,308 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
+            "named": true
+          },
+          {
+            "type": "pseudo_constant",
+            "named": true
+          },
+          {
+            "type": "range",
+            "named": true
+          },
+          {
+            "type": "regex",
+            "named": true
+          },
+          {
+            "type": "select",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          },
+          {
+            "type": "sizeof",
+            "named": true
+          },
+          {
+            "type": "special_variable",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "symbol",
+            "named": true
+          },
+          {
+            "type": "true",
+            "named": true
+          },
+          {
+            "type": "tuple",
+            "named": true
+          },
+          {
+            "type": "type_declaration",
+            "named": true
+          },
+          {
+            "type": "typeof",
+            "named": true
+          },
+          {
+            "type": "unless",
+            "named": true
+          },
+          {
+            "type": "until",
+            "named": true
+          },
+          {
+            "type": "while",
+            "named": true
+          },
+          {
+            "type": "yield",
+            "named": true
+          },
+          {
+            "type": "{%",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "pseudo_constant",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "range",
+    "named": true,
+    "fields": {
+      "begin": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "%}",
+            "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
+          },
+          {
+            "type": "and",
+            "named": true
+          },
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "array_like",
+            "named": true
+          },
+          {
+            "type": "asm",
+            "named": true
+          },
+          {
+            "type": "assign",
+            "named": true
+          },
+          {
+            "type": "begin",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "case",
+            "named": true
+          },
+          {
+            "type": "chained_string",
+            "named": true
+          },
+          {
+            "type": "char",
+            "named": true
+          },
+          {
+            "type": "class_var",
+            "named": true
+          },
+          {
+            "type": "command",
+            "named": true
+          },
+          {
+            "type": "conditional",
+            "named": true
+          },
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "expressions",
+            "named": true
+          },
+          {
+            "type": "false",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "generic_instance_type",
+            "named": true
+          },
+          {
+            "type": "hash",
+            "named": true
+          },
+          {
+            "type": "hash_like",
+            "named": true
+          },
+          {
+            "type": "heredoc_start",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "index_call",
+            "named": true
+          },
+          {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
+            "type": "instance_sizeof",
+            "named": true
+          },
+          {
+            "type": "instance_var",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "macro_begin",
+            "named": true
+          },
+          {
+            "type": "macro_else",
+            "named": true
+          },
+          {
+            "type": "macro_elsif",
+            "named": true
+          },
+          {
+            "type": "macro_end",
+            "named": true
+          },
+          {
+            "type": "macro_expression",
+            "named": true
+          },
+          {
+            "type": "macro_expressions",
+            "named": true
+          },
+          {
+            "type": "macro_for",
+            "named": true
+          },
+          {
+            "type": "macro_if",
+            "named": true
+          },
+          {
+            "type": "macro_unless",
+            "named": true
+          },
+          {
+            "type": "macro_var",
+            "named": true
+          },
+          {
+            "type": "macro_verbatim",
+            "named": true
+          },
+          {
+            "type": "method_proc",
+            "named": true
+          },
+          {
+            "type": "named_tuple",
+            "named": true
+          },
+          {
+            "type": "nil",
+            "named": true
+          },
+          {
+            "type": "not",
+            "named": true
+          },
+          {
+            "type": "offsetof",
+            "named": true
+          },
+          {
+            "type": "op_assign",
+            "named": true
+          },
+          {
+            "type": "or",
+            "named": true
+          },
+          {
+            "type": "pointerof",
+            "named": true
+          },
+          {
+            "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -16336,6 +17913,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -16432,6 +18013,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -16516,7 +18101,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -16706,6 +18299,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -16818,6 +18415,10 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc_type",
           "named": true
         },
@@ -16860,6 +18461,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -16961,6 +18566,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -17045,7 +18654,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -17182,6 +18799,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -17260,6 +18881,10 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc_type",
           "named": true
         },
@@ -17303,6 +18928,10 @@
       "required": true,
       "types": [
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "class_type",
           "named": true
         },
@@ -17316,6 +18945,10 @@
         },
         {
           "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "instance_alignof",
           "named": true
         },
         {
@@ -17340,6 +18973,10 @@
         },
         {
           "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "pointerof",
           "named": true
         },
         {
@@ -17494,6 +19131,10 @@
           "named": true
         },
         {
+          "type": "alignof",
+          "named": true
+        },
+        {
           "type": "and",
           "named": true
         },
@@ -17626,6 +19267,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -17746,7 +19391,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -17840,6 +19493,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -17941,6 +19598,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -18025,7 +19686,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -18136,6 +19805,10 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc_type",
           "named": true
         },
@@ -18211,6 +19884,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -18251,6 +19928,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -18349,6 +20030,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -18433,7 +20118,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -18567,6 +20260,10 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc_type",
           "named": true
         },
@@ -18609,6 +20306,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alignof",
+          "named": true
+        },
         {
           "type": "and",
           "named": true
@@ -18706,6 +20407,10 @@
           "named": true
         },
         {
+          "type": "instance_alignof",
+          "named": true
+        },
+        {
           "type": "instance_sizeof",
           "named": true
         },
@@ -18790,7 +20495,15 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc",
+          "named": true
+        },
+        {
+          "type": "pseudo_call",
           "named": true
         },
         {
@@ -18894,6 +20607,10 @@
         },
         {
           "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "pointerof",
           "named": true
         },
         {
@@ -19002,6 +20719,10 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc_type",
             "named": true
           },
@@ -19080,6 +20801,10 @@
           "named": true
         },
         {
+          "type": "pointerof",
+          "named": true
+        },
+        {
           "type": "proc_type",
           "named": true
         },
@@ -19125,6 +20850,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -19223,6 +20952,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -19307,7 +21040,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -19429,6 +21170,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -19525,6 +21270,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -19609,7 +21358,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -19709,6 +21466,10 @@
           {
             "type": "%}",
             "named": false
+          },
+          {
+            "type": "alignof",
+            "named": true
           },
           {
             "type": "and",
@@ -19811,6 +21572,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -19895,7 +21660,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -19997,6 +21770,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -20093,6 +21870,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -20177,7 +21958,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -20269,6 +22058,10 @@
             "named": false
           },
           {
+            "type": "alignof",
+            "named": true
+          },
+          {
             "type": "and",
             "named": true
           },
@@ -20365,6 +22158,10 @@
             "named": true
           },
           {
+            "type": "instance_alignof",
+            "named": true
+          },
+          {
             "type": "instance_sizeof",
             "named": true
           },
@@ -20449,7 +22246,15 @@
             "named": true
           },
           {
+            "type": "pointerof",
+            "named": true
+          },
+          {
             "type": "proc",
+            "named": true
+          },
+          {
+            "type": "pseudo_call",
             "named": true
           },
           {
@@ -20835,6 +22640,10 @@
     "named": false
   },
   {
+    "type": "alignof",
+    "named": false
+  },
+  {
     "type": "annotation",
     "named": false
   },
@@ -20947,6 +22756,10 @@
     "named": false
   },
   {
+    "type": "instance_alignof",
+    "named": false
+  },
+  {
     "type": "instance_sizeof",
     "named": false
   },
@@ -20980,6 +22793,10 @@
   },
   {
     "type": "out",
+    "named": false
+  },
+  {
+    "type": "pointerof",
     "named": false
   },
   {

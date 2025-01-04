@@ -779,7 +779,7 @@ end
     body: (expressions
       (next)))
   (until
-    cond: (call
+    cond: (pseudo_call
       receiver: (identifier)
       method: (identifier))
     body: (expressions
@@ -1528,7 +1528,7 @@ d && e || f && g
     (operator)
     (identifier))
   (or
-    (call
+    (pseudo_call
       receiver: (identifier)
       method: (identifier))
     (operator)
@@ -4298,3 +4298,231 @@ end
           method: (identifier)
           arguments: (argument_list
             (string)))))))
+
+================
+as pseudo method
+================
+
+node.as(LibXML::Node*)
+as(Int32 | LibXML::Node*)
+
+---
+
+(expressions
+  (pseudo_call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (pointer_type
+        (constant))))
+  (pseudo_call
+    method: (identifier)
+    arguments: (argument_list
+      (pointer_type
+        (union_type
+          (constant)
+          (constant))))))
+
+================
+as? pseudo method
+================
+
+node.as?(LibXML::Node*)
+as?(Int32 | LibXML::Node*)
+
+---
+
+(expressions
+  (pseudo_call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (pointer_type
+        (constant))))
+  (pseudo_call
+    method: (identifier)
+    arguments: (argument_list
+      (pointer_type
+        (union_type
+          (constant)
+          (constant))))))
+
+================
+is_a? pseudo method
+================
+
+node.is_a?(LibXML::Node*)
+is_a?(Int32 | LibXML::Node*)
+
+---
+
+(expressions
+  (pseudo_call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (pointer_type
+        (constant))))
+  (pseudo_call
+    method: (identifier)
+    arguments: (argument_list
+      (pointer_type
+        (union_type
+          (constant)
+          (constant))))))
+
+==========================
+parenless as pseudo method
+==========================
+
+as Int32 | String?
+node.as LibXML::Node*
+method { T.from_www_form(item).as T* }
+
+---
+
+(expressions
+  (pseudo_call
+    method: (identifier)
+    arguments: (argument_list
+      (nilable_type
+        (union_type
+          (constant)
+          (constant)))))
+  (pseudo_call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (pointer_type
+        (constant))))
+  (call
+    method: (identifier)
+    block: (block
+      body: (expressions
+        (pseudo_call
+          receiver: (call
+            receiver: (constant)
+            method: (identifier)
+            arguments: (argument_list
+              (identifier)))
+          method: (identifier)
+          arguments: (argument_list
+            (pointer_type
+              (constant))))))))
+
+======================
+chained pseudo methods
+======================
+
+1.as(Int32).is_a?(String).to_s
+
+---
+
+(expressions
+  (call
+    receiver: (pseudo_call
+      receiver: (pseudo_call
+        receiver: (integer)
+        method: (identifier)
+        arguments: (argument_list
+          (constant)))
+      method: (identifier)
+      arguments: (argument_list
+        (constant)))
+    method: (identifier)))
+
+====
+nil?
+====
+
+nil?
+a.nil?
+a.
+nil?(
+)
+
+---
+
+(expressions
+  (pseudo_call
+    (identifier))
+  (pseudo_call
+    (identifier)
+    (identifier))
+  (pseudo_call
+    (identifier)
+    (identifier)))
+
+==============
+pseudo methods
+==============
+
+class ClassName
+  def initialize
+    self.is_a?(Object)
+    self.nil?
+    typeof(self, other) # works
+    sizeof(self.class) # works
+    instance_sizeof(self.class) # works
+    pointerof(self)
+    offsetof(self.class, 1) # works
+    self.as(Object)
+    self.as?(Object)
+    responds_to?(:method)
+    self.!
+  end
+end
+
+---
+
+(expressions
+  (class_def
+    (constant)
+    (expressions
+      (method_def
+        (identifier)
+        (expressions
+          (pseudo_call
+            (self)
+            (identifier)
+            (argument_list
+              (constant)))
+          (pseudo_call
+            (self)
+            (identifier))
+          (typeof
+            (self)
+            (identifier))
+          (comment)
+          (sizeof
+            (class_type
+              (self)))
+          (comment)
+          (instance_sizeof
+            (class_type
+              (self)))
+          (comment)
+          (pointerof
+            (self))
+          (offsetof
+            (class_type
+              (self))
+            (integer))
+          (comment)
+          (pseudo_call
+            (self)
+            (identifier)
+            (argument_list
+              (constant)))
+          (pseudo_call
+            (self)
+            (identifier)
+            (argument_list
+              (constant)))
+          (pseudo_call
+            (identifier)
+            (argument_list
+              (symbol)))
+          (call
+            (self)
+            (operator)))))))
