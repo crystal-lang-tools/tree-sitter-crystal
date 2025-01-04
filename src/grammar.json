@@ -13829,27 +13829,20 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "generic_instance_type"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "constant"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "true"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "false"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "nil"
+                "name": "_expression"
               },
               {
                 "type": "SYMBOL",
                 "name": "_implicit_object_call"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "implicit_object_tuple"
+                },
+                "named": true,
+                "value": "tuple"
               }
             ]
           }
@@ -13871,27 +13864,20 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "generic_instance_type"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "constant"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "true"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "false"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "nil"
+                      "name": "_expression"
                     },
                     {
                       "type": "SYMBOL",
                       "name": "_implicit_object_call"
+                    },
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "implicit_object_tuple"
+                      },
+                      "named": true,
+                      "value": "tuple"
                     }
                   ]
                 }

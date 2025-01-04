@@ -2845,12 +2845,9 @@ module.exports = grammar({
 
     in: $ => {
       const cond = field('cond', choice(
-        $.generic_instance_type,
-        $.constant,
-        $.true,
-        $.false,
-        $.nil,
+        $._expression,
         $._implicit_object_call,
+        alias($.implicit_object_tuple, $.tuple),
       ))
 
       return seq(
