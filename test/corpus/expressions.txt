@@ -345,6 +345,26 @@ puts (), ()
       (nil)
       (nil))))
 
+====================================
+Constants can be method names too c:
+====================================
+
+LibC.PostQueuedCompletionStatus(orig_operation.iocp, 0, 0, lpOverlapped)
+
+---
+
+(expressions
+  (call
+    receiver: (constant)
+    method: (constant)
+    arguments: (argument_list
+      (call
+        receiver: (identifier)
+        method: (identifier))
+      (integer)
+      (integer)
+      (identifier))))
+
 ================================================================================
 splat arguments
 ================================================================================
