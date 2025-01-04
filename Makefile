@@ -88,10 +88,16 @@ uninstall:
 clean:
 	$(RM) $(OBJS) $(LANGUAGE_NAME).pc lib$(LANGUAGE_NAME).a lib$(LANGUAGE_NAME).$(SOEXT)
 
-test:
+test/stdlib_coverage: test/stdlib_coverage.cr test/util.cr
+	crystal build -o test/stdlib_coverage test/stdlib_coverage.cr
+
+test/crystal_parse_corpus: test/crystal_parse_corpus.cr test/s_exp_visitor.cr test/util.cr
+	crystal build -o test/crystal_parse_corpus test/crystal_parse_corpus.cr
+
+test: test/stdlib_coverage test/crystal_parse_corpus
 	$(TS) test
-	crystal run test/stdlib_coverage.cr
-	crystal run test/crystal_parse_corpus.cr
+	test/crystal_parse_corpus
+	test/stdlib_coverage
 
 tree-sitter-crystal.wasm: grammar.js src/scanner.c
 	$(TS) build --wasm

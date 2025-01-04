@@ -10,6 +10,8 @@ PASS                      = "pass".colorize.green
 FAIL                      = "fail".colorize.red
 EXPECTED_TO_FAIL_FILEPATH = "#{__DIR__}/stdlib_coverage_expected_to_fail.txt"
 
+MACRO_REGEX = /{{|{%|\bmacro\b/
+
 class Test
   getter file_path : String
   getter label : String
@@ -60,11 +62,11 @@ stdlib_files.each do |stdlib_file|
     failed << test.label
   end
 
-  `grep -q -e '{{' -e '{%' -e '\bmacro\b' '#{stdlib_file}'`
+  is_macro = File.read(stdlib_file).matches?(MACRO_REGEX)
 
   elapsed_ms = sprintf("%8.3fms", test.elapsed.total_milliseconds).colorize.dark_gray
   # Why 63? So we match 80 columns.
-  printf("%-63s %s %s %s\n", test.label, success ? PASS : FAIL, $?.success? ? "macro" : "     ", elapsed_ms)
+  printf("%-63s %s %s %s\n", test.label, success ? PASS : FAIL, is_macro ? "macro" : "     ", elapsed_ms)
 end
 
 pass_str = (100 * (pass / stdlib_files.size)).format(decimal_places: 2) + "%"
