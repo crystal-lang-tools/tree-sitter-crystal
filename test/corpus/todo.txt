@@ -217,3 +217,28 @@ inner.try &.color=(color)
 --------------------------------------------------------------------------------
 
 (expressions)
+
+===============
+inline macro if
+===============
+
+{% if flag?(:tracing) %} Crystal::Tracing.init {% end %}
+GC.init
+
+---
+
+(expressions
+  (macro_if
+    (call
+      (identifier)
+      (argument_list
+        (symbol))))
+  (MISSING ";")
+  (call
+    (constant)
+    (identifier)
+    (argument_list
+      (macro_end)))
+  (call
+    (constant)
+    (identifier)))
