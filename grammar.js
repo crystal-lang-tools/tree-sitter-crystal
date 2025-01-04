@@ -99,6 +99,8 @@ module.exports = grammar({
 
     $._modulo_operator,
 
+    $.unquoted_symbol,
+
     $._string_literal_start,
     $._delimited_string_contents,
     $._string_literal_end,
@@ -742,17 +744,6 @@ module.exports = grammar({
       ':',
       token.immediate(
         choice(...operator_tokens),
-      ),
-    )),
-
-    unquoted_symbol: $ => token(seq(
-      ':',
-      token.immediate(
-        seq(
-          choice(ident_start, const_start),
-          repeat(ident_part),
-          optional(/[?!=]/),
-        ),
       ),
     )),
 

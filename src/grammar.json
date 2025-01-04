@@ -2753,60 +2753,6 @@
         ]
       }
     },
-    "unquoted_symbol": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": ":"
-          },
-          {
-            "type": "IMMEDIATE_TOKEN",
-            "content": {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "PATTERN",
-                      "value": "[a-z_\\u{00a0}-\\u{10ffff}]",
-                      "flags": "u"
-                    },
-                    {
-                      "type": "PATTERN",
-                      "value": "[A-Z]"
-                    }
-                  ]
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[0-9A-Za-z_\\u{00a0}-\\u{10ffff}]",
-                    "flags": "u"
-                  }
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "PATTERN",
-                      "value": "[?!=]"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
-    },
     "quoted_symbol": {
       "type": "SEQ",
       "members": [
@@ -14289,6 +14235,10 @@
     {
       "type": "SYMBOL",
       "name": "_modulo_operator"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "unquoted_symbol"
     },
     {
       "type": "SYMBOL",
