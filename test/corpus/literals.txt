@@ -1134,6 +1134,54 @@ symbols
     else: (symbol)))
 
 ================================================================================
+symbols ending in !?=
+:language(crystal)
+================================================================================
+world = "world"
+:hello=
+:world==world
+:world == world
+:world!
+:world!=world
+:world != world
+:world?
+:world?==world
+--------------------------------------------------------------------------------
+
+(expressions
+  (assign
+    lhs: (identifier)
+    rhs: (string))
+  (symbol)
+  (call
+    receiver: (symbol)
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (call
+    receiver: (symbol)
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (symbol)
+  (call
+    receiver: (symbol)
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (call
+    receiver: (symbol)
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (symbol)
+  (call
+    receiver: (symbol)
+    method: (operator)
+    arguments: (argument_list
+      (identifier))))
+
+================================================================================
 regexes
 :language(crystal)
 ================================================================================

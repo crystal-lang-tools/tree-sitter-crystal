@@ -152,27 +152,6 @@ node.as(LibXML::Node*)
         (operator)
         (MISSING identifier)))))
 
-==========================
-symbols ending with equals
-:error
-==========================
-
-:hello=
-:world==world
-:world == world
-
----
-
-(expressions
-  (symbol)
-  (symbol)
-  (ERROR
-    (identifier))
-  (call
-    (symbol)
-    (operator)
-    (identifier)))
-
 =================================
 case expression with typed tuples
 :error
