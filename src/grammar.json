@@ -8063,6 +8063,10 @@
                   "name": "identifier"
                 },
                 {
+                  "type": "SYMBOL",
+                  "name": "constant"
+                },
+                {
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",

@@ -1838,6 +1838,7 @@ module.exports = grammar({
 
       const method = field('method', choice(
         $.identifier,
+        $.constant,
         alias($.identifier_method_call, $.identifier),
         alias($._operator_token, $.operator),
         $.instance_var,
