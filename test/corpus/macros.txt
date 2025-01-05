@@ -283,3 +283,92 @@ GC.init
   (call
     receiver: (constant)
     method: (identifier)))
+
+==============
+macro exp type
+==============
+
+{% begin %}
+var : {{ "Type" }} = 1
+{% end %}
+
+---
+
+(expressions
+  (macro_begin)
+  (type_declaration
+    var: (identifier)
+    type: (macro_expression
+      (string))
+    value: (integer))
+  (macro_end))
+
+=============
+macro exp def
+=============
+
+{% begin %}
+def {{ "Hello" }}.{{ "world" }}({{ "arg1" }} : {{ "Type1" }}, %my_var : Type2) : {{ "ReturnType" }}
+end
+{% end %}
+
+---
+
+(expressions
+  (macro_begin)
+  (method_def
+    class: (macro_expression
+      (string))
+    name: (macro_expression
+      (string))
+    params: (param_list
+      (param
+        name: (macro_expression
+          (string))
+        type: (macro_expression
+          (string)))
+      (param
+        name: (macro_var
+          name: (identifier))
+        type: (constant)))
+    type: (macro_expression
+      (string)))
+  (macro_end))
+
+==============================
+macro exp class / module / lib
+==============================
+
+{% begin %}
+class {{ "MyClass" }} < {{ "MySuper" }}
+end
+
+struct {{ "MyStruct" }}
+end
+
+enum {{ "MyEnum" }}
+end
+
+lib {{ "MyLib" }}
+end
+{% end %}
+
+---
+
+(expressions
+  (macro_begin)
+  (class_def
+    name: (macro_expression
+      (string))
+    superclass: (macro_expression
+      (string)))
+  (struct_def
+    name: (macro_expression
+      (string)))
+  (enum_def
+    name: (macro_expression
+      (string)))
+  (lib_def
+    name: (macro_expression
+      (string)))
+  (macro_end))
