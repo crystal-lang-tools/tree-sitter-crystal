@@ -10,7 +10,6 @@ compiler/crystal/interpreter/interpreter.cr
 compiler/crystal/interpreter/op_code.cr
 compiler/crystal/interpreter/pry_reader.cr
 compiler/crystal/interpreter/repl_reader.cr
-compiler/crystal/macros.cr
 compiler/crystal/macros/methods.cr
 compiler/crystal/program.cr
 compiler/crystal/semantic/exception.cr
@@ -47,7 +46,6 @@ number.cr
 object.cr
 primitives.cr
 proc.cr
-process.cr
 random.cr
 range.cr
 range/bsearch.cr

@@ -1298,6 +1298,7 @@ module.exports = grammar({
         alias($.identifier_method_call, $.identifier),
         alias($.identifier_assign, $.identifier),
         alias($._operator_token, $.operator),
+        alias('`', $.operator),
         $.macro_expression,
       ))
       const params = seq('(', field('params', optional($.param_list)), ')')
@@ -1350,6 +1351,7 @@ module.exports = grammar({
         $.identifier,
         alias($.identifier_method_call, $.identifier),
         alias($._operator_token, $.operator),
+        alias('`', $.operator),
       ))
       const params = seq(
         '(',

@@ -436,21 +436,3 @@ ivar macro expression
     (macro_var
       (identifier)
       (identifier))))
-
-===========
-command def
-:error
-===========
-
-def `(command) : String
-end
-
----
-
-(expressions
-  (method_def
-    name: (operator)
-    params: (param_list
-      (param
-        name: (identifier)))
-    type: (constant)))
