@@ -3685,6 +3685,31 @@ end
           (argument_list
             (string)))))))
 
+
+
+===========================================
+enums with restrictions and namespaced name
+===========================================
+
+enum Foo::Bar : UInt8
+  STORED   = 0
+  DEFLATED = 8
+end
+
+---
+
+(expressions
+  (enum_def
+    name: (constant)
+    type: (constant)
+    body: (expressions
+      (const_assign
+        lhs: (constant)
+        rhs: (integer))
+      (const_assign
+        lhs: (constant)
+        rhs: (integer)))))
+
 ================
 select statement
 ================

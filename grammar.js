@@ -1091,7 +1091,7 @@ module.exports = grammar({
     enum_def: $ => seq(
       optional(field('visibility', $.private)),
       'enum',
-      field('name', alias($._constant_segment, $.constant)),
+      field('name', $.constant),
       optional(field('type', seq(/:\s/, $._bare_type))),
       field('body', seq(optional(alias($._enum_statements, $.expressions)))),
       'end',
