@@ -5724,6 +5724,15 @@
                   "value": "operator"
                 },
                 {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "STRING",
+                    "value": "`"
+                  },
+                  "named": true,
+                  "value": "operator"
+                },
+                {
                   "type": "SYMBOL",
                   "name": "macro_expression"
                 }
@@ -6015,6 +6024,15 @@
                       "content": {
                         "type": "SYMBOL",
                         "name": "_operator_token"
+                      },
+                      "named": true,
+                      "value": "operator"
+                    },
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "STRING",
+                        "value": "`"
                       },
                       "named": true,
                       "value": "operator"

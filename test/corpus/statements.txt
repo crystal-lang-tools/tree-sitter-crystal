@@ -1568,3 +1568,28 @@ end
               method: (identifier)
               arguments: (argument_list))
             method: (identifier)))))))
+
+==========
+grave defs
+==========
+
+def `(command) : String
+end
+
+macro `(command)
+end
+
+---
+
+(expressions
+  (method_def
+    name: (operator)
+    params: (param_list
+      (param
+        name: (identifier)))
+    type: (constant))
+  (macro_def
+    name: (operator)
+    params: (param_list
+      (param
+        name: (identifier)))))
