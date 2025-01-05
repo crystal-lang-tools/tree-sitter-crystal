@@ -109,7 +109,6 @@ json/pull_parser.cr
 json/serialization.cr
 llvm/builder.cr
 llvm/context.cr
-llvm/enums.cr
 llvm/jit_compiler.cr
 llvm/lib_llvm.cr
 llvm/lib_llvm/initialization.cr

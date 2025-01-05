@@ -394,6 +394,15 @@
           "name": "class_var"
         },
         {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "class_var_assign"
+          },
+          "named": true,
+          "value": "assign"
+        },
+        {
           "type": "SYMBOL",
           "name": "annotation"
         }
@@ -11215,6 +11224,35 @@
             "content": {
               "type": "SYMBOL",
               "name": "constant"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "="
+          },
+          {
+            "type": "FIELD",
+            "name": "rhs",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_statement"
+            }
+          }
+        ]
+      }
+    },
+    "class_var_assign": {
+      "type": "PREC_RIGHT",
+      "value": "assignment_operator",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "lhs",
+            "content": {
+              "type": "SYMBOL",
+              "name": "class_var"
             }
           },
           {

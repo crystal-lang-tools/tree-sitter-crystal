@@ -429,6 +429,7 @@ module.exports = grammar({
       $.method_def,
       $.macro_def,
       $.class_var,
+      alias($.class_var_assign, $.assign),
       $.annotation,
     ),
 
@@ -2411,6 +2412,16 @@ module.exports = grammar({
 
       return prec.right('assignment_operator', seq(
         visibility, lhs, '=', rhs,
+      ))
+    },
+
+    // This is only relevant for enum statements
+    class_var_assign: $ => {
+      const lhs = field('lhs', $.class_var)
+      const rhs = field('rhs', $._statement)
+
+      return prec.right('assignment_operator', seq(
+        lhs, '=', rhs,
       ))
     },
 
