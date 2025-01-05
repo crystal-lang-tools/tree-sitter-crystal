@@ -1,79 +1,3 @@
-==============
-pseudo methods
-==============
-
-class ClassName
-  def initialize
-    self.is_a?(Object)
-    self.nil?
-    typeof(self, other) # works
-    sizeof(self.class) # works
-    instance_sizeof(self.class) # works
-    pointerof(self)
-    offsetof(self.class, 1) # works
-    self.as(Object)
-    self.as?(Object)
-    responds_to?(:method)
-    self.!
-  end
-end
-
----
-
-(expressions
-  (class_def
-    (constant)
-    (expressions
-      (method_def
-        (identifier)
-        (expressions
-          (call
-            (self)
-            (identifier)
-            (argument_list
-              (constant)))
-          (call
-            (self)
-            (identifier))
-          (typeof
-            (self)
-            (identifier))
-          (comment)
-          (sizeof
-            (class_type
-              (self)))
-          (comment)
-          (instance_sizeof
-            (class_type
-              (self)))
-          (comment)
-          (call
-            (identifier)
-            (argument_list
-              (self)))
-          (offsetof
-            (class_type
-              (self))
-            (integer))
-          (comment)
-          (call
-            (self)
-            (identifier)
-            (argument_list
-              (constant)))
-          (call
-            (self)
-            (identifier)
-            (argument_list
-              (constant)))
-          (call
-            (identifier)
-            (argument_list
-              (symbol)))
-          (call
-            (self)
-            (operator)))))))
-
 ==========================
 fun def params on newlines
 :error
@@ -114,25 +38,6 @@ end
       method: (identifier)
       arguments: (argument_list
         (string)))))
-
-============================
-.as method with pointer type
-:error
-============================
-
-node.as(LibXML::Node*)
-
----
-
-(expressions
-  (call
-    (identifier)
-    (identifier)
-    (argument_list
-      (op_call
-        (constant)
-        (operator)
-        (MISSING identifier)))))
 
 =============================================================
 private or protected calls with keyword type declaration args
