@@ -520,13 +520,13 @@ module.exports = grammar({
       alias($.equality_operator, $.call),
       alias($.comparison_operator, $.call),
       alias($.index_operator, $.index_call),
+      alias($.pseudo_call, $.call),
       $.index_call,
       $.array_like,
       $.hash_like,
       $.assign,
       alias($.uninitialized_assign, $.assign),
       alias($.operator_assign, $.op_assign),
-      $.pseudo_call,
 
       // Logical operators
       $.not,

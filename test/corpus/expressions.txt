@@ -779,7 +779,7 @@ end
     body: (expressions
       (next)))
   (until
-    cond: (pseudo_call
+    cond: (call
       receiver: (identifier)
       method: (identifier))
     body: (expressions
@@ -1528,7 +1528,7 @@ d && e || f && g
     (operator)
     (identifier))
   (or
-    (pseudo_call
+    (call
       receiver: (identifier)
       method: (identifier))
     (operator)
@@ -4309,13 +4309,13 @@ as(Int32 | LibXML::Node*)
 ---
 
 (expressions
-  (pseudo_call
+  (call
     receiver: (identifier)
     method: (identifier)
     arguments: (argument_list
       (pointer_type
         (constant))))
-  (pseudo_call
+  (call
     method: (identifier)
     arguments: (argument_list
       (pointer_type
@@ -4333,13 +4333,13 @@ as?(Int32 | LibXML::Node*)
 ---
 
 (expressions
-  (pseudo_call
+  (call
     receiver: (identifier)
     method: (identifier)
     arguments: (argument_list
       (pointer_type
         (constant))))
-  (pseudo_call
+  (call
     method: (identifier)
     arguments: (argument_list
       (pointer_type
@@ -4363,13 +4363,13 @@ foo.is_a? Bar? ?
 ---
 
 (expressions
-  (pseudo_call
+  (call
     receiver: (identifier)
     method: (identifier)
     arguments: (argument_list
       (pointer_type
         (constant))))
-  (pseudo_call
+  (call
     method: (identifier)
     arguments: (argument_list
       (pointer_type
@@ -4378,7 +4378,7 @@ foo.is_a? Bar? ?
           (constant)))))
   (comment)
   (conditional
-    cond: (pseudo_call
+    cond: (call
       receiver: (identifier)
       method: (identifier)
       arguments: (argument_list
@@ -4389,7 +4389,7 @@ foo.is_a? Bar? ?
       method: (identifier))
     else: (identifier))
   (comment)
-  (pseudo_call
+  (call
     receiver: (identifier)
     method: (identifier)
     arguments: (argument_list
@@ -4408,14 +4408,14 @@ method { T.from_www_form(item).as T* }
 ---
 
 (expressions
-  (pseudo_call
+  (call
     method: (identifier)
     arguments: (argument_list
       (nilable_type
         (union_type
           (constant)
           (constant)))))
-  (pseudo_call
+  (call
     receiver: (identifier)
     method: (identifier)
     arguments: (argument_list
@@ -4425,7 +4425,7 @@ method { T.from_www_form(item).as T* }
     method: (identifier)
     block: (block
       body: (expressions
-        (pseudo_call
+        (call
           receiver: (call
             receiver: (constant)
             method: (identifier)
@@ -4446,8 +4446,8 @@ chained pseudo methods
 
 (expressions
   (call
-    receiver: (pseudo_call
-      receiver: (pseudo_call
+    receiver: (call
+      receiver: (call
         receiver: (integer)
         method: (identifier)
         arguments: (argument_list
@@ -4470,12 +4470,12 @@ nil?(
 ---
 
 (expressions
-  (pseudo_call
+  (call
     (identifier))
-  (pseudo_call
+  (call
     (identifier)
     (identifier))
-  (pseudo_call
+  (call
     (identifier)
     (identifier)))
 
@@ -4508,12 +4508,12 @@ end
       (method_def
         (identifier)
         (expressions
-          (pseudo_call
+          (call
             (self)
             (identifier)
             (argument_list
               (constant)))
-          (pseudo_call
+          (call
             (self)
             (identifier))
           (typeof
@@ -4535,17 +4535,17 @@ end
               (self))
             (integer))
           (comment)
-          (pseudo_call
+          (call
             (self)
             (identifier)
             (argument_list
               (constant)))
-          (pseudo_call
+          (call
             (self)
             (identifier)
             (argument_list
               (constant)))
-          (pseudo_call
+          (call
             (identifier)
             (argument_list
               (symbol)))

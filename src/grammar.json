@@ -810,6 +810,15 @@
           "value": "index_call"
         },
         {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "pseudo_call"
+          },
+          "named": true,
+          "value": "call"
+        },
+        {
           "type": "SYMBOL",
           "name": "index_call"
         },
@@ -842,10 +851,6 @@
           },
           "named": true,
           "value": "op_assign"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "pseudo_call"
         },
         {
           "type": "SYMBOL",
