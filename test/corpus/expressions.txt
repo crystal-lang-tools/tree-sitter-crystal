@@ -129,6 +129,71 @@ end
               (pseudo_constant))))))))
 
 ================================================================================
+nilable constants
+================================================================================
+::Nil???
+Foo(String)?
+Int32?;
+
+A(B?, C(D?)?)??
+
+if String? <= Comparable(String)?
+  # comparable
+  if x < Int32 | String
+  end
+end
+--------------------------------------------------------------------------------
+
+(expressions
+  (nilable_constant
+    (nilable_constant
+      (nilable_constant
+        (constant))))
+  (nilable_constant
+    (generic_instance_type
+      (constant)
+      params: (param_list
+        (constant))))
+  (nilable_constant
+    (constant))
+  (nilable_constant
+    (nilable_constant
+      (generic_instance_type
+        (constant)
+        params: (param_list
+          (nilable_type
+            (constant))
+          (nilable_type
+            (generic_instance_type
+              (constant)
+              params: (param_list
+                (nilable_type
+                  (constant)))))))))
+  (if
+    cond: (call
+      receiver: (nilable_constant
+        (constant))
+      method: (operator)
+      arguments: (argument_list
+        (nilable_constant
+          (generic_instance_type
+            (constant)
+            params: (param_list
+              (constant))))))
+    (comment)
+    then: (then
+      (if
+        cond: (call
+          receiver: (identifier)
+          method: (operator)
+          arguments: (argument_list
+            (call
+              receiver: (constant)
+              method: (operator)
+              arguments: (argument_list
+                (constant)))))))))
+
+================================================================================
 special variables
 ================================================================================
 $?
@@ -3685,8 +3750,6 @@ end
           (argument_list
             (string)))))))
 
-
-
 ===========================================
 enums with restrictions and namespaced name
 ===========================================
@@ -4420,7 +4483,7 @@ foo.is_a? Bar? ?
     arguments: (argument_list
       (nilable_type
         (nilable_type
-      (constant))))))
+          (constant))))))
 
 ==========================
 parenless as pseudo method

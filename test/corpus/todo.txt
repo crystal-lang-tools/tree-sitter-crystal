@@ -67,10 +67,8 @@ end
     (ERROR
       (identifier))
     body: (expressions
-      (constant)
-      (ERROR
-        (identifier)))
-    (MISSING "end")))
+      (nilable_constant
+        (constant)))))
 
 ================================================================================
 implicit object assignment call
@@ -120,20 +118,6 @@ when .as(String*)
 when .as?(String*)
 when .nil?
 when .!
-end
-
----
-
-(expressions)
-
-===================
-expression generics
-:error
-===================
-
-Int32?;
-
-if x < Int32 | String
 end
 
 ---
