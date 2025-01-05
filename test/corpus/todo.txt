@@ -152,22 +152,6 @@ node.as(LibXML::Node*)
         (operator)
         (MISSING identifier)))))
 
-=================================
-case expression with typed tuples
-:error
-=================================
-
-case {value, this_value}
-in {String, String}
-	puts "hello"
-in {Int32, false}
-	puts "world"
-end
-
----
-
-
-
 =============================================================
 private or protected calls with keyword type declaration args
 =============================================================
@@ -247,3 +231,22 @@ end
             (ERROR)
             (splat_type
               (constant))))))))
+
+==================================
+case stmt with pseudo impl methods
+:error
+==================================
+
+case 1
+when .hello
+when .responds_to?(:hello)
+when .is_a?(String*)
+when .as(String*)
+when .as?(String*)
+when .nil?
+when .!
+end
+
+---
+
+(expressions)
