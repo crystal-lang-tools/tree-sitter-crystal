@@ -613,6 +613,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "nilable_constant"
+        },
+        {
+          "type": "SYMBOL",
           "name": "pseudo_constant"
         },
         {
@@ -7026,6 +7030,35 @@
           }
         ]
       }
+    },
+    "nilable_constant": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "constant"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "nilable_constant"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "generic_instance_type"
+            }
+          ]
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "?"
+          }
+        }
+      ]
     },
     "pseudo_constant": {
       "type": "CHOICE",

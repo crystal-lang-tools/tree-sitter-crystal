@@ -469,6 +469,10 @@
           "named": true
         },
         {
+          "type": "nilable_constant",
+          "named": true
+        },
+        {
           "type": "not",
           "named": true
         },
@@ -771,6 +775,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
           "named": true
         },
         {
@@ -1132,6 +1140,10 @@
           "named": true
         },
         {
+          "type": "nilable_constant",
+          "named": true
+        },
+        {
           "type": "not",
           "named": true
         },
@@ -1479,6 +1491,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -1882,6 +1898,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -2145,6 +2165,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -2491,6 +2515,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
           "named": true
         },
         {
@@ -3034,6 +3062,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -3334,6 +3366,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -3571,6 +3607,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -4018,6 +4058,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -4252,6 +4296,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -4483,6 +4531,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -4816,6 +4868,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -5090,6 +5146,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
           "named": true
         },
         {
@@ -5464,6 +5524,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -5805,6 +5869,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
           "named": true
         },
         {
@@ -6259,6 +6327,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
           "named": true
         },
         {
@@ -7114,6 +7186,10 @@
           "named": true
         },
         {
+          "type": "nilable_constant",
+          "named": true
+        },
+        {
           "type": "not",
           "named": true
         },
@@ -7411,6 +7487,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -7756,6 +7836,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -8036,6 +8120,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -8436,6 +8524,10 @@
           "named": true
         },
         {
+          "type": "nilable_constant",
+          "named": true
+        },
+        {
           "type": "not",
           "named": true
         },
@@ -8783,6 +8875,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -9029,6 +9125,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
           "named": true
         },
         {
@@ -9355,6 +9455,10 @@
           "named": true
         },
         {
+          "type": "nilable_constant",
+          "named": true
+        },
+        {
           "type": "not",
           "named": true
         },
@@ -9607,6 +9711,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -9868,6 +9976,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -10105,6 +10217,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -10356,6 +10472,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
           "named": true
         },
         {
@@ -10857,6 +10977,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -11172,6 +11296,10 @@
           "named": true
         },
         {
+          "type": "nilable_constant",
+          "named": true
+        },
+        {
           "type": "not",
           "named": true
         },
@@ -11420,6 +11548,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -11734,6 +11866,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -11989,6 +12125,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -12304,6 +12444,10 @@
           "named": true
         },
         {
+          "type": "nilable_constant",
+          "named": true
+        },
+        {
           "type": "not",
           "named": true
         },
@@ -12552,6 +12696,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -12866,6 +13014,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -13180,6 +13332,10 @@
           "named": true
         },
         {
+          "type": "nilable_constant",
+          "named": true
+        },
+        {
           "type": "not",
           "named": true
         },
@@ -13415,6 +13571,29 @@
     "fields": {}
   },
   {
+    "type": "nilable_constant",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "nilable_type",
     "named": true,
     "fields": {},
@@ -13627,6 +13806,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
           "named": true
         },
         {
@@ -13986,6 +14169,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -14228,6 +14415,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
           "named": true
         },
         {
@@ -14506,6 +14697,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -15067,6 +15262,10 @@
           "named": true
         },
         {
+          "type": "nilable_constant",
+          "named": true
+        },
+        {
           "type": "not",
           "named": true
         },
@@ -15557,6 +15756,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -15788,6 +15991,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {
@@ -16297,6 +16504,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
           "named": true
         },
         {
@@ -17009,6 +17220,10 @@
           "named": true
         },
         {
+          "type": "nilable_constant",
+          "named": true
+        },
+        {
           "type": "not",
           "named": true
         },
@@ -17261,6 +17476,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
           "named": true
         },
         {
@@ -17652,6 +17871,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -17986,6 +18209,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nilable_constant",
           "named": true
         },
         {
@@ -18490,6 +18717,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -18760,6 +18991,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -19014,6 +19249,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -19264,6 +19503,10 @@
             "named": true
           },
           {
+            "type": "nilable_constant",
+            "named": true
+          },
+          {
             "type": "not",
             "named": true
           },
@@ -19501,6 +19744,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nilable_constant",
             "named": true
           },
           {

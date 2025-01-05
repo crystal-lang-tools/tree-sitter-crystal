@@ -1,4 +1,3 @@
-array.cr
 big/big_int.cr
 char.cr
 colorize.cr
@@ -52,7 +51,6 @@ range/bsearch.cr
 reference.cr
 slice.cr
 spec/helpers/iterate.cr
-static_array.cr
 struct.cr
 time.cr
 uri/params/serializable.cr

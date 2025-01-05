@@ -484,6 +484,7 @@ module.exports = grammar({
       $.self,
       $.constant,
       $.generic_instance_type,
+      $.nilable_constant,
       $.pseudo_constant,
       $.special_variable,
       alias($.global_match_data_index, $.special_variable),
@@ -1567,6 +1568,19 @@ module.exports = grammar({
           seq('::', choice($._constant_segment, $.macro_expression)),
         ),
       ))
+    },
+
+    nilable_constant: $ => {
+      const base = choice(
+        $.constant,
+        $.nilable_constant,
+        $.generic_instance_type,
+      )
+
+      return seq(
+        base,
+        token.immediate('?'),
+      )
     },
 
     pseudo_constant: $ => choice(
