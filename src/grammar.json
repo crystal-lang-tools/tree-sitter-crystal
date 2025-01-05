@@ -7300,10 +7300,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "pointerof"
-        },
-        {
-          "type": "SYMBOL",
           "name": "static_array_type"
         }
       ]

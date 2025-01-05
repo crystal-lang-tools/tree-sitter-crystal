@@ -1691,7 +1691,6 @@ module.exports = grammar({
       $.pointer_type,
       $.self,
       $.typeof,
-      $.pointerof,
       $.static_array_type,
     ),
 

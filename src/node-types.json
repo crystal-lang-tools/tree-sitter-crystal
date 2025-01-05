@@ -92,10 +92,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -196,10 +192,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -275,10 +267,6 @@
         },
         {
           "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pointerof",
           "named": true
         },
         {
@@ -1022,10 +1010,6 @@
           },
           {
             "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "pointerof",
             "named": true
           },
           {
@@ -2939,10 +2923,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -3111,10 +3091,6 @@
           },
           {
             "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "pointerof",
             "named": true
           },
           {
@@ -4257,10 +4233,6 @@
         },
         {
           "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pointerof",
           "named": true
         },
         {
@@ -5916,10 +5888,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -6725,10 +6693,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -7298,10 +7262,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -7389,10 +7349,6 @@
           },
           {
             "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "pointerof",
             "named": true
           },
           {
@@ -7538,10 +7494,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -7628,10 +7580,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -7699,10 +7647,6 @@
           },
           {
             "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "pointerof",
             "named": true
           },
           {
@@ -9143,10 +9087,6 @@
           "named": true
         },
         {
-          "type": "pointerof",
-          "named": true
-        },
-        {
           "type": "proc_type",
           "named": true
         },
@@ -9211,10 +9151,6 @@
         },
         {
           "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pointerof",
           "named": true
         },
         {
@@ -11898,10 +11834,6 @@
           },
           {
             "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "pointerof",
             "named": true
           },
           {
@@ -15058,10 +14990,6 @@
           "named": true
         },
         {
-          "type": "pointerof",
-          "named": true
-        },
-        {
           "type": "proc_type",
           "named": true
         },
@@ -15146,10 +15074,6 @@
         },
         {
           "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pointerof",
           "named": true
         },
         {
@@ -15508,10 +15432,6 @@
         },
         {
           "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pointerof",
           "named": true
         },
         {
@@ -16533,10 +16453,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -16659,10 +16575,6 @@
           "named": true
         },
         {
-          "type": "pointerof",
-          "named": true
-        },
-        {
           "type": "proc_type",
           "named": true
         },
@@ -16739,10 +16651,6 @@
         },
         {
           "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pointerof",
           "named": true
         },
         {
@@ -17120,10 +17028,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -17200,10 +17104,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -17264,10 +17164,6 @@
         },
         {
           "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pointerof",
           "named": true
         },
         {
@@ -18299,10 +18195,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -18412,10 +18304,6 @@
         },
         {
           "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pointerof",
           "named": true
         },
         {
@@ -18799,10 +18687,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -18878,10 +18762,6 @@
         },
         {
           "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pointerof",
           "named": true
         },
         {
@@ -18973,10 +18853,6 @@
         },
         {
           "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pointerof",
           "named": true
         },
         {
@@ -19805,10 +19681,6 @@
           "named": true
         },
         {
-          "type": "pointerof",
-          "named": true
-        },
-        {
           "type": "proc_type",
           "named": true
         },
@@ -19881,10 +19753,6 @@
           },
           {
             "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "pointerof",
             "named": true
           },
           {
@@ -20260,10 +20128,6 @@
           "named": true
         },
         {
-          "type": "pointerof",
-          "named": true
-        },
-        {
           "type": "proc_type",
           "named": true
         },
@@ -20610,10 +20474,6 @@
           "named": true
         },
         {
-          "type": "pointerof",
-          "named": true
-        },
-        {
           "type": "proc_type",
           "named": true
         },
@@ -20719,10 +20579,6 @@
             "named": true
           },
           {
-            "type": "pointerof",
-            "named": true
-          },
-          {
             "type": "proc_type",
             "named": true
           },
@@ -20798,10 +20654,6 @@
         },
         {
           "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pointerof",
           "named": true
         },
         {
