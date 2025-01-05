@@ -231,3 +231,22 @@ end
             (ERROR)
             (splat_type
               (constant))))))))
+
+==================================
+case stmt with pseudo impl methods
+:error
+==================================
+
+case 1
+when .hello
+when .responds_to?(:hello)
+when .is_a?(String*)
+when .as(String*)
+when .as?(String*)
+when .nil?
+when .!
+end
+
+---
+
+(expressions)
