@@ -4507,13 +4507,8 @@
           "type": "FIELD",
           "name": "name",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_constant_segment"
-            },
-            "named": true,
-            "value": "constant"
+            "type": "SYMBOL",
+            "name": "constant"
           }
         },
         {

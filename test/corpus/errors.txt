@@ -540,7 +540,8 @@ end
 ---
 
 (expressions
-  (ERROR)
+  (ERROR
+    (constant))
   (alias
     (constant)
     (constant))
