@@ -47,6 +47,12 @@
   "unless"
 ] @keyword.conditional
 
+(conditional
+  [
+    "?"
+    ":"
+  ] @keyword.conditional.ternary)
+
 [
   "for"
   "until"
@@ -132,6 +138,12 @@
   (generic_instance_type)
   (generic_type)
 ] @type
+
+(nilable_constant
+  "?" @type.builtin)
+
+(nilable_type
+  "?" @type.builtin)
 
 (annotation
   (constant) @attribute)
