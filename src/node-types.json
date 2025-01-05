@@ -429,47 +429,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -762,47 +726,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -1160,47 +1088,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -1426,13 +1318,9 @@
         ]
       },
       "expression": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -1550,47 +1438,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -1696,10 +1548,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -1789,10 +1637,6 @@
         "multiple": true,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "abstract_method_def",
             "named": true
@@ -1958,23 +1802,7 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
             "type": "macro_def",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
             "named": true
           },
           {
@@ -1982,27 +1810,7 @@
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -2152,10 +1960,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -2176,13 +1980,9 @@
         ]
       },
       "receiver": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -2300,47 +2100,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -2446,10 +2210,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -2686,47 +2446,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -2983,43 +2707,7 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
-          "named": true
-        },
-        {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         }
       ]
@@ -3158,13 +2846,9 @@
         ]
       },
       "receiver": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -3282,47 +2966,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -3428,10 +3076,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
@@ -3498,13 +3142,9 @@
         ]
       },
       "receiver": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -3622,47 +3262,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -3768,10 +3372,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -3782,13 +3382,9 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -3906,47 +3502,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -4052,10 +3612,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -4258,13 +3814,9 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -4382,47 +3934,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -4528,21 +4044,13 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
       "else": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -4660,47 +4168,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -4806,21 +4278,13 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
       "then": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -4938,47 +4402,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -5084,10 +4512,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -5108,13 +4532,9 @@
         ]
       },
       "rhs": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "abstract_method_def",
             "named": true
@@ -5280,23 +4700,7 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
             "type": "macro_def",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
             "named": true
           },
           {
@@ -5304,27 +4708,7 @@
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -5470,10 +4854,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
@@ -5619,47 +4999,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -5894,13 +5238,9 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -6018,47 +5358,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -6164,10 +5468,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
@@ -6370,23 +5670,7 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
           "type": "macro_def",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
           "named": true
         },
         {
@@ -6394,27 +5678,7 @@
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -6852,23 +6116,7 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
           "type": "macro_def",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
           "named": true
         },
         {
@@ -6876,27 +6124,7 @@
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -7748,47 +6976,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -7964,13 +7156,9 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -8088,47 +7276,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -8234,10 +7386,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
@@ -8350,10 +7498,6 @@
         "required": true,
         "types": [
           {
-            "type": "%}",
-            "named": false
-          },
-          {
             "type": "alignof",
             "named": true
           },
@@ -8474,47 +7618,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -8620,10 +7728,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -8677,13 +7781,9 @@
         ]
       },
       "receiver": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -8801,47 +7901,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -8947,10 +8011,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -9230,47 +8290,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -9485,13 +8509,9 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -9609,47 +8629,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -9755,10 +8739,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -9898,47 +8878,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -10225,23 +9169,7 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
           "type": "macro_def",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
           "named": true
         },
         {
@@ -10249,27 +9177,7 @@
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -10424,13 +9332,9 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -10552,47 +9456,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -10702,10 +9570,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
@@ -10730,13 +9594,9 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -10854,47 +9714,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -11000,10 +9824,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -11014,13 +9834,9 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -11138,47 +9954,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -11284,10 +10064,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -11429,47 +10205,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -11827,13 +10567,9 @@
     "named": true,
     "fields": {
       "ensure": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -11951,47 +10687,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -12097,10 +10797,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -12274,23 +10970,7 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
           "type": "macro_def",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
           "named": true
         },
         {
@@ -12298,27 +10978,7 @@
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -12473,13 +11133,9 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -12597,47 +11253,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -12743,21 +11363,13 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
       "then": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "abstract_method_def",
             "named": true
@@ -12923,23 +11535,7 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
             "type": "macro_def",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
             "named": true
           },
           {
@@ -12947,27 +11543,7 @@
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -13113,10 +11689,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -13127,13 +11699,9 @@
     "named": true,
     "fields": {
       "rescue": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -13251,47 +11819,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -13397,10 +11929,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -13574,23 +12102,7 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
           "type": "macro_def",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
           "named": true
         },
         {
@@ -13598,27 +12110,7 @@
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -13773,13 +12265,9 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -13897,47 +12385,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -14043,21 +12495,13 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
       "then": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "abstract_method_def",
             "named": true
@@ -14223,23 +12667,7 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
             "type": "macro_def",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
             "named": true
           },
           {
@@ -14247,27 +12675,7 @@
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -14413,10 +12821,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -14602,47 +13006,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -15080,47 +13448,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -15344,13 +13676,9 @@
         ]
       },
       "rhs": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -15468,47 +13796,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -15614,10 +13906,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -15753,47 +14041,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -15939,10 +14191,6 @@
         "required": false,
         "types": [
           {
-            "type": "%}",
-            "named": false
-          },
-          {
             "type": "=",
             "named": false
           },
@@ -16063,47 +14311,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -16209,10 +14421,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
@@ -16641,47 +14849,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -17035,13 +15207,9 @@
     "named": true,
     "fields": {
       "begin": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -17159,47 +15327,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -17305,21 +15437,13 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
       "end": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -17437,47 +15561,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -17583,10 +15671,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
@@ -17978,47 +16062,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -18667,23 +16715,7 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
           "type": "macro_def",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
           "named": true
         },
         {
@@ -18691,27 +16723,7 @@
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -18990,47 +17002,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -19286,13 +17262,9 @@
         ]
       },
       "value": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -19410,47 +17382,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -19556,10 +17492,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
@@ -19779,47 +17711,11 @@
           "named": true
         },
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
         {
-          "type": "macro_expressions",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
           "type": "macro_var",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         },
         {
@@ -20184,13 +18080,9 @@
     "named": true,
     "fields": {
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -20308,47 +18200,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -20454,10 +18310,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       },
@@ -20498,13 +18350,9 @@
         ]
       },
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -20622,47 +18470,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -20768,10 +18580,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -20795,10 +18603,6 @@
         "multiple": true,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -20920,47 +18724,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -21066,10 +18834,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -21090,13 +18854,9 @@
         ]
       },
       "cond": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -21214,47 +18974,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -21360,10 +19084,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }
@@ -21374,13 +19094,9 @@
     "named": true,
     "fields": {
       "with": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "%}",
-            "named": false
-          },
           {
             "type": "alignof",
             "named": true
@@ -21498,47 +19214,11 @@
             "named": true
           },
           {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_else",
-            "named": true
-          },
-          {
-            "type": "macro_elsif",
-            "named": true
-          },
-          {
-            "type": "macro_end",
-            "named": true
-          },
-          {
             "type": "macro_expression",
             "named": true
           },
           {
-            "type": "macro_expressions",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
             "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
             "named": true
           },
           {
@@ -21644,10 +19324,6 @@
           {
             "type": "yield",
             "named": true
-          },
-          {
-            "type": "{%",
-            "named": false
           }
         ]
       }

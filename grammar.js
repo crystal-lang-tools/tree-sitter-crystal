@@ -141,6 +141,7 @@ module.exports = grammar({
     $._line_continuation,
     $.comment,
     $.heredoc_body,
+    $._macro_statements,
   ],
 
   word: $ => $.identifier,
@@ -415,7 +416,6 @@ module.exports = grammar({
 
     _lib_statement: $ => choice(
       $.macro_expression,
-      $._macro_statements,
       $.alias,
       $.fun_def,
       $.type_def,
@@ -429,7 +429,6 @@ module.exports = grammar({
 
     _enum_statement: $ => choice(
       $.macro_expression,
-      $._macro_statements,
       $.constant,
       $.const_assign,
       $.method_def,
@@ -446,7 +445,6 @@ module.exports = grammar({
 
     _expression: $ => choice(
       $.macro_expression,
-      $._macro_statements,
 
       // Literals
       $.nil,
@@ -1221,7 +1219,6 @@ module.exports = grammar({
 
     _c_struct_expression: $ => choice(
       $.macro_expression,
-      $._macro_statements,
       $.include,
       $.c_struct_fields,
     ),

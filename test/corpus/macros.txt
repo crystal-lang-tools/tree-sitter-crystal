@@ -260,3 +260,26 @@ macro var expressions
       name: (identifier)
       (string))
     rhs: (string)))
+
+===============
+inline macro if
+===============
+
+{% if flag?(:tracing) %} Crystal::Tracing.init {% end %}
+GC.init
+
+---
+
+(expressions
+  (macro_if
+    cond: (call
+      method: (identifier)
+      arguments: (argument_list
+        (symbol))))
+  (call
+    receiver: (constant)
+    method: (identifier))
+  (macro_end)
+  (call
+    receiver: (constant)
+    method: (identifier)))

@@ -322,10 +322,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_macro_statements"
-        },
-        {
-          "type": "SYMBOL",
           "name": "alias"
         },
         {
@@ -368,10 +364,6 @@
         {
           "type": "SYMBOL",
           "name": "macro_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_macro_statements"
         },
         {
           "type": "SYMBOL",
@@ -431,10 +423,6 @@
         {
           "type": "SYMBOL",
           "name": "macro_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_macro_statements"
         },
         {
           "type": "SYMBOL",
@@ -5218,10 +5206,6 @@
         {
           "type": "SYMBOL",
           "name": "macro_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_macro_statements"
         },
         {
           "type": "SYMBOL",
@@ -14337,6 +14321,10 @@
     {
       "type": "SYMBOL",
       "name": "heredoc_body"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_macro_statements"
     }
   ],
   "conflicts": [
