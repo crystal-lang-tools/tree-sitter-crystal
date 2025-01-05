@@ -47,6 +47,10 @@ class Name
   private getter private : Qux
 end
 
+class ASTNode
+  getter else : ASTNode?
+end
+
 ---
 
 (expressions
@@ -57,7 +61,16 @@ end
       (identifier)
       (private)
       (ERROR)
-      (constant))))
+      (constant)))
+  (class_def
+    name: (constant)
+    (ERROR
+      (identifier))
+    body: (expressions
+      (constant)
+      (ERROR
+        (identifier)))
+    (MISSING "end")))
 
 ================================================================================
 implicit object assignment call
@@ -137,3 +150,332 @@ end
 ---
 
 (expressions)
+
+===================
+expression generics
+:error
+===================
+
+Int32?;
+
+if x < Int32 | String
+end
+
+---
+
+(expressions)
+
+===================================
+comments inside nested named tuples
+===================================
+
+MyConst1 = {
+  # This is a comment
+  name1: {
+    sub1: [:foo, :bar]
+  },
+}
+
+MyConst2 = {
+  name1: {
+    sub1: [:foo, :bar]
+  },
+}
+
+---
+
+(expressions
+  (ERROR
+    (const_assign
+      (constant)
+      (tuple
+        (comment)
+        (call
+          (identifier)
+          (ERROR
+            (identifier))
+          (argument_list
+            (array
+              (symbol)
+              (symbol))))))
+    (ERROR))
+  (const_assign
+    (constant)
+    (named_tuple
+      (named_expr
+        (identifier)
+        (named_tuple
+          (named_expr
+            (identifier)
+            (array
+              (symbol)
+              (symbol))))))))
+
+====================================
+identifiers can end with `?` and '!'
+====================================
+
+def hello(world?)
+  puts hello?
+end
+
+hello_there! : String = "meow"
+
+puts hello_there!
+
+---
+
+(expressions
+  (method_def
+    (identifier)
+    (param_list
+      (param
+        (identifier)))
+    (ERROR)
+    (expressions
+      (call
+        (identifier)
+        (argument_list
+          (call
+            (identifier))))))
+  (call
+    (identifier)
+    (argument_list
+      (type_declaration
+        (macro_var
+          (MISSING identifier))
+        (constant)
+        (string))))
+  (call
+    (identifier)
+    (argument_list
+      (call
+        (identifier)))))
+
+======================
+macro var in call args
+======================
+
+method.call %mvar
+
+---
+
+(expressions
+  (call
+    (call
+      (identifier)
+      (identifier))
+    (operator)
+    (argument_list
+      (identifier))))
+
+=======================
+nillable implicit index
+=======================
+
+filters1.try(&.pos[name])
+filters1.try(&.pos[name]?)
+
+---
+
+(expressions
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          method: (identifier)
+          arguments: (argument_list
+            (array
+              (identifier)))))))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          method: (identifier)
+          arguments: (argument_list
+            (array
+              (identifier)))))
+      (ERROR))))
+
+===========
+nasty regex
+===========
+
+%r(
+((?:\B::)?\b[A-Z]\w*(?:\:\:[A-Z]\w*)*|\B|(?<=\bself))(?<!\.)([#.])([\w<=>+\-*\/\[\]&|?!^~]+[?!]?)(?:\((.*?)\))?
+  |
+((?:\B::)?\b[A-Z]\w*(?:\:\:[A-Z]\w*)*)
+)x
+
+---
+
+(expressions
+  (regex
+    (ignored_backslash)
+    (ERROR
+      (char_escape_sequence))
+    (ignored_backslash)
+    (ignored_backslash)
+    (ignored_backslash)
+    (ignored_backslash)
+    (ignored_backslash)
+    (ERROR
+      (char_escape_sequence))
+    (ignored_backslash)
+    (ignored_backslash)
+    (ignored_backslash)
+    (ignored_backslash)
+    (ignored_backslash)
+    (ignored_backslash)
+    (ignored_backslash)
+    (ignored_backslash)
+    (ignored_backslash)
+    (ERROR
+      (char_escape_sequence))
+    (ignored_backslash)
+    (ignored_backslash)
+    (ignored_backslash)
+    (ignored_backslash)
+    (regex_modifier)))
+
+========================
+escaped macro expression
+:error
+========================
+
+macro name
+  \{% if true %}
+    puts "hello"
+  \{% end %}
+end
+
+---
+
+(expressions)
+
+
+=======================
+macro exp part of ident
+=======================
+
+{% begin %}
+key.to_{{method.id}}?
+{% end %}
+
+---
+
+(expressions
+  (macro_begin)
+  (call
+    (identifier)
+    (identifier)
+    (argument_list
+      (macro_expression
+        (call
+          (identifier)
+          (identifier)))))
+  (ERROR
+    (macro_end)))
+
+=========================
+trailing if inside interp
+=========================
+
+"hello #{"world" if true}"
+
+---
+
+(expressions
+  (ERROR
+    (string
+      (ERROR
+        (identifier)))))
+
+========================
+macro var as block param
+:error
+========================
+
+method do |%buffer|
+  puts %buffer
+end
+
+---
+
+(expressions
+  (call
+    method: (identifier)
+    block: (block
+      (ERROR)
+      body: (expressions
+        (call
+          receiver: (macro_var
+            name: (identifier))
+          method: (operator)
+          arguments: (argument_list
+            (call
+              receiver: (identifier)
+              method: (operator)
+              arguments: (argument_list
+                (identifier)))))))))
+
+=============================
+def identifier with macro exp
+:error
+=============================
+
+def hello_{{ "world" }}(a, b)
+end
+
+---
+
+(expressions
+  (method_def
+    (identifier)
+    (ERROR
+      (macro_expression
+        (string))
+      (ERROR
+        (identifier))
+      (identifier))))
+
+=====================
+ivar macro expression
+:error
+=====================
+
+@{{ name }} = %bar{name}
+
+---
+
+(expressions
+  (ERROR
+    (UNEXPECTED '{'))
+  (assign
+    (macro_expression
+      (identifier))
+    (macro_var
+      (identifier)
+      (identifier))))
+
+===========
+command def
+:error
+===========
+
+def `(command) : String
+end
+
+---
+
+(expressions
+  (method_def
+    name: (operator)
+    params: (param_list
+      (param
+        name: (identifier)))
+    type: (constant)))
