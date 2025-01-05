@@ -4347,12 +4347,18 @@ as?(Int32 | LibXML::Node*)
           (constant)
           (constant))))))
 
-================
+===================
 is_a? pseudo method
-================
+===================
 
 node.is_a?(LibXML::Node*)
 is_a?(Int32 | LibXML::Node*)
+
+# ternary
+foo.is_a?(Bar?) ? foo.bar : foo
+
+# nilable type
+foo.is_a? Bar? ?
 
 ---
 
@@ -4369,7 +4375,27 @@ is_a?(Int32 | LibXML::Node*)
       (pointer_type
         (union_type
           (constant)
-          (constant))))))
+          (constant)))))
+  (comment)
+  (conditional
+    cond: (pseudo_call
+      receiver: (identifier)
+      method: (identifier)
+      arguments: (argument_list
+        (nilable_type
+          (constant))))
+    then: (call
+      receiver: (identifier)
+      method: (identifier))
+    else: (identifier))
+  (comment)
+  (pseudo_call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (nilable_type
+        (nilable_type
+      (constant))))))
 
 ==========================
 parenless as pseudo method
