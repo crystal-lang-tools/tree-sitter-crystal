@@ -2415,6 +2415,7 @@ module.exports = grammar({
       ))
     },
 
+    // This is only relevant for enum statements
     class_var_assign: $ => {
       const lhs = field('lhs', $.class_var)
       const rhs = field('rhs', $._statement)
