@@ -5971,7 +5971,7 @@
         ]
       }
     },
-    "macro_def": {
+    "_macro_signature": {
       "type": "SEQ",
       "members": [
         {
@@ -6088,6 +6088,15 @@
               }
             ]
           }
+        }
+      ]
+    },
+    "macro_def": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_macro_signature"
         },
         {
           "type": "SYMBOL",
@@ -6097,24 +6106,19 @@
           "type": "FIELD",
           "name": "body",
           "content": {
-            "type": "SEQ",
+            "type": "CHOICE",
             "members": [
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_statements"
-                    },
-                    "named": true,
-                    "value": "expressions"
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_statements"
+                },
+                "named": true,
+                "value": "expressions"
+              },
+              {
+                "type": "BLANK"
               }
             ]
           }
