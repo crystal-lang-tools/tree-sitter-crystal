@@ -583,17 +583,62 @@ class SExpVisitor < Crystal::Visitor
   ##############
 
   def visit(node : If | Unless)
-    in_node("conditional") do
+    is_ternary = false
+    node_type = if node.is_a?(If)
+                  if node.ternary?
+                    is_ternary = true
+                    "conditional"
+                  else
+                    "if"
+                  end
+                else
+                  "unless"
+                end
+
+    in_node(node_type) do
       field "cond" do
         node.cond.accept self
       end
 
       field "then" do
-        node.then.accept self
+        if !is_ternary && !node.then.is_a?(Nop)
+          in_node("then") do
+            node.then.accept self
+          end
+        else
+          node.then.accept self
+        end
       end
 
       field "else" do
-        node.else.accept self
+        if is_ternary
+          node.else.accept self
+        else
+          if node.else.is_a?(If) && node.else_location == node.else.location
+            # `node.else_location == node.else.location` confirms this is an elsif keyword
+            # If not, it must actually be `else if`
+            alias_next_node!("elsif")
+            node.else.accept(self)
+          elsif node.else.is_a?(Nop)
+            # We need to check else_location to distinguish between
+            #   if foo
+            #     5
+            #   else
+            #   end
+            # and
+            #   if foo
+            #     5
+            #   end
+            # The former should have an empty `else` node.
+            if node.else_location
+              print_node("else")
+            end
+          else
+            in_node("else") do
+              body_field(node.else)
+            end
+          end
+        end
       end
     end
 
@@ -762,6 +807,15 @@ class SExpVisitor < Crystal::Visitor
     if node.suffix.bracket?
       in_node("static_array_type") do
         node.type_vars.each(&.accept self)
+      end
+
+      return false
+    end
+
+    # `a = Int32?` is represented as `a = ::Union(Int32, ::Nil)`
+    if node.suffix.question?
+      in_node("nilable_constant") do
+        node.type_vars.first.accept(self)
       end
 
       return false
