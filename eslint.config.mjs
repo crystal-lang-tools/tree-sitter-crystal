@@ -35,6 +35,7 @@ export default [
       'comma-style': ['error', 'last', { exceptions: { 'CallExpression': false } }],
       'comma-spacing': ['error'],
       'func-call-spacing': ['error'],
+      'function-call-argument-newline': ['error', 'consistent'],
       'implicit-arrow-linebreak': ['error'],
       indent: ['error', 2],
       'linebreak-style': ['error', 'unix'],
