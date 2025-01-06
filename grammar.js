@@ -570,8 +570,7 @@ module.exports = grammar({
       )
 
       const type_suffix = choice(
-        'u8', 'u16', 'u32', 'u64', 'u128',
-        'i8', 'i16', 'i32', 'i64', 'i128',
+        'u8', 'u16', 'u32', 'u64', 'u128', 'i8', 'i16', 'i32', 'i64', 'i128',
       )
 
       const numeric_component = seq(
@@ -679,9 +678,12 @@ module.exports = grammar({
         seq('{', long_unicode_character, repeat(seq(' ', long_unicode_character)), '}'),
       ))
 
-      return token.immediate(seq('\\', choice(
+      const single_character_escape = choice(
         '\n', '\\', '"', 'a', 'b', 'e', 'f', 'n', 'r', 't', 'v',
-        octal_escape, hex_escape, unicode_escape,
+      )
+
+      return token.immediate(seq('\\', choice(
+        single_character_escape, octal_escape, hex_escape, unicode_escape,
       )))
     },
 
@@ -1611,7 +1613,8 @@ module.exports = grammar({
       const name = token(seq('%', ident_part, repeat(ident_part)))
       const exp = seq(
         token.immediate('{'),
-        $._expression, repeat(seq(',', $._expression)),
+        $._expression,
+        repeat(seq(',', $._expression)),
         optional(','),
         '}',
       )
