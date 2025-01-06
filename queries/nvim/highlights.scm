@@ -123,6 +123,13 @@
   "}}"
 ] @punctuation.bracket
 
+(index_call
+  method: (operator) @punctuation.bracket
+  [
+    "]"
+    "]?"
+  ] @punctuation.bracket)
+
 [
   "{%"
   "%}"

@@ -2091,7 +2091,7 @@ module.exports = grammar({
 
       return seq(
         '.',
-        alias($._start_of_index_operator, '['),
+        field('method', alias($._start_of_index_operator, $.operator)),
         args,
         choice(']', ']?'),
       )
@@ -2198,11 +2198,12 @@ module.exports = grammar({
 
     index_operator: $ => {
       const receiver = field('receiver', $._expression)
+      const operator = field('method', alias($._start_of_index_operator, $.operator))
       const args = field('arguments', alias($.bracket_argument_list, $.argument_list))
 
       return prec('index_operator', seq(
         receiver,
-        alias($._start_of_index_operator, '['),
+        operator,
         args,
         choice(']', ']?'),
       ))
@@ -2213,7 +2214,7 @@ module.exports = grammar({
         field('receiver', $._expression),
         '.',
         field('method', alias('[', $.operator)),
-        alias($.bracket_argument_list, $.argument_list),
+        field('arguments', alias($.bracket_argument_list, $.argument_list)),
         choice(']', ']?'),
       )
     },
