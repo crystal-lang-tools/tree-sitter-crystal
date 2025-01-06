@@ -2036,6 +2036,7 @@ not_chained = "str1"
 
 =================================
 Array-like and hash-like literals
+:language(crystal)
 =================================
 
 Array[1, 2, 3]
