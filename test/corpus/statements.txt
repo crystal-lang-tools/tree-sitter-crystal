@@ -1593,3 +1593,81 @@ end
     params: (param_list
       (param
         name: (identifier)))))
+
+==================================
+trailing ? and ! in c struct names
+==================================
+
+lib MyLib
+  struct MyStruct
+    foo?, bar! : Int32
+    baz : Bool
+  end
+end
+
+---
+
+(expressions
+  (lib_def
+    name: (constant)
+    body: (expressions
+      (c_struct_def
+        name: (constant)
+        (c_struct_fields
+          (identifier)
+          (identifier)
+          type: (constant))
+        (c_struct_fields
+          (identifier)
+          type: (constant))))))
+
+=========================
+params ending with ? or !
+=========================
+
+def hello(a? : Bool, b!, *c!, &d?)
+end
+
+hello(out a?) do |b?|
+  puts b?
+end
+
+{% for int? in [1, 2] %}
+{% end %}
+
+---
+
+(expressions
+  (method_def
+    (identifier)
+    (param_list
+      (param
+        (identifier)
+        (constant))
+      (param
+        (identifier))
+      (splat_param
+        (identifier))
+      (block_param
+        (identifier))))
+  (call
+    (identifier)
+    (argument_list
+      (out
+        (identifier)))
+    (block
+      (param_list
+        (param
+          (identifier)))
+      (expressions
+        (call
+          (identifier)
+          (argument_list
+            (call
+              (identifier)))))))
+  (macro_for
+    (identifier)
+    (array
+      (integer)
+      (integer)))
+  (macro_end))

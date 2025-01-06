@@ -4658,3 +4658,267 @@ end
           (call
             (self)
             (operator)))))))
+
+===========================
+identifiers with trailing ?
+===========================
+
+name? : Type
+*args? = %w[1, 2, 3]
+
+def includes?(obj : Bool) : Bool
+  obj ? any? : !all?
+end
+
+def one? : Bool
+  true
+end
+
+true ? foo? : Bool
+
+foo? = true
+foo?==true
+bar? ||= false
+
+obj.foo? 1, 2
+obj.foo?(1, 2)
+obj.foo?(1, 2) { puts "bar" }
+obj.foo? a?: 1, b?: 2 do
+  puts "bar"
+end
+
+
+---
+
+(expressions
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (assign
+    lhs: (splat
+      (identifier))
+    rhs: (array
+      (string)
+      (string)
+      (string)))
+  (method_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier)
+        type: (constant)))
+    type: (constant)
+    body: (expressions
+      (conditional
+        cond: (identifier)
+        then: (call
+          method: (identifier))
+        else: (not
+          (operator)
+          (call
+            method: (identifier))))))
+  (method_def
+    name: (identifier)
+    type: (constant)
+    body: (expressions
+      (true)))
+  (conditional
+    cond: (true)
+    then: (call
+      method: (identifier))
+    else: (constant))
+  (assign
+    lhs: (identifier)
+    rhs: (true))
+  (call
+    receiver: (call
+      method: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (true)))
+  (op_assign
+    lhs: (identifier)
+    rhs: (false))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (integer)
+      (integer)))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (integer)
+      (integer)))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (integer)
+      (integer))
+    block: (block
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string))))))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (named_expr
+        name: (identifier)
+        (integer))
+      (named_expr
+        name: (identifier)
+        (integer)))
+    block: (block
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))
+
+===========================
+identifiers with trailing !
+===========================
+
+name! : Type
+*args! = %w[1, 2, 3]
+
+def includes?(obj : Bool) : Bool
+  obj ? any! : !all!
+end
+
+def one! : Bool
+  true
+end
+
+true ? foo! : Bool
+
+# parses as `(foo!) = (true)`, when it should be `(foo) != (true)`
+foo!=true
+foo! = true
+# supposed to be a syntax error
+foo!==true
+foo! == true
+self.foo != true
+bar! ||= false
+
+obj.foo! 1, 2
+obj.foo!(1, 2)
+obj.foo!(1, 2) { puts "bar" }
+obj.foo! a!: 1, b!: 2 do
+  puts "bar"
+end
+
+---
+
+(expressions
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (assign
+    lhs: (splat
+      (identifier))
+    rhs: (array
+      (string)
+      (string)
+      (string)))
+  (method_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier)
+        type: (constant)))
+    type: (constant)
+    body: (expressions
+      (conditional
+        cond: (identifier)
+        then: (call
+          method: (identifier))
+        else: (not
+          (operator)
+          (call
+            method: (identifier))))))
+  (method_def
+    name: (identifier)
+    type: (constant)
+    body: (expressions
+      (true)))
+  (conditional
+    cond: (true)
+    then: (call
+      method: (identifier))
+    else: (constant))
+  (comment)
+  (assign
+    lhs: (identifier)
+    rhs: (true))
+  (assign
+    lhs: (identifier)
+    rhs: (true))
+  (comment)
+  (call
+    receiver: (call
+      method: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (true)))
+  (call
+    receiver: (call
+      method: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (true)))
+  (call
+    receiver: (call
+      receiver: (self)
+      method: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (true)))
+  (op_assign
+    lhs: (identifier)
+    rhs: (false))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (integer)
+      (integer)))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (integer)
+      (integer)))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (integer)
+      (integer))
+    block: (block
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string))))))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (named_expr
+        name: (identifier)
+        (integer))
+      (named_expr
+        name: (identifier)
+        (integer)))
+    block: (block
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (string)))))))
