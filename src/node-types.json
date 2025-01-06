@@ -84,6 +84,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -188,6 +192,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -267,6 +275,10 @@
         },
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "double_splat_type",
           "named": true
         },
         {
@@ -694,6 +706,10 @@
           "named": true
         },
         {
+          "type": "double_splat_type",
+          "named": true
+        },
+        {
           "type": "expressions",
           "named": true
         },
@@ -938,6 +954,10 @@
           },
           {
             "type": "constant",
+            "named": true
+          },
+          {
+            "type": "double_splat_type",
             "named": true
           },
           {
@@ -2667,6 +2687,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -2803,6 +2827,10 @@
           },
           {
             "type": "constant",
+            "named": true
+          },
+          {
+            "type": "double_splat_type",
             "named": true
           },
           {
@@ -3833,6 +3861,10 @@
         },
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "double_splat_type",
           "named": true
         },
         {
@@ -5298,6 +5330,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -5358,6 +5394,81 @@
       "types": [
         {
           "type": "annotation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "double_splat_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "class_type",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "double_splat_type",
+          "named": true
+        },
+        {
+          "type": "generic_instance_type",
+          "named": true
+        },
+        {
+          "type": "macro_expression",
+          "named": true
+        },
+        {
+          "type": "named_tuple_type",
+          "named": true
+        },
+        {
+          "type": "nilable_type",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "proc_type",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "splat_type",
+          "named": true
+        },
+        {
+          "type": "static_array_type",
+          "named": true
+        },
+        {
+          "type": "tuple_type",
+          "named": true
+        },
+        {
+          "type": "typeof",
+          "named": true
+        },
+        {
+          "type": "underscore",
+          "named": true
+        },
+        {
+          "type": "union_type",
           "named": true
         }
       ]
@@ -6031,6 +6142,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -6572,6 +6687,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -6663,6 +6782,10 @@
           },
           {
             "type": "constant",
+            "named": true
+          },
+          {
+            "type": "double_splat_type",
             "named": true
           },
           {
@@ -6812,6 +6935,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -6902,6 +7029,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -6973,6 +7104,10 @@
           },
           {
             "type": "constant",
+            "named": true
+          },
+          {
+            "type": "double_splat_type",
             "named": true
           },
           {
@@ -8249,6 +8384,10 @@
           "named": true
         },
         {
+          "type": "double_splat_type",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
           "named": true
         },
@@ -8317,6 +8456,10 @@
         },
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "double_splat_type",
           "named": true
         },
         {
@@ -10700,6 +10843,10 @@
           },
           {
             "type": "constant",
+            "named": true
+          },
+          {
+            "type": "double_splat_type",
             "named": true
           },
           {
@@ -13496,6 +13643,10 @@
           "named": true
         },
         {
+          "type": "double_splat_type",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
           "named": true
         },
@@ -13607,6 +13758,10 @@
         },
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "double_splat_type",
           "named": true
         },
         {
@@ -13925,6 +14080,10 @@
         },
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "double_splat_type",
           "named": true
         },
         {
@@ -14854,6 +15013,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -14945,6 +15108,10 @@
         },
         {
           "type": "double_splat_param",
+          "named": true
+        },
+        {
+          "type": "double_splat_type",
           "named": true
         },
         {
@@ -15060,6 +15227,10 @@
         },
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "double_splat_type",
           "named": true
         },
         {
@@ -15405,6 +15576,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -15485,6 +15660,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -15549,6 +15728,10 @@
         },
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "double_splat_type",
           "named": true
         },
         {
@@ -16188,6 +16371,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -16301,6 +16488,10 @@
         },
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "double_splat_type",
           "named": true
         },
         {
@@ -16660,6 +16851,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -16742,6 +16937,10 @@
           "named": true
         },
         {
+          "type": "double_splat_type",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
           "named": true
         },
@@ -16814,6 +17013,10 @@
         },
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "double_splat_type",
           "named": true
         },
         {
@@ -17598,6 +17801,10 @@
           "named": true
         },
         {
+          "type": "double_splat_type",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
           "named": true
         },
@@ -17674,6 +17881,10 @@
           },
           {
             "type": "constant",
+            "named": true
+          },
+          {
+            "type": "double_splat_type",
             "named": true
           },
           {
@@ -18013,6 +18224,10 @@
           "named": true
         },
         {
+          "type": "double_splat_type",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
           "named": true
         },
@@ -18327,6 +18542,10 @@
           "named": true
         },
         {
+          "type": "double_splat_type",
+          "named": true
+        },
+        {
           "type": "generic_instance_type",
           "named": true
         },
@@ -18436,6 +18655,10 @@
             "named": true
           },
           {
+            "type": "double_splat_type",
+            "named": true
+          },
+          {
             "type": "generic_instance_type",
             "named": true
           },
@@ -18515,6 +18738,10 @@
         },
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "double_splat_type",
           "named": true
         },
         {
