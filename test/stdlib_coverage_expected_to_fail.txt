@@ -7,8 +7,6 @@ compiler/crystal/interpreter/disassembler.cr
 compiler/crystal/interpreter/instructions.cr
 compiler/crystal/interpreter/interpreter.cr
 compiler/crystal/interpreter/op_code.cr
-compiler/crystal/interpreter/pry_reader.cr
-compiler/crystal/interpreter/repl_reader.cr
 compiler/crystal/macros/methods.cr
 compiler/crystal/program.cr
 compiler/crystal/semantic/exception.cr

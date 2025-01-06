@@ -285,6 +285,18 @@ module.exports = grammar({
       $.pseudo_call_argument_list,
       $._parenthesized_type,
     ],
+
+    // Ternary has precedence over type declaration
+    [
+      $.call,
+      $.type_declaration,
+    ],
+
+    // Want to prefer identifiers ending with `?`
+    [
+      $.identifier_method_call,
+      $.identifier,
+    ],
   ],
 
   conflicts: $ => [
@@ -983,6 +995,7 @@ module.exports = grammar({
     method_proc: $ => {
       const receiver = field('receiver', choice(
         $.identifier,
+        alias($.identifier_method_call, $.identifier),
         $.instance_var,
         $.class_var,
         $.self,
@@ -1182,7 +1195,10 @@ module.exports = grammar({
     },
 
     fun_param: $ => {
-      const name = field('name', choice($.identifier, $.constant))
+      const name = field('name', choice(
+        $.identifier, $.constant,
+        alias($.identifier_method_call, $.identifier),
+      ))
       const type = field('type', seq(/[ \t]:\s/, $._bare_type))
 
       return seq(
@@ -1229,7 +1245,19 @@ module.exports = grammar({
     ),
 
     c_struct_fields: $ => {
-      const names = seq($.identifier, repeat(seq(',', $.identifier)))
+      const names = seq(
+        choice(
+          $.identifier,
+          alias($.identifier_method_call, $.identifier),
+        ),
+        repeat(seq(
+          ',',
+          choice(
+            $.identifier,
+            alias($.identifier_method_call, $.identifier),
+          ),
+        )),
+      )
 
       return seq(
         names,
@@ -1268,7 +1296,19 @@ module.exports = grammar({
     ),
 
     union_fields: $ => {
-      const names = seq($.identifier, repeat(seq(',', $.identifier)))
+      const names = seq(
+        choice(
+          $.identifier,
+          alias($.identifier_method_call, $.identifier),
+        ),
+        repeat(seq(
+          ',',
+          choice(
+            $.identifier,
+            alias($.identifier_method_call, $.identifier),
+          ),
+        )),
+      )
 
       return seq(
         names,
@@ -1427,7 +1467,9 @@ module.exports = grammar({
     param: $ => {
       const extern_name = field('extern_name', $.identifier)
       const name = field('name', choice(
-        $.identifier, $.instance_var, $.class_var, $.macro_var, $.macro_expression,
+        $.identifier, alias($.identifier_method_call, $.identifier),
+        $.instance_var, $.class_var,
+        $.macro_var, $.macro_expression,
       ))
       const type = field('type', seq(/[ \t]:\s/, $._bare_type))
       const default_value = field('default', seq('=', $._expression))
@@ -1443,7 +1485,9 @@ module.exports = grammar({
 
     splat_param: $ => {
       const name = field('name', choice(
-        $.identifier, $.instance_var, $.class_var, $.macro_var, $.macro_expression,
+        $.identifier, alias($.identifier_method_call, $.identifier),
+        $.instance_var, $.class_var,
+        $.macro_var, $.macro_expression,
       ))
       const type = field('type', seq(/[ \t]:\s/, $._bare_type))
 
@@ -1457,7 +1501,9 @@ module.exports = grammar({
 
     double_splat_param: $ => {
       const name = field('name', choice(
-        $.identifier, $.instance_var, $.class_var, $.macro_var, $.macro_expression,
+        $.identifier, alias($.identifier_method_call, $.identifier),
+        $.instance_var, $.class_var,
+        $.macro_var, $.macro_expression,
       ))
       const type = field('type', seq(/[ \t]:\s/, $._bare_type))
 
@@ -1471,7 +1517,9 @@ module.exports = grammar({
 
     block_param: $ => {
       const name = field('name', choice(
-        $.identifier, $.instance_var, $.class_var, $.macro_var, $.macro_expression,
+        $.identifier, alias($.identifier_method_call, $.identifier),
+        $.instance_var, $.class_var,
+        $.macro_var, $.macro_expression,
       ))
       const type = field('type', seq(/:\s/, $._bare_type))
 
@@ -1933,7 +1981,10 @@ module.exports = grammar({
     )),
 
     macro_for: $ => {
-      const var_name = field('var', choice($.underscore, $.identifier))
+      const var_name = field('var', choice(
+        $.underscore, $.identifier,
+        alias($.identifier_method_call, $.identifier),
+      ))
 
       return seq(
         'for',
@@ -2481,6 +2532,7 @@ module.exports = grammar({
       'out',
       choice(
         $.identifier,
+        alias($.identifier_method_call, $.identifier),
         $.instance_var,
         $.underscore,
         $.macro_var,
@@ -2492,6 +2544,7 @@ module.exports = grammar({
       const lhs = field('lhs', choice(
         $.underscore,
         $.identifier,
+        alias($.identifier_method_call, $.identifier),
         $.instance_var,
         $.class_var,
         $.macro_var,
@@ -2555,6 +2608,7 @@ module.exports = grammar({
 
       const lhs = field('lhs', choice(
         $.identifier,
+        alias($.identifier_method_call, $.identifier),
         $.instance_var,
         $.class_var,
         $.macro_var,
@@ -2573,6 +2627,7 @@ module.exports = grammar({
     lhs_splat: $ => seq('*', choice(
       $.underscore,
       $.identifier,
+      alias($.identifier_method_call, $.identifier),
       $.instance_var,
       $.class_var,
       $.macro_var,
@@ -2586,6 +2641,7 @@ module.exports = grammar({
       const lhs_basic = choice(
         $.underscore,
         $.identifier,
+        alias($.identifier_method_call, $.identifier),
         $.instance_var,
         $.class_var,
         $.macro_var,
@@ -2611,7 +2667,11 @@ module.exports = grammar({
 
     uninitialized_assign: $ => {
       return seq(
-        field('lhs', choice($.identifier, $.instance_var, $.class_var, $.global_var, $.macro_var)),
+        field('lhs', choice(
+          $.identifier, alias($.identifier_method_call, $.identifier),
+          $.instance_var, $.class_var,
+          $.global_var, $.macro_var,
+        )),
         '=',
         field('rhs', $.uninitialized_var),
       )
@@ -2621,7 +2681,9 @@ module.exports = grammar({
 
     type_declaration: $ => {
       const variable = field('var', choice(
-        $.identifier, $.instance_var, $.class_var, $.macro_var, $.macro_expression,
+        $.identifier, alias($.identifier_method_call, $.identifier),
+        $.instance_var, $.class_var,
+        $.macro_var, $.macro_expression,
       ))
       const type = field('type', $._bare_type)
       const value = field('value', $._expression)
@@ -2646,11 +2708,15 @@ module.exports = grammar({
       field('type', $._bare_type),
     ),
 
-    block_body_param: $ => field('name', $.identifier),
+    block_body_param: $ => field('name', choice(
+      $.identifier, alias($.identifier_method_call, $.identifier),
+    )),
 
     block_body_splat_param: $ => seq(
       '*',
-      field('name', $.identifier),
+      field('name', choice(
+        $.identifier, alias($.identifier_method_call, $.identifier),
+      )),
     ),
 
     _block_body_nested_param: $ => {

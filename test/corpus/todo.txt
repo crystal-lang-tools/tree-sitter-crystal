@@ -144,47 +144,6 @@ MyConst2 = {
               (symbol)
               (symbol))))))))
 
-====================================
-identifiers can end with `?` and '!'
-====================================
-
-def hello(world?)
-  puts hello?
-end
-
-hello_there! : String = "meow"
-
-puts hello_there!
-
----
-
-(expressions
-  (method_def
-    (identifier)
-    (param_list
-      (param
-        (identifier)))
-    (ERROR)
-    (expressions
-      (call
-        (identifier)
-        (argument_list
-          (call
-            (identifier))))))
-  (call
-    (identifier)
-    (argument_list
-      (type_declaration
-        (macro_var
-          (MISSING identifier))
-        (constant)
-        (string))))
-  (call
-    (identifier)
-    (argument_list
-      (call
-        (identifier)))))
-
 ======================
 macro var in call args
 ======================
@@ -394,3 +353,36 @@ ivar macro expression
     (macro_var
       (identifier)
       (identifier))))
+
+==============================
+not equals call without spaces
+==============================
+
+# should be `(foo) != (true)` but is `(foo!) = (true)`
+self.foo!=true
+self.foo! = true
+self.foo != true
+
+---
+
+(expressions
+  (comment)
+  (call
+    receiver: (self)
+    method: (identifier)
+    (ERROR)
+    arguments: (argument_list
+      (true)))
+  (call
+    receiver: (self)
+    method: (identifier)
+    (ERROR)
+    arguments: (argument_list
+      (true)))
+  (call
+    receiver: (call
+      receiver: (self)
+      method: (identifier))
+    method: (operator)
+    arguments: (argument_list
+      (true))))
