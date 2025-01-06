@@ -314,7 +314,7 @@ class SExpVisitor < Crystal::Visitor
         end
       end
 
-      field "receiver" do
+      field "class" do
         node.receiver.try &.accept self
       end
 
@@ -327,7 +327,7 @@ class SExpVisitor < Crystal::Visitor
       end
 
       field "params" do
-        if node.args.size > 0
+        if node.args.size > 0 || node.double_splat
           in_node("param_list") do
             splat_index = node.splat_index || -1
 
@@ -336,6 +336,11 @@ class SExpVisitor < Crystal::Visitor
                 alias_next_node!("splat_param")
               end
               arg.accept self
+            end
+
+            if (double_splat = node.double_splat)
+              alias_next_node!("double_splat_param")
+              double_splat.accept(self)
             end
           end
         end
@@ -846,6 +851,14 @@ class SExpVisitor < Crystal::Visitor
 
   def visit(node : Splat)
     in_node("splat_type") do
+      node.exp.accept self
+    end
+
+    false
+  end
+
+  def visit(node : DoubleSplat)
+    in_node("double_splat_type") do
       node.exp.accept self
     end
 
