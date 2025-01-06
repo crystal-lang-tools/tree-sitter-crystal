@@ -1695,6 +1695,7 @@ module.exports = grammar({
     // but this is not:
     //   alias Foo = {A, B -> C}
     _splattable_type: $ => choice(
+      $.double_splat_type,
       $.splat_type,
       $._type,
     ),
@@ -1777,6 +1778,10 @@ module.exports = grammar({
 
     splat_type: $ => prec('splat_type', seq(
       '*', $._type,
+    )),
+
+    double_splat_type: $ => prec('splat_type', seq(
+      alias($._unary_double_star, '**'), $._type,
     )),
 
     tuple_type: $ => seq(

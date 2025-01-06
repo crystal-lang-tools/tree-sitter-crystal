@@ -7351,6 +7351,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "double_splat_type"
+        },
+        {
+          "type": "SYMBOL",
           "name": "splat_type"
         },
         {
@@ -7733,6 +7737,28 @@
           {
             "type": "STRING",
             "value": "*"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_type"
+          }
+        ]
+      }
+    },
+    "double_splat_type": {
+      "type": "PREC",
+      "value": "splat_type",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_unary_double_star"
+            },
+            "named": false,
+            "value": "**"
           },
           {
             "type": "SYMBOL",

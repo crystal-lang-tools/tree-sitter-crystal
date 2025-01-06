@@ -1217,3 +1217,41 @@ alias L = Foo(Bar, Baz)
       params: (param_list
         (constant)
         (constant)))))
+
+=================
+double splat type
+=================
+
+class MyClass(T)
+  def self.new(**options : **T)
+  end
+end
+
+a = MyClass(**Int32).new
+
+---
+
+(expressions
+  (class_def
+    name: (generic_type
+      (constant)
+      params: (param_list
+        (constant)))
+    body: (expressions
+      (method_def
+        class: (self)
+        name: (identifier)
+        params: (param_list
+          (double_splat_param
+            name: (identifier)
+            type: (double_splat_type
+              (constant)))))))
+  (assign
+    lhs: (identifier)
+    rhs: (call
+      receiver: (generic_instance_type
+        (constant)
+        params: (param_list
+          (double_splat_type
+            (constant))))
+      method: (identifier))))
