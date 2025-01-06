@@ -55,6 +55,7 @@ STRIPPED_NODES = [
 # These nodes will be renamed in the expected output
 RENAMED_NODES = {
   "heredoc_start" => "string",
+  "assign_call"   => "call",
 }
 
 # A single corpus test example
@@ -79,7 +80,7 @@ class CorpusTest
   end
 
   def rename_node(string, old_name, new_name)
-    string.gsub(/\(#{old_name}\)/, "(#{new_name})")
+    string.gsub(/\(#{old_name}\b/, "(#{new_name}")
   end
 
   def runnable?

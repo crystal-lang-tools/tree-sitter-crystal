@@ -649,11 +649,12 @@ d=-0.zero?
 
 ================================================================================
 constant assignment
+:language(crystal)
 ================================================================================
 A = 1.0
 
-B =
-::C=
+::B =
+c=
 2
 
 D::E=-0.zero?
@@ -665,8 +666,8 @@ D::E=-0.zero?
     rhs: (float))
   (const_assign
     lhs: (constant)
-    rhs: (const_assign
-      lhs: (constant)
+    rhs: (assign
+      lhs: (identifier)
       rhs: (integer)))
   (const_assign
     lhs: (constant)
@@ -713,6 +714,7 @@ c.foo.bar = d.baz!.quz = 8
 
 ================================================================================
 assignment with modifiers
+:language(crystal)
 ================================================================================
 a = 5 if c
 
@@ -745,8 +747,9 @@ baz = 7 unless qux?
 
 ================================================================================
 multiple assignment
+:language(crystal)
 ================================================================================
-foo, bar = bar, foo
+foo, bar = baz, fuz
 
 *splat = {1}
 * splat = 2, 3, 4

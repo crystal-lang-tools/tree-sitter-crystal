@@ -641,6 +641,30 @@ class SExpVisitor < Crystal::Visitor
   ##############
 
   def visit(node : If | Unless)
+    then_loc = node.then.location
+    cond_loc = node.cond.location
+
+    if then_loc && cond_loc && then_loc < cond_loc
+      # then comes before cond, so this must be modifier form
+      node_type = if node.is_a?(If)
+                    "modifier_if"
+                  else
+                    "modifier_unless"
+                  end
+
+      in_node(node_type) do
+        field "then" do
+          node.then.accept self
+        end
+
+        field "cond" do
+          node.cond.accept self
+        end
+      end
+
+      return false
+    end
+
     is_ternary = false
     node_type = if node.is_a?(If)
                   if node.ternary?
@@ -1079,6 +1103,30 @@ class SExpVisitor < Crystal::Visitor
       return false
     end
 
+    # `foo.bar = baz` is represented as a call with method `bar=`. We should
+    # output this as an assignment. (But `foo.bar <= baz` is not an assignment.)
+    if node.name.ends_with?("=") && !is_operator && node.args.size == 1
+      in_node("assign") do
+        field "lhs" do
+          in_node("call") do
+            field "receiver" do
+              node.obj.try &.accept(self)
+            end
+
+            field "method" do
+              print_node("identifier")
+            end
+          end
+        end
+
+        field "rhs" do
+          node.args[0].accept self
+        end
+      end
+
+      return false
+    end
+
     call_name = if node.name == "[]"
                   "index_call"
                 else
@@ -1163,7 +1211,13 @@ class SExpVisitor < Crystal::Visitor
   end
 
   def visit(node : Assign | OpAssign)
-    in_node("assign") do
+    assign_type = if node.target.is_a?(Crystal::Path)
+                    "const_assign"
+                  else
+                    "assign"
+                  end
+
+    in_node(assign_type) do
       field "lhs" do
         node.target.accept(self)
       end
@@ -1178,7 +1232,10 @@ class SExpVisitor < Crystal::Visitor
   def visit(node : MultiAssign)
     in_node("assign") do
       field "lhs" do
-        node.targets.each &.accept(self)
+        node.targets.each do |target|
+          alias_next_node!("splat") if target.is_a?(Splat)
+          target.accept(self)
+        end
       end
       field "rhs" do
         node.values.each &.accept(self)
@@ -1215,6 +1272,10 @@ class SExpVisitor < Crystal::Visitor
       field "method" do
         print_node("identifier")
       end
+
+      # `a.nil?` is transformed to `a.is_a?(::Nil)`
+      # skip the argument list in this form
+      next if node.const.to_s == "::Nil"
 
       field "arguments" do
         in_node("argument_list") do
