@@ -259,6 +259,27 @@ class SExpVisitor < Crystal::Visitor
   end
 
   def visit(node : HashLiteral)
+    if node.name
+      in_node("hash_like") do
+        field "name" do
+          node.name.try &.accept(self)
+        end
+
+        field "values" do
+          in_node("hash") do
+            node.entries.each do |entry|
+              in_node("hash_entry") do
+                entry.key.accept(self)
+                entry.value.accept(self)
+              end
+            end
+          end
+        end
+      end
+
+      return false
+    end
+
     in_node("hash") do
       node.entries.each do |entry|
         in_node("hash_entry") do
@@ -282,6 +303,22 @@ class SExpVisitor < Crystal::Visitor
   end
 
   def visit(node : ArrayLiteral)
+    if node.name
+      in_node("array_like") do
+        field "name" do
+          node.name.try &.accept self
+        end
+
+        field "values" do
+          in_node("tuple") do
+            node.elements.each(&.accept(self))
+          end
+        end
+      end
+
+      return false
+    end
+
     in_node("array") do
       node.elements.each(&.accept(self))
 
@@ -1026,7 +1063,13 @@ class SExpVisitor < Crystal::Visitor
       return false
     end
 
-    in_node("call") do
+    call_name = if node.name == "[]"
+                  "index_call"
+                else
+                  "call"
+                end
+
+    in_node(call_name) do
       field "receiver" do
         node.obj.try &.accept(self)
       end
