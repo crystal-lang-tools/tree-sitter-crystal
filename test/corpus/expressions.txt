@@ -265,6 +265,7 @@ parentheses and expressions
 
 ================================================================================
 method calls
+:language(crystal)
 ================================================================================
 A.b
 
@@ -358,6 +359,7 @@ pp a # comment
 
 ================================================================================
 method calls with multiple arguments
+:language(crystal)
 ================================================================================
 puts true, -1, nil
 
@@ -413,6 +415,7 @@ puts (), ()
 
 ====================================
 Constants can be method names too c:
+:language(crystal)
 ====================================
 
 LibC.PostQueuedCompletionStatus(orig_operation.iocp, 0, 0, lpOverlapped)
@@ -433,6 +436,7 @@ LibC.PostQueuedCompletionStatus(orig_operation.iocp, 0, 0, lpOverlapped)
 
 ================================================================================
 splat arguments
+:language(crystal)
 ================================================================================
 puts * a
 puts *a

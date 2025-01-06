@@ -78,6 +78,7 @@ class SExpVisitor < Crystal::Visitor
   def field(name : String, &)
     @fields << name
     yield
+  ensure
     @fields.pop
   end
 
@@ -1077,20 +1078,35 @@ class SExpVisitor < Crystal::Visitor
       field "method" do
         if is_operator
           print_node("operator")
+        elsif node.name.starts_with?(/[A-Z]/)
+          print_node("constant")
         else
           print_node("identifier")
         end
       end
 
       field "arguments" do
-        break if !has_args
+        if !has_args
+          print_node("argument_list") if node.has_parentheses?
+          break
+        end
 
         in_node("argument_list") do
-          node.args.each(&.accept self)
+          node.args.each do |arg|
+            case arg
+            when Splat
+              alias_next_node!("splat")
+            when DoubleSplat
+              alias_next_node!("double_splat")
+            end
+
+            arg.accept(self)
+          end
 
           if named_args && named_args.size > 0
-            # TODO
-            print_node("<todo>")
+            named_args.each do |named_arg|
+              named_arg.accept(self)
+            end
           end
         end
       end
@@ -1099,6 +1115,17 @@ class SExpVisitor < Crystal::Visitor
         node.block_arg.try &.accept(self)
         node.block.try &.accept(self)
       end
+    end
+
+    false
+  end
+
+  def visit(node : NamedArgument)
+    in_node("named_expr") do
+      field "name" do
+        print_node("identifier")
+      end
+      node.value.accept(self)
     end
 
     false
