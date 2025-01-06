@@ -8099,7 +8099,7 @@
     "fields": {
       "arguments": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "argument_list",
@@ -8109,7 +8109,7 @@
       },
       "method": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "operator",
@@ -8355,16 +8355,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "argument_list",
-          "named": true
-        }
-      ]
     }
   },
   {

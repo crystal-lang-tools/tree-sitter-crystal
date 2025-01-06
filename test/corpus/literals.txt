@@ -2050,6 +2050,7 @@ MyHash(String, String | Int32){"foo" => "bar"}
 (expressions
   (index_call
     receiver: (constant)
+    method: (operator)
     arguments: (argument_list
       (integer)
       (integer)

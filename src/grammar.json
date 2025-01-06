@@ -9598,13 +9598,17 @@
           "value": "."
         },
         {
-          "type": "ALIAS",
+          "type": "FIELD",
+          "name": "method",
           "content": {
-            "type": "SYMBOL",
-            "name": "_start_of_index_operator"
-          },
-          "named": false,
-          "value": "["
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_start_of_index_operator"
+            },
+            "named": true,
+            "value": "operator"
+          }
         },
         {
           "type": "FIELD",
@@ -10237,13 +10241,17 @@
             }
           },
           {
-            "type": "ALIAS",
+            "type": "FIELD",
+            "name": "method",
             "content": {
-              "type": "SYMBOL",
-              "name": "_start_of_index_operator"
-            },
-            "named": false,
-            "value": "["
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_start_of_index_operator"
+              },
+              "named": true,
+              "value": "operator"
+            }
           },
           {
             "type": "FIELD",
@@ -10303,13 +10311,17 @@
           }
         },
         {
-          "type": "ALIAS",
+          "type": "FIELD",
+          "name": "arguments",
           "content": {
-            "type": "SYMBOL",
-            "name": "bracket_argument_list"
-          },
-          "named": true,
-          "value": "argument_list"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "bracket_argument_list"
+            },
+            "named": true,
+            "value": "argument_list"
+          }
         },
         {
           "type": "CHOICE",
