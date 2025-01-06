@@ -62,17 +62,32 @@ class SExpVisitor < Crystal::Visitor
   def visit(node : Expressions)
     # collapse (expressions (nop)) into (nil)
     if node.expressions.size == 1 && node.expressions.first.is_a?(Nop)
-      enter_node("nil")
+      if node.keyword.begin?
+        print_node("begin")
+      else
+        print_node("nil")
+      end
 
       return false
     end
 
-    enter_node("expressions")
-    true
-  end
+    if node.keyword.begin?
+      in_node("begin") do
+        field "body" do
+          in_node("expressions") do
+            node.expressions.each &.accept(self)
+          end
+        end
+      end
 
-  def end_visit(node : Expressions)
-    exit_node()
+      return false
+    end
+
+    in_node("expressions") do
+      node.expressions.each &.accept(self)
+    end
+
+    false
   end
 
   def field(name : String, &)
