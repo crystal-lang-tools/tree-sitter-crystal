@@ -367,7 +367,6 @@ exception/call_stack/elf.cr
 exception/call_stack/interpreter.cr
 exception/call_stack/libunwind.cr
 exception/call_stack/mach_o.cr
-exception/call_stack/null.cr
 exception/call_stack/stackwalk.cr
 exception/lib_unwind.cr
 fiber.cr
