@@ -1050,6 +1050,11 @@ class SExpVisitor < Crystal::Visitor
       return false
     end
 
+    if (obj = node.obj).is_a?(Global)
+      visit(obj)
+      return false
+    end
+
     if node.name == "`"
       # this is a `command` literal
       in_node("command") do
@@ -1365,6 +1370,14 @@ class SExpVisitor < Crystal::Visitor
     end
 
     false
+  end
+
+  def visit(node : MagicConstant)
+    print_node("pseudo_constant")
+  end
+
+  def visit(node : Global)
+    print_node("special_variable")
   end
 
   ##########
