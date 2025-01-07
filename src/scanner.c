@@ -810,6 +810,17 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                 lexer->mark_end(lexer);
                 continue;
 
+            case '#':
+                lex_advance(lexer);
+
+                if (lexer->lookahead == '{') {
+                    // probably string interpolation, make sure it's not parsed as
+                    // the start of a macro expression
+                    lex_advance(lexer);
+                }
+
+                continue;
+
             case 'a':
                 lexer->mark_end(lexer);
                 lex_advance(lexer);
