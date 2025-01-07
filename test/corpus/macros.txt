@@ -476,6 +476,37 @@ end
       (string)))
   (macro_end))
 
+==============================
+comments in macros
+==============================
+macro asdf
+  foo
+  # comments containing nesting keywords don't matter
+  # end
+  # begin
+  # macro
+  # def
+end
+
+# comments inside a macro are terminated by {%end%}
+{% begin %}
+  foo # comment {% end %}; 5
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    (comment)
+    (comment)
+    (comment)
+    (comment)
+    (comment))
+  (comment)
+  (macro_begin
+    body: (expressions
+      (macro_content)))
+  (integer))
+
 =====================
 single line macro def
 =====================

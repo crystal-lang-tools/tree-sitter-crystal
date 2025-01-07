@@ -712,6 +712,8 @@ typedef enum MacroScanResult MacroScanResult;
 static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const bool *valid_symbols) {
     bool found_content = false;
     bool nesting = false;
+    bool in_comment = false;
+
     lexer->result_symbol = MACRO_CONTENT;
 
     if (valid_symbols[MACRO_CONTENT_NESTING]) {
@@ -721,7 +723,7 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
     }
 
 #define RETURN_NESTING_CONTENT         \
-    if (nesting) {                     \
+    if (nesting && !in_comment) {      \
         if (found_content) {           \
             return MS_STOP;            \
         } else {                       \
@@ -811,6 +813,20 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                 lexer->mark_end(lexer);
                 continue;
 
+            case '"':
+                if (valid_symbols[STRING_LITERAL_START]) {
+                    // Delegate to string rules
+                    if (found_content) {
+                        return MS_STOP;
+                    } else {
+                        return MS_CONTINUE;
+                    }
+                }
+
+                found_content = true;
+                lex_advance(lexer);
+                continue;
+
             case '#':
                 lex_advance(lexer);
 
@@ -818,8 +834,12 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                     // probably string interpolation, make sure it's not parsed as
                     // the start of a macro expression
                     lex_advance(lexer);
+                } else {
+                    // Mark the rest of the line as a comment, where nesting keywords don't apply
+                    in_comment = true;
                 }
 
+                found_content = true;
                 continue;
 
             case 'a':
@@ -994,6 +1014,13 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
 
                 found_content = true;
                 lexer->mark_end(lexer);
+                continue;
+
+            case '\n':
+                lex_advance(lexer);
+                found_content = true;
+                // We've reached the end of the line, no more comment
+                in_comment = false;
                 continue;
         }
 
