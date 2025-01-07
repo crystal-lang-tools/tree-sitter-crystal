@@ -4309,13 +4309,13 @@ asm ("nop")
 
 =============
 uninitialized
+:language(crystal)
 =============
 
 uninitialized Int32
 a = uninitialized Int32
 @b =
-uninitialized
-Int32*
+uninitialized Int32*
 
 ---
 

@@ -1380,6 +1380,20 @@ class SExpVisitor < Crystal::Visitor
     print_node("special_variable")
   end
 
+  def visit(node : UninitializedVar)
+    in_node("assign") do
+      field "lhs" do
+        node.var.accept(self)
+      end
+
+      field "rhs" do
+        in_node("uninitialized_var") do
+          node.declared_type.accept(self)
+        end
+      end
+    end
+  end
+
   ##########
   # Fallback
   ##########
