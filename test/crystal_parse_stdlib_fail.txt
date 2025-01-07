@@ -155,7 +155,6 @@ compiler/crystal/tools/dependencies.cr
 compiler/crystal/tools/doc.cr
 compiler/crystal/tools/doc/constant.cr
 compiler/crystal/tools/doc/generator.cr
-compiler/crystal/tools/doc/item.cr
 compiler/crystal/tools/doc/macro.cr
 compiler/crystal/tools/doc/main.cr
 compiler/crystal/tools/doc/method.cr
@@ -192,7 +191,6 @@ compress/gzip/reader.cr
 compress/gzip/writer.cr
 compress/zip/checksum_reader.cr
 compress/zip/checksum_writer.cr
-compress/zip/compression_method.cr
 compress/zip/file.cr
 compress/zip/file_info.cr
 compress/zip/reader.cr
@@ -425,7 +423,6 @@ http/server/request_processor.cr
 http/server/response.cr
 http/status.cr
 http/web_socket.cr
-http/web_socket/close_code.cr
 http/web_socket/protocol.cr
 humanize.cr
 indexable.cr
@@ -477,7 +474,6 @@ lib_c/aarch64-android/c/signal.cr
 lib_c/aarch64-android/c/stdio.cr
 lib_c/aarch64-android/c/stdlib.cr
 lib_c/aarch64-android/c/string.cr
-lib_c/aarch64-android/c/sys/file.cr
 lib_c/aarch64-android/c/sys/mman.cr
 lib_c/aarch64-android/c/sys/resource.cr
 lib_c/aarch64-android/c/sys/select.cr
@@ -506,7 +502,6 @@ lib_c/aarch64-darwin/c/signal.cr
 lib_c/aarch64-darwin/c/stdio.cr
 lib_c/aarch64-darwin/c/stdlib.cr
 lib_c/aarch64-darwin/c/string.cr
-lib_c/aarch64-darwin/c/sys/file.cr
 lib_c/aarch64-darwin/c/sys/mman.cr
 lib_c/aarch64-darwin/c/sys/resource.cr
 lib_c/aarch64-darwin/c/sys/select.cr
@@ -536,7 +531,6 @@ lib_c/aarch64-linux-gnu/c/stdarg.cr
 lib_c/aarch64-linux-gnu/c/stdio.cr
 lib_c/aarch64-linux-gnu/c/stdlib.cr
 lib_c/aarch64-linux-gnu/c/string.cr
-lib_c/aarch64-linux-gnu/c/sys/file.cr
 lib_c/aarch64-linux-gnu/c/sys/mman.cr
 lib_c/aarch64-linux-gnu/c/sys/resource.cr
 lib_c/aarch64-linux-gnu/c/sys/select.cr
@@ -566,7 +560,6 @@ lib_c/aarch64-linux-musl/c/stdarg.cr
 lib_c/aarch64-linux-musl/c/stdio.cr
 lib_c/aarch64-linux-musl/c/stdlib.cr
 lib_c/aarch64-linux-musl/c/string.cr
-lib_c/aarch64-linux-musl/c/sys/file.cr
 lib_c/aarch64-linux-musl/c/sys/mman.cr
 lib_c/aarch64-linux-musl/c/sys/resource.cr
 lib_c/aarch64-linux-musl/c/sys/select.cr
@@ -596,7 +589,6 @@ lib_c/arm-linux-gnueabihf/c/stdarg.cr
 lib_c/arm-linux-gnueabihf/c/stdio.cr
 lib_c/arm-linux-gnueabihf/c/stdlib.cr
 lib_c/arm-linux-gnueabihf/c/string.cr
-lib_c/arm-linux-gnueabihf/c/sys/file.cr
 lib_c/arm-linux-gnueabihf/c/sys/mman.cr
 lib_c/arm-linux-gnueabihf/c/sys/resource.cr
 lib_c/arm-linux-gnueabihf/c/sys/select.cr
@@ -626,7 +618,6 @@ lib_c/i386-linux-gnu/c/stdarg.cr
 lib_c/i386-linux-gnu/c/stdio.cr
 lib_c/i386-linux-gnu/c/stdlib.cr
 lib_c/i386-linux-gnu/c/string.cr
-lib_c/i386-linux-gnu/c/sys/file.cr
 lib_c/i386-linux-gnu/c/sys/mman.cr
 lib_c/i386-linux-gnu/c/sys/resource.cr
 lib_c/i386-linux-gnu/c/sys/select.cr
@@ -656,7 +647,6 @@ lib_c/i386-linux-musl/c/stdarg.cr
 lib_c/i386-linux-musl/c/stdio.cr
 lib_c/i386-linux-musl/c/stdlib.cr
 lib_c/i386-linux-musl/c/string.cr
-lib_c/i386-linux-musl/c/sys/file.cr
 lib_c/i386-linux-musl/c/sys/mman.cr
 lib_c/i386-linux-musl/c/sys/resource.cr
 lib_c/i386-linux-musl/c/sys/select.cr
@@ -705,7 +695,6 @@ lib_c/x86_64-darwin/c/stdarg.cr
 lib_c/x86_64-darwin/c/stdio.cr
 lib_c/x86_64-darwin/c/stdlib.cr
 lib_c/x86_64-darwin/c/string.cr
-lib_c/x86_64-darwin/c/sys/file.cr
 lib_c/x86_64-darwin/c/sys/mman.cr
 lib_c/x86_64-darwin/c/sys/resource.cr
 lib_c/x86_64-darwin/c/sys/select.cr
@@ -735,7 +724,6 @@ lib_c/x86_64-dragonfly/c/stdarg.cr
 lib_c/x86_64-dragonfly/c/stdio.cr
 lib_c/x86_64-dragonfly/c/stdlib.cr
 lib_c/x86_64-dragonfly/c/string.cr
-lib_c/x86_64-dragonfly/c/sys/file.cr
 lib_c/x86_64-dragonfly/c/sys/mman.cr
 lib_c/x86_64-dragonfly/c/sys/resource.cr
 lib_c/x86_64-dragonfly/c/sys/select.cr
@@ -765,7 +753,6 @@ lib_c/x86_64-freebsd/c/stdarg.cr
 lib_c/x86_64-freebsd/c/stdio.cr
 lib_c/x86_64-freebsd/c/stdlib.cr
 lib_c/x86_64-freebsd/c/string.cr
-lib_c/x86_64-freebsd/c/sys/file.cr
 lib_c/x86_64-freebsd/c/sys/mman.cr
 lib_c/x86_64-freebsd/c/sys/resource.cr
 lib_c/x86_64-freebsd/c/sys/select.cr
@@ -795,7 +782,6 @@ lib_c/x86_64-linux-gnu/c/stdarg.cr
 lib_c/x86_64-linux-gnu/c/stdio.cr
 lib_c/x86_64-linux-gnu/c/stdlib.cr
 lib_c/x86_64-linux-gnu/c/string.cr
-lib_c/x86_64-linux-gnu/c/sys/file.cr
 lib_c/x86_64-linux-gnu/c/sys/mman.cr
 lib_c/x86_64-linux-gnu/c/sys/resource.cr
 lib_c/x86_64-linux-gnu/c/sys/select.cr
@@ -825,7 +811,6 @@ lib_c/x86_64-linux-musl/c/stdarg.cr
 lib_c/x86_64-linux-musl/c/stdio.cr
 lib_c/x86_64-linux-musl/c/stdlib.cr
 lib_c/x86_64-linux-musl/c/string.cr
-lib_c/x86_64-linux-musl/c/sys/file.cr
 lib_c/x86_64-linux-musl/c/sys/mman.cr
 lib_c/x86_64-linux-musl/c/sys/resource.cr
 lib_c/x86_64-linux-musl/c/sys/select.cr
@@ -855,7 +840,6 @@ lib_c/x86_64-netbsd/c/stdarg.cr
 lib_c/x86_64-netbsd/c/stdio.cr
 lib_c/x86_64-netbsd/c/stdlib.cr
 lib_c/x86_64-netbsd/c/string.cr
-lib_c/x86_64-netbsd/c/sys/file.cr
 lib_c/x86_64-netbsd/c/sys/mman.cr
 lib_c/x86_64-netbsd/c/sys/resource.cr
 lib_c/x86_64-netbsd/c/sys/select.cr
@@ -885,7 +869,6 @@ lib_c/x86_64-openbsd/c/stdarg.cr
 lib_c/x86_64-openbsd/c/stdio.cr
 lib_c/x86_64-openbsd/c/stdlib.cr
 lib_c/x86_64-openbsd/c/string.cr
-lib_c/x86_64-openbsd/c/sys/file.cr
 lib_c/x86_64-openbsd/c/sys/mman.cr
 lib_c/x86_64-openbsd/c/sys/resource.cr
 lib_c/x86_64-openbsd/c/sys/select.cr
@@ -915,7 +898,6 @@ lib_c/x86_64-solaris/c/stdarg.cr
 lib_c/x86_64-solaris/c/stdio.cr
 lib_c/x86_64-solaris/c/stdlib.cr
 lib_c/x86_64-solaris/c/string.cr
-lib_c/x86_64-solaris/c/sys/file.cr
 lib_c/x86_64-solaris/c/sys/mman.cr
 lib_c/x86_64-solaris/c/sys/resource.cr
 lib_c/x86_64-solaris/c/sys/select.cr
@@ -1002,7 +984,6 @@ llvm/basic_block_collection.cr
 llvm/context.cr
 llvm/di_builder.cr
 llvm/enums.cr
-llvm/enums/atomic.cr
 llvm/function.cr
 llvm/function_collection.cr
 llvm/function_pass_manager.cr
@@ -1081,7 +1062,6 @@ oauth2.cr
 oauth2/access_token/access_token.cr
 oauth2/access_token/bearer.cr
 oauth2/access_token/mac.cr
-oauth2/auth_scheme.cr
 oauth2/client.cr
 oauth2/session.cr
 openssl.cr
@@ -1209,22 +1189,15 @@ wasi_error.cr
 weak_ref.cr
 winerror.cr
 xml.cr
-xml/attribute_type.cr
 xml/attributes.cr
 xml/error.cr
-xml/html_parser_options.cr
 xml/namespace.cr
 xml/node.cr
-xml/node/type.cr
 xml/node_set.cr
-xml/parser_options.cr
 xml/reader.cr
-xml/reader/type.cr
-xml/save_options.cr
 xml/xpath_context.cr
 yaml.cr
 yaml/any.cr
-yaml/enums.cr
 yaml/lib_yaml.cr
 yaml/nodes.cr
 yaml/nodes/builder.cr

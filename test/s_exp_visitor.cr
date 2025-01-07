@@ -594,7 +594,28 @@ class SExpVisitor < Crystal::Visitor
       end
 
       field "body" do
-        node.members.each &.accept self
+        in_node("expressions") do
+          node.members.each do |member|
+            case member
+            when Arg
+              if (default = member.default_value)
+                in_node("const_assign") do
+                  field "lhs" do
+                    print_node("constant")
+                  end
+
+                  field "rhs" do
+                    default.accept(self)
+                  end
+                end
+              else
+                print_node("constant")
+              end
+            else
+              member.accept(self)
+            end
+          end
+        end
       end
     end
 

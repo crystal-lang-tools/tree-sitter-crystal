@@ -3784,6 +3784,7 @@ end
 
 ===========================================
 enums with restrictions and namespaced name
+:language(crystal)
 ===========================================
 
 enum Foo::Bar : UInt8
