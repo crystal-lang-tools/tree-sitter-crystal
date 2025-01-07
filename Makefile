@@ -94,10 +94,26 @@ test/stdlib_coverage: test/stdlib_coverage.cr test/util.cr
 test/crystal_parse_corpus: test/crystal_parse_corpus.cr test/s_exp_visitor.cr test/util.cr
 	crystal build -o test/crystal_parse_corpus test/crystal_parse_corpus.cr
 
-test: test/stdlib_coverage test/crystal_parse_corpus
+test/crystal_parse_stdlib: test/crystal_parse_stdlib.cr test/s_exp_visitor.cr test/util.cr
+	crystal build -o test/crystal_parse_stdlib test/crystal_parse_stdlib.cr
+
+test: test/stdlib_coverage test/crystal_parse_corpus test/crystal_parse_stdlib
 	$(TS) test
 	test/crystal_parse_corpus
 	test/stdlib_coverage
+	test/crystal_parse_stdlib
+
+.PHONY: stdlib_coverage
+stdlib_coverage: test/stdlib_coverage
+	test/stdlib_coverage
+
+.PHONY: crystal_parse_corpus
+crystal_parse_corpus: test/crystal_parse_corpus
+	test/crystal_parse_corpus
+
+.PHONY: crystal_parse_stdlib
+crystal_parse_stdlib: test/crystal_parse_stdlib
+	test/crystal_parse_stdlib
 
 tree-sitter-crystal.wasm: grammar.js src/scanner.c
 	$(TS) build --wasm

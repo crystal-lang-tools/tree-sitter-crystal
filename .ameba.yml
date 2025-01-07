@@ -3,32 +3,7 @@ Metrics/CyclomaticComplexity:
 
 Naming/BlockParameterName:
   Description: Disallows non-descriptive block parameter names
-  MinNameLength: 3
-  AllowNamesEndingInNumbers: true
-  Excluded:
-    - test/stdlib_coverage.cr
-  AllowedNames:
-    - e
-    - i
-    - j
-    - k
-    - v
-    - x
-    - y
-    - ex
-    - io
-    - ws
-    - op
-    - tx
-    - id
-    - ip
-    - k1
-    - k2
-    - v1
-    - v2
-  ForbiddenNames: []
-  Enabled: true
-  Severity: Convention
+  Enabled: false
 
 Style/ParenthesesAroundCondition:
   AllowSafeAssignment: true
