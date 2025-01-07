@@ -727,8 +727,8 @@ class SExpVisitor < Crystal::Visitor
     false
   end
 
-  def visit(node : Return)
-    in_node("return") do
+  def visit(node : ControlExpression)
+    in_node(node.class.to_s.split("::").last.underscore) do
       if (exp = node.exp)
         in_node("argument_list") do
           exp.accept self
