@@ -1184,7 +1184,9 @@ class SExpVisitor < Crystal::Visitor
       return false
     end
 
-    call_name = if node.name == "[]"
+    call_name = if (obj = node.obj) && obj.is_a?(ImplicitObj)
+                  "implicit_object_call"
+                elsif node.name == "[]"
                   "index_call"
                 else
                   "call"
@@ -1451,6 +1453,10 @@ class SExpVisitor < Crystal::Visitor
         end
       end
     end
+  end
+
+  def visit(node : ImplicitObj)
+    true
   end
 
   ##########

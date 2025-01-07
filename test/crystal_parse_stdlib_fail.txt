@@ -421,7 +421,6 @@ http/server/handlers/static_file_handler.cr
 http/server/handlers/websocket_handler.cr
 http/server/request_processor.cr
 http/server/response.cr
-http/status.cr
 http/web_socket.cr
 http/web_socket/protocol.cr
 humanize.cr
