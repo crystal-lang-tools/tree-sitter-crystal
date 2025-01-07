@@ -15,3 +15,33 @@
   body: (expressions) @injection.content
   (#set! injection.language "crystal")
   (#set! injection.include-children))
+
+(macro_if
+  body: (expressions) @injection.content
+  (#set! injection.language "crystal")
+  (#set! injection.include-children))
+
+(macro_elsif
+  body: (expressions) @injection.content
+  (#set! injection.language "crystal")
+  (#set! injection.include-children))
+
+(macro_else
+  body: (expressions) @injection.content
+  (#set! injection.language "crystal")
+  (#set! injection.include-children))
+
+(macro_unless
+  body: (expressions) @injection.content
+  (#set! injection.language "crystal")
+  (#set! injection.include-children))
+
+(macro_for
+  body: (expressions) @injection.content
+  (#set! injection.language "crystal")
+  (#set! injection.include-children))
+
+(macro_verbatim
+  body: (expressions) @injection.content
+  (#set! injection.language "crystal")
+  (#set! injection.include-children))

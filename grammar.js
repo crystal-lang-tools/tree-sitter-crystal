@@ -2058,7 +2058,7 @@ module.exports = grammar({
 
     macro_if: $ => seq(
       $._macro_if_cond,
-      repeat($._macro_content),
+      field('body', alias(repeat($._macro_content), $.expressions)),
       repeat($.macro_elsif),
       optional($.macro_else),
       $._macro_end_keyword,
@@ -2066,31 +2066,31 @@ module.exports = grammar({
 
     macro_elsif: $ => seq(
       $._macro_elsif_cond,
-      repeat($._macro_content),
+      field('body', alias(repeat($._macro_content), $.expressions)),
       // optional(choice($.macro_elsif, $.macro_else)),
     ),
 
     macro_else: $ => seq(
       $._macro_else_keyword,
-      repeat($._macro_content),
+      field('body', alias(repeat($._macro_content), $.expressions)),
     ),
 
     macro_unless: $ => seq(
       $._macro_unless_cond,
-      repeat($._macro_content),
+      field('body', alias(repeat($._macro_content), $.expressions)),
       optional($.macro_else),
       $._macro_end_keyword,
     ),
 
     macro_for: $ => seq(
       $._macro_for_expr,
-      repeat($._macro_content),
+      field('body', alias(repeat($._macro_content), $.expressions)),
       $._macro_end_keyword,
     ),
 
     macro_verbatim: $ => seq(
       $._macro_verbatim_keyword,
-      repeat($._macro_content),
+      field('body', alias(repeat($._macro_content), $.expressions)),
       $._macro_end_keyword,
     ),
 
