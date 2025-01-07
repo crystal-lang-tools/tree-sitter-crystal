@@ -3674,6 +3674,7 @@ end
 
 ================================================================================
 exhaustive case expressions
+:language(crystal)
 ================================================================================
 case nil
 in nil
@@ -3726,6 +3727,7 @@ end
 
 ======================
 case without condition
+:language(crystal)
 ======================
 
 case
@@ -3808,6 +3810,7 @@ end
 
 ================
 select statement
+:language(crystal)
 ================
 
 select

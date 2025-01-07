@@ -802,14 +802,40 @@ class SExpVisitor < Crystal::Visitor
       end
 
       node.whens.each do |when_|
-        field "when" do
-          when_.accept self
-        end
+        when_.accept self
       end
 
       if (else_ = node.else)
-        field "else" do
-          else_.accept self
+        in_node("else") do
+          next if else_.is_a?(Nop)
+
+          field "body" do
+            in_node("expressions") do
+              else_.accept self
+            end
+          end
+        end
+      end
+    end
+
+    false
+  end
+
+  def visit(node : Select)
+    in_node("select") do
+      node.whens.each do |when_|
+        when_.accept self
+      end
+
+      if (else_ = node.else)
+        in_node("else") do
+          next if else_.is_a?(Nop)
+
+          field "body" do
+            in_node("expressions") do
+              else_.accept self
+            end
+          end
         end
       end
     end
