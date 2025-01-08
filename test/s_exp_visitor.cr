@@ -1430,10 +1430,12 @@ class SExpVisitor < Crystal::Visitor
 
   def visit(node : MagicConstant)
     print_node("pseudo_constant")
+    false
   end
 
   def visit(node : Global)
     print_node("special_variable")
+    false
   end
 
   def visit(node : VisibilityModifier)
@@ -1453,6 +1455,7 @@ class SExpVisitor < Crystal::Visitor
         end
       end
     end
+    false
   end
 
   def visit(node : ImplicitObj)
