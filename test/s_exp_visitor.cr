@@ -1438,6 +1438,29 @@ class SExpVisitor < Crystal::Visitor
     false
   end
 
+  def visit(node : ExternalVar)
+    in_node("global_var") do
+      field "name" do
+        print_node("identifier")
+      end
+
+      field "real_name" do
+        next unless (real_name = node.real_name)
+        if real_name.starts_with?(/[A-Z]/)
+          print_node("constant")
+        else
+          print_node("identifier")
+        end
+      end
+
+      field "type" do
+        node.type_spec.accept(self)
+      end
+    end
+
+    false
+  end
+
   def visit(node : VisibilityModifier)
     @visibility = node.modifier
     true
