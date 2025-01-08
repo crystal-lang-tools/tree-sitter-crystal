@@ -496,11 +496,9 @@ end
 (expressions
   (macro_def
     name: (identifier)
-    (comment)
-    (comment)
-    (comment)
-    (comment)
-    (comment))
+    body: (expressions
+      (macro_def_literal_content
+        (macro_content_nesting))))
   (comment)
   (macro_begin
     body: (expressions
@@ -519,3 +517,72 @@ macro foo() puts 1 end
     body: (expressions
       (macro_def_literal_content
         (macro_content_nesting)))))
+
+
+================================================
+macro nesting when identifiers end with keywords
+================================================
+macro asdf()
+  if g_class!
+    while g_begin
+    end
+  end
+end
+---
+
+(expressions
+  (macro_def
+    (identifier)
+    (expressions
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_def_literal_content
+        (macro_def_literal_content
+          (macro_content_nesting))
+        (macro_def_literal_content
+          (macro_def_literal_content
+            (macro_content_nesting)))
+        (macro_def_literal_content
+          (macro_content_nesting)))
+      (macro_def_literal_content
+        (macro_content_nesting)))))
+
+=====================================
+nesting after macro exp
+=====================================
+macro foo
+  {{ foo }} = if a; :a else :b end
+  {% bar %} unless baz
+
+  {{ foo }} begin b
+  end
+
+  {{ foo }} if a
+  {{ bar }} unless b
+end
+----
+
+(expressions)
+
+================================================================
+macro comments containing expression followed by nesting keyword
+================================================================
+macro foo
+  a
+  # {% adsf %} end
+  # {{
+    foo
+  }} begin b
+  # {{ foo }} if false
+end
+----
+
+(expressions)
+
+===================================
+macro state is reset between macros
+===================================
+macro foo() puts 1 end
+macro bar() if true; puts "yes"; end end
+---
+(expressions)

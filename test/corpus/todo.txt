@@ -98,28 +98,6 @@ end
 
 (expressions)
 
-================================================
-macro nesting when identifiers end with keywords
-:error
-================================================
-macro asdf()
-  if a_begin
-  end
-end
----
-(expressions)
-
-=======================================
-macro nesting with keywords in comments
-:error
-=======================================
-macro foo
-  a
-  # begin
-end
-----
-(expressions)
-
 ===============================
 pseudo-methods with macro nodes
 :error

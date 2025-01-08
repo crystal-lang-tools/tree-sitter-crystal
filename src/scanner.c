@@ -148,10 +148,14 @@ struct Heredoc {
 typedef struct Heredoc Heredoc;
 
 struct MacroState {
-    uint8_t macro_level;
-    uint8_t nest;
+    // Set to true if the macro scan is currently in a comment (the rest of the line after #).
+    // Defaults to false.
+    bool in_comment;
+    // Tracks if the regular (not modifier) versions of `if` and `unless` may
+    // be scanned in the macro text. (Also affects `while` and `until`, because
+    // they used to be modifier keywords too.)
+    bool non_modifier_keyword_can_begin;
 
-    // todo: comment
     // todo: heredocs
     // todo: delimiter_state
     // todo: delimiter state stack
@@ -274,6 +278,12 @@ enum LookaheadResult {
     LOOKAHEAD_NAMED_TUPLE,
 };
 typedef enum LookaheadResult LookaheadResult;
+
+// Reset the macro state to its defaults
+static void reset_macro_state(State *state) {
+    state->macro_state.in_comment = false;
+    state->macro_state.non_modifier_keyword_can_begin = true;
+}
 
 // Skip one character, which will not be included in the token emitted by the scanner.
 // WARNING: this will set the _start_ of the token range. Don't use this after mark_end!
@@ -710,9 +720,16 @@ enum MacroScanResult {
 typedef enum MacroScanResult MacroScanResult;
 
 static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const bool *valid_symbols) {
+    // Set to true if any content has been scanned with advance. This signals
+    // the overall scan will return MACRO_CONTENT or MACRO_CONTENT_NESTING.
     bool found_content = false;
+    // Set to true if the scan is looking for nesting keywords.
     bool nesting = false;
-    bool in_comment = false;
+    // Set to true if a nesting keyword may begin at this point in the scan.
+    bool keyword_can_begin = true;
+
+    // NOTE: See also the comments for MacroState.in_comment and
+    // MacroState.non_modifier_keyword_can_begin
 
     lexer->result_symbol = MACRO_CONTENT;
 
@@ -722,13 +739,13 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
         lexer->result_symbol = MACRO_CONTENT_NESTING;
     }
 
-#define RETURN_NESTING_CONTENT         \
-    if (nesting && !in_comment) {      \
-        if (found_content) {           \
-            return MS_STOP;            \
-        } else {                       \
-            return MS_STOP_NO_CONTENT; \
-        }                              \
+#define RETURN_NESTING_CONTENT                                            \
+    if (nesting && !state->macro_state.in_comment && keyword_can_begin) { \
+        if (found_content) {                                              \
+            return MS_STOP;                                               \
+        } else {                                                          \
+            return MS_STOP_NO_CONTENT;                                    \
+        }                                                                 \
     }
 
 #define RETURN_CONTENT             \
@@ -737,8 +754,6 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
     } else {                       \
         return MS_STOP_NO_CONTENT; \
     }
-
-    // TODO do we need to be tracking whitespace?
 
     for (;;) {
         if (lexer->eof(lexer)) {
@@ -782,10 +797,16 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                 lex_advance(lexer);
 
                 if (lexer->lookahead == '{' || lexer->lookahead == '%') {
+                    // This is the start of a macro expression. After the macro expression ends,
+                    // if/unless is a modifier.
+                    state->macro_state.non_modifier_keyword_can_begin = false;
                     RETURN_CONTENT;
                 }
 
+                // This is the start of a tuple, brace block, etc.
                 found_content = true;
+                keyword_can_begin = true;
+                state->macro_state.non_modifier_keyword_can_begin = true;
                 lexer->mark_end(lexer);
                 continue;
 
@@ -793,11 +814,17 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                 lexer->mark_end(lexer);
                 lex_advance(lexer);
 
+                // This might be the end of a block, hash/tuple, or macro expression. In any case,
+                // if/unless is a modifier after this point.
+                state->macro_state.non_modifier_keyword_can_begin = false;
+
                 if (lexer->lookahead == '}') {
                     RETURN_CONTENT;
                 }
 
+                // This is the end for a tuple, brace block, etc. Non-modifier keywords are valid.
                 found_content = true;
+                keyword_can_begin = true;
                 lexer->mark_end(lexer);
                 continue;
 
@@ -805,15 +832,25 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                 lexer->mark_end(lexer);
                 lex_advance(lexer);
 
+                // This might be the end of a macro expression, or a macro variable, or a modulo
+                // operator. In any case, if/unless is a modifier after this point.
+                state->macro_state.non_modifier_keyword_can_begin = false;
+
                 if (lexer->lookahead == '}') {
                     RETURN_CONTENT;
                 }
 
+                // Keywords are not valid here: `%begin` is a macro variable
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
 
             case '"':
+                // Whether we are delegating to string rules or not, if/unless is a
+                // modifier after this point.
+                state->macro_state.non_modifier_keyword_can_begin = false;
+
                 if (valid_symbols[STRING_LITERAL_START]) {
                     // Delegate to string rules
                     if (found_content) {
@@ -823,28 +860,30 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                     }
                 }
 
+                // Probably inside a string in a non-nesting context, so keywords aren't valid
                 found_content = true;
+                keyword_can_begin = false;
                 lex_advance(lexer);
                 continue;
 
             case '#':
                 lex_advance(lexer);
 
-                if (lexer->lookahead == '{') {
-                    // probably string interpolation, make sure it's not parsed as
-                    // the start of a macro expression
-                    lex_advance(lexer);
-                } else {
-                    // Mark the rest of the line as a comment, where nesting keywords don't apply
-                    in_comment = true;
-                }
+                // TODO: make sure we don't expect to encounter string interpolation
 
+                // Mark the rest of the line as a comment, where nesting keywords don't apply
                 found_content = true;
+                state->macro_state.in_comment = true;
+                keyword_can_begin = false;
+                state->macro_state.non_modifier_keyword_can_begin = false;
                 continue;
 
             case 'a':
                 lexer->mark_end(lexer);
                 lex_advance(lexer);
+
+                // Whatever identifier this is, if/unless is a modifier after this point
+                state->macro_state.non_modifier_keyword_can_begin = false;
 
                 if (lexer->lookahead == 'b') {
                     if (match_macro_keyword(lexer, "bstract")) {
@@ -861,7 +900,7 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                                     if (match_macro_keyword(lexer, "struct")) { RETURN_NESTING_CONTENT; }
                                     break;
                                 case 'd':
-                                    // fully consume "abstract def"
+                                    // fully consume "abstract def", which doesn't increase the nesting level
                                     match_macro_keyword(lexer, "def");
                             }
                         }
@@ -870,16 +909,23 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                     if (match_macro_keyword(lexer, "nnotation")) { RETURN_NESTING_CONTENT; }
                 }
 
+                // Keywords are not valid immediately after an identifier
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
 
             case 'b':
                 lexer->mark_end(lexer);
 
+                // Whatever identifier this is, if/unless is a modifier after this point
+                state->macro_state.non_modifier_keyword_can_begin = false;
+
                 if (match_macro_keyword(lexer, "begin")) { RETURN_NESTING_CONTENT; }
 
+                // Keywords are not valid immediately after an identifier
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
 
@@ -887,13 +933,18 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                 lexer->mark_end(lexer);
                 lex_advance(lexer);
 
+                // Whatever identifier this is, if/unless is a modifier after this point
+                state->macro_state.non_modifier_keyword_can_begin = false;
+
                 if (lexer->lookahead == 'l') {
                     if (match_macro_keyword(lexer, "lass")) { RETURN_NESTING_CONTENT; }
                 } else if (lexer->lookahead == 'a') {
                     if (match_macro_keyword(lexer, "ase")) { RETURN_NESTING_CONTENT; }
                 }
 
+                // Keywords are not valid immediately after an identifier
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
 
@@ -901,19 +952,27 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                 lexer->mark_end(lexer);
                 lex_advance(lexer);
 
+                // Whatever identifier this is, if/unless is a modifier after this point
+                state->macro_state.non_modifier_keyword_can_begin = false;
+
                 if (lexer->lookahead == 'e') {
                     if (match_macro_keyword(lexer, "ef")) { RETURN_NESTING_CONTENT; }
                 } else if (lexer->lookahead == 'o') {
                     if (match_macro_keyword(lexer, "o")) { RETURN_NESTING_CONTENT; }
                 }
 
+                // Keywords are not valid immediately after an identifier
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
 
             case 'e':
                 lexer->mark_end(lexer);
                 lex_advance(lexer);
+
+                // Whatever identifier this is, if/unless is a modifier after this point
+                state->macro_state.non_modifier_keyword_can_begin = false;
 
                 if (lexer->lookahead == 'n') {
                     lex_advance(lexer);
@@ -925,35 +984,66 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                     }
                 }
 
+                // Keywords are not valid immediately after an identifier
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
 
             case 'f':
                 lexer->mark_end(lexer);
 
+                // Whatever identifier this is, if/unless is a modifier after this point
+                state->macro_state.non_modifier_keyword_can_begin = false;
+
                 if (match_macro_keyword(lexer, "fun")) { RETURN_NESTING_CONTENT; }
 
+                // Keywords are not valid immediately after an identifier
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
 
             case 'i':
                 lexer->mark_end(lexer);
 
-                // TODO check beginning_of_line
-                if (match_macro_keyword(lexer, "if")) { RETURN_NESTING_CONTENT; }
+                if (state->macro_state.non_modifier_keyword_can_begin) {
+                    if (match_macro_keyword(lexer, "if")) {
+                        if (nesting && !state->macro_state.in_comment && keyword_can_begin) {
+                            if (found_content) {
+                                // Don't set non_modifier_keyword_can_begin yet, the scan is going
+                                // to re-enter at this point.
+                                return MS_STOP;
+                            } else {
+                                state->macro_state.non_modifier_keyword_can_begin = false;
+                                return MS_STOP_NO_CONTENT;
+                            }
+                        }
+                    } else {
+                        // Whatever identifier this is, if/unless is a modifier after this point
+                        state->macro_state.non_modifier_keyword_can_begin = false;
+                    }
+                } else {
+                    lex_advance(lexer);
+                }
 
+                // Keywords are not valid immediately after an identifier
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
 
             case 'l':
                 lexer->mark_end(lexer);
 
+                // Whatever identifier this is, if/unless is a modifier after this point
+                state->macro_state.non_modifier_keyword_can_begin = false;
+
                 if (match_macro_keyword(lexer, "lib")) { RETURN_NESTING_CONTENT; }
 
+                // Keywords are not valid immediately after an identifier
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
 
@@ -961,13 +1051,18 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                 lexer->mark_end(lexer);
                 lex_advance(lexer);
 
+                // Whatever identifier this is, if/unless is a modifier after this point
+                state->macro_state.non_modifier_keyword_can_begin = false;
+
                 if (lexer->lookahead == 'a') {
                     if (match_macro_keyword(lexer, "acro")) { RETURN_NESTING_CONTENT; }
                 } else if (lexer->lookahead == 'o') {
                     if (match_macro_keyword(lexer, "odule")) { RETURN_NESTING_CONTENT; }
                 }
 
+                // Keywords are not valid immediately after an identifier
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
 
@@ -975,15 +1070,21 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                 lexer->mark_end(lexer);
                 lex_advance(lexer);
 
+                // Whatever identifier this is, if/unless is a modifier after this point
+                state->macro_state.non_modifier_keyword_can_begin = false;
+
                 if (lexer->lookahead == 'e') {
                     if (match_macro_keyword(lexer, "elect")) { RETURN_NESTING_CONTENT; }
                 } else if (lexer->lookahead == 't') {
                     if (match_macro_keyword(lexer, "truct")) { RETURN_NESTING_CONTENT; }
                 }
 
+                // Keywords are not valid immediately after an identifier
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
+
             case 'u':
                 lexer->mark_end(lexer);
                 lex_advance(lexer);
@@ -992,27 +1093,73 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                     lex_advance(lexer);
 
                     if (lexer->lookahead == 'i') {
+                        // Whatever identifier this is, if/unless is a modifier after this point
+                        state->macro_state.non_modifier_keyword_can_begin = false;
                         if (match_macro_keyword(lexer, "ion")) { RETURN_NESTING_CONTENT; }
                     } else if (lexer->lookahead == 'l') {
-                        // TODO check beginning_of_line
-                        if (match_macro_keyword(lexer, "less")) { RETURN_NESTING_CONTENT; }
+                        if (state->macro_state.non_modifier_keyword_can_begin && match_macro_keyword(lexer, "less")) {
+                            if (nesting && !state->macro_state.in_comment && keyword_can_begin) {
+                                if (found_content) {
+                                    // Don't set non_modifier_keyword_can_begin yet, the scan is going
+                                    // to re-enter at this point.
+                                    return MS_STOP;
+                                } else {
+                                    state->macro_state.non_modifier_keyword_can_begin = false;
+                                    return MS_STOP_NO_CONTENT;
+                                }
+                            }
+                        }
                     } else if (lexer->lookahead == 't') {
-                        // TODO check beginning_of_line
-                        if (match_macro_keyword(lexer, "til")) { RETURN_NESTING_CONTENT; }
+                        if (state->macro_state.non_modifier_keyword_can_begin && match_macro_keyword(lexer, "til")) {
+                            if (nesting && !state->macro_state.in_comment && keyword_can_begin) {
+                                if (found_content) {
+                                    // Don't set non_modifier_keyword_can_begin yet, the scan is going
+                                    // to re-enter at this point.
+                                    return MS_STOP;
+                                } else {
+                                    state->macro_state.non_modifier_keyword_can_begin = false;
+                                    return MS_STOP_NO_CONTENT;
+                                }
+                            }
+                        }
+                    } else {
+                        // Whatever identifier this is, if/unless is a modifier after this point
+                        state->macro_state.non_modifier_keyword_can_begin = false;
                     }
                 }
 
+                // Keywords are not valid immediately after an identifier
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
 
             case 'w':
                 lexer->mark_end(lexer);
 
-                // TODO check beginning_of_line
-                if (match_macro_keyword(lexer, "while")) { RETURN_NESTING_CONTENT; }
+                if (state->macro_state.non_modifier_keyword_can_begin) {
+                    if (match_macro_keyword(lexer, "while")) {
+                        if (nesting && !state->macro_state.in_comment && keyword_can_begin) {
+                            if (found_content) {
+                                // Don't set non_modifier_keyword_can_begin yet, the scan is going
+                                // to re-enter at this point.
+                                return MS_STOP;
+                            } else {
+                                state->macro_state.non_modifier_keyword_can_begin = false;
+                                return MS_STOP_NO_CONTENT;
+                            }
+                        }
+                    } else {
+                        // Whatever identifier this is, if/unless is a modifier after this point
+                        state->macro_state.non_modifier_keyword_can_begin = false;
+                    }
+                } else {
+                    lex_advance(lexer);
+                }
 
+                // Keywords are not valid immediately after an identifier
                 found_content = true;
+                keyword_can_begin = false;
                 lexer->mark_end(lexer);
                 continue;
 
@@ -1020,13 +1167,54 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                 lex_advance(lexer);
                 found_content = true;
                 // We've reached the end of the line, no more comment
-                in_comment = false;
+                state->macro_state.in_comment = false;
+                // Keywords are always valid on a new line
+                keyword_can_begin = true;
+                state->macro_state.non_modifier_keyword_can_begin = true;
+                continue;
+
+            case ' ':
+            case '\t':
+            case '\f':
+            case '\v':
+            case '\r':
+                // These whitespace characters may be followed by a keyword
+                lex_advance(lexer);
+                found_content = true;
+                keyword_can_begin = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case '(':
+            case '[':
+                // These nesting characters may be followed by a keyword
+                lex_advance(lexer);
+                found_content = true;
+                keyword_can_begin = true;
+                lexer->mark_end(lexer);
+                continue;
+
+            case '=':
+                lex_advance(lexer);
+                lexer->mark_end(lexer);
+                found_content = true;
+                keyword_can_begin = false;
+
+                if (iswspace(lexer->lookahead)) {
+                    // After `= `, if/unless is treated as a regular keyword, not modifier
+                    state->macro_state.non_modifier_keyword_can_begin = true;
+                }
                 continue;
         }
 
         lex_advance(lexer);
         lexer->mark_end(lexer);
         found_content = true;
+        // We've scanned something that's not whitespace or an opening character. Most keywords
+        // are not allowed until we reach whitespace, and if/unless is treated as a modifier
+        // for the rest of the line.
+        keyword_can_begin = false;
+        state->macro_state.non_modifier_keyword_can_begin = false;
     }
 }
 
@@ -1456,6 +1644,7 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
     }
 
     if (valid_symbols[MACRO_START] && !valid_symbols[ERROR_RECOVERY]) {
+        reset_macro_state(state);
         lexer->result_symbol = MACRO_START;
         return true;
     }
@@ -2613,8 +2802,7 @@ void *tree_sitter_crystal_external_scanner_create(void) {
     state->has_leading_whitespace = false;
     state->previous_line_continued = false;
 
-    state->macro_state.macro_level = 0;
-    state->macro_state.nest = 0;
+    reset_macro_state(state);
 
     array_init(&state->literals);
     array_init(&state->heredocs);
@@ -2646,8 +2834,8 @@ unsigned tree_sitter_crystal_external_scanner_serialize(void *payload, char *buf
     buffer[offset++] = (char)state->has_leading_whitespace;
     buffer[offset++] = (char)state->previous_line_continued;
 
-    buffer[offset++] = (char)state->macro_state.macro_level;
-    buffer[offset++] = (char)state->macro_state.nest;
+    buffer[offset++] = (char)state->macro_state.in_comment;
+    buffer[offset++] = (char)state->macro_state.non_modifier_keyword_can_begin;
 
     // It's safe to cast the literal count into a char since it will always be
     // less than MAX_LITERAL_COUNT.
@@ -2713,8 +2901,7 @@ void tree_sitter_crystal_external_scanner_deserialize(void *payload, const char 
         state->has_leading_whitespace = false;
         state->previous_line_continued = false;
 
-        state->macro_state.macro_level = 0;
-        state->macro_state.nest = 0;
+        reset_macro_state(state);
         return;
     }
 
@@ -2722,8 +2909,8 @@ void tree_sitter_crystal_external_scanner_deserialize(void *payload, const char 
     state->has_leading_whitespace = (bool)buffer[offset++];
     state->previous_line_continued = (bool)buffer[offset++];
 
-    state->macro_state.macro_level = (uint8_t)buffer[offset++];
-    state->macro_state.nest = (uint8_t)buffer[offset++];
+    state->macro_state.in_comment = (bool)buffer[offset++];
+    state->macro_state.non_modifier_keyword_can_begin = (bool)buffer[offset++];
 
     // The literals array can be deserialized in one chunk.
     uint8_t literals_size = (uint8_t)buffer[offset++];
