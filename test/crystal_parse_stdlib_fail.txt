@@ -621,7 +621,6 @@ mime/media_type.cr
 mime/multipart.cr
 mime/multipart/builder.cr
 mime/multipart/parser.cr
-mime/multipart/state.cr
 mutex.cr
 nil.cr
 oauth/access_token.cr

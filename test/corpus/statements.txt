@@ -1091,6 +1091,7 @@ end
 
 =============
 private enums
+:language(crystal)
 =============
 
 module MyModule

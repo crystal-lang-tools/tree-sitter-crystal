@@ -681,6 +681,8 @@ class SExpVisitor < Crystal::Visitor
 
   def visit(node : EnumDef)
     in_node("enum_def") do
+      visibility_field(node)
+
       field "name" do
         node.name.accept self
       end
