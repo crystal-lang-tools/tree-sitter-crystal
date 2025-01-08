@@ -45,6 +45,7 @@ class SExpVisitor < Crystal::Visitor
     yield
   ensure
     exit_node
+    false
   end
 
   # Force the next node to be printed with the given `alias_name`
@@ -622,6 +623,53 @@ class SExpVisitor < Crystal::Visitor
     false
   end
 
+  def visit(node : CStructOrUnionDef)
+    node_type = if node.union?
+                  "union_def"
+                else
+                  "c_struct_def"
+                end
+
+    in_node(node_type) do
+      visibility_field(node)
+
+      field "name" do
+        print_node("constant")
+      end
+
+      field "body" do
+        if (body = node.body).is_a?(Expressions)
+          in_node("expressions") do
+            field_name = if node.union?
+                           "union_fields"
+                         else
+                           "c_struct_fields"
+                         end
+
+            body.expressions.each do |member|
+              case member
+              when TypeDeclaration
+                in_node(field_name) do
+                  field "name" do
+                    print_node("identifier")
+                  end
+
+                  field "type" do
+                    member.declared_type.accept(self)
+                  end
+                end
+              else
+                member.accept(self)
+              end
+            end
+          end
+        end
+      end
+    end
+
+    false
+  end
+
   def visit(node : Block)
     enter_node("block")
     # TODO
@@ -640,7 +688,11 @@ class SExpVisitor < Crystal::Visitor
 
       field "real_name" do
         next if node.real_name == node.name
-        print_node("identifier")
+        if node.real_name.starts_with?(/[A-Z]/)
+          print_node("constant")
+        else
+          print_node("identifier")
+        end
       end
 
       # TODO varargs
@@ -661,6 +713,20 @@ class SExpVisitor < Crystal::Visitor
       end
 
       body_field(node.body)
+    end
+
+    false
+  end
+
+  def visit(node : TypeDef)
+    in_node("type_def") do
+      field "name" do
+        print_node("constant")
+      end
+
+      field "type" do
+        node.type_spec.accept(self)
+      end
     end
 
     false
