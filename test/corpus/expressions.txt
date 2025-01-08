@@ -65,12 +65,15 @@ self
 :language(crystal)
 ================================================================================
 self
+self?
 self_
 selfself
 --------------------------------------------------------------------------------
 
 (expressions
   (self)
+  (call
+    method: (identifier))
   (identifier)
   (identifier))
 
@@ -196,17 +199,16 @@ end
 
 ================================================================================
 special variables
+:language(crystal)
 ================================================================================
 $?
 $~
 $0
 $5
 $12?
-$099
 --------------------------------------------------------------------------------
 
 (expressions
-  (special_variable)
   (special_variable)
   (special_variable)
   (special_variable)
@@ -831,6 +833,7 @@ a, b, c = d.val, e.val, f = {1, 2, 3}
 
 ================================================================================
 while and until
+:language(crystal)
 ================================================================================
 while true; end
 
@@ -3671,6 +3674,7 @@ end
 
 ================================================================================
 exhaustive case expressions
+:language(crystal)
 ================================================================================
 case nil
 in nil
@@ -3723,6 +3727,7 @@ end
 
 ======================
 case without condition
+:language(crystal)
 ======================
 
 case
@@ -3781,6 +3786,7 @@ end
 
 ===========================================
 enums with restrictions and namespaced name
+:language(crystal)
 ===========================================
 
 enum Foo::Bar : UInt8
@@ -3804,6 +3810,7 @@ end
 
 ================
 select statement
+:language(crystal)
 ================
 
 select
@@ -4307,13 +4314,13 @@ asm ("nop")
 
 =============
 uninitialized
+:language(crystal)
 =============
 
 uninitialized Int32
 a = uninitialized Int32
 @b =
-uninitialized
-Int32*
+uninitialized Int32*
 
 ---
 

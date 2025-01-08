@@ -42,5 +42,7 @@ dist/
 # Crystal binaries
 /test/crystal_parse_corpus
 /test/crystal_parse_corpus.dwarf
+/test/crystal_parse_stdlib
+/test/crystal_parse_stdlib.dwarf
 /test/stdlib_coverage
 /test/stdlib_coverage.dwarf

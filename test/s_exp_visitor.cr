@@ -8,6 +8,7 @@ class SExpVisitor < Crystal::Visitor
   @indent = 0
   @fields = [] of String?
   @pending_alias : String? = nil
+  @visibility : Crystal::Visibility? = nil
 
   def initialize
   end
@@ -109,6 +110,24 @@ class SExpVisitor < Crystal::Visitor
       end
 
       body.accept self
+    end
+  end
+
+  def visibility_field(node : ASTNode)
+    field "visibility" do
+      case node.visibility
+      in .public?
+        visibility = @visibility
+        if visibility
+          case visibility
+          in .public?
+          in .protected? then print_node("protected")
+          in .private?   then print_node("private")
+          end
+        end
+      in .protected? then print_node("protected")
+      in .private?   then print_node("private")
+      end
     end
   end
 
@@ -359,13 +378,7 @@ class SExpVisitor < Crystal::Visitor
     def_type = node.abstract? ? "abstract_method_def" : "method_def"
 
     in_node(def_type) do
-      field "visibility" do
-        case node.visibility
-        in .public?
-        in .protected? then print_node("protected")
-        in .private?   then print_node("private")
-        end
-      end
+      visibility_field(node)
 
       field "class" do
         node.receiver.try &.accept self
@@ -508,13 +521,7 @@ class SExpVisitor < Crystal::Visitor
                 end
 
     in_node(node_type) do
-      field "visibility" do
-        case node.visibility
-        in .public?
-        in .protected? then print_node("protected")
-        in .private?   then print_node("private")
-        end
-      end
+      visibility_field(node)
 
       field "name" do
         if (type_vars = node.type_vars)
@@ -550,6 +557,8 @@ class SExpVisitor < Crystal::Visitor
 
   def visit(node : ModuleDef)
     in_node("module_def") do
+      visibility_field(node)
+
       field "name" do
         node.name.accept self
       end
@@ -585,7 +594,28 @@ class SExpVisitor < Crystal::Visitor
       end
 
       field "body" do
-        node.members.each &.accept self
+        in_node("expressions") do
+          node.members.each do |member|
+            case member
+            when Arg
+              if (default = member.default_value)
+                in_node("const_assign") do
+                  field "lhs" do
+                    print_node("constant")
+                  end
+
+                  field "rhs" do
+                    default.accept(self)
+                  end
+                end
+              else
+                print_node("constant")
+              end
+            else
+              member.accept(self)
+            end
+          end
+        end
       end
     end
 
@@ -727,8 +757,8 @@ class SExpVisitor < Crystal::Visitor
     false
   end
 
-  def visit(node : Return)
-    in_node("return") do
+  def visit(node : ControlExpression)
+    in_node(node.class.to_s.split("::").last.underscore) do
       if (exp = node.exp)
         in_node("argument_list") do
           exp.accept self
@@ -772,14 +802,40 @@ class SExpVisitor < Crystal::Visitor
       end
 
       node.whens.each do |when_|
-        field "when" do
-          when_.accept self
-        end
+        when_.accept self
       end
 
       if (else_ = node.else)
-        field "else" do
-          else_.accept self
+        in_node("else") do
+          next if else_.is_a?(Nop)
+
+          field "body" do
+            in_node("expressions") do
+              else_.accept self
+            end
+          end
+        end
+      end
+    end
+
+    false
+  end
+
+  def visit(node : Select)
+    in_node("select") do
+      node.whens.each do |when_|
+        when_.accept self
+      end
+
+      if (else_ = node.else)
+        in_node("else") do
+          next if else_.is_a?(Nop)
+
+          field "body" do
+            in_node("expressions") do
+              else_.accept self
+            end
+          end
         end
       end
     end
@@ -807,11 +863,7 @@ class SExpVisitor < Crystal::Visitor
 
   def visit(node : Alias)
     in_node "alias" do
-      field "visibility" do
-        if node.visibility.private?
-          print_node("private")
-        end
-      end
+      visibility_field(node)
 
       field "name" do
         node.name.accept self
@@ -1050,6 +1102,11 @@ class SExpVisitor < Crystal::Visitor
       return false
     end
 
+    if (obj = node.obj).is_a?(Global)
+      visit(obj)
+      return false
+    end
+
     if node.name == "`"
       # this is a `command` literal
       in_node("command") do
@@ -1127,7 +1184,9 @@ class SExpVisitor < Crystal::Visitor
       return false
     end
 
-    call_name = if node.name == "[]"
+    call_name = if (obj = node.obj) && obj.is_a?(ImplicitObj)
+                  "implicit_object_call"
+                elsif node.name == "[]"
                   "index_call"
                 else
                   "call"
@@ -1218,6 +1277,8 @@ class SExpVisitor < Crystal::Visitor
                   end
 
     in_node(assign_type) do
+      visibility_field(node)
+
       field "lhs" do
         node.target.accept(self)
       end
@@ -1365,6 +1426,40 @@ class SExpVisitor < Crystal::Visitor
     end
 
     false
+  end
+
+  def visit(node : MagicConstant)
+    print_node("pseudo_constant")
+    false
+  end
+
+  def visit(node : Global)
+    print_node("special_variable")
+    false
+  end
+
+  def visit(node : VisibilityModifier)
+    @visibility = node.modifier
+    true
+  end
+
+  def visit(node : UninitializedVar)
+    in_node("assign") do
+      field "lhs" do
+        node.var.accept(self)
+      end
+
+      field "rhs" do
+        in_node("uninitialized_var") do
+          node.declared_type.accept(self)
+        end
+      end
+    end
+    false
+  end
+
+  def visit(node : ImplicitObj)
+    true
   end
 
   ##########
