@@ -8,7 +8,8 @@
       "file-types": [
         "cr"
       ],
-      "injection-regex": "crystal"
+      "injection-regex": "crystal",
+      "highlights": "queries/nvim/highlights.scm"
     }
   ],
   "metadata": {
