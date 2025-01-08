@@ -895,9 +895,14 @@ class SExpVisitor < Crystal::Visitor
       end
 
       field "then" do
-        if !is_ternary && !node.then.is_a?(Nop)
+        then_ = node.then
+        if !is_ternary && !(then_).is_a?(Nop)
           in_node("then") do
-            node.then.accept self
+            if then_ && then_.is_a?(Expressions)
+              then_.expressions.each &.accept(self)
+            else
+              then_.accept self
+            end
           end
         else
           node.then.accept self

@@ -20,7 +20,6 @@ class.cr
 comparable.cr
 compiler/crystal.cr
 compiler/crystal/annotatable.cr
-compiler/crystal/codegen/asm.cr
 compiler/crystal/codegen/ast.cr
 compiler/crystal/codegen/cache_dir.cr
 compiler/crystal/codegen/call.cr
@@ -48,7 +47,6 @@ compiler/crystal/command.cr
 compiler/crystal/command/cursor.cr
 compiler/crystal/command/docs.cr
 compiler/crystal/command/env.cr
-compiler/crystal/command/eval.cr
 compiler/crystal/command/format.cr
 compiler/crystal/command/repl.cr
 compiler/crystal/command/spec.cr
@@ -134,7 +132,6 @@ compiler/crystal/syntax/to_s.cr
 compiler/crystal/syntax/token.cr
 compiler/crystal/syntax/transformer.cr
 compiler/crystal/syntax/virtual_file.cr
-compiler/crystal/syntax/visitor.cr
 compiler/crystal/tools/context.cr
 compiler/crystal/tools/dependencies.cr
 compiler/crystal/tools/doc/constant.cr
@@ -162,8 +159,6 @@ compiler/crystal/tools/typed_def_processor.cr
 compiler/crystal/tools/unreachable.cr
 compiler/crystal/util.cr
 compiler/crystal/warnings.cr
-complex.cr
-compress/deflate/deflate.cr
 compress/deflate/reader.cr
 compress/deflate/writer.cr
 compress/gzip/header.cr
@@ -272,7 +267,6 @@ crystal/system/win32/crypto.cr
 crystal/system/win32/dir.cr
 crystal/system/win32/env.cr
 crystal/system/win32/event_loop_iocp.cr
-crystal/system/win32/fiber.cr
 crystal/system/win32/file.cr
 crystal/system/win32/file_descriptor.cr
 crystal/system/win32/file_info.cr
@@ -311,7 +305,6 @@ dir.cr
 dir/glob.cr
 docs_pseudo_methods.cr
 ecr/lexer.cr
-ecr/processor.cr
 empty.cr
 env.cr
 exception.cr
@@ -345,7 +338,6 @@ float/printer/diy_fp.cr
 float/printer/dragonbox_cache.cr
 float/printer/grisu3.cr
 float/printer/hexfloat.cr
-float/printer/ieee.cr
 float/printer/ryu_printf.cr
 float/printer/ryu_printf_table.cr
 gc.cr
@@ -604,7 +596,6 @@ llvm/value_methods.cr
 log/backend.cr
 log/broadcast_backend.cr
 log/builder.cr
-log/dispatch.cr
 log/entry.cr
 log/format.cr
 log/io_backend.cr
@@ -648,7 +639,6 @@ openssl/ssl/hostname_validation.cr
 openssl/ssl/server.cr
 openssl/ssl/socket.cr
 openssl/x509/certificate.cr
-openssl/x509/extension.cr
 option_parser.cr
 path.cr
 pointer.cr
@@ -681,7 +671,6 @@ socket/ip_socket.cr
 socket/server.cr
 socket/tcp_server.cr
 socket/tcp_socket.cr
-socket/udp_socket.cr
 socket/unix_server.cr
 socket/unix_socket.cr
 spec.cr
@@ -724,8 +713,6 @@ termios.cr
 time/format.cr
 time/format/custom/http_date.cr
 time/format/custom/iso_8601.cr
-time/format/custom/rfc_2822.cr
-time/format/custom/yaml_date.cr
 time/format/formatter.cr
 time/format/parser.cr
 time/format/pattern.cr
@@ -742,7 +729,6 @@ uri/params/from_www_form.cr
 uri/params/to_www_form.cr
 uri/punycode.cr
 uri/uri_parser.cr
-uuid/yaml.cr
 wait_group.cr
 wasi_error.cr
 weak_ref.cr
@@ -754,7 +740,6 @@ xml/namespace.cr
 xml/node.cr
 xml/node_set.cr
 xml/reader.cr
-yaml.cr
 yaml/any.cr
 yaml/lib_yaml.cr
 yaml/nodes.cr
