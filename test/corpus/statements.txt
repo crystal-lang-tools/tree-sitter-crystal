@@ -1611,3 +1611,29 @@ end
     params: (param_list
       (param
         name: (identifier)))))
+
+========================
+method in private module
+:language(crystal)
+========================
+
+private module MyMod
+  def my_method
+    puts "hello"
+  end
+end
+
+---
+
+(expressions
+  (module_def
+    visibility: (private)
+    name: (constant)
+    body: (expressions
+      (method_def
+        name: (identifier)
+        body: (expressions
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (string))))))))

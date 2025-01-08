@@ -222,6 +222,7 @@ class SExpVisitor < Crystal::Visitor
           in .private?   then print_node("private")
           end
         end
+        @visibility = nil
       in .protected? then print_node("protected")
       in .private?   then print_node("private")
       end
