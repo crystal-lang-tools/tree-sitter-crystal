@@ -1582,7 +1582,6 @@ class SExpVisitor < Crystal::Visitor
   visit_basic(Include)
   visit_basic(Extend)
   visit_basic(Yield)
-  visit_basic(Require)
   visit_basic(Out)
 
   def visit(node : Not)
@@ -1738,6 +1737,14 @@ class SExpVisitor < Crystal::Visitor
       end
 
       body_field(node.body)
+    end
+
+    false
+  end
+
+  def visit(node : Require)
+    in_node("require") do
+      print_node("string")
     end
 
     false
