@@ -1319,6 +1319,8 @@ lib def + objects
 =================
 
 lib MyLib
+  $external = Name : Int32?
+
   fun name = Name : Void
 
   fun cos(value : Float64) : Float64
@@ -1349,6 +1351,11 @@ end
   (lib_def
     name: (constant)
     body: (expressions
+      (global_var
+        name: (identifier)
+        real_name: (constant)
+        type: (nilable_type
+          (constant)))
       (fun_def
         name: (identifier)
         real_name: (constant)
@@ -1362,21 +1369,23 @@ end
         type: (constant))
       (union_def
         name: (constant)
-        (union_fields
-          (identifier)
-          type: (constant))
-        (union_fields
-          (identifier)
-          type: (constant)))
+        body: (expressions
+          (union_fields
+            name: (identifier)
+            type: (constant))
+          (union_fields
+            name: (identifier)
+            type: (constant))))
       (c_struct_def
         name: (constant)
-        (c_struct_fields
-          (identifier)
-          (identifier)
-          type: (constant))
-        (c_struct_fields
-          (identifier)
-          type: (constant)))
+        body: (expressions
+          (c_struct_fields
+            name: (identifier)
+            name: (identifier)
+            type: (constant))
+          (c_struct_fields
+            name: (identifier)
+            type: (constant))))
       (enum_def
         name: (constant)
         body: (expressions
@@ -1385,8 +1394,8 @@ end
           (constant)
           (constant)))
       (type_def
-        (constant)
-        (constant)))))
+        name: (constant)
+        type: (constant)))))
 
 =============
 fun with dots
