@@ -1586,6 +1586,7 @@ class SExpVisitor < Crystal::Visitor
   visit_basic(Extend)
   visit_basic(Yield)
   visit_basic(Out)
+  visit_basic(MacroExpression)
 
   def visit(node : Not)
     in_node("call") do
