@@ -4031,6 +4031,7 @@ end
 
 =================
 read instance var
+:language(crystal)
 =================
 
 object.@ivar
@@ -4607,6 +4608,7 @@ nil?(
 
 ==============
 pseudo methods
+:language(crystal)
 ==============
 
 class ClassName
@@ -4616,7 +4618,7 @@ class ClassName
     typeof(self, other) # works
     sizeof(self.class) # works
     instance_sizeof(self.class) # works
-    pointerof(self)
+    pointerof(123)
     offsetof(self.class, 1) # works
     self.as(Object)
     self.as?(Object)
@@ -4629,19 +4631,19 @@ end
 
 (expressions
   (class_def
-    (constant)
-    (expressions
+    name: (constant)
+    body: (expressions
       (method_def
-        (identifier)
-        (expressions
+        name: (identifier)
+        body: (expressions
           (call
-            (self)
-            (identifier)
-            (argument_list
+            receiver: (self)
+            method: (identifier)
+            arguments: (argument_list
               (constant)))
           (call
-            (self)
-            (identifier))
+            receiver: (self)
+            method: (identifier))
           (typeof
             (self)
             (identifier))
@@ -4655,26 +4657,26 @@ end
               (self)))
           (comment)
           (pointerof
-            (self))
+            (integer))
           (offsetof
             (class_type
               (self))
             (integer))
           (comment)
           (call
-            (self)
-            (identifier)
-            (argument_list
+            receiver: (self)
+            method: (identifier)
+            arguments: (argument_list
               (constant)))
           (call
-            (self)
-            (identifier)
-            (argument_list
+            receiver: (self)
+            method: (identifier)
+            arguments: (argument_list
               (constant)))
           (call
-            (identifier)
-            (argument_list
+            method: (identifier)
+            arguments: (argument_list
               (symbol)))
           (call
-            (self)
-            (operator)))))))
+            receiver: (self)
+            method: (operator)))))))

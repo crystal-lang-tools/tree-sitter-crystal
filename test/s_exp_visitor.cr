@@ -1381,6 +1381,8 @@ class SExpVisitor < Crystal::Visitor
   def visit(node : RespondsTo)
     in_node("call") do
       field "receiver" do
+        next if node.obj.is_a?(Self) ||
+                ((var = node.obj).is_a?(Var) && var.name == "self")
         node.obj.accept(self)
       end
 
@@ -1399,10 +1401,46 @@ class SExpVisitor < Crystal::Visitor
   end
 
   visit_basic(Include)
+  visit_basic(Extend)
   visit_basic(Yield)
   visit_basic(Require)
-  visit_basic(Not)
   visit_basic(Out)
+
+  def visit(node : Not)
+    in_node("call") do
+      field "receiver" do
+        node.exp.accept(self)
+      end
+
+      field "method" do
+        print_node("operator")
+      end
+    end
+
+    false
+  end
+
+  def visit(node : PointerOf)
+    enter_node("pointerof")
+  end
+
+  def end_visit(node : PointerOf)
+    exit_node
+  end
+
+  def visit(node : ReadInstanceVar)
+    in_node("call") do
+      field "receiver" do
+        node.obj.try &.accept(self)
+      end
+
+      field "method" do
+        print_node("instance_var")
+      end
+    end
+
+    false
+  end
 
   def visit(node : Annotation)
     in_node("annotation") do
