@@ -749,8 +749,10 @@ end
 
 ================================================================================
 method definitions with rescue, else, and ensure
+:language(crystal)
 ================================================================================
 def foo
+puts "hello"
 rescue e1 : SpecificError | OtherError
 rescue e2 : GeneralError
 else
@@ -761,6 +763,11 @@ end
 (expressions
   (method_def
     name: (identifier)
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (string))))
     rescue: (rescue
       variable: (identifier)
       type: (union_type

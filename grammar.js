@@ -2743,7 +2743,10 @@ module.exports = grammar({
       )
     },
 
-    ensure: $ => seq(alias($._regular_ensure_keyword, 'ensure'), optional($._statements)),
+    ensure: $ => seq(
+      alias($._regular_ensure_keyword, 'ensure'),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
+    ),
 
     modifier_rescue: $ => seq(
       $._statement,

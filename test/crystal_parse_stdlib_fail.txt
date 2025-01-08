@@ -156,12 +156,10 @@ compiler/crystal/tools/doc.cr
 compiler/crystal/tools/doc/constant.cr
 compiler/crystal/tools/doc/generator.cr
 compiler/crystal/tools/doc/macro.cr
-compiler/crystal/tools/doc/main.cr
 compiler/crystal/tools/doc/method.cr
 compiler/crystal/tools/doc/project_info.cr
 compiler/crystal/tools/doc/relative_location.cr
 compiler/crystal/tools/doc/templates.cr
-compiler/crystal/tools/doc/to_json.cr
 compiler/crystal/tools/doc/type.cr
 compiler/crystal/tools/expand.cr
 compiler/crystal/tools/flags.cr
@@ -242,7 +240,6 @@ crystal/system/file_descriptor.cr
 crystal/system/file_info.cr
 crystal/system/group.cr
 crystal/system/mime.cr
-crystal/system/panic.cr
 crystal/system/path.cr
 crystal/system/print_error.cr
 crystal/system/process.cr
@@ -268,7 +265,6 @@ crystal/system/unix/getrandom.cr
 crystal/system/unix/group.cr
 crystal/system/unix/hostname.cr
 crystal/system/unix/lib_event2.cr
-crystal/system/unix/mime.cr
 crystal/system/unix/path.cr
 crystal/system/unix/process.cr
 crystal/system/unix/pthread.cr
@@ -453,7 +449,6 @@ json/lexer/string_based.cr
 json/parser.cr
 json/pull_parser.cr
 json/to_json.cr
-json/token.cr
 kernel.cr
 levenshtein.cr
 lib_c.cr
@@ -1090,7 +1085,6 @@ time/format.cr
 time/format/custom/http_date.cr
 time/format/custom/iso_8601.cr
 time/format/custom/rfc_2822.cr
-time/format/custom/rfc_3339.cr
 time/format/custom/yaml_date.cr
 time/format/formatter.cr
 time/format/parser.cr
@@ -1123,7 +1117,6 @@ xml/namespace.cr
 xml/node.cr
 xml/node_set.cr
 xml/reader.cr
-xml/xpath_context.cr
 yaml.cr
 yaml/any.cr
 yaml/lib_yaml.cr
