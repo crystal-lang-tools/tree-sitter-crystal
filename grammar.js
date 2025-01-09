@@ -1193,9 +1193,9 @@ module.exports = grammar({
 
     type_def: $ => seq(
       'type',
-      $.constant,
+      field('name', $.constant),
       '=',
-      $._bare_type,
+      field('type', $._bare_type),
     ),
 
     c_struct_def: $ => {
@@ -1204,7 +1204,7 @@ module.exports = grammar({
       return seq(
         'struct',
         name,
-        $._c_struct_expressions,
+        field('body', alias($._c_struct_expressions, $.expressions)),
         'end',
       )
     },
@@ -1232,7 +1232,7 @@ module.exports = grammar({
       const names = seq($.identifier, repeat(seq(',', $.identifier)))
 
       return seq(
-        names,
+        field('name', names),
         /[ \t]:\s/,
         field('type', $._bare_type),
       )
@@ -1244,7 +1244,7 @@ module.exports = grammar({
       return seq(
         'union',
         name,
-        $._union_expressions,
+        field('body', alias($._union_expressions, $.expressions)),
         'end',
       )
     },
@@ -1271,14 +1271,14 @@ module.exports = grammar({
       const names = seq($.identifier, repeat(seq(',', $.identifier)))
 
       return seq(
-        names,
+        field('name', names),
         /[ \t]:\s/,
         field('type', $._bare_type),
       )
     },
 
     global_var: $ => {
-      const name = seq('$', $.identifier)
+      const name = field('name', seq('$', $.identifier))
       const real_name = field('real_name', choice($.identifier, $.constant))
       const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
 
@@ -2743,7 +2743,10 @@ module.exports = grammar({
       )
     },
 
-    ensure: $ => seq(alias($._regular_ensure_keyword, 'ensure'), optional($._statements)),
+    ensure: $ => seq(
+      alias($._regular_ensure_keyword, 'ensure'),
+      field('body', optional(alias($._statements, $.expressions))),
+    ),
 
     modifier_rescue: $ => seq(
       $._statement,

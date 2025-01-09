@@ -45,6 +45,7 @@ class SExpVisitor < Crystal::Visitor
     yield
   ensure
     exit_node
+    false
   end
 
   # Force the next node to be printed with the given `alias_name`
@@ -98,18 +99,114 @@ class SExpVisitor < Crystal::Visitor
     @fields.pop
   end
 
-  def body_field(body : ASTNode?)
-    field "body" do
-      case body
-      when Nop, nil
-        break
-      when Expressions
-        # keep it
-      else
-        body = Expressions.new([body])
+  def handle_exception_handler(node : ExceptionHandler)
+    if node.suffix
+      field "body" do
+        in_node("expressions") do
+          handle_exception_suffix(node)
+        end
       end
+      return
+    end
 
-      body.accept self
+    body_field(node.body)
+
+    node.rescues.try &.each do |rescue_|
+      field "rescue" do
+        rescue_.accept(self)
+      end
+    end
+
+    field "else" do
+      if (else_ = node.else) && !else_.is_a?(Nop)
+        in_node("else") do
+          field "body" do
+            if else_.is_a?(Expressions)
+              else_.accept(self)
+            else
+              in_node("expressions") do
+                else_.accept(self)
+              end
+            end
+          end
+        end
+      elsif node.else_location
+        print_node("else")
+      end
+    end
+
+    field "ensure" do
+      if (ensure_ = node.ensure) && !ensure_.is_a?(Nop)
+        in_node("ensure") do
+          field "body" do
+            if ensure_.is_a?(Expressions)
+              ensure_.accept(self)
+            else
+              in_node("expressions") do
+                ensure_.accept(self)
+              end
+            end
+          end
+        end
+      elsif node.ensure_location
+        print_node("ensure")
+      end
+    end
+  end
+
+  def handle_exception_suffix(node : ExceptionHandler)
+    case
+    when (rescue_ = node.rescues.try(&.first))
+      in_node("modifier_rescue") do
+        if (body = node.body).is_a?(Expressions)
+          body.expressions.each &.accept(self)
+        else
+          body.accept(self)
+        end
+
+        field "rescue" do
+          rescue_.body.accept(self)
+        end
+      end
+    when (ensure_ = node.ensure)
+      in_node("modifier_ensure") do
+        if (body = node.body).is_a?(Expressions)
+          body.expressions.each &.accept(self)
+        else
+          body.accept(self)
+        end
+
+        field "ensure" do
+          if ensure_.is_a?(Expressions)
+            ensure_.expressions.each &.accept(self)
+          else
+            ensure_.accept(self)
+          end
+        end
+      end
+    else
+      raise NotImplementedError.new(node.class)
+    end
+  end
+
+  def body_field(body : ASTNode?)
+    if body.is_a?(ExceptionHandler)
+      handle_exception_handler(body)
+    else
+      field "body" do
+        case body
+        when Nop, nil
+          break
+        when Expressions
+          # keep it
+        when ASTNode
+          body = Expressions.new([body] of ASTNode)
+        else
+          return
+        end
+
+        body.accept self
+      end
     end
   end
 
@@ -125,6 +222,7 @@ class SExpVisitor < Crystal::Visitor
           in .private?   then print_node("private")
           end
         end
+        @visibility = nil
       in .protected? then print_node("protected")
       in .private?   then print_node("private")
       end
@@ -583,6 +681,8 @@ class SExpVisitor < Crystal::Visitor
 
   def visit(node : EnumDef)
     in_node("enum_def") do
+      visibility_field(node)
+
       field "name" do
         node.name.accept self
       end
@@ -622,14 +722,78 @@ class SExpVisitor < Crystal::Visitor
     false
   end
 
-  def visit(node : Block)
-    enter_node("block")
-    # TODO
-    true
+  def visit(node : CStructOrUnionDef)
+    node_type = if node.union?
+                  "union_def"
+                else
+                  "c_struct_def"
+                end
+
+    in_node(node_type) do
+      visibility_field(node)
+
+      field "name" do
+        print_node("constant")
+      end
+
+      field "body" do
+        if (body = node.body).is_a?(Expressions)
+          in_node("expressions") do
+            field_name = if node.union?
+                           "union_fields"
+                         else
+                           "c_struct_fields"
+                         end
+
+            body.expressions.each do |member|
+              case member
+              when TypeDeclaration
+                in_node(field_name) do
+                  field "name" do
+                    print_node("identifier")
+                  end
+
+                  field "type" do
+                    member.declared_type.accept(self)
+                  end
+                end
+              else
+                member.accept(self)
+              end
+            end
+          end
+        end
+      end
+    end
+
+    false
   end
 
-  def end_visit(node : Block)
-    exit_node
+  def visit(node : Block)
+    in_node("block") do
+      field "params" do
+        if node.args.size > 0
+          in_node("param_list") do
+            splat_index = node.splat_index || -1
+
+            node.args.each_with_index do |arg, i|
+              if i == splat_index
+                alias_next_node!("splat_param")
+              end
+              in_node("param") do
+                field "name" do
+                  arg.accept self
+                end
+              end
+            end
+          end
+        end
+      end
+
+      body_field(node.body)
+    end
+
+    false
   end
 
   def visit(node : FunDef)
@@ -640,7 +804,11 @@ class SExpVisitor < Crystal::Visitor
 
       field "real_name" do
         next if node.real_name == node.name
-        print_node("identifier")
+        if node.real_name.starts_with?(/[A-Z]/)
+          print_node("constant")
+        else
+          print_node("identifier")
+        end
       end
 
       # TODO varargs
@@ -661,6 +829,20 @@ class SExpVisitor < Crystal::Visitor
       end
 
       body_field(node.body)
+    end
+
+    false
+  end
+
+  def visit(node : TypeDef)
+    in_node("type_def") do
+      field "name" do
+        print_node("constant")
+      end
+
+      field "type" do
+        node.type_spec.accept(self)
+      end
     end
 
     false
@@ -713,9 +895,14 @@ class SExpVisitor < Crystal::Visitor
       end
 
       field "then" do
-        if !is_ternary && !node.then.is_a?(Nop)
+        then_ = node.then
+        if !is_ternary && !(then_).is_a?(Nop)
           in_node("then") do
-            node.then.accept self
+            if then_ && then_.is_a?(Expressions)
+              then_.expressions.each &.accept(self)
+            else
+              then_.accept self
+            end
           end
         else
           node.then.accept self
@@ -1381,6 +1568,8 @@ class SExpVisitor < Crystal::Visitor
   def visit(node : RespondsTo)
     in_node("call") do
       field "receiver" do
+        next if node.obj.is_a?(Self) ||
+                ((var = node.obj).is_a?(Var) && var.name == "self")
         node.obj.accept(self)
       end
 
@@ -1399,10 +1588,47 @@ class SExpVisitor < Crystal::Visitor
   end
 
   visit_basic(Include)
+  visit_basic(Extend)
   visit_basic(Yield)
-  visit_basic(Require)
-  visit_basic(Not)
   visit_basic(Out)
+  visit_basic(MacroExpression)
+
+  def visit(node : Not)
+    in_node("call") do
+      field "receiver" do
+        node.exp.accept(self)
+      end
+
+      field "method" do
+        print_node("operator")
+      end
+    end
+
+    false
+  end
+
+  def visit(node : PointerOf)
+    enter_node("pointerof")
+    true
+  end
+
+  def end_visit(node : PointerOf)
+    exit_node
+  end
+
+  def visit(node : ReadInstanceVar)
+    in_node("call") do
+      field "receiver" do
+        node.obj.try &.accept(self)
+      end
+
+      field "method" do
+        print_node("instance_var")
+      end
+    end
+
+    false
+  end
 
   def visit(node : Annotation)
     in_node("annotation") do
@@ -1438,6 +1664,29 @@ class SExpVisitor < Crystal::Visitor
     false
   end
 
+  def visit(node : ExternalVar)
+    in_node("global_var") do
+      field "name" do
+        print_node("identifier")
+      end
+
+      field "real_name" do
+        next unless (real_name = node.real_name)
+        if real_name.starts_with?(/[A-Z]/)
+          print_node("constant")
+        else
+          print_node("identifier")
+        end
+      end
+
+      field "type" do
+        node.type_spec.accept(self)
+      end
+    end
+
+    false
+  end
+
   def visit(node : VisibilityModifier)
     @visibility = node.modifier
     true
@@ -1455,11 +1704,60 @@ class SExpVisitor < Crystal::Visitor
         end
       end
     end
+
     false
   end
 
   def visit(node : ImplicitObj)
     true
+  end
+
+  def visit(node : ExceptionHandler)
+    if node.suffix
+      handle_exception_suffix(node)
+    else
+      in_node("begin") do
+        handle_exception_handler(node)
+      end
+    end
+
+    false
+  end
+
+  def visit(node : Rescue)
+    in_node("rescue") do
+      field "variable" do
+        if node.name
+          print_node("identifier")
+        end
+      end
+
+      if (types = node.types)
+        if types.size == 1
+          field "type" do
+            types.first.accept(self)
+          end
+        else
+          field "type" do
+            in_node("union_type") do
+              types.each &.accept(self)
+            end
+          end
+        end
+      end
+
+      body_field(node.body)
+    end
+
+    false
+  end
+
+  def visit(node : Require)
+    in_node("require") do
+      print_node("string")
+    end
+
+    false
   end
 
   ##########

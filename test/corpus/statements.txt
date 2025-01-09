@@ -749,6 +749,7 @@ end
 
 ================================================================================
 method definitions with rescue, else, and ensure
+:language(crystal)
 ================================================================================
 def foo
 rescue e1 : SpecificError | OtherError
@@ -1084,6 +1085,7 @@ end
 
 =============
 private enums
+:language(crystal)
 =============
 
 module MyModule
@@ -1319,6 +1321,8 @@ lib def + objects
 =================
 
 lib MyLib
+  $external = Name : Int32?
+
   fun name = Name : Void
 
   fun cos(value : Float64) : Float64
@@ -1349,6 +1353,11 @@ end
   (lib_def
     name: (constant)
     body: (expressions
+      (global_var
+        name: (identifier)
+        real_name: (constant)
+        type: (nilable_type
+          (constant)))
       (fun_def
         name: (identifier)
         real_name: (constant)
@@ -1362,21 +1371,23 @@ end
         type: (constant))
       (union_def
         name: (constant)
-        (union_fields
-          (identifier)
-          type: (constant))
-        (union_fields
-          (identifier)
-          type: (constant)))
+        body: (expressions
+          (union_fields
+            name: (identifier)
+            type: (constant))
+          (union_fields
+            name: (identifier)
+            type: (constant))))
       (c_struct_def
         name: (constant)
-        (c_struct_fields
-          (identifier)
-          (identifier)
-          type: (constant))
-        (c_struct_fields
-          (identifier)
-          type: (constant)))
+        body: (expressions
+          (c_struct_fields
+            name: (identifier)
+            name: (identifier)
+            type: (constant))
+          (c_struct_fields
+            name: (identifier)
+            type: (constant))))
       (enum_def
         name: (constant)
         body: (expressions
@@ -1385,8 +1396,8 @@ end
           (constant)
           (constant)))
       (type_def
-        (constant)
-        (constant)))))
+        name: (constant)
+        type: (constant)))))
 
 =============
 fun with dots
@@ -1595,3 +1606,84 @@ end
     params: (param_list
       (param
         name: (identifier)))))
+
+========================
+method in private module
+:language(crystal)
+========================
+
+private module MyMod
+  def my_method
+    puts "hello"
+  end
+end
+
+---
+
+(expressions
+  (module_def
+    visibility: (private)
+    name: (constant)
+    body: (expressions
+      (method_def
+        name: (identifier)
+        body: (expressions
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (string))))))))
+
+===================
+if then expressions
+:language(crystal)
+===================
+
+def self.init(load_defaults : Bool = true) : Nil
+  @@initialized = true
+
+  if load_defaults
+    DEFAULT_TYPES.each do |ext, type|
+      register ext, type
+    end
+
+    Crystal::System::MIME.load
+  end
+end
+
+---
+
+(expressions
+  (method_def
+    class: (self)
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier)
+        type: (constant)
+        default: (true)))
+    type: (constant)
+    body: (expressions
+      (assign
+        lhs: (class_var)
+        rhs: (true))
+      (if
+        cond: (identifier)
+        then: (then
+          (call
+            receiver: (constant)
+            method: (identifier)
+            block: (block
+              params: (param_list
+                (param
+                  name: (identifier))
+                (param
+                  name: (identifier)))
+              body: (expressions
+                (call
+                  method: (identifier)
+                  arguments: (argument_list
+                    (identifier)
+                    (identifier))))))
+          (call
+            receiver: (constant)
+            method: (identifier)))))))

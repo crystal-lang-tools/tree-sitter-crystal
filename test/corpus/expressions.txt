@@ -899,6 +899,7 @@ begin begin end end
 
 ================================================================================
 begin blocks with rescue
+:language(crystal)
 ================================================================================
 begin
   1
@@ -972,6 +973,7 @@ end
 
 ================================================================================
 begin blocks with ensure
+:language(crystal)
 ================================================================================
 begin
   1
@@ -990,14 +992,16 @@ puts begin 1
     body: (expressions
       (integer))
     ensure: (ensure
-      (integer)))
+      body: (expressions
+        (integer))))
   (begin
     body: (expressions
       (modifier_ensure
         (identifier)
         ensure: (identifier)))
     ensure: (ensure
-      (identifier)))
+      body: (expressions
+        (identifier))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -1007,13 +1011,15 @@ puts begin 1
           (integer)
           (integer))
         ensure: (ensure
-          (call
-            method: (identifier)
-            arguments: (argument_list
-              (integer))))))))
+          body: (expressions
+            (call
+              method: (identifier)
+              arguments: (argument_list
+                (integer)))))))))
 
 ================================================================================
 begin blocks with rescue, else, and ensure
+:language(crystal)
 ================================================================================
 begin
 1 rescue a : ArgumentError
@@ -1047,7 +1053,8 @@ begin :a; rescue; :b else :c; ensure p! :d end
       body: (expressions
         (integer)))
     ensure: (ensure
-      (integer)))
+      body: (expressions
+        (integer))))
   (begin
     body: (expressions
       (symbol))
@@ -1072,13 +1079,15 @@ begin :a; rescue; :b else :c; ensure p! :d end
       body: (expressions
         (symbol)))
     ensure: (ensure
-      (call
-        method: (identifier)
-        arguments: (argument_list
-          (symbol))))))
+      body: (expressions
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (symbol)))))))
 
 ================================================================================
 rescue modifiers
+:language(crystal)
 ================================================================================
 puts 7 rescue ArgumentError
 puts (7 rescue ArgumentError)
@@ -1108,8 +1117,9 @@ do_stuff rescue do_stuff rescue 7
 
 ================================================================================
 ensure modifiers
+:language(crystal)
 ================================================================================
-puts (4 ensure (puts 3))
+puts (4 ensure puts 3)
 
 def foo
   a; b
@@ -1125,22 +1135,22 @@ end
       (expressions
         (modifier_ensure
           (integer)
-          ensure: (expressions
-            (call
-              method: (identifier)
-              arguments: (argument_list
-                (integer))))))))
+          ensure: (call
+            method: (identifier)
+            arguments: (argument_list
+              (integer)))))))
   (method_def
     name: (identifier)
     body: (expressions
       (identifier)
       (identifier))
     ensure: (ensure
-      (identifier)
-      (modifier_ensure
+      body: (expressions
         (identifier)
-        ensure: (identifier))
-      (identifier))))
+        (modifier_ensure
+          (identifier)
+          ensure: (identifier))
+        (identifier)))))
 
 ================================================================================
 binary additive operators
@@ -2312,6 +2322,7 @@ a (b do 1 end) do 2 end
 
 ================================================================================
 do/end blocks with rescue, else, and ensure
+:language(crystal)
 ================================================================================
 a do rescue e ; end
 b do ensure bar end
@@ -2334,7 +2345,8 @@ end
     method: (identifier)
     block: (block
       ensure: (ensure
-        (identifier))))
+        body: (expressions
+          (identifier)))))
   (call
     receiver: (expressions
       (range
@@ -4031,6 +4043,7 @@ end
 
 =================
 read instance var
+:language(crystal)
 =================
 
 object.@ivar
@@ -4607,6 +4620,7 @@ nil?(
 
 ==============
 pseudo methods
+:language(crystal)
 ==============
 
 class ClassName
@@ -4616,7 +4630,7 @@ class ClassName
     typeof(self, other) # works
     sizeof(self.class) # works
     instance_sizeof(self.class) # works
-    pointerof(self)
+    pointerof(123)
     offsetof(self.class, 1) # works
     self.as(Object)
     self.as?(Object)
@@ -4629,19 +4643,19 @@ end
 
 (expressions
   (class_def
-    (constant)
-    (expressions
+    name: (constant)
+    body: (expressions
       (method_def
-        (identifier)
-        (expressions
+        name: (identifier)
+        body: (expressions
           (call
-            (self)
-            (identifier)
-            (argument_list
+            receiver: (self)
+            method: (identifier)
+            arguments: (argument_list
               (constant)))
           (call
-            (self)
-            (identifier))
+            receiver: (self)
+            method: (identifier))
           (typeof
             (self)
             (identifier))
@@ -4655,26 +4669,26 @@ end
               (self)))
           (comment)
           (pointerof
-            (self))
+            (integer))
           (offsetof
             (class_type
               (self))
             (integer))
           (comment)
           (call
-            (self)
-            (identifier)
-            (argument_list
+            receiver: (self)
+            method: (identifier)
+            arguments: (argument_list
               (constant)))
           (call
-            (self)
-            (identifier)
-            (argument_list
+            receiver: (self)
+            method: (identifier)
+            arguments: (argument_list
               (constant)))
           (call
-            (identifier)
-            (argument_list
+            method: (identifier)
+            arguments: (argument_list
               (symbol)))
           (call
-            (self)
-            (operator)))))))
+            receiver: (self)
+            method: (operator)))))))

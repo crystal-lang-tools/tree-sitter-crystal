@@ -72,6 +72,7 @@ macro for
 
 ================
 macro expression
+:language(crystal)
 ================
 
 {{ puts "hello" }}
@@ -83,16 +84,16 @@ macro expression
 (expressions
   (macro_expression
     (call
-      (identifier)
-      (argument_list
+      method: (identifier)
+      arguments: (argument_list
         (string))))
   (macro_expression
     (assign
-      (identifier)
-      (integer)))
+      lhs: (identifier)
+      rhs: (integer)))
   (named_tuple
     (named_expr
-      (identifier)
+      name: (identifier)
       (identifier))))
 
 =================
