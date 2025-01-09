@@ -1609,6 +1609,7 @@ class SExpVisitor < Crystal::Visitor
 
   def visit(node : PointerOf)
     enter_node("pointerof")
+    true
   end
 
   def end_visit(node : PointerOf)

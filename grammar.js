@@ -2745,7 +2745,7 @@ module.exports = grammar({
 
     ensure: $ => seq(
       alias($._regular_ensure_keyword, 'ensure'),
-      field('body', seq(optional(alias($._statements, $.expressions)))),
+      field('body', optional(alias($._statements, $.expressions))),
     ),
 
     modifier_rescue: $ => seq(

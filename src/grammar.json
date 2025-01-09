@@ -13320,24 +13320,19 @@
           "type": "FIELD",
           "name": "body",
           "content": {
-            "type": "SEQ",
+            "type": "CHOICE",
             "members": [
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_statements"
-                    },
-                    "named": true,
-                    "value": "expressions"
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_statements"
+                },
+                "named": true,
+                "value": "expressions"
+              },
+              {
+                "type": "BLANK"
               }
             ]
           }
