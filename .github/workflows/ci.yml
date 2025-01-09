@@ -30,8 +30,11 @@ jobs:
       - name: Run stdlib coverage
         run: crystal run test/stdlib_coverage.cr
 
-      - name: Run compiler verification tests
+      - name: Run compiler verification tests (corpus)
         run: crystal run test/crystal_parse_corpus.cr
+
+      - name: Run compiler verification tests (stdlib)
+        run: crystal run test/crystal_parse_stdlib.cr
 
   generate:
     runs-on: ubuntu-latest
