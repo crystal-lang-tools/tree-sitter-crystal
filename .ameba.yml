@@ -1,3 +1,6 @@
+Excluded:
+  - test/highlight
+
 Metrics/CyclomaticComplexity:
   Enabled: False
 
