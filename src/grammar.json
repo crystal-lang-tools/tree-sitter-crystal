@@ -7015,7 +7015,8 @@
         "members": [
           {
             "type": "PATTERN",
-            "value": "[A-Z]"
+            "value": "[\\p{Uppercase_Letter}\\p{Titlecase_Letter}]",
+            "flags": "u"
           },
           {
             "type": "REPEAT",

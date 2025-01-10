@@ -9,6 +9,11 @@ A1
 ::B
 ::B💎::C
 ::B_::C4
+
+# now valid in Crystal 1.15!
+Á𖹀𐓓::ＢB
+ǅdz::ǈlljj
+ᾈ
 --------------------------------------------------------------------------------
 
 (expressions
@@ -16,6 +21,10 @@ A1
   (constant)
   (expressions
     (constant))
+  (constant)
+  (constant)
+  (constant)
+  (comment)
   (constant)
   (constant)
   (constant))

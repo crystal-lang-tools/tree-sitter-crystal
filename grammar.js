@@ -1,5 +1,5 @@
 const
-  const_start = /[A-Z]/,
+  const_start = /[\p{Uppercase_Letter}\p{Titlecase_Letter}]/u,
   ident_start = /[a-z_\u{00a0}-\u{10ffff}]/u,
   ident_part = /[0-9A-Za-z_\u{00a0}-\u{10ffff}]/u
 
