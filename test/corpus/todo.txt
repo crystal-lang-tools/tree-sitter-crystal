@@ -235,45 +235,17 @@ filters1.try(&.pos[name]?)
       (ERROR))))
 
 ===========
-nasty regex
+\b in regex
 ===========
 
-%r(
-((?:\B::)?\b[A-Z]\w*(?:\:\:[A-Z]\w*)*|\B|(?<=\bself))(?<!\.)([#.])([\w<=>+\-*\/\[\]&|?!^~]+[?!]?)(?:\((.*?)\))?
-  |
-((?:\B::)?\b[A-Z]\w*(?:\:\:[A-Z]\w*)*)
-)x
+%r(\b)
 
 ---
 
 (expressions
-  (regex
-    (ignored_backslash)
+  (ERROR
     (ERROR
-      (char_escape_sequence))
-    (ignored_backslash)
-    (ignored_backslash)
-    (ignored_backslash)
-    (ignored_backslash)
-    (ignored_backslash)
-    (ERROR
-      (char_escape_sequence))
-    (ignored_backslash)
-    (ignored_backslash)
-    (ignored_backslash)
-    (ignored_backslash)
-    (ignored_backslash)
-    (ignored_backslash)
-    (ignored_backslash)
-    (ignored_backslash)
-    (ignored_backslash)
-    (ERROR
-      (char_escape_sequence))
-    (ignored_backslash)
-    (ignored_backslash)
-    (ignored_backslash)
-    (ignored_backslash)
-    (regex_modifier)))
+      (char_escape_sequence))))
 
 ========================
 escaped macro expression
