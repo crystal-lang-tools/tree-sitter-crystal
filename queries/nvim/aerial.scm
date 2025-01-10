@@ -18,6 +18,10 @@
   name: (identifier) @name
   (#set! "kind" "Method")) @symbol
 
+(macro_def
+  name: (identifier) @name
+  (#set! "kind" "Function")) @symbol
+
 (const_assign
   lhs: (constant) @name
   (#set! "kind" "Constant")) @symbol
