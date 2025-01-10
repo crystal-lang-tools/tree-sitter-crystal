@@ -24,6 +24,7 @@ crystal/compiler_rt/float.cr
 crystal/compiler_rt/mul.cr
 crystal/datum.cr
 crystal/mach_o.cr
+crystal/system/random.cr
 crystal/system/unix/file_descriptor.cr
 crystal/system/wasi/file_descriptor.cr
 ecr/macros.cr

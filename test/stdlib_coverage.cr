@@ -50,7 +50,7 @@ stdlib_files.each do |stdlib_file|
 
   if !test_status.exit_reason.normal?
     # the parser didn't exit normally. maybe a failed assertion, or a segfault
-    puts "test did not exit normally: #{test_status.exit_reason} (status code #{test_status.exit_status})"
+    puts "test did not exit normally: #{test_status.exit_reason} (status code #{test_status.exit_code})"
     abort("encountered a serious problem parsing #{stdlib_file}")
   end
 
