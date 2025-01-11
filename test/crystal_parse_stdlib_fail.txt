@@ -1,5 +1,6 @@
 array.cr
 atomic.cr
+base64.cr
 benchmark.cr
 benchmark/bm.cr
 benchmark/ips.cr
@@ -90,6 +91,7 @@ compiler/crystal/loader/unix.cr
 compiler/crystal/macros.cr
 compiler/crystal/macros/interpreter.cr
 compiler/crystal/macros/macros.cr
+compiler/crystal/macros/methods.cr
 compiler/crystal/macros/types.cr
 compiler/crystal/program.cr
 compiler/crystal/progress_tracker.cr
@@ -677,6 +679,7 @@ log/main.cr
 log/metadata.cr
 log/setup.cr
 log/spec.cr
+macros.cr
 math/libm.cr
 math/math.cr
 mime.cr
@@ -810,6 +813,7 @@ uri.cr
 uri/encoding.cr
 uri/params.cr
 uri/params/from_www_form.cr
+uri/params/serializable.cr
 uri/params/to_www_form.cr
 uri/punycode.cr
 uri/uri_parser.cr

@@ -20,100 +20,119 @@
         }
       ]
     },
-    "macro_def_literal_content": {
+    "_macro_def_literal_content": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "string"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          },
+          "named": true,
+          "value": "macro_content"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "macro_content_nesting"
+          },
+          "named": true,
+          "value": "macro_content"
         },
         {
           "type": "SEQ",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "abstract\\s+class"
-                },
-                {
-                  "type": "PATTERN",
-                  "value": "abstract\\s+struct"
-                },
-                {
-                  "type": "STRING",
-                  "value": "annotation"
-                },
-                {
-                  "type": "STRING",
-                  "value": "begin"
-                },
-                {
-                  "type": "STRING",
-                  "value": "case"
-                },
-                {
-                  "type": "STRING",
-                  "value": "class"
-                },
-                {
-                  "type": "STRING",
-                  "value": "def"
-                },
-                {
-                  "type": "STRING",
-                  "value": "do"
-                },
-                {
-                  "type": "STRING",
-                  "value": "enum"
-                },
-                {
-                  "type": "STRING",
-                  "value": "fun"
-                },
-                {
-                  "type": "STRING",
-                  "value": "if"
-                },
-                {
-                  "type": "STRING",
-                  "value": "lib"
-                },
-                {
-                  "type": "STRING",
-                  "value": "macro"
-                },
-                {
-                  "type": "STRING",
-                  "value": "module"
-                },
-                {
-                  "type": "STRING",
-                  "value": "select"
-                },
-                {
-                  "type": "STRING",
-                  "value": "struct"
-                },
-                {
-                  "type": "STRING",
-                  "value": "union"
-                },
-                {
-                  "type": "STRING",
-                  "value": "unless"
-                },
-                {
-                  "type": "STRING",
-                  "value": "until"
-                },
-                {
-                  "type": "STRING",
-                  "value": "while"
-                }
-              ]
+              "type": "ALIAS",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "abstract\\s+class"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "abstract\\s+struct"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "annotation"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "begin"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "case"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "class"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "def"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "do"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "enum"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "fun"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "if"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "lib"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "macro"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "module"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "select"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "struct"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "union"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "unless"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "until"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "while"
+                  }
+                ]
+              },
+              "named": true,
+              "value": "macro_content"
             },
             {
               "type": "REPEAT",
@@ -123,14 +142,33 @@
               }
             },
             {
-              "type": "STRING",
-              "value": "end"
+              "type": "ALIAS",
+              "content": {
+                "type": "STRING",
+                "value": "end"
+              },
+              "named": true,
+              "value": "macro_content"
             }
           ]
+        }
+      ]
+    },
+    "_macro_literal_content": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          },
+          "named": true,
+          "value": "macro_content"
         },
         {
           "type": "SYMBOL",
-          "name": "macro_content_nesting"
+          "name": "macro_content"
         }
       ]
     },
@@ -9039,7 +9077,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "macro_def_literal_content"
+          "name": "_macro_def_literal_content"
         },
         {
           "type": "SYMBOL",
@@ -9056,7 +9094,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "macro_content"
+          "name": "_macro_literal_content"
         },
         {
           "type": "SYMBOL",

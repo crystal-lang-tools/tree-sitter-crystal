@@ -344,7 +344,7 @@ module.exports = grammar({
       optional($._statements),
     ),
 
-    macro_def_literal_content: $ => {
+    _macro_def_literal_content: $ => {
       const nesting_constructs = [
         /abstract\s+class/,
         /abstract\s+struct/,
@@ -368,29 +368,24 @@ module.exports = grammar({
         'while',
       ]
 
-      // if/unless/while/until only match at "beginning_of_line"
-      // "beginning_of_line" = true after `= ` sequence
-      // "beginning_of_line" isn't affected by characters in ';', '(', '[', '{'
-
-      // const abstract_def = 'abstract def'
-
-      const text = /[^\s]+/
-
       return choice(
-        $.string,
-        seq(choice(...nesting_constructs), repeat($._macro_def_content), 'end'),
-        // abstract_def,
-        $.macro_content_nesting,
-        // alias($._macro_content_nesting, $.macro_content),
-        // text,
+        alias($.string, $.macro_content),
+        alias($.macro_content_nesting, $.macro_content),
+        seq(
+          alias(choice(...nesting_constructs), $.macro_content),
+          repeat($._macro_def_content),
+          alias('end', $.macro_content),
+        ),
       )
     },
 
-    // macro_literal_content: $ => {
-    //   const text = /[^\s]+/
-    //   return text
+    _macro_literal_content: $ => {
+      return choice(
+        alias($.string, $.macro_content),
+        $.macro_content,
+      )
+    },
 
-    // },
 
     _terminator: $ => choice($._line_break, ';'),
 
@@ -2099,13 +2094,13 @@ module.exports = grammar({
 
     _macro_def_content: $ => choice(
       $._macro_node,
-      $.macro_def_literal_content,
+      $._macro_def_literal_content,
       $._terminator,
     ),
 
     _macro_content: $ => choice(
       $._macro_node,
-      $.macro_content,
+      $._macro_literal_content,
       $._terminator,
     ),
 

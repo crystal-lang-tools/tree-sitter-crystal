@@ -1504,7 +1504,6 @@ fun bar() end
   (fun_def
     name: (identifier)))
 
-
 ===================================
 mix of named and unnamed fun params
 ===================================
@@ -1607,8 +1606,7 @@ end
       (param
         name: (identifier)))
     body: (expressions
-      (macro_def_literal_content
-        (macro_content_nesting)))))
+      (macro_content))))
 
 ========================
 method in private module

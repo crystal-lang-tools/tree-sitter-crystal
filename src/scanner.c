@@ -869,8 +869,6 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
             case '#':
                 lex_advance(lexer);
 
-                // TODO: make sure we don't expect to encounter string interpolation
-
                 // Mark the rest of the line as a comment, where nesting keywords don't apply
                 found_content = true;
                 state->macro_state.in_comment = true;

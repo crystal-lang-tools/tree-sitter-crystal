@@ -6380,10 +6380,6 @@
           "named": true
         },
         {
-          "type": "macro_def_literal_content",
-          "named": true
-        },
-        {
           "type": "macro_expression",
           "named": true
         },
@@ -8915,6 +8911,29 @@
     }
   },
   {
+    "type": "macro_content",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "ignored_backslash",
+          "named": true
+        },
+        {
+          "type": "interpolation",
+          "named": true
+        },
+        {
+          "type": "string_escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "macro_def",
     "named": true,
     "fields": {
@@ -8966,57 +8985,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "macro_def_literal_content",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_content_nesting",
-          "named": true
-        },
-        {
-          "type": "macro_def_literal_content",
-          "named": true
-        },
-        {
-          "type": "macro_expression",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_statement",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -21089,14 +21057,6 @@
   {
     "type": "macro",
     "named": false
-  },
-  {
-    "type": "macro_content",
-    "named": true
-  },
-  {
-    "type": "macro_content_nesting",
-    "named": true
   },
   {
     "type": "module",
