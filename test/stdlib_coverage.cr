@@ -83,7 +83,7 @@ if failed != expected_fail
   should_update_failed_list = ARGV.includes?("-u")
 
   if should_update_failed_list
-    File.write(EXPECTED_TO_FAIL_FILEPATH, failed.join("\n"))
+    File.write(EXPECTED_TO_FAIL_FILEPATH, failed.join("\n") + "\n")
   else
     if !new_fails.empty?
       puts "Following files failed to parse, Use -u to update the list of files expected to fail:"
