@@ -86,7 +86,8 @@ uninstall:
 		'$(DESTDIR)$(PCLIBDIR)'/$(LANGUAGE_NAME).pc
 
 clean:
-	$(RM) $(OBJS) $(LANGUAGE_NAME).pc lib$(LANGUAGE_NAME).a lib$(LANGUAGE_NAME).$(SOEXT)
+	$(RM) $(OBJS) $(LANGUAGE_NAME).pc lib$(LANGUAGE_NAME).a lib$(LANGUAGE_NAME).$(SOEXT) \
+		test/stdlib_coverage test/crystal_parse_corpus test/crystal_parse_stdlib
 
 test/stdlib_coverage: test/stdlib_coverage.cr test/util.cr
 	crystal build -o test/stdlib_coverage test/stdlib_coverage.cr
