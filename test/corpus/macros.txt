@@ -10,8 +10,8 @@ puts "hello"
 
 (expressions
   (macro_begin
-    (macro_literal_content)
-    (macro_literal_content)))
+    (expressions
+      (macro_content))))
 
 ==============
 macro verbatim
@@ -25,9 +25,15 @@ macro verbatim
 
 (expressions
   (macro_verbatim
-    (macro_begin
-      (macro_expression
-        (identifier)))))
+    (expressions
+      (macro_content)
+      (macro_begin
+        (expressions
+          (macro_content)
+          (macro_expression
+            (identifier))
+          (macro_content)))
+      (macro_content))))
 
 ========
 macro if
@@ -45,8 +51,8 @@ macro if
       method: (identifier)
       arguments: (argument_list
         (symbol)))
-    (macro_literal_content)
-    (macro_literal_content)))
+    body: (expressions
+      (macro_content))))
 
 =========
 macro for
@@ -63,9 +69,12 @@ macro for
     var: (identifier)
     var: (identifier)
     cond: (identifier)
-    (macro_literal_content)
-    (macro_literal_content)
-    (comment)))
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (tuple
+          (identifier)))
+      (macro_content))))
 
 ================
 macro expression
@@ -135,16 +144,24 @@ macro name; {{ puts "hello" }} end
       (param
         name: (identifier)))
     body: (expressions
+      (macro_def_literal_content
+        (macro_content_nesting))
       (macro_expression
-        (identifier))))
+        (identifier))
+      (macro_def_literal_content
+        (macro_content_nesting))))
   (macro_def
     name: (identifier)
     body: (expressions
+      (macro_def_literal_content
+        (macro_content_nesting))
       (macro_expression
         (call
           method: (identifier)
           arguments: (argument_list
-            (string)))))))
+            (string))))
+      (macro_def_literal_content
+        (macro_content_nesting)))))
 
 ============================
 nested macros and macro vars
@@ -162,23 +179,20 @@ nested macros and macro vars
 (expressions
   (macro_if
     cond: (true)
-    (macro_for
-      var: (identifier)
-      cond: (array
-        (integer)
-        (integer)
-        (integer))
-      (macro_literal_content)
-      (macro_literal_content)
-      (macro_literal_content)
-      (macro_literal_content)
-      (macro_expression
-        (identifier))
-      (macro_literal_content)
-      (macro_literal_content)
-      (macro_literal_content)
-      (macro_literal_content)
-      (macro_literal_content))))
+    body: (expressions
+      (macro_content)
+      (macro_for
+        var: (identifier)
+        cond: (array
+          (integer)
+          (integer)
+          (integer))
+        body: (expressions
+          (macro_content)
+          (macro_expression
+            (identifier))
+          (macro_content)))
+      (macro_content))))
 
 ===============
 macro vars cont
@@ -317,55 +331,111 @@ end
     name: (identifier)
     body: (expressions
       (macro_def_literal_content
-        (macro_def_literal_content)
+        (macro_content_nesting))
+      (macro_def_literal_content
         (macro_def_literal_content
-          (macro_def_literal_content)
+          (macro_content_nesting))
+        (macro_def_literal_content
           (macro_def_literal_content
-            (macro_def_literal_content)
+            (macro_content_nesting))
+          (macro_def_literal_content
             (macro_def_literal_content
-              (macro_def_literal_content)
+              (macro_content_nesting))
+            (macro_def_literal_content
               (macro_def_literal_content
-                (macro_def_literal_content)
+                (macro_content_nesting))
+              (macro_def_literal_content
                 (macro_def_literal_content
-                  (macro_def_literal_content))
+                  (macro_content_nesting))
                 (macro_def_literal_content
-                  (macro_def_literal_content)
+                  (macro_def_literal_content
+                    (macro_content_nesting)))
+                (macro_def_literal_content
+                  (macro_content_nesting))
+                (macro_def_literal_content
+                  (macro_def_literal_content
+                    (macro_content_nesting))
                   (macro_def_literal_content
                     (macro_def_literal_content
-                      (macro_def_literal_content)
-                      (macro_def_literal_content)
-                      (macro_def_literal_content)
-                      (macro_def_literal_content)
-                      (macro_def_literal_content)
+                      (macro_content_nesting))
+                    (macro_def_literal_content
                       (macro_def_literal_content
-                        (macro_def_literal_content)
+                        (macro_content_nesting))
+                      (macro_def_literal_content
                         (macro_def_literal_content
-                          (macro_def_literal_content)
+                          (macro_content_nesting))
+                        (macro_def_literal_content
                           (macro_def_literal_content
-                            (macro_def_literal_content)
-                            (macro_def_literal_content)
-                            (macro_def_literal_content)
-                            (macro_def_literal_content))))))))
-              (macro_def_literal_content
-                (macro_def_literal_content)
-                (macro_def_literal_content
-                  (macro_def_literal_content)
+                            (macro_content_nesting))
+                          (macro_def_literal_content
+                            (macro_def_literal_content
+                              (macro_content_nesting)))
+                          (macro_def_literal_content
+                            (macro_content_nesting)))
+                        (macro_def_literal_content
+                          (macro_content_nesting)))
+                      (macro_def_literal_content
+                        (macro_content_nesting)))
+                    (macro_def_literal_content
+                      (macro_content_nesting)))
                   (macro_def_literal_content
-                    (macro_def_literal_content)))
+                    (macro_content_nesting)))
                 (macro_def_literal_content
-                  (macro_def_literal_content)))
-              (macro_def_literal_content)
-              (macro_def_literal_content)
+                  (macro_content_nesting)))
               (macro_def_literal_content
-                (macro_def_literal_content))))
+                (macro_content_nesting))
+              (macro_def_literal_content
+                (macro_def_literal_content
+                  (macro_content_nesting))
+                (macro_def_literal_content
+                  (macro_def_literal_content
+                    (macro_content_nesting))
+                  (macro_def_literal_content
+                    (macro_def_literal_content
+                      (macro_content_nesting)))
+                  (macro_def_literal_content
+                    (macro_content_nesting)))
+                (macro_def_literal_content
+                  (macro_content_nesting))
+                (macro_def_literal_content
+                  (macro_def_literal_content
+                    (macro_content_nesting)))
+                (macro_def_literal_content
+                  (macro_content_nesting)))
+              (macro_def_literal_content
+                (macro_content_nesting))
+              (macro_def_literal_content
+                (macro_def_literal_content
+                  (macro_content_nesting)))
+              (macro_def_literal_content
+                (macro_content_nesting)))
+            (macro_def_literal_content
+              (macro_content_nesting)))
           (macro_def_literal_content
-            (macro_def_literal_content)
+            (macro_content_nesting))
+          (macro_def_literal_content
             (macro_def_literal_content
-              (macro_def_literal_content))
+              (macro_content_nesting))
             (macro_def_literal_content
-              (macro_def_literal_content)
+              (macro_def_literal_content
+                (macro_content_nesting)))
+            (macro_def_literal_content
+              (macro_content_nesting))
+            (macro_def_literal_content
+              (macro_def_literal_content
+                (macro_content_nesting))
               (macro_expression
-                (identifier)))))))))
+                (identifier))
+              (macro_def_literal_content
+                (macro_content_nesting)))
+            (macro_def_literal_content
+              (macro_content_nesting)))
+          (macro_def_literal_content
+            (macro_content_nesting)))
+        (macro_def_literal_content
+          (macro_content_nesting)))
+      (macro_def_literal_content
+        (macro_content_nesting)))))
 
 ===============
 inline macro if
@@ -382,7 +452,8 @@ GC.init
       method: (identifier)
       arguments: (argument_list
         (symbol)))
-    (macro_literal_content))
+    body: (expressions
+      (macro_content)))
   (call
     receiver: (constant)
     method: (identifier)))
@@ -398,13 +469,12 @@ var : {{ "Type" }} = 1
 ---
 
 (expressions
-  (macro_begin)
-  (type_declaration
-    var: (identifier)
-    type: (macro_expression
-      (string))
-    value: (integer))
-  (macro_end))
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content))))
 
 =============
 macro exp def
@@ -418,25 +488,24 @@ end
 ---
 
 (expressions
-  (macro_begin)
-  (method_def
-    class: (macro_expression
-      (string))
-    name: (macro_expression
-      (string))
-    params: (param_list
-      (param
-        name: (macro_expression
-          (string))
-        type: (macro_expression
-          (string)))
-      (param
-        name: (macro_var
-          name: (identifier))
-        type: (constant)))
-    type: (macro_expression
-      (string)))
-  (macro_end))
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content))))
 
 ==============================
 macro exp class / module / lib
@@ -459,22 +528,24 @@ end
 ---
 
 (expressions
-  (macro_begin)
-  (class_def
-    name: (macro_expression
-      (string))
-    superclass: (macro_expression
-      (string)))
-  (struct_def
-    name: (macro_expression
-      (string)))
-  (enum_def
-    name: (macro_expression
-      (string)))
-  (lib_def
-    name: (macro_expression
-      (string)))
-  (macro_end))
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content))))
 
 ==============================
 comments in macros
@@ -517,7 +588,6 @@ macro foo() puts 1 end
     body: (expressions
       (macro_def_literal_content
         (macro_content_nesting)))))
-
 
 ================================================
 macro nesting when identifiers end with keywords
@@ -562,7 +632,43 @@ macro foo
 end
 ----
 
-(expressions)
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_expression
+        (identifier))
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_def_literal_content
+        (macro_def_literal_content
+          (macro_content_nesting)))
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_statement
+        (expressions
+          (identifier)))
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_expression
+        (identifier))
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_def_literal_content
+        (macro_def_literal_content
+          (macro_content_nesting)))
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_expression
+        (identifier))
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_expression
+        (identifier))
+      (macro_def_literal_content
+        (macro_content_nesting)))))
 
 ================================================================
 macro comments containing expression followed by nesting keyword
@@ -577,7 +683,25 @@ macro foo
 end
 ----
 
-(expressions)
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_statement
+        (expressions
+          (identifier)))
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_expression
+        (identifier))
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_expression
+        (identifier))
+      (macro_def_literal_content
+        (macro_content_nesting)))))
 
 ===================================
 macro state is reset between macros
@@ -585,4 +709,91 @@ macro state is reset between macros
 macro foo() puts 1 end
 macro bar() if true; puts "yes"; end end
 ---
-(expressions)
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_def_literal_content
+        (macro_content_nesting))))
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_def_literal_content
+        (macro_def_literal_content
+          (macro_content_nesting))
+        (macro_def_literal_content
+          (string))
+        (macro_def_literal_content
+          (macro_content_nesting)))
+      (macro_def_literal_content
+        (macro_content_nesting)))))
+
+=======================
+macro exp part of ident
+=======================
+
+{% begin %}
+key.to_{{method.id}}?
+{% end %}
+
+---
+
+(expressions
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (call
+          receiver: (identifier)
+          method: (identifier)))
+      (macro_content))))
+
+==================================
+interpolation with macro variables
+==================================
+macro foo
+  "#{%full_name}"
+end
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_def_literal_content
+        (string
+          (interpolation
+            (macro_var
+              name: (identifier)))))
+      (macro_def_literal_content
+        (macro_content_nesting)))))
+
+========================
+escaped macro expression
+========================
+
+macro name
+  \{% if true %}
+    puts "hello"
+  \{% end %}
+end
+
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_def_literal_content
+        (macro_content_nesting))
+      (macro_if
+        cond: (true)
+        body: (expressions
+          (macro_content)))
+      (macro_def_literal_content
+        (macro_content_nesting)))))

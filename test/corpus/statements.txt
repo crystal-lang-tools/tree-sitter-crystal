@@ -1605,7 +1605,10 @@ end
     name: (operator)
     params: (param_list
       (param
-        name: (identifier)))))
+        name: (identifier)))
+    body: (expressions
+      (macro_def_literal_content
+        (macro_content_nesting)))))
 
 ========================
 method in private module
