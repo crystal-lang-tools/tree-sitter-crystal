@@ -475,3 +475,16 @@ end
     name: (macro_expression
       (string)))
   (macro_end))
+
+=====================
+single line macro def
+=====================
+macro foo() puts 1 end
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_def_literal_content
+        (macro_content_nesting)))))

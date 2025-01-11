@@ -121,6 +121,9 @@ module.exports = grammar({
 
     $.regex_modifier,
 
+    // signal to reset the macro state
+    $._macro_start,
+
     $.macro_content,
     $.macro_content_nesting,
 
@@ -1406,18 +1409,18 @@ module.exports = grammar({
 
       return seq(
         visibility,
-        prec.right(seq(
+        seq(
           'macro',
           name,
-          optional(params),
-        )),
+          choice(params, $._terminator),
+        ),
       )
     },
 
     macro_def: $ => {
       return seq(
         $._macro_signature,
-        $._terminator,
+        $._macro_start,
         field('body', optional(alias(
           repeat($._macro_def_content),
           $.expressions,

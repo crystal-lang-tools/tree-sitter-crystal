@@ -92,6 +92,7 @@ enum Token {
 
     REGEX_MODIFIER,
 
+    MACRO_START,
     MACRO_CONTENT,
     MACRO_CONTENT_NESTING,
 
@@ -1427,6 +1428,11 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
         return true;
     }
 
+    if (valid_symbols[MACRO_START] && !valid_symbols[ERROR_RECOVERY]) {
+        lexer->result_symbol = MACRO_START;
+        return true;
+    }
+
     if ((valid_symbols[MACRO_CONTENT] || valid_symbols[MACRO_CONTENT_NESTING]) && !valid_symbols[ERROR_RECOVERY]) {
         switch (scan_macro_contents(state, lexer, valid_symbols)) {
             case MS_STOP:
@@ -2554,6 +2560,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
     LOG_SYMBOL(HEREDOC_CONTENT);
     LOG_SYMBOL(HEREDOC_END);
     LOG_SYMBOL(REGEX_MODIFIER);
+    LOG_SYMBOL(MACRO_START);
     LOG_SYMBOL(MACRO_CONTENT);
     LOG_SYMBOL(MACRO_CONTENT_NESTING);
     LOG_SYMBOL(START_OF_PARENLESS_ARGS);

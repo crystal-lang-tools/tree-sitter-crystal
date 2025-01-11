@@ -9022,50 +9022,33 @@
   {
     "type": "macro_else",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_content",
-          "named": true
-        },
-        {
-          "type": "macro_expression",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_statement",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
-          "named": true
-        }
-      ]
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expressions",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
     "type": "macro_elsif",
     "named": true,
     "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expressions",
+            "named": true
+          }
+        ]
+      },
       "cond": {
         "multiple": false,
         "required": true,
@@ -9328,44 +9311,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_content",
-          "named": true
-        },
-        {
-          "type": "macro_expression",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_statement",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -9647,6 +9592,16 @@
     "type": "macro_for",
     "named": true,
     "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expressions",
+            "named": true
+          }
+        ]
+      },
       "cond": {
         "multiple": false,
         "required": true,
@@ -9931,50 +9886,22 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_content",
-          "named": true
-        },
-        {
-          "type": "macro_expression",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_statement",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
-          "named": true
-        }
-      ]
     }
   },
   {
     "type": "macro_if",
     "named": true,
     "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expressions",
+            "named": true
+          }
+        ]
+      },
       "cond": {
         "multiple": false,
         "required": true,
@@ -10243,43 +10170,11 @@
       "required": false,
       "types": [
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_content",
-          "named": true
-        },
-        {
           "type": "macro_else",
           "named": true
         },
         {
           "type": "macro_elsif",
-          "named": true
-        },
-        {
-          "type": "macro_expression",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_statement",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         }
       ]
@@ -10304,6 +10199,16 @@
     "type": "macro_unless",
     "named": true,
     "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expressions",
+            "named": true
+          }
+        ]
+      },
       "cond": {
         "multiple": false,
         "required": true,
@@ -10568,43 +10473,11 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_content",
-          "named": true
-        },
-        {
           "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_expression",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_statement",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
           "named": true
         }
       ]
@@ -10891,44 +10764,17 @@
   {
     "type": "macro_verbatim",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "macro_begin",
-          "named": true
-        },
-        {
-          "type": "macro_content",
-          "named": true
-        },
-        {
-          "type": "macro_expression",
-          "named": true
-        },
-        {
-          "type": "macro_for",
-          "named": true
-        },
-        {
-          "type": "macro_if",
-          "named": true
-        },
-        {
-          "type": "macro_statement",
-          "named": true
-        },
-        {
-          "type": "macro_unless",
-          "named": true
-        },
-        {
-          "type": "macro_verbatim",
-          "named": true
-        }
-      ]
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expressions",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
