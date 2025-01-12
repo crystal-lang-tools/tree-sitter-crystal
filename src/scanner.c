@@ -156,10 +156,7 @@ struct MacroState {
     // they used to be modifier keywords too.)
     bool non_modifier_keyword_can_begin;
 
-    // todo: heredocs
-    // todo: delimiter_state
-    // todo: delimiter state stack
-    // todo: macro curly count
+    // TODO: heredocs?
 };
 typedef struct MacroState MacroState;
 
@@ -682,22 +679,31 @@ static bool scan_heredoc_contents(State *state, TSLexer *lexer, const bool *vali
     }
 }
 
+// Check if a given keyword matches at the current location.
+//
+// Returns true if the keyword matches exactly.
+// Returns false if:
+// - a different identifier is matched (shorter or longer)
+// - the keyword ends in /[:?!]/
+//
+// Will consume the entire identifier even if there's only a partial match.
 static bool match_macro_keyword(TSLexer *lexer, const char keyword[]) {
     size_t keyword_size = strlen(keyword);
+    bool found_match = true;
 
     for (size_t i = 0; i < keyword_size; i++) {
         if (lexer->lookahead != (int32_t)keyword[i]) {
-            return false;
+            found_match = false;
+            break;
         }
         lex_advance(lexer);
     }
 
     if (lexer->lookahead == ':') {
-        // tuple keyword?
-        // TODO confirm this
+        // Looks like a tuple keyword
         return false;
     }
-    if (next_char_is_identifier(lexer)) {
+    if (!found_match || next_char_is_identifier(lexer)) {
         // consume the rest of the identifier, so e.g. `beginbegin` doesn't get split in the middle
         // and then match on the next loop
         while (is_ident_part(lexer->lookahead)) {
@@ -713,12 +719,34 @@ static bool match_macro_keyword(TSLexer *lexer, const char keyword[]) {
 }
 
 enum MacroScanResult {
+    // Stop scanning and return macro content
     MS_STOP,
+    // Stop scanning and don't return macro content (we expect non-external tokens to match)
     MS_STOP_NO_CONTENT,
+    // Keep scanning to match a different external token
     MS_CONTINUE,
 };
 typedef enum MacroScanResult MacroScanResult;
 
+// Scan for macro literal content, which is treated as text instead of being parsed normally.
+// This function is modeled after Crystal::Lexer#next_macro_token. To simplify the implementation
+// here, we use grammar rules to model the nesting of different keywords.
+//
+// When scanning directly inside a `macro` definition, the MACRO_CONTENT_NESTING symbol is valid,
+// and nesting keywords are treated as a boundary. When an `end` is reached, the scanner stops
+// scanning. We rely on the grammar rules to decide if `end` terminates the macro, or just reduces
+// the nesting level.
+//
+// When scanning inside other macro expressions like `{%begin%}`/`{%end%}`, the MACRO_CONTENT
+// symbol is valid. We don't care about matching `end` or other keywords.
+//
+// This function may end up scanning some characters multiple times. First, it will scan until it
+// finds a nesting keyword like `begin`. It will return MS_STOP if any macro literal content has
+// been consumed so far, so the overall scan has a result of MACRO_CONTENT_NESTING. Then the
+// external scanner is triggered again, starting exactly at the beginning of the keyword. The
+// keyword is matched again, and this function returns MS_STOP_NO_CONTENT. The overall scan will
+// not return a token on the second scan, so the grammar rule for the `begin`
+// keyword matches instead.
 static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const bool *valid_symbols) {
     // Set to true if any content has been scanned with advance. This signals
     // the overall scan will return MACRO_CONTENT or MACRO_CONTENT_NESTING.
@@ -860,18 +888,21 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                     }
                 }
 
+                lex_advance(lexer);
+                lexer->mark_end(lexer);
+
                 // Probably inside a string in a non-nesting context, so keywords aren't valid
                 found_content = true;
                 keyword_can_begin = false;
-                lex_advance(lexer);
                 continue;
 
             case '#':
                 lex_advance(lexer);
+                lexer->mark_end(lexer);
 
                 // Mark the rest of the line as a comment, where nesting keywords don't apply
-                found_content = true;
                 state->macro_state.in_comment = true;
+                found_content = true;
                 keyword_can_begin = false;
                 state->macro_state.non_modifier_keyword_can_begin = false;
                 continue;
@@ -1163,6 +1194,7 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
 
             case '\n':
                 lex_advance(lexer);
+                lexer->mark_end(lexer);
                 found_content = true;
                 // We've reached the end of the line, no more comment
                 state->macro_state.in_comment = false;
@@ -1178,18 +1210,18 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
             case '\r':
                 // These whitespace characters may be followed by a keyword
                 lex_advance(lexer);
+                lexer->mark_end(lexer);
                 found_content = true;
                 keyword_can_begin = true;
-                lexer->mark_end(lexer);
                 continue;
 
             case '(':
             case '[':
                 // These nesting characters may be followed by a keyword
                 lex_advance(lexer);
+                lexer->mark_end(lexer);
                 found_content = true;
                 keyword_can_begin = true;
-                lexer->mark_end(lexer);
                 continue;
 
             case '=':
