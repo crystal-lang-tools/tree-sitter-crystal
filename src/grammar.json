@@ -8638,8 +8638,21 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "\\{%\\s*end\\s*%}"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_macro_delimiter_end"
+          },
+          "named": false,
+          "value": "{%"
+        },
+        {
+          "type": "STRING",
+          "value": "end"
+        },
+        {
+          "type": "STRING",
+          "value": "%}"
         }
       ]
     },
@@ -8647,8 +8660,21 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "\\{%\\s*else\\s*%}"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_macro_delimiter_else"
+          },
+          "named": false,
+          "value": "{%"
+        },
+        {
+          "type": "STRING",
+          "value": "else"
+        },
+        {
+          "type": "STRING",
+          "value": "%}"
         }
       ]
     },
@@ -8707,8 +8733,17 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "\\{%\\s*elsif"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_macro_delimiter_elsif"
+          },
+          "named": false,
+          "value": "{%"
+        },
+        {
+          "type": "STRING",
+          "value": "elsif"
         },
         {
           "type": "FIELD",
@@ -15458,6 +15493,18 @@
     {
       "type": "SYMBOL",
       "name": "_macro_start"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_macro_delimiter_end"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_macro_delimiter_else"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_macro_delimiter_elsif"
     },
     {
       "type": "SYMBOL",

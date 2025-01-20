@@ -124,6 +124,13 @@ module.exports = grammar({
     // signal to reset the macro state
     $._macro_start,
 
+    // Special versions of the `{%` token that look ahead for the next keyword.
+    // These are required so the grammar can distingush between `{% else %}` and
+    // `{% end %}` while keeping `{%` as a separate token.
+    $._macro_delimiter_end,
+    $._macro_delimiter_else,
+    $._macro_delimiter_elsif,
+
     $.macro_content,
     $.macro_content_nesting,
 
@@ -1979,16 +1986,15 @@ module.exports = grammar({
     ),
 
     _macro_end_keyword: $ => seq(
-
-      /\{%\s*end\s*%}/,
-      // token(prec(10, '{%')),
-      // '{%',
-      // 'end',
-      // '%}',
+      alias($._macro_delimiter_end, '{%'),
+      'end',
+      '%}',
     ),
 
     _macro_else_keyword: $ => seq(
-      /\{%\s*else\s*%}/,
+      alias($._macro_delimiter_else, '{%'),
+      'else',
+      '%}',
     ),
 
     _macro_verbatim_keyword: $ => seq(
@@ -2013,9 +2019,8 @@ module.exports = grammar({
       const cond = field('cond', $._expression)
 
       return seq(
-        /\{%\s*elsif/,
-        // '{%',
-        // 'elsif',
+        alias($._macro_delimiter_elsif, '{%'),
+        'elsif',
         cond,
         '%}',
       )
@@ -2046,8 +2051,6 @@ module.exports = grammar({
       )
     },
 
-    // $.macro_verbatim,
-
     macro_begin: $ => seq(
       $._macro_begin_keyword,
       field('body', alias(repeat($._macro_content), $.expressions)),
@@ -2065,7 +2068,6 @@ module.exports = grammar({
     macro_elsif: $ => seq(
       $._macro_elsif_cond,
       field('body', alias(repeat($._macro_content), $.expressions)),
-      // optional(choice($.macro_elsif, $.macro_else)),
     ),
 
     macro_else: $ => seq(

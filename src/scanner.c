@@ -93,6 +93,9 @@ enum Token {
     REGEX_MODIFIER,
 
     MACRO_START,
+    MACRO_DELIMITER_END,
+    MACRO_DELIMITER_ELSE,
+    MACRO_DELIMITER_ELSIF,
     MACRO_CONTENT,
     MACRO_CONTENT_NESTING,
 
@@ -828,7 +831,47 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                     // This is the start of a macro expression. After the macro expression ends,
                     // if/unless is a modifier.
                     state->macro_state.non_modifier_keyword_can_begin = false;
-                    RETURN_CONTENT;
+                    if (found_content) {
+                        return MS_STOP;
+                    }
+
+                    lex_advance(lexer);
+                    lexer->mark_end(lexer);
+
+                    // Check if next token is a special macro keyword. If we detect end/else/elsif,
+                    // return the corresponding MACRO_DELIMITER_* token for the initial `{%`.
+
+                    while (iswspace(lexer->lookahead)) {
+                        lex_advance(lexer);
+                    }
+
+                    if (lexer->lookahead == 'e') {
+                        lex_advance(lexer);
+
+                        if (lexer->lookahead == 'n') {
+                            if (match_macro_keyword(lexer, "nd")) {
+                                lexer->result_symbol = MACRO_DELIMITER_END;
+                                return MS_STOP;
+                            }
+                        } else if (lexer->lookahead == 'l') {
+                            lex_advance(lexer);
+                            if (lexer->lookahead == 's') {
+                                lex_advance(lexer);
+                                if (lexer->lookahead == 'e') {
+                                    if (match_macro_keyword(lexer, "e")) {
+                                        lexer->result_symbol = MACRO_DELIMITER_ELSE;
+                                        return MS_STOP;
+                                    }
+                                } else if (lexer->lookahead == 'i') {
+                                    if (match_macro_keyword(lexer, "if")) {
+                                        lexer->result_symbol = MACRO_DELIMITER_ELSIF;
+                                        return MS_STOP;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    return MS_STOP_NO_CONTENT;
                 }
 
                 // This is the start of a tuple, brace block, etc.
@@ -2807,6 +2850,9 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
     LOG_SYMBOL(HEREDOC_END);
     LOG_SYMBOL(REGEX_MODIFIER);
     LOG_SYMBOL(MACRO_START);
+    LOG_SYMBOL(MACRO_DELIMITER_END);
+    LOG_SYMBOL(MACRO_DELIMITER_ELSE);
+    LOG_SYMBOL(MACRO_DELIMITER_ELSIF);
     LOG_SYMBOL(MACRO_CONTENT);
     LOG_SYMBOL(MACRO_CONTENT_NESTING);
     LOG_SYMBOL(START_OF_PARENLESS_ARGS);

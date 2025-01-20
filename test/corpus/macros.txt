@@ -45,6 +45,16 @@ macro if
   require "lib_c"
 {% end %}
 
+macro asdf
+  {% if Thing.foo? %}
+    1
+  {% elsif Thing.bar? %}
+    2
+  {% else %}
+    3
+  {% end %}
+end
+
 ---
 
 (expressions
@@ -56,6 +66,26 @@ macro if
     body: (expressions
       (macro_content)
       (macro_content)
+      (macro_content)))
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_if
+        cond: (call
+          receiver: (constant)
+          method: (identifier))
+        body: (expressions
+          (macro_content))
+        (macro_elsif
+          cond: (call
+            receiver: (constant)
+            method: (identifier))
+          body: (expressions
+            (macro_content)))
+        (macro_else
+          body: (expressions
+            (macro_content))))
       (macro_content))))
 
 =========
