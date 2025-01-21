@@ -1975,7 +1975,7 @@ module.exports = grammar({
 
     macro_statement: $ => seq(
       '{%',
-      alias($._statements, $.expressions),
+      optional(alias($._statements, $.expressions)),
       '%}',
     ),
 

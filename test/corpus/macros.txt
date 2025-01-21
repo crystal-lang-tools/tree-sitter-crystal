@@ -179,6 +179,11 @@ macro expressions
   end
 %}
 
+{%%}
+{%
+# comment
+%}
+
 ---
 
 (expressions
@@ -190,7 +195,10 @@ macro expressions
           (call
             method: (identifier)
             arguments: (argument_list
-              (string))))))))
+              (string)))))))
+  (macro_statement)
+  (macro_statement
+    (comment)))
 
 =========
 macro def
