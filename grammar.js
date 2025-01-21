@@ -2059,15 +2059,19 @@ module.exports = grammar({
 
     macro_if: $ => seq(
       $._macro_if_cond,
-      field('body', alias(repeat($._macro_content), $.expressions)),
-      repeat($.macro_elsif),
-      optional($.macro_else),
+      field('then', alias(repeat($._macro_content), $.expressions)),
+      optional(
+        field('else', choice($.macro_elsif, $.macro_else)),
+      ),
       $._macro_end_keyword,
     ),
 
     macro_elsif: $ => seq(
       $._macro_elsif_cond,
-      field('body', alias(repeat($._macro_content), $.expressions)),
+      field('then', alias(repeat($._macro_content), $.expressions)),
+      optional(
+        field('else', choice($.macro_elsif, $.macro_else)),
+      ),
     ),
 
     macro_else: $ => seq(
@@ -2077,8 +2081,8 @@ module.exports = grammar({
 
     macro_unless: $ => seq(
       $._macro_unless_cond,
-      field('body', alias(repeat($._macro_content), $.expressions)),
-      optional($.macro_else),
+      field('then', alias(repeat($._macro_content), $.expressions)),
+      optional(field('else', $.macro_else)),
       $._macro_end_keyword,
     ),
 

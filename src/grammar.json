@@ -8915,7 +8915,7 @@
         },
         {
           "type": "FIELD",
-          "name": "body",
+          "name": "then",
           "content": {
             "type": "ALIAS",
             "content": {
@@ -8930,18 +8930,24 @@
           }
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "macro_elsif"
-          }
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "macro_else"
+              "type": "FIELD",
+              "name": "else",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "macro_elsif"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "macro_else"
+                  }
+                ]
+              }
             },
             {
               "type": "BLANK"
@@ -8963,7 +8969,7 @@
         },
         {
           "type": "FIELD",
-          "name": "body",
+          "name": "then",
           "content": {
             "type": "ALIAS",
             "content": {
@@ -8976,6 +8982,31 @@
             "named": true,
             "value": "expressions"
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "else",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "macro_elsif"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "macro_else"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -9013,7 +9044,7 @@
         },
         {
           "type": "FIELD",
-          "name": "body",
+          "name": "then",
           "content": {
             "type": "ALIAS",
             "content": {
@@ -9031,8 +9062,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "macro_else"
+              "type": "FIELD",
+              "name": "else",
+              "content": {
+                "type": "SYMBOL",
+                "name": "macro_else"
+              }
             },
             {
               "type": "BLANK"

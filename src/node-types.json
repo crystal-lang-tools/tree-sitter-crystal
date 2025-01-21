@@ -9007,16 +9007,6 @@
     "type": "macro_elsif",
     "named": true,
     "fields": {
-      "body": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expressions",
-            "named": true
-          }
-        ]
-      },
       "cond": {
         "multiple": false,
         "required": true,
@@ -9275,6 +9265,30 @@
           },
           {
             "type": "yield",
+            "named": true
+          }
+        ]
+      },
+      "else": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "macro_else",
+            "named": true
+          },
+          {
+            "type": "macro_elsif",
+            "named": true
+          }
+        ]
+      },
+      "then": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expressions",
             "named": true
           }
         ]
@@ -9860,16 +9874,6 @@
     "type": "macro_if",
     "named": true,
     "fields": {
-      "body": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expressions",
-            "named": true
-          }
-        ]
-      },
       "cond": {
         "multiple": false,
         "required": true,
@@ -10131,21 +10135,31 @@
             "named": true
           }
         ]
+      },
+      "else": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "macro_else",
+            "named": true
+          },
+          {
+            "type": "macro_elsif",
+            "named": true
+          }
+        ]
+      },
+      "then": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expressions",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "macro_else",
-          "named": true
-        },
-        {
-          "type": "macro_elsif",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -10167,16 +10181,6 @@
     "type": "macro_unless",
     "named": true,
     "fields": {
-      "body": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expressions",
-            "named": true
-          }
-        ]
-      },
       "cond": {
         "multiple": false,
         "required": true,
@@ -10438,17 +10442,27 @@
             "named": true
           }
         ]
+      },
+      "else": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "macro_else",
+            "named": true
+          }
+        ]
+      },
+      "then": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expressions",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "macro_else",
-          "named": true
-        }
-      ]
     }
   },
   {

@@ -17,12 +17,12 @@
   (#set! injection.include-children))
 
 (macro_if
-  body: (expressions) @injection.content
+  then: (expressions) @injection.content
   (#set! injection.language "crystal")
   (#set! injection.include-children))
 
 (macro_elsif
-  body: (expressions) @injection.content
+  then: (expressions) @injection.content
   (#set! injection.language "crystal")
   (#set! injection.include-children))
 
@@ -32,7 +32,7 @@
   (#set! injection.include-children))
 
 (macro_unless
-  body: (expressions) @injection.content
+  then: (expressions) @injection.content
   (#set! injection.language "crystal")
   (#set! injection.include-children))
 

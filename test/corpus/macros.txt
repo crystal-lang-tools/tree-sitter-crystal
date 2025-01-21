@@ -10,7 +10,7 @@ puts "hello"
 
 (expressions
   (macro_begin
-    (expressions
+    body: (expressions
       (macro_content)
       (macro_content)
       (macro_content))))
@@ -27,10 +27,10 @@ macro verbatim
 
 (expressions
   (macro_verbatim
-    (expressions
+    body: (expressions
       (macro_content)
       (macro_begin
-        (expressions
+        body: (expressions
           (macro_content)
           (macro_expression
             (identifier))
@@ -63,7 +63,7 @@ end
       method: (identifier)
       arguments: (argument_list
         (symbol)))
-    body: (expressions
+    then: (expressions
       (macro_content)
       (macro_content)
       (macro_content)))
@@ -75,18 +75,50 @@ end
         cond: (call
           receiver: (constant)
           method: (identifier))
-        body: (expressions
+        then: (expressions
           (macro_content))
-        (macro_elsif
+        else: (macro_elsif
           cond: (call
             receiver: (constant)
             method: (identifier))
-          body: (expressions
-            (macro_content)))
-        (macro_else
-          body: (expressions
-            (macro_content))))
+          then: (expressions
+            (macro_content))
+          else: (macro_else
+            body: (expressions
+              (macro_content)))))
       (macro_content))))
+
+============
+macro unless
+============
+{% unless foo.bar? %}{% end %}
+
+{% unless stuff %}
+{{1}}
+{% else %}
+{{ 2 }}
+{% end %}
+
+---
+
+(expressions
+  (macro_unless
+    cond: (call
+      receiver: (identifier)
+      method: (identifier)))
+  (macro_unless
+    cond: (identifier)
+    then: (expressions
+      (macro_content)
+      (macro_expression
+        (integer))
+      (macro_content))
+    else: (macro_else
+      body: (expressions
+        (macro_content)
+        (macro_expression
+          (integer))
+        (macro_content)))))
 
 =========
 macro for
@@ -210,7 +242,7 @@ nested macros and macro vars
 (expressions
   (macro_if
     cond: (true)
-    body: (expressions
+    then: (expressions
       (macro_content)
       (macro_for
         var: (identifier)
@@ -461,7 +493,7 @@ GC.init
       method: (identifier)
       arguments: (argument_list
         (symbol)))
-    body: (expressions
+    then: (expressions
       (macro_content)))
   (call
     receiver: (constant)
@@ -609,8 +641,8 @@ end
 
 (expressions
   (macro_def
-    (identifier)
-    (expressions
+    name: (identifier)
+    body: (expressions
       (macro_content)
       (macro_content)
       (macro_content)
@@ -776,7 +808,7 @@ end
       (macro_content)
       (macro_if
         cond: (true)
-        body: (expressions
+        then: (expressions
           (macro_content)
           (macro_content)
           (macro_content)))
