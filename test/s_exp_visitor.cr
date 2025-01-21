@@ -490,8 +490,6 @@ class SExpVisitor < Crystal::Visitor
         end
       end
 
-      # here
-
       field "params" do
         if node.args.size > 0 || node.double_splat
           in_node("param_list") do
@@ -1787,8 +1785,6 @@ class SExpVisitor < Crystal::Visitor
         if node.args.size > 0
           in_node("param_list") do
             splat_index = node.splat_index || -1
-            # TODO double splat
-            # TODO block arg
 
             node.args.each_with_index do |arg, i|
               if i == splat_index
@@ -1806,30 +1802,166 @@ class SExpVisitor < Crystal::Visitor
     false
   end
 
-  visit_basic(MacroLiteral)
+  def visit(node : MacroVar)
+    in_node("macro_var") do
+      field "name" do
+        print_node "identifier"
+      end
 
-  # def visit(node : MacroLiteral)
-  # end
-
-  def visit(node : MacroExpression)
-    macro_type = if node.output?
-                   "macro_expression"
-                 else
-                   "macro_control"
-                 end
-
-    in_node(macro_type) do
-      node.exp.accept self
+      node.exps.try &.each &.accept(self)
     end
     false
   end
 
-  visit_basic(MacroIf)
+  def visit(node : MacroLiteral)
+    print_node("macro_content")
+    false
+  end
 
-  # def visit(node : MacroIf)
-  # in_node("macro_if") do
-  # end
-  # end
+  def visit(node : MacroExpression)
+    if node.output?
+      in_node("macro_expression") do
+        case node.exp
+        when Splat
+          alias_next_node!("splat")
+        when DoubleSplat
+          alias_next_node!("double_splat")
+        end
+
+        node.exp.accept self
+      end
+
+      return false
+    end
+
+    in_node("macro_statement") do
+      body = node.exp
+
+      if body.is_a?(Expressions)
+        body.accept(self) unless body.empty?
+      elsif body.is_a?(Nop)
+        # no output
+      else
+        in_node("expressions") do
+          body.accept(self)
+        end
+      end
+    end
+
+    false
+  end
+
+  def visit(node : MacroVerbatim)
+    in_node("macro_verbatim") do
+      field "body" do
+        body = node.exp
+
+        if body.is_a?(Expressions)
+          body.accept(self) unless body.empty?
+        else
+          in_node("expressions") do
+            body.accept(self)
+          end
+        end
+      end
+    end
+  end
+
+  def visit(node : MacroIf)
+    if (bool = node.cond).is_a?(BoolLiteral) && bool.value == true && bool.location.nil?
+      # this is a {% begin %} block, which the compiler represents as {% if true %}
+      in_node("macro_begin") do
+        field "body" do
+          body = node.then
+
+          if body.is_a?(Expressions)
+            body.accept(self) unless body.empty?
+          else
+            in_node("expressions") do
+              body.accept(self)
+            end
+          end
+        end
+      end
+
+      return false
+    end
+
+    node_type = if node.is_unless?
+                  "macro_unless"
+                else
+                  "macro_if"
+                end
+
+    in_node(node_type) do
+      field "cond" do
+        node.cond.accept(self)
+      end
+
+      field "then" do
+        then_node = node.is_unless? ? node.else : node.then
+
+        if then_node.is_a?(Expressions)
+          then_node.accept(self) unless then_node.empty?
+        elsif then_node.is_a?(Nop)
+          # no output
+        else
+          in_node("expressions") do
+            then_node.accept(self)
+          end
+        end
+      end
+
+      field "else" do
+        else_node = node.is_unless? ? node.then : node.else
+
+        if else_node.is_a?(MacroIf)
+          alias_next_node!("macro_elsif")
+          else_node.accept(self)
+        elsif else_node.is_a?(Nop)
+          # no output
+        else
+          in_node("macro_else") do
+            field "body" do
+              if else_node.is_a?(Expressions)
+                else_node.accept(self) unless else_node.empty?
+              else
+                in_node("expressions") do
+                  else_node.accept(self)
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+  def visit(node : MacroFor)
+    in_node("macro_for") do
+      field "var" do
+        node.vars.each &.accept(self)
+      end
+
+      field "cond" do
+        node.exp.accept(self)
+      end
+
+      field "body" do
+        body = node.body
+
+        if body.is_a?(Expressions)
+          body.accept(self) unless body.empty?
+        else
+          in_node("expressions") do
+            body.accept(self)
+          end
+        end
+      end
+    end
+
+    false
+  end
 
   ##########
   # Fallback

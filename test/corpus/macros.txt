@@ -1,5 +1,6 @@
 ===========
 macro begin
+:language(crystal)
 ===========
 
 {% begin %}
@@ -17,11 +18,14 @@ puts "hello"
 
 ==============
 macro verbatim
+:language(crystal)
 ==============
 
 {% verbatim do %}
   {% begin %} {{ foo }} {% end %}
 {% end %}
+
+{%verbatim do%}{%end%}
 
 ---
 
@@ -35,10 +39,12 @@ macro verbatim
           (macro_expression
             (identifier))
           (macro_content)))
-      (macro_content))))
+      (macro_content)))
+  (macro_verbatim))
 
 ========
 macro if
+:language(crystal)
 ========
 
 {% if flag?(:unix) %}
@@ -54,6 +60,8 @@ macro asdf
     3
   {% end %}
 end
+
+{%if foo?(:bar)%}{%elsif foo?(:baz)%}{%else%}{%end%}
 
 ---
 
@@ -86,10 +94,22 @@ end
           else: (macro_else
             body: (expressions
               (macro_content)))))
-      (macro_content))))
+      (macro_content)))
+  (macro_if
+    cond: (call
+      method: (identifier)
+      arguments: (argument_list
+        (symbol)))
+    else: (macro_elsif
+      cond: (call
+        method: (identifier)
+        arguments: (argument_list
+          (symbol)))
+      else: (macro_else))))
 
 ============
 macro unless
+:language(crystal)
 ============
 {% unless foo.bar? %}{% end %}
 
@@ -128,6 +148,8 @@ macro for
   puts "Hello, #{{{ a }}}"
 {% end %}
 
+{%for _ in [1,2,3]%}{%end%}
+
 ---
 
 (expressions
@@ -141,7 +163,13 @@ macro for
         (interpolation
           (macro_expression
             (identifier))))
-      (macro_content))))
+      (macro_content)))
+  (macro_for
+    var: (underscore)
+    cond: (array
+      (integer)
+      (integer)
+      (integer))))
 
 ================
 macro expression
@@ -171,6 +199,7 @@ macro expression
 
 =================
 macro expressions
+:language(crystal)
 =================
 
 {%
@@ -202,6 +231,7 @@ macro expressions
 
 =========
 macro def
+:language(crystal)
 =========
 
 macro name(arg)
@@ -236,6 +266,7 @@ macro name; {{ puts "hello" }} end
 
 ============================
 nested macros and macro vars
+:language(crystal)
 ============================
 
 {% if true %}
@@ -394,6 +425,7 @@ end
 
 =============================
 macro def with nesting syntax
+:language(crystal)
 =============================
 macro nested
   module A
@@ -543,6 +575,7 @@ end
 
 ===============
 inline macro if
+:language(crystal)
 ===============
 
 {% if flag?(:tracing) %} Crystal::Tracing.init {% end %}
@@ -564,6 +597,7 @@ GC.init
 
 ==============
 macro exp type
+:language(crystal)
 ==============
 
 {% begin %}
@@ -582,6 +616,7 @@ var : {{ "Type" }} = 1
 
 =============
 macro exp def
+:language(crystal)
 =============
 
 {% begin %}
@@ -616,6 +651,7 @@ end
 
 ==============================
 macro exp class / module / lib
+:language(crystal)
 ==============================
 
 {% begin %}
@@ -656,6 +692,7 @@ end
 
 ==============================
 comments in macros
+:language(crystal)
 ==============================
 macro asdf
   foo
@@ -684,6 +721,7 @@ end
 
 =====================
 single line macro def
+:language(crystal)
 =====================
 macro foo() puts 1 end
 ---
@@ -696,6 +734,7 @@ macro foo() puts 1 end
 
 ================================================
 macro nesting when identifiers end with keywords
+:language(crystal)
 ================================================
 macro asdf()
   if g_class!
@@ -721,6 +760,7 @@ end
 
 =====================================
 nesting after macro exp
+:language(crystal)
 =====================================
 macro foo
   {{ foo }} = if a; :a else :b end
@@ -766,6 +806,7 @@ end
 
 ================================================================
 macro comments containing expression followed by nesting keyword
+:language(crystal)
 ================================================================
 macro foo
   a
@@ -795,6 +836,7 @@ end
 
 ===================================
 macro state is reset between macros
+:language(crystal)
 ===================================
 macro foo() puts 1 end
 macro bar() if true; puts "yes"; end end
@@ -818,6 +860,7 @@ macro bar() if true; puts "yes"; end end
 
 =======================
 macro exp part of ident
+:language(crystal)
 =======================
 
 {% begin %}
@@ -986,6 +1029,7 @@ end
 
 ===========================================
 splat and double splat in macro expressions
+:language(crystal)
 ===========================================
 {%begin%}
   {{ *{Int32} }}
