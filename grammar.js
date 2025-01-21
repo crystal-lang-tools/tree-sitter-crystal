@@ -138,6 +138,7 @@ module.exports = grammar({
     // to the scanner.
     $._start_of_parenless_args,
     $._end_of_range,
+    $._start_of_macro_var_exps,
 
     // This symbol is not used in the grammar. It signals to the scanner when
     // error recovery mode is active.
@@ -1668,6 +1669,7 @@ module.exports = grammar({
     macro_var: $ => {
       const name = token(seq('%', ident_part, repeat(ident_part)))
       const exp = seq(
+        optional($._start_of_macro_var_exps),
         token.immediate('{'),
         $._expression,
         repeat(seq(',', $._expression)),
@@ -2100,12 +2102,14 @@ module.exports = grammar({
 
     _macro_def_content: $ => choice(
       $._macro_node,
+      $.macro_var,
       $._macro_def_literal_content,
       $._terminator,
     ),
 
     _macro_content: $ => choice(
       $._macro_node,
+      $.macro_var,
       $._macro_literal_content,
       $._terminator,
     ),

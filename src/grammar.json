@@ -7413,6 +7413,18 @@
               "type": "SEQ",
               "members": [
                 {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_start_of_macro_var_exps"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
                   "type": "IMMEDIATE_TOKEN",
                   "content": {
                     "type": "STRING",
@@ -9155,6 +9167,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "macro_var"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_macro_def_literal_content"
         },
         {
@@ -9169,6 +9185,10 @@
         {
           "type": "SYMBOL",
           "name": "_macro_node"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "macro_var"
         },
         {
           "type": "SYMBOL",
@@ -15564,6 +15584,10 @@
     {
       "type": "SYMBOL",
       "name": "_end_of_range"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_start_of_macro_var_exps"
     },
     {
       "type": "SYMBOL",

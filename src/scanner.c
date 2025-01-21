@@ -102,6 +102,7 @@ enum Token {
     // Never returned
     START_OF_PARENLESS_ARGS,
     END_OF_RANGE,
+    START_OF_MACRO_VAR_EXPS,
 
     // Only used when error recovery mode is active
     ERROR_RECOVERY,
@@ -825,6 +826,15 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
         switch (lexer->lookahead) {
             case '{':
                 lexer->mark_end(lexer);
+
+                // In a state like
+                //   %macro_var{foo}
+                //             ^
+                // let the grammar handle the rest of the macro var expressions
+                if (valid_symbols[START_OF_MACRO_VAR_EXPS] && !found_content) {
+                    return MS_STOP_NO_CONTENT;
+                }
+
                 lex_advance(lexer);
 
                 if (lexer->lookahead == '{' || lexer->lookahead == '%') {
@@ -908,6 +918,26 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                 state->macro_state.non_modifier_keyword_can_begin = false;
 
                 if (lexer->lookahead == '}') {
+                    RETURN_CONTENT;
+                } else if (lexer->lookahead == 'i'
+                    || lexer->lookahead == 'q'
+                    || lexer->lookahead == 'Q'
+                    || lexer->lookahead == 'r'
+                    || lexer->lookahead == 'w'
+                    || lexer->lookahead == 'x') {
+                    lex_advance(lexer);
+
+                    if (lexer->lookahead == '('
+                        || lexer->lookahead == '<'
+                        || lexer->lookahead == '['
+                        || lexer->lookahead == '{'
+                        || lexer->lookahead == '|') {
+                        // TODO eventually we'll return here to mark this as a delimiter
+                        // For now, just continue
+                        lex_advance(lexer);
+                    }
+                } else if (is_ident_part(lexer->lookahead)) {
+                    // This is a macro var
                     RETURN_CONTENT;
                 }
 
@@ -2857,6 +2887,7 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
     LOG_SYMBOL(MACRO_CONTENT_NESTING);
     LOG_SYMBOL(START_OF_PARENLESS_ARGS);
     LOG_SYMBOL(END_OF_RANGE);
+    LOG_SYMBOL(START_OF_MACRO_VAR_EXPS);
     LOG_SYMBOL(ERROR_RECOVERY);
 
     bool result = inner_scan(payload, lexer, valid_symbols);

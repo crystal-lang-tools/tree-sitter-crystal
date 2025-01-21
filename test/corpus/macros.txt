@@ -260,8 +260,14 @@ nested macros and macro vars
           (integer))
         body: (expressions
           (macro_content)
+          (macro_var
+            name: (identifier))
+          (macro_content)
           (macro_expression
             (identifier))
+          (macro_content)
+          (macro_var
+            name: (identifier))
           (macro_content)))
       (macro_content))))
 
@@ -318,24 +324,73 @@ var5 = 4321 % %var1
 
 =====================
 macro var expressions
+:language(crystal)
 =====================
 
-%var{name} = 1
-%hello{"world"} = "goodnight"
+macro fresh_vars(*names)
+  %var{name,other_name} = 1
+  %hello{"world"} = "goodnight"
+
+  def %no_exps
+    yield
+  end
+  %no_exps { puts "in no_exps" }
+
+  {% for name, index in names %}
+    %name{index} = {{index}}
+    %r(foo)
+  {% end %}
+
+  %q(asdf)
+end
 
 ---
 
 (expressions
-  (assign
-    lhs: (macro_var
-      name: (identifier)
-      (identifier))
-    rhs: (integer))
-  (assign
-    lhs: (macro_var
-      name: (identifier)
-      (string))
-    rhs: (string)))
+  (macro_def
+    name: (identifier)
+    params: (param_list
+      (splat_param
+        name: (identifier)))
+    body: (expressions
+      (macro_content)
+      (macro_var
+        name: (identifier)
+        (identifier)
+        (identifier))
+      (macro_content)
+      (macro_var
+        name: (identifier)
+        (string))
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_var
+        name: (identifier))
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_var
+        name: (identifier))
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_for
+        var: (identifier)
+        var: (identifier)
+        cond: (identifier)
+        body: (expressions
+          (macro_content)
+          (macro_var
+            name: (identifier)
+            (identifier))
+          (macro_content)
+          (macro_expression
+            (identifier))
+          (macro_content)))
+      (macro_content))))
 
 =============================
 macro def with nesting syntax
@@ -551,6 +606,9 @@ end
       (macro_content)
       (macro_expression
         (string))
+      (macro_content)
+      (macro_var
+        name: (identifier))
       (macro_content)
       (macro_expression
         (string))
