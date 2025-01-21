@@ -354,8 +354,8 @@ module.exports = grammar({
 
     _macro_def_literal_content: $ => {
       const nesting_constructs = [
-        /abstract\s+class/,
-        /abstract\s+struct/,
+        /abstract\sclass/,
+        /abstract\sstruct/,
         'annotation',
         'begin',
         'case',

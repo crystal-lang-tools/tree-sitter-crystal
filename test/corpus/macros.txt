@@ -431,7 +431,7 @@ macro nested
             end
           end
 
-          abstract	 def R
+          abstract	def R
 
           fun S
           end

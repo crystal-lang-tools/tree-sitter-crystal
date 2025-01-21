@@ -51,11 +51,11 @@
                 "members": [
                   {
                     "type": "PATTERN",
-                    "value": "abstract\\s+class"
+                    "value": "abstract\\sclass"
                   },
                   {
                     "type": "PATTERN",
-                    "value": "abstract\\s+struct"
+                    "value": "abstract\\sstruct"
                   },
                   {
                     "type": "STRING",

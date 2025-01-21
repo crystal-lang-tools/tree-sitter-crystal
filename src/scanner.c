@@ -990,9 +990,7 @@ static MacroScanResult scan_macro_contents(State *state, TSLexer *lexer, const b
                 if (lexer->lookahead == 'b') {
                     if (match_macro_keyword(lexer, "bstract")) {
                         if (iswspace(lexer->lookahead)) {
-                            while (iswspace(lexer->lookahead)) {
-                                lex_advance(lexer);
-                            }
+                            lex_advance(lexer);
 
                             switch (lexer->lookahead) {
                                 case 'c':
