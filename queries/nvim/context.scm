@@ -54,6 +54,10 @@
   (when) @context.end
 ) @context
 
+(select
+  (when) @context.end
+) @context
+
 (case
   (in) @context.end
 ) @context
