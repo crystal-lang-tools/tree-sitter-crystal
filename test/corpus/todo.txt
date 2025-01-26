@@ -104,6 +104,7 @@ pseudo-methods with macro nodes
 ===============================
 a.is_a?({{type}})
 ---
+
 (expressions)
 
 ============================================
@@ -115,6 +116,7 @@ macro variables in escaped macro expressions
   \{% end %}
 {% end %}
 ---
+
 (expressions)
 
 ===================================
@@ -267,7 +269,6 @@ filters1.try(&.pos[name]?)
     (ERROR
       (char_escape_sequence))))
 
-
 =========================
 trailing if inside interp
 =========================
@@ -358,9 +359,47 @@ uppercase mathematical letters
 𝐈𝘼
 𝙕𝘼𝘼𝙕
 ---
+
 (expressions
   (comment)
   (comment)
   (comment)
   (identifier)
   (identifier))
+
+=================================
+percent literals in macro content
+=================================
+macro foo
+  %q( begin )
+end
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content))
+    (MISSING "end")))
+
+=========================
+heredocs in macro content
+=========================
+macro foo
+  <<-TEXT
+  begin
+  TEXT
+end
+---
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content))
+    (MISSING "end")))
