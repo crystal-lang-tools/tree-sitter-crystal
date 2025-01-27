@@ -1,5 +1,6 @@
 ===========
 macro begin
+:language(crystal)
 ===========
 
 {% begin %}
@@ -9,42 +10,135 @@ puts "hello"
 ---
 
 (expressions
-  (macro_begin)
-  (call
-    method: (identifier)
-    arguments: (argument_list
-      (string)))
-  (macro_end))
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_content)
+      (macro_content))))
 
 ==============
 macro verbatim
+:language(crystal)
 ==============
 
 {% verbatim do %}
+  {% begin %} {{ foo }} {% end %}
 {% end %}
+
+{%verbatim do%}{%end%}
 
 ---
 
 (expressions
-  (macro_verbatim)
-  (macro_end))
+  (macro_verbatim
+    body: (expressions
+      (macro_content)
+      (macro_begin
+        body: (expressions
+          (macro_content)
+          (macro_expression
+            (identifier))
+          (macro_content)))
+      (macro_content)))
+  (macro_verbatim))
 
 ========
 macro if
+:language(crystal)
 ========
 
-{% if true %}
+{% if flag?(:unix) %}
   require "lib_c"
 {% end %}
+
+macro asdf
+  {% if Thing.foo? %}
+    1
+  {% elsif Thing.bar? %}
+    2
+  {% else %}
+    3
+  {% end %}
+end
+
+{%if foo?(:bar)%}{%elsif foo?(:baz)%}{%else%}{%end%}
 
 ---
 
 (expressions
   (macro_if
-    cond: (true))
-  (require
-    (string))
-  (macro_end))
+    cond: (call
+      method: (identifier)
+      arguments: (argument_list
+        (symbol)))
+    then: (expressions
+      (macro_content)
+      (macro_content)
+      (macro_content)))
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_if
+        cond: (call
+          receiver: (constant)
+          method: (identifier))
+        then: (expressions
+          (macro_content))
+        else: (macro_elsif
+          cond: (call
+            receiver: (constant)
+            method: (identifier))
+          then: (expressions
+            (macro_content))
+          else: (macro_else
+            body: (expressions
+              (macro_content)))))
+      (macro_content)))
+  (macro_if
+    cond: (call
+      method: (identifier)
+      arguments: (argument_list
+        (symbol)))
+    else: (macro_elsif
+      cond: (call
+        method: (identifier)
+        arguments: (argument_list
+          (symbol)))
+      else: (macro_else))))
+
+============
+macro unless
+:language(crystal)
+============
+{% unless foo.bar? %}{% end %}
+
+{% unless stuff %}
+{{1}}
+{% else %}
+{{ 2 }}
+{% end %}
+
+---
+
+(expressions
+  (macro_unless
+    cond: (call
+      receiver: (identifier)
+      method: (identifier)))
+  (macro_unless
+    cond: (identifier)
+    then: (expressions
+      (macro_content)
+      (macro_expression
+        (integer))
+      (macro_content))
+    else: (macro_else
+      body: (expressions
+        (macro_content)
+        (macro_expression
+          (integer))
+        (macro_content)))))
 
 =========
 macro for
@@ -54,21 +148,28 @@ macro for
   puts "Hello, #{{{ a }}}"
 {% end %}
 
+{%for _ in [1,2,3]%}{%end%}
+
 ---
 
 (expressions
   (macro_for
     var: (identifier)
     var: (identifier)
-    cond: (identifier))
-  (call
-    method: (identifier)
-    arguments: (argument_list
-      (string
+    cond: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_content
         (interpolation
           (macro_expression
-            (identifier))))))
-  (macro_end))
+            (identifier))))
+      (macro_content)))
+  (macro_for
+    var: (underscore)
+    cond: (array
+      (integer)
+      (integer)
+      (integer))))
 
 ================
 macro expression
@@ -98,6 +199,7 @@ macro expression
 
 =================
 macro expressions
+:language(crystal)
 =================
 
 {%
@@ -106,20 +208,30 @@ macro expressions
   end
 %}
 
+{%%}
+{%
+# comment
+%}
+
 ---
 
 (expressions
-  (macro_expressions
-    (if
-      cond: (true)
-      then: (then
-        (call
-          method: (identifier)
-          arguments: (argument_list
-            (string)))))))
+  (macro_statement
+    (expressions
+      (if
+        cond: (true)
+        then: (then
+          (call
+            method: (identifier)
+            arguments: (argument_list
+              (string)))))))
+  (macro_statement)
+  (macro_statement
+    (comment)))
 
 =========
 macro def
+:language(crystal)
 =========
 
 macro name(arg)
@@ -137,19 +249,24 @@ macro name; {{ puts "hello" }} end
       (param
         name: (identifier)))
     body: (expressions
+      (macro_content)
       (macro_expression
-        (identifier))))
+        (identifier))
+      (macro_content)))
   (macro_def
     name: (identifier)
     body: (expressions
+      (macro_content)
       (macro_expression
         (call
           method: (identifier)
           arguments: (argument_list
-            (string)))))))
+            (string))))
+      (macro_content))))
 
 ============================
 nested macros and macro vars
+:language(crystal)
 ============================
 
 {% if true %}
@@ -163,32 +280,27 @@ nested macros and macro vars
 
 (expressions
   (macro_if
-    cond: (true))
-  (macro_for
-    var: (identifier)
-    cond: (array
-      (integer)
-      (integer)
-      (integer)))
-  (assign
-    lhs: (macro_var
-      name: (identifier))
-    rhs: (call
-      receiver: (integer)
-      method: (operator)
-      arguments: (argument_list
-        (macro_expression
-          (identifier)))))
-  (assign
-    lhs: (identifier)
-    rhs: (call
-      receiver: (macro_var
-        name: (identifier))
-      method: (operator)
-      arguments: (argument_list
-        (integer))))
-  (macro_end)
-  (macro_end))
+    cond: (true)
+    then: (expressions
+      (macro_content)
+      (macro_for
+        var: (identifier)
+        cond: (array
+          (integer)
+          (integer)
+          (integer))
+        body: (expressions
+          (macro_content)
+          (macro_var
+            name: (identifier))
+          (macro_content)
+          (macro_expression
+            (identifier))
+          (macro_content)
+          (macro_var
+            name: (identifier))
+          (macro_content)))
+      (macro_content))))
 
 ===============
 macro vars cont
@@ -243,27 +355,227 @@ var5 = 4321 % %var1
 
 =====================
 macro var expressions
+:language(crystal)
 =====================
 
-%var{name} = 1
-%hello{"world"} = "goodnight"
+macro fresh_vars(*names)
+  %var{name,other_name} = 1
+  %hello{"world"} = "goodnight"
+
+  def %no_exps
+    yield
+  end
+  %no_exps { puts "in no_exps" }
+
+  {% for name, index in names %}
+    %name{index} = {{index}}
+    %r(foo)
+  {% end %}
+
+  %q(asdf)
+end
 
 ---
 
 (expressions
-  (assign
-    lhs: (macro_var
-      name: (identifier)
-      (identifier))
-    rhs: (integer))
-  (assign
-    lhs: (macro_var
-      name: (identifier)
-      (string))
-    rhs: (string)))
+  (macro_def
+    name: (identifier)
+    params: (param_list
+      (splat_param
+        name: (identifier)))
+    body: (expressions
+      (macro_content)
+      (macro_var
+        name: (identifier)
+        (identifier)
+        (identifier))
+      (macro_content)
+      (macro_var
+        name: (identifier)
+        (string))
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_var
+        name: (identifier))
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_var
+        name: (identifier))
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_for
+        var: (identifier)
+        var: (identifier)
+        cond: (identifier)
+        body: (expressions
+          (macro_content)
+          (macro_var
+            name: (identifier)
+            (identifier))
+          (macro_content)
+          (macro_expression
+            (identifier))
+          (macro_content)))
+      (macro_content))))
+
+=============================
+macro def with nesting syntax
+:language(crystal)
+=============================
+macro nested
+  module A
+    class B
+      abstract	class C
+        struct D
+          abstract   struct E
+            annotation F
+            end
+
+            macro G
+              begin
+                case H
+                when I
+                  foo J do |_|
+                    if K
+                      select
+                      when L
+                      when M
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+
+          def N
+            unless O
+              while P
+              end
+            end
+
+            until Q
+            end
+          end
+
+          abstract	def R
+
+          fun S
+          end
+        end
+      end
+
+      lib T
+        union U
+        end
+
+        enum V
+          {{ foo }}
+        end
+      end
+    end
+  end
+end
+
+--------
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_expression
+        (identifier))
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content))))
 
 ===============
 inline macro if
+:language(crystal)
 ===============
 
 {% if flag?(:tracing) %} Crystal::Tracing.init {% end %}
@@ -276,17 +588,16 @@ GC.init
     cond: (call
       method: (identifier)
       arguments: (argument_list
-        (symbol))))
-  (call
-    receiver: (constant)
-    method: (identifier))
-  (macro_end)
+        (symbol)))
+    then: (expressions
+      (macro_content)))
   (call
     receiver: (constant)
     method: (identifier)))
 
 ==============
 macro exp type
+:language(crystal)
 ==============
 
 {% begin %}
@@ -296,16 +607,16 @@ var : {{ "Type" }} = 1
 ---
 
 (expressions
-  (macro_begin)
-  (type_declaration
-    var: (identifier)
-    type: (macro_expression
-      (string))
-    value: (integer))
-  (macro_end))
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content))))
 
 =============
 macro exp def
+:language(crystal)
 =============
 
 {% begin %}
@@ -316,28 +627,31 @@ end
 ---
 
 (expressions
-  (macro_begin)
-  (method_def
-    class: (macro_expression
-      (string))
-    name: (macro_expression
-      (string))
-    params: (param_list
-      (param
-        name: (macro_expression
-          (string))
-        type: (macro_expression
-          (string)))
-      (param
-        name: (macro_var
-          name: (identifier))
-        type: (constant)))
-    type: (macro_expression
-      (string)))
-  (macro_end))
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_var
+        name: (identifier))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content))))
 
 ==============================
 macro exp class / module / lib
+:language(crystal)
 ==============================
 
 {% begin %}
@@ -357,19 +671,409 @@ end
 ---
 
 (expressions
-  (macro_begin)
-  (class_def
-    name: (macro_expression
-      (string))
-    superclass: (macro_expression
-      (string)))
-  (struct_def
-    name: (macro_expression
-      (string)))
-  (enum_def
-    name: (macro_expression
-      (string)))
-  (lib_def
-    name: (macro_expression
-      (string)))
-  (macro_end))
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content)
+      (macro_expression
+        (string))
+      (macro_content))))
+
+==============================
+comments in macros
+:language(crystal)
+==============================
+macro asdf
+  foo
+  # comments containing nesting keywords don't matter
+  # end
+  # begin
+  # macro
+  # def
+end
+
+# comments inside a macro are terminated by {%end%}
+{% begin %}
+  foo # comment {% end %}; 5
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)))
+  (comment)
+  (macro_begin
+    body: (expressions
+      (macro_content)))
+  (integer))
+
+=====================
+single line macro def
+:language(crystal)
+=====================
+macro foo() puts 1 end
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content))))
+
+================================================
+macro nesting when identifiers end with keywords
+:language(crystal)
+================================================
+macro asdf()
+  if g_class!
+    while g_begin
+    end
+  end
+end
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content))))
+
+=====================================
+nesting after macro exp
+:language(crystal)
+=====================================
+macro foo
+  {{ foo }} = if a; :a else :b end
+  {% bar %} unless baz
+
+  {{ foo }} begin b
+  end
+
+  {{ foo }} if a
+  {{ bar }} unless b
+end
+----
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (identifier))
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_statement
+        (expressions
+          (identifier)))
+      (macro_content)
+      (macro_expression
+        (identifier))
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_expression
+        (identifier))
+      (macro_content)
+      (macro_expression
+        (identifier))
+      (macro_content))))
+
+================================================================
+macro comments containing expression followed by nesting keyword
+:language(crystal)
+================================================================
+macro foo
+  a
+  # {% adsf %} end
+  # {{
+    foo
+  }} begin b
+  # {{ foo }} if false
+end
+----
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_statement
+        (expressions
+          (identifier)))
+      (macro_content)
+      (macro_expression
+        (identifier))
+      (macro_content)
+      (macro_expression
+        (identifier))
+      (macro_content))))
+
+===================================
+macro state is reset between macros
+:language(crystal)
+===================================
+macro foo() puts 1 end
+macro bar() if true; puts "yes"; end end
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)))
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content)
+      (macro_content))))
+
+=======================
+macro exp part of ident
+:language(crystal)
+=======================
+
+{% begin %}
+key.to_{{method.id}}?
+{% end %}
+
+---
+
+(expressions
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (call
+          receiver: (identifier)
+          method: (identifier)))
+      (macro_content))))
+
+==================================
+interpolation with macro variables
+==================================
+macro foo
+  "#{%full_name}"
+end
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_content
+        (interpolation
+          (macro_var
+            name: (identifier))))
+      (macro_content))))
+
+========================
+escaped macro expression
+========================
+
+macro name
+  \{% if true %}
+    puts "hello"
+  \{% end %}
+end
+
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_if
+        cond: (true)
+        then: (expressions
+          (macro_content)
+          (macro_content)
+          (macro_content)))
+      (macro_content))))
+
+==========================================
+macro expressions in string interpolation
+==========================================
+{% for byte, i in bytes %}
+  # See `Log#{{method.id}}`.
+  "#{1}"
+  "#{{1}}"
+  "#{{{1}}}"
+  "#{{{byte}}.to_s(16)}"
+{% end %}
+
+macro yield_decoded_chunk_bytes(*bytes, chunk_pos)
+  Error.new("#{{{foo}}} 0x#{{{byte}}.to_s(16)} #{{{chunk_pos}} + {{i}}}")
+  # See `Log#{{method.id}}`.
+  "#{1}"
+  "#{{1}}"
+  "#{{{1}}}"
+end
+---
+
+(expressions
+  (macro_for
+    var: (identifier)
+    var: (identifier)
+    cond: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (call
+          receiver: (identifier)
+          method: (identifier)))
+      (macro_content)
+      (macro_content
+        (interpolation
+          (integer)))
+      (macro_content)
+      (macro_content
+        (interpolation
+          (tuple
+            (integer))))
+      (macro_content)
+      (macro_content
+        (interpolation
+          (macro_expression
+            (integer))))
+      (macro_content)
+      (macro_content
+        (interpolation
+          (call
+            receiver: (macro_expression
+              (identifier))
+            method: (identifier)
+            arguments: (argument_list
+              (integer)))))
+      (macro_content)))
+  (macro_def
+    name: (identifier)
+    params: (param_list
+      (splat_param
+        name: (identifier))
+      (param
+        name: (identifier)))
+    body: (expressions
+      (macro_content)
+      (macro_content
+        (interpolation
+          (macro_expression
+            (identifier)))
+        (interpolation
+          (call
+            receiver: (macro_expression
+              (identifier))
+            method: (identifier)
+            arguments: (argument_list
+              (integer))))
+        (interpolation
+          (call
+            receiver: (macro_expression
+              (identifier))
+            method: (operator)
+            arguments: (argument_list
+              (macro_expression
+                (identifier))))))
+      (macro_content)
+      (macro_expression
+        (call
+          receiver: (identifier)
+          method: (identifier)))
+      (macro_content)
+      (macro_content
+        (interpolation
+          (integer)))
+      (macro_content)
+      (macro_content
+        (interpolation
+          (tuple
+            (integer))))
+      (macro_content)
+      (macro_content
+        (interpolation
+          (macro_expression
+            (integer))))
+      (macro_content))))
+
+===========================================
+splat and double splat in macro expressions
+:language(crystal)
+===========================================
+{%begin%}
+  {{ *{Int32} }}
+  {{ **{a: Int32} }}
+{%end%}
+---
+
+(expressions
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (splat
+          (tuple
+            (constant))))
+      (macro_content)
+      (macro_expression
+        (double_splat
+          (named_tuple
+            (named_expr
+              name: (identifier)
+              (constant)))))
+      (macro_content))))
+
+===============================================
+nested string interpolation in macro expression
+===============================================
+macro strings
+  "#{{{{"#{a.inspect}"}}}}"
+end
+----
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_content
+        (interpolation
+          (macro_expression
+            (tuple
+              (string
+                (interpolation
+                  (call
+                    receiver: (identifier)
+                    method: (identifier))))))))
+      (macro_content))))

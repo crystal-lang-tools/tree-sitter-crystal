@@ -73,6 +73,8 @@ class CorpusTest
     RENAMED_NODES.each do |old_name, new_name|
       @expected_output = rename_node(@expected_output, old_name, new_name)
     end
+
+    @expected_output = collapse_macro_content(@expected_output)
   end
 
   def strip_node(string, node_name)
@@ -81,6 +83,16 @@ class CorpusTest
 
   def rename_node(string, old_name, new_name)
     string.gsub(/\(#{old_name}\b/, "(#{new_name}")
+  end
+
+  def collapse_macro_content(string)
+    neighboring_macro_contents = /\(macro_content\)\s*\(macro_content\)/
+
+    while string.matches? neighboring_macro_contents
+      string = string.gsub(neighboring_macro_contents, "(macro_content)")
+    end
+
+    string
   end
 
   def runnable?
@@ -108,7 +120,8 @@ class CorpusTest
 
       visitor = SExpVisitor.new
       as_expressions(node).accept(visitor)
-      visitor.output.strip
+      visitor_output = visitor.output.strip
+      collapse_macro_content(visitor_output)
     end
   end
 
