@@ -4932,8 +4932,8 @@
                       "type": "SEQ",
                       "members": [
                         {
-                          "type": "PATTERN",
-                          "value": "[ \\t]:\\s"
+                          "type": "SYMBOL",
+                          "name": "_type_field_separator"
                         },
                         {
                           "type": "SYMBOL",
@@ -5105,8 +5105,8 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "PATTERN",
-                    "value": "[ \\t]:\\s"
+                    "type": "SYMBOL",
+                    "name": "_type_field_separator"
                   },
                   {
                     "type": "SYMBOL",
@@ -5275,8 +5275,8 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "PATTERN",
-                "value": "[ \\t]:\\s"
+                "type": "SYMBOL",
+                "name": "_type_field_separator"
               },
               {
                 "type": "SYMBOL",
@@ -5286,6 +5286,15 @@
           }
         }
       ]
+    },
+    "_type_field_separator": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_type_field_colon"
+      },
+      "named": false,
+      "value": ":"
     },
     "type_def": {
       "type": "SEQ",
@@ -5455,8 +5464,8 @@
           }
         },
         {
-          "type": "PATTERN",
-          "value": "[ \\t]:\\s"
+          "type": "SYMBOL",
+          "name": "_type_field_separator"
         },
         {
           "type": "FIELD",
@@ -5603,8 +5612,8 @@
           }
         },
         {
-          "type": "PATTERN",
-          "value": "[ \\t]:\\s"
+          "type": "SYMBOL",
+          "name": "_type_field_separator"
         },
         {
           "type": "FIELD",
@@ -5677,8 +5686,8 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "PATTERN",
-                "value": "[ \\t]:\\s"
+                "type": "SYMBOL",
+                "name": "_type_field_separator"
               },
               {
                 "type": "SYMBOL",
@@ -5958,8 +5967,8 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "PATTERN",
-                      "value": "[ \\t]:\\s"
+                      "type": "SYMBOL",
+                      "name": "_type_field_separator"
                     },
                     {
                       "type": "SYMBOL",
@@ -6533,8 +6542,8 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "PATTERN",
-                    "value": "[ \\t]:\\s"
+                    "type": "SYMBOL",
+                    "name": "_type_field_separator"
                   },
                   {
                     "type": "SYMBOL",
@@ -6632,8 +6641,8 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "PATTERN",
-                    "value": "[ \\t]:\\s"
+                    "type": "SYMBOL",
+                    "name": "_type_field_separator"
                   },
                   {
                     "type": "SYMBOL",
@@ -6698,8 +6707,8 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "PATTERN",
-                    "value": "[ \\t]:\\s"
+                    "type": "SYMBOL",
+                    "name": "_type_field_separator"
                   },
                   {
                     "type": "SYMBOL",
@@ -13673,8 +13682,8 @@
                       }
                     },
                     {
-                      "type": "STRING",
-                      "value": ": "
+                      "type": "PATTERN",
+                      "value": ":\\s"
                     },
                     {
                       "type": "FIELD",
@@ -15506,6 +15515,10 @@
     {
       "type": "SYMBOL",
       "name": "unquoted_symbol"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_type_field_colon"
     },
     {
       "type": "SYMBOL",

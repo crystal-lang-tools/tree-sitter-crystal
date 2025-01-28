@@ -101,6 +101,13 @@ module.exports = grammar({
 
     $.unquoted_symbol,
 
+    // Represents the /\s:\s/ token that comes before param and return types.
+    // The main reason for moving this token to the external scanner is a
+    // workaround for https://github.com/tree-sitter/tree-sitter/issues/4091.
+    // A literal like `/\s:\s/` or `' : '` in the grammar causes problems with
+    // other leading whitespace.
+    $._type_field_colon,
+
     $._string_literal_start,
     $._delimited_string_contents,
     $._string_literal_end,
@@ -1168,7 +1175,7 @@ module.exports = grammar({
       const params = seq(
         '(', optional(field('params', alias($.fun_param_list, $.param_list))), ')',
       )
-      const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
+      const return_type = field('type', seq($._type_field_separator, $._bare_type))
 
       return seq(
         prec.right(seq(
@@ -1199,7 +1206,7 @@ module.exports = grammar({
         )),
         ')',
       )
-      const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
+      const return_type = field('type', seq($._type_field_separator, $._bare_type))
 
       return seq(
         'fun',
@@ -1232,13 +1239,19 @@ module.exports = grammar({
 
     fun_param: $ => {
       const name = field('name', choice($.identifier, $.constant))
-      const type = field('type', seq(/[ \t]:\s/, $._bare_type))
+      const type = field('type', seq($._type_field_separator, $._bare_type))
 
       return seq(
         name,
         type,
       )
     },
+
+    // A separator between a parameter and its type, or a method signature and its return type.
+    // Must have whitespace on both sides, e.g.
+    //   param : Type
+    //        ^^^
+    _type_field_separator: $ => alias($._type_field_colon, ':'),
 
     type_def: $ => seq(
       'type',
@@ -1282,7 +1295,7 @@ module.exports = grammar({
 
       return seq(
         field('name', names),
-        /[ \t]:\s/,
+        $._type_field_separator,
         field('type', $._bare_type),
       )
     },
@@ -1321,7 +1334,7 @@ module.exports = grammar({
 
       return seq(
         field('name', names),
-        /[ \t]:\s/,
+        $._type_field_separator,
         field('type', $._bare_type),
       )
     },
@@ -1329,7 +1342,7 @@ module.exports = grammar({
     global_var: $ => {
       const name = field('name', seq('$', $.identifier))
       const real_name = field('real_name', choice($.identifier, $.constant))
-      const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
+      const return_type = field('type', seq($._type_field_separator, $._bare_type))
 
       return seq(
         name,
@@ -1353,7 +1366,7 @@ module.exports = grammar({
         alias('`', $.operator),
       ))
       const params = seq('(', field('params', optional($.param_list)), ')')
-      const return_type = field('type', seq(/[ \t]:\s/, $._bare_type))
+      const return_type = field('type', seq($._type_field_separator, $._bare_type))
       const forall = field('forall', $.forall)
 
       return prec.right(seq(
@@ -1486,7 +1499,7 @@ module.exports = grammar({
       const name = field('name', choice(
         $.identifier, $.instance_var, $.class_var, $.macro_var,
       ))
-      const type = field('type', seq(/[ \t]:\s/, $._bare_type))
+      const type = field('type', seq($._type_field_separator, $._bare_type))
       const default_value = field('default', seq('=', $._expression))
 
       return seq(
@@ -1502,7 +1515,7 @@ module.exports = grammar({
       const name = field('name', choice(
         $.identifier, $.instance_var, $.class_var, $.macro_var,
       ))
-      const type = field('type', seq(/[ \t]:\s/, $._bare_type))
+      const type = field('type', seq($._type_field_separator, $._bare_type))
 
       return seq(
         repeat($.annotation),
@@ -1516,7 +1529,7 @@ module.exports = grammar({
       const name = field('name', choice(
         $.identifier, $.instance_var, $.class_var, $.macro_var,
       ))
-      const type = field('type', seq(/[ \t]:\s/, $._bare_type))
+      const type = field('type', seq($._type_field_separator, $._bare_type))
 
       return seq(
         repeat($.annotation),
@@ -2860,7 +2873,7 @@ module.exports = grammar({
       return seq(
         alias($._regular_rescue_keyword, 'rescue'),
         optional(choice(
-          seq(rescue_variable, ': ', rescue_type),
+          seq(rescue_variable, /:\s/, rescue_type),
           rescue_variable,
           rescue_type,
         )),

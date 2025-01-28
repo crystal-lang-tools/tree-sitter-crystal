@@ -924,6 +924,13 @@ rescue err : FooError | BarError
 else
 :foo
 end
+
+begin
+rescue e :
+RuntimeError
+rescue e:
+RuntimeError2
+end
 --------------------------------------------------------------------------------
 
 (expressions
@@ -969,7 +976,14 @@ end
         (constant)))
     else: (else
       body: (expressions
-        (symbol)))))
+        (symbol))))
+  (begin
+    rescue: (rescue
+      variable: (identifier)
+      type: (constant))
+    rescue: (rescue
+      variable: (identifier)
+      type: (constant))))
 
 ================================================================================
 begin blocks with ensure

@@ -19,6 +19,15 @@ ReturnType
   puts "hello"
 end
 
+lib Foo
+fun
+bar
+(
+)
+:
+Type
+end
+
 ---
 
 (expressions
