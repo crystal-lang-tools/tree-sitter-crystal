@@ -805,6 +805,32 @@ Heredoc 3
     (heredoc_end)))
 
 ================================================================================
+heredoc escape with leading whitespace
+:language(crystal)
+================================================================================
+p <<-TEXT
+  a
+  \n
+  b
+  \c
+  c
+  TEXT
+--------------------------------------------------------------------------------
+
+(expressions
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (heredoc_start)))
+  (heredoc_body
+    (heredoc_content)
+    (string_escape_sequence)
+    (heredoc_content)
+    (ignored_backslash)
+    (heredoc_content)
+    (heredoc_end)))
+
+================================================================================
 percent strings
 :language(crystal)
 ================================================================================

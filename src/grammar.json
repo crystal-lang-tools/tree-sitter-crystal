@@ -2781,12 +2781,30 @@
                 "name": "interpolation"
               },
               {
-                "type": "SYMBOL",
-                "name": "string_escape_sequence"
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "\\s*"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "string_escape_sequence"
+                  }
+                ]
               },
               {
-                "type": "SYMBOL",
-                "name": "ignored_backslash"
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "\\s*"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "ignored_backslash"
+                  }
+                ]
               }
             ]
           }

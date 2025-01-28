@@ -422,18 +422,6 @@ pages.series(begin: 2, end: 2)
 ---
 (expressions)
 
-==========================
-heredoc escape with indent
-:error
-==========================
-p! <<-TEXT
- a
- \n
- b
- TEXT
----
-(expressions)
-
 ===============================
 modifier if in macro expression
 :error
