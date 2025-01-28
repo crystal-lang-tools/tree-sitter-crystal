@@ -2873,7 +2873,7 @@ module.exports = grammar({
       return seq(
         alias($._regular_rescue_keyword, 'rescue'),
         optional(choice(
-          seq(rescue_variable, ': ', rescue_type),
+          seq(rescue_variable, /:\s/, rescue_type),
           rescue_variable,
           rescue_type,
         )),
