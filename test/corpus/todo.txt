@@ -403,3 +403,69 @@ end
       (macro_content)
       (macro_content))
     (MISSING "end")))
+
+======================================
+macro that accepts a method definition
+:error
+======================================
+memoize def method_3(arg_a : String, arg_b : String = "default-arg-b") : String
+  arg_a + ", " + arg_b
+end
+-----
+(expressions foo: ())
+
+=========================
+keyword as named argument
+:error
+=========================
+pages.series(begin: 2, end: 2)
+---
+(expressions)
+
+==========================
+heredoc escape with indent
+:error
+==========================
+p! <<-TEXT
+ a
+ \n
+ b
+ TEXT
+---
+(expressions)
+
+===============================
+modifier if in macro expression
+:error
+===============================
+{{ skip_file if compare_versions(Crystal::VERSION, "1.3.0") >= 0 }}
+---
+(expressions)
+
+==============
+splat in tuple
+:error
+==============
+{*sensor, distance(sensor, beacon)}
+---
+(expressions)
+
+===================================
+regular expressions starting with =
+:error
+===================================
+a = /= (.*) =/
+b = /== (.*) ==/
+---
+(expressions)
+
+======================================
+}} that doesn't end a macro expression
+:error
+======================================
+{% if flag?(:win32) %}
+  with_foo({bar: {baz: "*"}}) do
+  end
+{% end %}
+---
+(expressions)
