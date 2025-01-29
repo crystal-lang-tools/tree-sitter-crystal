@@ -561,3 +561,19 @@ end
         (argument_list
           (string)))))
   (ERROR))
+
+================================================================================
+can't use a named tuple for hash-like syntax
+================================================================================
+Foo { a: 1 }
+--------------------------------------------------------------------------------
+
+(expressions
+  (array_like
+    name: (constant)
+    values: (tuple
+      (call
+        method: (identifier)
+        (ERROR)
+        arguments: (argument_list
+          (integer))))))
