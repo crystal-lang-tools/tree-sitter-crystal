@@ -352,6 +352,20 @@ module.exports = grammar({
     [
       $.parenthesized_proc_type,
     ],
+
+    // When the parser is in this state:
+    //   lib Foo
+    //     fun bar
+    //            ^
+    // we need to consider both of these possibilities:
+    //   lib Foo
+    //     fun bar
+    //     fun baz
+    // and
+    //   lib Foo
+    //     fun bar
+    //     (UInt32) : UInt32
+    [$.fun_def],
   ],
 
   rules: {
@@ -1164,7 +1178,7 @@ module.exports = grammar({
       'end',
     ),
 
-    top_level_fun_def: $ => {
+    _base_fun_def: $ => {
       const name = field('name', choice(
         $.identifier,
         alias($.identifier_method_call, $.identifier),
@@ -1177,14 +1191,18 @@ module.exports = grammar({
       )
       const return_type = field('type', seq($._type_field_separator, $._bare_type))
 
+      return prec.right(seq(
+        'fun',
+        name,
+        optional(real_name),
+        optional(params),
+        optional(return_type),
+      ))
+    },
+
+    top_level_fun_def: $ => {
       return seq(
-        prec.right(seq(
-          'fun',
-          name,
-          optional(real_name),
-          optional(params),
-          optional(return_type),
-        )),
+        $._base_fun_def,
         field('body', seq(optional(alias($._statements, $.expressions)))),
         'end',
       )
@@ -1200,6 +1218,7 @@ module.exports = grammar({
         field('real_name', choice($.identifier, $.constant, $.string)),
       )
       const params = seq(
+        optional($._line_break),
         '(',
         optional(field('params',
           alias($.fun_type_param_list, $.param_list),

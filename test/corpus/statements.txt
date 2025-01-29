@@ -1275,9 +1275,7 @@ end
             (constant))))))
   (fun_def
     name: (identifier)
-    real_name: (constant)
-    body: (expressions
-      (nil)))
+    real_name: (constant))
   (comment))
 
 ================================================================================
@@ -1539,6 +1537,101 @@ end
           (pointer_type
             (constant)))
         type: (constant)))))
+
+======================
+fun def with newlines
+:language(crystal)
+======================
+fun
+extreme_fun
+(
+param1
+:
+Type
+,
+param2
+:
+Type
+)
+:
+ReturnType
+  puts "hello"
+end
+
+----------------------
+
+(expressions
+  (fun_def
+    name: (identifier)
+    params: (param_list
+      (fun_param
+        name: (identifier)
+        type: (constant))
+      (fun_param
+        name: (identifier)
+        type: (constant)))
+    type: (constant)
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (string))))))
+
+==========================
+lib fun def with newlines
+:language(crystal)
+==========================
+lib Foo
+fun
+asdf
+(
+param1
+:
+Type
+)
+:
+UInt8
+fun asdf2
+fun asdf3
+()
+end
+----
+
+(expressions
+  (lib_def
+    name: (constant)
+    body: (expressions
+      (fun_def
+        name: (identifier)
+        params: (param_list
+          (fun_param
+            name: (identifier)
+            type: (constant)))
+        type: (constant))
+      (fun_def
+        name: (identifier))
+      (fun_def
+        name: (identifier)))))
+
+=======================================
+empty fun params are not treated as nil
+:language(crystal)
+=======================================
+fun foo() /a/ end
+fun bar() + 1 end
+---
+
+(expressions
+  (fun_def
+    name: (identifier)
+    body: (expressions
+      (regex)))
+  (fun_def
+    name: (identifier)
+    body: (expressions
+      (call
+        method: (operator)
+        receiver: (integer)))))
 
 =================================
 private and protected macro calls
