@@ -8915,6 +8915,11 @@
     }
   },
   {
+    "type": "literal_content",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "macro_begin",
     "named": true,
     "fields": {
@@ -16677,27 +16682,15 @@
       "required": false,
       "types": [
         {
-          "type": "ignored_backslash",
-          "named": true
-        },
-        {
           "type": "interpolation",
           "named": true
         },
         {
-          "type": "regex_character_class",
-          "named": true
-        },
-        {
-          "type": "regex_escape_sequence",
+          "type": "literal_content",
           "named": true
         },
         {
           "type": "regex_modifier",
-          "named": true
-        },
-        {
-          "type": "regex_special_match",
           "named": true
         }
       ]
@@ -21133,19 +21126,7 @@
     "named": true
   },
   {
-    "type": "regex_character_class",
-    "named": true
-  },
-  {
-    "type": "regex_escape_sequence",
-    "named": true
-  },
-  {
     "type": "regex_modifier",
-    "named": true
-  },
-  {
-    "type": "regex_special_match",
     "named": true
   },
   {

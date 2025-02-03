@@ -332,12 +332,27 @@ class SExpVisitor < Crystal::Visitor
 
   def visit(node : RegexLiteral)
     in_node("regex") do
-      if (val = node.value).is_a?(StringInterpolation)
-        val.expressions.each do |interp|
-          next if interp.is_a?(StringLiteral)
+      val = node.value
+      case val
+      when StringInterpolation
+        # We want to collapse adjacent StringLiteral pieces into a single node
+        chunked_expressions = val.expressions.chunk_while do |piece1, piece2|
+          piece1.is_a?(StringLiteral) && piece2.is_a?(StringLiteral)
+        end
 
+        chunked_expressions.each do |pieces|
+          if pieces.first.is_a?(StringLiteral)
+            print_node("literal_content")
+            next
+          end
+
+          interp = pieces.first
           in_node("interpolation") { interp.accept self }
         end
+      when StringLiteral
+        print_node("literal_content") unless val.value.empty?
+      else
+        raise "unknown regex node: #{val.class}"
       end
     end
 

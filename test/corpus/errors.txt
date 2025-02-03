@@ -36,42 +36,10 @@ regex with incorrect modifiers
 
 (expressions
   (regex
+    (literal_content)
     (regex_modifier))
   (ERROR
     (identifier)))
-
-================================================================================
-PCRE2 invalid regex
-:error
-================================================================================
-begin
-  # PCRE allowed any ASCII character after \c
-  # PCRE2 doesn't allow control characters after \c
-  # The next line contains raw delete (U+007F) and tab (U+0009) characters
-  /\c\c	/
-end
-
-begin
-  # PCRE2 doesn't allow \<alpha> when <alpha> lacks a special meaning
-  /\y/
-end
---------------------------------------------------------------------------------
-
-(expressions
-  (begin
-    (comment)
-    (comment)
-    (comment)
-    (ERROR
-      (ignored_backslash)
-      (UNEXPECTED 127)
-      (ignored_backslash)
-      (operator)))
-  (begin
-    (comment)
-    (ERROR
-      (ignored_backslash)
-      (operator))))
 
 ================================================================================
 unterminated percent literal string
@@ -298,6 +266,7 @@ puts(** foo)
       lhs: (identifier)
       (ERROR)
       rhs: (regex
+        (literal_content)
         (MISSING "/")))))
 
 ================================================================================

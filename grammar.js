@@ -856,88 +856,35 @@ module.exports = grammar({
 
     regex: $ => seq(
       alias($._regex_start, '/'),
-      repeat(choice(
-        token.immediate(prec(1, /[^\\/]/)),
-        $.regex_escape_sequence,
-        $.regex_character_class,
-        $.regex_special_match,
-        $.interpolation,
-      )),
+      optional($._regex_literal_content),
       token.immediate('/'),
       optional($.regex_modifier),
     ),
 
-    // TODO: handle rest of PCRE2 escape syntax:
-    // https://www.pcre.org/current/doc/html/pcre2syntax.html
-    // - other special characters
-    // - full support for back-reference syntax
-    // - groups
-    // - ...
+    _regex_literal_content: $ => repeat1(choice(
+      $.interpolation,
+      alias($.regex_literal_content, $.literal_content),
+    )),
 
-    regex_escape_sequence: $ => {
-      // These are PCRE escape sequences
-      const octal_escape = /[0-7]{1,3}/
-      const long_octal_escape = seq('o{', repeat1(/[0-7]/), '}')
-
-      const hex_escape = seq('x', /[0-9a-fA-F]{1,2}/)
-      const long_hex_escape = seq('x{', repeat1(/[0-9a-fA-F]/), '}')
-
-      const ctrl_escape = /c[\x20-\x7e]/
-
-      const unicode_escape = seq('N{U+', repeat1(/[0-9a-fA-F]/), '}')
-
-      return token.immediate(
-        seq(
-          '\\',
-          choice(
-            /[^a-zA-Z0-9]/, // non-alphanumeric characters can always be escaped
-            /[aefnrt]/,
-            octal_escape,
-            long_octal_escape,
-            hex_escape,
-            long_hex_escape,
-            ctrl_escape,
-            unicode_escape,
-          ),
-        ),
-      )
-    },
-
-    regex_character_class: $ => {
-      const property_class = seq('p{', /[a-zA-Z _-]+/, '}')
-      const not_property_class = seq('P{', /[a-zA-Z _-]+/, '}')
-      return token.immediate(
-        seq(
-          '\\',
-          choice(
-            /[dDhHNRsSvVwWX]/,
-            property_class,
-            not_property_class,
-          ),
-        ),
-      )
-    },
-
-    regex_special_match: $ => {
-      return token.immediate(
-        seq(
-          '\\',
-          /[AbBEgGkKQzZ]/,
-        ),
-      )
-    },
+    regex_literal_content: $ => prec.right(repeat1(
+      choice(
+        token.immediate(prec(1, /[^\\/]/)),
+        token.immediate(/\\./),
+        $._line_continuation,
+      ),
+    )),
 
     regex_percent_literal: $ => seq(
-      $._regex_percent_literal_start,
-      repeat(choice(
-        $._delimited_string_contents,
-        $.regex_escape_sequence,
-        $.ignored_backslash,
-        $.interpolation,
-      )),
-      $._percent_literal_end,
+      alias($._regex_percent_literal_start, '/'),
+      optional($._regex_percent_literal_content),
+      alias($._percent_literal_end, '/'),
       optional($.regex_modifier),
     ),
+
+    _regex_percent_literal_content: $ => repeat1(choice(
+      $.interpolation,
+      alias($._delimited_string_contents, $.literal_content),
+    )),
 
     array: $ => {
       const of_type = field('of', seq('of', $._bare_type))

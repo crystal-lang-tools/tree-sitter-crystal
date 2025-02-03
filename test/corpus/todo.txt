@@ -215,19 +215,6 @@ filters1.try(&.pos[name]?)
               (identifier)))))
       (ERROR))))
 
-===========
-\b in regex
-===========
-
-%r(\b)
-
----
-
-(expressions
-  (ERROR
-    (ERROR
-      (char_escape_sequence))))
-
 =========================
 trailing if inside interp
 =========================
