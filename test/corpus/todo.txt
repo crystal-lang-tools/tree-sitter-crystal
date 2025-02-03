@@ -309,23 +309,6 @@ ivar macro expression
       (identifier)
       (identifier))))
 
-==============================
-uppercase mathematical letters
-==============================
-# In Crystal 1.15, these should be constants. They are currently parsed as
-# identifiers because tree-sitter's unicode data is out-of-date.
-# This should be fixed in tree-sitter 0.25.
-𝐈𝘼
-𝙕𝘼𝘼𝙕
----
-
-(expressions
-  (comment)
-  (comment)
-  (comment)
-  (identifier)
-  (identifier))
-
 =================================
 percent literals in macro content
 =================================
