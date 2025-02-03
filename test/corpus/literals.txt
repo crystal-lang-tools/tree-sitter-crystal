@@ -1259,159 +1259,177 @@ regexes
 
 (expressions
   (regex)
-  (regex)
-  (regex)
-  (regex)
-  (regex)
   (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (regex
+    (literal_content)
     (interpolation
-      (identifier)))
+      (identifier))
+    (literal_content))
   (regex
-    (regex_escape_sequence))
+    (literal_content))
   (regex
-    (regex_escape_sequence)
+    (literal_content)
     (regex_modifier))
   (regex
-    (regex_escape_sequence)
+    (literal_content)
     (regex_modifier))
   (regex
-    (regex_escape_sequence)
+    (literal_content)
     (regex_modifier))
   (regex
-    (regex_escape_sequence))
+    (literal_content))
   (regex
-    (regex_escape_sequence))
+    (literal_content))
   (regex
-    (regex_escape_sequence)
+    (literal_content)
     (regex_modifier))
   (call
     receiver: (regex
-      (regex_escape_sequence))
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (string)))
   (call
     receiver: (regex
-      (regex_escape_sequence))
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (string
         (string_escape_sequence))))
   (call
     receiver: (regex
-      (regex_escape_sequence))
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (string
         (string_escape_sequence))))
   (call
     receiver: (regex
-      (regex_escape_sequence))
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (string
         (string_escape_sequence))))
   (regex
-    (regex_escape_sequence))
+    (literal_content))
   (regex
-    (regex_escape_sequence))
+    (literal_content))
   (regex
-    (regex_escape_sequence))
+    (literal_content))
   (regex
-    (regex_escape_sequence))
+    (literal_content))
   (regex
-    (regex_escape_sequence))
+    (literal_content))
   (regex
-    (regex_escape_sequence))
+    (literal_content))
   (regex
-    (regex_escape_sequence))
+    (literal_content))
   (call
     receiver: (regex
-      (regex_escape_sequence)
-      (regex_escape_sequence))
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (string)))
   (call
     receiver: (regex
-      (regex_character_class))
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (string)))
   (call
     receiver: (regex
-      (regex_character_class))
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (string)))
   (call
     receiver: (regex
-      (regex_character_class))
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (string
         (string_escape_sequence))))
   (call
     receiver: (regex
-      (regex_special_match)
-      (regex_special_match))
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (string)))
   (call
     receiver: (regex
-      (regex_special_match)
-      (regex_character_class)
-      (regex_character_class)
-      (regex_special_match))
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (string)))
   (call
     receiver: (regex
-      (regex_escape_sequence)
-      (regex_escape_sequence)
-      (regex_escape_sequence)
-      (regex_escape_sequence))
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (string
         (string_escape_sequence))))
   (regex
+    (literal_content)
     (interpolation
       (regex
+        (literal_content)
         (regex_modifier)))
+    (literal_content)
     (regex_modifier)))
 
 ================================================================================
 regex percent literals
 :language(crystal)
 ================================================================================
+%r[]
 %r|a/b|
+%r(
+)
+%r(\
+)
 
 %r<#{1}\#{2})>
 %r<a\>>
 %r(a\\)im
 %r{#{%r{f#{/o/}o}m}}
+%r(\b)
 --------------------------------------------------------------------------------
 
 (expressions
   (regex)
   (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (regex
     (interpolation
       (integer))
-    (ignored_backslash))
+    (literal_content))
   (regex
-    (ignored_backslash))
+    (literal_content))
   (regex
-    (regex_escape_sequence)
+    (literal_content)
     (regex_modifier))
   (regex
     (interpolation
       (regex
+        (literal_content)
         (interpolation
-          (regex))
-        (regex_modifier)))))
+          (regex
+            (literal_content)))
+        (literal_content)
+        (regex_modifier))))
+  (regex
+    (literal_content)))
 
 ================================================================================
 arrays

@@ -1418,7 +1418,8 @@ foo(// // 3)
   (call
     method: (identifier)
     arguments: (argument_list
-      (regex)))
+      (regex
+        (literal_content))))
   (call
     receiver: (expressions
       (identifier))
@@ -1452,15 +1453,19 @@ foo(// // 3)
           (integer)))))
   (range
     begin: (range
-      begin: (regex)
+      begin: (regex
+        (literal_content))
       operator: (operator)
       end: (call
-        receiver: (regex)
+        receiver: (regex
+          (literal_content))
         method: (operator)
         arguments: (argument_list
-          (regex))))
+          (regex
+            (literal_content)))))
     operator: (operator)
-    end: (regex)))
+    end: (regex
+      (literal_content))))
 
 ================================================================================
 exponential operators
@@ -1689,7 +1694,8 @@ e !~ /regex/
     receiver: (identifier)
     method: (operator)
     arguments: (argument_list
-      (regex)))
+      (regex
+        (literal_content))))
   (call
     receiver: (identifier)
     method: (operator)
@@ -1699,7 +1705,8 @@ e !~ /regex/
     receiver: (identifier)
     method: (operator)
     arguments: (argument_list
-      (regex)))
+      (regex
+        (literal_content))))
   (expressions
     (call
       receiver: (constant)
@@ -3573,8 +3580,10 @@ end
     rhs: (case
       cond: (string)
       (when
-        cond: (regex)
-        cond: (regex)
+        cond: (regex
+          (literal_content))
+        cond: (regex
+          (literal_content))
         body: (expressions
           (call
             method: (identifier)

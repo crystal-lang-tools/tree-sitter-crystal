@@ -46,7 +46,7 @@ jobs:
       - name: Set up tree-sitter
         uses: tree-sitter/setup-action/cli@v1
         with:
-          tree-sitter-ref: latest
+          tree-sitter-ref: v0.24.7
 
       - name: MSVC setup
         uses: ilammy/msvc-dev-cmd@v1

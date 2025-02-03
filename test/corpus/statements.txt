@@ -1625,7 +1625,8 @@ fun bar() + 1 end
   (fun_def
     name: (identifier)
     body: (expressions
-      (regex)))
+      (regex
+        (literal_content))))
   (fun_def
     name: (identifier)
     body: (expressions
