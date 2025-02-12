@@ -309,15 +309,27 @@ class SExpVisitor < Crystal::Visitor
   end
 
   def visit(node : StringLiteral)
-    print_node("string")
+    in_node("string") do
+      print_node("literal_content") unless node.value.empty?
+    end
+
     false
   end
 
   def visit(node : StringInterpolation)
     in_node "string" do
-      node.expressions.each do |interp|
-        next if interp.is_a?(StringLiteral)
+      # We want to collapse adjacent StringLiteral pieces into a single node
+      chunked_expressions = node.expressions.chunk_while do |piece1, piece2|
+        piece1.is_a?(StringLiteral) && piece2.is_a?(StringLiteral)
+      end
 
+      chunked_expressions.each do |pieces|
+        if pieces.first.is_a?(StringLiteral)
+          print_node("literal_content")
+          next
+        end
+
+        interp = pieces.first
         in_node("interpolation") { interp.accept self }
       end
     end
@@ -1768,7 +1780,9 @@ class SExpVisitor < Crystal::Visitor
 
   def visit(node : Require)
     in_node("require") do
-      print_node("string")
+      in_node("string") do
+        print_node("literal_content")
+      end
     end
 
     false

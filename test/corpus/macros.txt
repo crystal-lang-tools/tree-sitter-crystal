@@ -13,7 +13,8 @@ puts "hello"
   (macro_begin
     body: (expressions
       (macro_content)
-      (macro_content)
+      (macro_content
+        (literal_content))
       (macro_content))))
 
 ==============
@@ -73,7 +74,8 @@ end
         (symbol)))
     then: (expressions
       (macro_content)
-      (macro_content)
+      (macro_content
+        (literal_content))
       (macro_content)))
   (macro_def
     name: (identifier)
@@ -160,6 +162,7 @@ macro for
     body: (expressions
       (macro_content)
       (macro_content
+        (literal_content)
         (interpolation
           (macro_expression
             (identifier))))
@@ -187,7 +190,8 @@ macro expression
     (call
       method: (identifier)
       arguments: (argument_list
-        (string))))
+        (string
+          (literal_content)))))
   (macro_expression
     (assign
       lhs: (identifier)
@@ -224,7 +228,8 @@ macro expressions
           (call
             method: (identifier)
             arguments: (argument_list
-              (string)))))))
+              (string
+                (literal_content))))))))
   (macro_statement)
   (macro_statement
     (comment)))
@@ -261,7 +266,8 @@ macro name; {{ puts "hello" }} end
         (call
           method: (identifier)
           arguments: (argument_list
-            (string))))
+            (string
+              (literal_content)))))
       (macro_content))))
 
 ============================
@@ -392,9 +398,11 @@ end
       (macro_content)
       (macro_var
         name: (identifier)
-        (string))
+        (string
+          (literal_content)))
       (macro_content)
-      (macro_content)
+      (macro_content
+        (literal_content))
       (macro_content)
       (macro_content)
       (macro_content)
@@ -406,7 +414,8 @@ end
       (macro_var
         name: (identifier))
       (macro_content)
-      (macro_content)
+      (macro_content
+        (literal_content))
       (macro_content)
       (macro_for
         var: (identifier)
@@ -611,7 +620,8 @@ var : {{ "Type" }} = 1
     body: (expressions
       (macro_content)
       (macro_expression
-        (string))
+        (string
+          (literal_content)))
       (macro_content))))
 
 =============
@@ -631,22 +641,27 @@ end
     body: (expressions
       (macro_content)
       (macro_expression
-        (string))
+        (string
+          (literal_content)))
       (macro_content)
       (macro_expression
-        (string))
+        (string
+          (literal_content)))
       (macro_content)
       (macro_expression
-        (string))
+        (string
+          (literal_content)))
       (macro_content)
       (macro_expression
-        (string))
+        (string
+          (literal_content)))
       (macro_content)
       (macro_var
         name: (identifier))
       (macro_content)
       (macro_expression
-        (string))
+        (string
+          (literal_content)))
       (macro_content))))
 
 ==============================
@@ -675,19 +690,24 @@ end
     body: (expressions
       (macro_content)
       (macro_expression
-        (string))
+        (string
+          (literal_content)))
       (macro_content)
       (macro_expression
-        (string))
+        (string
+          (literal_content)))
       (macro_content)
       (macro_expression
-        (string))
+        (string
+          (literal_content)))
       (macro_content)
       (macro_expression
-        (string))
+        (string
+          (literal_content)))
       (macro_content)
       (macro_expression
-        (string))
+        (string
+          (literal_content)))
       (macro_content))))
 
 ==============================
@@ -853,7 +873,8 @@ macro bar() if true; puts "yes"; end end
       (macro_content)
       (macro_content)
       (macro_content)
-      (macro_content)
+      (macro_content
+        (literal_content))
       (macro_content)
       (macro_content)
       (macro_content))))
@@ -919,7 +940,8 @@ end
         cond: (true)
         then: (expressions
           (macro_content)
-          (macro_content)
+          (macro_content
+            (literal_content))
           (macro_content)))
       (macro_content))))
 
@@ -991,6 +1013,7 @@ end
         (interpolation
           (macro_expression
             (identifier)))
+        (literal_content)
         (interpolation
           (call
             receiver: (macro_expression
@@ -998,6 +1021,7 @@ end
             method: (identifier)
             arguments: (argument_list
               (integer))))
+        (literal_content)
         (interpolation
           (call
             receiver: (macro_expression

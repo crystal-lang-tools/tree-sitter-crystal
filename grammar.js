@@ -719,15 +719,17 @@ module.exports = grammar({
     },
 
     string: $ => seq(
-      $._string_literal_start,
-      repeat(choice(
-        $._delimited_string_contents,
-        $.string_escape_sequence,
-        $.ignored_backslash,
-        $.interpolation,
-      )),
-      $._string_literal_end,
+      alias($._string_literal_start, '"'),
+      optional($._string_literal_content),
+      alias($._string_literal_end, '"'),
     ),
+
+    _string_literal_content: $ => repeat1(choice(
+      alias($._delimited_string_contents, $.literal_content),
+      $.string_escape_sequence,
+      $.ignored_backslash,
+      $.interpolation,
+    )),
 
     // Represents multiple strings joined by line continuations. $._line_continuation is
     // not actually included here because it doesn't play with `extras`, see
@@ -764,15 +766,17 @@ module.exports = grammar({
     ),
 
     string_percent_literal: $ => seq(
-      $._string_percent_literal_start,
-      repeat(choice(
-        $._delimited_string_contents,
-        $.interpolation,
-        $.string_escape_sequence,
-        $.ignored_backslash,
-      )),
-      $._percent_literal_end,
+      alias($._string_percent_literal_start, '"'),
+      optional($._string_percent_literal_content),
+      alias($._percent_literal_end, '"'),
     ),
+
+    _string_percent_literal_content: $ => repeat1(choice(
+      alias($._delimited_string_contents, $.literal_content),
+      $.interpolation,
+      $.string_escape_sequence,
+      $.ignored_backslash,
+    )),
 
     string_array_percent_literal: $ => seq(
       $._string_array_percent_literal_start,

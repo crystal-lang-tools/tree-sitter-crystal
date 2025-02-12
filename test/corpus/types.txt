@@ -563,7 +563,8 @@ f = -> : -> { a: String; ->{} }
     type: (proc_type
       return: (tuple_type
         (typeof
-          (string)))))
+          (string
+            (literal_content))))))
   (method_def
     name: (identifier)
     type: (proc_type)
@@ -584,7 +585,8 @@ f = -> : -> { a: String; ->{} }
       (named_tuple
         (named_expr
           name: (identifier)
-          (string)))))
+          (string
+            (literal_content))))))
   (method_def
     name: (identifier)
     type: (proc_type
@@ -594,7 +596,8 @@ f = -> : -> { a: String; ->{} }
     name: (identifier)
     type: (proc_type
       return: (typeof
-        (string))))
+        (string
+          (literal_content)))))
   (method_def
     name: (identifier)
     type: (proc_type)
@@ -627,48 +630,60 @@ f = -> : -> { a: String; ->{} }
     body: (expressions
       (named_tuple
         (named_expr
-          name: (string)
-          (string)))))
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
   (method_def
     name: (identifier)
     type: (proc_type)
     body: (expressions
       (named_tuple
         (named_expr
-          name: (string)
-          (string)))))
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
   (method_def
     name: (identifier)
     type: (proc_type)
     body: (expressions
       (named_tuple
         (named_expr
-          name: (string)
-          (string)))))
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
   (method_def
     name: (identifier)
     type: (proc_type)
     body: (expressions
       (named_tuple
         (named_expr
-          name: (string)
-          (string)))))
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
   (method_def
     name: (identifier)
     type: (proc_type)
     body: (expressions
       (named_tuple
         (named_expr
-          name: (string)
-          (string)))))
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
   (method_def
     name: (identifier)
     type: (proc_type)
     body: (expressions
       (named_tuple
         (named_expr
-          name: (string)
-          (string)))))
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
   (assign
     lhs: (identifier)
     rhs: (proc
@@ -788,13 +803,16 @@ alias NamedTupleWithStrings = NamedTuple("x": Int32, %q(hi again): Int8)
     name: (constant)
     type: (named_tuple_type
       (named_type
-        name: (string)
+        name: (string
+          (literal_content))
         (constant))
       (named_type
-        name: (string)
+        name: (string
+          (literal_content))
         (constant))
       (named_type
-        name: (string)
+        name: (string
+          (literal_content))
         (constant))))
   (alias
     name: (constant)
@@ -802,10 +820,12 @@ alias NamedTupleWithStrings = NamedTuple("x": Int32, %q(hi again): Int8)
       (constant)
       params: (param_list
         (named_type
-          name: (string)
+          name: (string
+            (literal_content))
           (constant))
         (named_type
-          name: (string)
+          name: (string
+            (literal_content))
           (constant))))))
 
 ================================================================================

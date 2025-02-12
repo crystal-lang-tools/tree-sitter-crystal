@@ -84,11 +84,13 @@ require "#{__DIR__}/relative_file"
 
 (expressions
   (require
-    (string))
+    (string
+      (literal_content)))
   (require
     (string
       (interpolation
-        (pseudo_constant)))))
+        (pseudo_constant))
+      (literal_content))))
 
 ================================================================================
 compound statements
@@ -343,7 +345,8 @@ end
             name: (identifier)))
         type: (constant)
         body: (expressions
-          (string))))))
+          (string
+            (literal_content)))))))
 
 ================================================================================
 method definitions
@@ -523,7 +526,8 @@ end
   (call
     method: (identifier)
     arguments: (argument_list
-      (string))))
+      (string
+        (literal_content)))))
 
 ================================================================================
 method definitions with block parameters
@@ -733,7 +737,8 @@ end
         class: (self)
         name: (identifier)
         body: (expressions
-          (string)))
+          (string
+            (literal_content))))
       (method_def
         class: (constant)
         name: (identifier)
@@ -921,13 +926,15 @@ end
         name: (identifier)
         (integer))
       (named_expr
-        name: (string)
+        name: (string
+          (literal_content))
         (integer))
       (named_expr
         name: (identifier)
         (integer))
       (named_expr
-        name: (string)
+        name: (string
+          (literal_content))
         (integer))
       (named_expr
         name: (identifier)
@@ -938,7 +945,8 @@ end
       (annotation
         (constant)
         arguments: (argument_list
-          (string)))
+          (string
+            (literal_content))))
       (method_def
         name: (identifier)
         params: (param_list
@@ -948,7 +956,8 @@ end
             (annotation
               (constant)
               arguments: (argument_list
-                (string)))
+                (string
+                  (literal_content))))
             (annotation
               (constant))
             name: (identifier))
@@ -962,7 +971,8 @@ end
             (annotation
               (constant)
               arguments: (argument_list
-                (string)))
+                (string
+                  (literal_content))))
             name: (identifier)
             type: (proc_type
               (constant))))))))
@@ -1081,7 +1091,8 @@ end
       (method_def
         name: (identifier)
         body: (expressions
-          (string))))))
+          (string
+            (literal_content)))))))
 
 =============
 private enums
@@ -1140,15 +1151,18 @@ end
     (heredoc_body
       (heredoc_content)
       (heredoc_end))
-    rhs: (string))
+    rhs: (string
+      (literal_content)))
   (method_def
     name: (identifier)
     body: (expressions
       (call
         method: (identifier)
         arguments: (argument_list
-          (string)
-          (string))))))
+          (string
+            (literal_content))
+          (string
+            (literal_content)))))))
 
 ================
 include + extend
@@ -1237,7 +1251,8 @@ end
       (call
         method: (identifier)
         arguments: (argument_list
-          (string))))))
+          (string
+            (literal_content)))))))
 
 ================================================================================
 top level fun def with special characters
@@ -1575,7 +1590,8 @@ end
       (call
         method: (identifier)
         arguments: (argument_list
-          (string))))))
+          (string
+            (literal_content)))))))
 
 ==========================
 lib fun def with newlines
@@ -1726,7 +1742,8 @@ end
           (call
             method: (identifier)
             arguments: (argument_list
-              (string))))))))
+              (string
+                (literal_content)))))))))
 
 ===================
 if then expressions

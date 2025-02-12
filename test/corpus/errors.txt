@@ -6,7 +6,9 @@ unterminated string
 --------------------------------------------------------------------------------
 
 (expressions
-  (ERROR))
+  (string
+    (literal_content)
+    (MISSING """)))
 
 ================================================================================
 unterminated symbol
@@ -68,7 +70,8 @@ incorrectly escaped %q string
 --------------------------------------------------------------------------------
 
 (expressions
-  (string)
+  (string
+    (literal_content))
   (ERROR))
 
 ================================================================================
@@ -233,9 +236,12 @@ too many nested percent literals
                                                             (interpolation
                                                               (string
                                                                 (ERROR)
+                                                                (literal_content)
                                                                 (ERROR)
+                                                                (literal_content)
                                                                 (interpolation
-                                                                  (integer))))))))))))))))))))))))))))))))))
+                                                                  (integer))
+                                                                (literal_content)))))))))))))))))))))))))))))))))
 
 ================================================================================
 error recovery of curly brace

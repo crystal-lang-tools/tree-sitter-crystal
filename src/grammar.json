@@ -2412,38 +2412,65 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_string_literal_start"
-        },
-        {
-          "type": "REPEAT",
+          "type": "ALIAS",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_delimited_string_contents"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "string_escape_sequence"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "ignored_backslash"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "interpolation"
-              }
-            ]
-          }
+            "type": "SYMBOL",
+            "name": "_string_literal_start"
+          },
+          "named": false,
+          "value": "\""
         },
         {
-          "type": "SYMBOL",
-          "name": "_string_literal_end"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_string_literal_content"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_string_literal_end"
+          },
+          "named": false,
+          "value": "\""
         }
       ]
+    },
+    "_string_literal_content": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_delimited_string_contents"
+            },
+            "named": true,
+            "value": "literal_content"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "string_escape_sequence"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "ignored_backslash"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "interpolation"
+          }
+        ]
+      }
     },
     "chained_string": {
       "type": "SEQ",
@@ -2639,38 +2666,65 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_string_percent_literal_start"
-        },
-        {
-          "type": "REPEAT",
+          "type": "ALIAS",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_delimited_string_contents"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "interpolation"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "string_escape_sequence"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "ignored_backslash"
-              }
-            ]
-          }
+            "type": "SYMBOL",
+            "name": "_string_percent_literal_start"
+          },
+          "named": false,
+          "value": "\""
         },
         {
-          "type": "SYMBOL",
-          "name": "_percent_literal_end"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_string_percent_literal_content"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_percent_literal_end"
+          },
+          "named": false,
+          "value": "\""
         }
       ]
+    },
+    "_string_percent_literal_content": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_delimited_string_contents"
+            },
+            "named": true,
+            "value": "literal_content"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "interpolation"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "string_escape_sequence"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "ignored_backslash"
+          }
+        ]
+      }
     },
     "string_array_percent_literal": {
       "type": "SEQ",

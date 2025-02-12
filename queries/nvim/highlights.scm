@@ -70,7 +70,11 @@
 (pseudo_constant) @constant.builtin
 
 ; literals
-(string) @string
+(string
+  "\"" @string)
+
+(string
+  (literal_content) @string)
 
 (symbol) @string.special.symbol
 
