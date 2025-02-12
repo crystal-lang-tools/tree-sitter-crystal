@@ -725,6 +725,7 @@ module.exports = grammar({
     ),
 
     _string_literal_content: $ => repeat1(choice(
+      $._line_continuation,
       alias($._delimited_string_contents, $.literal_content),
       $.string_escape_sequence,
       $.ignored_backslash,
@@ -753,7 +754,7 @@ module.exports = grammar({
       ))
 
       const single_character_escape = choice(
-        '\n', '\\', '"', 'a', 'b', 'e', 'f', 'n', 'r', 't', 'v',
+        '\\', '"', 'a', 'b', 'e', 'f', 'n', 'r', 't', 'v',
       )
 
       return token.immediate(seq('\\', choice(
@@ -813,6 +814,7 @@ module.exports = grammar({
         $.interpolation,
         seq(/\s*/, $.string_escape_sequence),
         seq(/\s*/, $.ignored_backslash),
+        $._line_continuation,
       )),
       $.heredoc_end,
     ),
@@ -843,6 +845,7 @@ module.exports = grammar({
         $.string_escape_sequence,
         $.ignored_backslash,
         $.interpolation,
+        $._line_continuation,
       )),
       token.immediate('`'),
     ),

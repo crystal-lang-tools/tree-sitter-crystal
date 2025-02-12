@@ -2449,6 +2449,10 @@
         "type": "CHOICE",
         "members": [
           {
+            "type": "SYMBOL",
+            "name": "_line_continuation"
+          },
+          {
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
@@ -2519,10 +2523,6 @@
               {
                 "type": "CHOICE",
                 "members": [
-                  {
-                    "type": "STRING",
-                    "value": "\n"
-                  },
                   {
                     "type": "STRING",
                     "value": "\\"
@@ -2859,6 +2859,10 @@
                     "name": "ignored_backslash"
                   }
                 ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_line_continuation"
               }
             ]
           }
@@ -3095,6 +3099,10 @@
               {
                 "type": "SYMBOL",
                 "name": "interpolation"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_line_continuation"
               }
             ]
           }

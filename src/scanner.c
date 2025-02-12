@@ -2580,10 +2580,25 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
 
         case '\\':
             if (valid_symbols[LINE_CONTINUATION]) {
-                // Inside a string, a percent literal, or a heredoc, treat backslash + newline
-                // like other escaped string characters.
-                if (HAS_ACTIVE_LITERAL(state) || has_active_heredoc(state)) {
+                // Don't allow line continuation in a quoted heredoc
+                if (has_active_heredoc(state) && !array_get(&state->heredocs, 0)->allow_escapes) {
                     return false;
+                }
+
+                // Line continuations may be allowed in some literals
+                if (HAS_ACTIVE_LITERAL(state)) {
+                    switch (ACTIVE_LITERAL(state)->type) {
+                        case STRING_NO_ESCAPE:
+                        case REGEX:
+                        case STRING_ARRAY:
+                        case SYMBOL_ARRAY:
+                            // Line continuations aren't allowed here
+                            return false;
+                        case STRING:
+                        case COMMAND:
+                            // Continue checking for line continuation
+                            break;
+                    }
                 }
 
                 lex_advance(lexer);

@@ -329,8 +329,7 @@ strings
     (literal_content))
   (string
     (literal_content))
-  (string
-    (string_escape_sequence))
+  (string)
   (string
     (string_escape_sequence))
   (string
@@ -926,7 +925,6 @@ p% ()
   (string
     (string_escape_sequence))
   (string
-    (string_escape_sequence)
     (string_escape_sequence))
   (string
     (literal_content)
@@ -2100,19 +2098,16 @@ not_chained = "str1"
     lhs: (identifier)
     rhs: (string
       (literal_content)
-      (string_escape_sequence)
       (literal_content))
     rhs: (string
       (literal_content))
     rhs: (string
       (literal_content)
-      (string_escape_sequence)
       (literal_content))
     rhs: (heredoc_start)
     rhs: (heredoc_start))
   (heredoc_body
     (heredoc_content)
-    (string_escape_sequence)
     (heredoc_content)
     (heredoc_end))
   (heredoc_body
@@ -2126,11 +2121,8 @@ not_chained = "str1"
     lhs: (identifier)
     rhs: (string
       (literal_content)
-      (string_escape_sequence)
       (literal_content)
-      (string_escape_sequence)
       (literal_content)
-      (string_escape_sequence)
       (literal_content)))
   (assign
     lhs: (identifier)
