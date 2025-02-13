@@ -2730,8 +2730,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_string_array_percent_literal_start"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_string_array_percent_literal_start"
+          },
+          "named": false,
+          "value": "["
         },
         {
           "type": "REPEAT",
@@ -2746,8 +2751,13 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_percent_literal_end"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_percent_literal_end"
+          },
+          "named": false,
+          "value": "]"
         }
       ]
     },
@@ -2755,8 +2765,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_symbol_array_percent_literal_start"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_symbol_array_percent_literal_start"
+          },
+          "named": false,
+          "value": "["
         },
         {
           "type": "REPEAT",
@@ -2771,8 +2786,13 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_percent_literal_end"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_percent_literal_end"
+          },
+          "named": false,
+          "value": "]"
         }
       ]
     },
@@ -3147,8 +3167,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_command_percent_literal_start"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_command_percent_literal_start"
+          },
+          "named": false,
+          "value": "`"
         },
         {
           "type": "CHOICE",
@@ -3163,8 +3188,13 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_percent_literal_end"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_percent_literal_end"
+          },
+          "named": false,
+          "value": "`"
         }
       ]
     },

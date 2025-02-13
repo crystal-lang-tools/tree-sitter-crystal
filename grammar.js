@@ -784,19 +784,19 @@ module.exports = grammar({
     )),
 
     string_array_percent_literal: $ => seq(
-      $._string_array_percent_literal_start,
+      alias($._string_array_percent_literal_start, '['),
       repeat(
         alias($.percent_literal_array_word, $.string),
       ),
-      $._percent_literal_end,
+      alias($._percent_literal_end, ']'),
     ),
 
     symbol_array_percent_literal: $ => seq(
-      $._symbol_array_percent_literal_start,
+      alias($._symbol_array_percent_literal_start, '['),
       repeat(
         alias($.percent_literal_array_word, $.symbol),
       ),
-      $._percent_literal_end,
+      alias($._percent_literal_end, ']'),
     ),
 
     percent_literal_array_word: $ => seq(
@@ -875,9 +875,9 @@ module.exports = grammar({
     ),
 
     command_percent_literal: $ => seq(
-      $._command_percent_literal_start,
+      alias($._command_percent_literal_start, '`'),
       optional($._string_percent_literal_content),
-      $._percent_literal_end,
+      alias($._percent_literal_end, '`'),
     ),
 
     regex: $ => seq(
