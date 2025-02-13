@@ -304,7 +304,9 @@ class SExpVisitor < Crystal::Visitor
   end
 
   def visit(node : CharLiteral)
-    print_node("char")
+    in_node("char") do
+      print_node("literal_content")
+    end
     false
   end
 

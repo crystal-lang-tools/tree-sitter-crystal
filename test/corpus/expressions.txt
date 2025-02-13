@@ -603,7 +603,8 @@ bar 1, c: + 2,
           (literal_content)
           (string_escape_sequence)
           (literal_content))
-        (char))
+        (char
+          (literal_content)))
       (named_expr
         name: (string
           (literal_content))
@@ -2093,7 +2094,8 @@ ans = foo ? "foo" : bar ? "bar" : nil
         then: (string
           (literal_content))
         (comment)
-        else: (char))))
+        else: (char
+          (literal_content)))))
   (assign
     lhs: (identifier)
     rhs: (conditional
@@ -2149,7 +2151,8 @@ end
         then: (call
           method: (identifier)
           arguments: (argument_list
-            (char)))
+            (char
+              (literal_content))))
         cond: (identifier))
       (modifier_if
         then: (integer)
@@ -2258,7 +2261,8 @@ end
         then: (call
           method: (identifier)
           arguments: (argument_list
-            (char)))
+            (char
+              (literal_content))))
         cond: (identifier))
       (modifier_unless
         then: (integer)
@@ -3074,7 +3078,8 @@ a &.b 'b' { "in b" }.d.e
             receiver: (implicit_object_call
               method: (identifier)
               arguments: (argument_list
-                (char))
+                (char
+                  (literal_content)))
               block: (block
                 body: (expressions
                   (string
@@ -3689,7 +3694,8 @@ end
           (named_expr
             name: (string
               (literal_content))
-            (char))))
+            (char
+              (literal_content)))))
       body: (expressions
         (identifier)))
     (when
@@ -3697,7 +3703,8 @@ end
         method: (identifier)
         arguments: (argument_list
           (integer)
-          (char))
+          (char
+            (literal_content)))
         block: (block
           params: (param_list
             (param

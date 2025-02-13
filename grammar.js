@@ -705,7 +705,7 @@ module.exports = grammar({
     char: $ => seq(
       '\'',
       choice(
-        token.immediate(prec(1, /[^\\]/)),
+        alias(token.immediate(prec(1, /[^\\]/)), $.literal_content),
         $.char_escape_sequence,
       ),
       token.immediate('\''),

@@ -234,15 +234,24 @@ chars
 --------------------------------------------------------------------------------
 
 (expressions
-  (char)
-  (char)
-  (char)
-  (char)
-  (char)
-  (char)
-  (char)
-  (char)
-  (char)
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
   (char
     (char_escape_sequence))
   (char
@@ -409,7 +418,8 @@ string interpolation
         (interpolation
           (string
             (interpolation
-              (char)))))))
+              (char
+                (literal_content))))))))
   (string
     (literal_content)
     (interpolation
@@ -1637,11 +1647,15 @@ hashes
       (constant)))
   (hash
     (hash_entry
-      (char)
-      (char))
+      (char
+        (literal_content))
+      (char
+        (literal_content)))
     (hash_entry
-      (char)
-      (char))
+      (char
+        (literal_content))
+      (char
+        (literal_content)))
     of_key: (constant)
     of_value: (constant))
   (hash
@@ -1662,7 +1676,8 @@ hashes
           (integer)))
       (hash
         (hash_entry
-          (char)
+          (char
+            (literal_content))
           (array
             (float)))))))
 
@@ -1811,7 +1826,8 @@ tuples
     (integer)
     (string
       (literal_content))
-    (char))
+    (char
+      (literal_content)))
   (tuple
     (nil))
   (tuple
@@ -1854,7 +1870,8 @@ named_tuple = {a2: "a", "55": 'b', A: "asdf#{a}", 🥰: 7, "
       (named_expr
         name: (string
           (literal_content))
-        (char))
+        (char
+          (literal_content)))
       (named_expr
         name: (identifier)
         (string

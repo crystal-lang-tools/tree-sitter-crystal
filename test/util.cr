@@ -34,9 +34,6 @@ end
 class TreeSitterParseCleaner
   # These nodes will be removed from the expected output
   STRIPPED_NODES = [
-    # string escapes are interpreted by the parser and not preserved
-    "char_escape_sequence",
-
     "regex_modifier", # TODO think about keeping this in the tree
 
     # heredoc bodies are collapsed by the parser
@@ -53,6 +50,7 @@ class TreeSitterParseCleaner
     "heredoc_start"                          => "string",
     "assign_call"                            => "call",
     "string_escape_sequence"                 => "literal_content",
+    "char_escape_sequence"                   => "literal_content",
     "ignored_backslash"                      => "literal_content",
     "macro_content\\s*\\(literal_content\\)" => "macro_content",
   }

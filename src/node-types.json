@@ -3968,10 +3968,14 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "char_escape_sequence",
+          "named": true
+        },
+        {
+          "type": "literal_content",
           "named": true
         }
       ]

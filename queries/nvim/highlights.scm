@@ -109,6 +109,12 @@
 
 (string_escape_sequence) @string.escape
 
+(char
+  "'" @character)
+
+(char
+  (literal_content) @character)
+
 (integer) @number
 
 (float) @number.float
