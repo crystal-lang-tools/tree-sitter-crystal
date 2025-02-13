@@ -38,7 +38,6 @@ class TreeSitterParseCleaner
 
     # heredoc bodies are collapsed by the parser
     "heredoc_end",
-    "heredoc_content",
     "heredoc_body",
 
     # comments aren't included in the crystal parser's syntax tree

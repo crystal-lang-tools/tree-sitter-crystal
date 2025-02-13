@@ -100,7 +100,8 @@
 
 (regex_modifier) @character.special
 
-(heredoc_content) @string
+(heredoc_body
+  (literal_content) @string)
 
 [
   (heredoc_start)

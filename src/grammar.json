@@ -2860,8 +2860,13 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "heredoc_content"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "heredoc_content"
+                },
+                "named": true,
+                "value": "literal_content"
               },
               {
                 "type": "SYMBOL",

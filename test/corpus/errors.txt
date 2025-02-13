@@ -342,52 +342,52 @@ q
       method: (operator)
       receiver: (identifier)))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (integer)
   (identifier))
@@ -413,7 +413,7 @@ b = <<-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
     lhs: (identifier)
     rhs: (heredoc_start))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (comment)
   (call
@@ -466,22 +466,22 @@ p <<-🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥�
         method: (operator)
         receiver: (identifier))))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end)))
 
 ================================================================================

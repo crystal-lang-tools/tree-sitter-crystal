@@ -816,7 +816,7 @@ module.exports = grammar({
     heredoc_body: $ => seq(
       $._heredoc_body_start,
       repeat(choice(
-        $.heredoc_content,
+        alias($.heredoc_content, $.literal_content),
         $.interpolation,
         seq(/\s*/, $.string_escape_sequence),
         seq(/\s*/, $.ignored_backslash),

@@ -589,7 +589,7 @@ c
       (heredoc_start)
       (integer)))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (assign
     lhs: (identifier)
@@ -601,20 +601,20 @@ c
     rhs: (heredoc_start)
     rhs: (heredoc_start))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (string_escape_sequence)
-    (heredoc_content)
+    (literal_content)
     (ignored_backslash)
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (interpolation
       (integer))
-    (heredoc_content)
+    (literal_content)
     (interpolation
       (integer))
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
     (heredoc_end))
@@ -622,7 +622,7 @@ c
     (heredoc_end))
   (heredoc_start)
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end)))
 
 ================================================================================
@@ -676,18 +676,18 @@ A
   (comment)
   (heredoc_start)
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (interpolation
       (heredoc_start))
-    (heredoc_content)
+    (literal_content)
     (heredoc_body
-      (heredoc_content)
+      (literal_content)
       (heredoc_end))
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_start)
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (interpolation
       (call
         receiver: (heredoc_start)
@@ -695,19 +695,19 @@ A
         arguments: (argument_list
           (heredoc_start)))
       (heredoc_body
-        (heredoc_content)
+        (literal_content)
         (heredoc_end))
       (heredoc_body
-        (heredoc_content)
+        (literal_content)
         (heredoc_end)))
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (call
     method: (identifier)
     arguments: (argument_list
       (heredoc_start)))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (interpolation
       (call
         receiver: (call
@@ -718,26 +718,26 @@ A
         method: (identifier)
         arguments: (argument_list
           (string))))
-    (heredoc_content)
+    (literal_content)
     (heredoc_body
-      (heredoc_content)
+      (literal_content)
       (heredoc_end))
-    (heredoc_content)
+    (literal_content)
     (heredoc_body
       (interpolation
         (heredoc_start))
-      (heredoc_content)
+      (literal_content)
       (heredoc_body
         (interpolation
           (heredoc_start)
           (heredoc_body
-            (heredoc_content)
+            (literal_content)
             (heredoc_end)))
-        (heredoc_content)
+        (literal_content)
         (heredoc_end))
-      (heredoc_content)
+      (literal_content)
       (heredoc_end))
-    (heredoc_content)
+    (literal_content)
     (heredoc_end)))
 
 ================================================================================
@@ -813,13 +813,13 @@ Heredoc 3
       (heredoc_start)
       (heredoc_start)))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end)))
 
 ================================================================================
@@ -840,11 +840,11 @@ p <<-TEXT
     arguments: (argument_list
       (heredoc_start)))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (string_escape_sequence)
-    (heredoc_content)
+    (literal_content)
     (ignored_backslash)
-    (heredoc_content)
+    (literal_content)
     (heredoc_end)))
 
 ================================================================================
@@ -2229,11 +2229,11 @@ not_chained = "str1"
     rhs: (heredoc_start)
     rhs: (heredoc_start))
   (heredoc_body
-    (heredoc_content)
-    (heredoc_content)
+    (literal_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (assign
     lhs: (identifier)

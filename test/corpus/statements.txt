@@ -1154,7 +1154,7 @@ end
     rhs: (symbol
       (literal_content))
     (heredoc_body
-      (heredoc_content)
+      (literal_content)
       (heredoc_end))
     rhs: (string
       (literal_content)))

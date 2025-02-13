@@ -7497,10 +7497,6 @@
       "required": true,
       "types": [
         {
-          "type": "heredoc_content",
-          "named": true
-        },
-        {
           "type": "heredoc_end",
           "named": true
         },
@@ -7510,6 +7506,10 @@
         },
         {
           "type": "interpolation",
+          "named": true
+        },
+        {
+          "type": "literal_content",
           "named": true
         },
         {
@@ -21060,10 +21060,6 @@
   {
     "type": "fun",
     "named": false
-  },
-  {
-    "type": "heredoc_content",
-    "named": true
   },
   {
     "type": "heredoc_end",
