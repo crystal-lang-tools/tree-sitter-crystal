@@ -113,6 +113,9 @@ module.exports = grammar({
     $._delimited_string_contents,
     $._string_literal_end,
 
+    $._command_literal_start,
+    $._command_literal_end,
+
     $._string_percent_literal_start,
     $._command_percent_literal_start,
     $._string_array_percent_literal_start,
@@ -866,25 +869,14 @@ module.exports = grammar({
     },
 
     command: $ => seq(
-      '`',
-      repeat(choice(
-        token.immediate(prec(1, /[^\\`]/)),
-        $.string_escape_sequence,
-        $.ignored_backslash,
-        $.interpolation,
-        $._line_continuation,
-      )),
-      token.immediate('`'),
+      alias($._command_literal_start, '`'),
+      optional($._string_literal_content),
+      alias($._command_literal_end, '`'),
     ),
 
     command_percent_literal: $ => seq(
       $._command_percent_literal_start,
-      repeat(choice(
-        $._delimited_string_contents,
-        $.interpolation,
-        $.string_escape_sequence,
-        $.ignored_backslash,
-      )),
+      optional($._string_percent_literal_content),
       $._percent_literal_end,
     ),
 

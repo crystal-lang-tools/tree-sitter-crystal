@@ -51,7 +51,9 @@ unterminated percent literal string
 --------------------------------------------------------------------------------
 
 (expressions
-  (ERROR))
+  (string
+    (literal_content)
+    (MISSING """)))
 
 ================================================================================
 unterminated percent literal array

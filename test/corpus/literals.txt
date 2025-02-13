@@ -2119,6 +2119,10 @@ Int32 \
 command literals
 :language(crystal)
 ================================================================================
+``
+`a \
+--b \
+--c`
 `tree-sitter generate`
 
 `echo "#{foo}\n"; \`echo "echo"\``
@@ -2129,18 +2133,30 @@ puts %x[echo \t[#{foo}]\]]
 (expressions
   (command)
   (command
+    (literal_content)
+    (literal_content)
+    (literal_content))
+  (command
+    (literal_content))
+  (command
+    (literal_content)
     (interpolation
       (identifier))
     (string_escape_sequence)
+    (literal_content)
     (ignored_backslash)
+    (literal_content)
     (ignored_backslash))
   (call
     method: (identifier)
     arguments: (argument_list
       (command
+        (literal_content)
         (string_escape_sequence)
+        (literal_content)
         (interpolation
           (identifier))
+        (literal_content)
         (ignored_backslash)))))
 
 ================================================================================

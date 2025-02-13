@@ -86,6 +86,12 @@
 (symbol
   (literal_content) @string.special.symbol)
 
+(command
+  "`" @string.special)
+
+(command
+  (literal_content) @string.special)
+
 (regex
   "/" @punctuation.bracket)
 

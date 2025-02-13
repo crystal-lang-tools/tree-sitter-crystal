@@ -78,6 +78,9 @@ enum Token {
     DELIMITED_STRING_CONTENTS,
     STRING_LITERAL_END,
 
+    COMMAND_LITERAL_START,
+    COMMAND_LITERAL_END,
+
     STRING_PERCENT_LITERAL_START,
     COMMAND_PERCENT_LITERAL_START,
     STRING_ARRAY_PERCENT_LITERAL_START,
@@ -527,6 +530,7 @@ static ScanResult scan_string_contents(State *state, TSLexer *lexer, const bool 
                 break;
             case '"':
             case '|':
+            case '`':
                 // These delimiters can't nest
                 if (ACTIVE_LITERAL(state)->closing_char == lexer->lookahead) {
                     if (found_content) {
@@ -1886,6 +1890,15 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
         }
     }
 
+    if (valid_symbols[COMMAND_LITERAL_END] && HAS_ACTIVE_LITERAL(state)) {
+        if (lexer->lookahead == ACTIVE_LITERAL(state)->closing_char) {
+            lex_advance(lexer);
+            (void)POP_LITERAL(state);
+            lexer->result_symbol = COMMAND_LITERAL_END;
+            return true;
+        }
+    }
+
     if (valid_symbols[DELIMITED_ARRAY_ELEMENT_START] && HAS_ACTIVE_LITERAL(state)) {
         lexer->result_symbol = DELIMITED_ARRAY_ELEMENT_START;
         return true;
@@ -2657,6 +2670,26 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
             }
             break;
 
+        case '`':
+            if (valid_symbols[COMMAND_LITERAL_START]) {
+                lex_advance(lexer);
+
+                PUSH_LITERAL(state, ((PercentLiteral){
+                                        .opening_char = '`',
+                                        .closing_char = '`',
+                                        .type = COMMAND,
+                                        .nesting_level = 0,
+                                    }));
+
+                lexer->result_symbol = COMMAND_LITERAL_START;
+                return true;
+            } else if (valid_symbols[COMMAND_LITERAL_END]) {
+                lex_advance(lexer);
+                lexer->result_symbol = COMMAND_LITERAL_END;
+                return true;
+            }
+            break;
+
         case '\\':
             if (valid_symbols[LINE_CONTINUATION]) {
                 // Don't allow line continuation in a quoted heredoc
@@ -2995,6 +3028,8 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
     LOG_SYMBOL(STRING_LITERAL_START);
     LOG_SYMBOL(DELIMITED_STRING_CONTENTS);
     LOG_SYMBOL(STRING_LITERAL_END);
+    LOG_SYMBOL(COMMAND_LITERAL_START);
+    LOG_SYMBOL(COMMAND_LITERAL_END);
     LOG_SYMBOL(STRING_PERCENT_LITERAL_START);
     LOG_SYMBOL(COMMAND_PERCENT_LITERAL_START);
     LOG_SYMBOL(STRING_ARRAY_PERCENT_LITERAL_START);

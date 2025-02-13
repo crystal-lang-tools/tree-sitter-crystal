@@ -4119,6 +4119,10 @@
           "named": true
         },
         {
+          "type": "literal_content",
+          "named": true
+        },
+        {
           "type": "string_escape_sequence",
           "named": true
         }
