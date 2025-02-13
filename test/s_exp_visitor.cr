@@ -338,7 +338,10 @@ class SExpVisitor < Crystal::Visitor
   end
 
   def visit(node : SymbolLiteral)
-    print_node("symbol")
+    in_node("symbol") do
+      print_node("literal_content") unless node.value.empty?
+    end
+
     false
   end
 
@@ -1327,14 +1330,21 @@ class SExpVisitor < Crystal::Visitor
         node.args.each do |arg|
           case arg
           when StringLiteral
-            next
+            print_node("literal_content") unless arg.value.empty?
           when StringInterpolation
-            arg.expressions.each do |interp|
-              next if interp.is_a?(StringLiteral)
+            # We want to collapse adjacent StringLiteral pieces into a single node
+            chunked_expressions = arg.expressions.chunk_while do |piece1, piece2|
+              piece1.is_a?(StringLiteral) && piece2.is_a?(StringLiteral)
+            end
 
-              in_node("interpolation") do
-                interp.accept self
+            chunked_expressions.each do |pieces|
+              if pieces.first.is_a?(StringLiteral)
+                print_node("literal_content")
+                next
               end
+
+              interp = pieces.first
+              in_node("interpolation") { interp.accept self }
             end
           else
             raise "unexpected node #{arg.class} #{arg}"
@@ -1606,7 +1616,9 @@ class SExpVisitor < Crystal::Visitor
 
       field "arguments" do
         in_node("argument_list") do
-          print_node("symbol")
+          in_node("symbol") do
+            print_node("literal_content") unless node.name.empty?
+          end
         end
       end
     end
