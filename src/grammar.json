@@ -2793,14 +2793,10 @@
                 "name": "_delimited_string_contents"
               },
               {
-                "type": "SYMBOL",
-                "name": "ignored_backslash"
-              },
-              {
                 "type": "ALIAS",
                 "content": {
-                  "type": "PATTERN",
-                  "value": "\\\\\\n"
+                  "type": "SYMBOL",
+                  "name": "percent_array_escape_sequence"
                 },
                 "named": true,
                 "value": "ignored_backslash"
@@ -2813,6 +2809,13 @@
           "name": "_delimited_array_element_end"
         }
       ]
+    },
+    "percent_array_escape_sequence": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\\\[\\s})\\]>|]"
+      }
     },
     "heredoc_body": {
       "type": "SEQ",

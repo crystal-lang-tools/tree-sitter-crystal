@@ -799,13 +799,15 @@ module.exports = grammar({
       $._delimited_array_element_start,
       repeat(choice(
         $._delimited_string_contents,
-        $.ignored_backslash,
-        // Normally backslash + newline is considered a string escape sequence, but
-        // it's valid here and represents a newline that doesn't break the word.
-        alias(/\\\n/, $.ignored_backslash),
+        alias($.percent_array_escape_sequence, $.ignored_backslash),
       )),
       $._delimited_array_element_end,
     ),
+
+    // The only escapes in a percent literal array are whitespace or a closing delimiter
+    percent_array_escape_sequence: $ => {
+      return token.immediate(/\\[\s})\]>|]/)
+    },
 
     heredoc_body: $ => seq(
       $._heredoc_body_start,
