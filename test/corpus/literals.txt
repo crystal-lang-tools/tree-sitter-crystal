@@ -948,7 +948,8 @@ p% ()
   (string
     (literal_content)
     (interpolation
-      (symbol)))
+      (symbol
+        (literal_content))))
   (string
     (literal_content))
   (string
@@ -1014,54 +1015,85 @@ d |
 
 (expressions
   (array
-    (string)
-    (string)
-    (string)
-    (string))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content)))
   (array
     (string
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
     (string
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
     (string
+      (literal_content)
       (ignored_backslash))
-    (string))
+    (string
+      (literal_content)))
   (array
-    (string)
+    (string
+      (literal_content))
     (string
       (ignored_backslash)
       (ignored_backslash)))
   (array
     (string
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
-    (string
-      (ignored_backslash)))
-  (array
-    (string
-      (ignored_backslash))
     (string
       (ignored_backslash)
-      (ignored_backslash)))
+      (literal_content)))
   (array
-    (string)
-    (string)
-    (string)
-    (string)
-    (string)
-    (string)
-    (string))
+    (string
+      (literal_content)
+      (ignored_backslash)
+      (literal_content))
+    (string
+      (literal_content)
+      (ignored_backslash)
+      (ignored_backslash)
+      (literal_content)))
+  (array
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content)))
   (comment)
   (array
-    (string)
-    (string)
-    (string))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content)))
   (array
-    (string)
-    (string)
-    (string)))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content))))
 
 ================================================================================
 percent symbol arrays
@@ -1092,57 +1124,91 @@ d)
 
 (expressions
   (array
-    (symbol)
-    (symbol)
-    (symbol)
-    (symbol))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content)))
   (array
     (symbol
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
     (symbol
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
     (symbol
+      (literal_content)
       (ignored_backslash))
-    (symbol))
+    (symbol
+      (literal_content)))
   (array
     (symbol
-      (ignored_backslash))
-    (symbol))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content))
+    (symbol
+      (literal_content)))
   (array
-    (symbol)
+    (symbol
+      (literal_content))
     (symbol
       (ignored_backslash)
       (ignored_backslash)))
   (array
     (symbol
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
     (symbol
-      (ignored_backslash)))
+      (ignored_backslash)
+      (literal_content)))
   (array
     (symbol
-      (ignored_backslash))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content))
     (symbol
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
-    (symbol)
-    (symbol)
-    (symbol)
-    (symbol)
-    (symbol)
-    (symbol)
-    (symbol))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content)))
   (comment)
   (array
-    (symbol)
-    (symbol)
-    (symbol))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content)))
   (array
-    (symbol)
-    (symbol)
-    (symbol)))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))))
 
 ================================================================================
 symbols
@@ -1155,6 +1221,7 @@ symbols
 :!
 :>
 :>>
+:""
 :"'"
 :"123"
 :"\'"
@@ -1167,30 +1234,46 @@ symbols
 --------------------------------------------------------------------------------
 
 (expressions
-  (symbol)
-  (symbol)
-  (symbol)
-  (symbol)
-  (symbol)
-  (symbol)
-  (symbol)
-  (symbol)
+  (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
   (symbol)
   (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
+  (symbol
     (ignored_backslash))
-  (symbol)
+  (symbol
+    (literal_content))
   (conditional
-    cond: (symbol)
-    then: (symbol)
-    else: (symbol))
+    cond: (symbol
+      (literal_content))
+    then: (symbol
+      (literal_content))
+    else: (symbol
+      (literal_content)))
   (conditional
-    cond: (symbol)
+    cond: (symbol
+      (literal_content))
     then: (call
       method: (identifier)
       arguments: (argument_list
         (symbol
           (string_escape_sequence))))
-    else: (symbol)))
+    else: (symbol
+      (literal_content))))
 
 ================================================================================
 symbols ending in !?=
@@ -1212,31 +1295,39 @@ world = "world"
     lhs: (identifier)
     rhs: (string
       (literal_content)))
-  (symbol)
+  (symbol
+    (literal_content))
   (call
-    receiver: (symbol)
+    receiver: (symbol
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (identifier)))
   (call
-    receiver: (symbol)
+    receiver: (symbol
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (identifier)))
-  (symbol)
+  (symbol
+    (literal_content))
   (call
-    receiver: (symbol)
+    receiver: (symbol
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (identifier)))
   (call
-    receiver: (symbol)
+    receiver: (symbol
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (identifier)))
-  (symbol)
+  (symbol
+    (literal_content))
   (call
-    receiver: (symbol)
+    receiver: (symbol
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (identifier))))

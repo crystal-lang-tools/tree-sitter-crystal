@@ -19,6 +19,7 @@ unterminated symbol
 
 (expressions
   (symbol
+    (literal_content)
     (MISSING """)))
 
 ================================================================================
@@ -61,7 +62,8 @@ unterminated percent literal array
 
 (expressions
   (ERROR
-    (string)))
+    (string
+      (literal_content))))
 
 ================================================================================
 incorrectly escaped %q string

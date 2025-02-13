@@ -76,7 +76,15 @@
 (string
   (literal_content) @string)
 
-(symbol) @string.special.symbol
+(symbol
+  [
+   ":"
+   ":\""
+   "\""
+  ] @string.special.symbol)
+
+(symbol
+  (literal_content) @string.special.symbol)
 
 (regex
   "/" @punctuation.bracket)

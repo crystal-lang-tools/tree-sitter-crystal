@@ -2789,8 +2789,13 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_delimited_string_contents"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_delimited_string_contents"
+                },
+                "named": true,
+                "value": "literal_content"
               },
               {
                 "type": "ALIAS",
@@ -2877,15 +2882,20 @@
       ]
     },
     "operator_symbol": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": ":"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_start_of_symbol"
           },
-          {
+          "named": false,
+          "value": ":"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
             "type": "IMMEDIATE_TOKEN",
             "content": {
               "type": "CHOICE",
@@ -3016,9 +3026,34 @@
                 }
               ]
             }
-          }
-        ]
-      }
+          },
+          "named": true,
+          "value": "literal_content"
+        }
+      ]
+    },
+    "unquoted_symbol": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_start_of_symbol"
+          },
+          "named": false,
+          "value": ":"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "unquoted_symbol_content"
+          },
+          "named": true,
+          "value": "literal_content"
+        }
+      ]
     },
     "quoted_symbol": {
       "type": "SEQ",
@@ -3036,15 +3071,20 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "IMMEDIATE_TOKEN",
+                    "type": "ALIAS",
                     "content": {
-                      "type": "PREC",
-                      "value": 1,
+                      "type": "IMMEDIATE_TOKEN",
                       "content": {
-                        "type": "PATTERN",
-                        "value": "[^\\\\\"]"
+                        "type": "PREC",
+                        "value": 1,
+                        "content": {
+                          "type": "PATTERN",
+                          "value": "[^\\\\\"]+"
+                        }
                       }
-                    }
+                    },
+                    "named": true,
+                    "value": "literal_content"
                   },
                   {
                     "type": "SYMBOL",
@@ -15472,7 +15512,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "unquoted_symbol"
+      "name": "_start_of_symbol"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "unquoted_symbol_content"
     },
     {
       "type": "SYMBOL",

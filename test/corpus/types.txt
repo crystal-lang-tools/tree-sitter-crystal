@@ -623,7 +623,8 @@ f = -> : -> { a: String; ->{} }
       (named_tuple
         (named_expr
           name: (identifier)
-          (symbol)))))
+          (symbol
+            (literal_content))))))
   (method_def
     name: (identifier)
     type: (proc_type)

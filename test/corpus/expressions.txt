@@ -822,8 +822,10 @@ a, b, c = d.val, e.val, f = {1, 2, 3}
     lhs: (assign_call
       receiver: (identifier)
       method: (identifier))
-    rhs: (symbol)
-    rhs: (symbol))
+    rhs: (symbol
+      (literal_content))
+    rhs: (symbol
+      (literal_content)))
   (assign
     lhs: (identifier)
     lhs: (identifier)
@@ -986,7 +988,8 @@ end
         (constant)))
     else: (else
       body: (expressions
-        (symbol))))
+        (symbol
+          (literal_content)))))
   (begin
     rescue: (rescue
       variable: (identifier)
@@ -1081,33 +1084,41 @@ begin :a; rescue; :b else :c; ensure p! :d end
         (integer))))
   (begin
     body: (expressions
-      (symbol))
+      (symbol
+        (literal_content)))
     rescue: (rescue
       body: (expressions
-        (symbol)))
+        (symbol
+          (literal_content))))
     else: (else
       body: (expressions
         (modifier_ensure
-          (symbol)
+          (symbol
+            (literal_content))
           ensure: (call
             method: (identifier)
             arguments: (argument_list
-              (symbol)))))))
+              (symbol
+                (literal_content))))))))
   (begin
     body: (expressions
-      (symbol))
+      (symbol
+        (literal_content)))
     rescue: (rescue
       body: (expressions
-        (symbol)))
+        (symbol
+          (literal_content))))
     else: (else
       body: (expressions
-        (symbol)))
+        (symbol
+          (literal_content))))
     ensure: (ensure
       body: (expressions
         (call
           method: (identifier)
           arguments: (argument_list
-            (symbol)))))))
+            (symbol
+              (literal_content))))))))
 
 ================================================================================
 rescue modifiers
@@ -1725,7 +1736,8 @@ e !~ /regex/
       receiver: (constant)
       method: (operator)
       arguments: (argument_list
-        (symbol)))))
+        (symbol
+          (literal_content))))))
 
 ================================================================================
 comparison operators
@@ -2413,7 +2425,8 @@ end
         (param
           name: (identifier)))
       body: (expressions
-        (symbol))
+        (symbol
+          (literal_content)))
       rescue: (rescue)
       else: (else)
       ensure: (ensure))))
@@ -3314,7 +3327,8 @@ end
           (argument_list
             (integer)))
         (argument_list
-          (symbol)
+          (symbol
+            (literal_content))
           (yield
             (argument_list
               (string
@@ -3670,7 +3684,8 @@ end
         arguments: (argument_list
           (named_expr
             name: (identifier)
-            (symbol))
+            (symbol
+              (literal_content)))
           (named_expr
             name: (string
               (literal_content))
@@ -4799,7 +4814,8 @@ end
           (call
             method: (identifier)
             arguments: (argument_list
-              (symbol)))
+              (symbol
+                (literal_content))))
           (call
             receiver: (self)
             method: (operator)))))))

@@ -99,7 +99,8 @@ module.exports = grammar({
 
     $._modulo_operator,
 
-    $.unquoted_symbol,
+    $._start_of_symbol,
+    $.unquoted_symbol_content,
 
     // Represents the /\s:\s/ token that comes before param and return types.
     // The main reason for moving this token to the external scanner is a
@@ -798,7 +799,7 @@ module.exports = grammar({
     percent_literal_array_word: $ => seq(
       $._delimited_array_element_start,
       repeat(choice(
-        $._delimited_string_contents,
+        alias($._delimited_string_contents, $.literal_content),
         alias($.percent_array_escape_sequence, $.ignored_backslash),
       )),
       $._delimited_array_element_end,
@@ -821,24 +822,48 @@ module.exports = grammar({
       $.heredoc_end,
     ),
 
-    operator_symbol: $ => token(seq(
-      ':',
-      token.immediate(
-        choice(...operator_tokens),
-      ),
-    )),
+    operator_symbol: $ => {
+      const symbol_content = alias(
+        token.immediate(choice(...operator_tokens)),
+        $.literal_content,
+      )
 
-    quoted_symbol: $ => seq(
-      ':"',
-      seq(
-        repeat(choice(
-          token.immediate(prec(1, /[^\\"]/)),
-          $.string_escape_sequence,
-          $.ignored_backslash,
-        )),
-        token.immediate('"'),
-      ),
-    ),
+      return seq(
+        alias($._start_of_symbol, ':'),
+        symbol_content,
+      )
+    },
+
+    unquoted_symbol: $ => {
+      const symbol_content = alias(
+        $.unquoted_symbol_content,
+        $.literal_content,
+      )
+
+      return seq(
+        alias($._start_of_symbol, ':'),
+        symbol_content,
+      )
+    },
+
+    quoted_symbol: $ => {
+      const symbol_content = alias(
+        token.immediate(prec(1, /[^\\"]+/)),
+        $.literal_content,
+      )
+
+      return seq(
+        ':"',
+        seq(
+          repeat(choice(
+            symbol_content,
+            $.string_escape_sequence,
+            $.ignored_backslash,
+          )),
+          token.immediate('"'),
+        ),
+      )
+    },
 
     command: $ => seq(
       '`',

@@ -71,7 +71,8 @@ end
     cond: (call
       method: (identifier)
       arguments: (argument_list
-        (symbol)))
+        (symbol
+          (literal_content))))
     then: (expressions
       (macro_content)
       (macro_content
@@ -101,12 +102,14 @@ end
     cond: (call
       method: (identifier)
       arguments: (argument_list
-        (symbol)))
+        (symbol
+          (literal_content))))
     else: (macro_elsif
       cond: (call
         method: (identifier)
         arguments: (argument_list
-          (symbol)))
+          (symbol
+            (literal_content))))
       else: (macro_else))))
 
 ============
@@ -597,7 +600,8 @@ GC.init
     cond: (call
       method: (identifier)
       arguments: (argument_list
-        (symbol)))
+        (symbol
+          (literal_content))))
     then: (expressions
       (macro_content)))
   (call

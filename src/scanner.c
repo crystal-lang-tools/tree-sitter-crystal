@@ -69,7 +69,8 @@ enum Token {
 
     MODULO_OPERATOR,
 
-    UNQUOTED_SYMBOL,
+    START_OF_SYMBOL,
+    UNQUOTED_SYMBOL_CONTENT,
 
     TYPE_FIELD_COLON,
 
@@ -1356,6 +1357,47 @@ static ScanResult scan_macro_contents(State *state, TSLexer *lexer, const bool *
     }
 }
 
+static ScanResult scan_symbol_content(TSLexer *lexer) {
+    int32_t lookahead = lexer->lookahead;
+
+    if (('A' <= lookahead && lookahead <= 'Z')
+        || ('a' <= lookahead && lookahead <= 'z')
+        || (lookahead == '_')
+        || (0x00a0 <= lookahead && lookahead <= 0x10ffffff)) {
+
+        lexer->result_symbol = UNQUOTED_SYMBOL_CONTENT;
+        lex_advance(lexer);
+
+        while (is_ident_part(lexer->lookahead)) {
+            lex_advance(lexer);
+        }
+
+        switch (lexer->lookahead) {
+            case '?':
+                // Symbols like `:foo?` always include the trailing character
+                lex_advance(lexer);
+                return SR_STOP;
+
+            case '!':
+            case '=':
+                // Symbols like `:foo!` or `:bar=` include the trailing character,
+                // only if the next char isn't also `=`
+                lexer->mark_end(lexer);
+                lex_advance(lexer);
+
+                if (lexer->lookahead != '=') {
+                    lexer->mark_end(lexer);
+                }
+                return SR_STOP;
+
+            default:
+                return SR_STOP;
+        }
+    }
+
+    return SR_CONTINUE;
+}
+
 static bool scan_regex_modifier(State *state, TSLexer *lexer) {
     if (!state->has_leading_whitespace) {
         bool found_modifier = false;
@@ -1796,6 +1838,17 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
 
     if ((valid_symbols[MACRO_CONTENT] || valid_symbols[MACRO_CONTENT_NESTING]) && !valid_symbols[ERROR_RECOVERY]) {
         switch (scan_macro_contents(state, lexer, valid_symbols)) {
+            case SR_STOP:
+                return true;
+            case SR_STOP_NO_CONTENT:
+                return false;
+            case SR_CONTINUE:
+                break;
+        }
+    }
+
+    if (valid_symbols[UNQUOTED_SYMBOL_CONTENT] && !valid_symbols[ERROR_RECOVERY]) {
+        switch (scan_symbol_content(lexer)) {
             case SR_STOP:
                 return true;
             case SR_STOP_NO_CONTENT:
@@ -2643,7 +2696,7 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
             break;
 
         case ':':
-            if (valid_symbols[UNQUOTED_SYMBOL] || valid_symbols[TYPE_FIELD_COLON]) {
+            if (valid_symbols[START_OF_SYMBOL] || valid_symbols[TYPE_FIELD_COLON]) {
                 lex_advance(lexer);
 
                 int32_t lookahead = lexer->lookahead;
@@ -2654,8 +2707,28 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                     return true;
                 }
 
-                if (!valid_symbols[UNQUOTED_SYMBOL]) {
+                if (!valid_symbols[START_OF_SYMBOL]) {
                     return false;
+                }
+
+                switch (lookahead) {
+                    case '!':
+                    case '%':
+                    case '&':
+                    case '*':
+                    case '+':
+                    case '-':
+                    case '/':
+                    case '<':
+                    case '=':
+                    case '>':
+                    case '[':
+                    case '^':
+                    case '|':
+                    case '~':
+                        // start of an operator symbol
+                        lexer->result_symbol = START_OF_SYMBOL;
+                        return true;
                 }
 
                 if (('A' <= lookahead && lookahead <= 'Z')
@@ -2663,35 +2736,9 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                     || (lookahead == '_')
                     || (0x00a0 <= lookahead && lookahead <= 0x10ffffff)) {
 
-                    // This is the start of a symbol
-                    lexer->result_symbol = UNQUOTED_SYMBOL;
-                    lex_advance(lexer);
-
-                    while (is_ident_part(lexer->lookahead)) {
-                        lex_advance(lexer);
-                    }
-
-                    switch (lexer->lookahead) {
-                        case '?':
-                            // Symbols like `:foo?` always include the trailing character
-                            lex_advance(lexer);
-                            return true;
-
-                        case '!':
-                        case '=':
-                            // Symbols like `:foo!` or `:bar=` include the trailing character,
-                            // only if the next char isn't also `=`
-                            lexer->mark_end(lexer);
-                            lex_advance(lexer);
-
-                            if (lexer->lookahead != '=') {
-                                lexer->mark_end(lexer);
-                            }
-                            return true;
-
-                        default:
-                            return true;
-                    }
+                    // This is the start of an unquoted symbol
+                    lexer->result_symbol = START_OF_SYMBOL;
+                    return true;
                 }
             }
             break;
@@ -2942,7 +2989,8 @@ bool tree_sitter_crystal_external_scanner_scan(void *payload, TSLexer *lexer, co
     LOG_SYMBOL(REGULAR_ENSURE_KEYWORD);
     LOG_SYMBOL(MODIFIER_ENSURE_KEYWORD);
     LOG_SYMBOL(MODULO_OPERATOR);
-    LOG_SYMBOL(UNQUOTED_SYMBOL);
+    LOG_SYMBOL(START_OF_SYMBOL);
+    LOG_SYMBOL(UNQUOTED_SYMBOL_CONTENT);
     LOG_SYMBOL(TYPE_FIELD_COLON);
     LOG_SYMBOL(STRING_LITERAL_START);
     LOG_SYMBOL(DELIMITED_STRING_CONTENTS);
