@@ -601,7 +601,7 @@ bar 1, c: + 2,
       (named_expr
         name: (string
           (literal_content)
-          (string_escape_sequence)
+          (escape_sequence)
           (literal_content))
         (char
           (literal_content)))

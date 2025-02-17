@@ -3971,7 +3971,7 @@
       "required": true,
       "types": [
         {
-          "type": "char_escape_sequence",
+          "type": "escape_sequence",
           "named": true
         },
         {
@@ -4115,7 +4115,7 @@
       "required": false,
       "types": [
         {
-          "type": "ignored_backslash",
+          "type": "escape_sequence",
           "named": true
         },
         {
@@ -4124,10 +4124,6 @@
         },
         {
           "type": "literal_content",
-          "named": true
-        },
-        {
-          "type": "string_escape_sequence",
           "named": true
         }
       ]
@@ -7497,11 +7493,11 @@
       "required": true,
       "types": [
         {
-          "type": "heredoc_end",
+          "type": "escape_sequence",
           "named": true
         },
         {
-          "type": "ignored_backslash",
+          "type": "heredoc_end",
           "named": true
         },
         {
@@ -7510,10 +7506,6 @@
         },
         {
           "type": "literal_content",
-          "named": true
-        },
-        {
-          "type": "string_escape_sequence",
           "named": true
         }
       ]
@@ -8952,7 +8944,7 @@
       "required": false,
       "types": [
         {
-          "type": "ignored_backslash",
+          "type": "escape_sequence",
           "named": true
         },
         {
@@ -8961,10 +8953,6 @@
         },
         {
           "type": "literal_content",
-          "named": true
-        },
-        {
-          "type": "string_escape_sequence",
           "named": true
         }
       ]
@@ -17498,7 +17486,7 @@
       "required": false,
       "types": [
         {
-          "type": "ignored_backslash",
+          "type": "escape_sequence",
           "named": true
         },
         {
@@ -17507,10 +17495,6 @@
         },
         {
           "type": "literal_content",
-          "named": true
-        },
-        {
-          "type": "string_escape_sequence",
           "named": true
         }
       ]
@@ -17579,15 +17563,11 @@
       "required": false,
       "types": [
         {
-          "type": "ignored_backslash",
+          "type": "escape_sequence",
           "named": true
         },
         {
           "type": "literal_content",
-          "named": true
-        },
-        {
-          "type": "string_escape_sequence",
           "named": true
         }
       ]
@@ -20998,10 +20978,6 @@
     "named": false
   },
   {
-    "type": "char_escape_sequence",
-    "named": true
-  },
-  {
     "type": "class",
     "named": false
   },
@@ -21042,6 +21018,10 @@
     "named": false
   },
   {
+    "type": "escape_sequence",
+    "named": true
+  },
+  {
     "type": "extend",
     "named": false
   },
@@ -21076,10 +21056,6 @@
   {
     "type": "if",
     "named": false
-  },
-  {
-    "type": "ignored_backslash",
-    "named": true
   },
   {
     "type": "in",
@@ -21171,10 +21147,6 @@
   },
   {
     "type": "special_variable",
-    "named": true
-  },
-  {
-    "type": "string_escape_sequence",
     "named": true
   },
   {
