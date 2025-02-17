@@ -3968,10 +3968,14 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "char_escape_sequence",
+          "named": true
+        },
+        {
+          "type": "literal_content",
           "named": true
         }
       ]
@@ -4116,6 +4120,10 @@
         },
         {
           "type": "interpolation",
+          "named": true
+        },
+        {
+          "type": "literal_content",
           "named": true
         },
         {
@@ -7489,10 +7497,6 @@
       "required": true,
       "types": [
         {
-          "type": "heredoc_content",
-          "named": true
-        },
-        {
           "type": "heredoc_end",
           "named": true
         },
@@ -7502,6 +7506,10 @@
         },
         {
           "type": "interpolation",
+          "named": true
+        },
+        {
+          "type": "literal_content",
           "named": true
         },
         {
@@ -8949,6 +8957,10 @@
         },
         {
           "type": "interpolation",
+          "named": true
+        },
+        {
+          "type": "literal_content",
           "named": true
         },
         {
@@ -17494,6 +17506,10 @@
           "named": true
         },
         {
+          "type": "literal_content",
+          "named": true
+        },
+        {
           "type": "string_escape_sequence",
           "named": true
         }
@@ -17564,6 +17580,10 @@
       "types": [
         {
           "type": "ignored_backslash",
+          "named": true
+        },
+        {
+          "type": "literal_content",
           "named": true
         },
         {
@@ -21040,10 +21060,6 @@
   {
     "type": "fun",
     "named": false
-  },
-  {
-    "type": "heredoc_content",
-    "named": true
   },
   {
     "type": "heredoc_end",

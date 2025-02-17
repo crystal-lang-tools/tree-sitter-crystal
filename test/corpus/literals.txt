@@ -234,15 +234,24 @@ chars
 --------------------------------------------------------------------------------
 
 (expressions
-  (char)
-  (char)
-  (char)
-  (char)
-  (char)
-  (char)
-  (char)
-  (char)
-  (char)
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
+  (char
+    (literal_content))
   (char
     (char_escape_sequence))
   (char
@@ -321,12 +330,15 @@ strings
 
 (expressions
   (string)
-  (string)
-  (string)
-  (string)
-  (string)
   (string
-    (string_escape_sequence))
+    (literal_content))
+  (string
+    (literal_content))
+  (string
+    (literal_content))
+  (string
+    (literal_content))
+  (string)
   (string
     (string_escape_sequence))
   (string
@@ -389,11 +401,14 @@ string interpolation
 --------------------------------------------------------------------------------
 
 (expressions
-  (string)
   (string
-    (ignored_backslash))
+    (literal_content))
   (string
-    (ignored_backslash))
+    (ignored_backslash)
+    (literal_content))
+  (string
+    (ignored_backslash)
+    (literal_content))
   (string
     (interpolation
       (integer)))
@@ -403,8 +418,10 @@ string interpolation
         (interpolation
           (string
             (interpolation
-              (char)))))))
+              (char
+                (literal_content))))))))
   (string
+    (literal_content)
     (interpolation
       (call
         receiver: (identifier)
@@ -412,8 +429,10 @@ string interpolation
   (string
     (interpolation
       (identifier))
+    (literal_content)
     (interpolation
       (identifier))
+    (literal_content)
     (interpolation
       (call
         receiver: (identifier)
@@ -570,7 +589,7 @@ c
       (heredoc_start)
       (integer)))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (assign
     lhs: (identifier)
@@ -582,20 +601,20 @@ c
     rhs: (heredoc_start)
     rhs: (heredoc_start))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (string_escape_sequence)
-    (heredoc_content)
+    (literal_content)
     (ignored_backslash)
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (interpolation
       (integer))
-    (heredoc_content)
+    (literal_content)
     (interpolation
       (integer))
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
     (heredoc_end))
@@ -603,7 +622,7 @@ c
     (heredoc_end))
   (heredoc_start)
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end)))
 
 ================================================================================
@@ -657,18 +676,18 @@ A
   (comment)
   (heredoc_start)
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (interpolation
       (heredoc_start))
-    (heredoc_content)
+    (literal_content)
     (heredoc_body
-      (heredoc_content)
+      (literal_content)
       (heredoc_end))
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_start)
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (interpolation
       (call
         receiver: (heredoc_start)
@@ -676,19 +695,19 @@ A
         arguments: (argument_list
           (heredoc_start)))
       (heredoc_body
-        (heredoc_content)
+        (literal_content)
         (heredoc_end))
       (heredoc_body
-        (heredoc_content)
+        (literal_content)
         (heredoc_end)))
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (call
     method: (identifier)
     arguments: (argument_list
       (heredoc_start)))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (interpolation
       (call
         receiver: (call
@@ -699,31 +718,30 @@ A
         method: (identifier)
         arguments: (argument_list
           (string))))
-    (heredoc_content)
+    (literal_content)
     (heredoc_body
-      (heredoc_content)
+      (literal_content)
       (heredoc_end))
-    (heredoc_content)
+    (literal_content)
     (heredoc_body
       (interpolation
         (heredoc_start))
-      (heredoc_content)
+      (literal_content)
       (heredoc_body
         (interpolation
           (heredoc_start)
           (heredoc_body
-            (heredoc_content)
+            (literal_content)
             (heredoc_end)))
-        (heredoc_content)
+        (literal_content)
         (heredoc_end))
-      (heredoc_content)
+      (literal_content)
       (heredoc_end))
-    (heredoc_content)
+    (literal_content)
     (heredoc_end)))
 
 ================================================================================
 heredoc encoding stress test
-:language(crystal)
 ================================================================================
 # This fills up the internal heredoc buffer to its max of 512 bytes
 p <<-🍑📣👑⚖🚨🌶🕟🔤😬☄🚣🎆🐛🌖🎑🎧🕍👲💳🎷🎣🏇😠🔹🚶🎧, <<-'🐨🛡🚝💵a1;🈹☀️🖥🙉🎰🌕🌀🌷🔥🎽😮🤒🚈🏈🕋🍬↙️🐺📈🍓⚓️📚🔯😚🔂✔️🚅📆➿👚💖🚔🐮🎫😊📓🎮⚗🚦👙👹♥️🏢❤️📅👛🏳❗️🏯🏵🍁🐱🎭🤔🎚🍖', <<-🛀🚍📏🙉🍽🏰📡🙅🕰🖍🚭⛔️🌎🤔🏷🖊🔁🍮🤕🏙🛩🛍🔦👪😅🎎🐸📎😊📦🚃🎇📣⛰👒🌹👶🎄__
@@ -795,18 +813,17 @@ Heredoc 3
       (heredoc_start)
       (heredoc_start)))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end)))
 
 ================================================================================
 heredoc escape with leading whitespace
-:language(crystal)
 ================================================================================
 p <<-TEXT
   a
@@ -823,11 +840,11 @@ p <<-TEXT
     arguments: (argument_list
       (heredoc_start)))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (string_escape_sequence)
-    (heredoc_content)
+    (literal_content)
     (ignored_backslash)
-    (heredoc_content)
+    (literal_content)
     (heredoc_end)))
 
 ================================================================================
@@ -877,7 +894,8 @@ p% ()
 --------------------------------------------------------------------------------
 
 (expressions
-  (string)
+  (string
+    (literal_content))
   (call
     receiver: (identifier)
     method: (operator)
@@ -886,54 +904,77 @@ p% ()
   (string)
   (string)
   (call
-    receiver: (string)
+    receiver: (string
+      (literal_content))
     method: (operator)
     arguments: (argument_list
-      (string)))
-  (string)
-  (string)
-  (string)
-  (string)
+      (string
+        (literal_content))))
+  (string
+    (literal_content))
+  (string
+    (literal_content))
+  (string
+    (literal_content))
+  (string
+    (literal_content))
   (string
     (string_escape_sequence)
     (ignored_backslash))
-  (string)
+  (string
+    (literal_content))
   (string
     (ignored_backslash)
     (string_escape_sequence))
-  (string)
-  (string)
+  (string
+    (literal_content))
+  (string
+    (literal_content))
   (string
     (string_escape_sequence))
   (string
-    (string_escape_sequence)
     (string_escape_sequence))
   (string
+    (literal_content)
     (interpolation
-      (integer)))
+      (integer))
+    (literal_content))
   (string
     (interpolation
       (call
-        receiver: (string)
+        receiver: (string
+          (literal_content))
         method: (operator)
         arguments: (argument_list
-          (string)))))
-  (string)
+          (string
+            (literal_content))))))
   (string
+    (literal_content))
+  (string
+    (literal_content)
     (string_escape_sequence))
   (string
+    (literal_content)
     (interpolation
-      (symbol)))
-  (string)
-  (string)
-  (string)
+      (symbol
+        (literal_content))))
   (string
+    (literal_content))
+  (string
+    (literal_content))
+  (string
+    (literal_content))
+  (string
+    (literal_content)
     (interpolation
       (tuple
         (integer))))
-  (string)
-  (string)
-  (string))
+  (string
+    (literal_content))
+  (string
+    (literal_content))
+  (string
+    (literal_content)))
 
 ================================================================================
 nested percent strings
@@ -951,7 +992,8 @@ nested percent strings
         (interpolation
           (string
             (interpolation
-              (string))))))))
+              (string
+                (literal_content)))))))))
 
 ================================================================================
 percent string arrays
@@ -981,54 +1023,85 @@ d |
 
 (expressions
   (array
-    (string)
-    (string)
-    (string)
-    (string))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content)))
   (array
     (string
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
     (string
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
     (string
+      (literal_content)
       (ignored_backslash))
-    (string))
+    (string
+      (literal_content)))
   (array
-    (string)
+    (string
+      (literal_content))
     (string
       (ignored_backslash)
       (ignored_backslash)))
   (array
     (string
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
-    (string
-      (ignored_backslash)))
-  (array
-    (string
-      (ignored_backslash))
     (string
       (ignored_backslash)
-      (ignored_backslash)))
+      (literal_content)))
   (array
-    (string)
-    (string)
-    (string)
-    (string)
-    (string)
-    (string)
-    (string))
+    (string
+      (literal_content)
+      (ignored_backslash)
+      (literal_content))
+    (string
+      (literal_content)
+      (ignored_backslash)
+      (ignored_backslash)
+      (literal_content)))
+  (array
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content)))
   (comment)
   (array
-    (string)
-    (string)
-    (string))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content)))
   (array
-    (string)
-    (string)
-    (string)))
+    (string
+      (literal_content))
+    (string
+      (literal_content))
+    (string
+      (literal_content))))
 
 ================================================================================
 percent symbol arrays
@@ -1059,57 +1132,91 @@ d)
 
 (expressions
   (array
-    (symbol)
-    (symbol)
-    (symbol)
-    (symbol))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content)))
   (array
     (symbol
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
     (symbol
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
     (symbol
+      (literal_content)
       (ignored_backslash))
-    (symbol))
+    (symbol
+      (literal_content)))
   (array
     (symbol
-      (ignored_backslash))
-    (symbol))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content))
+    (symbol
+      (literal_content)))
   (array
-    (symbol)
+    (symbol
+      (literal_content))
     (symbol
       (ignored_backslash)
       (ignored_backslash)))
   (array
     (symbol
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
     (symbol
-      (ignored_backslash)))
+      (ignored_backslash)
+      (literal_content)))
   (array
     (symbol
-      (ignored_backslash))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content))
     (symbol
-      (ignored_backslash)))
+      (literal_content)
+      (ignored_backslash)
+      (literal_content)))
   (array
-    (symbol)
-    (symbol)
-    (symbol)
-    (symbol)
-    (symbol)
-    (symbol)
-    (symbol))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content)))
   (comment)
   (array
-    (symbol)
-    (symbol)
-    (symbol))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content)))
   (array
-    (symbol)
-    (symbol)
-    (symbol)))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))
+    (symbol
+      (literal_content))))
 
 ================================================================================
 symbols
@@ -1122,6 +1229,7 @@ symbols
 :!
 :>
 :>>
+:""
 :"'"
 :"123"
 :"\'"
@@ -1134,30 +1242,46 @@ symbols
 --------------------------------------------------------------------------------
 
 (expressions
-  (symbol)
-  (symbol)
-  (symbol)
-  (symbol)
-  (symbol)
-  (symbol)
-  (symbol)
-  (symbol)
+  (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
   (symbol)
   (symbol
+    (literal_content))
+  (symbol
+    (literal_content))
+  (symbol
     (ignored_backslash))
-  (symbol)
+  (symbol
+    (literal_content))
   (conditional
-    cond: (symbol)
-    then: (symbol)
-    else: (symbol))
+    cond: (symbol
+      (literal_content))
+    then: (symbol
+      (literal_content))
+    else: (symbol
+      (literal_content)))
   (conditional
-    cond: (symbol)
+    cond: (symbol
+      (literal_content))
     then: (call
       method: (identifier)
       arguments: (argument_list
         (symbol
           (string_escape_sequence))))
-    else: (symbol)))
+    else: (symbol
+      (literal_content))))
 
 ================================================================================
 symbols ending in !?=
@@ -1177,32 +1301,41 @@ world = "world"
 (expressions
   (assign
     lhs: (identifier)
-    rhs: (string))
-  (symbol)
+    rhs: (string
+      (literal_content)))
+  (symbol
+    (literal_content))
   (call
-    receiver: (symbol)
+    receiver: (symbol
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (identifier)))
   (call
-    receiver: (symbol)
+    receiver: (symbol
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (identifier)))
-  (symbol)
+  (symbol
+    (literal_content))
   (call
-    receiver: (symbol)
+    receiver: (symbol
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (identifier)))
   (call
-    receiver: (symbol)
+    receiver: (symbol
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (identifier)))
-  (symbol)
+  (symbol
+    (literal_content))
   (call
-    receiver: (symbol)
+    receiver: (symbol
+      (literal_content))
     method: (operator)
     arguments: (argument_list
       (identifier))))
@@ -1295,7 +1428,8 @@ regexes
       (literal_content))
     method: (operator)
     arguments: (argument_list
-      (string)))
+      (string
+        (literal_content))))
   (call
     receiver: (regex
       (literal_content))
@@ -1336,19 +1470,22 @@ regexes
       (literal_content))
     method: (operator)
     arguments: (argument_list
-      (string)))
+      (string
+        (literal_content))))
   (call
     receiver: (regex
       (literal_content))
     method: (operator)
     arguments: (argument_list
-      (string)))
+      (string
+        (literal_content))))
   (call
     receiver: (regex
       (literal_content))
     method: (operator)
     arguments: (argument_list
-      (string)))
+      (string
+        (literal_content))))
   (call
     receiver: (regex
       (literal_content))
@@ -1361,19 +1498,22 @@ regexes
       (literal_content))
     method: (operator)
     arguments: (argument_list
-      (string)))
-  (call
-    receiver: (regex
-      (literal_content))
-    method: (operator)
-    arguments: (argument_list
-      (string)))
+      (string
+        (literal_content))))
   (call
     receiver: (regex
       (literal_content))
     method: (operator)
     arguments: (argument_list
       (string
+        (literal_content))))
+  (call
+    receiver: (regex
+      (literal_content))
+    method: (operator)
+    arguments: (argument_list
+      (string
+        (literal_content)
         (string_escape_sequence))))
   (regex
     (literal_content)
@@ -1507,19 +1647,25 @@ hashes
       (constant)))
   (hash
     (hash_entry
-      (char)
-      (char))
+      (char
+        (literal_content))
+      (char
+        (literal_content)))
     (hash_entry
-      (char)
-      (char))
+      (char
+        (literal_content))
+      (char
+        (literal_content)))
     of_key: (constant)
     of_value: (constant))
   (hash
     (hash_entry
-      (string)
+      (string
+        (literal_content))
       (integer))
     (hash_entry
-      (string)
+      (string
+        (literal_content))
       (integer)))
   (hash
     (hash_entry
@@ -1530,7 +1676,8 @@ hashes
           (integer)))
       (hash
         (hash_entry
-          (char)
+          (char
+            (literal_content))
           (array
             (float)))))))
 
@@ -1677,8 +1824,10 @@ tuples
 (expressions
   (tuple
     (integer)
-    (string)
-    (char))
+    (string
+      (literal_content))
+    (char
+      (literal_content)))
   (tuple
     (nil))
   (tuple
@@ -1716,20 +1865,25 @@ named_tuple = {a2: "a", "55": 'b', A: "asdf#{a}", 🥰: 7, "
     rhs: (named_tuple
       (named_expr
         name: (identifier)
-        (string))
+        (string
+          (literal_content)))
       (named_expr
-        name: (string)
-        (char))
+        name: (string
+          (literal_content))
+        (char
+          (literal_content)))
       (named_expr
         name: (identifier)
         (string
+          (literal_content)
           (interpolation
             (identifier))))
       (named_expr
         name: (identifier)
         (integer))
       (named_expr
-        name: (string)
+        name: (string
+          (literal_content))
         (integer))
       (named_expr
         name: (identifier)
@@ -1738,11 +1892,15 @@ named_tuple = {a2: "a", "55": 'b', A: "asdf#{a}", 🥰: 7, "
             name: (identifier)
             (float))))
       (named_expr
-        name: (string)
-        (string))
+        name: (string
+          (literal_content))
+        (string
+          (literal_content)))
       (named_expr
-        name: (string)
-        (string))
+        name: (string
+          (literal_content))
+        (string
+          (literal_content)))
       (named_expr
         name: (identifier)
         (tuple
@@ -1760,7 +1918,8 @@ named_tuple = {a2: "a", "55": 'b', A: "asdf#{a}", 🥰: 7, "
       (nil))
     (named_expr
       name: (identifier)
-      (string))))
+      (string
+        (literal_content)))))
 
 ================================================================================
 proc literals
@@ -1815,7 +1974,8 @@ end
       (proc_type))
     block: (block
       body: (expressions
-        (string))))
+        (string
+          (literal_content)))))
   (proc
     params: (param_list
       (param
@@ -1974,6 +2134,10 @@ Int32 \
 command literals
 :language(crystal)
 ================================================================================
+``
+`a \
+--b \
+--c`
 `tree-sitter generate`
 
 `echo "#{foo}\n"; \`echo "echo"\``
@@ -1984,18 +2148,30 @@ puts %x[echo \t[#{foo}]\]]
 (expressions
   (command)
   (command
+    (literal_content)
+    (literal_content)
+    (literal_content))
+  (command
+    (literal_content))
+  (command
+    (literal_content)
     (interpolation
       (identifier))
     (string_escape_sequence)
+    (literal_content)
     (ignored_backslash)
+    (literal_content)
     (ignored_backslash))
   (call
     method: (identifier)
     arguments: (argument_list
       (command
+        (literal_content)
         (string_escape_sequence)
+        (literal_content)
         (interpolation
           (identifier))
+        (literal_content)
         (ignored_backslash)))))
 
 ================================================================================
@@ -2043,40 +2219,50 @@ not_chained = "str1"
     lhs: (identifier)
     lhs: (identifier)
     rhs: (string
-      (string_escape_sequence))
-    rhs: (string)
+      (literal_content)
+      (literal_content))
     rhs: (string
-      (string_escape_sequence))
+      (literal_content))
+    rhs: (string
+      (literal_content)
+      (literal_content))
     rhs: (heredoc_start)
     rhs: (heredoc_start))
   (heredoc_body
-    (heredoc_content)
-    (string_escape_sequence)
-    (heredoc_content)
+    (literal_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
-  (assign
-    lhs: (identifier)
-    rhs: (string))
   (assign
     lhs: (identifier)
     rhs: (string
-      (string_escape_sequence)
-      (string_escape_sequence)
-      (string_escape_sequence)))
+      (literal_content)))
+  (assign
+    lhs: (identifier)
+    rhs: (string
+      (literal_content)
+      (literal_content)
+      (literal_content)
+      (literal_content)))
   (assign
     lhs: (identifier)
     rhs: (chained_string
-      (string)
-      (string)
-      (string)
-      (string)))
+      (string
+        (literal_content))
+      (string
+        (literal_content))
+      (string
+        (literal_content))
+      (string
+        (literal_content))))
   (assign
     lhs: (identifier)
-    rhs: (string))
-  (string))
+    rhs: (string
+      (literal_content)))
+  (string
+    (literal_content)))
 
 =================================
 Array-like and hash-like literals
@@ -2110,8 +2296,10 @@ MyHash(String, String | Int32){"foo" => "bar"}
     name: (constant)
     values: (hash
       (hash_entry
-        (string)
-        (string))))
+        (string
+          (literal_content))
+        (string
+          (literal_content)))))
   (array_like
     name: (constant)
     values: (tuple
@@ -2137,5 +2325,7 @@ MyHash(String, String | Int32){"foo" => "bar"}
           (constant))))
     values: (hash
       (hash_entry
-        (string)
-        (string)))))
+        (string
+          (literal_content))
+        (string
+          (literal_content))))))

@@ -44,6 +44,7 @@ compiler/crystal/codegen/target.cr
 compiler/crystal/codegen/types.cr
 compiler/crystal/codegen/unions.cr
 compiler/crystal/command.cr
+compiler/crystal/command/clear_cache.cr
 compiler/crystal/command/cursor.cr
 compiler/crystal/command/docs.cr
 compiler/crystal/command/env.cr
@@ -287,6 +288,7 @@ crystal/system/win32/wmain.cr
 crystal/system/win32/zone_names.cr
 crystal/system/windows.cr
 crystal/thread_local_value.cr
+crystal/tracing.cr
 csv.cr
 csv/builder.cr
 csv/error.cr

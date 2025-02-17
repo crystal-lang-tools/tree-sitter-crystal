@@ -30,33 +30,69 @@ class CorpusFile
   end
 end
 
-# These nodes will be removed from the expected output
-STRIPPED_NODES = [
-  # string escapes are interpreted by the parser and not preserved
-  "char_escape_sequence",
-  "string_escape_sequence",
-  "ignored_backslash",
+# Takes an tree-sitter parse output and reformats it to match the Crystal compiler's AST
+class TreeSitterParseCleaner
+  # These nodes will be removed from the expected output
+  STRIPPED_NODES = [
+    "regex_modifier", # TODO think about keeping this in the tree
 
-  # regex escapes are interpreted by the parser and not preserved
-  "regex_escape_sequence",
-  "regex_character_class",
-  "regex_special_match",
-  "regex_modifier",
+    # heredoc bodies are collapsed by the parser
+    "heredoc_end",
+    "heredoc_body",
 
-  # heredoc bodies are collapsed by the parser
-  "heredoc_end",
-  "heredoc_content",
-  "heredoc_body",
+    # comments aren't included in the crystal parser's syntax tree
+    "comment",
+  ]
 
-  # comments aren't included in the crystal parser's syntax tree
-  "comment",
-]
+  # These nodes will be renamed in the expected output
+  RENAMED_NODES = {
+    "heredoc_start"                          => "string",
+    "assign_call"                            => "call",
+    "string_escape_sequence"                 => "literal_content",
+    "char_escape_sequence"                   => "literal_content",
+    "ignored_backslash"                      => "literal_content",
+    "macro_content\\s*\\(literal_content\\)" => "macro_content",
+  }
 
-# These nodes will be renamed in the expected output
-RENAMED_NODES = {
-  "heredoc_start" => "string",
-  "assign_call"   => "call",
-}
+  JOINED_NODES = [
+    "literal_content",
+    "macro_content",
+  ]
+
+  def self.clean(content)
+    STRIPPED_NODES.each do |node_name|
+      content = strip_node(content, node_name)
+    end
+
+    RENAMED_NODES.each do |old_name, new_name|
+      content = rename_node(content, old_name, new_name)
+    end
+
+    JOINED_NODES.each do |node_name|
+      content = join_node(content, node_name)
+    end
+
+    content
+  end
+
+  def self.strip_node(string, node_name)
+    string.gsub(/\s*\(#{node_name}\)/, "")
+  end
+
+  def self.join_node(string, node_name)
+    neighboring_nodes = /\(#{node_name}\)\s*\(#{node_name}\)/
+
+    while string.matches? neighboring_nodes
+      string = string.gsub(neighboring_nodes, "(#{node_name})")
+    end
+
+    string
+  end
+
+  def self.rename_node(string, old_name, new_name)
+    string.gsub(/\(#{old_name}(?!\w)/, "(#{new_name}")
+  end
+end
 
 # A single corpus test example
 class CorpusTest
@@ -65,34 +101,8 @@ class CorpusTest
   getter test_body : String
   getter expected_output : String
 
-  def initialize(@name, @tags, @test_body, @expected_output, @print_diff = true)
-    STRIPPED_NODES.each do |node_name|
-      @expected_output = strip_node(@expected_output, node_name)
-    end
-
-    RENAMED_NODES.each do |old_name, new_name|
-      @expected_output = rename_node(@expected_output, old_name, new_name)
-    end
-
-    @expected_output = collapse_macro_content(@expected_output)
-  end
-
-  def strip_node(string, node_name)
-    string.gsub(/\s*\(#{node_name}\)/, "")
-  end
-
-  def rename_node(string, old_name, new_name)
-    string.gsub(/\(#{old_name}\b/, "(#{new_name}")
-  end
-
-  def collapse_macro_content(string)
-    neighboring_macro_contents = /\(macro_content\)\s*\(macro_content\)/
-
-    while string.matches? neighboring_macro_contents
-      string = string.gsub(neighboring_macro_contents, "(macro_content)")
-    end
-
-    string
+  def initialize(@name, @tags, @test_body, expected_output, @print_diff = true)
+    @expected_output = TreeSitterParseCleaner.clean(expected_output)
   end
 
   def runnable?
@@ -121,7 +131,7 @@ class CorpusTest
       visitor = SExpVisitor.new
       as_expressions(node).accept(visitor)
       visitor_output = visitor.output.strip
-      collapse_macro_content(visitor_output)
+      TreeSitterParseCleaner.join_node(visitor_output, "macro_content")
     end
   end
 

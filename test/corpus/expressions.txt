@@ -39,7 +39,8 @@ end
         rhs: (integer))
       (assign
         lhs: (class_var)
-        rhs: (string))
+        rhs: (string
+          (literal_content)))
       (method_def
         name: (identifier)
         params: (param_list
@@ -104,30 +105,35 @@ end
         method: (identifier)
         arguments: (argument_list
           (string
+            (literal_content)
             (interpolation
               (identifier)))))
       (call
         method: (identifier)
         arguments: (argument_list
           (string
+            (literal_content)
             (interpolation
               (pseudo_constant)))))
       (call
         method: (identifier)
         arguments: (argument_list
           (string
+            (literal_content)
             (interpolation
               (identifier)))))
       (call
         method: (identifier)
         arguments: (argument_list
           (string
+            (literal_content)
             (interpolation
               (pseudo_constant)))))
       (call
         method: (identifier)
         arguments: (argument_list
           (string
+            (literal_content)
             (interpolation
               (pseudo_constant))))))))
 
@@ -541,7 +547,8 @@ pp **{a: 1, "b": 2.0, C: -3, }, **{c: nil}
             name: (identifier)
             (integer))
           (named_expr
-            name: (string)
+            name: (string
+              (literal_content))
             (float))
           (named_expr
             name: (identifier)
@@ -593,10 +600,14 @@ bar 1, c: + 2,
         (integer))
       (named_expr
         name: (string
-          (string_escape_sequence))
-        (char))
+          (literal_content)
+          (string_escape_sequence)
+          (literal_content))
+        (char
+          (literal_content)))
       (named_expr
-        name: (string)
+        name: (string
+          (literal_content))
         (integer))))
   (call
     method: (identifier)
@@ -812,8 +823,10 @@ a, b, c = d.val, e.val, f = {1, 2, 3}
     lhs: (assign_call
       receiver: (identifier)
       method: (identifier))
-    rhs: (symbol)
-    rhs: (symbol))
+    rhs: (symbol
+      (literal_content))
+    rhs: (symbol
+      (literal_content)))
   (assign
     lhs: (identifier)
     lhs: (identifier)
@@ -976,7 +989,8 @@ end
         (constant)))
     else: (else
       body: (expressions
-        (symbol))))
+        (symbol
+          (literal_content)))))
   (begin
     rescue: (rescue
       variable: (identifier)
@@ -1071,33 +1085,41 @@ begin :a; rescue; :b else :c; ensure p! :d end
         (integer))))
   (begin
     body: (expressions
-      (symbol))
+      (symbol
+        (literal_content)))
     rescue: (rescue
       body: (expressions
-        (symbol)))
+        (symbol
+          (literal_content))))
     else: (else
       body: (expressions
         (modifier_ensure
-          (symbol)
+          (symbol
+            (literal_content))
           ensure: (call
             method: (identifier)
             arguments: (argument_list
-              (symbol)))))))
+              (symbol
+                (literal_content))))))))
   (begin
     body: (expressions
-      (symbol))
+      (symbol
+        (literal_content)))
     rescue: (rescue
       body: (expressions
-        (symbol)))
+        (symbol
+          (literal_content))))
     else: (else
       body: (expressions
-        (symbol)))
+        (symbol
+          (literal_content))))
     ensure: (ensure
       body: (expressions
         (call
           method: (identifier)
           arguments: (argument_list
-            (symbol)))))))
+            (symbol
+              (literal_content))))))))
 
 ================================================================================
 rescue modifiers
@@ -1206,11 +1228,13 @@ puts "a" + "b".upcase
     method: (identifier)
     arguments: (argument_list
       (call
-        receiver: (string)
+        receiver: (string
+          (literal_content))
         method: (operator)
         arguments: (argument_list
           (call
-            receiver: (string)
+            receiver: (string
+              (literal_content))
             method: (identifier)))))))
 
 ================================================================================
@@ -1521,7 +1545,8 @@ array << (13 >> 2)
     receiver: (identifier)
     method: (operator)
     arguments: (argument_list
-      (string)))
+      (string
+        (literal_content))))
   (call
     receiver: (call
       receiver: (identifier)
@@ -1712,7 +1737,8 @@ e !~ /regex/
       receiver: (constant)
       method: (operator)
       arguments: (argument_list
-        (symbol)))))
+        (symbol
+          (literal_content))))))
 
 ================================================================================
 comparison operators
@@ -1738,10 +1764,12 @@ p! 0 <=> 5
     arguments: (argument_list
       (integer)))
   (call
-    receiver: (string)
+    receiver: (string
+      (literal_content))
     method: (operator)
     arguments: (argument_list
-      (string)))
+      (string
+        (literal_content))))
   (call
     receiver: (integer)
     method: (operator)
@@ -1959,35 +1987,41 @@ end
     cond: (call
       method: (identifier)
       arguments: (argument_list
-        (string)))
+        (string
+          (literal_content))))
     then: (then
       (call
         method: (identifier)
         arguments: (argument_list
-          (string))))
+          (string
+            (literal_content)))))
     else: (elsif
       cond: (call
         method: (identifier)
         arguments: (argument_list
-          (string)))
+          (string
+            (literal_content))))
       then: (then
         (call
           method: (identifier)
           arguments: (argument_list
-            (string))))
+            (string
+              (literal_content)))))
       else: (else
         body: (expressions
           (call
             method: (identifier)
             arguments: (argument_list
-              (string)))))))
+              (string
+                (literal_content))))))))
   (if
     cond: (identifier)
     then: (then
       (call
         method: (identifier)
         arguments: (argument_list
-          (string))))
+          (string
+            (literal_content)))))
     else: (else
       body: (expressions
         (if
@@ -1996,7 +2030,8 @@ end
             (call
               method: (identifier)
               arguments: (argument_list
-                (string)))))))))
+                (string
+                  (literal_content))))))))))
 
 ================================================================================
 unless
@@ -2020,13 +2055,15 @@ end
       (call
         method: (identifier)
         arguments: (argument_list
-          (string))))
+          (string
+            (literal_content)))))
     else: (else
       body: (expressions
         (call
           method: (identifier)
           arguments: (argument_list
-            (string)))))))
+            (string
+              (literal_content))))))))
 
 ================================================================================
 ternary if
@@ -2054,17 +2091,21 @@ ans = foo ? "foo" : bar ? "bar" : nil
     arguments: (argument_list
       (conditional
         cond: (true)
-        then: (string)
+        then: (string
+          (literal_content))
         (comment)
-        else: (char))))
+        else: (char
+          (literal_content)))))
   (assign
     lhs: (identifier)
     rhs: (conditional
       cond: (identifier)
-      then: (string)
+      then: (string
+        (literal_content))
       else: (conditional
         cond: (identifier)
-        then: (string)
+        then: (string
+          (literal_content))
         else: (nil)))))
 
 ================================================================================
@@ -2110,17 +2151,20 @@ end
         then: (call
           method: (identifier)
           arguments: (argument_list
-            (char)))
+            (char
+              (literal_content))))
         cond: (identifier))
       (modifier_if
         then: (integer)
         cond: (if
           cond: (true)
           then: (then
-            (string))
+            (string
+              (literal_content)))
           else: (else
             body: (expressions
-              (string)))))
+              (string
+                (literal_content))))))
       (call
         method: (identifier)
         arguments: (argument_list
@@ -2147,7 +2191,8 @@ end
           method: (identifier))
         cond: (identifier))
       (modifier_if
-        then: (string)
+        then: (string
+          (literal_content))
         cond: (identifier))
       (modifier_if
         then: (identifier)
@@ -2216,17 +2261,20 @@ end
         then: (call
           method: (identifier)
           arguments: (argument_list
-            (char)))
+            (char
+              (literal_content))))
         cond: (identifier))
       (modifier_unless
         then: (integer)
         cond: (unless
           cond: (true)
           then: (then
-            (string))
+            (string
+              (literal_content)))
           else: (else
             body: (expressions
-              (string)))))
+              (string
+                (literal_content))))))
       (call
         method: (identifier)
         arguments: (argument_list
@@ -2253,7 +2301,8 @@ end
           method: (identifier))
         cond: (identifier))
       (modifier_unless
-        then: (string)
+        then: (string
+          (literal_content))
         cond: (identifier))
       (modifier_unless
         then: (identifier)
@@ -2380,7 +2429,8 @@ end
         (param
           name: (identifier)))
       body: (expressions
-        (symbol))
+        (symbol
+          (literal_content)))
       rescue: (rescue)
       else: (else)
       ensure: (ensure))))
@@ -2642,7 +2692,8 @@ foo &b = a
   (call
     method: (identifier)
     arguments: (argument_list
-      (string)
+      (string
+        (literal_content))
       (block_argument
         (expressions
           (proc
@@ -2650,14 +2701,16 @@ foo &b = a
   (call
     method: (identifier)
     arguments: (argument_list
-      (string)
+      (string
+        (literal_content))
       (block_argument
         (proc
           block: (block)))))
   (call
     method: (identifier)
     arguments: (argument_list
-      (string)
+      (string
+        (literal_content))
       (block_argument
         (expressions
           (identifier)))))
@@ -2668,8 +2721,10 @@ foo &b = a
         (call
           method: (identifier)
           arguments: (argument_list
-            (string)
-            (string))))))
+            (string
+              (literal_content))
+            (string
+              (literal_content)))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2680,13 +2735,15 @@ foo &b = a
             (call
               method: (identifier)
               arguments: (argument_list
-                (string))))
+                (string
+                  (literal_content)))))
           else: (else
             body: (expressions
               (call
                 method: (identifier)
                 arguments: (argument_list
-                  (string)))))))))
+                  (string
+                    (literal_content))))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2744,11 +2801,14 @@ method(&.take_block { |f| f.foo })
           method: (identifier)))))
   (call
     receiver: (array
-      (string)
-      (string))
+      (string
+        (literal_content))
+      (string
+        (literal_content)))
     method: (identifier)
     arguments: (argument_list
-      (string)
+      (string
+        (literal_content))
       (block_argument
         (implicit_object_call
           method: (identifier)
@@ -2849,7 +2909,8 @@ outer method(&.take_block) do "inner" end
               method: (identifier)
               block: (block
                 body: (expressions
-                  (string)))))))))
+                  (string
+                    (literal_content))))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2861,7 +2922,8 @@ outer method(&.take_block) do "inner" end
               method: (identifier)
               block: (block
                 body: (expressions
-                  (string)))))))))
+                  (string
+                    (literal_content))))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2873,7 +2935,8 @@ outer method(&.take_block) do "inner" end
               method: (identifier)
               block: (block
                 body: (expressions
-                  (string)))))))))
+                  (string
+                    (literal_content))))))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -2885,7 +2948,8 @@ outer method(&.take_block) do "inner" end
               method: (identifier))))))
     block: (block
       body: (expressions
-        (string)))))
+        (string
+          (literal_content))))))
 
 ================================================================================
 chained &. syntax
@@ -3001,7 +3065,8 @@ a &.b 'b' { "in b" }.d.e
                   method: (identifier)
                   block: (block
                     body: (expressions
-                      (string))))
+                      (string
+                        (literal_content)))))
                 method: (identifier))
               method: (identifier)))))))
   (call
@@ -3013,10 +3078,12 @@ a &.b 'b' { "in b" }.d.e
             receiver: (implicit_object_call
               method: (identifier)
               arguments: (argument_list
-                (char))
+                (char
+                  (literal_content)))
               block: (block
                 body: (expressions
-                  (string))))
+                  (string
+                    (literal_content)))))
             method: (identifier))
           method: (identifier))))))
 
@@ -3265,10 +3332,12 @@ end
           (argument_list
             (integer)))
         (argument_list
-          (symbol)
+          (symbol
+            (literal_content))
           (yield
             (argument_list
-              (string)))))
+              (string
+                (literal_content))))))
       (yield
         with: (call
           method: (identifier)
@@ -3414,13 +3483,15 @@ a.[0].setter, a.[1].setter = things
       method: (operator)
       arguments: (argument_list
         (named_expr
-          name: (string)
+          name: (string
+            (literal_content))
           (integer))
         (named_expr
           name: (identifier)
           (integer))
         (named_expr
-          name: (string)
+          name: (string
+            (literal_content))
           (array
             (integer)))))
     rhs: (integer))
@@ -3578,7 +3649,8 @@ end
   (assign
     lhs: (identifier)
     rhs: (case
-      cond: (string)
+      cond: (string
+        (literal_content))
       (when
         cond: (regex
           (literal_content))
@@ -3588,7 +3660,8 @@ end
           (call
             method: (identifier)
             arguments: (argument_list
-              (string)))
+              (string
+                (literal_content))))
           (integer)))
       (when
         cond: (implicit_object_call
@@ -3596,7 +3669,8 @@ end
       (when
         cond: (false)
         body: (expressions
-          (string)))
+          (string
+            (literal_content))))
       (else
         body: (expressions
           (integer)))))
@@ -3615,10 +3689,13 @@ end
         arguments: (argument_list
           (named_expr
             name: (identifier)
-            (symbol))
+            (symbol
+              (literal_content)))
           (named_expr
-            name: (string)
-            (char))))
+            name: (string
+              (literal_content))
+            (char
+              (literal_content)))))
       body: (expressions
         (identifier)))
     (when
@@ -3626,7 +3703,8 @@ end
         method: (identifier)
         arguments: (argument_list
           (integer)
-          (char))
+          (char
+            (literal_content)))
         block: (block
           params: (param_list
             (param
@@ -3780,7 +3858,8 @@ end
         (call
           method: (identifier)
           arguments: (argument_list
-            (string)))))))
+            (string
+              (literal_content))))))))
 
 ============================================
 exhaustive case expression with typed tuples
@@ -3808,7 +3887,8 @@ end
         (call
           (identifier)
           (argument_list
-            (string)))))
+            (string
+              (literal_content))))))
     (in
       (tuple
         (constant)
@@ -3817,7 +3897,8 @@ end
         (call
           (identifier)
           (argument_list
-            (string)))))))
+            (string
+              (literal_content))))))))
 
 ===========================================
 enums with restrictions and namespaced name
@@ -3867,13 +3948,15 @@ end
         (call
           method: (identifier)
           arguments: (argument_list
-            (string)))))
+            (string
+              (literal_content))))))
     (else
       body: (expressions
         (call
           method: (identifier)
           arguments: (argument_list
-            (string)))))))
+            (string
+              (literal_content))))))))
 
 ================================================================================
 sizeof, instance_sizeof, offsetof
@@ -4034,9 +4117,11 @@ end
         (constant)
         (constant)))
     value: (range
-      begin: (string)
+      begin: (string
+        (literal_content))
       operator: (operator)
-      end: (string)))
+      end: (string
+        (literal_content))))
   (assign
     lhs: (identifier)
     rhs: (type_declaration
@@ -4052,7 +4137,8 @@ end
       (type_declaration
         var: (class_var)
         type: (constant)
-        value: (string))
+        value: (string
+          (literal_content)))
       (call
         method: (identifier)
         arguments: (argument_list
@@ -4062,7 +4148,8 @@ end
           (type_declaration
             var: (identifier)
             type: (constant)
-            value: (string)))))))
+            value: (string
+              (literal_content))))))))
 
 =================
 read instance var
@@ -4090,7 +4177,8 @@ global method calls
   (call
     method: (identifier)
     arguments: (argument_list
-      (string))))
+      (string
+        (literal_content)))))
 
 ===============================================
 comma-separated and parenthesized return values
@@ -4277,46 +4365,61 @@ asm("
   (asm
     (comment)
     (comment)
-    text: (string)
+    text: (string
+      (literal_content))
     (comment)
     outputs: (asm_operands
       (asm_operand
-        constraint: (string)
+        constraint: (string
+          (literal_content))
         expression: (identifier))
       (asm_operand
-        constraint: (string)
+        constraint: (string
+          (literal_content))
         expression: (identifier)))
     (comment)
     inputs: (asm_operands
       (asm_operand
-        constraint: (string)
+        constraint: (string
+          (literal_content))
         expression: (integer))
       (asm_operand
-        constraint: (string)
+        constraint: (string
+          (literal_content))
         expression: (identifier)))
     (comment)
     clobbers: (asm_clobbers
-      (string)
-      (string))
+      (string
+        (literal_content))
+      (string
+        (literal_content)))
     (comment)
     (comment)
     options: (asm_options
-      (string)
-      (string)
-      (string)
-      (string)))
+      (string
+        (literal_content))
+      (string
+        (literal_content))
+      (string
+        (literal_content))
+      (string
+        (literal_content))))
   (asm
-    text: (string)
+    text: (string
+      (literal_content))
     outputs: (asm_operands
       (asm_operand
-        constraint: (string)
+        constraint: (string
+          (literal_content))
         expression: (identifier)))
     inputs: (asm_operands
       (asm_operand
-        constraint: (string)
+        constraint: (string
+          (literal_content))
         expression: (constant))
       (asm_operand
-        constraint: (string)
+        constraint: (string
+          (literal_content))
         expression: (call
           receiver: (call
             receiver: (index_call
@@ -4327,11 +4430,14 @@ asm("
             method: (identifier))
           method: (identifier))))
     clobbers: (asm_clobbers
-      (string))
+      (string
+        (literal_content)))
     options: (asm_options
-      (string)))
+      (string
+        (literal_content))))
   (asm
-    text: (string)))
+    text: (string
+      (literal_content))))
 
 =======
 nop asm
@@ -4344,9 +4450,11 @@ asm ("nop")
 
 (expressions
   (asm
-    text: (string))
+    text: (string
+      (literal_content)))
   (asm
-    text: (string)))
+    text: (string
+      (literal_content))))
 
 =============
 uninitialized
@@ -4448,7 +4556,8 @@ end
         (call
           method: (identifier)
           arguments: (argument_list
-            (string))))))
+            (string
+              (literal_content)))))))
   (call
     method: (identifier)
     arguments: (argument_list
@@ -4459,7 +4568,8 @@ end
         (call
           method: (identifier)
           arguments: (argument_list
-            (string)))))))
+            (string
+              (literal_content))))))))
 
 ================
 as pseudo method
@@ -4711,7 +4821,8 @@ end
           (call
             method: (identifier)
             arguments: (argument_list
-              (symbol)))
+              (symbol
+                (literal_content))))
           (call
             receiver: (self)
             method: (operator)))))))

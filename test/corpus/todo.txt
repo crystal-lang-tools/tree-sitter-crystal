@@ -159,7 +159,8 @@ puts hello_there!
         (macro_var
           (MISSING identifier))
         (constant)
-        (string))))
+        (string
+          (literal_content)))))
   (call
     (identifier)
     (argument_list
@@ -225,9 +226,12 @@ trailing if inside interp
 
 (expressions
   (ERROR
+    (literal_content)
     (string
+      (literal_content)
       (ERROR
-        (identifier)))))
+        (identifier))
+      (literal_content))))
 
 ========================
 macro var as block param
@@ -294,7 +298,7 @@ ivar macro expression
       (identifier))
     (macro_var
       (identifier)
-      (identifier))))
+      (identifier)))
 
 ==============================
 uppercase mathematical letters
@@ -340,6 +344,7 @@ macro foo
   TEXT
 end
 ---
+
 (expressions
   (macro_def
     name: (identifier)
@@ -358,7 +363,8 @@ memoize def method_3(arg_a : String, arg_b : String = "default-arg-b") : String
   arg_a + ", " + arg_b
 end
 -----
-(expressions foo: ())
+
+(expressions)
 
 =========================
 keyword as named argument
@@ -366,6 +372,7 @@ keyword as named argument
 =========================
 pages.series(begin: 2, end: 2)
 ---
+
 (expressions)
 
 ===============================
@@ -374,6 +381,7 @@ modifier if in macro expression
 ===============================
 {{ skip_file if compare_versions(Crystal::VERSION, "1.3.0") >= 0 }}
 ---
+
 (expressions)
 
 ==============
@@ -382,6 +390,7 @@ splat in tuple
 ==============
 {*sensor, distance(sensor, beacon)}
 ---
+
 (expressions)
 
 ===================================
@@ -391,6 +400,7 @@ regular expressions starting with =
 a = /= (.*) =/
 b = /== (.*) ==/
 ---
+
 (expressions)
 
 ======================================
@@ -402,4 +412,5 @@ b = /== (.*) ==/
   end
 {% end %}
 ---
+
 (expressions)

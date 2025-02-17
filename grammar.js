@@ -99,7 +99,8 @@ module.exports = grammar({
 
     $._modulo_operator,
 
-    $.unquoted_symbol,
+    $._start_of_symbol,
+    $.unquoted_symbol_content,
 
     // Represents the /\s:\s/ token that comes before param and return types.
     // The main reason for moving this token to the external scanner is a
@@ -111,6 +112,9 @@ module.exports = grammar({
     $._string_literal_start,
     $._delimited_string_contents,
     $._string_literal_end,
+
+    $._command_literal_start,
+    $._command_literal_end,
 
     $._string_percent_literal_start,
     $._command_percent_literal_start,
@@ -701,7 +705,7 @@ module.exports = grammar({
     char: $ => seq(
       '\'',
       choice(
-        token.immediate(prec(1, /[^\\]/)),
+        alias(token.immediate(prec(1, /[^\\]/)), $.literal_content),
         $.char_escape_sequence,
       ),
       token.immediate('\''),
@@ -719,15 +723,18 @@ module.exports = grammar({
     },
 
     string: $ => seq(
-      $._string_literal_start,
-      repeat(choice(
-        $._delimited_string_contents,
-        $.string_escape_sequence,
-        $.ignored_backslash,
-        $.interpolation,
-      )),
-      $._string_literal_end,
+      alias($._string_literal_start, '"'),
+      optional($._string_literal_content),
+      alias($._string_literal_end, '"'),
     ),
+
+    _string_literal_content: $ => repeat1(choice(
+      $._line_continuation,
+      alias($._delimited_string_contents, $.literal_content),
+      $.string_escape_sequence,
+      $.ignored_backslash,
+      $.interpolation,
+    )),
 
     // Represents multiple strings joined by line continuations. $._line_continuation is
     // not actually included here because it doesn't play with `extras`, see
@@ -751,7 +758,7 @@ module.exports = grammar({
       ))
 
       const single_character_escape = choice(
-        '\n', '\\', '"', 'a', 'b', 'e', 'f', 'n', 'r', 't', 'v',
+        '\\', '"', 'a', 'b', 'e', 'f', 'n', 'r', 't', 'v',
       )
 
       return token.immediate(seq('\\', choice(
@@ -764,94 +771,113 @@ module.exports = grammar({
     ),
 
     string_percent_literal: $ => seq(
-      $._string_percent_literal_start,
-      repeat(choice(
-        $._delimited_string_contents,
-        $.interpolation,
-        $.string_escape_sequence,
-        $.ignored_backslash,
-      )),
-      $._percent_literal_end,
+      alias($._string_percent_literal_start, '"'),
+      optional($._string_percent_literal_content),
+      alias($._percent_literal_end, '"'),
     ),
 
+    _string_percent_literal_content: $ => repeat1(choice(
+      alias($._delimited_string_contents, $.literal_content),
+      $.interpolation,
+      $.string_escape_sequence,
+      $.ignored_backslash,
+    )),
+
     string_array_percent_literal: $ => seq(
-      $._string_array_percent_literal_start,
+      alias($._string_array_percent_literal_start, '['),
       repeat(
         alias($.percent_literal_array_word, $.string),
       ),
-      $._percent_literal_end,
+      alias($._percent_literal_end, ']'),
     ),
 
     symbol_array_percent_literal: $ => seq(
-      $._symbol_array_percent_literal_start,
+      alias($._symbol_array_percent_literal_start, '['),
       repeat(
         alias($.percent_literal_array_word, $.symbol),
       ),
-      $._percent_literal_end,
+      alias($._percent_literal_end, ']'),
     ),
 
     percent_literal_array_word: $ => seq(
       $._delimited_array_element_start,
       repeat(choice(
-        $._delimited_string_contents,
-        $.ignored_backslash,
-        // Normally backslash + newline is considered a string escape sequence, but
-        // it's valid here and represents a newline that doesn't break the word.
-        alias(/\\\n/, $.ignored_backslash),
+        alias($._delimited_string_contents, $.literal_content),
+        alias($.percent_array_escape_sequence, $.ignored_backslash),
       )),
       $._delimited_array_element_end,
     ),
 
+    // The only escapes in a percent literal array are whitespace or a closing delimiter
+    percent_array_escape_sequence: $ => {
+      return token.immediate(/\\[\s})\]>|]/)
+    },
+
     heredoc_body: $ => seq(
       $._heredoc_body_start,
       repeat(choice(
-        $.heredoc_content,
+        alias($.heredoc_content, $.literal_content),
         $.interpolation,
         seq(/\s*/, $.string_escape_sequence),
         seq(/\s*/, $.ignored_backslash),
+        $._line_continuation,
       )),
       $.heredoc_end,
     ),
 
-    operator_symbol: $ => token(seq(
-      ':',
-      token.immediate(
-        choice(...operator_tokens),
-      ),
-    )),
+    operator_symbol: $ => {
+      const symbol_content = alias(
+        token.immediate(choice(...operator_tokens)),
+        $.literal_content,
+      )
 
-    quoted_symbol: $ => seq(
-      ':"',
-      seq(
-        repeat(choice(
-          token.immediate(prec(1, /[^\\"]/)),
-          $.string_escape_sequence,
-          $.ignored_backslash,
-        )),
-        token.immediate('"'),
-      ),
-    ),
+      return seq(
+        alias($._start_of_symbol, ':'),
+        symbol_content,
+      )
+    },
+
+    unquoted_symbol: $ => {
+      const symbol_content = alias(
+        $.unquoted_symbol_content,
+        $.literal_content,
+      )
+
+      return seq(
+        alias($._start_of_symbol, ':'),
+        symbol_content,
+      )
+    },
+
+    quoted_symbol: $ => {
+      const symbol_content = alias(
+        token.immediate(prec(1, /[^\\"]+/)),
+        $.literal_content,
+      )
+
+      return seq(
+        ':"',
+        seq(
+          repeat(choice(
+            symbol_content,
+            $.string_escape_sequence,
+            $.ignored_backslash,
+          )),
+          token.immediate('"'),
+        ),
+      )
+    },
 
     command: $ => seq(
-      '`',
-      repeat(choice(
-        token.immediate(prec(1, /[^\\`]/)),
-        $.string_escape_sequence,
-        $.ignored_backslash,
-        $.interpolation,
-      )),
-      token.immediate('`'),
+      alias($._command_literal_start, '`'),
+      optional($._string_literal_content),
+      alias($._command_literal_end, '`'),
     ),
 
     command_percent_literal: $ => seq(
-      $._command_percent_literal_start,
-      repeat(choice(
-        $._delimited_string_contents,
-        $.interpolation,
-        $.string_escape_sequence,
-        $.ignored_backslash,
-      )),
-      $._percent_literal_end,
+      alias($._command_percent_literal_start, '`'),
+      optional($._string_percent_literal_content),
+      alias($._percent_literal_end, '`'),
     ),
 
     regex: $ => seq(

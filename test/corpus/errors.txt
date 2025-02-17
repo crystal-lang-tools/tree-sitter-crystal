@@ -6,7 +6,9 @@ unterminated string
 --------------------------------------------------------------------------------
 
 (expressions
-  (ERROR))
+  (string
+    (literal_content)
+    (MISSING """)))
 
 ================================================================================
 unterminated symbol
@@ -17,6 +19,7 @@ unterminated symbol
 
 (expressions
   (symbol
+    (literal_content)
     (MISSING """)))
 
 ================================================================================
@@ -48,7 +51,9 @@ unterminated percent literal string
 --------------------------------------------------------------------------------
 
 (expressions
-  (ERROR))
+  (string
+    (literal_content)
+    (MISSING """)))
 
 ================================================================================
 unterminated percent literal array
@@ -59,7 +64,8 @@ unterminated percent literal array
 
 (expressions
   (ERROR
-    (string)))
+    (string
+      (literal_content))))
 
 ================================================================================
 incorrectly escaped %q string
@@ -68,7 +74,8 @@ incorrectly escaped %q string
 --------------------------------------------------------------------------------
 
 (expressions
-  (string)
+  (string
+    (literal_content))
   (ERROR))
 
 ================================================================================
@@ -233,9 +240,12 @@ too many nested percent literals
                                                             (interpolation
                                                               (string
                                                                 (ERROR)
+                                                                (literal_content)
                                                                 (ERROR)
+                                                                (literal_content)
                                                                 (interpolation
-                                                                  (integer))))))))))))))))))))))))))))))))))
+                                                                  (integer))
+                                                                (literal_content)))))))))))))))))))))))))))))))))
 
 ================================================================================
 error recovery of curly brace
@@ -332,52 +342,52 @@ q
       method: (operator)
       receiver: (identifier)))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (integer)
   (identifier))
@@ -403,7 +413,7 @@ b = <<-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
     lhs: (identifier)
     rhs: (heredoc_start))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (comment)
   (call
@@ -456,22 +466,22 @@ p <<-🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥�
         method: (operator)
         receiver: (identifier))))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end))
   (heredoc_body
-    (heredoc_content)
+    (literal_content)
     (heredoc_end)))
 
 ================================================================================
