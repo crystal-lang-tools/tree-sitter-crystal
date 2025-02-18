@@ -20966,6 +20966,10 @@
     "named": false
   },
   {
+    "type": "asm",
+    "named": false
+  },
+  {
     "type": "begin",
     "named": false
   },
