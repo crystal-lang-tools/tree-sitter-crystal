@@ -3068,7 +3068,8 @@ module.exports = grammar({
     },
 
     asm: $ => seq(
-      token(seq('asm', /\s*/, '(')),
+      'asm',
+      '(',
       field('text', $.string),
       optional($._asm_outputs),
       ')',
