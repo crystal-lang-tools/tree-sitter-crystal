@@ -706,7 +706,7 @@ module.exports = grammar({
       '\'',
       choice(
         alias(token.immediate(prec(1, /[^\\]/)), $.literal_content),
-        $.char_escape_sequence,
+        alias($.char_escape_sequence, $.escape_sequence),
       ),
       token.immediate('\''),
     ),
@@ -731,8 +731,8 @@ module.exports = grammar({
     _string_literal_content: $ => repeat1(choice(
       $._line_continuation,
       alias($._delimited_string_contents, $.literal_content),
-      $.string_escape_sequence,
-      $.ignored_backslash,
+      alias($.string_escape_sequence, $.escape_sequence),
+      alias($.ignored_backslash, $.escape_sequence),
       $.interpolation,
     )),
 
@@ -779,8 +779,8 @@ module.exports = grammar({
     _string_percent_literal_content: $ => repeat1(choice(
       alias($._delimited_string_contents, $.literal_content),
       $.interpolation,
-      $.string_escape_sequence,
-      $.ignored_backslash,
+      alias($.string_escape_sequence, $.escape_sequence),
+      alias($.ignored_backslash, $.escape_sequence),
     )),
 
     string_array_percent_literal: $ => seq(
@@ -803,7 +803,7 @@ module.exports = grammar({
       $._delimited_array_element_start,
       repeat(choice(
         alias($._delimited_string_contents, $.literal_content),
-        alias($.percent_array_escape_sequence, $.ignored_backslash),
+        alias($.percent_array_escape_sequence, $.escape_sequence),
       )),
       $._delimited_array_element_end,
     ),
@@ -818,8 +818,8 @@ module.exports = grammar({
       repeat(choice(
         alias($.heredoc_content, $.literal_content),
         $.interpolation,
-        seq(/\s*/, $.string_escape_sequence),
-        seq(/\s*/, $.ignored_backslash),
+        seq(/\s*/, alias($.string_escape_sequence, $.escape_sequence)),
+        seq(/\s*/, alias($.ignored_backslash, $.escape_sequence)),
         $._line_continuation,
       )),
       $.heredoc_end,
@@ -860,8 +860,8 @@ module.exports = grammar({
         seq(
           repeat(choice(
             symbol_content,
-            $.string_escape_sequence,
-            $.ignored_backslash,
+            alias($.string_escape_sequence, $.escape_sequence),
+            alias($.ignored_backslash, $.escape_sequence),
           )),
           token.immediate('"'),
         ),

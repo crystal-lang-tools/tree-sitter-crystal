@@ -2316,8 +2316,13 @@
               "value": "literal_content"
             },
             {
-              "type": "SYMBOL",
-              "name": "char_escape_sequence"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "char_escape_sequence"
+              },
+              "named": true,
+              "value": "escape_sequence"
             }
           ]
         },
@@ -2467,12 +2472,22 @@
             "value": "literal_content"
           },
           {
-            "type": "SYMBOL",
-            "name": "string_escape_sequence"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "string_escape_sequence"
+            },
+            "named": true,
+            "value": "escape_sequence"
           },
           {
-            "type": "SYMBOL",
-            "name": "ignored_backslash"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "ignored_backslash"
+            },
+            "named": true,
+            "value": "escape_sequence"
           },
           {
             "type": "SYMBOL",
@@ -2721,12 +2736,22 @@
             "name": "interpolation"
           },
           {
-            "type": "SYMBOL",
-            "name": "string_escape_sequence"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "string_escape_sequence"
+            },
+            "named": true,
+            "value": "escape_sequence"
           },
           {
-            "type": "SYMBOL",
-            "name": "ignored_backslash"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "ignored_backslash"
+            },
+            "named": true,
+            "value": "escape_sequence"
           }
         ]
       }
@@ -2829,7 +2854,7 @@
                   "name": "percent_array_escape_sequence"
                 },
                 "named": true,
-                "value": "ignored_backslash"
+                "value": "escape_sequence"
               }
             ]
           }
@@ -2880,8 +2905,13 @@
                     "value": "\\s*"
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "string_escape_sequence"
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "string_escape_sequence"
+                    },
+                    "named": true,
+                    "value": "escape_sequence"
                   }
                 ]
               },
@@ -2893,8 +2923,13 @@
                     "value": "\\s*"
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "ignored_backslash"
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "ignored_backslash"
+                    },
+                    "named": true,
+                    "value": "escape_sequence"
                   }
                 ]
               },
@@ -3117,12 +3152,22 @@
                     "value": "literal_content"
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "string_escape_sequence"
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "string_escape_sequence"
+                    },
+                    "named": true,
+                    "value": "escape_sequence"
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "ignored_backslash"
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "ignored_backslash"
+                    },
+                    "named": true,
+                    "value": "escape_sequence"
                   }
                 ]
               }

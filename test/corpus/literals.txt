@@ -253,39 +253,39 @@ chars
   (char
     (literal_content))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence))
+    (escape_sequence))
   (char
-    (char_escape_sequence)))
+    (escape_sequence)))
 
 ================================================================================
 strings
@@ -340,49 +340,49 @@ strings
     (literal_content))
   (string)
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (ignored_backslash))
+    (escape_sequence))
   (string
-    (ignored_backslash))
+    (escape_sequence))
   (string
-    (ignored_backslash))
+    (escape_sequence))
   (string
-    (ignored_backslash)))
+    (escape_sequence)))
 
 ================================================================================
 string interpolation
@@ -404,10 +404,10 @@ string interpolation
   (string
     (literal_content))
   (string
-    (ignored_backslash)
+    (escape_sequence)
     (literal_content))
   (string
-    (ignored_backslash)
+    (escape_sequence)
     (literal_content))
   (string
     (interpolation
@@ -602,9 +602,9 @@ c
     rhs: (heredoc_start))
   (heredoc_body
     (literal_content)
-    (string_escape_sequence)
+    (escape_sequence)
     (literal_content)
-    (ignored_backslash)
+    (escape_sequence)
     (literal_content)
     (heredoc_end))
   (heredoc_body
@@ -841,9 +841,9 @@ p <<-TEXT
       (heredoc_start)))
   (heredoc_body
     (literal_content)
-    (string_escape_sequence)
+    (escape_sequence)
     (literal_content)
-    (ignored_backslash)
+    (escape_sequence)
     (literal_content)
     (heredoc_end)))
 
@@ -919,21 +919,21 @@ p% ()
   (string
     (literal_content))
   (string
-    (string_escape_sequence)
-    (ignored_backslash))
+    (escape_sequence)
+    (escape_sequence))
   (string
     (literal_content))
   (string
-    (ignored_backslash)
-    (string_escape_sequence))
+    (escape_sequence)
+    (escape_sequence))
   (string
     (literal_content))
   (string
     (literal_content))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
-    (string_escape_sequence))
+    (escape_sequence))
   (string
     (literal_content)
     (interpolation
@@ -952,7 +952,7 @@ p% ()
     (literal_content))
   (string
     (literal_content)
-    (string_escape_sequence))
+    (escape_sequence))
   (string
     (literal_content)
     (interpolation
@@ -1034,43 +1034,43 @@ d |
   (array
     (string
       (literal_content)
-      (ignored_backslash)
+      (escape_sequence)
       (literal_content)))
   (array
     (string
       (literal_content)
-      (ignored_backslash)
+      (escape_sequence)
       (literal_content)))
   (array
     (string
       (literal_content)
-      (ignored_backslash))
+      (escape_sequence))
     (string
       (literal_content)))
   (array
     (string
       (literal_content))
     (string
-      (ignored_backslash)
-      (ignored_backslash)))
+      (escape_sequence)
+      (escape_sequence)))
   (array
     (string
       (literal_content)
-      (ignored_backslash)
+      (escape_sequence)
       (literal_content)))
   (array
     (string
-      (ignored_backslash)
+      (escape_sequence)
       (literal_content)))
   (array
     (string
       (literal_content)
-      (ignored_backslash)
+      (escape_sequence)
       (literal_content))
     (string
       (literal_content)
-      (ignored_backslash)
-      (ignored_backslash)
+      (escape_sequence)
+      (escape_sequence)
       (literal_content)))
   (array
     (string
@@ -1143,23 +1143,23 @@ d)
   (array
     (symbol
       (literal_content)
-      (ignored_backslash)
+      (escape_sequence)
       (literal_content)))
   (array
     (symbol
       (literal_content)
-      (ignored_backslash)
+      (escape_sequence)
       (literal_content)))
   (array
     (symbol
       (literal_content)
-      (ignored_backslash))
+      (escape_sequence))
     (symbol
       (literal_content)))
   (array
     (symbol
       (literal_content)
-      (ignored_backslash)
+      (escape_sequence)
       (literal_content))
     (symbol
       (literal_content)))
@@ -1167,25 +1167,25 @@ d)
     (symbol
       (literal_content))
     (symbol
-      (ignored_backslash)
-      (ignored_backslash)))
+      (escape_sequence)
+      (escape_sequence)))
   (array
     (symbol
       (literal_content)
-      (ignored_backslash)
+      (escape_sequence)
       (literal_content)))
   (array
     (symbol
-      (ignored_backslash)
+      (escape_sequence)
       (literal_content)))
   (array
     (symbol
       (literal_content)
-      (ignored_backslash)
+      (escape_sequence)
       (literal_content))
     (symbol
       (literal_content)
-      (ignored_backslash)
+      (escape_sequence)
       (literal_content)))
   (array
     (symbol
@@ -1262,7 +1262,7 @@ symbols
   (symbol
     (literal_content))
   (symbol
-    (ignored_backslash))
+    (escape_sequence))
   (symbol
     (literal_content))
   (conditional
@@ -1279,7 +1279,7 @@ symbols
       method: (identifier)
       arguments: (argument_list
         (symbol
-          (string_escape_sequence))))
+          (escape_sequence))))
     else: (symbol
       (literal_content))))
 
@@ -1436,21 +1436,21 @@ regexes
     method: (operator)
     arguments: (argument_list
       (string
-        (string_escape_sequence))))
+        (escape_sequence))))
   (call
     receiver: (regex
       (literal_content))
     method: (operator)
     arguments: (argument_list
       (string
-        (string_escape_sequence))))
+        (escape_sequence))))
   (call
     receiver: (regex
       (literal_content))
     method: (operator)
     arguments: (argument_list
       (string
-        (string_escape_sequence))))
+        (escape_sequence))))
   (regex
     (literal_content))
   (regex
@@ -1465,13 +1465,6 @@ regexes
     (literal_content))
   (regex
     (literal_content))
-  (call
-    receiver: (regex
-      (literal_content))
-    method: (operator)
-    arguments: (argument_list
-      (string
-        (literal_content))))
   (call
     receiver: (regex
       (literal_content))
@@ -1492,7 +1485,14 @@ regexes
     method: (operator)
     arguments: (argument_list
       (string
-        (string_escape_sequence))))
+        (literal_content))))
+  (call
+    receiver: (regex
+      (literal_content))
+    method: (operator)
+    arguments: (argument_list
+      (string
+        (escape_sequence))))
   (call
     receiver: (regex
       (literal_content))
@@ -1514,7 +1514,7 @@ regexes
     arguments: (argument_list
       (string
         (literal_content)
-        (string_escape_sequence))))
+        (escape_sequence))))
   (regex
     (literal_content)
     (interpolation
@@ -2157,22 +2157,22 @@ puts %x[echo \t[#{foo}]\]]
     (literal_content)
     (interpolation
       (identifier))
-    (string_escape_sequence)
+    (escape_sequence)
     (literal_content)
-    (ignored_backslash)
+    (escape_sequence)
     (literal_content)
-    (ignored_backslash))
+    (escape_sequence))
   (call
     method: (identifier)
     arguments: (argument_list
       (command
         (literal_content)
-        (string_escape_sequence)
+        (escape_sequence)
         (literal_content)
         (interpolation
           (identifier))
         (literal_content)
-        (ignored_backslash)))))
+        (escape_sequence)))))
 
 ================================================================================
 strings with backslash newlines

@@ -48,9 +48,7 @@ class TreeSitterParseCleaner
   RENAMED_NODES = {
     "heredoc_start"                          => "string",
     "assign_call"                            => "call",
-    "string_escape_sequence"                 => "literal_content",
-    "char_escape_sequence"                   => "literal_content",
-    "ignored_backslash"                      => "literal_content",
+    "escape_sequence"                        => "literal_content",
     "macro_content\\s*\\(literal_content\\)" => "macro_content",
   }
 
