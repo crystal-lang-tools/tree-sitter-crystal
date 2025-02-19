@@ -1672,29 +1672,32 @@ end
 
 (expressions
   (class_def
-    name: (constant)
-    body: (expressions
-      (call
-        visibility: (private)
-        method: (identifier)
-        arguments: (argument_list
-          (identifier)))
-      (call
-        visibility: (protected)
-        method: (identifier)
-        arguments: (argument_list
-          (type_declaration
-            var: (identifier)
-            type: (constant))))
+    (constant)
+    (expressions
+      (call_with_visibility
+        (private)
+        (call
+          (identifier)
+          (argument_list
+            (identifier))))
+      (call_with_visibility
+        (protected)
+        (call
+          (identifier)
+          (argument_list
+            (type_declaration
+              (identifier)
+              (constant)))))
       (method_def
-        name: (identifier)
-        body: (expressions
+        (identifier)
+        (expressions
           (call
-            receiver: (call
-              visibility: (private)
-              method: (identifier)
-              arguments: (argument_list))
-            method: (identifier)))))))
+            (call_with_visibility
+              (private)
+              (call
+                (identifier)
+                (argument_list)))
+            (identifier)))))))
 
 ==========
 grave defs

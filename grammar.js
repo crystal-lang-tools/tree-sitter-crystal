@@ -582,7 +582,7 @@ module.exports = grammar({
 
       // Methods
       $.call,
-      alias($.call_with_visibility, $.call),
+      $.call_with_visibility,
 
       alias($.additive_operator, $.call),
       alias($.unary_additive_operator, $.call),
@@ -2140,7 +2140,7 @@ module.exports = grammar({
     call_with_visibility: $ => prec('call_visibility',
       seq(
         field('visibility', choice($.private, $.protected)),
-        alias($.call, 'call without visibility'),
+        $.call,
       ),
     ),
 

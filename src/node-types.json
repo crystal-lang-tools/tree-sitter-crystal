@@ -361,6 +361,10 @@
           "named": true
         },
         {
+          "type": "call_with_visibility",
+          "named": true
+        },
+        {
           "type": "case",
           "named": true
         },
@@ -675,6 +679,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -1084,6 +1092,10 @@
           "named": true
         },
         {
+          "type": "call_with_visibility",
+          "named": true
+        },
+        {
           "type": "case",
           "named": true
         },
@@ -1462,6 +1474,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -1826,6 +1842,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -2177,6 +2197,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -2547,6 +2571,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -3053,330 +3081,6 @@
       },
       "method": {
         "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "constant",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "instance_var",
-            "named": true
-          },
-          {
-            "type": "operator",
-            "named": true
-          }
-        ]
-      },
-      "receiver": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "alignof",
-            "named": true
-          },
-          {
-            "type": "and",
-            "named": true
-          },
-          {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "array_like",
-            "named": true
-          },
-          {
-            "type": "asm",
-            "named": true
-          },
-          {
-            "type": "assign",
-            "named": true
-          },
-          {
-            "type": "begin",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "case",
-            "named": true
-          },
-          {
-            "type": "chained_string",
-            "named": true
-          },
-          {
-            "type": "char",
-            "named": true
-          },
-          {
-            "type": "class_var",
-            "named": true
-          },
-          {
-            "type": "command",
-            "named": true
-          },
-          {
-            "type": "conditional",
-            "named": true
-          },
-          {
-            "type": "constant",
-            "named": true
-          },
-          {
-            "type": "expressions",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "float",
-            "named": true
-          },
-          {
-            "type": "generic_instance_type",
-            "named": true
-          },
-          {
-            "type": "hash",
-            "named": true
-          },
-          {
-            "type": "hash_like",
-            "named": true
-          },
-          {
-            "type": "heredoc_start",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if",
-            "named": true
-          },
-          {
-            "type": "index_call",
-            "named": true
-          },
-          {
-            "type": "instance_alignof",
-            "named": true
-          },
-          {
-            "type": "instance_sizeof",
-            "named": true
-          },
-          {
-            "type": "instance_var",
-            "named": true
-          },
-          {
-            "type": "integer",
-            "named": true
-          },
-          {
-            "type": "macro_begin",
-            "named": true
-          },
-          {
-            "type": "macro_expression",
-            "named": true
-          },
-          {
-            "type": "macro_for",
-            "named": true
-          },
-          {
-            "type": "macro_if",
-            "named": true
-          },
-          {
-            "type": "macro_statement",
-            "named": true
-          },
-          {
-            "type": "macro_unless",
-            "named": true
-          },
-          {
-            "type": "macro_var",
-            "named": true
-          },
-          {
-            "type": "macro_verbatim",
-            "named": true
-          },
-          {
-            "type": "method_proc",
-            "named": true
-          },
-          {
-            "type": "named_tuple",
-            "named": true
-          },
-          {
-            "type": "nil",
-            "named": true
-          },
-          {
-            "type": "nilable_constant",
-            "named": true
-          },
-          {
-            "type": "not",
-            "named": true
-          },
-          {
-            "type": "offsetof",
-            "named": true
-          },
-          {
-            "type": "op_assign",
-            "named": true
-          },
-          {
-            "type": "or",
-            "named": true
-          },
-          {
-            "type": "pointerof",
-            "named": true
-          },
-          {
-            "type": "proc",
-            "named": true
-          },
-          {
-            "type": "pseudo_constant",
-            "named": true
-          },
-          {
-            "type": "range",
-            "named": true
-          },
-          {
-            "type": "regex",
-            "named": true
-          },
-          {
-            "type": "select",
-            "named": true
-          },
-          {
-            "type": "self",
-            "named": true
-          },
-          {
-            "type": "sizeof",
-            "named": true
-          },
-          {
-            "type": "special_variable",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "tuple",
-            "named": true
-          },
-          {
-            "type": "type_declaration",
-            "named": true
-          },
-          {
-            "type": "typeof",
-            "named": true
-          },
-          {
-            "type": "unless",
-            "named": true
-          },
-          {
-            "type": "until",
-            "named": true
-          },
-          {
-            "type": "while",
-            "named": true
-          },
-          {
-            "type": "yield",
-            "named": true
-          }
-        ]
-      },
-      "visibility": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "private",
-            "named": true
-          },
-          {
-            "type": "protected",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "call without visibility",
-    "named": false,
-    "fields": {
-      "arguments": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "argument_list",
-            "named": true
-          }
-        ]
-      },
-      "block": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "block",
-            "named": true
-          }
-        ]
-      },
-      "method": {
-        "multiple": false,
         "required": true,
         "types": [
           {
@@ -3434,6 +3138,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -3662,6 +3370,36 @@
     }
   },
   {
+    "type": "call_with_visibility",
+    "named": true,
+    "fields": {
+      "visibility": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "private",
+            "named": true
+          },
+          {
+            "type": "protected",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "call",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "case",
     "named": true,
     "fields": {
@@ -3699,6 +3437,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -4170,6 +3912,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -4432,6 +4178,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -4691,6 +4441,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -4989,6 +4743,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -5344,6 +5102,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -5817,6 +5579,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -6261,6 +6027,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -7228,6 +6998,10 @@
           "named": true
         },
         {
+          "type": "call_with_visibility",
+          "named": true
+        },
+        {
           "type": "case",
           "named": true
         },
@@ -7549,6 +7323,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -7918,6 +7696,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -8230,6 +8012,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -8645,6 +8431,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -9069,6 +8859,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -9361,6 +9155,10 @@
           "named": true
         },
         {
+          "type": "call_with_visibility",
+          "named": true
+        },
+        {
           "type": "case",
           "named": true
         },
@@ -9643,6 +9441,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -9933,6 +9735,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -10243,6 +10049,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -10539,6 +10349,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -11071,6 +10885,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -11351,6 +11169,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -11693,6 +11515,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -11972,6 +11798,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -12315,6 +12145,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -12595,6 +12429,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -12937,6 +12775,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -13216,6 +13058,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -13611,6 +13457,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -14115,6 +13965,10 @@
           "named": true
         },
         {
+          "type": "call_with_visibility",
+          "named": true
+        },
+        {
           "type": "case",
           "named": true
         },
@@ -14495,6 +14349,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -14765,6 +14623,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -15067,6 +14929,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -15656,6 +15522,10 @@
           "named": true
         },
         {
+          "type": "call_with_visibility",
+          "named": true
+        },
+        {
           "type": "case",
           "named": true
         },
@@ -16174,6 +16044,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -16433,6 +16307,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -16958,6 +16836,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -17634,6 +17516,10 @@
           "named": true
         },
         {
+          "type": "call_with_visibility",
+          "named": true
+        },
+        {
           "type": "case",
           "named": true
         },
@@ -17970,6 +17856,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -18393,6 +18283,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -18770,6 +18664,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "call_with_visibility",
           "named": true
         },
         {
@@ -19302,6 +19200,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -19600,6 +19502,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -19875,6 +19781,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {
@@ -20160,6 +20070,10 @@
             "named": true
           },
           {
+            "type": "call_with_visibility",
+            "named": true
+          },
+          {
             "type": "case",
             "named": true
           },
@@ -20425,6 +20339,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "call_with_visibility",
             "named": true
           },
           {

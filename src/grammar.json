@@ -846,13 +846,8 @@
           "name": "call"
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "call_with_visibility"
-          },
-          "named": true,
-          "value": "call"
+          "type": "SYMBOL",
+          "name": "call_with_visibility"
         },
         {
           "type": "ALIAS",
@@ -9371,13 +9366,8 @@
             }
           },
           {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "call"
-            },
-            "named": false,
-            "value": "call without visibility"
+            "type": "SYMBOL",
+            "name": "call"
           }
         ]
       }
