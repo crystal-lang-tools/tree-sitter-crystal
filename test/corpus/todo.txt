@@ -1,9 +1,9 @@
 =============================================================
-private or protected calls with keyword type declaration args
+macro calls with keyword type declaration args
 =============================================================
 
 class Name
-  private getter private : Qux
+  private getter begin : Qux
 end
 
 class ASTNode
@@ -13,21 +13,24 @@ end
 ---
 
 (expressions
-  (class_def
-    name: (constant)
-    (ERROR
-      (private)
-      (identifier)
-      (private)
-      (ERROR)
-      (constant)))
-  (class_def
-    name: (constant)
-    (ERROR
-      (identifier))
-    body: (expressions
-      (nilable_constant
-        (constant)))))
+  (ERROR
+    (constant)
+    (visibility_modifier
+      visibility: (private)
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (begin
+            (ERROR)
+            body: (expressions
+              (constant))))))
+    (class_def
+      name: (constant)
+      (ERROR
+        (identifier))
+      body: (expressions
+        (nilable_constant
+          (constant))))))
 
 ================================================================================
 implicit object assignment call
