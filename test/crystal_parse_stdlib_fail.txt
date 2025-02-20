@@ -163,6 +163,7 @@ compiler/crystal/tools/print_types_visitor.cr
 compiler/crystal/tools/table_print.cr
 compiler/crystal/tools/typed_def_processor.cr
 compiler/crystal/tools/unreachable.cr
+compiler/crystal/types.cr
 compiler/crystal/warnings.cr
 compress/deflate/reader.cr
 compress/deflate/writer.cr
@@ -187,11 +188,7 @@ crypto/subtle.cr
 crystal/at_exit_handlers.cr
 crystal/atomic_semaphore.cr
 crystal/compiler_rt/divmod128.cr
-crystal/compiler_rt/fixint.cr
-crystal/compiler_rt/float.cr
-crystal/compiler_rt/mul.cr
 crystal/compiler_rt/multi3.cr
-crystal/compiler_rt/pow.cr
 crystal/datum.cr
 crystal/digest/md5.cr
 crystal/digest/sha1.cr

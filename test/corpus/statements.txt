@@ -1001,32 +1001,39 @@ end
 --------------------------------------------------------------------------------
 
 (expressions
-  (method_def
+  (visibility_modifier
     visibility: (private)
-    name: (identifier))
-  (module_def
+    (method_def
+      name: (identifier)))
+  (visibility_modifier
     visibility: (private)
-    name: (constant)
-    body: (expressions
-      (class_def
-        visibility: (private)
-        name: (constant)
-        body: (expressions
-          (struct_def
-            visibility: (private)
+    (module_def
+      name: (constant)
+      body: (expressions
+        (visibility_modifier
+          visibility: (private)
+          (class_def
             name: (constant)
             body: (expressions
-              (const_assign
+              (visibility_modifier
                 visibility: (private)
-                lhs: (constant)
-                rhs: (integer))))
-          (alias
-            visibility: (private)
-            name: (constant)
-            type: (constant))
-          (method_def
-            visibility: (protected)
-            name: (identifier)))))))
+                (struct_def
+                  name: (constant)
+                  body: (expressions
+                    (visibility_modifier
+                      visibility: (private)
+                      (const_assign
+                        lhs: (constant)
+                        rhs: (integer))))))
+              (visibility_modifier
+                visibility: (private)
+                (alias
+                  name: (constant)
+                  type: (constant)))
+              (visibility_modifier
+                visibility: (protected)
+                (method_def
+                  name: (identifier))))))))))
 
 ================================================================================
 enum definitions
@@ -1115,12 +1122,13 @@ end
   (module_def
     name: (constant)
     body: (expressions
-      (enum_def
+      (visibility_modifier
         visibility: (private)
-        name: (constant)
-        body: (expressions
-          (constant)
-          (constant))))))
+        (enum_def
+          name: (constant)
+          body: (expressions
+            (constant)
+            (constant)))))))
 
 ================================================================================
 line continuations
@@ -1674,27 +1682,30 @@ end
   (class_def
     name: (constant)
     body: (expressions
-      (call
+      (visibility_modifier
         visibility: (private)
-        method: (identifier)
-        arguments: (argument_list
-          (identifier)))
-      (call
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (identifier))))
+      (visibility_modifier
         visibility: (protected)
-        method: (identifier)
-        arguments: (argument_list
-          (type_declaration
-            var: (identifier)
-            type: (constant))))
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (type_declaration
+              var: (identifier)
+              type: (constant)))))
       (method_def
         name: (identifier)
         body: (expressions
-          (call
-            receiver: (call
-              visibility: (private)
-              method: (identifier)
-              arguments: (argument_list))
-            method: (identifier)))))))
+          (visibility_modifier
+            visibility: (private)
+            (call
+              receiver: (call
+                method: (identifier)
+                arguments: (argument_list))
+              method: (identifier))))))))
 
 ==========
 grave defs
@@ -1737,18 +1748,19 @@ end
 ---
 
 (expressions
-  (module_def
+  (visibility_modifier
     visibility: (private)
-    name: (constant)
-    body: (expressions
-      (method_def
-        name: (identifier)
-        body: (expressions
-          (call
-            method: (identifier)
-            arguments: (argument_list
-              (string
-                (literal_content)))))))))
+    (module_def
+      name: (constant)
+      body: (expressions
+        (method_def
+          name: (identifier)
+          body: (expressions
+            (call
+              method: (identifier)
+              arguments: (argument_list
+                (string
+                  (literal_content))))))))))
 
 ===================
 if then expressions
