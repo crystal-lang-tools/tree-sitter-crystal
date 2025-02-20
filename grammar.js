@@ -278,14 +278,6 @@ module.exports = grammar({
       $.empty_parens,
     ],
 
-    // Ensure `private macro(args).method` parses with `private` applied to the macro.
-    // Note: this precedence is only needed to satisfy tree-sitter. In real Crystal code, there's
-    // no ambiguity. A visibility keyword may only precede a single macro call, not a call chain.
-    [
-      'call_visibility',
-      $._expression,
-    ],
-
     // Ensure `a &.b.c` is parsed as `a(&.b.c)` instead of `a(&.b).c`
     [
       $.implicit_object_call_chainable,
@@ -477,6 +469,7 @@ module.exports = grammar({
       $.abstract_method_def,
       $.macro_def,
       alias($.top_level_fun_def, $.fun_def),
+      $.visibility_modifier,
       $.require,
       $.modifier_if,
       $.modifier_unless,
@@ -501,6 +494,7 @@ module.exports = grammar({
       $.global_var,
       $.const_assign,
       $.annotation,
+      $.visibility_modifier,
     ),
 
     _enum_statement: $ => choice(
@@ -512,6 +506,7 @@ module.exports = grammar({
       $.class_var,
       alias($.class_var_assign, $.assign),
       $.annotation,
+      $.visibility_modifier,
     ),
 
     // Wrap multiple expressions/statements into a single node, if necessary
@@ -582,7 +577,6 @@ module.exports = grammar({
 
       // Methods
       $.call,
-      alias($.call_with_visibility, $.call),
 
       alias($.additive_operator, $.call),
       alias($.unary_additive_operator, $.call),
@@ -1103,7 +1097,6 @@ module.exports = grammar({
     },
 
     module_def: $ => seq(
-      optional(field('visibility', $.private)),
       'module',
       field('name', choice($.constant, $.generic_type)),
       field('body', seq(optional(alias($._statements, $.expressions)))),
@@ -1111,7 +1104,6 @@ module.exports = grammar({
     ),
 
     class_def: $ => seq(
-      optional(field('visibility', $.private)),
       optional('abstract'),
       'class',
       field('name', choice($.constant, $.generic_type)),
@@ -1123,7 +1115,6 @@ module.exports = grammar({
     ),
 
     struct_def: $ => seq(
-      optional(field('visibility', $.private)),
       optional('abstract'),
       'struct',
       field('name', choice($.constant, $.generic_type)),
@@ -1135,7 +1126,6 @@ module.exports = grammar({
     ),
 
     enum_def: $ => seq(
-      optional(field('visibility', $.private)),
       'enum',
       field('name', $.constant),
       optional(field('type', seq(/:\s/, $._bare_type))),
@@ -1144,7 +1134,6 @@ module.exports = grammar({
     ),
 
     lib_def: $ => seq(
-      optional(field('visibility', $.private)),
       'lib',
       field('name', choice($.constant, $.generic_type)),
       field('body', seq(optional(alias($._lib_statements, $.expressions)))),
@@ -1371,38 +1360,21 @@ module.exports = grammar({
       ))
     },
 
-    method_def: $ => {
-      const visibility = optional(
-        field('visibility', choice($.private, $.protected)),
-      )
+    method_def: $ => seq(
+      $._base_method_def,
+      optional($._terminator),
+      field('body', seq(optional(alias($._statements, $.expressions)))),
+      optional($._rescue_else_ensure),
+      'end',
+    ),
 
-      return seq(
-        visibility,
-        $._base_method_def,
-        optional($._terminator),
-        field('body', seq(optional(alias($._statements, $.expressions)))),
-        optional($._rescue_else_ensure),
-        'end',
-      )
-    },
-
-    abstract_method_def: $ => {
-      const visibility = optional(
-        field('visibility', choice($.private, $.protected)),
-      )
-
-      return prec.left(seq(
-        visibility,
-        'abstract',
-        $._base_method_def,
-        optional($._terminator),
-      ))
-    },
+    abstract_method_def: $ => prec.left(seq(
+      'abstract',
+      $._base_method_def,
+      optional($._terminator),
+    )),
 
     _macro_signature: $ => {
-      const visibility = optional(
-        field('visibility', choice($.private, $.protected)),
-      )
       const name = field('name', choice(
         $.identifier,
         alias($.identifier_method_call, $.identifier),
@@ -1416,12 +1388,9 @@ module.exports = grammar({
       )
 
       return seq(
-        visibility,
-        seq(
-          'macro',
-          name,
-          choice(params, $._terminator),
-        ),
+        'macro',
+        name,
+        choice(params, $._terminator),
       )
     },
 
@@ -2119,9 +2088,25 @@ module.exports = grammar({
       $._terminator,
     ),
 
-
     private: $ => 'private',
     protected: $ => 'protected',
+
+    visibility_modifier: $ => seq(
+      field('visibility', choice($.private, $.protected)),
+      choice(
+        $.call,
+        $.module_def,
+        $.class_def,
+        $.struct_def,
+        $.enum_def,
+        $.lib_def,
+        $.method_def,
+        $.abstract_method_def,
+        $.macro_def,
+        $.const_assign,
+        $.alias,
+      ),
+    ),
 
     array_like: $ => seq(
       field('name', choice($.constant, $.generic_instance_type)),
@@ -2131,17 +2116,6 @@ module.exports = grammar({
     hash_like: $ => seq(
       field('name', choice($.constant, $.generic_instance_type)),
       field('values', $.hash),
-    ),
-
-    // Represents a macro call prefixed with private/protected, e.g.
-    //   private getter foo : String
-    // This rule is separated from `call` so the `call_visibility` precedence can be
-    // applied in a targeted way.
-    call_with_visibility: $ => prec('call_visibility',
-      seq(
-        field('visibility', choice($.private, $.protected)),
-        alias($.call, 'call without visibility'),
-      ),
     ),
 
     // how do we distingush a method call from a variable?
@@ -2649,15 +2623,11 @@ module.exports = grammar({
     },
 
     const_assign: $ => {
-      const visibility = optional(
-        field('visibility', $.private),
-      )
-
       const lhs = field('lhs', $.constant)
       const rhs = field('rhs', $._statement)
 
       return prec.right('assignment_operator', seq(
-        visibility, lhs, '=', rhs,
+        lhs, '=', rhs,
       ))
     },
 
@@ -2776,7 +2746,6 @@ module.exports = grammar({
     },
 
     alias: $ => seq(
-      optional(field('visibility', $.private)),
       'alias',
       field('name', $.constant),
       '=',
