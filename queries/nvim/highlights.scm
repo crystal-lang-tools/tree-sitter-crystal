@@ -12,6 +12,7 @@
   "in"
   "include"
   "next"
+  "of"
   "select"
   "then"
   "verbatim"
