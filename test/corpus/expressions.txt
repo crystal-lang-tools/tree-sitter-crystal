@@ -1872,54 +1872,71 @@ ary[0..2] //= val.bar **= 7
 (expressions
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (op_assign
     lhs: (identifier)
+    (operator)
     rhs: (identifier))
   (call
     receiver: (instance_var)
@@ -1935,10 +1952,12 @@ ary[0..2] //= val.bar **= 7
           begin: (integer)
           operator: (operator)
           end: (integer))))
+    (operator)
     rhs: (op_assign
       lhs: (assign_call
         receiver: (identifier)
         method: (identifier))
+      (operator)
       rhs: (integer))))
 
 ================================================================================
@@ -3514,6 +3533,7 @@ a.[0].setter, a.[1].setter = things
       method: (operator)
       arguments: (argument_list
         (integer)))
+    (operator)
     rhs: (integer))
   (assign
     lhs: (index_call

@@ -2674,8 +2674,13 @@ module.exports = grammar({
       ))
       const rhs = field('rhs', $._expression)
 
+      const operator = alias(
+        choice(...combined_operators),
+        $.operator,
+      )
+
       return prec('assignment_operator', seq(
-        lhs, choice(...combined_operators), rhs,
+        lhs, operator, rhs,
       ))
     },
 
