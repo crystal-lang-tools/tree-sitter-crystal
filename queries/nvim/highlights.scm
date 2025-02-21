@@ -1,3 +1,15 @@
+; Early rules
+; These patterns may be overridden later
+
+[
+  ","
+  ";"
+  "."
+  ":"
+] @punctuation.delimiter
+
+; Keywords
+
 [
   "alias"
   "annotation"
@@ -83,9 +95,9 @@
 
 (symbol
   [
-   ":"
-   ":\""
-   "\""
+    ":"
+    ":\""
+    "\""
   ] @string.special.symbol)
 
 (symbol
@@ -152,12 +164,6 @@
   "&"
   (operator)
 ] @operator
-
-[
-  ","
-  ";"
-  "."
-] @punctuation.delimiter
 
 [
   "("
