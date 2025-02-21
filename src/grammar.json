@@ -13586,8 +13586,13 @@
                       }
                     },
                     {
-                      "type": "PATTERN",
-                      "value": ":\\s"
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "PATTERN",
+                        "value": ":\\s"
+                      },
+                      "named": false,
+                      "value": ":"
                     },
                     {
                       "type": "FIELD",
