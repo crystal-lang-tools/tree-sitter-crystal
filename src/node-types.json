@@ -14322,6 +14322,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "operator",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -20360,19 +20370,11 @@
     "named": false
   },
   {
-    "type": "%=",
-    "named": false
-  },
-  {
     "type": "%}",
     "named": false
   },
   {
     "type": "&",
-    "named": false
-  },
-  {
-    "type": "&&=",
     "named": false
   },
   {
@@ -20384,27 +20386,11 @@
     "named": false
   },
   {
-    "type": "&*=",
-    "named": false
-  },
-  {
     "type": "&+",
     "named": false
   },
   {
-    "type": "&+=",
-    "named": false
-  },
-  {
     "type": "&-",
-    "named": false
-  },
-  {
-    "type": "&-=",
-    "named": false
-  },
-  {
-    "type": "&=",
     "named": false
   },
   {
@@ -20428,19 +20414,7 @@
     "named": false
   },
   {
-    "type": "**=",
-    "named": false
-  },
-  {
-    "type": "*=",
-    "named": false
-  },
-  {
     "type": "+",
-    "named": false
-  },
-  {
-    "type": "+=",
     "named": false
   },
   {
@@ -20449,10 +20423,6 @@
   },
   {
     "type": "-",
-    "named": false
-  },
-  {
-    "type": "-=",
     "named": false
   },
   {
@@ -20473,14 +20443,6 @@
   },
   {
     "type": "//",
-    "named": false
-  },
-  {
-    "type": "//=",
-    "named": false
-  },
-  {
-    "type": "/=",
     "named": false
   },
   {
@@ -20505,10 +20467,6 @@
   },
   {
     "type": "<<",
-    "named": false
-  },
-  {
-    "type": "<<=",
     "named": false
   },
   {
@@ -20552,10 +20510,6 @@
     "named": false
   },
   {
-    "type": ">>=",
-    "named": false
-  },
-  {
     "type": "?",
     "named": false
   },
@@ -20589,10 +20543,6 @@
   },
   {
     "type": "^",
-    "named": false
-  },
-  {
-    "type": "^=",
     "named": false
   },
   {
@@ -20893,14 +20843,6 @@
   },
   {
     "type": "|",
-    "named": false
-  },
-  {
-    "type": "|=",
-    "named": false
-  },
-  {
-    "type": "||=",
     "named": false
   },
   {
