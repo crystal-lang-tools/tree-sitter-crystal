@@ -149,6 +149,7 @@
   "="
   "=>"
   "->"
+  "&"
   (operator)
 ] @operator
 
