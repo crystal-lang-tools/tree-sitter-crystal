@@ -14,6 +14,7 @@
 #    ^ punctuation.bracket
 
 def foo(*args);end
+#       ^ operator
 
 foo 1, 2 .. { 3 }
 #           ^   ^ punctuation.bracket
