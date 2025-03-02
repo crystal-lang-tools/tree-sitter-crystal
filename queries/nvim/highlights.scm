@@ -233,6 +233,21 @@
 (param
   name: (identifier) @variable.parameter)
 
+(splat_param
+  name: (identifier) @variable.parameter)
+
+(double_splat_param
+  name: (identifier) @variable.parameter)
+
+(block_param
+  name: (identifier) @variable.parameter)
+
+(fun_param
+  name: (identifier) @variable.parameter)
+
+(rescue
+  variable: (identifier) @variable.parameter)
+
 (macro_var
   name: (identifier) @variable)
 
