@@ -193,6 +193,9 @@
     "]?"
   ] @punctuation.bracket)
 
+(block
+  "|" @punctuation.bracket)
+
 [
   "{%"
   "%}"

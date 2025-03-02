@@ -10,3 +10,19 @@ foo(&->a)
 #<-       function.call
 #^^       function.call
 #   ^^^   operator
+
+foo do |asdf|
+#   ^^        keyword
+#      ^    ^ punctuation.bracket
+#       ^^^^  variable.parameter
+  qux
+end
+
+foo { |asdf| qux }
+#   ^ ^    ^     ^  punctuation.bracket
+#      ^^^^         variable.parameter
+
+ ->(a) { qux }
+#^^             operator
+#  ^ ^ ^     ^  punctuation.bracket
+#   ^           variable.parameter
