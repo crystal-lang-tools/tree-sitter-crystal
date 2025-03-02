@@ -222,16 +222,17 @@
   (constant) @attribute)
 
 (method_def
-  name: [
-    (identifier)
-    (constant)
-  ] @function.method)
+  name: (identifier) @function.method)
 
 (macro_def
-  name: [
-    (identifier)
-    (constant)
-  ] @function.method)
+  name: (identifier) @function.method)
+
+(abstract_method_def
+  name: (identifier) @function.method)
+
+(fun_def
+  name: (identifier) @function
+  real_name: (identifier)? @function)
 
 (param
   name: (identifier) @variable.parameter)
