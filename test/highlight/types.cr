@@ -16,3 +16,6 @@ def foo_spacing : -> { Int32 }; ->{ {5,} } end
 
 f = -> : -> { a: String; ->{} }
 #           ^              ^^ ^ punctuation.bracket
+
+foo : A | B | {c: C}
+#              ^      property
