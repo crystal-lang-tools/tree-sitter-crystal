@@ -154,7 +154,9 @@
 
 (nil) @constant.builtin
 
-(comment) @comment
+((comment) @comment
+  ; Set priority so macro expressions in comments are not grayed out
+  (#set! priority 95))
 
 ; Operators and punctuation
 [
