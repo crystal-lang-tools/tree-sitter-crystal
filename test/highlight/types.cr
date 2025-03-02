@@ -19,3 +19,4 @@ f = -> : -> { a: String; ->{} }
 
 foo : A | B | {c: C}
 #              ^      property
+#       ^   ^         operator

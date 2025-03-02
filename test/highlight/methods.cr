@@ -24,3 +24,7 @@ fun foo = __foo(a : Int32)
 #   ^^^   ^^^^^             function
 #               ^           variable.parameter
 end
+
+def self.foo
+#   ^^^^      variable.builtin
+end

@@ -218,6 +218,9 @@
 (nilable_type
   "?" @type.builtin)
 
+(union_type
+  "|" @operator)
+
 (annotation
   (constant) @attribute)
 
@@ -261,6 +264,8 @@
 ] @variable.member
 
 (underscore) @variable.parameter.builtin
+
+(self) @variable.builtin
 
 (named_tuple
   (named_expr
