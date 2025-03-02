@@ -262,6 +262,16 @@
 
 (underscore) @variable.parameter.builtin
 
+(named_tuple
+  (named_expr
+    name: (identifier) @property))
+
+(argument_list
+  (named_expr
+    name: (identifier) @property))
+
+(named_type
+  name: (identifier) @property)
 
 ; function calls
 (call
