@@ -242,6 +242,7 @@ alias P2 = -> Tuple(Int8) ->
 
 ================================================================================
 proc ambiguity resolution
+:language(crystal)
 ================================================================================
 def p1 : ->{1=>1}; end
 def p2 : ->{Int32}; end
@@ -447,6 +448,7 @@ def p2 : ->(A ?1:2); end
 
 ================================================================================
 proc ambiguity resolution, continued
+:language(crystal)
 ================================================================================
 def p1 : ->{self,}; end
 def p1 : ->{self?,}; end
@@ -474,13 +476,6 @@ def p2 : ->(typeof🆎); end
 
 def p1 : -> { A::B, }; end
 def p2 : -> { A: :B, }; end
-
-def p1 : ->{"a": "b"}; end
-def p1 : ->{ %(a()): "b"}; end
-def p1 : ->{ %q|a|: "b"}; end
-def p1 : ->{ %Q<<>a>: "b"}; end
-def p1 : ->{ %[[a]]: "b"}; end
-def p1 : ->{ %{a{}a}: "b"}; end
 
 f = -> : -> { a: String; ->{} }
 --------------------------------------------------------------------------------
@@ -625,66 +620,6 @@ f = -> : -> { a: String; ->{} }
           name: (identifier)
           (symbol
             (literal_content))))))
-  (method_def
-    name: (identifier)
-    type: (proc_type)
-    body: (expressions
-      (named_tuple
-        (named_expr
-          name: (string
-            (literal_content))
-          (string
-            (literal_content))))))
-  (method_def
-    name: (identifier)
-    type: (proc_type)
-    body: (expressions
-      (named_tuple
-        (named_expr
-          name: (string
-            (literal_content))
-          (string
-            (literal_content))))))
-  (method_def
-    name: (identifier)
-    type: (proc_type)
-    body: (expressions
-      (named_tuple
-        (named_expr
-          name: (string
-            (literal_content))
-          (string
-            (literal_content))))))
-  (method_def
-    name: (identifier)
-    type: (proc_type)
-    body: (expressions
-      (named_tuple
-        (named_expr
-          name: (string
-            (literal_content))
-          (string
-            (literal_content))))))
-  (method_def
-    name: (identifier)
-    type: (proc_type)
-    body: (expressions
-      (named_tuple
-        (named_expr
-          name: (string
-            (literal_content))
-          (string
-            (literal_content))))))
-  (method_def
-    name: (identifier)
-    type: (proc_type)
-    body: (expressions
-      (named_tuple
-        (named_expr
-          name: (string
-            (literal_content))
-          (string
-            (literal_content))))))
   (assign
     lhs: (identifier)
     rhs: (proc
@@ -696,6 +631,82 @@ f = -> : -> { a: String; ->{} }
             type: (constant))
           (proc
             block: (block)))))))
+
+================================================================================
+proc ambiguity resolution, pt 3
+================================================================================
+# Not tagged with :language(crystal) because the Crystal parser doesn't represent
+# these keys as strings
+def p1 : ->{"a": "b"}; end
+def p1 : ->{ %(a()): "b"}; end
+def p1 : ->{ %q|a|: "b"}; end
+def p1 : ->{ %Q<<>a>: "b"}; end
+def p1 : ->{ %[[a]]: "b"}; end
+def p1 : ->{ %{a{}a}: "b"}; end
+--------------------------------------------------------------------------------
+(expressions
+  (comment)
+  (comment)
+  (method_def
+    name: (identifier)
+    type: (proc_type)
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
+  (method_def
+    name: (identifier)
+    type: (proc_type)
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
+  (method_def
+    name: (identifier)
+    type: (proc_type)
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
+  (method_def
+    name: (identifier)
+    type: (proc_type)
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
+  (method_def
+    name: (identifier)
+    type: (proc_type)
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
+  (method_def
+    name: (identifier)
+    type: (proc_type)
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string
+            (literal_content))
+          (string
+            (literal_content)))))))
 
 ================================================================================
 tuple types
@@ -1161,6 +1172,8 @@ alias I = StaticArray(Char*, 2.0)
 alias J = Foo(Bar,)
 alias K = Foo(Bar, Baz -> Qux)
 alias L = Foo(Bar, Baz)
+
+g : Int64[8]
 --------------------------------------------------------------------------------
 
 (expressions
@@ -1246,7 +1259,12 @@ alias L = Foo(Bar, Baz)
       (constant)
       params: (param_list
         (constant)
-        (constant)))))
+        (constant))))
+  (type_declaration
+    var: (identifier)
+    type: (static_array_type
+      (constant)
+      (integer))))
 
 =================
 double splat type
@@ -1274,3 +1292,91 @@ end
             name: (identifier)
             type: (double_splat_type
               (constant))))))))
+
+=====================
+union type precedence
+:language(crystal)
+=====================
+foo : Int32 | Int64.class
+bar : (Int32 | Int64).class
+
+foo : Int32 | LibXML::Node*
+bar : (Int32 | LibXML::Node)*
+
+foo : Int32 | Int64[8]
+bar : (Int32 | Int64)[8]
+
+foo : A | B? | C* | {d: D} | {E} | _ -> F | self | G.class = typeof(A | B? | C)
+---
+
+(expressions
+  (type_declaration
+    var: (identifier)
+    type: (union_type
+      (constant)
+      (class_type
+        (constant))))
+  (type_declaration
+    var: (identifier)
+    type: (class_type
+      (union_type
+        (constant)
+        (constant))))
+  (type_declaration
+    var: (identifier)
+    type: (union_type
+      (constant)
+      (pointer_type
+        (constant))))
+  (type_declaration
+    var: (identifier)
+    type: (pointer_type
+      (union_type
+        (constant)
+        (constant))))
+  (type_declaration
+    var: (identifier)
+    type: (union_type
+      (constant)
+      (static_array_type
+        (constant)
+        (integer))))
+  (type_declaration
+    var: (identifier)
+    type: (static_array_type
+      (union_type
+        (constant)
+        (constant))
+      (integer)))
+  (type_declaration
+    var: (identifier)
+    type: (proc_type
+      (union_type
+        (constant)
+        (nilable_type
+          (constant))
+        (pointer_type
+          (constant))
+        (named_tuple_type
+          (named_type
+            name: (identifier)
+            (constant)))
+        (tuple_type
+          (constant))
+        (underscore))
+      return: (union_type
+        (constant)
+        (self)
+        (class_type
+          (constant))))
+    value: (typeof
+      (call
+        receiver: (call
+          receiver: (constant)
+          method: (operator)
+          arguments: (argument_list
+            (nilable_constant
+              (constant))))
+        method: (operator)
+        arguments: (argument_list
+          (constant))))))

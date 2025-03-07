@@ -7563,7 +7563,7 @@
     },
     "union_type": {
       "type": "PREC_RIGHT",
-      "value": "atomic_type",
+      "value": "union_type",
       "content": {
         "type": "SEQ",
         "members": [
@@ -7575,7 +7575,7 @@
             "type": "REPEAT1",
             "content": {
               "type": "PREC_LEFT",
-              "value": 0,
+              "value": "union_type",
               "content": {
                 "type": "SEQ",
                 "members": [
@@ -8304,7 +8304,12 @@
             "name": "_type"
           },
           {
-            "type": "STRING",
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_start_of_index_operator"
+            },
+            "named": false,
             "value": "["
           },
           {
@@ -15075,6 +15080,10 @@
       },
       {
         "type": "STRING",
+        "value": "union_type"
+      },
+      {
+        "type": "STRING",
         "value": "splat_type"
       }
     ],
@@ -15085,6 +15094,10 @@
       },
       {
         "type": "STRING",
+        "value": "union_type"
+      },
+      {
+        "type": "STRING",
         "value": "proc_type"
       }
     ],
@@ -15092,6 +15105,10 @@
       {
         "type": "STRING",
         "value": "atomic_type"
+      },
+      {
+        "type": "STRING",
+        "value": "union_type"
       },
       {
         "type": "SYMBOL",

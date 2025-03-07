@@ -378,6 +378,12 @@ end
 def blam
   (a || b) && c
 end
+
+def foo; () end
+
+def foo
+  (1;1)
+end
 --------------------------------------------------------------------------------
 
 (expressions
@@ -456,7 +462,17 @@ end
             (operator)
             (identifier)))
         (operator)
-        (identifier)))))
+        (identifier))))
+  (method_def
+    name: (identifier)
+    body: (expressions
+      (nil)))
+  (method_def
+    name: (identifier)
+    body: (expressions
+      (expressions
+        (integer)
+        (integer)))))
 
 ================================================================================
 method definitions with special characters

@@ -197,7 +197,11 @@ class SExpVisitor < Crystal::Visitor
         when Nop, nil
           break
         when Expressions
-          # keep it
+          if body.keyword.paren?
+            # Make sure we output 2 levels of `expressions` with syntax like
+            #   def foo; (1); end
+            body = Expressions.new([body] of ASTNode)
+          end
         when ASTNode
           body = Expressions.new([body] of ASTNode)
         else

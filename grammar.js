@@ -195,15 +195,18 @@ module.exports = grammar({
     // Most type operators bind tighter than splat or proc types
     [
       'atomic_type',
+      'union_type',
       'splat_type',
     ],
     [
       'atomic_type',
+      'union_type',
       'proc_type',
     ],
     // Ensure most type parsing happens before $._type is upgraded to $._splattable_type
     [
       'atomic_type',
+      'union_type',
       $._splattable_type,
     ],
 
@@ -1772,9 +1775,11 @@ module.exports = grammar({
       'class',
     )),
 
-    union_type: $ => prec.right('atomic_type', seq(
+    union_type: $ => prec.right('union_type', seq(
       $._type,
-      repeat1(prec.left(seq('|', $._type))),
+      repeat1(
+        prec.left('union_type', seq('|', $._type)),
+      ),
     )),
 
     _parenthesized_type: $ => seq('(', $._bare_type, ')'),
@@ -1906,7 +1911,7 @@ module.exports = grammar({
     pointer_type: $ => prec('atomic_type', seq($._type, alias($._pointer_star, '*'))),
 
     static_array_type: $ => prec('atomic_type', seq(
-      $._type, '[', choice($.constant, $._numeric_type), ']',
+      $._type, alias($._start_of_index_operator, '['), choice($.constant, $._numeric_type), ']',
     )),
 
     _dot_call: $ => {

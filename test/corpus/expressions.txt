@@ -4610,9 +4610,9 @@ as(Int32 | LibXML::Node*)
   (call
     method: (identifier)
     arguments: (argument_list
-      (pointer_type
-        (union_type
-          (constant)
+      (union_type
+        (constant)
+        (pointer_type
           (constant))))))
 
 ================
@@ -4634,9 +4634,9 @@ as?(Int32 | LibXML::Node*)
   (call
     method: (identifier)
     arguments: (argument_list
-      (pointer_type
-        (union_type
-          (constant)
+      (union_type
+        (constant)
+        (pointer_type
           (constant))))))
 
 ===================
@@ -4664,9 +4664,9 @@ foo.is_a? Bar? ?
   (call
     method: (identifier)
     arguments: (argument_list
-      (pointer_type
-        (union_type
-          (constant)
+      (union_type
+        (constant)
+        (pointer_type
           (constant)))))
   (comment)
   (conditional
@@ -4703,9 +4703,9 @@ method { T.from_www_form(item).as T* }
   (call
     method: (identifier)
     arguments: (argument_list
-      (nilable_type
-        (union_type
-          (constant)
+      (union_type
+        (constant)
+        (nilable_type
           (constant)))))
   (call
     receiver: (identifier)
