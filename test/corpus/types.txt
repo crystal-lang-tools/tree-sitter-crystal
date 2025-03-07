@@ -1274,3 +1274,74 @@ end
             name: (identifier)
             type: (double_splat_type
               (constant))))))))
+
+=====================
+union type precedence
+:language(crystal)
+=====================
+foo : Int32 | Int64.class
+bar : (Int32 | Int64).class
+
+foo : Int32 | LibXML::Node*
+bar : (Int32 | LibXML::Node)*
+
+foo : A | B? | C* | {d: D} | {E} | _ -> F | self | G.class = typeof(A | B? | C)
+---
+
+(expressions
+  (type_declaration
+    var: (identifier)
+    type: (union_type
+      (constant)
+      (class_type
+        (constant))))
+  (type_declaration
+    var: (identifier)
+    type: (class_type
+      (union_type
+        (constant)
+        (constant))))
+  (type_declaration
+    var: (identifier)
+    type: (union_type
+      (constant)
+      (pointer_type
+        (constant))))
+  (type_declaration
+    var: (identifier)
+    type: (pointer_type
+      (union_type
+        (constant)
+        (constant))))
+  (type_declaration
+    var: (identifier)
+    type: (proc_type
+      (union_type
+        (constant)
+        (nilable_type
+          (constant))
+        (pointer_type
+          (constant))
+        (named_tuple_type
+          (named_type
+            name: (identifier)
+            (constant)))
+        (tuple_type
+          (constant))
+        (underscore))
+      return: (union_type
+        (constant)
+        (self)
+        (class_type
+          (constant))))
+    value: (typeof
+      (call
+        receiver: (call
+          receiver: (constant)
+          method: (operator)
+          arguments: (argument_list
+            (nilable_constant
+              (constant))))
+        method: (operator)
+        arguments: (argument_list
+          (constant))))))
