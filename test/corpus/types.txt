@@ -1161,6 +1161,8 @@ alias I = StaticArray(Char*, 2.0)
 alias J = Foo(Bar,)
 alias K = Foo(Bar, Baz -> Qux)
 alias L = Foo(Bar, Baz)
+
+g : Int64[8]
 --------------------------------------------------------------------------------
 
 (expressions
@@ -1246,7 +1248,12 @@ alias L = Foo(Bar, Baz)
       (constant)
       params: (param_list
         (constant)
-        (constant)))))
+        (constant))))
+  (type_declaration
+    var: (identifier)
+    type: (static_array_type
+      (constant)
+      (integer))))
 
 =================
 double splat type
@@ -1285,6 +1292,9 @@ bar : (Int32 | Int64).class
 foo : Int32 | LibXML::Node*
 bar : (Int32 | LibXML::Node)*
 
+foo : Int32 | Int64[8]
+bar : (Int32 | Int64)[8]
+
 foo : A | B? | C* | {d: D} | {E} | _ -> F | self | G.class = typeof(A | B? | C)
 ---
 
@@ -1313,6 +1323,20 @@ foo : A | B? | C* | {d: D} | {E} | _ -> F | self | G.class = typeof(A | B? | C)
       (union_type
         (constant)
         (constant))))
+  (type_declaration
+    var: (identifier)
+    type: (union_type
+      (constant)
+      (static_array_type
+        (constant)
+        (integer))))
+  (type_declaration
+    var: (identifier)
+    type: (static_array_type
+      (union_type
+        (constant)
+        (constant))
+      (integer)))
   (type_declaration
     var: (identifier)
     type: (proc_type

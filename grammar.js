@@ -1911,7 +1911,7 @@ module.exports = grammar({
     pointer_type: $ => prec('atomic_type', seq($._type, alias($._pointer_star, '*'))),
 
     static_array_type: $ => prec('atomic_type', seq(
-      $._type, '[', choice($.constant, $._numeric_type), ']',
+      $._type, alias($._start_of_index_operator, '['), choice($.constant, $._numeric_type), ']',
     )),
 
     _dot_call: $ => {

@@ -236,7 +236,6 @@ crystal/system/unix/addrinfo.cr
 crystal/system/unix/dir.cr
 crystal/system/unix/env.cr
 crystal/system/unix/epoll.cr
-crystal/system/unix/eventfd.cr
 crystal/system/unix/file.cr
 crystal/system/unix/file_info.cr
 crystal/system/unix/getrandom.cr
@@ -274,7 +273,6 @@ crystal/system/win32/mime.cr
 crystal/system/win32/path.cr
 crystal/system/win32/process.cr
 crystal/system/win32/socket.cr
-crystal/system/win32/thread.cr
 crystal/system/win32/thread_condition_variable.cr
 crystal/system/win32/thread_mutex.cr
 crystal/system/win32/time.cr
@@ -636,9 +634,7 @@ openssl/digest.cr
 openssl/error.cr
 openssl/lib_crypto.cr
 openssl/lib_ssl.cr
-openssl/md5.cr
 openssl/pkcs5.cr
-openssl/sha1.cr
 openssl/ssl/context.cr
 openssl/ssl/server.cr
 openssl/ssl/socket.cr
