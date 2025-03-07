@@ -242,6 +242,7 @@ alias P2 = -> Tuple(Int8) ->
 
 ================================================================================
 proc ambiguity resolution
+:language(crystal)
 ================================================================================
 def p1 : ->{1=>1}; end
 def p2 : ->{Int32}; end
@@ -447,6 +448,7 @@ def p2 : ->(A ?1:2); end
 
 ================================================================================
 proc ambiguity resolution, continued
+:language(crystal)
 ================================================================================
 def p1 : ->{self,}; end
 def p1 : ->{self?,}; end
@@ -474,13 +476,6 @@ def p2 : ->(typeof🆎); end
 
 def p1 : -> { A::B, }; end
 def p2 : -> { A: :B, }; end
-
-def p1 : ->{"a": "b"}; end
-def p1 : ->{ %(a()): "b"}; end
-def p1 : ->{ %q|a|: "b"}; end
-def p1 : ->{ %Q<<>a>: "b"}; end
-def p1 : ->{ %[[a]]: "b"}; end
-def p1 : ->{ %{a{}a}: "b"}; end
 
 f = -> : -> { a: String; ->{} }
 --------------------------------------------------------------------------------
@@ -625,66 +620,6 @@ f = -> : -> { a: String; ->{} }
           name: (identifier)
           (symbol
             (literal_content))))))
-  (method_def
-    name: (identifier)
-    type: (proc_type)
-    body: (expressions
-      (named_tuple
-        (named_expr
-          name: (string
-            (literal_content))
-          (string
-            (literal_content))))))
-  (method_def
-    name: (identifier)
-    type: (proc_type)
-    body: (expressions
-      (named_tuple
-        (named_expr
-          name: (string
-            (literal_content))
-          (string
-            (literal_content))))))
-  (method_def
-    name: (identifier)
-    type: (proc_type)
-    body: (expressions
-      (named_tuple
-        (named_expr
-          name: (string
-            (literal_content))
-          (string
-            (literal_content))))))
-  (method_def
-    name: (identifier)
-    type: (proc_type)
-    body: (expressions
-      (named_tuple
-        (named_expr
-          name: (string
-            (literal_content))
-          (string
-            (literal_content))))))
-  (method_def
-    name: (identifier)
-    type: (proc_type)
-    body: (expressions
-      (named_tuple
-        (named_expr
-          name: (string
-            (literal_content))
-          (string
-            (literal_content))))))
-  (method_def
-    name: (identifier)
-    type: (proc_type)
-    body: (expressions
-      (named_tuple
-        (named_expr
-          name: (string
-            (literal_content))
-          (string
-            (literal_content))))))
   (assign
     lhs: (identifier)
     rhs: (proc
@@ -696,6 +631,82 @@ f = -> : -> { a: String; ->{} }
             type: (constant))
           (proc
             block: (block)))))))
+
+================================================================================
+proc ambiguity resolution, pt 3
+================================================================================
+# Not tagged with :language(crystal) because the Crystal parser doesn't represent
+# these keys as strings
+def p1 : ->{"a": "b"}; end
+def p1 : ->{ %(a()): "b"}; end
+def p1 : ->{ %q|a|: "b"}; end
+def p1 : ->{ %Q<<>a>: "b"}; end
+def p1 : ->{ %[[a]]: "b"}; end
+def p1 : ->{ %{a{}a}: "b"}; end
+--------------------------------------------------------------------------------
+(expressions
+  (comment)
+  (comment)
+  (method_def
+    name: (identifier)
+    type: (proc_type)
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
+  (method_def
+    name: (identifier)
+    type: (proc_type)
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
+  (method_def
+    name: (identifier)
+    type: (proc_type)
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
+  (method_def
+    name: (identifier)
+    type: (proc_type)
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
+  (method_def
+    name: (identifier)
+    type: (proc_type)
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string
+            (literal_content))
+          (string
+            (literal_content))))))
+  (method_def
+    name: (identifier)
+    type: (proc_type)
+    body: (expressions
+      (named_tuple
+        (named_expr
+          name: (string
+            (literal_content))
+          (string
+            (literal_content)))))))
 
 ================================================================================
 tuple types
