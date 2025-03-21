@@ -1832,3 +1832,43 @@ end
           (call
             receiver: (constant)
             method: (identifier)))))))
+
+======================================
+inline statements inside interpolation
+:language(crystal)
+======================================
+"hello #{"world" if true}"
+s1 = "{#{a unless b}}"
+
+def foo
+  bar = "#{return 7}"
+end
+---
+
+(expressions
+  (string
+    (literal_content)
+    (interpolation
+      (modifier_if
+        then: (string
+          (literal_content))
+        cond: (true))))
+  (assign
+    lhs: (identifier)
+    rhs: (string
+      (literal_content)
+      (interpolation
+        (modifier_unless
+          then: (identifier)
+          cond: (identifier)))
+      (literal_content)))
+  (method_def
+    name: (identifier)
+    body: (expressions
+      (assign
+        lhs: (identifier)
+        rhs: (string
+          (interpolation
+            (return
+              (argument_list
+                (integer)))))))))

@@ -8278,6 +8278,10 @@
           "named": true
         },
         {
+          "type": "break",
+          "named": true
+        },
+        {
           "type": "call",
           "named": true
         },
@@ -8402,7 +8406,27 @@
           "named": true
         },
         {
+          "type": "modifier_ensure",
+          "named": true
+        },
+        {
+          "type": "modifier_if",
+          "named": true
+        },
+        {
+          "type": "modifier_rescue",
+          "named": true
+        },
+        {
+          "type": "modifier_unless",
+          "named": true
+        },
+        {
           "type": "named_tuple",
+          "named": true
+        },
+        {
+          "type": "next",
           "named": true
         },
         {
@@ -8447,6 +8471,10 @@
         },
         {
           "type": "regex",
+          "named": true
+        },
+        {
+          "type": "return",
           "named": true
         },
         {
@@ -8967,6 +8995,10 @@
           "named": true
         },
         {
+          "type": "break",
+          "named": true
+        },
+        {
           "type": "call",
           "named": true
         },
@@ -9095,7 +9127,27 @@
           "named": true
         },
         {
+          "type": "modifier_ensure",
+          "named": true
+        },
+        {
+          "type": "modifier_if",
+          "named": true
+        },
+        {
+          "type": "modifier_rescue",
+          "named": true
+        },
+        {
+          "type": "modifier_unless",
+          "named": true
+        },
+        {
           "type": "named_tuple",
+          "named": true
+        },
+        {
+          "type": "next",
           "named": true
         },
         {
@@ -9140,6 +9192,10 @@
         },
         {
           "type": "regex",
+          "named": true
+        },
+        {
+          "type": "return",
           "named": true
         },
         {
