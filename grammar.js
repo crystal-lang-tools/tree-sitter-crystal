@@ -456,8 +456,22 @@ module.exports = grammar({
       $._enum_statement,
     ),
 
+    // A void value statement that may be used dynamically.
+    // In other words, `c = [b if a]` isn't valid syntax, but `c = "#{b if a}"` is okay.
+    _inline_statement: $ => choice(
+      $.modifier_if,
+      $.modifier_unless,
+      $.modifier_rescue,
+      $.modifier_ensure,
+
+      $.return,
+      $.next,
+      $.break,
+    ),
+
     _statement: $ => choice(
       $._expression,
+      $._inline_statement,
       $.const_assign,
       alias($.multi_assign, $.assign),
       $.annotation,
@@ -474,16 +488,8 @@ module.exports = grammar({
       alias($.top_level_fun_def, $.fun_def),
       $.visibility_modifier,
       $.require,
-      $.modifier_if,
-      $.modifier_unless,
-      $.modifier_rescue,
-      $.modifier_ensure,
       $.include,
       $.extend,
-
-      $.return,
-      $.next,
-      $.break,
     ),
 
     _lib_statement: $ => choice(
@@ -764,7 +770,7 @@ module.exports = grammar({
     },
 
     interpolation: $ => seq(
-      token(prec(1, '#{')), $._expression, '}',
+      token(prec(1, '#{')), choice($._expression, $._inline_statement), '}',
     ),
 
     string_percent_literal: $ => seq(
@@ -1950,7 +1956,7 @@ module.exports = grammar({
 
     macro_expression: $ => seq(
       '{{',
-      choice($.splat, $.double_splat, $._expression),
+      choice($.splat, $.double_splat, $._expression, $._inline_statement),
       '}}',
     ),
 

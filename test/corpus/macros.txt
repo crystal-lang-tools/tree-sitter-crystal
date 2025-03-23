@@ -1105,3 +1105,44 @@ end
                     receiver: (identifier)
                     method: (identifier))))))))
       (macro_content))))
+
+===============================
+inline modifier statements in macro expression
+:language(crystal)
+===============================
+macro foo
+  {{ skip_file if compare_versions(Crystal::VERSION, "1.3.0") >= 0 }}
+
+  {% debug unless env("NO_DEBUG") %}
+end
+---
+
+(expressions
+  (macro_def
+    name: (identifier)
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (modifier_if
+          then: (identifier)
+          cond: (call
+            receiver: (call
+              method: (identifier)
+              arguments: (argument_list
+                (constant)
+                (string
+                  (literal_content))))
+            method: (operator)
+            arguments: (argument_list
+              (integer)))))
+      (macro_content)
+      (macro_statement
+        (expressions
+          (modifier_unless
+            then: (identifier)
+            cond: (call
+              method: (identifier)
+              arguments: (argument_list
+                (string
+                  (literal_content)))))))
+      (macro_content))))

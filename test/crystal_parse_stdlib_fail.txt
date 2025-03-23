@@ -575,6 +575,7 @@ llvm/generic_value.cr
 llvm/global_collection.cr
 llvm/instruction_collection.cr
 llvm/jit_compiler.cr
+llvm/lib_llvm.cr
 llvm/lib_llvm/core.cr
 llvm/lib_llvm/transforms/pass_builder.cr
 llvm/lib_llvm_ext.cr

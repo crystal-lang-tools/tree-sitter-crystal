@@ -350,12 +350,49 @@
         }
       ]
     },
+    "_inline_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "modifier_if"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "modifier_unless"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "modifier_rescue"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "modifier_ensure"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "return"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "next"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "break"
+        }
+      ]
+    },
     "_statement": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
           "name": "_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_inline_statement"
         },
         {
           "type": "SYMBOL",
@@ -433,39 +470,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "modifier_if"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "modifier_unless"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "modifier_rescue"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "modifier_ensure"
-        },
-        {
-          "type": "SYMBOL",
           "name": "include"
         },
         {
           "type": "SYMBOL",
           "name": "extend"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "return"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "next"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "break"
         }
       ]
     },
@@ -2676,8 +2685,17 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_expression"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_inline_statement"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -8525,6 +8543,10 @@
             {
               "type": "SYMBOL",
               "name": "_expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_inline_statement"
             }
           ]
         },
