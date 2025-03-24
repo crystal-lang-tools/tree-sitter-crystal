@@ -1938,11 +1938,10 @@ ary[0..2] //= val.bar **= 7
     lhs: (identifier)
     (operator)
     rhs: (identifier))
-  (call
-    receiver: (instance_var)
-    method: (operator)
-    arguments: (argument_list
-      (integer)))
+  (op_assign
+    lhs: (instance_var)
+    (operator)
+    rhs: (integer))
   (op_assign
     lhs: (index_call
       receiver: (identifier)
@@ -3514,15 +3513,14 @@ a.[0].setter, a.[1].setter = things
           (array
             (integer)))))
     rhs: (integer))
-  (call
-    receiver: (index_call
+  (op_assign
+    lhs: (index_call
       receiver: (identifier)
       method: (operator)
       arguments: (argument_list
         (integer)))
-    method: (operator)
-    arguments: (argument_list
-      (integer)))
+    (operator)
+    rhs: (integer))
   (op_assign
     lhs: (index_call
       receiver: (index_call

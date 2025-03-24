@@ -2538,15 +2538,16 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                 return false;
             }
 
+            // `%=` is not an external token
+            if (lexer->lookahead == '=') {
+                return false;
+            }
+
             if (valid_symbols[STRING_PERCENT_LITERAL_START]
                 || valid_symbols[COMMAND_PERCENT_LITERAL_START]
                 || valid_symbols[STRING_ARRAY_PERCENT_LITERAL_START]
                 || valid_symbols[SYMBOL_ARRAY_PERCENT_LITERAL_START]
                 || valid_symbols[REGEX_PERCENT_LITERAL_START]) {
-
-                if (lexer->lookahead == '=') {
-                    return false;
-                }
 
                 LiteralType type = STRING;
                 Token return_symbol = STRING_PERCENT_LITERAL_START;
@@ -2639,12 +2640,6 @@ static bool inner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols)
                 }
 
             } else if (valid_symbols[MODULO_OPERATOR]) {
-                lex_advance(lexer);
-
-                if (lexer->lookahead == '=') {
-                    return false;
-                }
-
                 lexer->result_symbol = MODULO_OPERATOR;
                 return true;
             }

@@ -352,7 +352,8 @@ var5 = 4321 % %var1
       receiver: (integer)
       method: (operator)
       arguments: (argument_list
-        (identifier))))
+        (macro_var
+          name: (identifier)))))
   (assign
     lhs: (identifier)
     rhs: (call
