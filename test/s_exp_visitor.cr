@@ -1505,7 +1505,7 @@ class SExpVisitor < Crystal::Visitor
     false
   end
 
-  def visit(node : Assign | OpAssign)
+  def visit(node : Assign)
     assign_type = if node.target.is_a?(Crystal::Path)
                     "const_assign"
                   else
@@ -1524,6 +1524,18 @@ class SExpVisitor < Crystal::Visitor
     end
 
     false
+  end
+
+  def visit(node : OpAssign)
+    in_node("op_assign") do
+      field "lhs" do
+        node.target.accept(self)
+      end
+      print_node("operator")
+      field "rhs" do
+        node.value.accept(self)
+      end
+    end
   end
 
   def visit(node : MultiAssign)

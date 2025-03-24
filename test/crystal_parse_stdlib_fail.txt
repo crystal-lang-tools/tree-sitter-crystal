@@ -65,7 +65,6 @@ compiler/crystal/interpreter/class_vars.cr
 compiler/crystal/interpreter/closure_context.cr
 compiler/crystal/interpreter/compiled_block.cr
 compiler/crystal/interpreter/compiled_def.cr
-compiler/crystal/interpreter/compiled_instructions.cr
 compiler/crystal/interpreter/compiler.cr
 compiler/crystal/interpreter/constants.cr
 compiler/crystal/interpreter/context.cr
@@ -103,7 +102,6 @@ compiler/crystal/semantic/default_arguments.cr
 compiler/crystal/semantic/exhaustiveness_checker.cr
 compiler/crystal/semantic/fix_missing_types.cr
 compiler/crystal/semantic/flags.cr
-compiler/crystal/semantic/hooks.cr
 compiler/crystal/semantic/instance_vars_initializer_visitor.cr
 compiler/crystal/semantic/lib.cr
 compiler/crystal/semantic/literal_expander.cr
@@ -184,15 +182,11 @@ crypto/bcrypt/base64.cr
 crypto/bcrypt/blowfish.cr
 crypto/bcrypt/password.cr
 crypto/blowfish.cr
-crypto/subtle.cr
 crystal/at_exit_handlers.cr
 crystal/atomic_semaphore.cr
-crystal/compiler_rt/divmod128.cr
-crystal/compiler_rt/multi3.cr
 crystal/datum.cr
 crystal/digest/md5.cr
 crystal/digest/sha1.cr
-crystal/dwarf.cr
 crystal/dwarf/abbrev.cr
 crystal/dwarf/info.cr
 crystal/dwarf/line_numbers.cr
@@ -232,13 +226,11 @@ crystal/system/random.cr
 crystal/system/thread.cr
 crystal/system/thread_linked_list.cr
 crystal/system/unix.cr
-crystal/system/unix/addrinfo.cr
 crystal/system/unix/dir.cr
 crystal/system/unix/env.cr
 crystal/system/unix/epoll.cr
 crystal/system/unix/file.cr
 crystal/system/unix/file_info.cr
-crystal/system/unix/getrandom.cr
 crystal/system/unix/group.cr
 crystal/system/unix/kqueue.cr
 crystal/system/unix/path.cr
@@ -258,8 +250,6 @@ crystal/system/wasi/socket.cr
 crystal/system/wasi/thread_condition_variable.cr
 crystal/system/wasi/thread_mutex.cr
 crystal/system/wasi/wasi.cr
-crystal/system/win32/addrinfo.cr
-crystal/system/win32/addrinfo_win7.cr
 crystal/system/win32/crypto.cr
 crystal/system/win32/dir.cr
 crystal/system/win32/env.cr
@@ -289,7 +279,6 @@ csv/builder.cr
 csv/error.cr
 csv/lexer.cr
 csv/lexer/io_based.cr
-csv/lexer/string_based.cr
 csv/parser.cr
 deque.cr
 digest/adler32.cr
@@ -399,7 +388,6 @@ json/builder.cr
 json/from_json.cr
 json/lexer.cr
 json/lexer/io_based.cr
-json/lexer/string_based.cr
 json/parser.cr
 json/pull_parser.cr
 json/serialization.cr
@@ -608,7 +596,6 @@ log/setup.cr
 log/spec.cr
 macros.cr
 math/libm.cr
-math/math.cr
 mime.cr
 mime/media_type.cr
 mime/multipart.cr
@@ -632,9 +619,7 @@ oauth2/session.cr
 object.cr
 openssl/bio.cr
 openssl/digest.cr
-openssl/error.cr
 openssl/lib_crypto.cr
-openssl/lib_ssl.cr
 openssl/pkcs5.cr
 openssl/ssl/context.cr
 openssl/ssl/server.cr
@@ -653,7 +638,6 @@ process/status.cr
 raise.cr
 random.cr
 random/isaac.cr
-random/pcg32.cr
 range/bsearch.cr
 reference.cr
 regex.cr
@@ -676,7 +660,6 @@ socket/tcp_socket.cr
 socket/unix_server.cr
 socket/unix_socket.cr
 spec.cr
-spec/cli.cr
 spec/context.cr
 spec/dsl.cr
 spec/example.cr
@@ -691,7 +674,6 @@ spec/item.cr
 spec/junit_formatter.cr
 spec/methods.cr
 spec/source.cr
-spec/tap_formatter.cr
 static_array.cr
 steppable.cr
 string.cr
@@ -699,7 +681,6 @@ string/builder.cr
 string/formatter.cr
 string/grapheme.cr
 string/grapheme/grapheme.cr
-string/grapheme/properties.cr
 string/utf16.cr
 string_pool.cr
 string_scanner.cr
@@ -731,7 +712,6 @@ uri/params.cr
 uri/params/from_www_form.cr
 uri/params/serializable.cr
 uri/params/to_www_form.cr
-uri/punycode.cr
 uri/uri_parser.cr
 uuid.cr
 va_list.cr
