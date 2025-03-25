@@ -1420,9 +1420,52 @@ class SExpVisitor < Crystal::Visitor
       return false
     end
 
+    if node.name == "[]=" && node.args_in_brackets?
+      in_node("assign") do
+        field "lhs" do
+          in_node("index_call") do
+            field "receiver" do
+              node.obj.try &.accept(self)
+            end
+
+            field "method" do
+              print_node("operator")
+            end
+
+            field "arguments" do
+              in_node("argument_list") do
+                node.args[0..-2].each do |arg|
+                  case arg
+                  when Splat
+                    alias_next_node!("splat")
+                  when DoubleSplat
+                    alias_next_node!("double_splat")
+                  end
+
+                  arg.accept(self)
+                end
+
+                if named_args && named_args.size > 0
+                  named_args.each do |named_arg|
+                    named_arg.accept(self)
+                  end
+                end
+              end
+            end
+          end
+        end
+
+        field "rhs" do
+          node.args[-1].accept self
+        end
+      end
+
+      return false
+    end
+
     call_name = if (obj = node.obj) && obj.is_a?(ImplicitObj)
                   "implicit_object_call"
-                elsif node.name == "[]"
+                elsif (node.name == "[]" || node.name == "[]?") && (node.args_in_brackets? || node.name_size == 0)
                   "index_call"
                 else
                   "call"

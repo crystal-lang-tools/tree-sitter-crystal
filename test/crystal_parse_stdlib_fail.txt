@@ -37,12 +37,10 @@ compiler/crystal/codegen/fun.cr
 compiler/crystal/codegen/link.cr
 compiler/crystal/codegen/llvm_id.cr
 compiler/crystal/codegen/llvm_typer.cr
-compiler/crystal/codegen/once.cr
 compiler/crystal/codegen/phi.cr
 compiler/crystal/codegen/primitives.cr
 compiler/crystal/codegen/target.cr
 compiler/crystal/codegen/types.cr
-compiler/crystal/codegen/unions.cr
 compiler/crystal/command.cr
 compiler/crystal/command/clear_cache.cr
 compiler/crystal/command/cursor.cr
@@ -165,7 +163,6 @@ compiler/crystal/types.cr
 compiler/crystal/warnings.cr
 compress/deflate/reader.cr
 compress/deflate/writer.cr
-compress/gzip/header.cr
 compress/gzip/reader.cr
 compress/gzip/writer.cr
 compress/zip/checksum_reader.cr
@@ -178,15 +175,11 @@ compress/zlib/reader.cr
 compress/zlib/writer.cr
 concurrent.cr
 crypto/bcrypt.cr
-crypto/bcrypt/base64.cr
-crypto/bcrypt/blowfish.cr
 crypto/bcrypt/password.cr
 crypto/blowfish.cr
 crystal/at_exit_handlers.cr
 crystal/atomic_semaphore.cr
 crystal/datum.cr
-crystal/digest/md5.cr
-crystal/digest/sha1.cr
 crystal/dwarf/abbrev.cr
 crystal/dwarf/info.cr
 crystal/dwarf/line_numbers.cr
@@ -233,7 +226,6 @@ crystal/system/unix/file.cr
 crystal/system/unix/file_info.cr
 crystal/system/unix/group.cr
 crystal/system/unix/kqueue.cr
-crystal/system/unix/path.cr
 crystal/system/unix/process.cr
 crystal/system/unix/pthread.cr
 crystal/system/unix/pthread_condition_variable.cr
@@ -249,7 +241,6 @@ crystal/system/wasi/process.cr
 crystal/system/wasi/socket.cr
 crystal/system/wasi/thread_condition_variable.cr
 crystal/system/wasi/thread_mutex.cr
-crystal/system/wasi/wasi.cr
 crystal/system/win32/crypto.cr
 crystal/system/win32/dir.cr
 crystal/system/win32/env.cr
@@ -260,7 +251,6 @@ crystal/system/win32/group.cr
 crystal/system/win32/iocp.cr
 crystal/system/win32/library_archive.cr
 crystal/system/win32/mime.cr
-crystal/system/win32/path.cr
 crystal/system/win32/process.cr
 crystal/system/win32/socket.cr
 crystal/system/win32/thread_condition_variable.cr
@@ -270,7 +260,6 @@ crystal/system/win32/user.cr
 crystal/system/win32/visual_studio.cr
 crystal/system/win32/windows_registry.cr
 crystal/system/win32/wmain.cr
-crystal/system/win32/zone_names.cr
 crystal/system/windows.cr
 crystal/thread_local_value.cr
 crystal/tracing.cr
@@ -281,8 +270,6 @@ csv/lexer.cr
 csv/lexer/io_based.cr
 csv/parser.cr
 deque.cr
-digest/adler32.cr
-digest/crc32.cr
 digest/digest.cr
 digest/io_digest.cr
 dir.cr
@@ -304,11 +291,7 @@ exception/call_stack/stackwalk.cr
 fiber.cr
 fiber/context.cr
 fiber/context/aarch64-generic.cr
-fiber/context/aarch64-microsoft.cr
-fiber/context/arm.cr
 fiber/context/i386.cr
-fiber/context/x86_64-microsoft.cr
-fiber/context/x86_64-sysv.cr
 fiber/stack_pool.cr
 file.cr
 file/error.cr
@@ -608,12 +591,10 @@ nil.cr
 number.cr
 oauth/access_token.cr
 oauth/consumer.cr
-oauth/oauth.cr
 oauth/params.cr
 oauth/request_token.cr
 oauth/signature.cr
 oauth2/access_token/access_token.cr
-oauth2/access_token/bearer.cr
 oauth2/access_token/mac.cr
 oauth2/client.cr
 oauth2/session.cr
@@ -660,7 +641,6 @@ socket/tcp_server.cr
 socket/tcp_socket.cr
 socket/unix_server.cr
 socket/unix_socket.cr
-spec.cr
 spec/context.cr
 spec/dsl.cr
 spec/example.cr
@@ -674,7 +654,6 @@ spec/helpers/string.cr
 spec/item.cr
 spec/junit_formatter.cr
 spec/methods.cr
-spec/source.cr
 static_array.cr
 steppable.cr
 string.cr
@@ -705,12 +684,10 @@ time/location.cr
 time/location/loader.cr
 time/span.cr
 tuple.cr
-unicode/data.cr
 unicode/unicode.cr
 uri.cr
 uri/encoding.cr
 uri/params.cr
-uri/params/from_www_form.cr
 uri/params/serializable.cr
 uri/params/to_www_form.cr
 uri/uri_parser.cr

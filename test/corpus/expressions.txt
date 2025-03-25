@@ -3423,6 +3423,7 @@ a.[]=(1, 2)
 
 ================================================================================
 index accessors
+:language(crystal)
 ================================================================================
 foo[0]
 puts {0} [0]
@@ -3433,7 +3434,7 @@ puts({0} [0]?)
 ary[*{0}, **{count: 1}]
 
 a.[count: 1, values: [5]] =0
-b.["q": 1, q?: 3, %q(stuff): [5]] =0
+b.[q: 1, q?: 3, stuff: [5]] =0
 
 a.[2] %= 5
 c.[0].[0] += 5
@@ -3513,15 +3514,13 @@ foo[].[]
       method: (operator)
       arguments: (argument_list
         (named_expr
-          name: (string
-            (literal_content))
+          name: (identifier)
           (integer))
         (named_expr
           name: (identifier)
           (integer))
         (named_expr
-          name: (string
-            (literal_content))
+          name: (identifier)
           (array
             (integer)))))
     rhs: (integer))
@@ -3600,6 +3599,7 @@ foo[].[]
 
 ================================================================================
 index assignment
+:language(crystal)
 ================================================================================
 a.[]=(1, 2)
 
@@ -4877,3 +4877,233 @@ end
           (call
             receiver: (self)
             method: (operator)))))))
+
+=================================
+consistency of index method forms
+:language(crystal)
+=================================
+a = [1,2,3]
+
+a[0]
+a.[0]
+a.[](0)
+
+a[0,1]
+a.[0,1]
+a.[](0,1)
+
+a[0]?
+a.[0]?
+a.[]?(0)
+
+a[]
+a.[]
+a.[]()
+
+a.[]?
+a.[]?()
+
+a[start: 0, count: 1]?
+a.[count: 1, start: 1]?
+a.[]?(count: 1, start: 1)
+
+b = 7
+a[0] = 7
+a.[0] = 7
+
+b += 7
+a[0] += 7
+a.[0] += 7
+
+a[0], a.[1] = 7, 7
+
+a = %i[a b c]
+a[value: :d] = 0
+b, a[1, 2], c = {0, :e, 0}
+---
+
+(expressions
+  (assign
+    lhs: (identifier)
+    rhs: (array
+      (integer)
+      (integer)
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)
+      (integer)))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator))
+  (call
+    receiver: (identifier)
+    method: (operator))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list))
+  (call
+    receiver: (identifier)
+    method: (operator))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (named_expr
+        name: (identifier)
+        (integer))
+      (named_expr
+        name: (identifier)
+        (integer))))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (named_expr
+        name: (identifier)
+        (integer))
+      (named_expr
+        name: (identifier)
+        (integer))))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (named_expr
+        name: (identifier)
+        (integer))
+      (named_expr
+        name: (identifier)
+        (integer))))
+  (assign
+    lhs: (identifier)
+    rhs: (integer))
+  (assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    rhs: (integer))
+  (assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    rhs: (integer))
+  (op_assign
+    lhs: (identifier)
+    (operator)
+    rhs: (integer))
+  (op_assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    (operator)
+    rhs: (integer))
+  (op_assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    (operator)
+    rhs: (integer))
+  (assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    rhs: (integer)
+    rhs: (integer))
+  (assign
+    lhs: (identifier)
+    rhs: (array
+      (symbol
+        (literal_content))
+      (symbol
+        (literal_content))
+      (symbol
+        (literal_content))))
+  (assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (named_expr
+          name: (identifier)
+          (symbol
+            (literal_content)))))
+    rhs: (integer))
+  (assign
+    lhs: (identifier)
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)
+        (integer)))
+    lhs: (identifier)
+    rhs: (tuple
+      (integer)
+      (symbol
+        (literal_content))
+      (integer))))
