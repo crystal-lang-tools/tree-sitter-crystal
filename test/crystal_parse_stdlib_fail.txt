@@ -377,6 +377,7 @@ io/error.cr
 io/evented.cr
 io/file_descriptor.cr
 io/hexdump.cr
+io/memory.cr
 io/multi_writer.cr
 io/sized.cr
 io/stapled.cr

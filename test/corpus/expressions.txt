@@ -3441,6 +3441,13 @@ c.[0].[0] += 5
 a.[0], *b.[0] = 1, 2, 3
 
 a.[0].setter, a.[1].setter = things
+
+foo[]
+foo[][]
+
+foo.[]
+foo.[][]
+foo[].[]
 --------------------------------------------------------------------------------
 
 (expressions
@@ -3568,7 +3575,28 @@ a.[0].setter, a.[1].setter = things
         arguments: (argument_list
           (integer)))
       method: (identifier))
-    rhs: (identifier)))
+    rhs: (identifier))
+  (index_call
+    receiver: (identifier)
+    method: (operator))
+  (index_call
+    receiver: (index_call
+      receiver: (identifier)
+      method: (operator))
+    method: (operator))
+  (call
+    receiver: (identifier)
+    method: (operator))
+  (index_call
+    receiver: (call
+      receiver: (identifier)
+      method: (operator))
+    method: (operator))
+  (call
+    receiver: (index_call
+      receiver: (identifier)
+      method: (operator))
+    method: (operator)))
 
 ================================================================================
 index assignment
