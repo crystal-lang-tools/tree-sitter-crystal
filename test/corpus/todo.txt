@@ -370,16 +370,6 @@ splat in tuple
 
 (expressions)
 
-===================================
-regular expressions starting with =
-:error
-===================================
-a = /= (.*) =/
-b = /== (.*) ==/
----
-
-(expressions)
-
 ======================================
 }} that doesn't end a macro expression
 :error

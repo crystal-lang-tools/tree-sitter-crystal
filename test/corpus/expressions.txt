@@ -5107,3 +5107,329 @@ b, a[1, 2], c = {0, :e, 0}
       (symbol
         (literal_content))
       (integer))))
+
+==========================================
+regular expressions and operators using /=
+:language(crystal)
+==========================================
+/ /
+/=/
+
+begin
+/ hi /
+end
+self / number
+if a == / /
+  / /
+end
+
+def foo
+/ /; / /
+end
+
+begin
+/ /
+  / /
+end
+a = / /
+(/ /)
+a = /=/
+
+a; if / /; / /; elsif / /; / /; end
+
+a; if / /
+    / /
+elsif / /
+  / /
+end
+a; unless / /; / /; else; / /; end
+a
+unless / /
+    / /
+else
+  / /
+end
+a
+while / /; / /; end
+a
+while / /
+    / /
+end
+[/ /, / /]
+{/ / => / /, / / => / /}
+{/ /, / /}
+begin; / /; end
+begin
+  / /
+end
+/\//
+/\ /
+%r(/)
+%r(\/)
+%r(\ )
+a()/3
+a() /3
+a.b() /3
+def foo(x = / /); end
+begin 1 end / 2
+
+b(/= 3 /)
+c = 9
+c /= 3 / 7
+
+c.b /= 5
+c.b 5, /=/
+
+@d = 5
+@d /= 3
+
+begin 8 end /2
+begin 8 end / 2
+
+a = /= (.*) =/
+B = /== (.*) ==/
+---
+
+(expressions
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (begin
+    body: (expressions
+      (regex
+        (literal_content))))
+  (call
+    receiver: (self)
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (if
+    cond: (call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (regex
+          (literal_content))))
+    then: (then
+      (regex
+        (literal_content))))
+  (method_def
+    name: (identifier)
+    body: (expressions
+      (regex
+        (literal_content))
+      (regex
+        (literal_content))))
+  (begin
+    body: (expressions
+      (regex
+        (literal_content))
+      (regex
+        (literal_content))))
+  (assign
+    lhs: (identifier)
+    rhs: (regex
+      (literal_content)))
+  (expressions
+    (regex
+      (literal_content)))
+  (assign
+    lhs: (identifier)
+    rhs: (regex
+      (literal_content)))
+  (identifier)
+  (if
+    cond: (regex
+      (literal_content))
+    then: (then
+      (regex
+        (literal_content)))
+    else: (elsif
+      cond: (regex
+        (literal_content))
+      then: (then
+        (regex
+          (literal_content)))))
+  (identifier)
+  (if
+    cond: (regex
+      (literal_content))
+    then: (then
+      (regex
+        (literal_content)))
+    else: (elsif
+      cond: (regex
+        (literal_content))
+      then: (then
+        (regex
+          (literal_content)))))
+  (identifier)
+  (unless
+    cond: (regex
+      (literal_content))
+    then: (then
+      (regex
+        (literal_content)))
+    else: (else
+      body: (expressions
+        (regex
+          (literal_content)))))
+  (identifier)
+  (unless
+    cond: (regex
+      (literal_content))
+    then: (then
+      (regex
+        (literal_content)))
+    else: (else
+      body: (expressions
+        (regex
+          (literal_content)))))
+  (identifier)
+  (while
+    cond: (regex
+      (literal_content))
+    body: (expressions
+      (regex
+        (literal_content))))
+  (identifier)
+  (while
+    cond: (regex
+      (literal_content))
+    body: (expressions
+      (regex
+        (literal_content))))
+  (array
+    (regex
+      (literal_content))
+    (regex
+      (literal_content)))
+  (hash
+    (hash_entry
+      (regex
+        (literal_content))
+      (regex
+        (literal_content)))
+    (hash_entry
+      (regex
+        (literal_content))
+      (regex
+        (literal_content))))
+  (tuple
+    (regex
+      (literal_content))
+    (regex
+      (literal_content)))
+  (begin
+    body: (expressions
+      (regex
+        (literal_content))))
+  (begin
+    body: (expressions
+      (regex
+        (literal_content))))
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (call
+    receiver: (call
+      method: (identifier)
+      arguments: (argument_list))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    receiver: (call
+      method: (identifier)
+      arguments: (argument_list))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    receiver: (call
+      receiver: (identifier)
+      method: (identifier)
+      arguments: (argument_list))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (method_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier)
+        default: (regex
+          (literal_content)))))
+  (call
+    receiver: (begin
+      body: (expressions
+        (integer)))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (regex
+        (literal_content))))
+  (assign
+    lhs: (identifier)
+    rhs: (integer))
+  (op_assign
+    lhs: (identifier)
+    (operator)
+    rhs: (call
+      receiver: (integer)
+      method: (operator)
+      arguments: (argument_list
+        (integer))))
+  (op_assign
+    lhs: (assign_call
+      receiver: (identifier)
+      method: (identifier))
+    (operator)
+    rhs: (integer))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (integer)
+      (regex
+        (literal_content))))
+  (assign
+    lhs: (instance_var)
+    rhs: (integer))
+  (op_assign
+    lhs: (instance_var)
+    (operator)
+    rhs: (integer))
+  (call
+    receiver: (begin
+      body: (expressions
+        (integer)))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    receiver: (begin
+      body: (expressions
+        (integer)))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (assign
+    lhs: (identifier)
+    rhs: (regex
+      (literal_content)))
+  (const_assign
+    lhs: (constant)
+    rhs: (regex
+      (literal_content))))
