@@ -10741,17 +10741,25 @@
             }
           },
           {
-            "type": "FIELD",
-            "name": "arguments",
-            "content": {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "bracket_argument_list"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "arguments",
+                "content": {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "bracket_argument_list"
+                  },
+                  "named": true,
+                  "value": "argument_list"
+                }
               },
-              "named": true,
-              "value": "argument_list"
-            }
+              {
+                "type": "BLANK"
+              }
+            ]
           },
           {
             "type": "CHOICE",

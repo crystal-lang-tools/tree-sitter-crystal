@@ -1845,7 +1845,9 @@ a <= b == c
 
 ================================================================================
 combined assignment operators
+:language(crystal)
 ================================================================================
+a = 1
 a += b
 a &+= b
 a -= b
@@ -1870,6 +1872,9 @@ ary[0..2] //= val.bar **= 7
 --------------------------------------------------------------------------------
 
 (expressions
+  (assign
+    lhs: (identifier)
+    rhs: (integer))
   (op_assign
     lhs: (identifier)
     (operator)
@@ -1938,11 +1943,10 @@ ary[0..2] //= val.bar **= 7
     lhs: (identifier)
     (operator)
     rhs: (identifier))
-  (call
-    receiver: (instance_var)
-    method: (operator)
-    arguments: (argument_list
-      (integer)))
+  (op_assign
+    lhs: (instance_var)
+    (operator)
+    rhs: (integer))
   (op_assign
     lhs: (index_call
       receiver: (identifier)
@@ -3419,6 +3423,7 @@ a.[]=(1, 2)
 
 ================================================================================
 index accessors
+:language(crystal)
 ================================================================================
 foo[0]
 puts {0} [0]
@@ -3429,7 +3434,7 @@ puts({0} [0]?)
 ary[*{0}, **{count: 1}]
 
 a.[count: 1, values: [5]] =0
-b.["q": 1, q?: 3, %q(stuff): [5]] =0
+b.[q: 1, q?: 3, stuff: [5]] =0
 
 a.[2] %= 5
 c.[0].[0] += 5
@@ -3437,6 +3442,13 @@ c.[0].[0] += 5
 a.[0], *b.[0] = 1, 2, 3
 
 a.[0].setter, a.[1].setter = things
+
+foo[]
+foo[][]
+
+foo.[]
+foo.[][]
+foo[].[]
 --------------------------------------------------------------------------------
 
 (expressions
@@ -3502,27 +3514,24 @@ a.[0].setter, a.[1].setter = things
       method: (operator)
       arguments: (argument_list
         (named_expr
-          name: (string
-            (literal_content))
+          name: (identifier)
           (integer))
         (named_expr
           name: (identifier)
           (integer))
         (named_expr
-          name: (string
-            (literal_content))
+          name: (identifier)
           (array
             (integer)))))
     rhs: (integer))
-  (call
-    receiver: (index_call
+  (op_assign
+    lhs: (index_call
       receiver: (identifier)
       method: (operator)
       arguments: (argument_list
         (integer)))
-    method: (operator)
-    arguments: (argument_list
-      (integer)))
+    (operator)
+    rhs: (integer))
   (op_assign
     lhs: (index_call
       receiver: (index_call
@@ -3565,10 +3574,32 @@ a.[0].setter, a.[1].setter = things
         arguments: (argument_list
           (integer)))
       method: (identifier))
-    rhs: (identifier)))
+    rhs: (identifier))
+  (index_call
+    receiver: (identifier)
+    method: (operator))
+  (index_call
+    receiver: (index_call
+      receiver: (identifier)
+      method: (operator))
+    method: (operator))
+  (call
+    receiver: (identifier)
+    method: (operator))
+  (index_call
+    receiver: (call
+      receiver: (identifier)
+      method: (operator))
+    method: (operator))
+  (call
+    receiver: (index_call
+      receiver: (identifier)
+      method: (operator))
+    method: (operator)))
 
 ================================================================================
 index assignment
+:language(crystal)
 ================================================================================
 a.[]=(1, 2)
 
@@ -4846,3 +4877,559 @@ end
           (call
             receiver: (self)
             method: (operator)))))))
+
+=================================
+consistency of index method forms
+:language(crystal)
+=================================
+a = [1,2,3]
+
+a[0]
+a.[0]
+a.[](0)
+
+a[0,1]
+a.[0,1]
+a.[](0,1)
+
+a[0]?
+a.[0]?
+a.[]?(0)
+
+a[]
+a.[]
+a.[]()
+
+a.[]?
+a.[]?()
+
+a[start: 0, count: 1]?
+a.[count: 1, start: 1]?
+a.[]?(count: 1, start: 1)
+
+b = 7
+a[0] = 7
+a.[0] = 7
+
+b += 7
+a[0] += 7
+a.[0] += 7
+
+a[0], a.[1] = 7, 7
+
+a = %i[a b c]
+a[value: :d] = 0
+b, a[1, 2], c = {0, :e, 0}
+---
+
+(expressions
+  (assign
+    lhs: (identifier)
+    rhs: (array
+      (integer)
+      (integer)
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)
+      (integer)))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (index_call
+    receiver: (identifier)
+    method: (operator))
+  (call
+    receiver: (identifier)
+    method: (operator))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list))
+  (call
+    receiver: (identifier)
+    method: (operator))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (named_expr
+        name: (identifier)
+        (integer))
+      (named_expr
+        name: (identifier)
+        (integer))))
+  (index_call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (named_expr
+        name: (identifier)
+        (integer))
+      (named_expr
+        name: (identifier)
+        (integer))))
+  (call
+    receiver: (identifier)
+    method: (operator)
+    arguments: (argument_list
+      (named_expr
+        name: (identifier)
+        (integer))
+      (named_expr
+        name: (identifier)
+        (integer))))
+  (assign
+    lhs: (identifier)
+    rhs: (integer))
+  (assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    rhs: (integer))
+  (assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    rhs: (integer))
+  (op_assign
+    lhs: (identifier)
+    (operator)
+    rhs: (integer))
+  (op_assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    (operator)
+    rhs: (integer))
+  (op_assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    (operator)
+    rhs: (integer))
+  (assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)))
+    rhs: (integer)
+    rhs: (integer))
+  (assign
+    lhs: (identifier)
+    rhs: (array
+      (symbol
+        (literal_content))
+      (symbol
+        (literal_content))
+      (symbol
+        (literal_content))))
+  (assign
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (named_expr
+          name: (identifier)
+          (symbol
+            (literal_content)))))
+    rhs: (integer))
+  (assign
+    lhs: (identifier)
+    lhs: (index_call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (integer)
+        (integer)))
+    lhs: (identifier)
+    rhs: (tuple
+      (integer)
+      (symbol
+        (literal_content))
+      (integer))))
+
+==========================================
+regular expressions and operators using /=
+:language(crystal)
+==========================================
+/ /
+/=/
+
+begin
+/ hi /
+end
+self / number
+if a == / /
+  / /
+end
+
+def foo
+/ /; / /
+end
+
+begin
+/ /
+  / /
+end
+a = / /
+(/ /)
+a = /=/
+
+a; if / /; / /; elsif / /; / /; end
+
+a; if / /
+    / /
+elsif / /
+  / /
+end
+a; unless / /; / /; else; / /; end
+a
+unless / /
+    / /
+else
+  / /
+end
+a
+while / /; / /; end
+a
+while / /
+    / /
+end
+[/ /, / /]
+{/ / => / /, / / => / /}
+{/ /, / /}
+begin; / /; end
+begin
+  / /
+end
+/\//
+/\ /
+%r(/)
+%r(\/)
+%r(\ )
+a()/3
+a() /3
+a.b() /3
+def foo(x = / /); end
+begin 1 end / 2
+
+b(/= 3 /)
+c = 9
+c /= 3 / 7
+
+c.b /= 5
+c.b 5, /=/
+
+@d = 5
+@d /= 3
+
+begin 8 end /2
+begin 8 end / 2
+
+a = /= (.*) =/
+B = /== (.*) ==/
+---
+
+(expressions
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (begin
+    body: (expressions
+      (regex
+        (literal_content))))
+  (call
+    receiver: (self)
+    method: (operator)
+    arguments: (argument_list
+      (identifier)))
+  (if
+    cond: (call
+      receiver: (identifier)
+      method: (operator)
+      arguments: (argument_list
+        (regex
+          (literal_content))))
+    then: (then
+      (regex
+        (literal_content))))
+  (method_def
+    name: (identifier)
+    body: (expressions
+      (regex
+        (literal_content))
+      (regex
+        (literal_content))))
+  (begin
+    body: (expressions
+      (regex
+        (literal_content))
+      (regex
+        (literal_content))))
+  (assign
+    lhs: (identifier)
+    rhs: (regex
+      (literal_content)))
+  (expressions
+    (regex
+      (literal_content)))
+  (assign
+    lhs: (identifier)
+    rhs: (regex
+      (literal_content)))
+  (identifier)
+  (if
+    cond: (regex
+      (literal_content))
+    then: (then
+      (regex
+        (literal_content)))
+    else: (elsif
+      cond: (regex
+        (literal_content))
+      then: (then
+        (regex
+          (literal_content)))))
+  (identifier)
+  (if
+    cond: (regex
+      (literal_content))
+    then: (then
+      (regex
+        (literal_content)))
+    else: (elsif
+      cond: (regex
+        (literal_content))
+      then: (then
+        (regex
+          (literal_content)))))
+  (identifier)
+  (unless
+    cond: (regex
+      (literal_content))
+    then: (then
+      (regex
+        (literal_content)))
+    else: (else
+      body: (expressions
+        (regex
+          (literal_content)))))
+  (identifier)
+  (unless
+    cond: (regex
+      (literal_content))
+    then: (then
+      (regex
+        (literal_content)))
+    else: (else
+      body: (expressions
+        (regex
+          (literal_content)))))
+  (identifier)
+  (while
+    cond: (regex
+      (literal_content))
+    body: (expressions
+      (regex
+        (literal_content))))
+  (identifier)
+  (while
+    cond: (regex
+      (literal_content))
+    body: (expressions
+      (regex
+        (literal_content))))
+  (array
+    (regex
+      (literal_content))
+    (regex
+      (literal_content)))
+  (hash
+    (hash_entry
+      (regex
+        (literal_content))
+      (regex
+        (literal_content)))
+    (hash_entry
+      (regex
+        (literal_content))
+      (regex
+        (literal_content))))
+  (tuple
+    (regex
+      (literal_content))
+    (regex
+      (literal_content)))
+  (begin
+    body: (expressions
+      (regex
+        (literal_content))))
+  (begin
+    body: (expressions
+      (regex
+        (literal_content))))
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (regex
+    (literal_content))
+  (call
+    receiver: (call
+      method: (identifier)
+      arguments: (argument_list))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    receiver: (call
+      method: (identifier)
+      arguments: (argument_list))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    receiver: (call
+      receiver: (identifier)
+      method: (identifier)
+      arguments: (argument_list))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (method_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier)
+        default: (regex
+          (literal_content)))))
+  (call
+    receiver: (begin
+      body: (expressions
+        (integer)))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (regex
+        (literal_content))))
+  (assign
+    lhs: (identifier)
+    rhs: (integer))
+  (op_assign
+    lhs: (identifier)
+    (operator)
+    rhs: (call
+      receiver: (integer)
+      method: (operator)
+      arguments: (argument_list
+        (integer))))
+  (op_assign
+    lhs: (assign_call
+      receiver: (identifier)
+      method: (identifier))
+    (operator)
+    rhs: (integer))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (integer)
+      (regex
+        (literal_content))))
+  (assign
+    lhs: (instance_var)
+    rhs: (integer))
+  (op_assign
+    lhs: (instance_var)
+    (operator)
+    rhs: (integer))
+  (call
+    receiver: (begin
+      body: (expressions
+        (integer)))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (call
+    receiver: (begin
+      body: (expressions
+        (integer)))
+    method: (operator)
+    arguments: (argument_list
+      (integer)))
+  (assign
+    lhs: (identifier)
+    rhs: (regex
+      (literal_content)))
+  (const_assign
+    lhs: (constant)
+    rhs: (regex
+      (literal_content))))

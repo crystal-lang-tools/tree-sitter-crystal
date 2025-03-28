@@ -7,5 +7,4 @@ compiler/crystal/semantic/filters.cr
 compiler/crystal/syntax/ast.cr
 crystal/system/unix/file_descriptor.cr
 crystal/system/wasi/file_descriptor.cr
-io/memory.cr
 range.cr
