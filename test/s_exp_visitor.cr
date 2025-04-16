@@ -1699,13 +1699,22 @@ class SExpVisitor < Crystal::Visitor
   visit_basic(Out)
 
   def visit(node : Not)
-    in_node("call") do
-      field "receiver" do
-        node.exp.accept(self)
-      end
+    if node.location == node.exp.location
+      # Not expression in call form, like `foo.!`
+      in_node("call") do
+        field "receiver" do
+          node.exp.accept(self)
+        end
 
-      field "method" do
+        field "method" do
+          print_node("operator")
+        end
+      end
+    else
+      # A regular not expression
+      in_node("not") do
         print_node("operator")
+        node.exp.accept(self)
       end
     end
 
