@@ -20,6 +20,8 @@ class.cr
 colorize.cr
 comparable.cr
 compiler/crystal/annotatable.cr
+compiler/crystal/codegen/abi.cr
+compiler/crystal/codegen/abi/x86_64.cr
 compiler/crystal/codegen/ast.cr
 compiler/crystal/codegen/cache_dir.cr
 compiler/crystal/codegen/call.cr
@@ -128,7 +130,6 @@ compiler/crystal/semantic/warnings.cr
 compiler/crystal/syntax/exception.cr
 compiler/crystal/syntax/lexer.cr
 compiler/crystal/syntax/location.cr
-compiler/crystal/syntax/parser.cr
 compiler/crystal/syntax/to_s.cr
 compiler/crystal/syntax/token.cr
 compiler/crystal/syntax/transformer.cr
@@ -201,8 +202,10 @@ crystal/hasher.cr
 crystal/iconv.cr
 crystal/mach_o.cr
 crystal/main.cr
+crystal/once.cr
 crystal/pe.cr
 crystal/pointer_linked_list.cr
+crystal/print_buffered.cr
 crystal/scheduler.cr
 crystal/small_deque.cr
 crystal/spin_lock.cr
@@ -216,6 +219,7 @@ crystal/system/print_error.cr
 crystal/system/random.cr
 crystal/system/thread.cr
 crystal/system/thread_linked_list.cr
+crystal/system/thread_wait_group.cr
 crystal/system/unix.cr
 crystal/system/unix/dir.cr
 crystal/system/unix/env.cr
@@ -235,6 +239,7 @@ crystal/system/wasi/file.cr
 crystal/system/wasi/lib_wasi.cr
 crystal/system/wasi/process.cr
 crystal/system/wasi/socket.cr
+crystal/system/wasi/thread.cr
 crystal/system/wasi/thread_condition_variable.cr
 crystal/system/wasi/thread_mutex.cr
 crystal/system/win32/crypto.cr
@@ -284,10 +289,26 @@ exception/call_stack/mach_o.cr
 exception/call_stack/stackwalk.cr
 fiber.cr
 fiber/context.cr
+fiber/context/aarch64-generic.cr
+fiber/context/aarch64-microsoft.cr
+fiber/context/arm.cr
 fiber/context/i386.cr
+fiber/execution_context.cr
+fiber/execution_context/global_queue.cr
+fiber/execution_context/isolated.cr
+fiber/execution_context/monitor.cr
+fiber/execution_context/multi_threaded.cr
+fiber/execution_context/multi_threaded/scheduler.cr
+fiber/execution_context/runnables.cr
+fiber/execution_context/scheduler.cr
+fiber/execution_context/single_threaded.cr
+fiber/list.cr
+fiber/pointer_linked_list_node.cr
+fiber/stack.cr
 fiber/stack_pool.cr
 file.cr
 file/error.cr
+file/match.cr
 file/preader.cr
 file/tempfile.cr
 file_utils.cr
@@ -314,6 +335,7 @@ http/client/response.cr
 http/common.cr
 http/content.cr
 http/cookie.cr
+http/cookies.cr
 http/formdata.cr
 http/formdata/builder.cr
 http/formdata/parser.cr
@@ -516,6 +538,7 @@ lib_c/x86_64-windows-msvc/c/winreg.cr
 lib_c/x86_64-windows-msvc/c/winsock2.cr
 lib_c/x86_64-windows-msvc/c/winternl.cr
 lib_c/x86_64-windows-msvc/c/ws2tcpip.cr
+llvm.cr
 llvm/abi.cr
 llvm/abi/x86_64.cr
 llvm/basic_block.cr
@@ -583,6 +606,7 @@ oauth2/access_token/mac.cr
 oauth2/client.cr
 oauth2/session.cr
 object.cr
+object/properties.cr
 openssl/bio.cr
 openssl/digest.cr
 openssl/lib_crypto.cr

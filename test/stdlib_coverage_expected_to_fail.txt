@@ -3,6 +3,7 @@ compiler/crystal/codegen/crystal_llvm_builder.cr
 compiler/crystal/semantic/exception.cr
 compiler/crystal/semantic/filters.cr
 compiler/crystal/syntax/ast.cr
+compiler/crystal/syntax/parser.cr
 crystal/system/unix/file_descriptor.cr
 crystal/system/wasi/file_descriptor.cr
 range.cr
