@@ -4202,6 +4202,36 @@ end
             value: (string
               (literal_content))))))))
 
+========================
+type declaration with ?!
+========================
+hello_there! : String = "meow"
+puts hello_there!
+
+a? : Int32
+foo ? a? : Int32
+---
+
+(expressions
+  (type_declaration
+    var: (identifier)
+    type: (constant)
+    value: (string
+      (literal_content)))
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (call
+        method: (identifier))))
+  (type_declaration
+    var: (identifier)
+    type: (constant))
+  (conditional
+    cond: (identifier)
+    then: (call
+      method: (identifier))
+    else: (constant)))
+
 =================
 read instance var
 :language(crystal)

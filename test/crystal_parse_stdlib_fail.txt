@@ -76,6 +76,8 @@ compiler/crystal/interpreter/local_vars.cr
 compiler/crystal/interpreter/local_vars_gatherer.cr
 compiler/crystal/interpreter/multidispatch.cr
 compiler/crystal/interpreter/primitives.cr
+compiler/crystal/interpreter/pry_reader.cr
+compiler/crystal/interpreter/repl_reader.cr
 compiler/crystal/interpreter/value.cr
 compiler/crystal/loader/mingw.cr
 compiler/crystal/loader/msvc.cr
