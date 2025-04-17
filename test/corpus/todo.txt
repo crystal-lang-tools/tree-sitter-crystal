@@ -128,48 +128,6 @@ MyConst2 = {
               (symbol)
               (symbol))))))))
 
-====================================
-identifiers can end with `?` and '!'
-====================================
-
-def hello(world?)
-  puts hello?
-end
-
-hello_there! : String = "meow"
-
-puts hello_there!
-
----
-
-(expressions
-  (method_def
-    (identifier)
-    (param_list
-      (param
-        (identifier)))
-    (ERROR)
-    (expressions
-      (call
-        (identifier)
-        (argument_list
-          (call
-            (identifier))))))
-  (call
-    (identifier)
-    (argument_list
-      (type_declaration
-        (macro_var
-          (MISSING identifier))
-        (constant)
-        (string
-          (literal_content)))))
-  (call
-    (identifier)
-    (argument_list
-      (call
-        (identifier)))))
-
 ======================
 macro var in call args
 ======================

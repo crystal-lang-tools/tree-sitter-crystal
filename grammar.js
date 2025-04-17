@@ -365,6 +365,14 @@ module.exports = grammar({
     //     fun bar
     //     (UInt32) : UInt32
     [$.fun_def],
+
+
+    // A sequence like `foo ? a! : Int32` should parse as a conditional with `a!` as a call,
+    // but a sequence like `a! : Int32` outside of a ternary is a type declaration.
+    [
+      $.call,
+      $.type_declaration,
+    ],
   ],
 
   rules: {
@@ -1228,7 +1236,11 @@ module.exports = grammar({
     },
 
     fun_param: $ => {
-      const name = field('name', choice($.identifier, $.constant))
+      const name = field('name', choice(
+        $.identifier,
+        alias($.identifier_method_call, $.identifier),
+        $.constant,
+      ))
       const type = field('type', seq($._type_field_separator, $._bare_type))
 
       return seq(
@@ -1467,7 +1479,11 @@ module.exports = grammar({
     param: $ => {
       const extern_name = field('extern_name', $.identifier)
       const name = field('name', choice(
-        $.identifier, $.instance_var, $.class_var, $.macro_var,
+        $.identifier,
+        alias($.identifier_method_call, $.identifier),
+        $.instance_var,
+        $.class_var,
+        $.macro_var,
       ))
       const type = field('type', seq($._type_field_separator, $._bare_type))
       const default_value = field('default', seq('=', $._expression))
@@ -2748,7 +2764,11 @@ module.exports = grammar({
 
     type_declaration: $ => {
       const variable = field('var', choice(
-        $.identifier, $.instance_var, $.class_var, $.macro_var,
+        $.identifier,
+        alias($.identifier_method_call, $.identifier),
+        $.instance_var,
+        $.class_var,
+        $.macro_var,
       ))
       const type = field('type', $._bare_type)
       const value = field('value', $._expression)

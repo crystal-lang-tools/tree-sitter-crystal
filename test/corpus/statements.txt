@@ -1872,3 +1872,38 @@ end
             (return
               (argument_list
                 (integer)))))))))
+
+=====================================
+macro, method, and fun params can end with ?!
+:language(crystal)
+=====================================
+def hello(world?)
+end
+
+fun foo(bar! : String)
+end
+
+macro qux(z!)
+  #
+end
+---
+
+(expressions
+  (method_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier))))
+  (fun_def
+    name: (identifier)
+    params: (param_list
+      (fun_param
+        name: (identifier)
+        type: (constant))))
+  (macro_def
+    name: (identifier)
+    params: (param_list
+      (param
+        name: (identifier)))
+    body: (expressions
+      (macro_content))))
