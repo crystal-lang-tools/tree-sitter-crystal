@@ -48,7 +48,6 @@ compiler/crystal/command/docs.cr
 compiler/crystal/command/env.cr
 compiler/crystal/command/format.cr
 compiler/crystal/command/repl.cr
-compiler/crystal/command/spec.cr
 compiler/crystal/compiler.cr
 compiler/crystal/config.cr
 compiler/crystal/crystal_path.cr
@@ -579,7 +578,6 @@ log/broadcast_backend.cr
 log/builder.cr
 log/entry.cr
 log/format.cr
-log/json.cr
 log/log.cr
 log/main.cr
 log/metadata.cr
