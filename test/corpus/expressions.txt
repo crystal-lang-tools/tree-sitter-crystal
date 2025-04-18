@@ -3323,6 +3323,76 @@ foo { |a, *b, (c, d,),| }
           name: (identifier))))))
 
 ================================================================================
+nested block parameter unpacking
+================================================================================
+ary = [
+  {1, {2, {3, 4}}},
+]
+
+ary.each do |(w, (x, (y, z)))|
+  w # => 1
+  x # => 2
+  y # => 3
+  z # => 4
+end
+
+
+foo { |(w, (*rest1, x, (y, *rest2, z)), *rest3)| }
+--------------------------------------------------------------------------------
+
+(expressions
+  (assign
+    lhs: (identifier)
+    rhs: (array
+      (tuple
+        (integer)
+        (tuple
+          (integer)
+          (tuple
+            (integer)
+            (integer))))))
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    block: (block
+      params: (param_list
+        (param
+          name: (identifier))
+        (param
+          name: (identifier))
+        (param
+          name: (identifier))
+        (param
+          name: (identifier)))
+      body: (expressions
+        (identifier)
+        (comment)
+        (identifier)
+        (comment)
+        (identifier)
+        (comment)
+        (identifier)
+        (comment))))
+  (call
+    method: (identifier)
+    block: (block
+      params: (param_list
+        (param
+          name: (identifier))
+        (splat_param
+          name: (identifier))
+        (param
+          name: (identifier))
+        (param
+          name: (identifier))
+        (splat_param
+          name: (identifier))
+        (param
+          name: (identifier))
+        (splat_param
+          name: (identifier))))))
+
+================================================================================
 yield
 ================================================================================
 def foo; yield; end

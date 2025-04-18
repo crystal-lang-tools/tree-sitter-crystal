@@ -13231,13 +13231,31 @@
           "value": "("
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "block_body_param"
-          },
-          "named": true,
-          "value": "param"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "block_body_param"
+              },
+              "named": true,
+              "value": "param"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "block_body_splat_param"
+              },
+              "named": true,
+              "value": "splat_param"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_block_body_nested_param"
+            }
+          ]
         },
         {
           "type": "REPEAT",
@@ -13249,13 +13267,31 @@
                 "value": ","
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "block_body_param"
-                },
-                "named": true,
-                "value": "param"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "block_body_param"
+                    },
+                    "named": true,
+                    "value": "param"
+                  },
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "block_body_splat_param"
+                    },
+                    "named": true,
+                    "value": "splat_param"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_block_body_nested_param"
+                  }
+                ]
               }
             ]
           }

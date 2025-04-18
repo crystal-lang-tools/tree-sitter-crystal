@@ -2800,7 +2800,11 @@ module.exports = grammar({
     ),
 
     _block_body_nested_param: $ => {
-      const param = alias($.block_body_param, $.param)
+      const param = choice(
+        alias($.block_body_param, $.param),
+        alias($.block_body_splat_param, $.splat_param),
+        $._block_body_nested_param,
+      )
 
       return seq(
         '(',
