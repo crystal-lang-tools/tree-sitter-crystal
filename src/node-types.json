@@ -14992,6 +14992,10 @@
           {
             "type": "macro_var",
             "named": true
+          },
+          {
+            "type": "underscore",
+            "named": true
           }
         ]
       },
@@ -16881,6 +16885,10 @@
           },
           {
             "type": "macro_var",
+            "named": true
+          },
+          {
+            "type": "underscore",
             "named": true
           }
         ]

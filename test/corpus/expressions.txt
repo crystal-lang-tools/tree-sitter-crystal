@@ -3280,6 +3280,7 @@ func &(-var)
 
 ================================================================================
 block parameters
+:language(crystal)
 ================================================================================
 foo{|_|}
 
@@ -3300,7 +3301,7 @@ foo { |a, *b, (c, d,),| }
     block: (block
       params: (param_list
         (param
-          name: (identifier)))))
+          name: (underscore)))))
   (expressions
     (call
       method: (identifier)
@@ -3308,7 +3309,7 @@ foo { |a, *b, (c, d,),| }
       block: (block
         params: (param_list
           (param
-            name: (identifier))))))
+            name: (underscore))))))
   (call
     method: (identifier)
     block: (block
@@ -3324,6 +3325,7 @@ foo { |a, *b, (c, d,),| }
 
 ================================================================================
 nested block parameter unpacking
+:language(crystal)
 ================================================================================
 ary = [
   {1, {2, {3, 4}}},
@@ -3337,7 +3339,7 @@ ary.each do |(w, (x, (y, z)))|
 end
 
 
-foo { |(w, (*rest1, x, (y, *rest2, z)), *rest3)| }
+foo { |a, (w, (*rest1, _, (y, *_, z)), *rest3), c| }
 --------------------------------------------------------------------------------
 
 (expressions
@@ -3379,17 +3381,21 @@ foo { |(w, (*rest1, x, (y, *rest2, z)), *rest3)| }
       params: (param_list
         (param
           name: (identifier))
-        (splat_param
-          name: (identifier))
-        (param
-          name: (identifier))
         (param
           name: (identifier))
         (splat_param
           name: (identifier))
         (param
+          name: (underscore))
+        (param
           name: (identifier))
         (splat_param
+          name: (underscore))
+        (param
+          name: (identifier))
+        (splat_param
+          name: (identifier))
+        (param
           name: (identifier))))))
 
 ================================================================================

@@ -273,6 +273,11 @@ class SExpVisitor < Crystal::Visitor
       return false
     end
 
+    if node.name == "_"
+      print_node("underscore")
+      return false
+    end
+
     print_node("identifier")
     false
   end
@@ -811,6 +816,29 @@ class SExpVisitor < Crystal::Visitor
     false
   end
 
+  def unpack_block_params(unpack : Expressions)
+    unpack.expressions.each do |exp|
+      case exp
+      when Var, Underscore
+        in_node("param") do
+          field "name" do
+            exp.accept self
+          end
+        end
+      when Splat
+        in_node("splat_param") do
+          field "name" do
+            exp.exp.accept self
+          end
+        end
+      when Expressions
+        unpack_block_params(exp)
+      else
+        raise "unexpected unpack node #{exp.class} #{exp}"
+      end
+    end
+  end
+
   def visit(node : Block)
     in_node("block") do
       field "params" do
@@ -819,6 +847,11 @@ class SExpVisitor < Crystal::Visitor
             splat_index = node.splat_index || -1
 
             node.args.each_with_index do |arg, i|
+              if arg.name.empty? && (unpack = node.unpacks.try &.[i])
+                unpack_block_params(unpack)
+                next
+              end
+
               if i == splat_index
                 alias_next_node!("splat_param")
               end

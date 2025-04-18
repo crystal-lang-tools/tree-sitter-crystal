@@ -2792,11 +2792,11 @@ module.exports = grammar({
       field('type', $._bare_type),
     ),
 
-    block_body_param: $ => field('name', $.identifier),
+    block_body_param: $ => field('name', choice($.identifier, $.underscore)),
 
     block_body_splat_param: $ => seq(
       '*',
-      field('name', $.identifier),
+      field('name', choice($.identifier, $.underscore)),
     ),
 
     _block_body_nested_param: $ => {
