@@ -5540,3 +5540,22 @@ B = /== (.*) ==/
     lhs: (constant)
     rhs: (regex
       (literal_content))))
+
+===========
+loc pragmas
+===========
+
+#<loc:push>#<loc:"foo.bar",1>#<loc:pop>puts "hello world"
+#<loc:"",>
+
+---
+
+(expressions
+  (loc_pragma_push)
+  (loc_pragma_location)
+  (loc_pragma_pop)
+  (call
+    method: (identifier)
+    arguments: (argument_list
+      (string
+        (literal_content)))))
