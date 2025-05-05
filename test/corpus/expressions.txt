@@ -5546,7 +5546,8 @@ loc pragmas
 ===========
 
 #<loc:push>#<loc:"foo.bar",1>#<loc:pop>puts "hello world"
-#<loc:"",>
+#<loc:"",1,2>
+#<loc:"",,>
 
 ---
 
@@ -5558,4 +5559,6 @@ loc pragmas
     method: (identifier)
     arguments: (argument_list
       (string
-        (literal_content)))))
+        (literal_content))))
+  (loc_pragma_location)
+  (loc_pragma_location))

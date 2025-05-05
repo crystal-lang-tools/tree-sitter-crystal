@@ -3144,6 +3144,7 @@ module.exports = grammar({
       optional(/[^"]+/),
       '",',
       optional(/[0-9]+/),
+      optional(seq(',', optional(/[0-9]+/))),
       '>',
     ))),
   },
