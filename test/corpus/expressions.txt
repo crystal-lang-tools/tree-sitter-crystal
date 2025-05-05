@@ -5545,7 +5545,7 @@ B = /== (.*) ==/
 loc pragmas
 ===========
 
-#<loc:push>#<loc:"foo.bar",1>#<loc:pop>puts "hello world"
+#<loc:push>#<loc:"foo.bar",1,10>#<loc:pop>puts "hello world"
 #<loc:"",1,2>
 #<loc:"",,>
 
