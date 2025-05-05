@@ -15058,6 +15058,97 @@
           }
         }
       ]
+    },
+    "loc_pragma_push": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": "#<loc:push>"
+        }
+      }
+    },
+    "loc_pragma_pop": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": "#<loc:pop>"
+        }
+      }
+    },
+    "loc_pragma_location": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "#<loc:\""
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^\"]+"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "\","
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[0-9]+"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ","
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "PATTERN",
+                      "value": "[0-9]+"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": ">"
+            }
+          ]
+        }
+      }
     }
   },
   "extras": [
@@ -15068,6 +15159,18 @@
     {
       "type": "SYMBOL",
       "name": "_line_continuation"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "loc_pragma_push"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "loc_pragma_pop"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "loc_pragma_location"
     },
     {
       "type": "SYMBOL",

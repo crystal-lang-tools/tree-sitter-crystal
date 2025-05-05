@@ -20766,6 +20766,18 @@
     "named": false
   },
   {
+    "type": "loc_pragma_location",
+    "named": true
+  },
+  {
+    "type": "loc_pragma_pop",
+    "named": true
+  },
+  {
+    "type": "loc_pragma_push",
+    "named": true
+  },
+  {
     "type": "macro",
     "named": false
   },

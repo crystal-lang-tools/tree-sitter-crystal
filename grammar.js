@@ -159,6 +159,9 @@ module.exports = grammar({
   extras: $ => [
     /\s/,
     $._line_continuation,
+    $.loc_pragma_push,
+    $.loc_pragma_pop,
+    $.loc_pragma_location,
     $.comment,
     $.heredoc_body,
   ],
@@ -3133,5 +3136,16 @@ module.exports = grammar({
       $.string,
       repeat(seq(',', $.string)),
     ),
+
+    loc_pragma_push: $ => token(prec(1, '#<loc:push>')),
+    loc_pragma_pop: $ => token(prec(1, '#<loc:pop>')),
+    loc_pragma_location: $ => token(prec(1, seq(
+      '#<loc:"',
+      optional(/[^"]+/),
+      '",',
+      optional(/[0-9]+/),
+      seq(',', optional(/[0-9]+/)),
+      '>',
+    ))),
   },
 })
