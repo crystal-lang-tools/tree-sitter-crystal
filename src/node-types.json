@@ -20671,7 +20671,8 @@
   },
   {
     "type": "comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "def",
@@ -20767,15 +20768,18 @@
   },
   {
     "type": "loc_pragma_location",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "loc_pragma_pop",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "loc_pragma_push",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "macro",
