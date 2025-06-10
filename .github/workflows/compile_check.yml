@@ -5,14 +5,14 @@ on:
     branches:
       - main
     paths:
-      - 'src/**.c'
-      - 'src/**.h'
-      - '!src/parser.c'
+      - "src/**.c"
+      - "src/**.h"
+      - "!src/parser.c"
   pull_request:
     paths:
-      - 'src/**.c'
-      - 'src/**.h'
-      - '!src/parser.c'
+      - "src/**.c"
+      - "src/**.h"
+      - "!src/parser.c"
 
 jobs:
   compile_check:
@@ -46,7 +46,7 @@ jobs:
       - name: Set up tree-sitter
         uses: tree-sitter/setup-action/cli@v1
         with:
-          tree-sitter-ref: v0.24.7
+          tree-sitter-ref: v0.25.1
 
       - name: MSVC setup
         uses: ilammy/msvc-dev-cmd@v1

@@ -14,6 +14,8 @@ A1
 Á𖹀𐓓::ＢB
 ǅdz::ǈlljj
 ᾈ
+𝐈𝘼
+𝙕𝘼𝘼𝙕
 --------------------------------------------------------------------------------
 
 (expressions
@@ -25,6 +27,8 @@ A1
   (constant)
   (constant)
   (comment)
+  (constant)
+  (constant)
   (constant)
   (constant)
   (constant))
