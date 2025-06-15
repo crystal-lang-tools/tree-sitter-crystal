@@ -21,6 +21,7 @@ export default [
         repeat1: 'readonly',
         seq: 'readonly',
         token: 'readonly',
+        reserved: 'readonly',
       },
 
       ecmaVersion: 'latest',

@@ -39,6 +39,62 @@ const operator_tokens = [
   '&**',
 ]
 
+const reserved_keywords = [
+  'abstract',
+  'alias',
+  'alignof',
+  'annotation',
+  'asm',
+  'begin',
+  'break',
+  'case',
+  'class',
+  'def',
+  'do',
+  'else',
+  'elsif',
+  'end',
+  // Not a token
+  // 'ensure',
+  'enum',
+  'extend',
+  'for',
+  'forall',
+  'fun',
+  'if',
+  'in',
+  'include',
+  'instance_alignof',
+  'instance_sizeof',
+  'lib',
+  'macro',
+  'module',
+  'next',
+  'of',
+  'offsetof',
+  'out',
+  'pointerof',
+  'require',
+  // Not a token
+  // 'rescue',
+  'return',
+  'select',
+  'sizeof',
+  'struct',
+  'then',
+  // 'type',
+  'typeof',
+  'uninitialized',
+  'union',
+  'unless',
+  'until',
+  'verbatim',
+  'when',
+  'while',
+  'with',
+  'yield',
+]
+
 module.exports = grammar({
   name: 'crystal',
 
@@ -377,6 +433,11 @@ module.exports = grammar({
       $.type_declaration,
     ],
   ],
+
+  reserved: {
+    global: $ => reserved_keywords,
+    nothing: $ => [],
+  },
 
   rules: {
     expressions: $ => seq(
@@ -2158,10 +2219,10 @@ module.exports = grammar({
     call: $ => {
       const receiver_call = choice(
         $._dot_call,
-        field('method', alias($.identifier_method_call, $.identifier)),
+        field('method', reserved('nothing', alias($.identifier_method_call, $.identifier))),
         $._global_method,
       )
-      const ambiguous_call = field('method', $.identifier)
+      const ambiguous_call = field('method', reserved('nothing', $.identifier))
 
       const argument_list = field('arguments', choice(
         alias($.argument_list_with_parens, $.argument_list),
@@ -2204,11 +2265,11 @@ module.exports = grammar({
     },
 
     _global_method: $ => {
-      const method = field('method', choice(
+      const method = field('method', reserved('nothing', choice(
         $.identifier,
         alias($.identifier_method_call, $.identifier),
         alias($.identifier_assign, $.identifier),
-      ))
+      )))
 
       return seq('::', method)
     },
@@ -2559,13 +2620,13 @@ module.exports = grammar({
     )),
 
     named_expr: $ => {
-      const name = field('name', choice(
+      const name = field('name', reserved('nothing', choice(
         $.identifier,
         alias($._constant_segment, $.identifier),
         alias($.identifier_method_call, $.identifier),
         $.string,
         alias($.string_percent_literal, $.string),
-      ))
+      )))
 
       return seq(
         name,
@@ -2766,13 +2827,13 @@ module.exports = grammar({
     uninitialized_var: $ => seq('uninitialized', $._bare_type),
 
     type_declaration: $ => {
-      const variable = field('var', choice(
+      const variable = field('var', reserved('nothing', choice(
         $.identifier,
         alias($.identifier_method_call, $.identifier),
         $.instance_var,
         $.class_var,
         $.macro_var,
-      ))
+      )))
       const type = field('type', $._bare_type)
       const value = field('value', $._expression)
 

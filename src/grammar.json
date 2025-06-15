@@ -9326,13 +9326,17 @@
                     "type": "FIELD",
                     "name": "method",
                     "content": {
-                      "type": "ALIAS",
+                      "type": "RESERVED",
                       "content": {
-                        "type": "SYMBOL",
-                        "name": "identifier_method_call"
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "identifier_method_call"
+                        },
+                        "named": true,
+                        "value": "identifier"
                       },
-                      "named": true,
-                      "value": "identifier"
+                      "context_name": "nothing"
                     }
                   },
                   {
@@ -9389,8 +9393,12 @@
                 "type": "FIELD",
                 "name": "method",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "identifier"
+                  "type": "RESERVED",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  "context_name": "nothing"
                 }
               },
               {
@@ -9440,13 +9448,17 @@
                     "type": "FIELD",
                     "name": "method",
                     "content": {
-                      "type": "ALIAS",
+                      "type": "RESERVED",
                       "content": {
-                        "type": "SYMBOL",
-                        "name": "identifier_method_call"
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "identifier_method_call"
+                        },
+                        "named": true,
+                        "value": "identifier"
                       },
-                      "named": true,
-                      "value": "identifier"
+                      "context_name": "nothing"
                     }
                   },
                   {
@@ -9516,8 +9528,12 @@
                 "type": "FIELD",
                 "name": "method",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "identifier"
+                  "type": "RESERVED",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  "context_name": "nothing"
                 }
               },
               {
@@ -9588,13 +9604,17 @@
                     "type": "FIELD",
                     "name": "method",
                     "content": {
-                      "type": "ALIAS",
+                      "type": "RESERVED",
                       "content": {
-                        "type": "SYMBOL",
-                        "name": "identifier_method_call"
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "identifier_method_call"
+                        },
+                        "named": true,
+                        "value": "identifier"
                       },
-                      "named": true,
-                      "value": "identifier"
+                      "context_name": "nothing"
                     }
                   },
                   {
@@ -9664,8 +9684,12 @@
                 "type": "FIELD",
                 "name": "method",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "identifier"
+                  "type": "RESERVED",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  "context_name": "nothing"
                 }
               },
               {
@@ -9736,13 +9760,17 @@
                     "type": "FIELD",
                     "name": "method",
                     "content": {
-                      "type": "ALIAS",
+                      "type": "RESERVED",
                       "content": {
-                        "type": "SYMBOL",
-                        "name": "identifier_method_call"
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "identifier_method_call"
+                        },
+                        "named": true,
+                        "value": "identifier"
                       },
-                      "named": true,
-                      "value": "identifier"
+                      "context_name": "nothing"
                     }
                   },
                   {
@@ -9791,8 +9819,12 @@
                 "type": "FIELD",
                 "name": "method",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "identifier"
+                  "type": "RESERVED",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  "context_name": "nothing"
                 }
               },
               {
@@ -9838,31 +9870,35 @@
           "type": "FIELD",
           "name": "method",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "identifier"
-              },
-              {
-                "type": "ALIAS",
-                "content": {
+            "type": "RESERVED",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
                   "type": "SYMBOL",
-                  "name": "identifier_method_call"
+                  "name": "identifier"
                 },
-                "named": true,
-                "value": "identifier"
-              },
-              {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "identifier_assign"
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier_method_call"
+                  },
+                  "named": true,
+                  "value": "identifier"
                 },
-                "named": true,
-                "value": "identifier"
-              }
-            ]
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier_assign"
+                  },
+                  "named": true,
+                  "value": "identifier"
+                }
+              ]
+            },
+            "context_name": "nothing"
           }
         }
       ]
@@ -11786,44 +11822,48 @@
           "type": "FIELD",
           "name": "name",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "identifier"
-              },
-              {
-                "type": "ALIAS",
-                "content": {
+            "type": "RESERVED",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
                   "type": "SYMBOL",
-                  "name": "_constant_segment"
+                  "name": "identifier"
                 },
-                "named": true,
-                "value": "identifier"
-              },
-              {
-                "type": "ALIAS",
-                "content": {
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_constant_segment"
+                  },
+                  "named": true,
+                  "value": "identifier"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier_method_call"
+                  },
+                  "named": true,
+                  "value": "identifier"
+                },
+                {
                   "type": "SYMBOL",
-                  "name": "identifier_method_call"
+                  "name": "string"
                 },
-                "named": true,
-                "value": "identifier"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "string"
-              },
-              {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "string_percent_literal"
-                },
-                "named": true,
-                "value": "string"
-              }
-            ]
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "string_percent_literal"
+                  },
+                  "named": true,
+                  "value": "string"
+                }
+              ]
+            },
+            "context_name": "nothing"
           }
         },
         {
@@ -13092,34 +13132,38 @@
             "type": "FIELD",
             "name": "var",
             "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
+              "type": "RESERVED",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
                     "type": "SYMBOL",
-                    "name": "identifier_method_call"
+                    "name": "identifier"
                   },
-                  "named": true,
-                  "value": "identifier"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "instance_var"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "class_var"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "macro_var"
-                }
-              ]
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "identifier_method_call"
+                    },
+                    "named": true,
+                    "value": "identifier"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "instance_var"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "class_var"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "macro_var"
+                  }
+                ]
+              },
+              "context_name": "nothing"
             }
           },
           {
@@ -15764,5 +15808,201 @@
   ],
   "inline": [],
   "supertypes": [],
-  "reserved": {}
+  "reserved": {
+    "global": [
+      {
+        "type": "STRING",
+        "value": "abstract"
+      },
+      {
+        "type": "STRING",
+        "value": "alias"
+      },
+      {
+        "type": "STRING",
+        "value": "alignof"
+      },
+      {
+        "type": "STRING",
+        "value": "annotation"
+      },
+      {
+        "type": "STRING",
+        "value": "asm"
+      },
+      {
+        "type": "STRING",
+        "value": "begin"
+      },
+      {
+        "type": "STRING",
+        "value": "break"
+      },
+      {
+        "type": "STRING",
+        "value": "case"
+      },
+      {
+        "type": "STRING",
+        "value": "class"
+      },
+      {
+        "type": "STRING",
+        "value": "def"
+      },
+      {
+        "type": "STRING",
+        "value": "do"
+      },
+      {
+        "type": "STRING",
+        "value": "else"
+      },
+      {
+        "type": "STRING",
+        "value": "elsif"
+      },
+      {
+        "type": "STRING",
+        "value": "end"
+      },
+      {
+        "type": "STRING",
+        "value": "enum"
+      },
+      {
+        "type": "STRING",
+        "value": "extend"
+      },
+      {
+        "type": "STRING",
+        "value": "for"
+      },
+      {
+        "type": "STRING",
+        "value": "forall"
+      },
+      {
+        "type": "STRING",
+        "value": "fun"
+      },
+      {
+        "type": "STRING",
+        "value": "if"
+      },
+      {
+        "type": "STRING",
+        "value": "in"
+      },
+      {
+        "type": "STRING",
+        "value": "include"
+      },
+      {
+        "type": "STRING",
+        "value": "instance_alignof"
+      },
+      {
+        "type": "STRING",
+        "value": "instance_sizeof"
+      },
+      {
+        "type": "STRING",
+        "value": "lib"
+      },
+      {
+        "type": "STRING",
+        "value": "macro"
+      },
+      {
+        "type": "STRING",
+        "value": "module"
+      },
+      {
+        "type": "STRING",
+        "value": "next"
+      },
+      {
+        "type": "STRING",
+        "value": "of"
+      },
+      {
+        "type": "STRING",
+        "value": "offsetof"
+      },
+      {
+        "type": "STRING",
+        "value": "out"
+      },
+      {
+        "type": "STRING",
+        "value": "pointerof"
+      },
+      {
+        "type": "STRING",
+        "value": "require"
+      },
+      {
+        "type": "STRING",
+        "value": "return"
+      },
+      {
+        "type": "STRING",
+        "value": "select"
+      },
+      {
+        "type": "STRING",
+        "value": "sizeof"
+      },
+      {
+        "type": "STRING",
+        "value": "struct"
+      },
+      {
+        "type": "STRING",
+        "value": "then"
+      },
+      {
+        "type": "STRING",
+        "value": "typeof"
+      },
+      {
+        "type": "STRING",
+        "value": "uninitialized"
+      },
+      {
+        "type": "STRING",
+        "value": "union"
+      },
+      {
+        "type": "STRING",
+        "value": "unless"
+      },
+      {
+        "type": "STRING",
+        "value": "until"
+      },
+      {
+        "type": "STRING",
+        "value": "verbatim"
+      },
+      {
+        "type": "STRING",
+        "value": "when"
+      },
+      {
+        "type": "STRING",
+        "value": "while"
+      },
+      {
+        "type": "STRING",
+        "value": "with"
+      },
+      {
+        "type": "STRING",
+        "value": "yield"
+      }
+    ],
+    "nothing": []
+  }
 }
