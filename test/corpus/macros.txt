@@ -1147,3 +1147,109 @@ end
                 (string
                   (literal_content)))))))
       (macro_content))))
+
+========================
+macro var as block param
+:language(crystal)
+========================
+
+{% begin %}
+  method do |%buffer|
+    puts %buffer
+  end
+{% end %}
+
+---
+
+(expressions
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_var
+        name: (identifier))
+      (macro_content)
+      (macro_var
+        name: (identifier))
+      (macro_content))))
+
+=============================
+def identifier with macro exp
+:language(crystal)
+=============================
+
+{% begin %}
+  def hello_{{ "world" }}(a, b)
+  end
+{% end %}
+
+---
+
+(expressions
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (string
+          (literal_content)))
+      (macro_content))))
+
+=====================
+ivar macro expression
+:language(crystal)
+=====================
+
+{% begin %}
+  @{{ name }} = %bar{name}
+{% end %}
+
+---
+
+(expressions
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (identifier))
+      (macro_content)
+      (macro_var
+        name: (identifier)
+        (identifier))
+      (macro_content))))
+
+===============================
+pseudo-methods with macro nodes
+:language(crystal)
+===============================
+
+{% begin %}
+  a.is_a?({{type}})
+{% end %}
+
+---
+
+(expressions
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_expression
+        (identifier))
+      (macro_content))))
+
+======================
+macro var in call args
+:language(crystal)
+======================
+
+{% begin %}
+  method.call %mvar
+{% end %}
+
+---
+
+(expressions
+  (macro_begin
+    body: (expressions
+      (macro_content)
+      (macro_var
+        name: (identifier))
+      (macro_content))))
