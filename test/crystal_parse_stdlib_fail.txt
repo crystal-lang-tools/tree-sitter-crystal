@@ -9,6 +9,7 @@ big/big_float.cr
 big/big_rational.cr
 big/number.cr
 bit_array.cr
+bool.cr
 box.cr
 channel.cr
 channel/select.cr
@@ -23,13 +24,13 @@ compiler/crystal/annotatable.cr
 compiler/crystal/codegen/abi.cr
 compiler/crystal/codegen/abi/x86_64.cr
 compiler/crystal/codegen/ast.cr
-compiler/crystal/codegen/cache_dir.cr
 compiler/crystal/codegen/call.cr
 compiler/crystal/codegen/cast.cr
 compiler/crystal/codegen/codegen.cr
 compiler/crystal/codegen/cond.cr
 compiler/crystal/codegen/const.cr
 compiler/crystal/codegen/context.cr
+compiler/crystal/codegen/crystal_llvm_builder.cr
 compiler/crystal/codegen/debug.cr
 compiler/crystal/codegen/exception.cr
 compiler/crystal/codegen/experimental.cr
@@ -101,6 +102,7 @@ compiler/crystal/semantic/default_arguments.cr
 compiler/crystal/semantic/exhaustiveness_checker.cr
 compiler/crystal/semantic/fix_missing_types.cr
 compiler/crystal/semantic/flags.cr
+compiler/crystal/semantic/instance_vars_initializer_visitor.cr
 compiler/crystal/semantic/lib.cr
 compiler/crystal/semantic/literal_expander.cr
 compiler/crystal/semantic/main_visitor.cr
@@ -624,6 +626,7 @@ process/executable_path.cr
 raise.cr
 random.cr
 random/isaac.cr
+range.cr
 range/bsearch.cr
 reference.cr
 regex.cr
