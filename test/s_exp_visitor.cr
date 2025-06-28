@@ -44,7 +44,6 @@ class SExpVisitor < Crystal::Visitor
     yield
   ensure
     exit_node
-    false
   end
 
   # Force the next node to be printed with the given `alias_name`
