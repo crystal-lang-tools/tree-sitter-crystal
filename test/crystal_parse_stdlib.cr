@@ -44,10 +44,10 @@ end
 pass_str = (100 * (passed / stdlib_files.size)).format(decimal_places: 2) + "%"
 puts <<-EOS
 
-        Total files checked: #{stdlib_files.size.colorize.blue}
-        Pass: #{passed} (#{pass_str.colorize.green})
+  Total files checked: #{stdlib_files.size.colorize.blue}
+  Pass: #{passed} (#{pass_str.colorize.green})
 
-        EOS
+  EOS
 
 if failed != expected_fail
   new_fails = failed - expected_fail
