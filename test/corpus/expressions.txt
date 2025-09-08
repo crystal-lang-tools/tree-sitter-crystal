@@ -5541,6 +5541,25 @@ B = /== (.*) ==/
     rhs: (regex
       (literal_content))))
 
+==========================
+multiple read instance var
+==========================
+
+foo.try &.@bar.@baz
+
+---
+
+(expressions
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (block_argument
+        (implicit_object_call
+          receiver: (implicit_object_call
+            (instance_var))
+          (instance_var))))))
+
 ===========
 loc pragmas
 ===========
