@@ -7121,6 +7121,7 @@
   {
     "type": "heredoc_body",
     "named": true,
+    "extra": true,
     "fields": {},
     "children": {
       "multiple": true,
