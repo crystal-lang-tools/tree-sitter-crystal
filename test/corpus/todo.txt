@@ -229,3 +229,15 @@ splat in tuple
 ---
 
 (expressions)
+
+=====================================
+fun declarations with proc parameters
+:error
+=====================================
+lib Foo
+  fun pthread_key_create(PthreadKeyT*, (Void*) ->) : Int
+  fun set_memory_functions = __gmp_set_memory_functions(malloc : SizeT -> Void*, realloc : Void*, SizeT, SizeT -> Void*, free : Void*, SizeT ->)
+end
+---
+
+(expressions)
