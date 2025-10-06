@@ -30,7 +30,7 @@ Hopefully support for this parser will be upstreamed by editors soon. At the mom
      filetype = "cr",
    }
    ```
-4. Restart neovim and run `:TSInstall crystall`
+4. Restart neovim and run `:TSInstall crystal`
 
 To confirm the grammar is functioning, run `:checkhealth nvim-treesitter` and look for this line:
 ```
