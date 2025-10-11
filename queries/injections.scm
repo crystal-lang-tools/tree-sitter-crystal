@@ -3,5 +3,4 @@
 
 (heredoc_body
   (literal_content) @injection.content
-  (heredoc_end) @injection.language
-  (#downcase! @injection.language))
+  (heredoc_end) @injection.language)
