@@ -17,7 +17,7 @@ jobs:
       - name: Set up tree-sitter
         uses: tree-sitter/setup-action/cli@v1
         with:
-          tree-sitter-ref: v0.25.9
+          tree-sitter-ref: v0.25.10
 
       - name: Install Crystal
         uses: crystal-lang/install-crystal@v1
@@ -45,7 +45,7 @@ jobs:
       - name: Set up tree-sitter
         uses: tree-sitter/setup-action/cli@v1
         with:
-          tree-sitter-ref: v0.25.9
+          tree-sitter-ref: v0.25.10
 
       - name: Regenerate parser
         run: tree-sitter generate
