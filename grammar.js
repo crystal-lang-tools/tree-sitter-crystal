@@ -102,6 +102,53 @@ module.exports = grammar({
     $._start_of_symbol,
     $.unquoted_symbol_content,
 
+    $._abstract_keyword,
+    $._alias_keyword,
+    $._alignof_keyword,
+    $._annotation_keyword,
+    $._asm_keyword,
+    $._begin_keyword,
+    $._break_keyword,
+    $._case_keyword,
+    $._class_keyword,
+    $._def_keyword,
+    $._do_keyword,
+    $._else_keyword,
+    $._elsif_keyword,
+    $._end_keyword,
+    $._enum_keyword,
+    $._extend_keyword,
+    $._false_keyword,
+    $._fun_keyword,
+    $._in_keyword,
+    $._include_keyword,
+    $._instance_alignof_keyword,
+    $._instance_sizeof_keyword,
+    $._lib_keyword,
+    $._macro_keyword,
+    $._module_keyword,
+    $._next_keyword,
+    $._nil_keyword,
+    $._offsetof_keyword,
+    $._out_keyword,
+    $._pointerof_keyword,
+    $._private_keyword,
+    $._protected_keyword,
+    $._require_keyword,
+    $._return_keyword,
+    $._select_keyword,
+    $._sizeof_keyword,
+    $._struct_keyword,
+    $._true_keyword,
+    $._type_keyword,
+    $._typeof_keyword,
+    $._union_keyword,
+    $._until_keyword,
+    $._when_keyword,
+    $._while_keyword,
+    $._with_keyword,
+    $._yield_keyword,
+
     // Represents the /\s:\s/ token that comes before param and return types.
     // The main reason for moving this token to the external scanner is a
     // workaround for https://github.com/tree-sitter/tree-sitter/issues/4091.
@@ -643,10 +690,10 @@ module.exports = grammar({
 
     empty_parens: $ => seq('(', ')'),
 
-    nil: $ => 'nil',
+    nil: $ => alias($._nil_keyword, 'nil'),
 
-    true: $ => 'true',
-    false: $ => 'false',
+    true: $ => alias($._true_keyword, 'true'),
+    false: $ => alias($._false_keyword, 'false'),
 
     integer: $ => {
       const binary_literal = seq('0b', repeat(/[01_]/))
@@ -1081,10 +1128,10 @@ module.exports = grammar({
     },
 
     annotation_def: $ => seq(
-      'annotation',
+      alias($._annotation_keyword, 'annotation'),
       field('name', $.constant),
       repeat($._terminator),
-      'end',
+      alias($._end_keyword, 'end'),
     ),
 
     annotation: $ => {
@@ -1117,47 +1164,47 @@ module.exports = grammar({
     },
 
     module_def: $ => seq(
-      'module',
+      alias($._module_keyword, 'module'),
       field('name', choice($.constant, $.generic_type)),
       field('body', seq(optional(alias($._statements, $.expressions)))),
-      'end',
+      alias($._end_keyword, 'end'),
     ),
 
     class_def: $ => seq(
-      optional('abstract'),
-      'class',
+      optional(alias($._abstract_keyword, 'abstract')),
+      alias($._class_keyword, 'class'),
       field('name', choice($.constant, $.generic_type)),
       optional(seq(
         '<', field('superclass', choice($.constant, $.generic_instance_type)),
       )),
       field('body', seq(optional(alias($._statements, $.expressions)))),
-      'end',
+      alias($._end_keyword, 'end'),
     ),
 
     struct_def: $ => seq(
-      optional('abstract'),
-      'struct',
+      optional(alias($._abstract_keyword, 'abstract')),
+      alias($._struct_keyword, 'struct'),
       field('name', choice($.constant, $.generic_type)),
       optional(seq(
         '<', field('superclass', choice($.constant, $.generic_instance_type)),
       )),
       field('body', seq(optional(alias($._statements, $.expressions)))),
-      'end',
+      alias($._end_keyword, 'end'),
     ),
 
     enum_def: $ => seq(
-      'enum',
+      alias($._enum_keyword, 'enum'),
       field('name', $.constant),
       optional(field('type', seq(/:\s/, $._bare_type))),
       field('body', seq(optional(alias($._enum_statements, $.expressions)))),
-      'end',
+      alias($._end_keyword, 'end'),
     ),
 
     lib_def: $ => seq(
-      'lib',
+      alias($._lib_keyword, 'lib'),
       field('name', choice($.constant, $.generic_type)),
       field('body', seq(optional(alias($._lib_statements, $.expressions)))),
-      'end',
+      alias($._end_keyword, 'end'),
     ),
 
     _base_fun_def: $ => {
@@ -1174,7 +1221,7 @@ module.exports = grammar({
       const return_type = field('type', seq($._type_field_separator, $._bare_type))
 
       return prec.right(seq(
-        'fun',
+        alias($._fun_keyword, 'fun'),
         name,
         optional(real_name),
         optional(params),
@@ -1186,7 +1233,7 @@ module.exports = grammar({
       return seq(
         $._base_fun_def,
         field('body', seq(optional(alias($._statements, $.expressions)))),
-        'end',
+        alias($._end_keyword, 'end'),
       )
     },
 
@@ -1210,7 +1257,7 @@ module.exports = grammar({
       const return_type = field('type', seq($._type_field_separator, $._bare_type))
 
       return seq(
-        'fun',
+        alias($._fun_keyword, 'fun'),
         name,
         optional(real_name),
         optional(params),
@@ -1259,7 +1306,7 @@ module.exports = grammar({
     _type_field_separator: $ => alias($._type_field_colon, ':'),
 
     type_def: $ => seq(
-      'type',
+      alias($._type_keyword, 'type'),
       field('name', $.constant),
       '=',
       field('type', $._bare_type),
@@ -1269,10 +1316,10 @@ module.exports = grammar({
       const name = field('name', $.constant)
 
       return seq(
-        'struct',
+        alias($._struct_keyword, 'struct'),
         name,
         field('body', alias($._c_struct_expressions, $.expressions)),
-        'end',
+        alias($._end_keyword, 'end'),
       )
     },
 
@@ -1309,10 +1356,10 @@ module.exports = grammar({
       const name = field('name', $.constant)
 
       return seq(
-        'union',
+        alias($._union_keyword, 'union'),
         name,
         field('body', alias($._union_expressions, $.expressions)),
-        'end',
+        alias($._end_keyword, 'end'),
       )
     },
 
@@ -1375,7 +1422,7 @@ module.exports = grammar({
       const forall = field('forall', $.forall)
 
       return prec.right(seq(
-        'def',
+        alias($._def_keyword, 'def'),
         optional(klass),
         name,
         optional(params),
@@ -1389,11 +1436,11 @@ module.exports = grammar({
       optional($._terminator),
       field('body', seq(optional(alias($._statements, $.expressions)))),
       optional($._rescue_else_ensure),
-      'end',
+      alias($._end_keyword, 'end'),
     ),
 
     abstract_method_def: $ => prec.left(seq(
-      'abstract',
+      alias($._abstract_keyword, 'abstract'),
       $._base_method_def,
       optional($._terminator),
     )),
@@ -1412,7 +1459,7 @@ module.exports = grammar({
       )
 
       return seq(
-        'macro',
+        alias($._macro_keyword, 'macro'),
         name,
         choice(params, $._terminator),
       )
@@ -1426,13 +1473,13 @@ module.exports = grammar({
           repeat($._macro_def_content),
           $.expressions,
         ))),
-        'end',
+        'end', // TODO: need to fix `scan_macro_content` to return `END_KEYWORD`
       )
     },
 
     include: $ => {
       return seq(
-        'include',
+        alias($._include_keyword, 'include'),
         choice(
           $.constant,
           $.self,
@@ -1443,7 +1490,7 @@ module.exports = grammar({
 
     extend: $ => {
       return seq(
-        'extend',
+        alias($._extend_keyword, 'extend'),
         choice(
           $.constant,
           $.self,
@@ -1547,24 +1594,37 @@ module.exports = grammar({
       alias($.argument_list_no_parens, $.argument_list),
     ),
 
-    return: $ => seq('return', optional($._control_expressions)),
+    return: $ => seq(
+      alias($._return_keyword, 'return'),
+      optional($._control_expressions),
+    ),
 
-    next: $ => seq('next', optional($._control_expressions)),
+    next: $ => seq(
+      alias($._next_keyword, 'next'),
+      optional($._control_expressions),
+    ),
 
-    break: $ => seq('break', optional($._control_expressions)),
+    break: $ => seq(
+      alias($._break_keyword, 'break'),
+      optional($._control_expressions),
+    ),
 
     yield: $ => {
       const with_expr = field('with', $._expression)
 
       return seq(
-        optional(seq('with', with_expr, $._end_of_with_expression)),
-        'yield',
+        optional(seq(
+          alias($._with_keyword, 'with'),
+          with_expr,
+          $._end_of_with_expression,
+        )),
+        alias($._yield_keyword, 'yield'),
         optional($._control_expressions),
       )
     },
 
     typeof: $ => seq(
-      'typeof',
+      alias($._typeof_keyword, 'typeof'),
       '(',
       $._expression,
       repeat(seq(',', $._expression)),
@@ -1573,42 +1633,42 @@ module.exports = grammar({
     ),
 
     pointerof: $ => seq(
-      'pointerof',
+      alias($._pointerof_keyword, 'pointerof'),
       '(',
       $._expression,
       ')',
     ),
 
     sizeof: $ => seq(
-      'sizeof',
+      alias($._sizeof_keyword, 'sizeof'),
       '(',
       $._bare_type,
       ')',
     ),
 
     instance_sizeof: $ => seq(
-      'instance_sizeof',
+      alias($._instance_sizeof_keyword, 'instance_sizeof'),
       '(',
       $._bare_type,
       ')',
     ),
 
     alignof: $ => seq(
-      'alignof',
+      alias($._alignof_keyword, 'alignof'),
       '(',
       $._bare_type,
       ')',
     ),
 
     instance_alignof: $ => seq(
-      'instance_alignof',
+      alias($._instance_alignof_keyword, 'instance_alignof'),
       '(',
       $._bare_type,
       ')',
     ),
 
     offsetof: $ => seq(
-      'offsetof',
+      alias($._offsetof_keyword, 'offsetof'),
       '(',
       $._bare_type,
       ',',
@@ -1987,26 +2047,26 @@ module.exports = grammar({
 
     _macro_begin_keyword: $ => seq(
       '{%',
-      'begin',
+      choice(alias($._begin_keyword, 'begin'), 'begin'),
       '%}',
     ),
 
     _macro_end_keyword: $ => seq(
       alias($._macro_delimiter_end, '{%'),
-      'end',
+      choice(alias($._end_keyword, 'end'), 'end'),
       '%}',
     ),
 
     _macro_else_keyword: $ => seq(
       alias($._macro_delimiter_else, '{%'),
-      'else',
+      choice(alias($._else_keyword, 'else'), 'else'),
       '%}',
     ),
 
     _macro_verbatim_keyword: $ => seq(
       '{%',
       'verbatim',
-      'do',
+      choice(alias($._do_keyword, 'do'), 'do'),
       '%}',
     ),
 
@@ -2118,8 +2178,8 @@ module.exports = grammar({
       $._terminator,
     ),
 
-    private: $ => 'private',
-    protected: $ => 'protected',
+    private: $ => alias($._private_keyword, 'private'),
+    protected: $ => alias($._protected_keyword, 'protected'),
 
     visibility_modifier: $ => seq(
       field('visibility', choice($.private, $.protected)),
@@ -2628,7 +2688,7 @@ module.exports = grammar({
     },
 
     out: $ => seq(
-      'out',
+      alias($._out_keyword, 'out'),
       choice(
         $.identifier,
         $.instance_var,
@@ -2789,7 +2849,7 @@ module.exports = grammar({
     },
 
     alias: $ => seq(
-      'alias',
+      alias($._alias_keyword, 'alias'),
       field('name', $.constant),
       '=',
       field('type', $._bare_type),
@@ -2836,11 +2896,11 @@ module.exports = grammar({
       const params = seq('|', field('params', alias($.block_param_list, $.param_list)), '|')
 
       return seq(
-        'do',
+        alias($._do_keyword, 'do'),
         optional(params),
         field('body', seq(optional(alias($._statements, $.expressions)))),
         optional($._rescue_else_ensure),
-        'end',
+        alias($._end_keyword, 'end'),
       )
     },
 
@@ -2866,11 +2926,11 @@ module.exports = grammar({
     },
 
     begin: $ => seq(
-      'begin',
+      alias($._begin_keyword, 'begin'),
       optional($._terminator),
       field('body', seq(optional(alias($._statements, $.expressions)))),
       optional($._rescue_else_ensure),
-      'end',
+      alias($._end_keyword, 'end'),
     ),
 
     rescue: $ => {
@@ -2931,19 +2991,19 @@ module.exports = grammar({
 
 
     while: $ => seq(
-      'while',
+      alias($._while_keyword, 'while'),
       field('cond', $._expression),
       $._terminator,
       field('body', seq(optional(alias($._statements, $.expressions)))),
-      'end',
+      alias($._end_keyword, 'end'),
     ),
 
     until: $ => seq(
-      'until',
+      alias($._until_keyword, 'until'),
       field('cond', $._expression),
       $._terminator,
       field('body', seq(optional(alias($._statements, $.expressions)))),
-      'end',
+      alias($._end_keyword, 'end'),
     ),
 
     if: $ => {
@@ -2957,7 +3017,7 @@ module.exports = grammar({
         $._terminator,
         optional(then),
         optional(else_),
-        'end',
+        alias($._end_keyword, 'end'),
       )
     },
 
@@ -2972,7 +3032,7 @@ module.exports = grammar({
         $._terminator,
         optional(then),
         optional(else_),
-        'end',
+        alias($._end_keyword, 'end'),
       )
     },
 
@@ -2984,7 +3044,7 @@ module.exports = grammar({
       const else_ = field('else', choice($.elsif, $.else))
 
       return seq(
-        'elsif',
+        alias($._elsif_keyword, 'elsif'),
         cond,
         $._terminator,
         optional(then),
@@ -2993,7 +3053,7 @@ module.exports = grammar({
     },
 
     else: $ => seq(
-      'else',
+      alias($._else_keyword, 'else'),
       field('body', seq(optional(alias($._statements, $.expressions)))),
     ),
 
@@ -3017,7 +3077,7 @@ module.exports = grammar({
       field('cond', $._expression),
     ),
 
-    require: $ => seq('require', $.string),
+    require: $ => seq(alias($._require_keyword, 'require'), $.string),
 
     when: $ => {
       const cond = field('cond', choice(
@@ -3027,7 +3087,7 @@ module.exports = grammar({
       ))
 
       return seq(
-        'when',
+        alias($._when_keyword, 'when'),
         cond,
         repeat(seq(',', cond)),
         choice('then', $._terminator),
@@ -3039,20 +3099,20 @@ module.exports = grammar({
       const cond = field('cond', $._expression)
 
       return seq(
-        'case',
+        alias($._case_keyword, 'case'),
         optional(cond),
         repeat($.when),
         optional($.else),
-        'end',
+        alias($._end_keyword, 'end'),
       )
     },
 
     select: $ => {
       return seq(
-        'select',
+        alias($._select_keyword, 'select'),
         repeat($.when),
         optional($.else),
-        'end',
+        alias($._end_keyword, 'end'),
       )
     },
 
@@ -3064,7 +3124,7 @@ module.exports = grammar({
       ))
 
       return seq(
-        'in',
+        alias($._in_keyword, 'in'),
         cond,
         repeat(seq(',', cond)),
         choice('then', $._terminator),
@@ -3076,15 +3136,15 @@ module.exports = grammar({
       const cond = field('cond', $._expression)
 
       return seq(
-        'case',
+        alias($._case_keyword, 'case'),
         cond,
         repeat1($.in),
-        'end',
+        alias($._end_keyword, 'end'),
       )
     },
 
     asm: $ => seq(
-      'asm',
+      alias($._asm_keyword, 'asm'),
       '(',
       field('text', $.string),
       optional($._asm_outputs),
