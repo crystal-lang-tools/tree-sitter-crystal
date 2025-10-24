@@ -1064,7 +1064,7 @@ enum Nums
 end
 
 alias Bar = Int8
-enum Foo:	Bar Red; Blue; Green end
+enum Foo:	Bar; Red; Blue; Green end
 enum Foo2; Thing end
 
 @[Flags]
