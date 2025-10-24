@@ -1,37 +1,3 @@
-=============================================================
-macro calls with keyword type declaration args
-=============================================================
-
-class Name
-  private getter begin : Qux
-end
-
-class ASTNode
-  getter else : ASTNode?
-end
-
----
-
-(expressions
-  (ERROR
-    (constant)
-    (visibility_modifier
-      visibility: (private)
-      (call
-        method: (identifier)
-        arguments: (argument_list
-          (begin
-            (ERROR)
-            body: (expressions
-              (constant))))))
-    (class_def
-      name: (constant)
-      (ERROR
-        (identifier))
-      body: (expressions
-        (nilable_constant
-          (constant))))))
-
 ================================================================================
 implicit object assignment call
 :error
@@ -200,15 +166,6 @@ end
 
 (expressions)
 
-=========================
-keyword as named argument
-:error
-=========================
-pages.series(begin: 2, end: 2)
----
-
-(expressions)
-
 ==============
 splat in tuple
 :error
@@ -241,3 +198,44 @@ end
 ---
 
 (expressions)
+
+=============
+select method
+=============
+
+entries
+  .select { |dir| Dir.exists?(dir) }
+
+---
+
+(expressions
+  (call
+    (call
+      (identifier)
+      (ERROR
+        (UNEXPECTED ' '))
+      (operator)
+      (argument_list
+        (identifier)))
+    (operator)
+    (argument_list
+      (call
+        (constant)
+        (identifier)
+        (argument_list
+          (identifier)))))
+  (ERROR))
+
+=======================
+true literal in ternary
+=======================
+
+foo ? true : false
+
+---
+
+(expressions
+  (conditional
+    (identifier)
+    (identifier)
+    (false)))

@@ -5581,3 +5581,281 @@ loc pragmas
         (literal_content))))
   (loc_pragma_location)
   (loc_pragma_location))
+
+=========================
+keyword as named argument
+=========================
+
+pages.series(begin: 2, end: 2)
+
+---
+
+(expressions
+  (call
+    receiver: (identifier)
+    method: (identifier)
+    arguments: (argument_list
+      (named_expr
+        name: (identifier)
+        (integer))
+      (named_expr
+        name: (identifier)
+        (integer)))))
+
+=============================================================
+macro calls with keyword type declaration args
+=============================================================
+
+class Name
+  private getter begin : Qux
+end
+
+class ASTNode
+  getter else : ASTNode?
+end
+
+---
+
+(expressions
+  (class_def
+    name: (constant)
+    body: (expressions
+      (visibility_modifier
+        visibility: (private)
+        (call
+          method: (identifier)
+          arguments: (argument_list
+            (type_declaration
+              var: (identifier)
+              type: (constant)))))))
+  (class_def
+    name: (constant)
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (type_declaration
+            var: (identifier)
+            type: (nilable_type
+              (constant))))))))
+
+=============================================================
+private or protected calls with keyword type declaration args
+=============================================================
+
+class Name
+  getter rescue : Qux
+  property if : Int32
+end
+
+---
+
+(expressions
+  (class_def
+    name: (constant)
+    body: (expressions
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (type_declaration
+            var: (identifier)
+            type: (constant))))
+      (call
+        method: (identifier)
+        arguments: (argument_list
+          (type_declaration
+            var: (identifier)
+            type: (constant)))))))
+
+========================
+keyword type declaration
+========================
+
+abstract : Int32
+alias : Int32
+alignof : Int32
+annotation : Int32
+asm : Int32
+begin : Int32
+break : Int32
+case : Int32
+class : Int32
+def : Int32
+do : Int32
+else : Int32
+elsif : Int32
+end : Int32
+enum : Int32
+extend : Int32
+false : Int32
+fun : Int32
+in : Int32
+include : Int32
+instance_alignof : Int32
+instance_sizeof : Int32
+lib : Int32
+macro : Int32
+module : Int32
+next : Int32
+nil : Int32
+offsetof : Int32
+out : Int32
+pointerof : Int32
+private : Int32
+protected : Int32
+require : Int32
+return : Int32
+select : Int32
+sizeof : Int32
+struct : Int32
+true : Int32
+type : Int32
+typeof : Int32
+union : Int32
+until : Int32
+when : Int32
+while : Int32
+with : Int32
+yield : Int32
+
+---
+
+(expressions
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant))
+  (type_declaration
+    (identifier)
+    (constant)))
