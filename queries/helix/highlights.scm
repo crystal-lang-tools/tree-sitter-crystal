@@ -149,6 +149,8 @@
   (self)
 ] @variable.builtin
 
+(comment) @comment
+
 (
   (comment)+ @comment.block.documentation
   .
@@ -170,7 +172,69 @@
   ]
 )
 
-(comment) @comment
+(identifier) @variable
+(param name: (identifier) @variable.parameter)
+
+(macro_var) @variable
+
+[
+  (class_var)
+  (instance_var)
+] @variable.other.member
+
+(named_expr
+  name: (identifier) @variable.other.member
+  ":" @variable.other.member)
+
+(named_type
+    name: (identifier) @variable.other.member)
+
+(underscore) @variable.special
+
+; function calls
+(call
+  method: (_) @function.method)
+
+(implicit_object_call
+  method: (_) @function.method)
+
+(method_proc
+  method: (_) @function.method)
+
+(assign_call
+  method: (_) @function.method)
+
+(method_def
+  name: (identifier) @function.method)
+
+(macro_def
+  name: (identifier) @function.method)
+
+(abstract_method_def
+  name: (identifier) @function.method)
+
+(fun_def
+  name: (identifier) @function.method
+  real_name: (identifier)? @function.method)
+
+(call
+    method: (_) @keyword
+    arguments: (argument_list
+      [
+        (type_declaration
+          var: (_) @function.method)
+        (assign
+          lhs: (_) @function.method)
+        (_) @function.method
+      ])
+    (#match? @keyword "^(class_)?(getter|setter|property)[?!]?$"))
+
+(call
+    method: (_) @keyword
+    (#match? @keyword "^(record|is_a\\?|as|as\\?|responds_to\\?|nil\\?|\\!)$"))
+
+((identifier) @variable.builtin
+  (#match? @variable.builtin "^(previous_def|super)$"))
 
 ; Operators and punctuation
 [
@@ -215,6 +279,11 @@
 ; TODO: {splat,double_splat,block,fun}_param + rescue param
 
 ; Types
+[
+  (constant)
+  (generic_instance_type)
+  (generic_type)
+] @type
 
 (nilable_constant
   "?" @type)
@@ -227,74 +296,3 @@
 
 (annotation
   (constant) @attribute)
-
-(identifier) @variable
-(param name: (identifier) @variable.parameter)
-
-(method_def
-  name: (identifier) @function.method)
-
-(macro_def
-  name: (identifier) @function.method)
-
-(abstract_method_def
-  name: (identifier) @function.method)
-
-(fun_def
-  name: (identifier) @function.method
-  real_name: (identifier)? @function.method)
-
-(macro_var) @variable
-
-[
-  (class_var)
-  (instance_var)
-] @variable.other.member
-
-(named_expr
-  name: (identifier) @variable.other.member
-  ":" @variable.other.member)
-
-(named_type
-    name: (identifier) @variable.other.member)
-
-(underscore) @variable.special
-
-; function calls
-
-(call
-    method: (_) @keyword
-    arguments: (argument_list
-      [
-        (type_declaration
-          var: (_) @function.method)
-        (assign
-          lhs: (_) @function.method)
-        (_) @function.method
-      ])
-    (#match? @keyword "^(class_)?(getter|setter|property)[?!]?$"))
-
-(call
-    method: (_) @keyword
-    (#match? @keyword "^(record|is_a\\?|as|as\\?|responds_to\\?|nil\\?|\\!)$"))
-
-(call
-  method: (_) @function.method)
-
-(implicit_object_call
-  method: (_) @function.method)
-
-(method_proc
-  method: (_) @function.method)
-
-(assign_call
-  method: (_) @function.method)
-
-((identifier) @variable.builtin
-  (#match? @variable.builtin "^(previous_def|super)$"))
-
-[
-  (constant)
-  (generic_instance_type)
-  (generic_type)
-] @type
