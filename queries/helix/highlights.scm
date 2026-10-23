@@ -146,8 +146,9 @@
   (true)
   (false)
   (nil)
-  (self)
-] @variable.builtin
+] @constant.builtin.boolean
+
+(self) @variable.builtin
 
 (comment) @comment
 
